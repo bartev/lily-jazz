@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2004-2015 by par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Extension des fonctionnalités: 2.5.3 Définition d'une nouvelle commande de markup</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Extension des fonctionnalités: 2.5.3 Définition d'une nouvelle commande de markup">
+<meta name="keywords" content="GNU LilyPond &ndash; Extension des fonctionnalités: 2.5.3 Définition d'une nouvelle commande de markup">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Extension des fonctionnalités">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="B. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="markup-functions.fr.html#markup-functions" rel="up" title="2.5 Fonctions pour markups">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="B. Index de LilyPond">
+<link href="how-markups-work-internally.fr.html#how-markups-work-internally" rel="previous" title="2.5.2 Fonctionnement interne des markups">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="extending devStatus">
+
+
+<div id="main">
+<a name="D_00e9finition-d_0027une-nouvelle-commande-de-markup"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="how-markups-work-internally.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Fonctionnement interne des markups&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="markup-functions.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Fonctions pour markups&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#markup-command-definition-syntax" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Syntaxe d'une commande markup &gt; </a>]</td></tr></table>
+<a name="new-markup-command-definition"></a>
+<h3 class="subsection">2.5.3 Définition d&rsquo;une nouvelle commande de <em>markup</em></h3>
+
+<p>Nous allons étudier dans ce qui suit la manière de définir une nouvelle
+commande de <em>markup</em>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#markup-command-definition-syntax" accesskey="1">Syntaxe d&rsquo;une commande <em>markup</em></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#on-properties" accesskey="2">Attribution de propriétés</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#a-complete-example" accesskey="3">Exemple commenté</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#adapting-builtin-commands" accesskey="4">Adaptation d&rsquo;une commande incorporée</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Syntaxe-d_0027une-commande-markup"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#new-markup-command-definition" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Définition d'une nouvelle commande de markup&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Définition d'une nouvelle commande de markup&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#on-properties" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Attribution de propriétés &gt; </a>]</td></tr></table>
+<a name="markup-command-definition-syntax"></a>
+<h4 class="unnumberedsubsubsec">Syntaxe d&rsquo;une commande <em>markup</em></h4>
+
+<p>Une commande de <em>markup</em> personnalisée se définit à l&rsquo;aide de la
+macro Scheme <code>define-markup-command</code>, placée en tête de fichier.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (<var>nom-commande</var> <var>layout</var> <var>props</var> <var>arg1</var> <var>arg2</var>&hellip;)
+    (<var>arg1-type?</var> <var>arg2-type?</var>&hellip;)
+    [ #:properties ((<var>propriété1</var> <var>valeur-par-défaut1</var>)
+                    &hellip;) ]
+  &hellip;corps de la commande&hellip;)
+</pre></td></tr></table>
+
+<p>Quelques commentaires sur les arguments :
+</p>
+<dl compact="compact">
+<dt> <code><var>nom-commande</var></code></dt>
+<dd><p>le nom que vous attribuez à votre commande de <em>markup</em>.
+</p></dd>
+<dt> <code>layout</code></dt>
+<dd><p>la définition du « layout » &ndash; son formatage.
+</p></dd>
+<dt> <code>props</code></dt>
+<dd><p>une liste de listes associatives, comprenant toutes les propriétés actives.
+</p></dd>
+<dt> <code><var>argi</var></code></dt>
+<dd><p>le <var>ième</var> argument de la commande.
+</p></dd>
+<dt> <code><var>argi-type?</var></code></dt>
+<dd><p>un type de prédicat pour le <var>ième</var> argument.
+</p></dd>
+</dl>
+
+<p>Si la commande utilise des propriétés à partir des arguments
+<code>props</code>, le mot-clé <code>#:properties</code> permet de spécifier ces
+différentes propriétés ainsi que leur valeur par défaut.
+</p>
+<p>Les arguments se distinguent selon leur type :
+</p><ul>
+<li> un <em>markup</em>, correspondant au type de prédicat
+<code>markup?</code> ;
+</li><li> une liste de <em>markups</em>, correspondant au type de prédicat
+<code>markup-list?</code> ;
+</li><li> tout autre objet Scheme, correspondant au types de prédicat tels
+que <code>list?</code>, <code>number?</code>, <code>boolean?</code>, etc.
+</li></ul>
+
+<p>Il n&rsquo;existe aucune restriction quant à l&rsquo;ordre des arguments fournis à
+la suite des arguments <code>layout</code> et <code>props</code>.  Néanmoins, les
+fonctions <em>markup</em> qui ont en dernier argument un <em>markup</em> ont
+ceci de particulier qu&rsquo;elles peuvent s&rsquo;appliquer à des listes de
+<em>markups</em> ; ceci résultera en une liste de <em>markups</em> où
+tous les éléments de la liste originelle se verront appliquer cette
+fonction <em>markup</em> avec ses arguments de tête.
+</p>
+<p>La réplication des arguments de tête dans le but d&rsquo;appliquer une
+fonction <em>markup</em> à une liste de markups est économique,
+principalement lorsqu&rsquo;il s&rsquo;agit d&rsquo;arguments Scheme.  Vous éviterez
+ainsi d&rsquo;éventuelles pertes de performance en utilisant des arguments
+Scheme en tant qu&rsquo;arguments principaux d&rsquo;une fonction <em>markup</em> dont
+le dernier argument est un <em>markup</em>.
+</p>
+<a name="index-markup-macro"></a>
+<a name="index-macro-de-markup"></a>
+<a name="index-_005cmarkup"></a>
+<a name="index-_005cmarkup-1"></a>
+<a name="index-interpret_002dmarkup"></a>
+<a name="index-interpret_002dmarkup-1"></a>
+
+<p>Les commandes de <em>markup</em> ont un cycle de vie relativement
+complexe.  Le corps de la définition d&rsquo;une commande de <em>markup</em> est
+chargé de convertir les arguments de la commande en expression stencil
+qui sera alors renvoyée.  Bien souvent, ceci s&rsquo;accomplit par un appel à
+la fonction <code>interpret-markup</code>, en lui passant les arguments
+<var>layout</var> et <var>props</var>.  Ces arguments ne seront en principe connus
+que bien plus tardivement dans le processus typographique.  Lors de
+l&rsquo;expansion d&rsquo;une expression LilyPond <code>\markup</code> ou d&rsquo;une macro
+Scheme <code>markup</code>, les expressions <em>markup</em> auront déjà vu leurs
+composants assemblés en expressions <em>markup</em>.  L&rsquo;évaluation et le
+contrôle du type des arguments à une commande de <em>markup</em>
+n&rsquo;interviennent qu&rsquo;au moment de l&rsquo;interprétation de <code>\markup</code> ou
+<code>markup</code>.
+</p>
+<p>Seule l&rsquo;application de <code>interpret-markup</code> sur une expression
+<em>markup</em> réalisera effectivement la conversion des expressions
+<em>markup</em> en stencil, au travers de l&rsquo;exécution du corps des
+fonctions <em>markup</em>.
+</p>
+
+<hr size="6">
+<a name="Attribution-de-propri_00e9t_00e9s"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#markup-command-definition-syntax" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Syntaxe d'une commande markup&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Définition d'une nouvelle commande de markup&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#a-complete-example" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Exemple commenté &gt; </a>]</td></tr></table>
+<a name="on-properties"></a>
+<h4 class="unnumberedsubsubsec">Attribution de propriétés</h4>
+
+<p>Les arguments <code>layout</code> et <code>props</code> d&rsquo;une commande de
+<em>markup</em> fournissent un contexte à l&rsquo;interprétation du
+<em>markup</em> : taille de fonte, longueur de ligne, etc.
+</p>
+<p>L&rsquo;argument <code>layout</code> permet d&rsquo;accéder aux propriétés définies dans
+les blocs <code>\paper</code>, grâce à la fonction
+<code>ly:output-def-lookup</code>.  Par exemple, la longueur de ligne,
+identique à celle de la partition, est lue au travers de
+</p>
+<blockquote><pre class="example">(ly:output-def-lookup layout 'line-width)
+</pre></blockquote>
+
+<p>L&rsquo;argument <code>props</code> rend certaines propriétés accessibles aux
+commandes de <em>markup</em>.  Il en va ainsi lors de l&rsquo;interprétation
+d&rsquo;un <em>markup</em> de titre d&rsquo;ouvrage : toutes les variables
+définies dans le bloc <code>\header</code> sont automatiquement ajoutées aux
+<code>props</code>, de telle sorte que le <em>markup</em> de titrage de
+l&rsquo;ouvrage pourra accéder aux différents champs titre, compositeur, etc.
+Ceci permet aussi de configurer le comportement d&rsquo;une commande de
+<em>markup</em> : la taille des fontes, par exemple, est lue à
+partir de <code>props</code> plutôt que grâce à un argument <code>font-size</code>.
+La fonction appelant une commande de <em>markup</em> peut altérer la
+valeur de la propriété taille des fontes et donc en modifier le
+comportement.  L&rsquo;utilisation du mot-clé <code>#:properties</code>, attaché à
+<code>define-markup-command</code>, permet de spécifier les propriétés devant
+être lues parmi les arguments <code>props</code>.
+</p>
+<p>L&rsquo;exemple proposé à la rubrique suivante illustre comment, au sein d&rsquo;une
+commande de <em>markup</em>, accéder aux différentes propriétés et les
+modifier.
+</p>
+
+<hr size="6">
+<a name="Exemple-comment_00e9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#on-properties" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Attribution de propriétés&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Définition d'une nouvelle commande de markup&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#adapting-builtin-commands" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Adaptation d'une commande incorporée &gt; </a>]</td></tr></table>
+<a name="a-complete-example"></a>
+<h4 class="unnumberedsubsubsec">Exemple commenté</h4>
+
+<p>Nous allons, dans cet exemple, nous attacher à encadrer du texte avec un
+double liseré.
+</p>
+<p>Commençons par construire quelque chose d&rsquo;approximatif à l&rsquo;aide d&rsquo;un
+simple <em>markup</em>.  La lecture de <a name="index-Commandes-pour-markup"></a>
+<a href="../notation/text-markup-commands.fr.html">Commandes pour markup</a> nous
+indique la commande <code>\box</code>, qui semble ici appropriée.
+</p>
+<blockquote><pre class="verbatim">\markup \box \box HELLO
+</pre><p>
+ <a href="../75/lily-43f5cbce.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-43f5cbce.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Dans un souci d&rsquo;esthétique, nous aimerions que le texte et les
+encadrements ne soient pas autant accolés.  Selon la documentation de
+<code>\box</code>, cette commande utilise la propriété <code>box-padding</code>,
+fixée par défaut à 0,2.  Cette même documentation nous indique
+aussi comment la modifier :
+</p>
+<blockquote><pre class="verbatim">\markup \box \override #'(box-padding . 0.6) \box A
+</pre><p>
+ <a href="../81/lily-7d9eea09.ly">
+  <img align="middle"
+       border="0"
+       src="../81/lily-7d9eea09.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>L&rsquo;espacement des deux liserés est cependant toujours trop réduit ;
+modifions le à son tour :
+</p>
+<blockquote><pre class="verbatim">\markup \override #'(box-padding . 0.4) \box
+     \override #'(box-padding . 0.6) \box A
+</pre><p>
+ <a href="../b5/lily-8a9d114e.ly">
+  <img align="middle"
+       border="0"
+       src="../b5/lily-8a9d114e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Vous conviendrez que recopier une telle définition de <em>markup</em>
+deviendra vite fastidieux.  C&rsquo;est pourquoi nous écrivons la commande de
+<em>markup</em> <code>double-box</code> qui prendra un seul argument &ndash; le
+texte.  Cette commande se chargera de dessiner les encadrements, en
+tenant compte des espacements.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  &quot;Dessine un double encadrement autour du texte.&quot;
+  (interpret-markup layout props
+    #{\markup \override #'(box-padding . 0.4) \box
+            \override #'(box-padding . 0.6) \box { #text }#}))
+</pre></td></tr></table>
+
+<p>ou bien son équivalent
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  &quot;Dessine un double encadrement autour du texte.&quot;
+  (interpret-markup layout props
+    (markup #:override '(box-padding . 0.4) #:box
+            #:override '(box-padding . 0.6) #:box text)))
+</pre></td></tr></table>
+
+<p><code>text</code> est le nom de l&rsquo;argument de notre commande, et
+<code>markup?</code> son type &ndash; l&rsquo;argument sera identifié comme étant un
+<em>markup</em>.  La fonction <code>interpret-markup</code>, utilisée dans la
+plupart des commandes de <em>markup</em>, construira un stencil à partir
+de <code>layout</code>, <code>props</code> et un <em>markup</em>.  Dans la seconde
+variante, ce <em>markup</em> sera construit à l&rsquo;aide de la macro Scheme
+<code>markup</code> &ndash; voir <a href="markup-construction-in-scheme.fr.html">Construction d&rsquo;un <em>markup</em> en Scheme</a>.  La
+transformation d&rsquo;une expression <code>\markup</code> en expression Scheme est
+des plus triviales.
+</p>
+<p>Notre commande personnalisée s&rsquo;utilise ainsi :
+</p>
+<blockquote><pre class="example">\markup \double-box A
+</pre></blockquote>
+
+<p>Il serait intéressant de rendre cette commande <code>double-box</code> plus
+souple :  les valeurs de <code>box-padding</code> sont figées et ne
+peuvent être modifiées à l&rsquo;envie.  Pareillement, il serait bien de
+distinguer l&rsquo;espacement entre les encadrements de l&rsquo;espacement entre le
+texte et ses encadrements.  Nous allons donc introduire une propriété
+supplémentaire, que nous appellerons <code>inter-box-padding</code>, chargée
+de gérer l&rsquo;espacement des encadrements ; <code>box-padding</code> ne
+servira alors que pour l&rsquo;espacement intérieur.  Voici le code adapté à
+ces évolutions :
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  #:properties ((inter-box-padding 0.4)
+                (box-padding 0.6))
+  &quot;Dessine un double encadrement autour du texte.&quot;
+  (interpret-markup layout props
+    #{\markup \override #`(box-padding . ,inter-box-padding) \box
+               \override #`(box-padding . ,box-padding) \box
+               { #text } #}))
+</pre></td></tr></table>
+
+<p>Ainsi que son équivalent à partir de la macro <em>markup</em> :
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  #:properties ((inter-box-padding 0.4)
+                (box-padding 0.6))
+  &quot;Dessine un double encadrement autour du texte.&quot;
+  (interpret-markup layout props
+    (markup #:override `(box-padding . ,inter-box-padding) #:box
+            #:override `(box-padding . ,box-padding) #:box text)))
+</pre></td></tr></table>
+
+<p>C&rsquo;est ici le mot-clé <code>#:properties</code> qui permet de lire les
+propriétés <code>inter-box-padding</code> et <code>box-padding</code> à partir de
+l&rsquo;argumenet <code>props</code> ; on leur a d&rsquo;ailleurs fourni des valeurs
+par défaut au cas où elles ne seraient pas définies.
+</p>
+<p>Ces valeurs permettront alors d&rsquo;adapter les propriétés de
+<code>box-padding</code> utilisées par les deux commandes <code>\box</code>.  Vous
+aurez remarqué, dans l&rsquo;argument <code>\override</code>, la présence de
+l&rsquo;apostrophe inversée (<code>`</code>) et de la virgule ; elles vous
+permettent d&rsquo;insérer une valeur variable au sein d&rsquo;une expression
+littérale.
+</p>
+<p>Notre commande est maintenant prête à servir dans un <em>markup</em>, et
+les encadrements sont repositionnables.
+</p>
+<blockquote><pre class="verbatim">#(define-markup-command (double-box layout props text) (markup?)
+  #:properties ((inter-box-padding 0.4)
+                (box-padding 0.6))
+  &quot;Draw a double box around text.&quot;
+  (interpret-markup layout props
+    #{\markup \override #`(box-padding . ,inter-box-padding) \box
+              \override #`(box-padding . ,box-padding) \box
+              { #text } #}))
+
+\markup \double-box A
+\markup \override #'(inter-box-padding . 0.8) \double-box A
+\markup \override #'(box-padding . 1.0) \double-box A
+</pre><p>
+ <a href="../94/lily-b1443df4.ly">
+  <img align="middle"
+       border="0"
+       src="../94/lily-b1443df4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Adaptation-d_0027une-commande-incorpor_00e9e"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#a-complete-example" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Exemple commenté&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Définition d'une nouvelle commande de markup&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new-markup-list-command-definition.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Définition d'une nouvelle commande de liste de markups &gt; </a>]</td></tr></table>
+<a name="adapting-builtin-commands"></a>
+<h4 class="unnumberedsubsubsec">Adaptation d&rsquo;une commande incorporée</h4>
+
+<p>Le meilleur moyen de construire ses propres commandes de <em>markup</em>
+consiste à prendre exemple sur les commandes déjà incorporées.  La
+plupart des commandes de <em>markup</em> fournies avec LilyPond sont
+répertoriées dans le fichier &lsquo;<tt>scm/define-markup-commands.scm</tt>&rsquo;.
+</p>
+<p>Nous pourrions, par exemple, envisager d&rsquo;adapter la commande
+<code>\draw-line</code> pour dessiner plutôt une ligne double.  Voici comment
+est définie la commande <code>\draw-line</code>, expurgée de sa
+documentation :
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (draw-line layout props dest)
+  (number-pair?)
+  #:category graphic
+  #:properties ((thickness 1))
+  &quot;&hellip;documentation&hellip;&quot;
+  (let ((th (* (ly:output-def-lookup layout 'line-thickness)
+               thickness))
+        (x (car dest))
+        (y (cdr dest)))
+    (make-line-stencil th 0 0 x y)))
+</pre></td></tr></table>
+
+<p>Avant de définir notre propre commande basée sur l&rsquo;une de celles
+fournies par LilyPond, commençons par en recopier la définition, puis
+attribuons lui un autre nom.  Le mot-clé <code>#:category</code> peut être
+supprimé sans risque ; il ne sert que lors de la génération de la
+documentation et n&rsquo;est d&rsquo;aucune utilité pour une commande personnalisée.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (draw-double-line layout props dest)
+  (number-pair?)
+  #:properties ((thickness 1))
+  &quot;&hellip;documentation&hellip;&quot;
+  (let ((th (* (ly:output-def-lookup layout 'line-thickness)
+               thickness))
+        (x (car dest))
+        (y (cdr dest)))
+    (make-line-stencil th 0 0 x y)))
+</pre></td></tr></table>
+
+<p>Nous ajoutons ensuite une propriété pour gérer l&rsquo;écart entre les deux
+lignes, que nous appelons <code>line-gap</code>, et lui attribuons une valeur
+par défaut de 6 dixièmes :
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (draw-double-line layout props dest)
+  (number-pair?)
+  #:properties ((thickness 1)
+                (line-gap 0.6))
+  &quot;&hellip;documentation&hellip;&quot;
+  &hellip;
+</pre></td></tr></table>
+
+<p>Nous ajoutons enfin le code qui dessinera nos deux lignes.  Deux appels
+à <code>make-line-stencil</code> permettrons de dessiner les lignes dont nous
+regrouperons les stencils à l&rsquo;aide de <code>ly:stencil-add</code> :
+</p>
+<blockquote><pre class="verbatim">#(define-markup-command (my-draw-line layout props dest)
+  (number-pair?)
+  #:properties ((thickness 1)
+                (line-gap 0.6))
+  &quot;..documentation..&quot;
+  (let* ((th (* (ly:output-def-lookup layout 'line-thickness)
+                thickness))
+         (dx (car dest))
+         (dy (cdr dest))
+         (w (/ line-gap 2.0))
+         (x (cond ((= dx 0) w)
+                  ((= dy 0) 0)
+                  (else (/ w (sqrt (+ 1 (* (/ dx dy) (/ dx dy))))))))
+         (y (* (if (&lt; (* dx dy) 0) 1 -1)
+               (cond ((= dy 0) w)
+                     ((= dx 0) 0)
+                     (else (/ w (sqrt (+ 1 (* (/ dy dx) (/ dy dx))))))))))
+     (ly:stencil-add (make-line-stencil th x y (+ dx x) (+ dy y))
+                     (make-line-stencil th (- x) (- y) (- dx x) (- dy y)))))
+
+\markup \my-draw-line #'(4 . 3)
+\markup \override #'(line-gap . 1.2) \my-draw-line #'(4 . 3)
+</pre><p>
+ <a href="../f2/lily-ee1c28e4.ly">
+  <img align="middle"
+       border="0"
+       src="../f2/lily-ee1c28e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#a-complete-example" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Exemple commenté&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Définition d'une nouvelle commande de markup&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new-markup-list-command-definition.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Définition d'une nouvelle commande de liste de markups &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="new-markup-command-definition.html">English</a>, <a href="new-markup-command-definition.de.html">deutsch</a>, <a href="new-markup-command-definition.es.html">español</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Extension des fonctionnalités  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-Scheme-1" href="tutoriel-scheme.fr.html">1. Tutoriel Scheme</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-a-Scheme" href="introduction-to-scheme.fr.html">1.1 Introduction à Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-et-LilyPond-1" href="scheme-in-lilypond.fr.html">1.2 Scheme et LilyPond</a>    </li>
+    <li class=""><a name="toc-Construction-de-fonctions-complexes-1" href="building-complicated-functions.fr.html">1.3 Construction de fonctions complexes</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Interfaces-pour-programmeurs-1" href="interfaces-for-programmers.fr.html">2. Interfaces pour programmeurs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Blocs-de-code-LilyPond-1" href="lilypond-code-blocks.fr.html">2.1 Blocs de code LilyPond</a>    </li>
+    <li class=""><a name="toc-Fonctions-Scheme-1" href="scheme-functions.fr.html">2.2 Fonctions Scheme</a>    </li>
+    <li class=""><a name="toc-Fonctions-musicales-1" href="music-functions.fr.html">2.3 Fonctions musicales</a>    </li>
+    <li class=""><a name="toc-Fonctions-evenementielles" href="event-functions.fr.html">2.4 Fonctions événementielles</a>    </li>
+    <li class=" toc_current"><a name="toc-Fonctions-pour-markups-1" href="markup-functions.fr.html">2.5 Fonctions pour <em>markups</em></a>
+    <ul class="toc">
+      <li class=""><a name="toc-Construction-d_0027un-markup-en-Scheme-1" href="markup-construction-in-scheme.fr.html">2.5.1 Construction d&rsquo;un <em>markup</em> en Scheme</a>      </li>
+      <li class=""><a name="toc-Fonctionnement-interne-des-markups-1" href="how-markups-work-internally.fr.html">2.5.2 Fonctionnement interne des <em>markups</em></a>      </li>
+      <li class=" toc_current"><a name="toc-Definition-d_0027une-nouvelle-commande-de-markup" href="new-markup-command-definition.fr.html">2.5.3 Définition d&rsquo;une nouvelle commande de <em>markup</em></a>
+      <ul class="toc">
+        <li class=""><a name="toc-Syntaxe-d_0027une-commande-markup-1" href="new-markup-command-definition.fr.html#markup-command-definition-syntax">Syntaxe d&rsquo;une commande <em>markup</em></a>        </li>
+        <li class=""><a name="toc-Attribution-de-proprietes" href="new-markup-command-definition.fr.html#on-properties">Attribution de propriétés</a>        </li>
+        <li class=""><a name="toc-Exemple-commente" href="new-markup-command-definition.fr.html#a-complete-example">Exemple commenté</a>        </li>
+        <li class=""><a name="toc-Adaptation-d_0027une-commande-incorporee" href="new-markup-command-definition.fr.html#adapting-builtin-commands">Adaptation d&rsquo;une commande incorporée</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Definition-d_0027une-nouvelle-commande-de-liste-de-markups" href="new-markup-list-command-definition.fr.html">2.5.4 Définition d&rsquo;une nouvelle commande de liste de <em>markups</em></a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Contextes-pour-programmeurs-1" href="contexts-for-programmers.fr.html">2.6 Contextes pour programmeurs</a>    </li>
+    <li class=""><a name="toc-Fonctions-de-rappel-1" href="callback-functions.fr.html">2.7 Fonctions de rappel</a>    </li>
+    <li class=""><a name="toc-Retouches-complexes-1" href="difficult-tweaks.fr.html">2.8 Retouches complexes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-LilyPond-Scheme-1" href="lilypond-scheme-interfaces.fr.html">3. Interfaces LilyPond Scheme</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">B. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

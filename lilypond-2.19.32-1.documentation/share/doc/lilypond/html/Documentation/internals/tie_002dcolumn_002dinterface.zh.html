@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Internals Reference: 3.2.126 tie-column-interface</title>
+
+<meta name="description" content="LilyPond Internals Reference: 3.2.126 tie-column-interface">
+<meta name="keywords" content="LilyPond Internals Reference: 3.2.126 tie-column-interface">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.zh.html#index" rel="start" title="GNU LilyPond &ndash; Internals Reference">
+<link href="indices.zh.html#indices" rel="index" title="A. Indices">
+<link href="index_toc.zh.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.zh.html#SEC_About" rel="help" title="About This Document">
+<link href="graphical-object-interfaces.zh.html#graphical-object-interfaces" rel="up" title="3.2 Graphical Object Interfaces">
+<link href="indices.zh.html#indices" rel="next" title="A.2 Function index">
+<link href="text_002dscript_002dinterface.zh.html#text_002dscript_002dinterface" rel="previous" title="3.2.125 text-script-interface">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="internals devStatus">
+
+
+<div id="main">
+<a name="tie_002dcolumn_002dinterface"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="backend.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Backend&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="scheme-functions.zh.html" title="Next chapter">&nbsp;Scheme functions &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="text_002dscript_002dinterface.zh.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; text-script-interface&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="graphical-object-interfaces.zh.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Graphical Object Interfaces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="tie_002dinterface.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;tie-interface &gt; </a>]</td></tr></table>
+<a name="tie_002dcolumn_002dinterface"></a>
+<h3 class="subsection">3.2.126 tie-column-interface</h3>
+
+<p>Object that sets directions of multiple ties in a tied chord.
+</p>
+<a name="User-settable-properties_003a-10"></a>
+<h4 class="subsubheading">User settable properties:</h4>
+
+<blockquote><dl compact="compact">
+<dt> <code>tie-configuration</code> (list)</dt>
+<dd><p>List of <code>(<var>position</var> .
+<var>dir</var>)</code> pairs, indicating the desired tie configuration, where
+<var>position</var> is the offset from the center of the staff in staff
+space and <var>dir</var> indicates the direction of the tie (<code>1</code>=&gt;up,
+<code>-1</code>=&gt;down, <code>0</code>=&gt;center).  A non-pair entry
+in the list causes the corresponding tie to be formatted
+automatically.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<a name="Internal-properties_003a-68"></a>
+<h4 class="subsubheading">Internal properties:</h4>
+
+<blockquote><dl compact="compact">
+<dt> <code>positioning-done</code> (boolean)</dt>
+<dd><p>Used to signal that a positioning element
+did its job.  This ensures that a positioning is only done once.
+</p>
+</dd>
+<dt> <code>ties</code> (array of grobs)</dt>
+<dd><p>A grob array of <code>Tie</code> objects.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This grob interface is used in the following graphical object(s): <a href="tiecolumn.zh.html">TieColumn</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="backend.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Backend&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="scheme-functions.zh.html" title="Next chapter">&nbsp;Scheme functions &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="text_002dscript_002dinterface.zh.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; text-script-interface&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="graphical-object-interfaces.zh.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Graphical Object Interfaces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="tie_002dinterface.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;tie-interface &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (开发分支).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.zh.html" title="Start of the manual">Internals Reference  v2.19.32 (开发分支). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Music-definitions-1" href="music-definitions.zh.html">1. Music definitions</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Music-expressions-1" href="music-expressions.zh.html">1.1 Music expressions</a>    </li>
+    <li class=""><a name="toc-Music-classes-1" href="music-classes.zh.html">1.2 Music classes</a>    </li>
+    <li class=""><a name="toc-Music-properties-1" href="music-properties.zh.html">1.3 Music properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Translation-1" href="translation.zh.html">2. Translation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contexts-1" href="contexts.zh.html">2.1 Contexts</a>    </li>
+    <li class=""><a name="toc-Engravers-and-Performers-1" href="engravers-and-performers.zh.html">2.2 Engravers and Performers</a>    </li>
+    <li class=""><a name="toc-Tunable-context-properties-1" href="tunable-context-properties.zh.html">2.3 Tunable context properties</a>    </li>
+    <li class=""><a name="toc-Internal-context-properties-1" href="internal-context-properties.zh.html">2.4 Internal context properties</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Backend-1" href="backend.zh.html">3. Backend</a>
+  <ul class="toc">
+    <li class=""><a name="toc-All-layout-objects-1" href="all-layout-objects.zh.html">3.1 All layout objects</a>    </li>
+    <li class=" toc_current"><a name="toc-Graphical-Object-Interfaces-1" href="graphical-object-interfaces.zh.html">3.2 Graphical Object Interfaces</a>
+    <ul class="toc">
+      <li class=""><a name="toc-accidental_002dinterface-1" href="accidental_002dinterface.zh.html">3.2.1 accidental-interface</a>      </li>
+      <li class=""><a name="toc-accidental_002dplacement_002dinterface-1" href="accidental_002dplacement_002dinterface.zh.html">3.2.2 accidental-placement-interface</a>      </li>
+      <li class=""><a name="toc-accidental_002dsuggestion_002dinterface-1" href="accidental_002dsuggestion_002dinterface.zh.html">3.2.3 accidental-suggestion-interface</a>      </li>
+      <li class=""><a name="toc-align_002dinterface-1" href="align_002dinterface.zh.html">3.2.4 align-interface</a>      </li>
+      <li class=""><a name="toc-ambitus_002dinterface-1" href="ambitus_002dinterface.zh.html">3.2.5 ambitus-interface</a>      </li>
+      <li class=""><a name="toc-arpeggio_002dinterface-1" href="arpeggio_002dinterface.zh.html">3.2.6 arpeggio-interface</a>      </li>
+      <li class=""><a name="toc-axis_002dgroup_002dinterface-1" href="axis_002dgroup_002dinterface.zh.html">3.2.7 axis-group-interface</a>      </li>
+      <li class=""><a name="toc-balloon_002dinterface-1" href="balloon_002dinterface.zh.html">3.2.8 balloon-interface</a>      </li>
+      <li class=""><a name="toc-bar_002dline_002dinterface-1" href="bar_002dline_002dinterface.zh.html">3.2.9 bar-line-interface</a>      </li>
+      <li class=""><a name="toc-bass_002dfigure_002dalignment_002dinterface-1" href="bass_002dfigure_002dalignment_002dinterface.zh.html">3.2.10 bass-figure-alignment-interface</a>      </li>
+      <li class=""><a name="toc-bass_002dfigure_002dinterface-1" href="bass_002dfigure_002dinterface.zh.html">3.2.11 bass-figure-interface</a>      </li>
+      <li class=""><a name="toc-beam_002dinterface-1" href="beam_002dinterface.zh.html">3.2.12 beam-interface</a>      </li>
+      <li class=""><a name="toc-bend_002dafter_002dinterface-1" href="bend_002dafter_002dinterface.zh.html">3.2.13 bend-after-interface</a>      </li>
+      <li class=""><a name="toc-break_002dalignable_002dinterface-1" href="break_002dalignable_002dinterface.zh.html">3.2.14 break-alignable-interface</a>      </li>
+      <li class=""><a name="toc-break_002daligned_002dinterface-1" href="break_002daligned_002dinterface.zh.html">3.2.15 break-aligned-interface</a>      </li>
+      <li class=""><a name="toc-break_002dalignment_002dinterface-1" href="break_002dalignment_002dinterface.zh.html">3.2.16 break-alignment-interface</a>      </li>
+      <li class=""><a name="toc-breathing_002dsign_002dinterface-1" href="breathing_002dsign_002dinterface.zh.html">3.2.17 breathing-sign-interface</a>      </li>
+      <li class=""><a name="toc-chord_002dname_002dinterface-1" href="chord_002dname_002dinterface.zh.html">3.2.18 chord-name-interface</a>      </li>
+      <li class=""><a name="toc-clef_002dinterface-1" href="clef_002dinterface.zh.html">3.2.19 clef-interface</a>      </li>
+      <li class=""><a name="toc-clef_002dmodifier_002dinterface-1" href="clef_002dmodifier_002dinterface.zh.html">3.2.20 clef-modifier-interface</a>      </li>
+      <li class=""><a name="toc-cluster_002dbeacon_002dinterface-1" href="cluster_002dbeacon_002dinterface.zh.html">3.2.21 cluster-beacon-interface</a>      </li>
+      <li class=""><a name="toc-cluster_002dinterface-1" href="cluster_002dinterface.zh.html">3.2.22 cluster-interface</a>      </li>
+      <li class=""><a name="toc-custos_002dinterface-1" href="custos_002dinterface.zh.html">3.2.23 custos-interface</a>      </li>
+      <li class=""><a name="toc-dot_002dcolumn_002dinterface-1" href="dot_002dcolumn_002dinterface.zh.html">3.2.24 dot-column-interface</a>      </li>
+      <li class=""><a name="toc-dots_002dinterface-1" href="dots_002dinterface.zh.html">3.2.25 dots-interface</a>      </li>
+      <li class=""><a name="toc-dynamic_002dinterface-1" href="dynamic_002dinterface.zh.html">3.2.26 dynamic-interface</a>      </li>
+      <li class=""><a name="toc-dynamic_002dline_002dspanner_002dinterface-1" href="dynamic_002dline_002dspanner_002dinterface.zh.html">3.2.27 dynamic-line-spanner-interface</a>      </li>
+      <li class=""><a name="toc-dynamic_002dtext_002dinterface-1" href="dynamic_002dtext_002dinterface.zh.html">3.2.28 dynamic-text-interface</a>      </li>
+      <li class=""><a name="toc-dynamic_002dtext_002dspanner_002dinterface-1" href="dynamic_002dtext_002dspanner_002dinterface.zh.html">3.2.29 dynamic-text-spanner-interface</a>      </li>
+      <li class=""><a name="toc-enclosing_002dbracket_002dinterface-1" href="enclosing_002dbracket_002dinterface.zh.html">3.2.30 enclosing-bracket-interface</a>      </li>
+      <li class=""><a name="toc-episema_002dinterface-1" href="episema_002dinterface.zh.html">3.2.31 episema-interface</a>      </li>
+      <li class=""><a name="toc-figured_002dbass_002dcontinuation_002dinterface-1" href="figured_002dbass_002dcontinuation_002dinterface.zh.html">3.2.32 figured-bass-continuation-interface</a>      </li>
+      <li class=""><a name="toc-finger_002dinterface-1" href="finger_002dinterface.zh.html">3.2.33 finger-interface</a>      </li>
+      <li class=""><a name="toc-fingering_002dcolumn_002dinterface-1" href="fingering_002dcolumn_002dinterface.zh.html">3.2.34 fingering-column-interface</a>      </li>
+      <li class=""><a name="toc-flag_002dinterface-1" href="flag_002dinterface.zh.html">3.2.35 flag-interface</a>      </li>
+      <li class=""><a name="toc-font_002dinterface-1" href="font_002dinterface.zh.html">3.2.36 font-interface</a>      </li>
+      <li class=""><a name="toc-footnote_002dinterface-1" href="footnote_002dinterface.zh.html">3.2.37 footnote-interface</a>      </li>
+      <li class=""><a name="toc-footnote_002dspanner_002dinterface-1" href="footnote_002dspanner_002dinterface.zh.html">3.2.38 footnote-spanner-interface</a>      </li>
+      <li class=""><a name="toc-fret_002ddiagram_002dinterface-1" href="fret_002ddiagram_002dinterface.zh.html">3.2.39 fret-diagram-interface</a>      </li>
+      <li class=""><a name="toc-glissando_002dinterface-1" href="glissando_002dinterface.zh.html">3.2.40 glissando-interface</a>      </li>
+      <li class=""><a name="toc-grace_002dspacing_002dinterface-1" href="grace_002dspacing_002dinterface.zh.html">3.2.41 grace-spacing-interface</a>      </li>
+      <li class=""><a name="toc-gregorian_002dligature_002dinterface-1" href="gregorian_002dligature_002dinterface.zh.html">3.2.42 gregorian-ligature-interface</a>      </li>
+      <li class=""><a name="toc-grid_002dline_002dinterface-1" href="grid_002dline_002dinterface.zh.html">3.2.43 grid-line-interface</a>      </li>
+      <li class=""><a name="toc-grid_002dpoint_002dinterface-1" href="grid_002dpoint_002dinterface.zh.html">3.2.44 grid-point-interface</a>      </li>
+      <li class=""><a name="toc-grob_002dinterface-1" href="grob_002dinterface.zh.html">3.2.45 grob-interface</a>      </li>
+      <li class=""><a name="toc-hairpin_002dinterface-1" href="hairpin_002dinterface.zh.html">3.2.46 hairpin-interface</a>      </li>
+      <li class=""><a name="toc-hara_002dkiri_002dgroup_002dspanner_002dinterface-1" href="hara_002dkiri_002dgroup_002dspanner_002dinterface.zh.html">3.2.47 hara-kiri-group-spanner-interface</a>      </li>
+      <li class=""><a name="toc-horizontal_002dbracket_002dinterface-1" href="horizontal_002dbracket_002dinterface.zh.html">3.2.48 horizontal-bracket-interface</a>      </li>
+      <li class=""><a name="toc-inline_002daccidental_002dinterface-1" href="inline_002daccidental_002dinterface.zh.html">3.2.49 inline-accidental-interface</a>      </li>
+      <li class=""><a name="toc-instrument_002dspecific_002dmarkup_002dinterface-1" href="instrument_002dspecific_002dmarkup_002dinterface.zh.html">3.2.50 instrument-specific-markup-interface</a>      </li>
+      <li class=""><a name="toc-item_002dinterface-1" href="item_002dinterface.zh.html">3.2.51 item-interface</a>      </li>
+      <li class=""><a name="toc-key_002dcancellation_002dinterface-1" href="key_002dcancellation_002dinterface.zh.html">3.2.52 key-cancellation-interface</a>      </li>
+      <li class=""><a name="toc-key_002dsignature_002dinterface-1" href="key_002dsignature_002dinterface.zh.html">3.2.53 key-signature-interface</a>      </li>
+      <li class=""><a name="toc-kievan_002dligature_002dinterface-1" href="kievan_002dligature_002dinterface.zh.html">3.2.54 kievan-ligature-interface</a>      </li>
+      <li class=""><a name="toc-ledger_002dline_002dspanner_002dinterface-1" href="ledger_002dline_002dspanner_002dinterface.zh.html">3.2.55 ledger-line-spanner-interface</a>      </li>
+      <li class=""><a name="toc-ledgered_002dinterface-1" href="ledgered_002dinterface.zh.html">3.2.56 ledgered-interface</a>      </li>
+      <li class=""><a name="toc-ligature_002dbracket_002dinterface-1" href="ligature_002dbracket_002dinterface.zh.html">3.2.57 ligature-bracket-interface</a>      </li>
+      <li class=""><a name="toc-ligature_002dhead_002dinterface-1" href="ligature_002dhead_002dinterface.zh.html">3.2.58 ligature-head-interface</a>      </li>
+      <li class=""><a name="toc-ligature_002dinterface-1" href="ligature_002dinterface.zh.html">3.2.59 ligature-interface</a>      </li>
+      <li class=""><a name="toc-line_002dinterface-1" href="line_002dinterface.zh.html">3.2.60 line-interface</a>      </li>
+      <li class=""><a name="toc-line_002dspanner_002dinterface-1" href="line_002dspanner_002dinterface.zh.html">3.2.61 line-spanner-interface</a>      </li>
+      <li class=""><a name="toc-lyric_002dextender_002dinterface-1" href="lyric_002dextender_002dinterface.zh.html">3.2.62 lyric-extender-interface</a>      </li>
+      <li class=""><a name="toc-lyric_002dhyphen_002dinterface-1" href="lyric_002dhyphen_002dinterface.zh.html">3.2.63 lyric-hyphen-interface</a>      </li>
+      <li class=""><a name="toc-lyric_002dinterface-1" href="lyric_002dinterface.zh.html">3.2.64 lyric-interface</a>      </li>
+      <li class=""><a name="toc-lyric_002dsyllable_002dinterface-1" href="lyric_002dsyllable_002dinterface.zh.html">3.2.65 lyric-syllable-interface</a>      </li>
+      <li class=""><a name="toc-mark_002dinterface-1" href="mark_002dinterface.zh.html">3.2.66 mark-interface</a>      </li>
+      <li class=""><a name="toc-measure_002dcounter_002dinterface-1" href="measure_002dcounter_002dinterface.zh.html">3.2.67 measure-counter-interface</a>      </li>
+      <li class=""><a name="toc-measure_002dgrouping_002dinterface-1" href="measure_002dgrouping_002dinterface.zh.html">3.2.68 measure-grouping-interface</a>      </li>
+      <li class=""><a name="toc-melody_002dspanner_002dinterface-1" href="melody_002dspanner_002dinterface.zh.html">3.2.69 melody-spanner-interface</a>      </li>
+      <li class=""><a name="toc-mensural_002dligature_002dinterface-1" href="mensural_002dligature_002dinterface.zh.html">3.2.70 mensural-ligature-interface</a>      </li>
+      <li class=""><a name="toc-metronome_002dmark_002dinterface-1" href="metronome_002dmark_002dinterface.zh.html">3.2.71 metronome-mark-interface</a>      </li>
+      <li class=""><a name="toc-multi_002dmeasure_002dinterface-1" href="multi_002dmeasure_002dinterface.zh.html">3.2.72 multi-measure-interface</a>      </li>
+      <li class=""><a name="toc-multi_002dmeasure_002drest_002dinterface-1" href="multi_002dmeasure_002drest_002dinterface.zh.html">3.2.73 multi-measure-rest-interface</a>      </li>
+      <li class=""><a name="toc-note_002dcollision_002dinterface-1" href="note_002dcollision_002dinterface.zh.html">3.2.74 note-collision-interface</a>      </li>
+      <li class=""><a name="toc-note_002dcolumn_002dinterface-1" href="note_002dcolumn_002dinterface.zh.html">3.2.75 note-column-interface</a>      </li>
+      <li class=""><a name="toc-note_002dhead_002dinterface-1" href="note_002dhead_002dinterface.zh.html">3.2.76 note-head-interface</a>      </li>
+      <li class=""><a name="toc-note_002dname_002dinterface-1" href="note_002dname_002dinterface.zh.html">3.2.77 note-name-interface</a>      </li>
+      <li class=""><a name="toc-note_002dspacing_002dinterface-1" href="note_002dspacing_002dinterface.zh.html">3.2.78 note-spacing-interface</a>      </li>
+      <li class=""><a name="toc-number_002dinterface-1" href="number_002dinterface.zh.html">3.2.79 number-interface</a>      </li>
+      <li class=""><a name="toc-only_002dprebreak_002dinterface-1" href="only_002dprebreak_002dinterface.zh.html">3.2.80 only-prebreak-interface</a>      </li>
+      <li class=""><a name="toc-ottava_002dbracket_002dinterface-1" href="ottava_002dbracket_002dinterface.zh.html">3.2.81 ottava-bracket-interface</a>      </li>
+      <li class=""><a name="toc-outside_002dstaff_002daxis_002dgroup_002dinterface-1" href="outside_002dstaff_002daxis_002dgroup_002dinterface.zh.html">3.2.82 outside-staff-axis-group-interface</a>      </li>
+      <li class=""><a name="toc-outside_002dstaff_002dinterface-1" href="outside_002dstaff_002dinterface.zh.html">3.2.83 outside-staff-interface</a>      </li>
+      <li class=""><a name="toc-paper_002dcolumn_002dinterface-1" href="paper_002dcolumn_002dinterface.zh.html">3.2.84 paper-column-interface</a>      </li>
+      <li class=""><a name="toc-parentheses_002dinterface-1" href="parentheses_002dinterface.zh.html">3.2.85 parentheses-interface</a>      </li>
+      <li class=""><a name="toc-percent_002drepeat_002dinterface-1" href="percent_002drepeat_002dinterface.zh.html">3.2.86 percent-repeat-interface</a>      </li>
+      <li class=""><a name="toc-percent_002drepeat_002ditem_002dinterface-1" href="percent_002drepeat_002ditem_002dinterface.zh.html">3.2.87 percent-repeat-item-interface</a>      </li>
+      <li class=""><a name="toc-piano_002dpedal_002dbracket_002dinterface-1" href="piano_002dpedal_002dbracket_002dinterface.zh.html">3.2.88 piano-pedal-bracket-interface</a>      </li>
+      <li class=""><a name="toc-piano_002dpedal_002dinterface-1" href="piano_002dpedal_002dinterface.zh.html">3.2.89 piano-pedal-interface</a>      </li>
+      <li class=""><a name="toc-piano_002dpedal_002dscript_002dinterface-1" href="piano_002dpedal_002dscript_002dinterface.zh.html">3.2.90 piano-pedal-script-interface</a>      </li>
+      <li class=""><a name="toc-pitched_002dtrill_002dinterface-1" href="pitched_002dtrill_002dinterface.zh.html">3.2.91 pitched-trill-interface</a>      </li>
+      <li class=""><a name="toc-pure_002dfrom_002dneighbor_002dinterface-1" href="pure_002dfrom_002dneighbor_002dinterface.zh.html">3.2.92 pure-from-neighbor-interface</a>      </li>
+      <li class=""><a name="toc-rest_002dcollision_002dinterface-1" href="rest_002dcollision_002dinterface.zh.html">3.2.93 rest-collision-interface</a>      </li>
+      <li class=""><a name="toc-rest_002dinterface-1" href="rest_002dinterface.zh.html">3.2.94 rest-interface</a>      </li>
+      <li class=""><a name="toc-rhythmic_002dgrob_002dinterface-1" href="rhythmic_002dgrob_002dinterface.zh.html">3.2.95 rhythmic-grob-interface</a>      </li>
+      <li class=""><a name="toc-rhythmic_002dhead_002dinterface-1" href="rhythmic_002dhead_002dinterface.zh.html">3.2.96 rhythmic-head-interface</a>      </li>
+      <li class=""><a name="toc-script_002dcolumn_002dinterface-1" href="script_002dcolumn_002dinterface.zh.html">3.2.97 script-column-interface</a>      </li>
+      <li class=""><a name="toc-script_002dinterface-1" href="script_002dinterface.zh.html">3.2.98 script-interface</a>      </li>
+      <li class=""><a name="toc-self_002dalignment_002dinterface-1" href="self_002dalignment_002dinterface.zh.html">3.2.99 self-alignment-interface</a>      </li>
+      <li class=""><a name="toc-semi_002dtie_002dcolumn_002dinterface-1" href="semi_002dtie_002dcolumn_002dinterface.zh.html">3.2.100 semi-tie-column-interface</a>      </li>
+      <li class=""><a name="toc-semi_002dtie_002dinterface-1" href="semi_002dtie_002dinterface.zh.html">3.2.101 semi-tie-interface</a>      </li>
+      <li class=""><a name="toc-separation_002ditem_002dinterface-1" href="separation_002ditem_002dinterface.zh.html">3.2.102 separation-item-interface</a>      </li>
+      <li class=""><a name="toc-side_002dposition_002dinterface-1" href="side_002dposition_002dinterface.zh.html">3.2.103 side-position-interface</a>      </li>
+      <li class=""><a name="toc-slur_002dinterface-1" href="slur_002dinterface.zh.html">3.2.104 slur-interface</a>      </li>
+      <li class=""><a name="toc-spaceable_002dgrob_002dinterface-1" href="spaceable_002dgrob_002dinterface.zh.html">3.2.105 spaceable-grob-interface</a>      </li>
+      <li class=""><a name="toc-spacing_002dinterface-1" href="spacing_002dinterface.zh.html">3.2.106 spacing-interface</a>      </li>
+      <li class=""><a name="toc-spacing_002doptions_002dinterface-1" href="spacing_002doptions_002dinterface.zh.html">3.2.107 spacing-options-interface</a>      </li>
+      <li class=""><a name="toc-spacing_002dspanner_002dinterface-1" href="spacing_002dspanner_002dinterface.zh.html">3.2.108 spacing-spanner-interface</a>      </li>
+      <li class=""><a name="toc-span_002dbar_002dinterface-1" href="span_002dbar_002dinterface.zh.html">3.2.109 span-bar-interface</a>      </li>
+      <li class=""><a name="toc-spanner_002dinterface-1" href="spanner_002dinterface.zh.html">3.2.110 spanner-interface</a>      </li>
+      <li class=""><a name="toc-staff_002dgrouper_002dinterface-1" href="staff_002dgrouper_002dinterface.zh.html">3.2.111 staff-grouper-interface</a>      </li>
+      <li class=""><a name="toc-staff_002dspacing_002dinterface-1" href="staff_002dspacing_002dinterface.zh.html">3.2.112 staff-spacing-interface</a>      </li>
+      <li class=""><a name="toc-staff_002dsymbol_002dinterface-1" href="staff_002dsymbol_002dinterface.zh.html">3.2.113 staff-symbol-interface</a>      </li>
+      <li class=""><a name="toc-staff_002dsymbol_002dreferencer_002dinterface-1" href="staff_002dsymbol_002dreferencer_002dinterface.zh.html">3.2.114 staff-symbol-referencer-interface</a>      </li>
+      <li class=""><a name="toc-stanza_002dnumber_002dinterface-1" href="stanza_002dnumber_002dinterface.zh.html">3.2.115 stanza-number-interface</a>      </li>
+      <li class=""><a name="toc-stem_002dinterface-1" href="stem_002dinterface.zh.html">3.2.116 stem-interface</a>      </li>
+      <li class=""><a name="toc-stem_002dtremolo_002dinterface-1" href="stem_002dtremolo_002dinterface.zh.html">3.2.117 stem-tremolo-interface</a>      </li>
+      <li class=""><a name="toc-string_002dnumber_002dinterface-1" href="string_002dnumber_002dinterface.zh.html">3.2.118 string-number-interface</a>      </li>
+      <li class=""><a name="toc-stroke_002dfinger_002dinterface-1" href="stroke_002dfinger_002dinterface.zh.html">3.2.119 stroke-finger-interface</a>      </li>
+      <li class=""><a name="toc-system_002dinterface-1" href="system_002dinterface.zh.html">3.2.120 system-interface</a>      </li>
+      <li class=""><a name="toc-system_002dstart_002ddelimiter_002dinterface-1" href="system_002dstart_002ddelimiter_002dinterface.zh.html">3.2.121 system-start-delimiter-interface</a>      </li>
+      <li class=""><a name="toc-system_002dstart_002dtext_002dinterface-1" href="system_002dstart_002dtext_002dinterface.zh.html">3.2.122 system-start-text-interface</a>      </li>
+      <li class=""><a name="toc-tab_002dnote_002dhead_002dinterface-1" href="tab_002dnote_002dhead_002dinterface.zh.html">3.2.123 tab-note-head-interface</a>      </li>
+      <li class=""><a name="toc-text_002dinterface-1" href="text_002dinterface.zh.html">3.2.124 text-interface</a>      </li>
+      <li class=""><a name="toc-text_002dscript_002dinterface-1" href="text_002dscript_002dinterface.zh.html">3.2.125 text-script-interface</a>      </li>
+      <li class=" toc_current"><a name="toc-tie_002dcolumn_002dinterface-1" href="tie_002dcolumn_002dinterface.zh.html">3.2.126 tie-column-interface</a>      </li>
+      <li class=""><a name="toc-tie_002dinterface-1" href="tie_002dinterface.zh.html">3.2.127 tie-interface</a>      </li>
+      <li class=""><a name="toc-time_002dsignature_002dinterface-1" href="time_002dsignature_002dinterface.zh.html">3.2.128 time-signature-interface</a>      </li>
+      <li class=""><a name="toc-trill_002dpitch_002daccidental_002dinterface-1" href="trill_002dpitch_002daccidental_002dinterface.zh.html">3.2.129 trill-pitch-accidental-interface</a>      </li>
+      <li class=""><a name="toc-trill_002dspanner_002dinterface-1" href="trill_002dspanner_002dinterface.zh.html">3.2.130 trill-spanner-interface</a>      </li>
+      <li class=""><a name="toc-tuplet_002dbracket_002dinterface-1" href="tuplet_002dbracket_002dinterface.zh.html">3.2.131 tuplet-bracket-interface</a>      </li>
+      <li class=""><a name="toc-tuplet_002dnumber_002dinterface-1" href="tuplet_002dnumber_002dinterface.zh.html">3.2.132 tuplet-number-interface</a>      </li>
+      <li class=""><a name="toc-unbreakable_002dspanner_002dinterface-1" href="unbreakable_002dspanner_002dinterface.zh.html">3.2.133 unbreakable-spanner-interface</a>      </li>
+      <li class=""><a name="toc-vaticana_002dligature_002dinterface-1" href="vaticana_002dligature_002dinterface.zh.html">3.2.134 vaticana-ligature-interface</a>      </li>
+      <li class=""><a name="toc-volta_002dbracket_002dinterface-1" href="volta_002dbracket_002dinterface.zh.html">3.2.135 volta-bracket-interface</a>      </li>
+      <li class=""><a name="toc-volta_002dinterface-1" href="volta_002dinterface.zh.html">3.2.136 volta-interface</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-User-backend-properties-1" href="user-backend-properties.zh.html">3.3 User backend properties</a>    </li>
+    <li class=""><a name="toc-Internal-backend-properties-1" href="internal-backend-properties.zh.html">3.4 Internal backend properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.zh.html">4. Scheme functions</a>  </li>
+  <li class=""><a name="toc-Indices-1" href="indices.zh.html">A. Indices</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Concept-index" href="indices.zh.html">A.1 Concept index</a>    </li>
+    <li class=""><a name="toc-Function-index" href="indices.zh.html">A.2 Function index</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

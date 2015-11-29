@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2014 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond: manual d'utilització del programa: 4.3.1 Invoking midi2ly</title>
+
+<meta name="description" content="LilyPond: manual d'utilització del programa: 4.3.1 Invoking midi2ly">
+<meta name="keywords" content="LilyPond: manual d'utilització del programa: 4.3.1 Invoking midi2ly">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Utilització">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="B. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="converting-from-other-formats.ca.html#converting-from-other-formats" rel="up" title="4.3 Converting from other formats">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="B. Índex del LilyPond">
+<link href="converting-from-other-formats.ca.html#converting-from-other-formats" rel="previous" title="4.3 Converting from other formats">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="usage devStatus">
+
+
+<div id="main">
+<a name="Invoking-midi2ly"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ca.html" title="Capítol següent">&nbsp;Suggeriments per escriure fitxers d'entrada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="converting-from-other-formats.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Converting from other formats&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="converting-from-other-formats.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Converting from other formats&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="invoking-musicxml2ly.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Invoking musicxml2ly &gt; </a>]</td></tr></table>
+<a name="invoking-midi2ly"></a>
+<h3 class="subsection">4.3.1 Invoking <code>midi2ly</code></h3>
+
+<a name="index-MIDI"></a>
+
+<p><code>midi2ly</code> translates a Type&nbsp;1 MIDI file to a LilyPond
+source file.
+</p>
+<p>MIDI (Music Instrument Digital Interface) is a standard for digital
+instruments: it specifies cabling, a serial protocol and a file
+format.  The MIDI file format is a de facto standard format for
+exporting music from other programs, so this capability may come in
+useful when importing files from a program that has a converter for a
+direct format.
+</p>
+<p><code>midi2ly</code> converts tracks into <a name="index-Staff"></a>
+<a href="../internals/staff.ca.html">Staff</a> and
+channels into <a name="index-Voice"></a>
+<a href="../internals/voice.ca.html">Voice</a> contexts.  Relative mode is used
+for pitches, durations are only written when necessary.
+</p>
+<p>It is possible to record a MIDI file using a digital keyboard, and
+then convert it to &lsquo;<tt>.ly</tt>&rsquo;.  However, human players are not
+rhythmically exact enough to make a MIDI to LY conversion trivial.
+When invoked with quantizing (&lsquo;<samp>-s</samp>&rsquo; and &lsquo;<samp>-d</samp>&rsquo; options)
+<code>midi2ly</code> tries to compensate for these timing errors, but is
+not very good at this.  It is therefore not recommended to use
+<code>midi2ly</code> for human-generated midi files.
+</p>
+<p>It is invoked from the command-line as follows,
+</p>
+<blockquote><pre class="example">midi2ly [<var>option</var>]&hellip; <var>midi-file</var>
+</pre></blockquote>
+
+<p>Note that by &lsquo;command-line&rsquo;, we mean the command line of the
+operating system.  See <a href="converting-from-other-formats.ca.html">Converting from other formats</a>, for
+more information about this.
+</p>
+<p>The following options are supported by <code>midi2ly</code>.
+</p>
+<dl compact="compact">
+<dt> <code>-a, --absolute-pitches</code></dt>
+<dd><p>Print absolute pitches.
+</p>
+</dd>
+<dt> <code>-d, --duration-quant=<var>DUR</var></code></dt>
+<dd><p>Quantize note durations on <var>DUR</var>.
+</p>
+</dd>
+<dt> <code>-e, --explicit-durations</code></dt>
+<dd><p>Print explicit durations.
+</p>
+</dd>
+<dt> <code>-h, --help</code></dt>
+<dd><p>Show summary of usage.
+</p>
+</dd>
+<dt> <code>-k, --key=<var>acc</var>[:<var>minor</var>]</code></dt>
+<dd><p>Set default key.  <em><var>acc</var> &gt; 0</em> sets number of sharps;
+<em><var>acc</var> &lt; 0</em> sets number of flats.  A minor key is indicated by
+<code>:1</code>.
+</p>
+</dd>
+<dt> <code>-o, --output=<var>file</var></code></dt>
+<dd><p>Write output to <var>file</var>.
+</p>
+</dd>
+<dt> <code>-s, --start-quant=<var>DUR</var></code></dt>
+<dd><p>Quantize note starts on <var>DUR</var>.
+</p>
+</dd>
+<dt> <code>-t, --allow-tuplet=<var>DUR</var>*<var>NUM</var>/<var>DEN</var></code></dt>
+<dd><p>Allow tuplet durations <var>DUR</var>*<var>NUM</var>/<var>DEN</var>.
+</p>
+</dd>
+<dt> <code>-v, --verbose</code></dt>
+<dd><p>Be verbose.
+</p>
+</dd>
+<dt> <code>-V, --version</code></dt>
+<dd><p>Print version number.
+</p>
+</dd>
+<dt> <code>-w, --warranty</code></dt>
+<dd><p>Show warranty and copyright.
+</p>
+</dd>
+<dt> <code>-x, --text-lyrics</code></dt>
+<dd><p>Treat every text as a lyric.
+</p></dd>
+</dl>
+
+<a name="Advertiments-i-problemes-coneguts-4"></a>
+<h4 class="subsubheading">Advertiments i problemes coneguts</h4>
+<p>Overlapping notes in an arpeggio will not be correctly rendered.  The
+first note will be read and the others will be ignored.  Set them all
+to a single duration and add phrase markings or pedal indicators.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ca.html" title="Capítol següent">&nbsp;Suggeriments per escriure fitxers d'entrada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="converting-from-other-formats.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Converting from other formats&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="converting-from-other-formats.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Converting from other formats&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="invoking-musicxml2ly.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Invoking musicxml2ly &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="invoking-midi2ly.html">English</a>, <a href="invoking-midi2ly.de.html">deutsch</a>, <a href="invoking-midi2ly.es.html">español</a>, <a href="invoking-midi2ly.fr.html">français</a>, <a href="invoking-midi2ly.hu.html">magyar</a>, <a href="invoking-midi2ly.it.html">italiano</a>, <a href="invoking-midi2ly.ja.html">日本語</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Utilització  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Execucio-del-LilyPond" href="running-lilypond.ca.html">1. Execució del LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilitzacio-normal" href="normal-usage.ca.html">1.1 Utilització normal</a>    </li>
+    <li class=""><a name="toc-Utilitzacio-des-de-la-linia-d_0027ordres" href="command_002dline-usage.ca.html">1.2 Utilització des de la línia d&rsquo;ordres</a>    </li>
+    <li class=""><a name="toc-Missatges-d_0027error-1" href="error-messages.ca.html">1.3 Missatges d&rsquo;error</a>    </li>
+    <li class=""><a name="toc-Errors-comuns-1" href="common-errors.ca.html">1.4 Errors comuns</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Actualitzacio-de-fitxers-amb-convert_002dly" href="updating-files-with-convert_002dly.ca.html">2. Actualització de fitxers amb <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Perque-canvia-la-sintaxi_003f" href="why-does-the-syntax-change_003f.ca.html">2.1 Perquè canvia la sintaxi?</a>    </li>
+    <li class=""><a name="toc-Invocacio-de-convert_002dly" href="invoking-convert_002dly.ca.html">2.2 Invocació de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Opcions-de-la-linia-d_0027ordres-per-a-convert_002dly" href="command-line-options-for-convert_002dly.ca.html">2.3 Opcions de la línia d&rsquo;ordres per a <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemes-amb-convert_002dly-1" href="problems-running-convert_002dly.ca.html">2.4 Problemes amb <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversions-manuals-1" href="manual-conversions.ca.html">2.5 Conversions manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Running-lilypond_002dbook" href="lilypond_002dbook.ca.html">3. Running <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-An-example-of-a-musicological-document-1" href="an-example-of-a-musicological-document.ca.html">3.1 An example of a musicological document</a>    </li>
+    <li class=""><a name="toc-Integrating-music-and-text-1" href="integrating-music-and-text.ca.html">3.2 Integrating music and text</a>    </li>
+    <li class=""><a name="toc-Music-fragment-options-1" href="music-fragment-options.ca.html">3.3 Music fragment options</a>    </li>
+    <li class=""><a name="toc-Invoking-lilypond_002dbook-1" href="invoking-lilypond_002dbook.ca.html">3.4 Invoking <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Filename-extensions-1" href="filename-extensions.ca.html">3.5 Filename extensions</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-templates-1" href="lilypond_002dbook-templates.ca.html">3.6 lilypond-book templates</a>    </li>
+    <li class=""><a name="toc-Sharing-the-table-of-contents-1" href="sharing-the-table-of-contents.ca.html">3.7 Sharing the table of contents</a>    </li>
+    <li class=""><a name="toc-Alternative-methods-of-mixing-text-and-music" href="alternate-methods-of-mixing-text-and-music.ca.html">3.8 Alternative methods of mixing text and music</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-External-programs-1" href="external-programs.ca.html">4. External programs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Point-and-click-1" href="point-and-click.ca.html">4.1 Point and click</a>    </li>
+    <li class=""><a name="toc-Text-editor-support-1" href="text-editor-support.ca.html">4.2 Text editor support</a>    </li>
+    <li class=" toc_current"><a name="toc-Converting-from-other-formats-1" href="converting-from-other-formats.ca.html">4.3 Converting from other formats</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Invoking-midi2ly-1" href="invoking-midi2ly.ca.html">4.3.1 Invoking <code>midi2ly</code></a>      </li>
+      <li class=""><a name="toc-Invoking-musicxml2ly-1" href="invoking-musicxml2ly.ca.html">4.3.2 Invoking <code>musicxml2ly</code></a>      </li>
+      <li class=""><a name="toc-Invoking-abc2ly-1" href="invoking-abc2ly.ca.html">4.3.3 Invoking <code>abc2ly</code></a>      </li>
+      <li class=""><a name="toc-Invoking-etf2ly-1" href="invoking-etf2ly.ca.html">4.3.4 Invoking <code>etf2ly</code></a>      </li>
+      <li class=""><a name="toc-Other-formats-1" href="other-formats.ca.html">4.3.5 Other formats</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-LilyPond-output-in-other-programs-1" href="lilypond-output-in-other-programs.ca.html">4.4 LilyPond output in other programs</a>    </li>
+    <li class=""><a name="toc-Independent-includes-1" href="independent-includes.ca.html">4.5 Independent <code>include</code>s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggeriments-per-escriure-fitxers-d_0027entrada-1" href="suggestions-for-writing-files.ca.html">5. Suggeriments per escriure fitxers d&rsquo;entrada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Suggeriments-de-tipus-general-1" href="general-suggestions.ca.html">5.1 Suggeriments de tipus general</a>    </li>
+    <li class=""><a name="toc-Gravacio-de-musica-existent" href="typesetting-existing-music.ca.html">5.2 Gravació de música existent</a>    </li>
+    <li class=""><a name="toc-Projectes-grans-1" href="large-projects.ca.html">5.3 Projectes grans</a>    </li>
+    <li class=""><a name="toc-Solucio-de-problemes" href="troubleshooting.ca.html">5.4 Solució de problemes</a>    </li>
+    <li class=""><a name="toc-Make-i-els-Makefiles-1" href="make-and-makefiles.ca.html">5.5 Make i els Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">B. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 1.5.2 Varias voces</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 1.5.2 Varias voces">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 1.5.2 Varias voces">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="simultaneous-notes.es.html#simultaneous-notes" rel="up" title="1.5 Notas simultáneas">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="single-voice.es.html#single-voice" rel="previous" title="1.5.1 Una voz única">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Varias-voces"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="single-voice.es.html#clusters" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Racimos (clusters)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="simultaneous-notes.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Notas simultáneas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#single_002dstaff-polyphony" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Polifonía en un solo pentagrama &gt; </a>]</td></tr></table>
+<a name="multiple-voices"></a>
+<h3 class="subsection">1.5.2 Varias voces</h3>
+
+<p>Esta sección trata las notas simultáneas en varias voces o varios
+pentagramas.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#single_002dstaff-polyphony" accesskey="1">Polifonía en un solo pentagrama</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#voice-styles" accesskey="2">Estilos de voz</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#collision-resolution" accesskey="3">Resolución de las colisiones</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#automatic-part-combining" accesskey="4">Combinación automática de las partes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#writing-music-in-parallel" accesskey="5">Escribir música en paralelo</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Polifon_00eda-en-un-solo-pentagrama"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#multiple-voices" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Varias voces&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#multiple-voices" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Varias voces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#voice-styles" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Estilos de voz &gt; </a>]</td></tr></table>
+<a name="single_002dstaff-polyphony"></a>
+<h4 class="unnumberedsubsubsec">Polifonía en un solo pentagrama</h4>
+
+<a name="index-pentagrama-unico_002c-polifonia-de"></a>
+<a name="index-polifonia-en-un-solo-pentagrama"></a>
+<a name="index-voz"></a>
+<a name="index-letra-asignada-a-una-voz"></a>
+
+<a name="index-_005cvoiceOne"></a>
+<a name="index-_005cvoiceOne-1"></a>
+<a name="index-voiceOne"></a>
+<a name="index-voiceOne-1"></a>
+<a name="index-_005cvoiceOne-_002e_002e_002e-_005cvoiceFour"></a>
+<a name="index-_005cvoiceOne-_002e_002e_002e-_005cvoiceFour-1"></a>
+<a name="index-Voice-2"></a>
+<a name="index-Voice-3"></a>
+<a name="index-_005coneVoice"></a>
+<a name="index-_005coneVoice-1"></a>
+<a name="index-oneVoice"></a>
+<a name="index-oneVoice-1"></a>
+
+<a name="-Instanciar-las-voces-explicitamente"></a>
+<h4 class="subsubheading"><i> Instanciar las voces explícitamente</i></h4>
+
+<p>La estructura básica necesaria para obtener varias voces
+independientes en un mismo pentagrama se ilustra en el ejemplo
+siguiente:
+</p>
+<blockquote><pre class="verbatim">\new Staff &lt;&lt;
+  \new Voice = &quot;first&quot;
+    \relative { \voiceOne r8 r16 g'' e8. f16 g8[ c,] f e16 d }
+  \new Voice= &quot;second&quot;
+    \relative { \voiceTwo d''16 c d8~ 16 b c8~ 16 b c8~ 16 b8. }
+&gt;&gt;
+</pre><p>
+ <a href="../87/lily-a6949c64.ly">
+  <img align="middle"
+       border="0"
+       src="../87/lily-a6949c64.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Aquí se crean explícitamente instancias de voces, cada una de las
+cuales recibe un nombre.  Las instrucciones <code>\voiceOne</code>
+&hellip; <code>\voiceFour</code> (voz uno hasta voz cuatro) preparan las voces de
+manera que la primera y segunda voces llevan las plicas hacia arriba,
+las voces segunda y cuarta llevan las plicas hacia abajo, las cabezas
+de las notas en las voces tercera y cuarta se desplazan
+horizontalmente, y los silencios de las voces respectivas se desplazan
+también automáticamente para evitar las colisiones.  La instrucción
+<code>\oneVoice</code> (una voz) devuelve todos los ajustes de las voces al
+estado neutro predeterminado.
+</p>
+<a name="-Pasajes-polifonicos-temporales"></a>
+<h4 class="subsubheading"><i> Pasajes polifónicos temporales</i></h4>
+
+<p>Se puede crear un pasaje polifónico temporal con la construcción
+siguiente:
+</p>
+<blockquote><pre class="example">&lt;&lt; { \voiceOne &hellip; }
+  \new Voice { \voiceTwo &hellip; }
+&gt;&gt; \oneVoice
+</pre></blockquote>
+
+<p>Aquí, la primera expresión dentro de un pasaje polifónico temporal se
+coloca en el contexto <code>Voice</code> que estaba en uso inmediatamente
+antes del pasaje polifónico, y ese mismo contexto <code>Voice</code>
+continua después de la sección temporal.  Otras expresiones dentro de
+los ángulos se asignan a distintas voces temporales.  Esto permite
+asignar la letra de forma continua a una voz antes, durante y después
+de la sección polifónica:
+</p>
+<blockquote><pre class="verbatim">\relative &lt;&lt;
+  \new Voice = &quot;melody&quot; {
+    a'4
+    &lt;&lt;
+      {
+        \voiceOne
+        g f
+      }
+      \new Voice {
+        \voiceTwo
+        d2
+      }
+    &gt;&gt;
+    \oneVoice
+    e4
+  }
+  \new Lyrics \lyricsto &quot;melody&quot; {
+  This is my song.
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../ca/lily-057f9e47.ly">
+  <img align="middle"
+       border="0"
+       src="../ca/lily-057f9e47.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Aquí, las instrucciones <code>\voiceOne</code> y <code>\voiceTwo</code> son
+necesarias para definir los ajustes de cada voz.
+</p>
+<a name="-La-construccion-de-la-doble-barra-invertida"></a>
+<h4 class="subsubheading"><i> La construcción de la doble barra invertida</i></h4>
+
+<p>La construcción <code>&lt;&lt; {&hellip;} \\ {&hellip;} &gt;&gt;</code>, en que
+las dos expresiones (o más) están separadas por doble barra
+invertida, se comporta de forma distinta a la construcción similar
+sin las dobles barras: <em>todas</em> las expresiones dentro de esta
+construcción se asignan a contextos <code>Voice</code> nuevos.  Estos
+contextos <code>Voice</code> nuevos se crean implícitamente y reciben
+los nombres fijos <code>&quot;1&quot;</code>, <code>&quot;2&quot;</code>, etc.
+</p>
+<p>El primer ejemplo podría haberse tipografiado de la manera siguiente:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative { r8 r16 g'' e8. f16 g8[ c,] f e16 d }
+  \\
+  \relative { d''16 c d8~ 16 b c8~ 16 b c8~ 16 b8. }
+&gt;&gt;
+</pre><p>
+ <a href="../ac/lily-939bd245.ly">
+  <img align="middle"
+       border="0"
+       src="../ac/lily-939bd245.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esta sintaxis se puede usar siempre que no nos importe que se creen
+nuevas voces temporales que después serán descartadas.  Estas voces
+creadas implícitamente reciben ajustes equivalentes al efecto de las
+instrucciones <code>\voiceOne</code> &hellip; <code>\voiceFour</code>, en el orden en
+que aparecen en el código.
+</p>
+<p>En el siguiente ejemplo, la voz intermedia lleva las plicas hacia
+arriba, de manera que la introducimos en tercer lugar para que pase a
+ser la voz tres, que tiene las plicas hacia arriba tal y como
+queremos.  Se usan silencios de separación para evitar la aparición de
+silencios duplicados.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative { r8 g'' g  g g f16 ees f8 d }
+  \\
+  \relative { ees'8 r ees r d r d r }
+  \\
+  \relative { d''8 s c s bes s a s }
+&gt;&gt;
+</pre><p>
+ <a href="../86/lily-cf0f8966.ly">
+  <img align="middle"
+       border="0"
+       src="../86/lily-cf0f8966.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>En todas las partituras excepto las más simples, se recomienda crear
+contextos <code>Voice</code> explícitos como aparece explicado en
+<a name="index-Contextos-y-grabadores"></a>
+<a href="../learning/contexts-and-engravers.es.html">Contextos y grabadores</a> y en <a name="index-Voces-explicitas"></a>
+<a href="../learning/explicitly-instantiating-voices.es.html">Voces explícitas</a>.
+</p>
+<a name="-Orden-de-las-voces"></a>
+<h4 class="subsubheading"><i> Orden de las voces</i></h4>
+
+<p>Al escribir varias voces en el archivo de entrada,
+utilice el orden siguiente:
+</p>
+<blockquote><pre class="example">Voz 1: las más aguda
+Voz 2: la más grave
+Voz 3: la segunda más aguda
+Voz 4: la segunda más grave
+Voz 5: la tercera más aguda
+Voz 6: la tercera más grave
+etc.
+</pre></blockquote>
+
+<p>A pesar de que esto puede parecer contrario a la intuición,
+simplifica el proceso de disposición automática de las figuras.
+Observe que las voces de numeración impar reciben plicas
+hacia arriba, y las de numeración par reciben plicas hacia abajo:
+</p>
+<blockquote><pre class="verbatim">\new Staff &lt;&lt;
+  \time 2/4
+  { f''2 }  % 1: highest
+  \\
+  { c'2  }  % 2: lowest
+  \\
+  { d''2 }  % 3: second-highest
+  \\
+  { e'2  }  % 4: second-lowest
+  \\
+  { b'2  }  % 5: third-highest
+  \\
+  { g'2  }  % 6: third-lowest
+&gt;&gt;
+</pre><p>
+ <a href="../c6/lily-5f695672.ly">
+  <img align="middle"
+       border="0"
+       src="../c6/lily-5f695672.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><strong>Nota:</strong> No se pueden crear letras ni elementos de extensión
+(como ligaduras, reguladores, etc.) que se crucen de una voz a otra.
+</p>
+</div>
+<a name="-Duraciones-identicas"></a>
+<h4 class="subsubheading"><i> Duraciones idénticas</i></h4>
+
+<p>En el caso especial en que queremos tipografiar fragmentos de música
+que discurre en paralelo y con las mismas duraciones, se pueden
+combinar en un solo contexto de voz, formando así acordes.  Para
+conseguirlo, las incorporamos dentro de una construcción de música
+simultánea, dentro de una voz creada explícitamente:
+</p>
+<blockquote><pre class="verbatim">\new Voice &lt;&lt;
+  \relative { e''4 f8 d e16 f g8 d4 }
+  \relative { c''4 d8 b c16 d e8 b4 }
+&gt;&gt;
+</pre><p>
+ <a href="../db/lily-203dc579.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-203dc579.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Este método conduce a barrados extraños y advertencias si los
+fragmentos de música no tienen las mismas duraciones exactas.
+</p>
+<a name="Instrucciones-predefinidas-7"></a>
+<h4 class="subsubheading">Instrucciones predefinidas</h4>
+<p><code>\voiceOne</code>,
+<code>\voiceTwo</code>,
+<code>\voiceThree</code>,
+<code>\voiceFour</code>,
+<code>\oneVoice</code>.
+</p>
+<a name="Vease-tambien-166"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Manual de aprendizaje:
+<a name="index-Las-voces-contienen-musica-1"></a>
+<a href="../learning/voices-contain-music.es.html">Las voces contienen música</a>,
+<a name="index-Voces-explicitas-1"></a>
+<a href="../learning/explicitly-instantiating-voices.es.html">Voces explícitas</a>.
+</p>
+<p>Referencia de la notación:
+<a href="common-notation-for-percussion.es.html#percussion-staves">Pautas de percusión</a>,
+<a href="writing-rests.es.html#invisible-rests">Silencios invisibles</a>,
+<a href="inside-the-staff.es.html#stems">Plicas</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/notas-simultaneas.es.html#notas-simult_00e1neas">Simultaneous notes</a>.
+</p>
+
+<hr size="6">
+<a name="Estilos-de-voz"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#single_002dstaff-polyphony" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Polifonía en un solo pentagrama&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#multiple-voices" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Varias voces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#collision-resolution" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Resolución de las colisiones &gt; </a>]</td></tr></table>
+<a name="voice-styles"></a>
+<h4 class="unnumberedsubsubsec">Estilos de voz</h4>
+
+<a name="index-voice-styles"></a>
+<a name="index-styles_002c-voice"></a>
+<a name="index-coloring-voices"></a>
+<a name="index-_005cvoiceOneStyle"></a>
+<a name="index-_005cvoiceOneStyle-1"></a>
+<a name="index-_005cvoiceTwoStyle"></a>
+<a name="index-_005cvoiceTwoStyle-1"></a>
+<a name="index-_005cvoiceThreeStyle"></a>
+<a name="index-_005cvoiceThreeStyle-1"></a>
+<a name="index-_005cvoiceFourStyle"></a>
+<a name="index-_005cvoiceFourStyle-1"></a>
+<a name="index-_005cvoiceNeutralStyle"></a>
+<a name="index-_005cvoiceNeutralStyle-1"></a>
+
+<p>Se pueden aplicar colores y formas distintos a las voces para permitir
+identificarlas fácilmente:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative { \voiceOneStyle d''4 c2 b4 }
+  \\
+  \relative { \voiceTwoStyle e'2 e }
+  \\
+  \relative { \voiceThreeStyle b2. c4 }
+  \\
+  \relative { \voiceFourStyle g'2 g }
+&gt;&gt;
+</pre><p>
+ <a href="../8b/lily-e0e6eeb9.ly">
+  <img align="middle"
+       border="0"
+       src="../8b/lily-e0e6eeb9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Para recuperar la presentación normal se utiliza la instrucción
+<code>\voiceNeutralStyle</code>.
+</p>
+<a name="Instrucciones-predefinidas-32"></a>
+<h4 class="subsubheading">Instrucciones predefinidas</h4>
+<p><code>\voiceOneStyle</code>,
+<code>\voiceTwoStyle</code>,
+<code>\voiceThreeStyle</code>,
+<code>\voiceFourStyle</code>,
+<code>\voiceNeutralStyle</code>.
+</p>
+<a name="Vease-tambien-262"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Manual de aprendizaje:
+<a name="index-Oigo-voces"></a>
+<a href="../learning/i_0027m-hearing-voices.es.html">Oigo voces</a>,
+<a name="index-Otras-fuentes-de-informacion"></a>
+<a href="../learning/other-sources-of-information.es.html">Otras fuentes de información</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/notas-simultaneas.es.html#notas-simult_00e1neas">Simultaneous notes</a>.
+</p>
+
+<hr size="6">
+<a name="Resoluci_00f3n-de-las-colisiones"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#voice-styles" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Estilos de voz&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#multiple-voices" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Varias voces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-part-combining" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Combinación automática de las partes &gt; </a>]</td></tr></table>
+<a name="collision-resolution"></a>
+<h4 class="unnumberedsubsubsec">Resolución de las colisiones</h4>
+
+<a name="index-mezclar-notas"></a>
+<a name="index-notas_002c-colisiones-de"></a>
+<a name="index-colisiones"></a>
+<a name="index-desplazar-nota"></a>
+<a name="index-varias-voces"></a>
+<a name="index-voces_002c-varias"></a>
+<a name="index-polifonica_002c-musica"></a>
+<a name="index-desplazamiento-de-voces"></a>
+<a name="index-desplazamiento_002c-silencio-automatico-de"></a>
+<a name="index-desplazamiento-de-silencios_002c-automatico"></a>
+<a name="index-_005cshiftOn"></a>
+<a name="index-_005cshiftOn-1"></a>
+<a name="index-shiftOn"></a>
+<a name="index-shiftOn-1"></a>
+<a name="index-_005cshiftOnn"></a>
+<a name="index-_005cshiftOnn-1"></a>
+<a name="index-shiftOnn"></a>
+<a name="index-shiftOnn-1"></a>
+<a name="index-_005cshiftOnnn"></a>
+<a name="index-_005cshiftOnnn-1"></a>
+<a name="index-shiftOnnn"></a>
+<a name="index-shiftOnnn-1"></a>
+<a name="index-_005cshiftOff"></a>
+<a name="index-_005cshiftOff-1"></a>
+<a name="index-shiftOff"></a>
+<a name="index-shiftOff-1"></a>
+<a name="index-_005cmergeDifferentlyDottedOn"></a>
+<a name="index-_005cmergeDifferentlyDottedOn-1"></a>
+<a name="index-mergeDifferentlyDottedOn"></a>
+<a name="index-mergeDifferentlyDottedOn-1"></a>
+<a name="index-_005cmergeDifferentlyDottedOff"></a>
+<a name="index-_005cmergeDifferentlyDottedOff-1"></a>
+<a name="index-mergeDifferentlyDottedOff"></a>
+<a name="index-mergeDifferentlyDottedOff-1"></a>
+<a name="index-_005cmergeDifferentlyHeadedOn"></a>
+<a name="index-_005cmergeDifferentlyHeadedOn-1"></a>
+<a name="index-mergeDifferentlyHeadedOn"></a>
+<a name="index-mergeDifferentlyHeadedOn-1"></a>
+<a name="index-_005cmergeDifferentlyHeadedOff"></a>
+<a name="index-_005cmergeDifferentlyHeadedOff-1"></a>
+<a name="index-mergeDifferentlyHeadedOff"></a>
+<a name="index-mergeDifferentlyHeadedOff-1"></a>
+
+<p>Las cabezas de notas que están en diferentes voces y tienen la misma
+altura, la misma forma de cabeza, y dirección opuesta de la plica, se
+combinan automáticamente, pero las que tienen cabezas distintas o la
+misma dirección de la plica no se combinan.  Los silencios que se
+encuentran en el lado opuesto de una plica en otra voz se desplazan
+verticalmente.  El ejemplo siguiente muestra tres circunstancias
+distintas, sobre los pulsos 1 y 3 en el primer compás y sobre el pulso
+1 del segundo compás, donde la combinación automática falla.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative {
+    c''8 d e d c d c4
+    g'2 fis
+  } \\
+  \relative {
+    c''2 c8. b16 c4
+    e,2 r
+  } \\
+  \relative {
+    \oneVoice
+    s1
+    e'8 a b c d2
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../fa/lily-46aafd48.ly">
+  <img align="middle"
+       border="0"
+       src="../fa/lily-46aafd48.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Las cabezas de notas diferentes se pueden combinar como se muestra
+más abajo.  En este ejemplo las cabezas del pulso 1 del primer
+compás sí se combinan:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative {
+    \mergeDifferentlyHeadedOn
+    c''8 d e d c d c4
+    g'2 fis
+  } \\
+  \relative {
+    c''2 c8. b16 c4
+    e,2 r
+  } \\
+  \relative {
+    \oneVoice
+    s1
+    e'8 a b c d2
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../f6/lily-aaad88ae.ly">
+  <img align="middle"
+       border="0"
+       src="../f6/lily-aaad88ae.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Las figuras negras y blancas no se combinan de esta manera, pues
+sería difícil poder distinguirlas.
+</p>
+<p>También se pueden combinar cabezas con puntillos diferentes, como se
+muestra en el tercer pulso del primer compás:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative {
+    \mergeDifferentlyHeadedOn
+    \mergeDifferentlyDottedOn
+    c''8 d e d c d c4
+    g'2 fis
+  } \\
+  \relative {
+    c''2 c8. b16 c4
+    e,2 r
+  } \\
+  \relative {
+    \oneVoice
+    s1
+    e'8 a b c d2
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../49/lily-3abb0c55.ly">
+  <img align="middle"
+       border="0"
+       src="../49/lily-3abb0c55.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La blanca y la corchea en el comienzo del segundo compás no están
+correctamente combinadas porque la combinación automática no es capaz
+de completarse satisfactoriamente cuando se encuentran tres o más
+notas alineadas en la misma columna de notas, y en este caso la cabeza
+combinada es incorrecta.  Para conseguir que la combinación seleccione
+la cabeza correcta, se debe aplicar un <code>\shift</code> o desplazamiento
+a la nota que no se debe combinar.  Aquí, se aplica <code>\shiftOn</code>
+para mover el sol agudo fuera de la columna, y entonces
+<code>\mergeDifferentlyHeadedOn</code> hace su trabajo correctamente.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative {
+    \mergeDifferentlyHeadedOn
+    \mergeDifferentlyDottedOn
+    c''8 d e d c d c4
+    \shiftOn
+    g'2 fis
+  } \\
+  \relative {
+    c''2 c8. b16 c4
+    e,2 r
+  } \\
+  \relative {
+    \oneVoice
+    s1
+    e'8 a b c d2
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../3e/lily-0c020e1a.ly">
+  <img align="middle"
+       border="0"
+       src="../3e/lily-0c020e1a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La instrucción <code>\shiftOn</code> permite (aunque no fuerza)
+que las notas de una voz se puedan desplazar.  Cuando<code>\shiftOn</code>
+se aplica a una voz, una nota o acorde de esta voz se desplaza
+solamente si su plica chocase en caso contrario con una plica de otra voz,
+y sólo si las plicas en colisión apuntan en la misma dirección.
+La instrucción <code>\shiftOff</code> evita la posibilidad de este tipo de desplazamiento.
+</p>
+<p>De forma predeterminada, las voces externas (normalmente las voces uno y dos)
+tienen <code>\shiftOff</code> especificado (desplazamiento desactivado), mientras
+que las voces interiores (tres y siguientes) tienen especificado
+<code>\shiftOn</code> (desplazamiento activado). Cuando se aplica un desplazamiento,
+las voces con plicas hacia arriba (voces de numeración impar)
+se desplazan hacia la derecha,
+y las voces con las plicas hacia abajo (voces con numeración par)
+se desplazarn a la izquierda.
+</p>
+<p>He aquí un ejemplo que le ayudará a visualizar
+la forma en que se expanidría internamente una expresión polifónica.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Observe que con tres o más voces, el orden vertical de
+las mismas dentro de su archivo de entrada ¡no sería el mismo que
+el orden vertical de las voces en el pentagrama!
+</p>
+</div>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  %% abbreviated entry
+  &lt;&lt;
+    { f''2  }  % 1: highest
+    \\
+    { g,2 }  % 2: lowest
+    \\
+    { d'2 }  % 3: upper middle
+    \\
+    { b2  }  % 4: lower middle
+  &gt;&gt;
+  %% internal expansion of the above
+  &lt;&lt;
+    \new Voice = &quot;1&quot; { \voiceOne   \shiftOff f'2 }
+    \new Voice = &quot;2&quot; { \voiceTwo   \shiftOff g,2 }
+    \new Voice = &quot;3&quot; { \voiceThree \shiftOn  d'2 } % shifts right
+    \new Voice = &quot;4&quot; { \voiceFour  \shiftOn  b2  } % shifts left
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../74/lily-cd1a8af7.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-cd1a8af7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Dos instrucciones adicionales, <code>\shiftOnn</code> y <code>\shiftOnnn</code>,
+ofrecen niveles de desplazamiento mayores que se pueden
+especificar temporalmente para resolver colisiones en situaciones
+complejas; véase <a name="index-Ejemplos-reales-de-musica"></a>
+<a href="../learning/real-music-example.es.html">Ejemplos reales de música</a>.
+</p>
+<p>Sólo se combinan las notas si tienen la plica en direcciones opuestas
+(como la tienen, por ejemplo, en las voces uno y dos de forma
+predeterminada o cuando las plicas se establecen explícitamente en
+direcciones opuestas).
+</p>
+<a name="Instrucciones-predefinidas-42"></a>
+<h4 class="subsubheading">Instrucciones predefinidas</h4>
+<p><code>\mergeDifferentlyDottedOn</code>,
+<code>\mergeDifferentlyDottedOff</code>,
+<code>\mergeDifferentlyHeadedOn</code>,
+<code>\mergeDifferentlyHeadedOff</code>.
+</p>
+<p><code>\shiftOn</code>,
+<code>\shiftOnn</code>,
+<code>\shiftOnnn</code>,
+<code>\shiftOff</code>.
+</p>
+<a name="Fragmentos-de-codigo-seleccionados-48"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+
+<p><em> Voces adicionales para evitar colisiones</em>
+</p>
+
+<p>En ciertos casos de polifonía compleja, se necesitan voces adicionales
+para evitar colisiones entre las notas.  Si se necesitan más de cuatro
+voces paralelas, las voces adicionales se añaden definiendo una
+variable que utiliza la función de Scheme <code>context-spec-music</code>.
+</p>
+
+<blockquote><pre class="verbatim">voiceFive = #(context-spec-music (make-voice-props-set 4) 'Voice)
+
+\relative c'' {
+  \time 3/4
+  \key d \minor
+  \partial 2
+  &lt;&lt;
+    \new Voice  {
+      \voiceOne
+      a4. a8
+      e'4 e4. e8
+      f4 d4. c8
+    }
+    \new Voice {
+      \voiceTwo
+      d,2
+      d4 cis2
+      d4 bes2
+    }
+    \new Voice {
+      \voiceThree
+      f'2
+      bes4 a2
+      a4 s2
+    }
+    \new Voice {
+      \voiceFive
+      s2
+      g4 g2
+      f4 f2
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../d6/lily-b9f6b8f4.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-b9f6b8f4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Forzar el desplazamiento horizontal de las notas</em>
+</p>
+
+<p> Cuando el motor de tipografiado no es capaz de todo, se puede usar la
+ sintaxis siguiente para sobreescribir las decisiones de tipografía.
+ Las unidades de medida que se usan aquí son espacios de pentagrama.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' &lt;&lt;
+  {
+    &lt;d g&gt;2 &lt;d g&gt;
+  }
+  \\
+  {
+    &lt;b f'&gt;2
+    \once \override NoteColumn.force-hshift = #1.7
+    &lt;b f'&gt;2
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../58/lily-59bd6b4d.ly">
+  <img align="middle"
+       border="0"
+       src="../58/lily-59bd6b4d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-168"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-polyphony"></a>
+<a href="../music-glossary/polyphony.es.html">polyphony</a>.
+</p>
+<p>Manual de aprendizaje:
+<a name="index-Varias-notas-a-la-vez"></a>
+<a href="../learning/multiple-notes-at-once.es.html">Varias notas a la vez</a>,
+<a name="index-Las-voces-contienen-musica-2"></a>
+<a href="../learning/voices-contain-music.es.html">Las voces contienen música</a>,
+<a name="index-Ejemplos-reales-de-musica-1"></a>
+<a href="../learning/real-music-example.es.html">Ejemplos reales de música</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/notas-simultaneas.es.html#notas-simult_00e1neas">Simultaneous notes</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-NoteColumn"></a>
+<a href="../internals/notecolumn.es.html">NoteColumn</a>,
+<a name="index-NoteCollision"></a>
+<a href="../internals/notecollision.es.html">NoteCollision</a>,
+<a name="index-RestCollision"></a>
+<a href="../internals/restcollision.es.html">RestCollision</a>.
+</p>
+<a name="index-colisiones_002c-ignorar-1"></a>
+
+<a name="Advertencias-y-problemas-conocidos-10"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>El uso de <code>\override NoteColumn.ignore-collision = ##t</code> hace
+que las notas con distinta cabeza en voces diferentes se mezclen
+incorrectamente.
+</p>
+<blockquote><pre class="verbatim">\mergeDifferentlyHeadedOn
+&lt;&lt; \relative { c'16 a' b a } \\ \relative { c'2 } &gt;&gt;
+\override NoteColumn.ignore-collision = ##t
+&lt;&lt; \relative { c'16 a' b a } \\ \relative { c'2 } &gt;&gt;
+</pre><p>
+ <a href="../6d/lily-97f184e4.ly">
+  <img align="middle"
+       border="0"
+       src="../6d/lily-97f184e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+
+<hr size="6">
+<a name="Combinaci_00f3n-autom_00e1tica-de-las-partes"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#collision-resolution" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Resolución de las colisiones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#multiple-voices" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Varias voces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#writing-music-in-parallel" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Escribir música en paralelo &gt; </a>]</td></tr></table>
+<a name="automatic-part-combining"></a>
+<h4 class="unnumberedsubsubsec">Combinación automática de las partes</h4>
+
+<a name="index-automatica_002c-combinacion-de-partes"></a>
+<a name="index-partes_002c-combinacion-automatica"></a>
+<a name="index-partes_002c-combinador-de"></a>
+<a name="index-a-due_002c-partes"></a>
+<a name="index-solo_002c-partes"></a>
+<a name="index-_005cpartcombine"></a>
+<a name="index-_005cpartcombine-1"></a>
+<a name="index-partcombine"></a>
+<a name="index-partcombine-1"></a>
+
+<p>La combinación automática de particellas se usa para mezclar dos
+partes musicales distintas sobre un pentagrama.  Esto puede ser de
+gran ayuda especialmente al tipografiar partituras orquestales.
+Se imprime una sola voz cuando la música de las dos voces es la misma,
+pero en aquellos lugares en que difieren, se imprime una segunda
+voz.  Las direcciones de las plicas se establecen hacia arriba o hacia
+abajo según proceda, al tiempo que se identifican y quedan marcadas
+las partes de solista y de dúo.
+</p>
+<p>La sintaxis para la combinación automática de las partes es:
+</p>
+<blockquote><pre class="example">\partcombine <var>expresión_musical_1</var> <var>expresión_musical_2</var>
+</pre></blockquote>
+
+<p>El ejemplo siguiente ejemplifica la funcionalidad básica,
+poniendo las partes en un solo pentagrama en forma polifónica, y
+estableciendo las direcciones de las plicas de forma adecuada.
+Se utilizan las mismas variables para las partes
+independientes y el pentagrama combinado.
+</p>
+<blockquote><pre class="verbatim">instrumentOne = \relative {
+  c'4 d e f |
+  R1 |
+  d'4 c b a |
+  b4 g2 f4 |
+  e1 |
+}
+
+instrumentTwo = \relative {
+  R1 |
+  g'4 a b c |
+  d4 c b a |
+  g4 f( e) d |
+  e1 |
+}
+
+&lt;&lt;
+  \new Staff \instrumentOne
+  \new Staff \instrumentTwo
+  \new Staff \partcombine \instrumentOne \instrumentTwo
+&gt;&gt;
+</pre><p>
+ <a href="../4b/lily-d77695ee.ly">
+  <img align="middle"
+       border="0"
+       src="../4b/lily-d77695ee.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Las dos partes tienen notas idénticas en el tercer compás,
+por lo que aparecen solamente una vez.  Las direcciones de las plicas
+y ligaduras se establecen de forma automática, según se trate de un
+solo o de un unísono.  Cuando se necesita en situaciones de polifonía,
+la primera parte (que recibe el nombre de contexto <code>one</code>)
+recibe las plicas hacia arriba, mientras que la segunda (llamada
+<code>two</code>) siempre recibe las plicas hacia abajo.  En los fragmentos
+de solo, las partes se marcan con &ldquo;Solo&rdquo; y &ldquo;Solo II&rdquo;,
+respectivamente.  Las partes en unísono (<var>a due</var>) se marcan
+con el texto &ldquo;a2&rdquo;.
+</p>
+<p>Los dos argumentos de <code>\partcombine</code> se interpretan como
+contextos de <a name="index-Voice-4"></a>
+<a href="../internals/voice.es.html">Voice</a> separados, por lo que si la música
+está escrita en modo relativo, entonces <em>las dos</em> partes han
+de incluir la función <code>\relative</code>, es decir:
+</p>
+<blockquote><pre class="example">\partcombine
+  \relative &hellip; <var>expresión_musical_1</var>
+  \relative &hellip; <var>expresión_musical_2</var>
+</pre></blockquote>
+
+<p>Una sección <code>\relative</code> que se encuentra fuera de
+<code>\partcombine</code> no tiene ningún efecto sobre las notas de
+<code><var>expresión_musical_1</var></code> y <code><var>expresión_musical_2</var></code>.
+</p>
+<a name="index-_005cpartcombineChords"></a>
+<a name="index-_005cpartcombineChords-1"></a>
+<a name="index-partcombineChords"></a>
+<a name="index-partcombineChords-1"></a>
+<a name="index-_005cpartcombineApart"></a>
+<a name="index-_005cpartcombineApart-1"></a>
+<a name="index-partcombineApart"></a>
+<a name="index-partcombineApart-1"></a>
+<a name="index-_005cpartcombineUnisono"></a>
+<a name="index-_005cpartcombineUnisono-1"></a>
+<a name="index-partcombineUnisono"></a>
+<a name="index-partcombineUnisono-1"></a>
+<a name="index-_005cpartcombineSoloI"></a>
+<a name="index-_005cpartcombineSoloI-1"></a>
+<a name="index-partcombineSoloI"></a>
+<a name="index-partcombineSoloI-1"></a>
+<a name="index-_005cpartcombineSoloII"></a>
+<a name="index-_005cpartcombineSoloII-1"></a>
+<a name="index-partcombineSoloII"></a>
+<a name="index-partcombineSoloII-1"></a>
+<a name="index-_005cpartcombineAutomatic"></a>
+<a name="index-_005cpartcombineAutomatic-1"></a>
+<a name="index-partcombineAutomatic"></a>
+<a name="index-partcombineAutomatic-1"></a>
+
+<p>En las partituras profesionales, las voces con frecuencia se mantienen
+separadas entre sí durante pasajes prolongados incluso si algunas
+notas coninciden entre ambas, y podrían escribirse fácilmente como un
+unísono. Por ello, la combinación de las notas en un acorde, o mostrar
+una voz como solo, no son soluciones ideales porque la función
+<code>\partcombine</code> considera cada nota de forma individual.  En este
+caso, el resultado de la función <code>\partcombine</code> se puede
+alterar o corregir con las instrucciones siguientes:
+</p>
+<p>Las instrucciones que finalizan en <code>&hellip;Once</code> se aplican
+exclusivamente a la nota siguiente dentro de la expresión musical.
+</p>
+<ul>
+<li>
+<code>\partcombineApart</code> y <code>\once \partcombineApart</code>
+mantienen las notas como dos voces separadas incluso si se pueden
+combinar en un acorde o unísono.
+
+</li><li>
+<code>\partcombineChords</code> y <code>\once \partcombineChords</code>
+combinan las notas en un acorde.
+
+</li><li>
+<code>\partcombineUnisono</code> y <code>\once \partcombineUnisono</code>
+combinan las dos voces como unísono y marcan el resultado
+como &ldquo;unison&rdquo;.
+
+</li><li>
+<code>\partcombineSoloI</code> y <code>\once \partcombineSoloI</code>
+muestran solo la voz uno y la marcan como &ldquo;Solo&rdquo;.
+
+</li><li>
+<code>\partcombineSoloII</code> o <code>\once \partcombineSoloII</code>
+imprimen solo la voz dos y la marcan como &ldquo;Solo&rdquo;.
+
+</li><li>
+<code>\partcombineAutomatic</code> y <code>\once \partcombineAutomatic</code>
+terminan el efecto de las instrucciones anteriores y retornan a la
+funcionalidad estándar de <code>\partcombine</code>.
+
+</li></ul>
+
+<blockquote><pre class="verbatim">instrumentOne = \relative c' {
+  \partcombineApart c2^&quot;apart&quot; e |
+  \partcombineAutomatic e2^&quot;auto&quot; e |
+  \partcombineChords e'2^&quot;chord&quot; e |
+  \partcombineAutomatic c2^&quot;auto&quot; c |
+  \partcombineApart c2^&quot;apart&quot; \once \partcombineChords e^&quot;chord once&quot; |
+  c2 c |
+}
+instrumentTwo = \relative {
+  c'2 c |
+  e2 e |
+  a,2 c |
+  c2 c' |
+  c2 c |
+  c2 c |
+}
+
+&lt;&lt;
+  \new Staff { \instrumentOne }
+  \new Staff { \instrumentTwo }
+  \new Staff { \partcombine \instrumentOne \instrumentTwo }
+&gt;&gt;
+</pre><p>
+ <a href="../13/lily-b1113ef1.ly">
+  <img align="middle"
+       border="0"
+       src="../13/lily-b1113ef1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="-Uso-de-_005cpartcombine-con-letra"></a>
+<h4 class="subsubheading"><i> Uso de \partcombine con letra</i></h4>
+
+<a name="index-_005cpartcombine-y-letra"></a>
+
+<p>La instrucción <code>\partcombine</code> no está diseñada para funcionar
+con la letra de las canciones; si una de las voces recibe un
+nombre explícito para poder adjuntar una letra, el combinador de
+partes no funciona.  Sin embargo, se puede conseguir este efecto
+usando un contexto <code>NullVoice</code>.  Véase
+<a href="techniques-specific-to-lyrics.es.html#polyphony-with-shared-lyrics">Polifonía con letras compartidas</a>.
+</p>
+
+<a name="Fragmentos-de-codigo-seleccionados-42"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+
+
+<p><em> Combinar dos partes sobre el mismo pentagrama</em>
+</p>
+
+<p>La herramienta de combinación de partes (instrucción
+<code>\partcombine</code>) permite la combinación de varias partes
+diferentes sobre el mismo pentagrama.  Las indicaciones textuales
+tales como &ldquo;solo&rdquo; o &ldquo;a2&rdquo; se añaden de forma predeterminada; para
+quitarlas, sencillamente establezca la propiedad
+<code>printPartCombineTexts</code> al valor &ldquo;falso&rdquo;.  Para partituras
+vocales (como himnos), no hay necesidad de añadir los textos &ldquo;solo&rdquo;
+o &ldquo;a2&rdquo;, por lo que se deben desactivar.  Sin embargo, podría ser
+mejor no usarlo si hay solos, porque éstos no se indicarán.  En tales
+casos podría ser preferible la notación polifónica estándar.
+</p>
+<p>Este fragmento de código presenta las tres formas en que se pueden
+imprimir dos partes sobre un solo pentagrama: polifonía estándar,
+<code>\partcombine</code> sin textos, y <code>\partcombine</code> con
+textos.
+</p>
+
+<blockquote><pre class="verbatim">%% Combining pedal notes with clef changes
+
+musicUp = \relative c'' {
+  \time 4/4
+  a4 c4.( g8) a4 |
+  g4 e' g,( a8 b) |
+  c b a2.
+}
+
+musicDown = \relative c'' {
+  g4 e4.( d8) c4 |
+  r2 g'4( f8 e) |
+  d2 \stemDown a
+}
+
+\score {
+  &lt;&lt;
+    &lt;&lt;
+    \new Staff {
+      \set Staff.instrumentName = #&quot;Standard polyphony&quot;
+      &lt;&lt; \musicUp \\ \musicDown &gt;&gt;
+    }
+    \new Staff \with { printPartCombineTexts = ##f } {
+      \set Staff.instrumentName = #&quot;PartCombine without texts&quot;
+      \partcombine \musicUp \musicDown
+    }
+    \new Staff {
+      \set Staff.instrumentName = #&quot;PartCombine with texts&quot;
+      \partcombine \musicUp \musicDown
+    }
+    &gt;&gt;
+  &gt;&gt;
+  \layout {
+    indent = 6.0\cm
+    \context {
+      \Score
+      \override SystemStartBar.collapse-height = #30
+    }
+  }
+}
+</pre><p>
+ <a href="../56/lily-889ff597.ly">
+  <img align="middle"
+       border="0"
+       src="../56/lily-889ff597.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Cambiar los textos de partcombine</em>
+</p>
+
+<p>Al utilizar la posibilidad de combinación automática de partes, se
+puede modificar el texto que se imprime para las secciones de solo
+y de unísono:
+</p>
+
+<blockquote><pre class="verbatim">\new Staff &lt;&lt;
+  \set Staff.soloText = #&quot;girl&quot;
+  \set Staff.soloIIText = #&quot;boy&quot;
+  \set Staff.aDueText = #&quot;together&quot;
+  \partcombine
+    \relative c'' {
+      g4 g r r
+      a2 g
+    }
+    \relative c'' {
+      r4 r a( b)
+      a2 g
+    }
+&gt;&gt;
+</pre><p>
+ <a href="../aa/lily-a8b4ec0d.ly">
+  <img align="middle"
+       border="0"
+       src="../aa/lily-a8b4ec0d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-146"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-a-due"></a>
+<a href="../music-glossary/a-due.es.html">a due</a>,
+<a name="index-part"></a>
+<a href="../music-glossary/part.es.html">part</a>.
+</p>
+<p>Referencia de la notación:
+<a href="writing-parts.es.html">Escritura de las particellas</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/notas-simultaneas.es.html#notas-simult_00e1neas">Simultaneous notes</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-PartCombineMusic"></a>
+<a href="../internals/partcombinemusic.es.html">PartCombineMusic</a>,
+<a name="index-Voice-5"></a>
+<a href="../internals/voice.es.html">Voice</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-84"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>Todas las funciones <code>\partcombine&hellip;</code> admiten
+exclusivamente dos voces.
+</p>
+<p>Las funciones <code>\partcombine&hellip;</code> no se pueden escribir
+dentro de los bloques <code>\tuplet</code> ni <code>\relative</code>.
+</p>
+<p>Si <code>printPartCombineTexts</code> está establecido y las dos voces
+tocan y terminan las mismas notas en el mismo compás,
+el combinador de partes puede tipografiar <code>a2</code> más de una vez
+en ese compás.
+</p>
+<p><code>\partcombine</code> solo tiene en cuenta el momento de inicio de las
+notas dentro de una voz <code>Voice</code>; por ejemplo, no puede recordar
+si una nota dentro de una voz ya ha comenzado cuando las notas que se
+combinan se han iniciado justo ahora en la otra voz.  Esto puede
+conducir a cierto número de problemas inesperados entre los que se
+incluye la impresión incorrecta de marcas de &ldquo;Solo&rdquo; o de
+&ldquo;Unison&rdquo;.
+</p>
+<p><code>\partcombine</code> conserva todos los elementos extensos (ligaduras,
+reguladores, etc.) dentro del mismo contexto <code>Voice</code> de forma que
+si uno cualquiera de estos elementos extensos inicia o termina en un
+contexto <code>Voice</code> diferente, puede no imprimirse o hacerlo
+incorrectamente.
+</p>
+<p>Si la función <code>\partcombine</code> no puede combinar las dos
+expresiones musicales (es decir, cuando las dos voces tienen
+duraciones distintas), otorgará internamente sus propios nombres a las
+voces: <code>one</code> y <code>two</code> respectivamente.  Esto significa que si
+se produce un cambio a un contexto <code>Voice</code> que tenga un nombre
+distinto, se ignorarán los eventos dentro del contexto <code>Voice</code>
+que tiene el nombre distinto.
+</p>
+<p>Consulte también el apartado <em>Advertencias y problemas conocidos</em>
+en la sección <a href="common-notation-for-fretted-strings.es.html#default-tablatures">Tablaturas predeterminadas</a> al utilizar
+<code>\partcombine</code> con tablaturas, y la <em>Nota</em> de
+<a href="beams.es.html#automatic-beams">Barras automáticas</a> al utilizar barrado automático.
+</p>
+
+<hr size="6">
+<a name="Escribir-m_00fasica-en-paralelo"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-part-combining" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Combinación automática de las partes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#multiple-voices" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Varias voces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="staff-notation.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Notación de los pentagramas &gt; </a>]</td></tr></table>
+<a name="writing-music-in-parallel"></a>
+<h4 class="unnumberedsubsubsec">Escribir música en paralelo</h4>
+
+<a name="index-escribir-musica-en-paralelo"></a>
+<a name="index-musica-intercalada"></a>
+<a name="index-paralelo_002c-musica-en"></a>
+<a name="index-_005cparallelMusic"></a>
+<a name="index-_005cparallelMusic-1"></a>
+<a name="index-parallelMusic"></a>
+<a name="index-parallelMusic-1"></a>
+
+<p>La música para varias partes se puede intercalar dentro del código de
+entrada.  La función <code>\parallelMusic</code> admite una lista que
+contiene los nombres de las variables que se van a crear, y una
+expresión musical.  El contenido de los compases alternativos
+extraídos de la expresión se convierten en el valor de las variables
+respectivas, de manera que podemos utilizarlas más tarde para imprimir
+la música.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Es obligatorio utilizar comprobaciones de compás <code>|</code>, y
+los compases deben tener la misma longitud.
+</p>
+</div>
+<blockquote><pre class="verbatim">\parallelMusic #'(voiceA voiceB voiceC) {
+  % Bar 1
+  r8 g'16 c'' e'' g' c'' e'' r8 g'16 c'' e'' g' c'' e'' |
+  r16 e'8.~   4              r16 e'8.~   4              |
+  c'2                        c'2                        |
+
+  % Bar 2
+  r8 a'16 d'' f'' a' d'' f'' r8 a'16 d'' f'' a' d'' f'' |
+  r16 d'8.~   4              r16 d'8.~   4              |
+  c'2                        c'2                        |
+
+}
+\new StaffGroup &lt;&lt;
+  \new Staff &lt;&lt; \voiceA \\ \voiceB &gt;&gt;
+  \new Staff { \clef bass \voiceC }
+&gt;&gt;
+</pre><p>
+ <a href="../ae/lily-52e30936.ly">
+  <img align="middle"
+       border="0"
+       src="../ae/lily-52e30936.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se puede usar el modo relativo.  Observe que la instrucción
+<code>\relative</code> no se utiliza dentro del propio bloque
+<code>\parallelMusic</code>.  Las notas guardan relación con la nota
+anterior en la misma voz, no con la nota anterior dentro del código de
+entrada (dicho de otra manera, las notas relativas de <code>vozA</code>
+ignoran a las notas que hay en <code>vozB</code>.
+</p>
+<blockquote><pre class="verbatim">\parallelMusic #'(voiceA voiceB voiceC) {
+  % Bar 1
+  r8 g16 c e g, c e r8 g,16 c e g, c e  |
+  r16 e8.~ 4        r16 e8.~  4         |
+  c2                c                   |
+
+  % Bar 2
+  r8 a,16 d f a, d f r8 a,16 d f a, d f |
+  r16 d8.~  4        r16 d8.~  4        |
+  c2                 c                  |
+
+ }
+\new StaffGroup &lt;&lt;
+  \new Staff &lt;&lt; \relative c'' \voiceA \\ \relative c' \voiceB &gt;&gt;
+  \new Staff \relative c' { \clef bass \voiceC }
+&gt;&gt;
+</pre><p>
+ <a href="../24/lily-cba32dd3.ly">
+  <img align="middle"
+       border="0"
+       src="../24/lily-cba32dd3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto funciona aceptablemente bien para música de piano.  El siguiente
+ejemplo asigna cada cuatro compases consecutivos a cuatro variables:
+</p>
+<blockquote><pre class="verbatim">global = {
+  \key g \major
+  \time 2/4
+}
+
+\parallelMusic #'(voiceA voiceB voiceC voiceD) {
+  % Bar 1
+  a8    b     c   d     |
+  d4          e         |
+  c16 d e fis d e fis g |
+  a4          a         |
+
+  % Bar 2
+  e8      fis  g     a   |
+  fis4         g         |
+  e16 fis g  a fis g a b |
+  a4           a         |
+
+  % Bar 3 ...
+}
+
+\score {
+  \new PianoStaff &lt;&lt;
+     \new Staff {
+       \global
+       &lt;&lt;
+         \relative c'' \voiceA
+         \\
+         \relative c'  \voiceB
+       &gt;&gt;
+     }
+     \new Staff {
+       \global \clef bass
+       &lt;&lt;
+         \relative c \voiceC
+         \\
+         \relative c \voiceD
+       &gt;&gt;
+     }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../56/lily-9774372e.ly">
+  <img align="middle"
+       border="0"
+       src="../56/lily-9774372e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-227"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Manual de aprendizaje:
+<a name="index-Organizar-las-piezas-mediante-variables"></a>
+<a href="../learning/organizing-pieces-with-variables.es.html">Organizar las piezas mediante variables</a>
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/notas-simultaneas.es.html#notas-simult_00e1neas">Simultaneous notes</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-part-combining" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Combinación automática de las partes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#multiple-voices" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Varias voces&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="staff-notation.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Notación de los pentagramas &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="multiple-voices.html">English</a>, <a href="multiple-voices.de.html">deutsch</a>, <a href="multiple-voices.fr.html">français</a>, <a href="multiple-voices.it.html">italiano</a>, <a href="multiple-voices.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=" toc_current"><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Una-voz-unica" href="single-voice.es.html">1.5.1 Una voz única</a>      </li>
+      <li class=" toc_current"><a name="toc-Varias-voces-1" href="multiple-voices.es.html">1.5.2 Varias voces</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Polifonia-en-un-solo-pentagrama" href="multiple-voices.es.html#single_002dstaff-polyphony">Polifonía en un solo pentagrama</a>        </li>
+        <li class=""><a name="toc-Estilos-de-voz-1" href="multiple-voices.es.html#voice-styles">Estilos de voz</a>        </li>
+        <li class=""><a name="toc-Resolucion-de-las-colisiones" href="multiple-voices.es.html#collision-resolution">Resolución de las colisiones</a>        </li>
+        <li class=""><a name="toc-Combinacion-automatica-de-las-partes" href="multiple-voices.es.html#automatic-part-combining">Combinación automática de las partes</a>        </li>
+        <li class=""><a name="toc-Escribir-musica-en-paralelo" href="multiple-voices.es.html#writing-music-in-parallel">Escribir música en paralelo</a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

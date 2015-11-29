@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 5.1.5 Cambiar los valores por omisión de los contextos</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 5.1.5 Cambiar los valores por omisión de los contextos">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 5.1.5 Cambiar los valores por omisión de los contextos">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="interpretation-contexts.es.html#interpretation-contexts" rel="up" title="5.1 Contextos de interpretación">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="modifying-context-plug_002dins.es.html#modifying-context-plug_002dins" rel="previous" title="5.1.4 Modificar los complementos (plug-ins) de contexto">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Cambiar-los-valores-por-omisi_00f3n-de-los-contextos"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Cambiar los valores por omisión&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Tablas del manual sobre notación &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="modifying-context-plug_002dins.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Modificar los complementos (plug-ins) de contexto&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="interpretation-contexts.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Contextos de interpretación&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#changing-all-contexts-of-the-same-type" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Cambiar todos los contextos del mismo tipo &gt; </a>]</td></tr></table>
+<a name="changing-context-default-settings"></a>
+<h3 class="subsection">5.1.5 Cambiar los valores por omisión de los contextos</h3>
+
+<a name="index-predeterminadas_002c-cambio-de-propiedades-de-contexto"></a>
+<a name="index-contexto_002c-cambiar-propiedades-predeterminadas-de"></a>
+
+<p>Se pueden cambiar las propiedades de contexto y de grob con las
+instrucciones <code>\set</code> y <code>\override</code>, tal y como se describe
+en <a href="modifying-properties.es.html">Modificar las propiedades</a>.  Estas instrucciones crean eventos
+musicales, haciendo que los cambios tengan efecto en el punto temporal
+en que la música se está procesando.
+</p>
+<p>Por contra, esta sección explica la forma de cambiarlos valores
+<em>predeterminados</em> de las propiedades de contexto y de grob en el
+momento en que se crea el contexto.  Existen dos formas de hacerlo.
+Una modifica los valores predeterminados en todos los contextos de un
+tipo dado, y el otro modifica los valores predeterminados solamente en
+una instancia concreta de un contexto.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#changing-all-contexts-of-the-same-type" accesskey="1">Cambiar todos los contextos del mismo tipo</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#changing-just-one-specific-context" accesskey="2">Cambiar solamente un contexto determinado</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#order-of-precedence" accesskey="3">Orden de precedencia</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Cambiar-todos-los-contextos-del-mismo-tipo"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Cambiar los valores por omisión&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Tablas del manual sobre notación &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-context-default-settings" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Cambiar los valores por omisión de los contextos&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Cambiar los valores por omisión de los contextos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#changing-just-one-specific-context" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Cambiar solamente un contexto determinado &gt; </a>]</td></tr></table>
+<a name="changing-all-contexts-of-the-same-type"></a>
+<h4 class="unnumberedsubsubsec">Cambiar todos los contextos del mismo tipo</h4>
+
+<a name="index-_005ccontext-dentro-de-un-bloque-_005clayout"></a>
+<a name="index-_005ccontext-2"></a>
+<a name="index-_005ccontext-3"></a>
+<a name="index-_005clayout-6"></a>
+<a name="index-_005clayout-7"></a>
+
+<p>Los ajustes de contexto predeterminados que se han de usar para la composición
+tipográfica dentro de <code>Score</code>, <code>Staff</code>, <code>Voice</code> y otros contextos
+se pueden especificar en un bloque <code>\context</code> dentro de cualquier
+bloque <code>\layout</code>.
+</p>
+<p>Los ajustes para la salida MIDI, al contrario que para la
+composición tipográfica, se tendrán que especificar aparte en
+bloques <code>\midi</code> (véase
+<a href="contexts-explained.es.html#output-definitions-_002d-blueprints-for-contexts">Definiciones de salida - estructura de los contextos</a>).
+</p>
+<p>El bloque <code>\layout</code> se debe colocar
+dentro del bloque <code>\score</code> al que se aplica, después de la
+música.
+</p>
+<blockquote><pre class="example">\layout {
+  \context {
+    \Voice
+    [ajustes de contexto para todos los contextos Voice]
+  }
+  \context {
+    \Staff
+    [ajustes de contexto para todos los contextos Staff]
+  }
+}
+</pre></blockquote>
+
+<p>Se pueden especificar los siguientes tipos de ajustes:
+</p>
+<ul>
+<li>
+Una instrucción <code>\override</code>, pero omitiendo el nombre del contexto
+
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    a'4^&quot;Thicker stems&quot; a a a
+    a4 a a\ff a
+  }
+  \layout {
+    \context {
+      \Staff
+      \override Stem.thickness = #4.0
+    }
+  }
+}
+</pre><p>
+ <a href="../68/lily-7c3277b0.ly">
+  <img align="middle"
+       border="0"
+       src="../68/lily-7c3277b0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Estableciendo una propiedad de contexto directamente
+
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    a'4^&quot;Smaller font&quot; a a a
+    a4 a a\ff a
+  }
+  \layout {
+    \context {
+      \Staff
+      fontSize = #-4
+    }
+  }
+}
+</pre><p>
+ <a href="../d8/lily-42efcbd2.ly">
+  <img align="middle"
+       border="0"
+       src="../d8/lily-42efcbd2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Una instrucción predefinida tal como <code>\dynamicUp</code> o una expresión
+musical como <code>\accidentalStyle dodecaphonic</code>
+
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    a'4^&quot;Dynamics above&quot; a a a
+    a4 a a\ff a
+  }
+  \layout {
+    \context {
+      \Voice
+      \dynamicUp
+    }
+    \context {
+      \Staff
+      \accidentalStyle dodecaphonic
+    }
+  }
+}
+</pre><p>
+ <a href="../2c/lily-afcc0add.ly">
+  <img align="middle"
+       border="0"
+       src="../2c/lily-afcc0add.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Una variable definida por el usuario que contenga un bloque
+<code>\with</code>; para ver detalles acerca del bloque <code>\with</code>,
+consulte <a href="#changing-just-one-specific-context">Cambiar solamente un contexto determinado</a>.
+
+<blockquote><pre class="verbatim">StaffDefaults = \with {
+  fontSize = #-4
+}
+
+\score {
+  \new Staff {
+    \relative {
+      a'4^&quot;Smaller font&quot; a a a
+      a4 a a a
+    }
+  }
+  \layout {
+    \context {
+      \Staff
+      \StaffDefaults
+    }
+  }
+}
+</pre><p>
+ <a href="../9b/lily-f422a76f.ly">
+  <img align="middle"
+       border="0"
+       src="../9b/lily-f422a76f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li></ul>
+
+<p>Las instrucciones de ajuste de propiedades se pueden disponer dentro
+de un bloque <code>\layout</code> sin que estén encerradas en un bloque
+<code>\context</code>.  Tales ajustes son equivalentes a incluir las mismas
+instrucciones de ajuste de propiedades al comienzo de cada uno de los
+contextos del tipo especificado.  Si no se especifica ningún contexto,
+<em>todos y cada uno</em> de los contextos del nivel inferior quedan
+afectados, véase <a href="contexts-explained.es.html#bottom_002dlevel-contexts-_002d-voices">Contextos del nivel más bajo. Voces</a>.  La
+sintaxis de una instrucción de ajuste de propiedades dentro de un
+bloque <code>\layout</code> es la misma que si la misma instrucción
+estuviera escrita en el propio flujo musical.
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative {
+      a'4^&quot;Smaller font&quot; a a a
+      a4 a a a
+    }
+  }
+  \layout {
+    \accidentalStyle dodecaphonic
+    \set fontSize = #-4
+    \override Voice.Stem.thickness = #4.0
+  }
+}
+</pre><p>
+ <a href="../39/lily-ca177414.ly">
+  <img align="middle"
+       border="0"
+       src="../39/lily-ca177414.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Cambiar-solamente-un-contexto-determinado"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Cambiar los valores por omisión&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Tablas del manual sobre notación &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-all-contexts-of-the-same-type" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Cambiar todos los contextos del mismo tipo&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Cambiar los valores por omisión de los contextos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#order-of-precedence" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Orden de precedencia &gt; </a>]</td></tr></table>
+<a name="changing-just-one-specific-context"></a>
+<h4 class="unnumberedsubsubsec">Cambiar solamente un contexto determinado</h4>
+
+<a name="index-_005cwith-2"></a>
+<a name="index-_005cwith-3"></a>
+<a name="index-_005cwith-4"></a>
+
+<p>Las propiedades de contexto de una única instancia de contexto pueden
+cambiarse dentro de un bloque <code>\with</code>.  Todas las demás
+instancias de contexto del mismo tipo retienen los ajustes
+predeterminados que LilyPond tiene programados y que se modifican por
+parte de cualquier bloque <code>\layout</code> que se encuentre dentro del
+ámbito.  El bloque <code>\with</code> se debe situar inmediatamente después
+de las instrucciones <code>\new</code> <var>context-type</var>:
+</p>
+<blockquote><pre class="example">\new Staff \with { [ajustes de contexto para esta instancia de contexto solamente] }
+{
+  &hellip;
+}
+</pre></blockquote>
+
+<p>Dado que dicha &lsquo;modificación de contexto&rsquo; está especificada
+dentro de la música, afectará a <em>todas</em> las salidas
+(tipografía <em>y también</em> el MIDI), a diferencia de los cambios
+que se hacen dentro de una definición de salida.
+</p>
+<p>Se pueden especificar los siguientes tipos de ajustes:
+</p>
+<ul>
+<li>
+Una instrucción <code>\override</code>, pero omitiendo el nombre del
+contexto
+
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \new Voice \with { \override Stem.thickness = #4.0 }
+    {
+      \relative {
+        a'4^&quot;Thick stems&quot; a a a
+        a4 a a a
+      }
+    }
+  }
+}
+</pre><p>
+ <a href="../08/lily-468fa93b.ly">
+  <img align="middle"
+       border="0"
+       src="../08/lily-468fa93b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Estableciendo una propiedad de contexto directamente
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        a'4^&quot;Default font&quot; a a a
+        a4 a a a
+      }
+    }
+    \new Staff \with { fontSize = #-4 }
+    {
+      \relative {
+        a'4^&quot;Smaller font&quot; a a a
+        a4 a a a
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../c2/lily-f77dc574.ly">
+  <img align="middle"
+       border="0"
+       src="../c2/lily-f77dc574.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Una instrucción predefinida tal como <code>\dynamicUp</code>
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice {
+        \relative {
+          a'4^&quot;Dynamics below&quot; a a a
+          a4 a a\ff a
+        }
+      }
+    }
+    \new Staff \with { \accidentalStyle dodecaphonic }
+    {
+      \new Voice \with { \dynamicUp }
+      {
+        \relative {
+          a'4^&quot;Dynamics above&quot; a a a
+          a4 a a\ff a
+        }
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../db/lily-4af98673.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-4af98673.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li></ul>
+
+<hr size="6">
+<a name="Orden-de-precedencia"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Cambiar los valores por omisión&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Tablas del manual sobre notación &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-just-one-specific-context" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Cambiar solamente un contexto determinado&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Cambiar los valores por omisión de los contextos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="defining-new-contexts.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Definir contextos nuevos &gt; </a>]</td></tr></table>
+<a name="order-of-precedence"></a>
+<h4 class="unnumberedsubsubsec">Orden de precedencia</h4>
+
+<p>El valor de una propiedad que se aplica en un momento determinado se
+determina de la siguiente forma:
+</p>
+<ul>
+<li>
+si está en efecto una instrucción <code>\override</code> o <code>\set</code>
+dentro del flujo musical, se usa dicho valor,
+
+</li><li>
+de lo contrario, se usa el valor predeterminado tomado de un enunciado
+<code>\with</code> en las instrucciones de inicio del contexto,
+
+</li><li>
+de lo contrario, se usa el valor tomado del bloque <code>\context</code> más
+reciente que corresponda dentro de los bloques <code>\layout</code> o <code>\midi</code>,
+
+</li><li>
+de lo contrario se usa el valor predeterminado que LilyPond lleva
+preprogramado.
+</li></ul>
+
+<a name="Vease-tambien-241"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Manual de aprendizaje:
+<a name="index-Modificar-las-propiedades-de-los-contextos"></a>
+<a href="../learning/modifying-context-properties.es.html">Modificar las propiedades de los contextos</a>.
+</p>
+<p>Referencia de la notación:
+<a href="contexts-explained.es.html">Explicación de los contextos</a>,
+<a href="contexts-explained.es.html#bottom_002dlevel-contexts-_002d-voices">Contextos del nivel más bajo. Voces</a>,
+<a href="the-set-command.es.html">La instrucción <code>\set</code></a>,
+<a href="the-override-command.es.html">La instrucción <code>\override</code></a>,
+<a href="the-layout-block.es.html">El bloque <code>\layout</code></a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Cambiar los valores por omisión&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Tablas del manual sobre notación &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-just-one-specific-context" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Cambiar solamente un contexto determinado&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Cambiar los valores por omisión de los contextos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="defining-new-contexts.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Definir contextos nuevos &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="changing-context-default-settings.html">English</a>, <a href="changing-context-default-settings.de.html">deutsch</a>, <a href="changing-context-default-settings.fr.html">français</a>, <a href="changing-context-default-settings.it.html">italiano</a>, <a href="changing-context-default-settings.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Explicacion-de-los-contextos" href="contexts-explained.es.html">5.1.1 Explicación de los contextos</a>      </li>
+      <li class=""><a name="toc-Crear-y-referenciar-contextos-1" href="creating-and-referencing-contexts.es.html">5.1.2 Crear y referenciar contextos</a>      </li>
+      <li class=""><a name="toc-Mantener-vivos-los-contextos-1" href="keeping-contexts-alive.es.html">5.1.3 Mantener vivos los contextos</a>      </li>
+      <li class=""><a name="toc-Modificar-los-complementos-_0028plug_002dins_0029-de-contexto-1" href="modifying-context-plug_002dins.es.html">5.1.4 Modificar los complementos (plug-ins) de contexto</a>      </li>
+      <li class=" toc_current"><a name="toc-Cambiar-los-valores-por-omision-de-los-contextos" href="changing-context-default-settings.es.html">5.1.5 Cambiar los valores por omisión de los contextos</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Cambiar-todos-los-contextos-del-mismo-tipo-1" href="changing-context-default-settings.es.html#changing-all-contexts-of-the-same-type">Cambiar todos los contextos del mismo tipo</a>        </li>
+        <li class=""><a name="toc-Cambiar-solamente-un-contexto-determinado-1" href="changing-context-default-settings.es.html#changing-just-one-specific-context">Cambiar solamente un contexto determinado</a>        </li>
+        <li class=""><a name="toc-Orden-de-precedencia-1" href="changing-context-default-settings.es.html#order-of-precedence">Orden de precedencia</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Definir-contextos-nuevos-1" href="defining-new-contexts.es.html">5.1.6 Definir contextos nuevos</a>      </li>
+      <li class=""><a name="toc-Orden-de-disposicion-de-los-contextos" href="context-layout-order.es.html">5.1.7 Orden de disposición de los contextos</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

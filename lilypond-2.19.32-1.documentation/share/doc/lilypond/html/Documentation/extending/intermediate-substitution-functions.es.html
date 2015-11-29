@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2003-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Extender LilyPond: B.3.4 Funciones de sustitución intermedias</title>
+
+<meta name="description" content="Extender LilyPond: B.3.4 Funciones de sustitución intermedias">
+<meta name="keywords" content="Extender LilyPond: B.3.4 Funciones de sustitución intermedias">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Extender">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="E. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="music-functions.es.html#music-functions" rel="up" title="B.3 Funciones musicales">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="simple-substitution-functions.es.html#simple-substitution-functions" rel="previous" title="B.3.3 Funciones de sustitución sencillas">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="extending devStatus">
+
+
+<div id="main">
+<a name="Funciones-de-sustituci_00f3n-intermedias"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="simple-substitution-functions.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Funciones de sustitución sencillas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="music-functions.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Funciones musicales&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="mathematics-in-functions.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Matemáticas dentro de las funciones &gt; </a>]</td></tr></table>
+<a name="intermediate-substitution-functions"></a>
+<h3 class="subsection">B.3.4 Funciones de sustitución intermedias</h3>
+
+<p>Las funciones de sustitución intermedias contienen una
+mezcla de código de Scheme y de LilyPond
+dentro de la expresión musical que se devuelve.
+</p>
+<p>Algunas instrucciones <code>\override</code> requieren un argumento que
+consiste en una pareja de números (llamada una <em>célula cons</em> en
+Scheme).
+</p>
+<p>La pareja se puede pasar directamente dentro de la función musical,
+usando una variable <code>pair?</code>:
+</p>
+<blockquote><pre class="example">barraManual =
+#(define-music-function
+     (principio-final)
+     (pair?)
+   #{
+     \once \override Beam.positions = #principio-final
+   #})
+
+\relative c' {
+  \barraManual #'(3 . 6) c8 d e f
+}
+</pre></blockquote>
+
+<p>De forma alternativa, los números que componen la pareja se pueden
+pasar como argumentos separados, y el código de Scheme que se ha usado
+para crear la pareja se puede incluir dentro de la expresión musical:
+</p>
+<blockquote><pre class="verbatim">manualBeam =
+#(define-music-function
+     (beg end)
+     (number? number?)
+   #{
+     \once \override Beam.positions = #(cons beg end)
+   #})
+
+\relative c' {
+  \manualBeam #3 #6 c8 d e f
+}
+</pre><p>
+ <a href="../1a/lily-1c7ee3ea.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-1c7ee3ea.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005ctemporary"></a>
+<a name="index-_005ctemporary-1"></a>
+<a name="index-sobreescrituras-temporales"></a>
+<a name="index-temporales_002c-sobreescrituras"></a>
+<a name="index-propiedades_002c-recuperar-valor-anterior"></a>
+
+<p>Las propiedades se mantienen conceptualmente utilizando una pila
+por cada propiedad, por cada grob y por cada contexto.  Las
+funciones musicales pueden requerir la sobreescritura de una o
+varias propiedades durante el tiempo de duración de la función,
+restaurándolas a sus valores previos antes de salir.  Sin embargo,
+las sobreescrituras normales extraen y descartan la cima de la
+pila de propiedades actual antes de introducir un valor en ella,
+de manera que el valor anterior de la propiedad se pierde cuando
+se sobreescribe.  Si se quiere preservar el valor anterior, hay
+que preceder la instrucción <code>\override</code> con la palabra clave
+<code>\temporary</code>, así:
+</p>
+<blockquote><pre class="example">\temporary \override &hellip;
+</pre></blockquote>
+
+<p>El uso de <code>\temporary</code> hace que se borre la propiedad
+(normalmente fijada a un cierto valor) <code>pop-first</code> de la
+sobreescritura, de forma que el valor anterior no se extrae de la
+pila de propiedades antes de poner en ella el valor nuevo.  Cuando
+una instrucción <code>\revert</code> posterior extrae el avlor
+sobreescrito temporalmente, volverá a emerger el valor anterior.
+</p>
+<p>En otras palabras, una llamada a <code>\temporary \override</code> y a
+continuación otra a <code>\revert</code> sobre la misma propiedad, tiene
+un valor neto que es nulo.  De forma similar, la combinación en
+secuencia de <code>\temporary</code> y <code>\undo</code> sobre la misma
+música que contiene las sobreescrituras, tiene un efecto neto
+nulo.
+</p>
+<p>He aquí un ejemplo de una función musical que utiliza lo expuesto
+anteriormente.  El uso de <code>\temporary</code> asegura que los
+valores de las propiedades <code>cross-staff</code> y <code>style</code> se
+restauran a la salida a los valores que tenían cuando se llamó a
+la función <code>crossStaff</code>.  Sin <code>\temporary</code>, a la salida
+se habrían fijado los valores predeterminados.
+</p>
+<blockquote><pre class="example">crossStaff =
+#(define-music-function (notes) (ly:music?)
+  (_i &quot;Create cross-staff stems&quot;)
+  #{
+  \temporary \override Stem.cross-staff = #cross-staff-connect
+  \temporary \override Flag.style = #'no-flag
+  #notes
+  \revert Stem.cross-staff
+  \revert Flag.style
+#})
+</pre></blockquote>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="simple-substitution-functions.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Funciones de sustitución sencillas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="music-functions.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Funciones musicales&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="mathematics-in-functions.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Matemáticas dentro de las funciones &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="intermediate-substitution-functions.html">English</a>, <a href="intermediate-substitution-functions.de.html">deutsch</a>, <a href="intermediate-substitution-functions.fr.html">français</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Extender  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-de-Scheme-1" href="scheme-tutorial.es.html">A. Tutorial de Scheme</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduccion-a-Scheme" href="introduction-to-scheme.es.html">A.1 Introducción a Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-dentro-de-LilyPond-1" href="scheme-in-lilypond.es.html">A.2 Scheme dentro de LilyPond</a>    </li>
+    <li class=""><a name="toc-Construir-funciones-complicadas-1" href="building-complicated-functions.es.html">A.3 Construir funciones complicadas</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Interfaces-para-programadores-1" href="interfaces-for-programmers.es.html">B. Interfaces para programadores</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Bloques-de-codigo-de-LilyPond" href="lilypond-code-blocks.es.html">B.1 Bloques de código de LilyPond</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">B.2 Funciones de Scheme</a>    </li>
+    <li class=" toc_current"><a name="toc-Funciones-musicales-1" href="music-functions.es.html">B.3 Funciones musicales</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Definiciones-de-funciones-musicales-1" href="music-function-definitions.es.html">B.3.1 Definiciones de funciones musicales</a>      </li>
+      <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="music-function-usage.es.html">B.3.2 Uso de las funciones musicales</a>      </li>
+      <li class=""><a name="toc-Funciones-de-sustitucion-sencillas" href="simple-substitution-functions.es.html">B.3.3 Funciones de sustitución sencillas</a>      </li>
+      <li class=" toc_current"><a name="toc-Funciones-de-sustitucion-intermedias" href="intermediate-substitution-functions.es.html">B.3.4 Funciones de sustitución intermedias</a>      </li>
+      <li class=""><a name="toc-Matematicas-dentro-de-las-funciones" href="mathematics-in-functions.es.html">B.3.5 Matemáticas dentro de las funciones</a>      </li>
+      <li class=""><a name="toc-Funciones-sin-argumentos-1" href="functions-without-arguments.es.html">B.3.6 Funciones sin argumentos</a>      </li>
+      <li class=""><a name="toc-Funciones-musicales-vacias" href="void-music-functions.es.html">B.3.7 Funciones musicales vacías</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Funciones-de-eventos-1" href="event-functions.es.html">B.4 Funciones de eventos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-marcado-1" href="markup-functions.es.html">B.5 Funciones de marcado</a>    </li>
+    <li class=""><a name="toc-Contextos-para-programadores-1" href="contexts-for-programmers.es.html">B.6 Contextos para programadores</a>    </li>
+    <li class=""><a name="toc-Funciones-de-callback-1" href="callback-functions.es.html">B.7 Funciones de callback</a>    </li>
+    <li class=""><a name="toc-Codigo-de-Scheme-en-linea" href="inline-scheme-code.es.html">B.8 Código de Scheme en línea</a>    </li>
+    <li class=""><a name="toc-Trucos-dificiles" href="difficult-tweaks.es.html">B.9 Trucos difíciles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-de-Scheme-de-LilyPond-1" href="lilypond-scheme-interfaces.es.html">C. Interfaces de Scheme de LilyPond</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">D. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

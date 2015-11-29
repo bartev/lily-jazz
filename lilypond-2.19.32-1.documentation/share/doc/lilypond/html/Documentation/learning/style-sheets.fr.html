@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel d'initiation: 4.7.3 Feuilles de style</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel d'initiation: 4.7.3 Feuilles de style">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel d'initiation: 4.7.3 Feuilles de style">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel d'initiation">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="C. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="further-tweaking.fr.html#further-tweaking" rel="up" title="4.7 Autres retouches">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="C. Index de LilyPond">
+<link href="using-variables-for-layout-adjustments.fr.html#using-variables-for-layout-adjustments" rel="previous" title="4.7.2 Utilisation de variables dans les retouches">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="learning devStatus">
+
+
+<div id="main">
+<a name="Feuilles-de-style"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Retouche de partition&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.fr.html" title="Chapitre suivant">&nbsp;Modèles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="using-variables-for-layout-adjustments.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Utilisation de variables dans les retouches&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="further-tweaking.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Autres retouches&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="other-sources-of-information.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Autres sources de documentation &gt; </a>]</td></tr></table>
+<a name="style-sheets"></a>
+<h3 class="subsection">4.7.3 Feuilles de style</h3>
+
+<p>La sortie que produit LilyPond peut être largement modifiée &ndash; voir
+<a href="tweaking-output.fr.html">Retouche de partition</a> pour plus de détails.  Mais que faire si
+vous avez beaucoup de fichiers auxquels vous souhaitez appliquer vos
+retouches ?  Ou si vous souhaitez simplement séparer les retouches
+de la musique elle-même ?  Rien de plus facile.
+</p>
+<p>Prenons un exemple.  Ne vous inquiétez pas si vous ne comprenez pas
+les parties avec tous les <code>#()</code>.  Celles-ci sont expliquées dans
+<a href="advanced-tweaks-with-scheme.fr.html">Retouches avancées avec Scheme</a>.
+</p>
+<blockquote><pre class="verbatim">mpdolce =
+  \tweak self-alignment-X #-0.6
+  #(make-dynamic-script
+    #{ \markup { \dynamic mp \normal-text \italic \bold dolce } #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+   #{ &lt;&gt;^\markup \bold \box #string #})
+
+\relative {
+  \tempo 4=50
+  a'4.\mpdolce d8 cis4--\glissando a |
+  b4 bes a2 |
+  \inst &quot;Clarinet&quot;
+  cis4.\&lt; d8 e4 fis |
+  g8(\! fis)-. e( d)-. cis2 |
+}
+</pre><p>
+ <a href="../2e/lily-cbe71f84.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-cbe71f84.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>On peut faire quelque chose pour les définitions de <code>mpdolce</code>
+et <code>inst</code>.  Elles produisent le résultat que nous désirons,
+mais nous pourrions aussi vouloir les utiliser dans une autre pièce.
+Il suffirait de les copier et coller au début de chaque
+fichier, mais c&rsquo;est fastidieux.  De plus, cela laisse les définitions
+dans nos fichiers de musique, et je trouve personnellement tous ces
+<code>#()</code> assez laids.  Stockons-les dans un autre fichier :
+</p>
+<blockquote><pre class="example">%%% enregistrez ceci dans un fichier nommé &quot;definitions.ily&quot;
+mpdolce =
+  \tweak self-alignment-X #-0.6
+  #(make-dynamic-script
+    #{ \markup { \dynamic mp \normal-text \italic \bold dolce } #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+   #{ &lt;&gt;^\markup \bold \box #string #})
+</pre></blockquote>
+
+<p>Nous rappellerons ce fichier par une simple commande <code>\include</code> au
+début de notre fichier de musique.  Lui attribuer l&rsquo;extension
+<code>.ily</code> nous permet de distinguer aisément qu&rsquo;il s&rsquo;agit d&rsquo;un fichier
+voué à être inclus dans un fichier maître ; il n&rsquo;est pas destiné à
+être compilé isolément.<br>
+Maintenant, modifions notre musique (enregistrez ce fichier
+sous &lsquo;<tt>musique.ly</tt>&rsquo;).
+</p>
+
+<blockquote><pre class="example">\include &quot;definitions.ily&quot;
+
+\relative {
+  \tempo 4=50
+  a'4.\mpdolce d8 cis4--\glissando a |
+  b4 bes a2 |
+  \inst &quot;Clarinet&quot;
+  cis4.\&lt; d8 e4 fis |
+  g8(\! fis)-. e( d)-. cis2 |
+}
+</pre></blockquote>
+
+<blockquote><p>
+ <a href="../2e/lily-cbe71f84.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-cbe71f84.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>C&rsquo;est mieux, mais effectuons encore quelques retouches.  Le glissando
+est peu visible, c&rsquo;est pourquoi nous allons l&rsquo;épaissir et le
+rapprocher des têtes de note.  Déplaçons l&rsquo;indication métronomique
+au-dessus de la clef, au lieu de la laisser au-dessus de la première
+note.  Et pour finir, mon professeur de composition déteste les
+chiffrages de mesure en « C », nous allons donc le transformer en
+« 4/4 ».
+</p>
+<p>Cependant, ne changez pas le fichier &lsquo;<tt>musique.ly</tt>&rsquo;.  Remplacez le
+fichier &lsquo;<tt>definitions.ily</tt>&rsquo; par ceci :
+</p>
+<blockquote><pre class="example">%%%  definitions.ily
+mpdolce =
+  \tweak self-alignment-X #-0.6
+  #(make-dynamic-script
+    #{ \markup { \dynamic mp \normal-text \italic \bold dolce } #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+   #{ &lt;&gt;^\markup \bold \box #string #})
+
+\layout{
+  \context {
+    \Score
+    \override MetronomeMark.extra-offset = #'(-5 . 0)
+    \override MetronomeMark.padding = #'3
+  }
+  \context {
+    \Staff
+    \override TimeSignature.style = #'numbered
+  }
+  \context {
+    \Voice
+    \override Glissando.thickness = #3
+    \override Glissando.gap = #0.1
+  }
+}
+</pre></blockquote>
+
+<blockquote><p>
+ <a href="../2d/lily-b75e09b6.ly">
+  <img align="middle"
+       border="0"
+       src="../2d/lily-b75e09b6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>C&rsquo;est encore mieux !  Mais supposons maintenant que je veuille
+publier cette pièce.  Mon professeur de composition n&rsquo;aime pas les
+chiffrages de mesure en « C », mais moi je les aime bien.  Copions
+l&rsquo;actuel &lsquo;<tt>definitions.ily</tt>&rsquo; dans le fichier
+&lsquo;<tt>publication-web.ily</tt>&rsquo;, et modifions ce dernier.  Puisque la musique
+est destinée à produire un fichier PDF affiché sur écran, nous allons
+aussi augmenter la taille globale de police.
+</p>
+<blockquote><pre class="example">%%%  web-publish.ily
+mpdolce =
+  \tweak self-alignment-X #-0.6
+  #(make-dynamic-script
+    #{ \markup { \dynamic mp \normal-text \italic \bold dolce } #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+   #{ &lt;&gt;^\markup \bold \box #string #})
+
+#(set-global-staff-size 23)
+
+\layout{
+  \context {
+    \Score
+    \override MetronomeMark.extra-offset = #'(-5 . 0)
+    \override MetronomeMark.padding = #'3
+  }
+  \context {
+    \Staff
+  }
+  \context {
+    \Voice
+    \override Glissando.thickness = #3
+    \override Glissando.gap = #0.1
+  }
+}
+</pre></blockquote>
+
+<blockquote><p>
+ <a href="../a6/lily-fe5441d2.ly">
+  <img align="middle"
+       border="0"
+       src="../a6/lily-fe5441d2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Il ne nous reste plus qu&rsquo;à remplacer
+<code>\include &quot;definitions.ily&quot;</code> par
+<code>\include &quot;publication-web.ily&quot;</code> dans notre fichier de
+musique.
+</p>
+<p>Il est possible, bien sûr, de rendre cela encore plus pratique.  Nous
+pourrions créer un fichier &lsquo;<tt>definitions.ily</tt>&rsquo; qui ne contiendrait
+que les définitions de <code>mpdolce</code> et de <code>inst</code>, un fichier
+&lsquo;<tt>publication-web.ily</tt>&rsquo; qui ne contiendrait que la section
+<code>layout</code> décrite ci-dessus et un fichier &lsquo;<tt>universite.ily</tt>&rsquo; qui
+ne contiendrait que les retouches pour produire le résultat que mon
+professeur préfère.  Le début du fichier &lsquo;<tt>musique.ly</tt>&rsquo; ressemblerait
+alors à
+</p>
+<blockquote><pre class="example">\include &quot;definitions.ily&quot;
+
+%%%  Décommentez seulement une de ces deux lignes !
+\include &quot;publication-web.ily&quot;
+%\include &quot;universite.ily&quot;
+</pre></blockquote>
+
+<p>Cette approche peut être utile même si vous ne produisez qu&rsquo;un seul
+jeu de partitions.  J&rsquo;utilise personnellement une demi-douzaine de
+fichiers de « feuille de style » pour mes projets.  Je commence
+chaque fichier de musique par <code>\include &quot;../global.ily&quot;</code> qui
+contient :
+</p>
+<blockquote><pre class="example">%%%   global.ily
+\version &quot;2.19.32&quot;
+
+#(ly:set-option 'point-and-click #f)
+
+\include &quot;../init/init-defs.ly&quot;
+\include &quot;../init/init-mise-en-page.ly&quot;
+\include &quot;../init/init-en-tetes.ly&quot;
+\include &quot;../init/init-papier.ly&quot;
+</pre></blockquote>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Retouche de partition&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.fr.html" title="Chapitre suivant">&nbsp;Modèles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="using-variables-for-layout-adjustments.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Utilisation de variables dans les retouches&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="further-tweaking.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Autres retouches&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="other-sources-of-information.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Autres sources de documentation &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="style-sheets.html">English</a>, <a href="style-sheets.ca.html">català</a>, <a href="style-sheets.cs.html">česky</a>, <a href="style-sheets.de.html">deutsch</a>, <a href="style-sheets.es.html">español</a>, <a href="style-sheets.it.html">italiano</a>, <a href="style-sheets.ja.html">日本語</a>, <a href="style-sheets.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel d&rsquo;initiation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-1" href="tutorial.fr.html">1. Tutoriel</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilation-d_0027un-fichier-1" href="compiling-a-file.fr.html">1.1 Compilation d&rsquo;un fichier</a>    </li>
+    <li class=""><a name="toc-Composition-d_0027un-fichier-source-1" href="how-to-write-input-files.fr.html">1.2 Composition d&rsquo;un fichier source</a>    </li>
+    <li class=""><a name="toc-Gestion-des-erreurs-1" href="dealing-with-errors.fr.html">1.3 Gestion des erreurs</a>    </li>
+    <li class=""><a name="toc-Bien-lire-le-manuel-1" href="how-to-read-the-manuals.fr.html">1.4 Bien lire le manuel</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bases-de-notation-musicale-1" href="common-notation.fr.html">2. Bases de notation musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-sur-une-seule-portee" href="single-staff-notation.fr.html">2.1 Notation sur une seule portée</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="multiple-notes-at-once.fr.html">2.2 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Chansons-1" href="songs.fr.html">2.3 Chansons</a>    </li>
+    <li class=""><a name="toc-Dernieres-precisions" href="final-touches.fr.html">2.4 Dernières précisions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concepts-fondamentaux-1" href="fundamental-concepts.fr.html">3. Concepts fondamentaux</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Organisation-des-fichiers-LilyPond-1" href="how-lilypond-input-files-work.fr.html">3.1 Organisation des fichiers LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-voix-contiennent-la-musique-1" href="voices-contain-music.fr.html">3.2 Les voix contiennent la musique</a>    </li>
+    <li class=""><a name="toc-Contextes-et-graveurs-1" href="contexts-and-engravers.fr.html">3.3 Contextes et graveurs</a>    </li>
+    <li class=""><a name="toc-Extension-des-modeles" href="extending-the-templates.fr.html">3.4 Extension des modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Retouche-de-partition-1" href="tweaking-output.fr.html">4. Retouche de partition</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Retouches-elementaires" href="tweaking-basics.fr.html">4.1 Retouches élémentaires</a>    </li>
+    <li class=""><a name="toc-Le-manuel-de-reference-des-proprietes-internes" href="the-internals-reference-manual.fr.html">4.2 Le manuel de référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Apparence-des-objets-1" href="appearance-of-objects.fr.html">4.3 Apparence des objets</a>    </li>
+    <li class=""><a name="toc-Positionnement-des-objets-1" href="placement-of-objects.fr.html">4.4 Positionnement des objets</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.5 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Collisions-d_0027objets-1" href="collisions-of-objects.fr.html">4.6 Collisions d&rsquo;objets</a>    </li>
+    <li class=" toc_current"><a name="toc-Autres-retouches-1" href="further-tweaking.fr.html">4.7 Autres retouches</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Autres-utilisations-des-retouches-1" href="other-uses-for-tweaks.fr.html">4.7.1 Autres utilisations des retouches</a>      </li>
+      <li class=""><a name="toc-Utilisation-de-variables-dans-les-retouches-1" href="using-variables-for-layout-adjustments.fr.html">4.7.2 Utilisation de variables dans les retouches</a>      </li>
+      <li class=" toc_current"><a name="toc-Feuilles-de-style-1" href="style-sheets.fr.html">4.7.3 Feuilles de style</a>      </li>
+      <li class=""><a name="toc-Autres-sources-de-documentation-1" href="other-sources-of-information.fr.html">4.7.4 Autres sources de documentation</a>      </li>
+      <li class=""><a name="toc-Retouches-avancees-avec-Scheme" href="advanced-tweaks-with-scheme.fr.html">4.7.5 Retouches avancées avec Scheme</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modeles" href="templates.fr.html">A. Modèles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Gabarits-preprogrammes" href="built_002din-templates.fr.html">A.1 Gabarits préprogrammés</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-portee-unique" href="single-staff-templates.fr.html">A.2 Modèles pour portée unique</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-piano" href="piano-templates.fr.html">A.3 Modèles pour piano</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-quatuor-a-cordes" href="string-quartet-templates.fr.html">A.4 Modèles pour quatuor à cordes</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-ensemble-vocal" href="vocal-ensembles-templates.fr.html">A.5 Modèles pour ensemble vocal</a>    </li>
+    <li class=""><a name="toc-Orchestre-1" href="orchestral-templates.fr.html">A.6 Orchestre</a>    </li>
+    <li class=""><a name="toc-Exemples-de-notation-ancienne-1" href="ancient-notation-templates.fr.html">A.7 Exemples de notation ancienne</a>    </li>
+    <li class=""><a name="toc-Autres-modeles" href="other-templates.fr.html">A.8 Autres modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">C. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

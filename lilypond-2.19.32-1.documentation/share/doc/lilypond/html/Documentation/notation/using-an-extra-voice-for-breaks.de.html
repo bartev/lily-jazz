@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 4.3.8 Eine zusätzliche Stimme für Umbrüche benutzen</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 4.3.8 Eine zusätzliche Stimme für Umbrüche benutzen">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 4.3.8 Eine zusätzliche Stimme für Umbrüche benutzen">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="breaks.de.html#breaks" rel="up" title="4.3 Umbrüche">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="explicit-breaks.de.html#explicit-breaks" rel="previous" title="4.3.7 Ausdrückliche Umbrüche">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Eine-zus_00e4tzliche-Stimme-f_00fcr-Umbr_00fcche-benutzen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Abstände&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.de.html" title="N&auml;chstes Kapitel">&nbsp;Standardeinstellungen verändern &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="explicit-breaks.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Ausdrückliche Umbrüche&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="breaks.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Umbrüche&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="vertical-spacing.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Vertikale Abstände &gt; </a>]</td></tr></table>
+<a name="using-an-extra-voice-for-breaks"></a>
+<h3 class="subsection">4.3.8 Eine zusätzliche Stimme für Umbrüche benutzen</h3>
+
+<p>Zeilen- und Seitenumbruchbefehle werden normalerweise direkt
+zusammen mit den Noten eingegeben.
+</p>
+<blockquote><pre class="example">music = \relative { c''4 c c c }
+
+\score {
+  \new Staff {
+    \repeat unfold 2 { \music } \break
+    \repeat unfold 3 { \music }
+  }
+}
+</pre></blockquote>
+
+<p>Hierdurch sind zwar die Befehle <code>\break</code> und <code>\pageBreak</code>
+einfach zu notieren, es werden aber Informationen zur Notation
+mit Informationen zur Anordnung auf der Seite vermischt.  Man kann
+diese Informationen auch voneinander trennen, indem man eine zusätzliche
+Stimme einfügt, in der Zeilen- und Seitenumbrüche vorgenommen werden.
+Diese zusätzliche Stimme enthält nur unsichtbare Noten und die
+Umbruchbefehle:
+</p>
+<blockquote><pre class="verbatim">music = \relative { c''4 c c c }
+
+\score {
+  \new Staff &lt;&lt;
+    \new Voice {
+      s1 * 2 \break
+      s1 * 3 \break
+      s1 * 6 \break
+      s1 * 5 \break
+    }
+    \new Voice {
+      \repeat unfold 2 { \music }
+      \repeat unfold 3 { \music }
+      \repeat unfold 6 { \music }
+      \repeat unfold 5 { \music }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../7e/lily-b39e2c59.ly">
+  <img align="middle"
+       border="0"
+       src="../7e/lily-b39e2c59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Mit dieser Herangehensweise kann der Code insbesondere
+dann klarer notiert werden, wenn man Einstellungen der
+<code>line-break-system-details</code>-Eigenschaft oder
+anderer Eigenschaften von
+<code>NonMusicalPaperColumnGrob</code> vornimmt (hierzu auch
+<a href="vertical-spacing.de.html">Vertikale Abstände</a>).
+</p>
+<blockquote><pre class="verbatim">music = \relative { c''4 c c c }
+
+\score {
+  \new Staff &lt;&lt;
+    \new Voice {
+      \overrideProperty Score.NonMusicalPaperColumn.line-break-system-details #'((Y-offset . 0))
+      s1 * 2 \break
+
+      \overrideProperty Score.NonMusicalPaperColumn.line-break-system-details #'((Y-offset . 35))
+      s1 * 3 \break
+
+      \overrideProperty Score.NonMusicalPaperColumn.line-break-system-details #'((Y-offset . 70))
+      s1 * 6 \break
+
+      \overrideProperty Score.NonMusicalPaperColumn.line-break-system-details #'((Y-offset . 105))
+      s1 * 5 \break
+    }
+    \new Voice {
+      \repeat unfold 2 { \music }
+      \repeat unfold 3 { \music }
+      \repeat unfold 6 { \music }
+      \repeat unfold 5 { \music }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../0d/lily-cca437b5.ly">
+  <img align="middle"
+       border="0"
+       src="../0d/lily-cca437b5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Siehe-auch-1"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="vertical-spacing.de.html">Vertikale Abstände</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/spacing.de.html">Spacing</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Abstände&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.de.html" title="N&auml;chstes Kapitel">&nbsp;Standardeinstellungen verändern &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="explicit-breaks.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Ausdrückliche Umbrüche&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="breaks.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Umbrüche&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="vertical-spacing.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Vertikale Abstände &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="using-an-extra-voice-for-breaks.es.html">español</a>, <a href="using-an-extra-voice-for-breaks.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=" toc_current"><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Zeilenumbruche" href="line-breaking.de.html">4.3.1 Zeilenumbrüche</a>      </li>
+      <li class=""><a name="toc-Seitenumbruche" href="page-breaking.de.html">4.3.2 Seitenumbrüche</a>      </li>
+      <li class=""><a name="toc-Optimale-Seitenumbruche" href="optimal-page-breaking.de.html">4.3.3 Optimale Seitenumbrüche</a>      </li>
+      <li class=""><a name="toc-Optimale-Umbruche-zum-Blattern" href="optimal-page-turning.de.html">4.3.4 Optimale Umbrüche zum Blättern</a>      </li>
+      <li class=""><a name="toc-Minimale-Seitenumbruche" href="minimal-page-breaking.de.html">4.3.5 Minimale Seitenumbrüche</a>      </li>
+      <li class=""><a name="toc-Eine_002dSeite_002dSeitenumbruche" href="one_002dline-page-breaking.de.html">4.3.6 Eine-Seite-Seitenumbrüche</a>      </li>
+      <li class=""><a name="toc-Ausdruckliche-Umbruche" href="explicit-breaks.de.html">4.3.7 Ausdrückliche Umbrüche</a>      </li>
+      <li class=" toc_current"><a name="toc-Eine-zusatzliche-Stimme-fur-Umbruche-benutzen" href="using-an-extra-voice-for-breaks.de.html">4.3.8 Eine zusätzliche Stimme für Umbrüche benutzen</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

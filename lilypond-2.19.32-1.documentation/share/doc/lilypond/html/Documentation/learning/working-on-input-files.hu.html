@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 a szerzők.
+
+Ezt a dokumentumot a GNU Free Documentation License (GNU Szabad
+Dokumentációs Licenc) 1.1-es vagy frissebb, a Free Software Foundation
+(Szabad Szoftver Alapítvány) által kiadott verziójának megfelelően
+lehet másolni, terjeszteni és/vagy módosítani, nem változtatható szakaszok nélkül.
+A licenc másolata a ,,GNU Free Documentation License" című függelékben
+található.
+
+ -->
+<!-- Created on november 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Tankönyv: 1.2.2 A bemeneti fájlok jellemzői</title>
+
+<meta name="description" content="LilyPond Tankönyv: 1.2.2 A bemeneti fájlok jellemzői">
+<meta name="keywords" content="LilyPond Tankönyv: 1.2.2 A bemeneti fájlok jellemzői">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Tankönyv">
+<link href="lilypond-index.hu.html#lilypond-index" rel="index" title="C. LilyPond tárgymutató">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Tartalomjegyzék">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="A navigációs panel használata">
+<link href="how-to-write-input-files.hu.html#how-to-write-input-files" rel="up" title="1.2 Bemeneti fájlok írása">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="C. LilyPond tárgymutató">
+<link href="simple-notation.hu.html#simple-notation" rel="previous" title="1.2.1 Egyszerű kottázás">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="hu" class="learning devStatus">
+
+
+<div id="main">
+<a name="A-bemeneti-f_00e1jlok-jellemz_0151i"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; Első lecke&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.hu.html" title="Következő fejezet">&nbsp;Elemi kottaírás &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="simple-notation.hu.html" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; Egyszerű kottázás&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-to-write-input-files.hu.html" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;Bemeneti fájlok írása&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="how-to-read-the-manuals.hu.html" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Hogyan olvassuk a dokumentációt? &gt; </a>]</td></tr></table>
+<a name="working-on-input-files"></a>
+<h3 class="subsection">1.2.2 A bemeneti fájlok jellemzői</h3>
+
+<a name="index-kapcsos-zarojelek"></a>
+<a name="index-megjegyzes"></a>
+<a name="index-egysoros-megjegyzes"></a>
+<a name="index-tobbsoros-megjegyzes"></a>
+<a name="index-kis_002d-es-nagybetuk-kulonbsege-1"></a>
+<a name="index-kifejezesek"></a>
+
+<a name="index-_002e_002e_002e"></a>
+<a name="index-_002e_002e_002e-1"></a>
+<a name="index-_0025"></a>
+<a name="index-_0025-1"></a>
+<a name="index-_0025_007b-_002e_002e_002e-_0025_007d"></a>
+<a name="index-_0025_007b-_002e_002e_002e-_0025_007d-1"></a>
+
+<p>A LilyPond nyelve sok tekintetben hasonlít bizonyos programnyelvekhez.
+Érzékeny a kis- és nagybetűk különbségére, az üres helyek (szóközök, újsorok,
+tabulátorok stb.) pedig nem számítanak. Ún. kifejezéseket lehet alkotni
+kapcsos zárójelek { } segítségével, megjegyzéseket pedig <code>%</code> után
+vagy <code>%{ ... %}</code> közé lehet írni.
+</p>
+<p>Ha esetleg nem lennének világosak a fenti mondatok, sebaj! Magyarázatuk
+részletesen a következő:
+</p>
+<ul>
+<li>
+<strong>Érzékeny a kis- és nagybetűk különbségére</strong>:
+nem mindegy, hogy kisbetűket vagy nagybetűket használunk
+(pl. <code>a, b, s, t</code> nem ugyanaz, mint <code>A, B, S, T</code>).
+A hangneveket mindig kisbetűvel kell írni: <code>{ c d e }</code>
+helyes, <code>{ C D E }</code> hibás bemenet.
+
+</li><li>
+<strong>Az üres helyek nem számítanak</strong>:
+mindegy, hogy hova hány szóköz, tabulátor vagy újsor kerül.
+<code>{ c d e }</code> ugyanazt jelenti, mint
+<code>{ c &nbsp; &nbsp; &nbsp; d e }</code> vagy:
+
+<blockquote><pre class="example">{ c                        d
+                   e   }
+</pre></blockquote>
+
+<p>Természetesen ez így nehezen olvasható. Érdemes a blokkokat beljebb kezdeni
+egy tabulátorral vagy két szóközzel:
+</p>
+<blockquote><pre class="example">{
+  c d e
+}
+</pre></blockquote>
+
+</li><li>
+<strong>Kifejezések</strong>:
+a LilyPond bemenete <strong>{ kapcsos zárójelek }</strong> között álló <em>zenei
+kifejezésekből</em> épül fel (ezekről később lesz szó), akárcsak a zárójelek
+<code>()</code> közé zárt matematikai kifejezések. A kapcsos zárójelek köré javasolt
+szóközt tenni, hacsak nem a sor elején vagy végén szerepelnek.
+
+<p>Egy <code>\</code> karakterrel kezdődő LilyPond parancs az azt követő kapcsos
+zárójelpár tartalmával együtt ugyancsak egy zenei kifejezésnek számít (mint
+például a <code>\relative { }</code>).
+</p>
+<a name="index-megjegyzesek"></a>
+<a name="index-egysoros-megjegyzes-1"></a>
+<a name="index-tobbsoros-megjegyzes-1"></a>
+</li><li>
+<strong>Megjegyzések</strong>:
+a megjegyzések az emberi olvasó számára írt útmutatók; a LilyPond ezeket
+figyelmen kívül hagyja, így nem jelennek meg a kimenetben. Kétfajta megjegyzés
+van. A százalékjel <code>%</code> egy olyan megjegyzést kezd, mely a sor végéig tart.
+Egy egysoros megjegyzés mindig az <em>utána levő</em> sorral kapcsolatos.
+
+<blockquote><pre class="example">a4 a a a
+% most jön a két h hang
+b2 b
+</pre></blockquote>
+
+<p>A többsoros megjegyzés (megjegyzésblokk) több sort is közrefoghat.
+A <code>%{</code> és <code>%}</code> jelek között minden megjegyzésnek számít.
+Figyelem, a megjegyzésblokkok nem ágyazhatóak egymásba! Ez azt
+jelenti, hogy nem lehet egy megjegyzésblokkot egy másikon belülre tenni,
+mert az első <code>%}</code> jelnél véget ér <em>mindkét</em> megjegyzésblokk.
+A következő részlet a megjegyzések használatára mutat példát:
+</p>
+<blockquote><pre class="example">% Ez itt a &quot;Hull a pelyhes fehér hó&quot; dallama
+  c4 c g' g a a g2
+
+%{
+  Ez a sor és az alatta levők nem számítanak bele a kimenetbe,
+  mert megjegyzésblokkban szerepelnek.
+
+  f f e e d d c2
+%}
+</pre></blockquote>
+
+</li></ul>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; Első lecke&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.hu.html" title="Következő fejezet">&nbsp;Elemi kottaírás &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="simple-notation.hu.html" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; Egyszerű kottázás&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-to-write-input-files.hu.html" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;Bemeneti fájlok írása&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="how-to-read-the-manuals.hu.html" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Hogyan olvassuk a dokumentációt? &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="working-on-input-files.html">English</a>, <a href="working-on-input-files.ca.html">català</a>, <a href="working-on-input-files.cs.html">česky</a>, <a href="working-on-input-files.de.html">deutsch</a>, <a href="working-on-input-files.es.html">español</a>, <a href="working-on-input-files.fr.html">français</a>, <a href="working-on-input-files.it.html">italiano</a>, <a href="working-on-input-files.ja.html">日本語</a>, <a href="working-on-input-files.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.hu.html"
+         title="Documentation Index">&lt;&lt; Vissza a dokumentációk jegyzékéhez</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Tankönyv  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Elso-lecke" href="tutorial.hu.html">1. Első lecke</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Fajlok-forditasa" href="compiling-a-file.hu.html">1.1 Fájlok fordítása</a>    </li>
+    <li class=" toc_current"><a name="toc-Bemeneti-fajlok-irasa" href="how-to-write-input-files.hu.html">1.2 Bemeneti fájlok írása</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Egyszeru-kottazas" href="simple-notation.hu.html">1.2.1 Egyszerű kottázás</a>      </li>
+      <li class=" toc_current"><a name="toc-A-bemeneti-fajlok-jellemzoi" href="working-on-input-files.hu.html">1.2.2 A bemeneti fájlok jellemzői</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Hogyan-olvassuk-a-dokumentaciot_003f" href="how-to-read-the-manuals.hu.html">1.3 Hogyan olvassuk a dokumentációt?</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Elemi-kottairas" href="common-notation.hu.html">2. Elemi kottaírás</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Egyszolamu-lejegyzes" href="single-staff-notation.hu.html">2.1 Egyszólamú lejegyzés</a>    </li>
+    <li class=""><a name="toc-Tobb-hang-egyszerre" href="multiple-notes-at-once.hu.html">2.2 Több hang egyszerre</a>    </li>
+    <li class=""><a name="toc-Dalok-1" href="songs.hu.html">2.3 Dalok</a>    </li>
+    <li class=""><a name="toc-Utolso-simitasok" href="final-touches.hu.html">2.4 Utolsó simítások</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Alapfogalmak-1" href="fundamental-concepts.hu.html">3. Alapfogalmak</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hogyan-mukodnek-a-LilyPond-bemeneti-fajlok_003f" href="how-lilypond-input-files-work.hu.html">3.1 Hogyan működnek a LilyPond bemeneti fájlok?</a>    </li>
+    <li class=""><a name="toc-A-szolamok-zenet-tartalmaznak" href="voices-contain-music.hu.html">3.2 A szólamok zenét tartalmaznak</a>    </li>
+    <li class=""><a name="toc-Kontextusok-es-abrazolok" href="contexts-and-engravers.hu.html">3.3 Kontextusok és ábrázolók</a>    </li>
+    <li class=""><a name="toc-A-sablonok-kibovitese" href="extending-the-templates.hu.html">3.4 A sablonok kibővítése</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-A-kimenet-finomhangolasa" href="tweaking-output.hu.html">4. A kimenet finomhangolása</a>
+  <ul class="toc">
+    <li class=""><a name="toc-A-finomhangolas-alapjai" href="tweaking-basics.hu.html">4.1 A finomhangolás alapjai</a>    </li>
+    <li class=""><a name="toc-A-belso-mukodes-referenciaja" href="the-internals-reference-manual.hu.html">4.2 A belső működés referenciája</a>    </li>
+    <li class=""><a name="toc-Objektumok-megjelenese" href="appearance-of-objects.hu.html">4.3 Objektumok megjelenése</a>    </li>
+    <li class=""><a name="toc-Objektumok-elhelyezese" href="placement-of-objects.hu.html">4.4 Objektumok elhelyezése</a>    </li>
+    <li class=""><a name="toc-Objektumok-utkozese" href="collisions-of-objects.hu.html">4.5 Objektumok ütközése</a>    </li>
+    <li class=""><a name="toc-Tovabbi-finomhangolas" href="further-tweaking.hu.html">4.6 További finomhangolás</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Sablonok-1" href="templates.hu.html">A. Sablonok</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Egy-kottasor-1" href="single-staff.hu.html">A.1 Egy kottasor</a>    </li>
+    <li class=""><a name="toc-Zongorasablonok-1" href="piano-templates.hu.html">A.2 Zongorasablonok</a>    </li>
+    <li class=""><a name="toc-Vonosnegyes-1" href="von_00c3_00b3sn_00c3_00a9gyes.hu.html">A.3 Vonósnégyes</a>    </li>
+    <li class=""><a name="toc-Korus" href="vocal-ensembles.hu.html">A.4 Kórus</a>    </li>
+    <li class=""><a name="toc-Zenekari-sablonok-1" href="orchestral-templates.hu.html">A.5 Zenekari sablonok</a>    </li>
+    <li class=""><a name="toc-Sablonok-regizenehez" href="ancient-notation-templates.hu.html">A.6 Sablonok régizenéhez</a>    </li>
+    <li class=""><a name="toc-Egyeb-sablonok" href="other-templates.hu.html">A.7 Egyéb sablonok</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-targymutato" href="lilypond-index.hu.html">C. LilyPond tárgymutató</a>  </li>
+<li>
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google keresés">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Keresés">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

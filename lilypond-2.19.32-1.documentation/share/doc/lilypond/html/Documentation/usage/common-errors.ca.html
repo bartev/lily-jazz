@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2014 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond: manual d'utilització del programa: 1.4 Errors comuns</title>
+
+<meta name="description" content="LilyPond: manual d'utilització del programa: 1.4 Errors comuns">
+<meta name="keywords" content="LilyPond: manual d'utilització del programa: 1.4 Errors comuns">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Utilització">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="B. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="running-lilypond.ca.html#running-lilypond" rel="up" title="1. Execució del LilyPond">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="B. Índex del LilyPond">
+<link href="error-messages.ca.html#error-messages" rel="previous" title="1.3 Missatges d'error">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="usage devStatus">
+
+
+<div id="main">
+<a name="Errors-comuns"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="error-messages.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Missatges d'error&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#music-runs-off-the-page" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;La música se surt de la pàgina &gt; </a>]</td></tr></table>
+<a name="common-errors"></a>
+<h2 class="section">1.4 Errors comuns</h2>
+
+<p>Les condicions d&rsquo;error que es descriuen més a sota es produeixen
+amb freqüència, tot i que la causa no és òbvia o fàcil de trobar.
+Un cop se han vist i comprès, es gestionen sense problema.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#music-runs-off-the-page" accesskey="1">La música se surt de la pàgina</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#an-extra-staff-appears" accesskey="2">Apareix un pentagrama de més</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unbound-variable-_0025" accesskey="3">Missatge d&rsquo;error Unbound variable %</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-ft_005fget_005fglyph_005fname" accesskey="4">Missatge d&rsquo;error FT_Get_Glyph_Name</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#warning-staff-affinities-should-only-decrease" accesskey="5">Advertiment sobre que les afinitats del pentagrama sols han de decrèixer</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unexpected-new" accesskey="6">Missatge d&rsquo;error Unexpected new <code>\new</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="La-m_00fasica-se-surt-de-la-p_00e0gina"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#common-errors" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Errors comuns&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#an-extra-staff-appears" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Apareix un pentagrama de més &gt; </a>]</td></tr></table>
+<a name="music-runs-off-the-page"></a>
+<h3 class="unnumberedsubsec">La música se surt de la pàgina</h3>
+
+<p>La música que se surt de la pàgina pel marge dret o que apareix
+exageradament comprimida està causada gairebé sempre per haver
+introduït una duració incorrecta per a una nota, produint que la
+nota final d&rsquo;un compàs s&rsquo;estengui més enllà de la línia
+divisòria.  Això no és invàlid si la nota final d&rsquo;un compàs no
+acaba sobre la línia divisòria introduïda automàticament, atès que
+simplement se suposa que la nota se solapa a sobre del compàs
+següent.  Però si es produeix una seqüència llarga d&rsquo;aquestes
+notes solapades, la música pot aparèixer comprimida o sortir-se
+de la pàgina perquè els salts de línia automàtiques solament se
+poden inserir al final dels compassos complets, és a dir, els
+compassos en els quals totes les notes acaben abans o just al
+final del compàs.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Una duració incorrecta pot fer que s&rsquo;inhibeixin els salts
+de línia, el que portaria a una sola línia de música molt
+comprimida o que se surti de la pàgina.
+</p>
+</div>
+<p>La duració incorrecta es pot trobar fàcilment si s&rsquo;utilitzen
+comprovacions de compàs, vegeu
+<a name="index-Bar-and-bar-number-checks"></a>
+<a href="../notation/bars.ca.html#bar-and-bar-number-checks">Comprovació de compàs i de número de compàs</a>.
+</p>
+<p>Si realment volem tenir una sèrie d&rsquo;aquests compassos amb notes
+solapades, hem d&rsquo;inserir una línia divisòria invisible on volem
+el salt de línia.  Per veure més detalls, consulteu
+<a name="index-Bar-lines"></a>
+<a href="../notation/bars.ca.html#bar-lines">Barres de compàs</a>.
+</p>
+
+<hr size="6">
+<a name="Apareix-un-pentagrama-de-m_00e9s"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#music-runs-off-the-page" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; La música se surt de la pàgina&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Missatge d'error Unbound variable % &gt; </a>]</td></tr></table>
+<a name="an-extra-staff-appears"></a>
+<h3 class="unnumberedsubsec">Apareix un pentagrama de més</h3>
+
+<p>Si no es creen els contextos explícitament amb <code>\new</code> o amb
+<code>\context</code>, es crearan discretament tan aviat com es trobi
+una instrucció que no es pot aplicar a un context existent.  A
+partitures senzilles, la creació automàtica dels contextos és
+útil, i gairebé tots els exemples dels manuals del LilyPond
+s&rsquo;aprofiten d&rsquo;aquesta simplificació.  Però ocasionalment la
+creació discreta de contextos pot fer aflorar pentagrames o
+partitures nous o inesperats.  Per exemple, podria esperar-se que
+el codi següent fet que totes les notes dins del pentagrama
+següent estiguessin acolorides de vermell, però de fet el
+resultat són dos pentagrames, romanent el de sota amb les
+notes amb el color negre predeterminat.
+</p>
+<blockquote><pre class="verbatim">\override Staff.NoteHead.color = #red
+\new Staff { a' }
+</pre><p>
+ <a href="../a3/lily-8a95f028.ly">
+  <img align="middle"
+       border="0"
+       src="../a3/lily-8a95f028.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Això és així perquè no hi ha cap context <code>Staff</code> quan es
+processa la instrucció override de sobreescriptura, es crea un
+implícitament i la sobreescriptura s&rsquo;aplica a aquest context, però
+aleshores la instrucció <code>\new Staff</code> crea un pentagrama nou i
+diferent, en el qual es col·loquen les notes.  El codi correcte
+per acolorir totes les notes de vermell és
+</p>
+<blockquote><pre class="verbatim">\new Staff {
+  \override Staff.NoteHead.color = #red
+  a'
+}
+</pre><p>
+ <a href="../1a/lily-c0a863c0.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-c0a863c0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Com a segon exemple, si una instrucció <code>\relative</code> s&rsquo;escriu
+dins d&rsquo;una instrucció <code>\repeat</code>, el resultat són dos
+pentagrames, el segon desplaçat respecte al primer, perquè la
+instrucció <code>\repeat</code> genera dos blocs <code>\relative</code>, cada
+un dels quals crea implícitament blocs <code>Staff</code> i <code>Voice</code>.
+</p>
+<blockquote><pre class="verbatim">\repeat unfold 2 {
+  \relative { c'4 d e f }
+}
+</pre><p>
+ <a href="../2a/lily-843cde99.ly">
+  <img align="middle"
+       border="0"
+       src="../2a/lily-843cde99.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>El problema es resol instanciant el context <code>Voice</code>
+explícitament:
+</p>
+<blockquote><pre class="verbatim">\new Voice {
+  \repeat unfold 2 {
+    \relative { c'4 d e f }
+  }
+}
+</pre><p>
+ <a href="../75/lily-24772d8d.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-24772d8d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Missatge-d_0027error-Unbound-variable-_0025"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#an-extra-staff-appears" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Apareix un pentagrama de més&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Missatge d'error FT_Get_Glyph_Name &gt; </a>]</td></tr></table>
+<a name="error-message-unbound-variable-_0025"></a>
+<h3 class="unnumberedsubsec">Missatge d&rsquo;error Unbound variable %</h3>
+
+<p>Aquest missatge d&rsquo;error apareix al final dels missatges de la
+consola o del fitxer de registre junt a un missatge &ldquo;GUILE
+ha senyalat un error &hellip;&rdquo; cada cop que es cridi a una rutina
+del Scheme que (incorrectament) contingui un comentari <em>del
+LilyPond</em> enlloc d&rsquo;un comentari <em>del Scheme</em>.
+</p>
+<p>Els comentaris del LilyPond comencen amb un símbol de
+percentatge, (<code>%</code>), i no s&rsquo;han d&rsquo;utilitzar dins de les
+rutines del Scheme.  Els comentaris del Scheme comencen amb punt i
+coma, (<code>;</code>).
+</p>
+<hr size="6">
+<a name="Missatge-d_0027error-FT_005fGet_005fGlyph_005fName"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Missatge d'error Unbound variable %&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Advertiment sobre que les afinitats del pentagrama sols han de decrèixer &gt; </a>]</td></tr></table>
+<a name="error-message-ft_005fget_005fglyph_005fname"></a>
+<h3 class="unnumberedsubsec">Missatge d&rsquo;error FT_Get_Glyph_Name</h3>
+
+<p>Aquest missatge d&rsquo;error apareix a la sortida de la consola o al
+fitxer log de registre si un fitxer d&rsquo;entrada conté un caràcter que
+no és ASCII i no s&rsquo;ha desat en la codificació de caràcters
+UTF-8.  Per veure més detalls, consulteu
+<a name="index-Text-encoding"></a>
+<a href="../notation/special-characters.ca.html#text-encoding">Codificació del text</a>.
+</p>
+<hr size="6">
+<a name="Advertiment-sobre-que-les-afinitats-del-pentagrama-sols-han-de-decr_00e8ixer"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Missatge d'error FT_Get_Glyph_Name&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unexpected-new" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Missatge d'error Unexpected new &gt; </a>]</td></tr></table>
+<a name="warning-staff-affinities-should-only-decrease"></a>
+<h3 class="unnumberedsubsec">Advertiment sobre que les afinitats del pentagrama sols han de decrèixer</h3>
+
+<p>Aquest advertiment pot aparèixer si no hi ha cap pentagrama a la
+sortida impresa, per exemple si sols hi ha un context
+<code>ChordName</code> i un context <code>Lyrics</code> com a un full guia
+d&rsquo;acords.  Els missatges d&rsquo;advertiment es poden evitar fent que un
+dels contextos es comporti com un pentagrama, inserint
+</p>
+<blockquote><pre class="example">\override VerticalAxisGroup.staff-affinity = ##f
+</pre></blockquote>
+
+<p>al començament.  Per veure més detalls, consulteu &ldquo;Espaiat de
+les línies que no són pautes&rdquo; a
+<a name="index-Flexible-vertical-spacing-within-systems"></a>
+<a href="../notation/flexible-vertical-spacing-within-systems.ca.html">Espaiat vertical flexible dins dels sistemes</a>.
+</p>
+<hr size="6">
+<a name="Missatge-d_0027error-Unexpected-new"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Advertiment sobre que les afinitats del pentagrama sols han de decrèixer&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Actualització de fitxers amb convert-ly &gt; </a>]</td></tr></table>
+<a name="error-message-unexpected-new"></a>
+<h3 class="unnumberedsubsec">Missatge d&rsquo;error Unexpected new <code>\new</code></h3>
+
+<p>Un bloc <code>\score</code> ha de contenir una <em>única</em> expressió
+musical.  Si en comptes d&rsquo;això conté diverses instruccions
+<code>\new Staff</code>, <code>\new StaffGroup</code> o contextos semblants
+introduïts amb <code>\new</code> sense que s&rsquo;hagin tancat entre
+claudàtors corbs, <code>{ &hellip; }</code>, o dobles parèntesis en
+angle, <code>&lt;&lt; &hellip;  &gt;&gt;</code>, així:
+</p>
+<blockquote><pre class="example">\score {
+  % Invàlid! Genera error: error de sintaxi, \new inesperat
+  \new Staff { &hellip; }
+  \new Staff { &hellip; }
+}
+</pre></blockquote>
+
+<p>aleshores es produirà un missatge d&rsquo;error.
+</p>
+<p>Per evitar l&rsquo;error, tanqueu totes les instruccions <code>\new</code>
+dins dels claudàtors corbs o dobles parèntesis d&rsquo;angle.
+</p>
+<p>L&rsquo;ús de claudàtors corbs introdueix les instruccions <code>\new</code>
+de forma seqüencial:
+</p>
+<blockquote><pre class="verbatim">\score {
+  {
+    \new Staff { a' a' a' a' }
+    \new Staff { g' g' g' g' }
+  }
+}
+</pre><p>
+ <a href="../2e/lily-9b22173f.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-9b22173f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>però és més probable que us trobeu utilitzant angles dobles de
+manera que els pentagrames nous s&rsquo;insereixin en paral·lel, és a
+dir, simultàniament:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff { a' a' a' a' }
+    \new Staff { g' g' g' g' }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../06/lily-77b293ac.ly">
+  <img align="middle"
+       border="0"
+       src="../06/lily-77b293ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Advertiment sobre que les afinitats del pentagrama sols han de decrèixer&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Errors comuns&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Actualització de fitxers amb convert-ly &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="common-errors.html">English</a>, <a href="common-errors.de.html">deutsch</a>, <a href="common-errors.es.html">español</a>, <a href="common-errors.fr.html">français</a>, <a href="common-errors.hu.html">magyar</a>, <a href="common-errors.it.html">italiano</a>, <a href="common-errors.ja.html">日本語</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Utilització  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Execucio-del-LilyPond" href="running-lilypond.ca.html">1. Execució del LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilitzacio-normal" href="normal-usage.ca.html">1.1 Utilització normal</a>    </li>
+    <li class=""><a name="toc-Utilitzacio-des-de-la-linia-d_0027ordres" href="command_002dline-usage.ca.html">1.2 Utilització des de la línia d&rsquo;ordres</a>    </li>
+    <li class=""><a name="toc-Missatges-d_0027error-1" href="error-messages.ca.html">1.3 Missatges d&rsquo;error</a>    </li>
+    <li class=" toc_current"><a name="toc-Errors-comuns-1" href="common-errors.ca.html">1.4 Errors comuns</a>
+    <ul class="toc">
+      <li class=""><a name="toc-La-musica-se-surt-de-la-pagina" href="common-errors.ca.html#music-runs-off-the-page">La música se surt de la pàgina</a>      </li>
+      <li class=""><a name="toc-Apareix-un-pentagrama-de-mes" href="common-errors.ca.html#an-extra-staff-appears">Apareix un pentagrama de més</a>      </li>
+      <li class=""><a name="toc-Missatge-d_0027error-Unbound-variable-_0025-1" href="common-errors.ca.html#error-message-unbound-variable-_0025">Missatge d&rsquo;error Unbound variable %</a>      </li>
+      <li class=""><a name="toc-Missatge-d_0027error-FT_005fGet_005fGlyph_005fName-1" href="common-errors.ca.html#error-message-ft_005fget_005fglyph_005fname">Missatge d&rsquo;error FT_Get_Glyph_Name</a>      </li>
+      <li class=""><a name="toc-Advertiment-sobre-que-les-afinitats-del-pentagrama-sols-han-de-decreixer" href="common-errors.ca.html#warning-staff-affinities-should-only-decrease">Advertiment sobre que les afinitats del pentagrama sols han de decrèixer</a>      </li>
+      <li class=""><a name="toc-Missatge-d_0027error-Unexpected-new-_005cnew" href="common-errors.ca.html#error-message-unexpected-new">Missatge d&rsquo;error Unexpected new <code>\new</code></a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Actualitzacio-de-fitxers-amb-convert_002dly" href="updating-files-with-convert_002dly.ca.html">2. Actualització de fitxers amb <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Perque-canvia-la-sintaxi_003f" href="why-does-the-syntax-change_003f.ca.html">2.1 Perquè canvia la sintaxi?</a>    </li>
+    <li class=""><a name="toc-Invocacio-de-convert_002dly" href="invoking-convert_002dly.ca.html">2.2 Invocació de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Opcions-de-la-linia-d_0027ordres-per-a-convert_002dly" href="command-line-options-for-convert_002dly.ca.html">2.3 Opcions de la línia d&rsquo;ordres per a <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemes-amb-convert_002dly-1" href="problems-running-convert_002dly.ca.html">2.4 Problemes amb <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversions-manuals-1" href="manual-conversions.ca.html">2.5 Conversions manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Running-lilypond_002dbook" href="lilypond_002dbook.ca.html">3. Running <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-An-example-of-a-musicological-document-1" href="an-example-of-a-musicological-document.ca.html">3.1 An example of a musicological document</a>    </li>
+    <li class=""><a name="toc-Integrating-music-and-text-1" href="integrating-music-and-text.ca.html">3.2 Integrating music and text</a>    </li>
+    <li class=""><a name="toc-Music-fragment-options-1" href="music-fragment-options.ca.html">3.3 Music fragment options</a>    </li>
+    <li class=""><a name="toc-Invoking-lilypond_002dbook-1" href="invoking-lilypond_002dbook.ca.html">3.4 Invoking <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Filename-extensions-1" href="filename-extensions.ca.html">3.5 Filename extensions</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-templates-1" href="lilypond_002dbook-templates.ca.html">3.6 lilypond-book templates</a>    </li>
+    <li class=""><a name="toc-Sharing-the-table-of-contents-1" href="sharing-the-table-of-contents.ca.html">3.7 Sharing the table of contents</a>    </li>
+    <li class=""><a name="toc-Alternative-methods-of-mixing-text-and-music" href="alternate-methods-of-mixing-text-and-music.ca.html">3.8 Alternative methods of mixing text and music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-External-programs-1" href="external-programs.ca.html">4. External programs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Point-and-click-1" href="point-and-click.ca.html">4.1 Point and click</a>    </li>
+    <li class=""><a name="toc-Text-editor-support-1" href="text-editor-support.ca.html">4.2 Text editor support</a>    </li>
+    <li class=""><a name="toc-Converting-from-other-formats-1" href="converting-from-other-formats.ca.html">4.3 Converting from other formats</a>    </li>
+    <li class=""><a name="toc-LilyPond-output-in-other-programs-1" href="lilypond-output-in-other-programs.ca.html">4.4 LilyPond output in other programs</a>    </li>
+    <li class=""><a name="toc-Independent-includes-1" href="independent-includes.ca.html">4.5 Independent <code>include</code>s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggeriments-per-escriure-fitxers-d_0027entrada-1" href="suggestions-for-writing-files.ca.html">5. Suggeriments per escriure fitxers d&rsquo;entrada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Suggeriments-de-tipus-general-1" href="general-suggestions.ca.html">5.1 Suggeriments de tipus general</a>    </li>
+    <li class=""><a name="toc-Gravacio-de-musica-existent" href="typesetting-existing-music.ca.html">5.2 Gravació de música existent</a>    </li>
+    <li class=""><a name="toc-Projectes-grans-1" href="large-projects.ca.html">5.3 Projectes grans</a>    </li>
+    <li class=""><a name="toc-Solucio-de-problemes" href="troubleshooting.ca.html">5.4 Solució de problemes</a>    </li>
+    <li class=""><a name="toc-Make-i-els-Makefiles-1" href="make-and-makefiles.ca.html">5.5 Make i els Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">B. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

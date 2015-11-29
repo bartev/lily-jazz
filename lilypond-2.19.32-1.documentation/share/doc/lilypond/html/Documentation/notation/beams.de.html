@@ -1,0 +1,1512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 1.2.4 Balken</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 1.2.4 Balken">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 1.2.4 Balken">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="rhythms.de.html#rhythms" rel="up" title="1.2 Rhythmus">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="displaying-rhythms.de.html#displaying-rhythms" rel="previous" title="1.2.3 Rhythmen anzeigen lassen">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Balken"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="displaying-rhythms.de.html#showing-melody-rhythms" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Melodierhythmus anzeigen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmus&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-beams" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Automatische Balken &gt; </a>]</td></tr></table>
+<a name="beams"></a>
+<h3 class="subsection">1.2.4 Balken</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#automatic-beams" accesskey="1">Automatische Balken</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#setting-automatic-beam-behavior" accesskey="2">Einstellung von automatischen Balken</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#manual-beams" accesskey="3">Manuelle Balken</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#feathered-beams" accesskey="4">Gespreizte Balken</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Automatische-Balken"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#beams" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Balken&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Balken&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#setting-automatic-beam-behavior" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Einstellung von automatischen Balken &gt; </a>]</td></tr></table>
+<a name="automatic-beams"></a>
+<h4 class="unnumberedsubsubsec">Automatische Balken</h4>
+
+<p>LilyPond setzt Balken (engl. beam) automatisch.
+</p>
+<a name="index-Balken_002c-Einstellungen"></a>
+<a name="index-Balken_002c-eigene-Regeln"></a>
+<a name="index-automatische-Bebalkung"></a>
+<a name="index-Balken_002c-automatisch"></a>
+<a name="index-eigene-Balkenregeln"></a>
+
+<a name="index-_005cautoBeamOn"></a>
+<a name="index-_005cautoBeamOn-1"></a>
+<a name="index-autoBeamOn"></a>
+<a name="index-autoBeamOn-1"></a>
+<a name="index-_005cautoBeamOff"></a>
+<a name="index-_005cautoBeamOff-1"></a>
+<a name="index-autoBeamOff"></a>
+<a name="index-autoBeamOff-1"></a>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 2/4 c8 c c c
+  \time 6/8 c8 c c c8. c16 c8
+}
+</pre><p>
+ <a href="../3a/lily-2a5aadc4.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-2a5aadc4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn diese automatischen Entscheidungen nicht gut genug sind, können
+die Balken auch explizit eingegeben werden, siehe
+<a href="#manual-beams">Manuelle Balken</a>.  Balken <em>müssen</em> auch auf diese Weise eingegeben
+werden, wenn sie über Pausen hinwegreichen sollen.
+</p>
+<p>Wenn automatische Bebalkung nicht benötigt wird, kann sie mit dem Befehl <code>\autoBeamOff</code>
+aufgehoben werden und mit dem Befehl <code>\autoBeamOn</code> wieder
+eingeschaltet werden.
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  c4 c8 c8. c16 c8. c16 c8
+  \autoBeamOff
+  c4 c8 c8. c16 c8.
+  \autoBeamOn
+  c16 c8
+}
+</pre><p>
+ <a href="../bc/lily-ec57601e.ly">
+  <img align="middle"
+       border="0"
+       src="../bc/lily-ec57601e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Melismen_002c-Balken"></a>
+<a name="index-Balken-und-Melismen"></a>
+
+<div class="warning"><p><strong>Achtung:</strong> Wenn Balken eingesetzt werden, um Melismen in Gesang zu notieren,
+sollte die automatische Bebalkung mit <code>autoBeamOff</code> ausgeschaltet
+werden und die Balken manuell notiert werden.  Die Benutzung von
+<code>\partcombine</code> zusammen mit <code>\autoBeamOff</code> kann zu
+unbeabsichtigten Ergebnissen führen.  Siehe die Schnipsel für mehr
+Information.
+</p>
+</div>
+<p>Balkenmuster, die sich von den automatisch erstellen unterscheiden,
+können erstellt werden, siehe <a href="#setting-automatic-beam-behavior">Einstellung von automatischen Balken</a>.
+</p>
+<a name="Vordefinierte-Befehle-33"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\autoBeamOff</code>,
+<code>\autoBeamOn</code>.
+</p>
+<a name="index-breakable"></a>
+<a name="index-breakable-1"></a>
+<a name="index-Zeilenumbruch_002c-Balken"></a>
+<a name="index-Balken_002c-Zeilenumbruche"></a>
+<a name="index-Balken-mit-Knie"></a>
+<a name="index-weit-ausseinander-liegende-Balken"></a>
+<a name="index-auto_002dknee_002dgap"></a>
+
+<a name="Ausgewahlte-Schnipsel-45"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+<p><em> Balken über Zeilenumbrüche</em>
+</p>
+
+<p>Zeilenumbrüche sind normalerweise während Balken verboten.  Das kann geändert
+werden.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \override Beam.breakable = ##t
+  c8 c[ c] c[ c] c[ c] c[ \break
+  c8] c[ c] c[ c] c[ c] c
+}
+</pre><p>
+ <a href="../b4/lily-b865933b.ly">
+  <img align="middle"
+       border="0"
+       src="../b4/lily-b865933b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Balken für weit auseinander liegende Noten ändern</em>
+</p>
+
+<p>Balken mit Hälsen in unterschiedliche Richtungen werden automatisch
+erstellt, wenn ein großer Sprung zwischen Tonhöhen gefunden wird.  Dieses
+Verhalten kann durch die <code>auto-knee-gap</code>-Eigenschaft beeinflusst
+werden.  Ein derartiger Knie-Balken wird erstellt, wenn der Abstand größer
+ist als der Wert von <code>auto-knee-gap</code> plus der Dicke des Balkens
+(was von der Notendauer und der Neigung des Balkens abhängt).  Der
+Standardwert von <code>auto-knee-gap</code> ist 5.5 Notensystemabstände.
+</p>
+
+<blockquote><pre class="verbatim">{
+  f8 f''8 f8 f''8
+  \override Beam.auto-knee-gap = #6
+  f8 f''8 f8 f''8
+}
+</pre><p>
+ <a href="../10/lily-fc9659ae.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-fc9659ae.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Balken_002c-_005cpartcombine-und-_005cautoBeamOff"></a>
+<a name="index-Stimmen_002c-_005cautoBeamOff-und-_005cpartcombine"></a>
+
+
+<p><em> Partcombine und autoBeamOff</em>
+</p>
+
+<p>Die Funktionsweise von <code>\autoBeamOff</code>, wenn es zusammen mit
+<code>\partcombine</code> eingesetzt wird, kann schwer zu verstehen sein.
+Es kann besser sein, anstatt dessen
+</p>
+<blockquote><pre class="example">\set Staff.autobeaming = ##f
+</pre></blockquote>
+
+<p>zu benutzen, um sicherzustellen, dass die automatische Bebalkung für das
+gesamte System ausgeschaltet ist.
+</p>
+<p><code>\partcombine</code> funktioniert offensichtlich mit 3 Stimme (Hals nach oben
+einfach, Hals nach unten einfach, Hals nach oben kombiniert).
+</p>
+<p>Ein <code>\autoBeamOff</code>-Befehl im ersten Argument von <code>\partcombine</code>
+gilt für die Stimme, die zu dem Zeitpunkt aktiv ist, an dem der Befehl
+verarbeitet wird, entweder für Hals nach oben, nach unten oder Hals nach
+oben kombiniert.  Ein <code>\autoBeamOff</code>-Befehl im zweiten Argument gilt
+für die Stimme, die mit Hals nach unten einfach ist.
+</p>
+<p>Um <code>\autoBeamOff</code> zu benutzen, damit alle automatischen Balken aufhören,
+wenn man es mit <code>\partcombine</code> verwendet, muss <code>\autoBeamOff</code>
+<em>dreimal</em> aufgerufen werden.
+</p>
+
+<blockquote><pre class="verbatim">{
+  %\set Staff.autoBeaming = ##f % turns off all autobeaming
+  \partcombine
+  {
+    \autoBeamOff % applies to split up stems
+    \repeat unfold 4 a'16
+    %\autoBeamOff % applies to combined up stems
+    \repeat unfold 4 a'8
+    \repeat unfold 4 a'16
+  }
+  {
+    \autoBeamOff % applies to down stems
+    \repeat unfold 4 f'8
+    \repeat unfold 8 f'16 |
+  }
+}
+</pre><p>
+ <a href="../9c/lily-5a372fd7.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-5a372fd7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-169"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="#manual-beams">Manuelle Balken</a>,
+<a href="#setting-automatic-beam-behavior">Einstellung von automatischen Balken</a>.
+</p>
+<p>Installierte Dateien:
+&lsquo;<tt>scm/auto-beam.scm</tt>&rsquo;.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-Auto_005fbeam_005fengraver"></a>
+<a href="../internals/auto_005fbeam_005fengraver.de.html">Auto_beam_engraver</a>,
+<a name="index-Beam_005fengraver"></a>
+<a href="../internals/beam_005fengraver.de.html">Beam_engraver</a>,
+<a name="index-Beam"></a>
+<a href="../internals/beam.de.html">Beam</a>,
+<a name="index-BeamEvent"></a>
+<a href="../internals/beamevent.de.html">BeamEvent</a>,
+<a name="index-BeamForbidEvent"></a>
+<a href="../internals/beamforbidevent.de.html">BeamForbidEvent</a>,
+<a name="index-beam_002dinterface"></a>
+<a href="../internals/beam_002dinterface.de.html">beam-interface</a>,
+<a name="index-unbreakable_002dspanner_002dinterface"></a>
+<a href="../internals/unbreakable_002dspanner_002dinterface.de.html">unbreakable-spanner-interface</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-37"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p>Die Eigenschaften eines Balkens werden am <em>Beginn</em> seiner
+Konstruktion bestimmt.  Alle zusätzlichen Änderungen der
+Balkeneigenschaften, die auftreten, bevor der Balken zuende
+ist, werden nicht ausgewertet, bevor nicht der <em>nächste</em>
+Balken beginnt.
+</p>
+
+<hr size="6">
+<a name="Einstellung-von-automatischen-Balken"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-beams" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatische Balken&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Balken&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#manual-beams" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Manuelle Balken &gt; </a>]</td></tr></table>
+<a name="setting-automatic-beam-behavior"></a>
+<h4 class="unnumberedsubsubsec">Einstellung von automatischen Balken</h4>
+
+<a name="index-autobeam"></a>
+<a name="index-Verandern-von-automatischer-Bebalkung"></a>
+<a name="index-Bebalkung_002c-automatisch_002c-Einstellungen"></a>
+<a name="index-Text-und-Balken"></a>
+<a name="index-Gesangstext-und-Balken"></a>
+<a name="index-Balken-und-Gesangstext"></a>
+
+<a name="index-autoBeaming"></a>
+<a name="index-autoBeaming-1"></a>
+<a name="index-beatStructure"></a>
+<a name="index-beatStructure-1"></a>
+<a name="index-beamExceptions"></a>
+<a name="index-beamExceptions-1"></a>
+<a name="index-measureLength"></a>
+<a name="index-measureLength-1"></a>
+<a name="index-baseMoment"></a>
+<a name="index-baseMoment-1"></a>
+<a name="index-_005ctime-2"></a>
+<a name="index-_005ctime-3"></a>
+<a name="index-time-2"></a>
+<a name="index-time-3"></a>
+<a name="index-_005cset"></a>
+<a name="index-_005cset-1"></a>
+<a name="index-set"></a>
+<a name="index-set-1"></a>
+
+<p>Wenn die automatischen Balken angeschaltet sind, wird die Platzierung der
+automatischen Balken von drei Kontexteigenschaften bestimmt:
+<code>baseMoment</code>, <code>beatStructure</code> und <code>beamExceptions</code>.
+Wenn eine <code>beamExceptions</code>-Regel für die aktuelle Taktart definiert ist,
+wird diese Regel zur Bestimmmung der Balkenplatzierung herangezogen.  Wenn keine
+<code>beamExceptions</code>-Regel für die aktuelle Taktart vorhanden ist, wird
+die Platzierung der Balken durch die Einstellungen von <code>baseMoment</code>
+und <code>beatStructure</code> bestimmt.
+</p>
+<p>Standardmäßig sind <code>beamExceptions</code>-Regel für alle häufigen Taktarten
+vordefiniert, sodass die <code>beamExceptions</code>-Regeln deaktiviert werden
+müssen, wenn die Balkenplatzierung aufgrund von <code>baseMoment</code> und
+<code>beatStructure</code> stattfinden soll.  Die <code>beamExceptions</code>-Regeln werden
+deaktiviert durch
+</p>
+<blockquote><pre class="example">\set Timing.beamExceptions = #'()
+</pre></blockquote>
+
+
+<a name="Bebalkung-basierend-auf-baseMoment-und-beatStructure"></a>
+<h4 class="subsubheading"><i>Bebalkung basierend auf <code>baseMoment</code> und <code>beatStructure</code></i></h4>
+
+<p>In den meisten Fällen enden automatische Balken am Ende eines Taktes.
+Die Endpunkte für Schläge werden durch die Kontexteigenschaften
+<code>baseMoment</code> und <code>beatStructure</code> bestimmt.  <code>beatStructure</code>
+ist eine Scheme-Liste, die die Länge jedes Schlages im Takt in
+Einheiten von <code>baseMoment</code> angibt.  Der Standard von
+<code>baseMoment</code> ist Eins durch den Numerator der Taktangabe.  Der
+Standardwert jeder Längeneinheit <code>baseMoment</code> ist ein
+einzelner Taktschlag.
+</p>
+
+<blockquote><pre class="verbatim">\time 5/16
+c16^&quot;default&quot; c c c c |
+\set Timing.beatStructure = #'(2 3)
+c16^&quot;(2+3)&quot; c c c c |
+\set Timing.beatStructure = #'(3 2)
+c16^&quot;(3+2)&quot; c c c c |
+</pre><p>
+ <a href="../73/lily-b0da5f1d.ly">
+  <img align="middle"
+       border="0"
+       src="../73/lily-b0da5f1d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn eine häufige Taktart benützt wird, <em>muss</em> <code>beamExceptions</code>
+deaktiviert werden, damit <code>beatStructure</code> funktionieren kann.
+Der <code>\set Timing.beamExceptions = #'()</code>-Befehl kann immer eingefügt
+werden, wenn die Bebalkung von <code>beatStructure</code> bestimmt werden soll.
+</p>
+<blockquote><pre class="verbatim">\time 4/4
+a8^&quot;default&quot; a a a a a a a
+
+\set Timing.baseMoment = #(ly:make-moment 1/4)
+\set Timing.beatStructure = #'(1 1 1 1)
+a8^&quot;no change&quot; a a a a a a a
+
+\set Timing.beamExceptions = #'()
+\set Timing.baseMoment = #(ly:make-moment 1/4)
+\set Timing.beatStructure = #'(1 1 1 1)
+a8^&quot;changed&quot; a a a a a a a
+</pre><p>
+ <a href="../ee/lily-d8c98a27.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-d8c98a27.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Balkenregelveränderungen können auf bestimmte Kontexte beschränkt
+werden.  Wenn keine Regeln in einen unteren Kontext definiert
+sind, gelten die Regeln des höheren Kontext, in dem sich der
+niedrigere befindet.
+</p>
+<blockquote><pre class="verbatim">\new Staff &lt;&lt;
+  \time 7/8
+  \set Staff.beatStructure = #'(2 3 2)
+  \new Voice = one {
+    \relative {
+        a'8 a a a a a a
+    }
+  }
+  \new Voice  = two {
+    \relative {
+      \voiceTwo
+      \set Voice.beatStructure = #'(1 3 3)
+      f'8 f f f f f f
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../75/lily-e8cfcbc9.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-e8cfcbc9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn mehrere Stimmen eingesetzt werden, muss der <code>Staff</code>-Kontext
+definiert werden, wenn die Balkenregeln auf alle Stimmen des
+Systems angewendet werden sollen:
+</p>
+<blockquote><pre class="verbatim">\time 7/8
+% rhythm 3-1-1-2
+% Context applied to Voice by dafault --  does not work correctly
+% Because of autogenerated voices, all beating will
+% be at baseMoment (1 . 8)
+\set beatStructure = #'(3 1 1 2)
+&lt;&lt; {a8 a a a16 a a a a8 a} \\ {f4. f8 f f f} &gt;&gt;
+
+% Works correctly with context Staff specified
+\set Staff.beatStructure = #'(3 1 1 2)
+&lt;&lt; {a8 a a a16 a a a a8 a} \\ {f4. f8 f f f} &gt;&gt;
+</pre><p>
+ <a href="../68/lily-0c72c6b7.ly">
+  <img align="middle"
+       border="0"
+       src="../68/lily-0c72c6b7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Der Wert von <code>baseMoment</code> kann angepasst werden, um das
+Bebalkungsverhalten zu ändern, wenn gewünscht.  In diesem Fall
+muss der Wert von <code>beatStructure</code> so gesetzt werden, dass
+er kompatibel mit dem neuen Wert von <code>baseMoment</code> ist.
+</p>
+<blockquote><pre class="verbatim">\time 5/8
+\set Timing.baseMoment = #(ly:make-moment 1/16)
+\set Timing.beatStructure = #'(7 3)
+\repeat unfold 10 { a16 }
+</pre><p>
+ <a href="../f4/lily-eee19157.ly">
+  <img align="middle"
+       border="0"
+       src="../f4/lily-eee19157.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>baseMoment</code> ist ein <i>Moment</i>, eine Einheit an musikalischer
+Dauer.  Eine Anzahl vom Typus <i>Moment</i> wird durch die Scheme-Funktion
+<code>ly:make-moment</code> erstellt.  Zu mehr Information über diese Funktion
+siehe <a href="special-rhythmic-concerns.de.html#time-administration">Verwaltung der Zeiteinheiten</a>.
+</p>
+<p>Der Standardwert von <code>baseMoment</code> ist Eins durch den Denominator
+der Taktangabe.  Alle Ausnahmen dieses Standards finden sich in der Datei
+&lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.
+</p>
+<a name="Bebalkung-basierend-auf-beamExceptions"></a>
+<h4 class="subsubheading"><i>Bebalkung basierend auf <code>beamExceptions</code></i></h4>
+
+<p>Besondere automatische Bebalkungsregeln (außer dass ein Balken auf einem
+Taktschlag aufhört) sind in der <code>beamExceptions</code>-Eigenschaft
+definiert.
+</p>
+<blockquote><pre class="verbatim">\time 3/16
+\set Timing.beatStructure = #'(2 1)
+\set Timing.beamExceptions =
+  #'(                         ;start of alist
+     (end .                   ;entry for end of beams
+      (                       ;start of alist of end points
+       ((1 . 32) . (2 2 2))   ;rule for 1/32 beams -- end each 1/16
+      )))                     %close all entries
+c16 c c |
+\repeat unfold 6 { c32 } |
+</pre><p>
+ <a href="../a5/lily-f975523d.ly">
+  <img align="middle"
+       border="0"
+       src="../a5/lily-f975523d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>beamExceptions</code> ist eine Aliste mit einem Schlüssel der Regeltypen
+(rule-type) und einem Wert der Bebalkungsregeln (beaming-rules).
+</p>
+<p>Im Moment ist der einzige mögliche rule-type <code>'end</code> für ein
+Balkenende.
+</p>
+<p>Beaming-rules ist eine Scheme-Aliste (oder eine paarige Liste), die
+den Balkentyp und die Gruppierung anzeigt, die auf Balken angewendet
+werden, welche Noten mit einer kürzesten Dauer des Balkentyps enthalten.
+</p>
+<blockquote><pre class="example">#'((beam-type1 . grouping-1)
+   (beam-type2 . grouping-2)
+   (beam-type3 . grouping-3))
+</pre></blockquote>
+
+<p>Beam-type ist ein Scheme-Paar, das die Dauer eines Balkens anzeigt,
+etwa <code>(1 . 16)</code> für ein Sechszehntel.
+</p>
+<p>Grouping ist eine Scheme-Liste, die die auf den Balken anzuwendene
+Gruppierung anzeigt.  Die Gruppierung wird in Einheiten des
+Balkentyps angegeben.
+</p>
+<div class="warning"><p><strong>Achtung:</strong> Ein <code>beamExceptions</code>-Wert muss eine <em>vollständige</em>
+Ausnahme-Liste sein.  Das heißt, dass jede Ausnahme, die angewendet werden
+soll, auch in die Einstellungen mit aufgenommen werden muss.  Es ist nicht
+möglich, nur eine der Einstellungen zu ändern, zu entfernen oder hinzuzufügen.
+Das mag seltsam erscheinen, bedeutet aber, dass die aktuellen
+Balkenregeln bekann sein müssen, um ein neues Bebalkungsmuster definieren zu können.
+</p>
+</div>
+<p>Wenn die Taktart geändert wird, werden neue Standardwerte für
+<code>Timing.baseMoment</code>, <code>Timing.beatStructure</code> und
+<code>Timing.beamExceptions</code> definiert.  Wenn die Taktart
+definiert wird, werden die automatischen Bebalkungsregeln für den
+<code>Timing</code>-Kontext auf den Standard zurückgesetzt.
+</p>
+<blockquote><pre class="verbatim">\relative a' {
+  \time 6/8
+  \repeat unfold 6 { a8 }
+  % group (4 + 2)
+  \set Timing.beatStructure = #'(4 2)
+  \repeat unfold 6 { a8 }
+  % go back to default behavior
+  \time 6/8
+  \repeat unfold 6 { a8 }
+}
+</pre><p>
+ <a href="../3f/lily-94ecce1c.ly">
+  <img align="middle"
+       border="0"
+       src="../3f/lily-94ecce1c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die automatischen Standardeinstellungen für die Bebalkung einer
+Taktart werden in der Datei &lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;
+bestimmt.  Änderungen der automatischen Bebalkungsregeln für eine Taktart
+werden in <a href="displaying-rhythms.de.html#time-signature">Taktangabe</a> beschrieben.
+</p>
+<p>Die meisten automatischen Bebalkungsregeln für eine Taktart enthalten einen
+Eintrag für <code>beamExceptions</code>.  Beispielsweise wird in einem 4/4-Takt
+versucht, den Takt in zwei Hälfen zu teilen, wenn nur Achtelnoten vorkommen.
+Die <code>beamExceptions</code>-Regel kann die <code>beatStructure</code>-Einstellung
+überschreiben, wenn <code>beamExceptions</code> nicht zurückgesetzt wird:
+</p>
+<blockquote><pre class="verbatim">\time 4/4
+\set Timing.baseMoment = #(ly:make-moment 1/8)
+\set Timing.beatStructure = #'(3 3 2)
+% This won't beam (3 3 2) because of beamExceptions
+\repeat unfold 8 {c''8} |
+% This will beam (3 3 2) because we clear beamExceptions
+\set Timing.beamExceptions = #'()
+\repeat unfold 8 {c''8}
+</pre><p>
+ <a href="../d4/lily-fbdcee87.ly">
+  <img align="middle"
+       border="0"
+       src="../d4/lily-fbdcee87.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Auf gleiche Art werden Achtelnoten im 3/4-Takt über den ganzen Takt hin
+mit Balken versehen.  Damit Achtelnoten im 3/4-Takt auf jedem Schlag
+einen neuen Balken erhalten, muss <code>beamExceptions</code> verändert werden:
+</p>
+<blockquote><pre class="verbatim">\time 3/4
+% by default we beam in (6) due to beamExceptions
+\repeat unfold 6 {a8} |
+% This will beam (1 1 1) due to beatLength
+\set Timing.beamExceptions = #'()
+\repeat unfold 6 {a8}
+</pre><p>
+ <a href="../dc/lily-6e0e63ff.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-6e0e63ff.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In Notenstichen der romantischen und klassischen Periode wird teilweise auch
+ein halber Takt Achtelnoten im 3/4-Takt mit einem Balken versehen, moderner
+Notenstich vermeidet dies jedoch, um nicht den falschen Eindruck eines
+6/8-Taktes entstehen zu lassen (siehe Gould, S. 153).  Eine ähnliche Situation
+entsteht im 3/8-Takt.  Dieses Verhalten wird durch
+die Eigenschaft <code>beamHalfMeasure</code> bestimmt, welche sich nur auf
+Takte mit einer 3 im Zähler auswirkt:
+</p>
+<blockquote><pre class="verbatim">\relative a' {
+  \time 3/4
+  r4. a8 a a |
+  \set Timing.beamHalfMeasure = ##f
+  r4. a8 a a |
+}
+</pre><p>
+ <a href="../db/lily-5b0e58bb.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-5b0e58bb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Wie-die-automatische-Bebalkung-funktioniert"></a>
+<h4 class="subsubheading"><i>Wie die automatische Bebalkung funktioniert</i></h4>
+
+<p>Wenn die automatische Bebalkung aktiviert ist, wird die Platzierung
+der automatischen Balken durch die Kontexteigenschaften
+<code>baseMoment</code>, <code>beatStructure</code> und <code>beamExceptions</code>
+bestimmt.
+</p>
+<p>Die folgenden Regeln, in der Reihenfolge ihrer Priorität, gelten, wenn das Aussehen der Balken bestimmt wird:
+</p>
+<ul>
+<li>
+Wenn ein manueller Balken mit <code>[...]</code> definiert ist, wird er gesetzt, andernfalls
+
+</li><li>
+wenn eine Balkenendung-Regel für den Balkentyp in
+<code>beamExceptions</code> definiert ist, wird sie verwendet, um die
+gültigen Plätze für Balkenenden zu berechnen, andernfalls
+
+</li><li>
+wenn eine Balkenendung-Regel für einen größeren Balkentyp
+in <code>beamExceptions</code> definiert ist, wird sie verwendet,
+um die gültigen Plätze für Balkenenden zu berechnen, andernfalls
+
+</li><li>
+benutze die Werte von <code>baseMoment</code> und <code>beatStructure</code>,
+um die Enden der Balken im Takt zu definieren und beende Balken
+am Ende jedes Taktes.
+
+</li></ul>
+
+<p>In den oben genannten Regeln ist der Balkentyp die Dauer der
+kürzesten Note der bebalkten Gruppe.
+</p>
+<p>Die Standardbebalkungsregeln finden sich in der Datei
+&lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.
+</p>
+<a name="Ausgewahlte-Schnipsel-25"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+<a name="index-Balken_002c-Unterteilung"></a>
+<a name="index-subdivideBeams"></a>
+<a name="index-subdivideBeams-1"></a>
+
+
+<p><em> Subdividing beams</em>
+</p>
+
+<p>The beams of consecutive 16th (or shorter) notes are, by default, not
+subdivided.  That is, the three (or more) beams stretch unbroken over
+entire groups of notes.  This behavior can be modified to subdivide the
+beams into sub-groups by setting the property <code>subdivideBeams</code>.
+When set, multiple beams will be subdivided at intervals defined by the
+current value of <code>baseMoment</code> by reducing the multiple beams to
+the number of beams that indicates the length of the sub-group. Note
+that <code>baseMoment</code> defaults to one over the denominator of the
+current time signature if not set explicitly. It must be set to a
+fraction giving the duration of the beam sub-group using the
+<code>ly:make-moment</code> function, as shown in this snippet. Also, when
+<code>baseMoment</code> is changed, <code>beatStructure</code> should also be
+changed to match the new <code>baseMoment</code>:
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  c32[ c c c c c c c]
+  \set subdivideBeams = ##t
+  c32[ c c c c c c c]
+
+  % Set beam sub-group length to an eighth note
+  \set baseMoment = #(ly:make-moment 1/8)
+  \set beatStructure = #'(2 2 2 2)
+  c32[ c c c c c c c]
+
+  % Set beam sub-group length to a sixteenth note
+  \set baseMoment = #(ly:make-moment 1/16)
+  \set beatStructure = #'(4 4 4 4)
+  c32[ c c c c c c c]
+}
+</pre><p>
+ <a href="../99/lily-fd22a25f.ly">
+  <img align="middle"
+       border="0"
+       src="../99/lily-fd22a25f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Bebalkung-nach-Taktschlag"></a>
+
+
+<p><em> Bebalkung nach Taktschlag</em>
+</p>
+
+<p>Sekundäre Balken können in die Richtung gesetzt werden, die ihrer rhythmischen
+Zugehörigkeit entspricht.  Der erste Balken ist zusammengefasst (Standard),
+der zweite Sechszehntelbalken zeigt den Taktschlag an.
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 6/8
+  a8. a16 a a
+  \set strictBeatBeaming = ##t
+  a8. a16 a a
+}
+</pre><p>
+ <a href="../9e/lily-0aaaa978.ly">
+  <img align="middle"
+       border="0"
+       src="../9e/lily-0aaaa978.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Taktgruppen"></a>
+<a name="index-Schlaggruppen"></a>
+<a name="index-Taktschlage-gruppieren"></a>
+<a name="index-Takt-unterteilen"></a>
+<a name="index-Unterteilen-von-Takten"></a>
+<a name="index-autoBeamSettings"></a>
+<a name="index-autoBeamSettings-1"></a>
+
+
+<p><em> Dirigierzeichen, Taktgruppenzeichen</em>
+</p>
+
+<p>Optionen, mit denen die Balken in einem Takt gruppiert werden, sind
+durch die Scheme-Funktion <code>set-time-signature</code> erhältlich, die
+drei Argumente braucht:  Die Zahl der Taktschläge, die Länge des
+Schlages und die interne gruppieren von Balken in dem Takt.  Wenn der
+<code>Measure_grouping_engraver</code> hinzugefügt worden ist, erstellt
+diese Funktion auch <code>MeasureGrouping</code>-(Taktgruppen)-Zeichen.  Derartige
+Zeichen erleichtern das Lesen von rhythmisch komplexer Musik.  In dem
+Beispiel ist der 9/8-Takt in 2, 2, 2 und 3 aufgeteilt.  Das wird
+der <code>set-time-signature</code>-Funktion als das dritte Argument mitgegeben:
+<code>'(2 2 2 3)</code>:
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  \new Voice \relative c'' {
+    \time 9/8
+    g8 g d d g g a( bes g) |
+    \set Timing.beatStructure = #'(2 2 2 3)
+    g8 g d d g g a( bes g) |
+    \time #'(4 5) 9/8
+    g8 g d d g g a( bes g) |
+    \time 5/8
+    a4. g4 |
+  }
+  \layout {
+    \context {
+      \Staff
+      \consists &quot;Measure_grouping_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../a1/lily-04d1bee9.ly">
+  <img align="middle"
+       border="0"
+       src="../a1/lily-04d1bee9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Balken_002c-letzter-in-Partitur"></a>
+<a name="index-Balken_002c-letzter-in-polyphoner-Stimme"></a>
+
+
+<p><em> Balkenenden auf Score-Ebene</em>
+</p>
+
+<p>Balkenenderegeln, die im <code>Score</code>-Kontext definiert werden, wirken
+sich auf alle Systeme aus, können aber auf <code>Staff</code>- und
+<code>Voice</code>-Ebene neu verändert werden:
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 5/4
+  % Set default beaming for all staves
+  \set Score.baseMoment = #(ly:make-moment 1/8)
+  \set Score.beatStructure = #'(3 4 3)
+  &lt;&lt;
+    \new Staff {
+      c8 c c c c c c c c c
+    }
+    \new Staff {
+      % Modify beaming for just this staff
+      \set Staff.beatStructure = #'(6 4)
+      c8 c c c c c c c c c
+    }
+    \new Staff {
+      % Inherit beaming from Score context
+      &lt;&lt;
+        {
+          \voiceOne
+          c8 c c c c c c c c c
+        }
+        % Modify beaming for this voice only
+        \new Voice {
+          \voiceTwo
+          \set Voice.beatStructure = #'(6 4)
+          a8 a a a a a a a a a
+        }
+      &gt;&gt;
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../bd/lily-af78fd5a.ly">
+  <img align="middle"
+       border="0"
+       src="../bd/lily-af78fd5a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-235"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Installierte Dateien:
+&lsquo;<tt>scm/beam-settings.scm</tt>&rsquo;.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-Auto_005fbeam_005fengraver-1"></a>
+<a href="../internals/auto_005fbeam_005fengraver.de.html">Auto_beam_engraver</a>,
+<a name="index-Beam-1"></a>
+<a href="../internals/beam.de.html">Beam</a>,
+<a name="index-BeamForbidEvent-1"></a>
+<a href="../internals/beamforbidevent.de.html">BeamForbidEvent</a>,
+<a name="index-beam_002dinterface-1"></a>
+<a href="../internals/beam_002dinterface.de.html">beam-interface</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-1"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p>Wenn eine Partitur endet, während ein automatischer Balken noch
+nicht beendet wurde und weiterhin Noten erwartet, wird dieser
+letzte Balken nicht ausgegeben.  Das Gleiche gilt auch für
+polyphone Stimmen, die mit der
+<code>&lt;&lt; &hellip; \\ &hellip; &gt;&gt;</code>-Konstruktion notiert wurden.  Wenn eine
+polyphone Stimme endet, während ein Balken noch weitere Noten
+erwartet, wird der Balken nicht gesetzt.  Eine Notlösung für
+dieses Probelm ist, den letzten Balken in der Stimme oder
+Partitur manuell zu setzen.
+</p>
+<p>Die Standardeinstellungen weisen den  dem
+<code>Score</code>-Kontext zu.  Das bedeutet, dass das Setzen der
+Taktart (time signature) in einem System sich auch auf die Bebalkung
+der anderen Systeme auswirkt.  Darum verändert eine neue Taktart in einem
+späteren System auch alle früher vorgenommenen eigenen Einstellungen
+der Bebalkung eines anderen Systems.  Eine Möglichkeit, dieses Problem zu
+vermeiden, ist es, die Taktart nur in einem System zu setzen.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff {
+    \time 3/4
+    \set Timing.baseMoment = #(ly:make-moment 1/8)
+    \set Timing.beatStructure = #'(1 5)
+    \repeat unfold 6 { a8 }
+  }
+  \new Staff {
+    \repeat unfold 6 { a8 }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../e4/lily-d7f0c6b4.ly">
+  <img align="middle"
+       border="0"
+       src="../e4/lily-d7f0c6b4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die Standardbebalkungsregeln für die Taktart können auch verändert
+werden, sodass die gewünschte Bebalkung immer benützt wird.  Veränderungen
+der automatischen Bebalkungsregeln für eine Taktart sind in
+<a href="displaying-rhythms.de.html#time-signature">Taktangabe</a> beschrieben.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff {
+    \overrideTimeSignatureSettings
+      3/4               % timeSignatureFraction
+      1/8               % baseMomentFraction
+      #'(1 5)           % beatStructure
+      #'()		% beamExceptions
+    \time 3/4
+    \repeat unfold 6 { a'8 }
+  }
+  \new Staff {
+    \time 3/4
+    \repeat unfold 6 { a'8 }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../38/lily-048a22f6.ly">
+  <img align="middle"
+       border="0"
+       src="../38/lily-048a22f6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Manuelle-Balken"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#setting-automatic-beam-behavior" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Einstellung von automatischen Balken&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Balken&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#feathered-beams" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Gespreizte Balken &gt; </a>]</td></tr></table>
+<a name="manual-beams"></a>
+<h4 class="unnumberedsubsubsec">Manuelle Balken</h4>
+
+<a name="index-manuelle-Balken"></a>
+<a name="index-Balken_002c-manuell"></a>
+
+<a name="index-_005d"></a>
+<a name="index-_005d-1"></a>
+<a name="index-_005b"></a>
+<a name="index-_005b-1"></a>
+
+<p>In einigen Fällen kann es nötig sein, den automatischen Algorithmus
+für die Balken zu überschreiben. Die automatischen Balken werden
+beispielsweise nicht über Pausen oder Taktlinien hinweg gesetzt, und
+in Gesang werden die Balken oft nach dem Rhythmus des Textes und
+nicht dem der Musik gesetzt.
+Manuell definierte Balken werden mit den Zeichen <code>[</code> und
+<code>]</code> (AltGr+8 bzw. 9) markiert.
+</p>
+<blockquote><pre class="verbatim">\relative { r4 r8[ g' a r] r g[ | a] r }
+</pre><p>
+ <a href="../6b/lily-7c8f1f72.ly">
+  <img align="middle"
+       border="0"
+       src="../6b/lily-7c8f1f72.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-manuelle-Balken_002c-Richtung-zuweisen"></a>
+<a name="index-manuelle-Balken_002c-Verzierungen"></a>
+<a name="index-Verzierungen_002c-manuelle-Bebalkung"></a>
+
+<p>Die Richtung von Balken kann mit den Richtungszeichen verändert werden:
+</p>
+<blockquote><pre class="verbatim">\relative { c''8^[ d e] c,_[ d e f g] }
+</pre><p>
+ <a href="../f5/lily-421f32d7.ly">
+  <img align="middle"
+       border="0"
+       src="../f5/lily-421f32d7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cnoBeam"></a>
+<a name="index-_005cnoBeam-1"></a>
+<a name="index-noBeam"></a>
+<a name="index-noBeam-1"></a>
+
+<p>Einzelne Noten können mit dem Befehl <code>\noBeam</code> markiert werden,
+damit sie nicht mit einem Balken versehen werden.
+</p>
+<blockquote><pre class="verbatim">\time 2/4 c8 c\noBeam c c
+</pre><p>
+ <a href="../e6/lily-3e8464ec.ly">
+  <img align="middle"
+       border="0"
+       src="../e6/lily-3e8464ec.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Balken von Verzierungsnoten und normale Balken können gleichzeitig
+gesetzt werden.  Unbebalkte Verzierungen werden nicht innerhalb von
+normalen Balken gesetzt.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4 d8[
+  \grace { e32 d c d }
+  e8] e[ e
+  \grace { f16 }
+  e8 e]
+}
+</pre><p>
+ <a href="../88/lily-4e8ac515.ly">
+  <img align="middle"
+       border="0"
+       src="../88/lily-4e8ac515.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-stemLeftBeamCount"></a>
+<a name="index-stemLeftBeamCount-1"></a>
+<a name="index-stemRightBeamCount"></a>
+<a name="index-stemRightBeamCount-1"></a>
+
+<p>Noch bessere manuelle Kontrolle über die Balken kann durch Setzen
+der Eigenschaften <code>stemLeftBeamCount</code> und
+<code>stemRightBeamCount</code> erreicht werden.  Sie bestimmen
+die Anzahl von Balken, die rechts und links vom Hals der nächsten
+Note gesetzt werden sollen.  Wenn eine Eigenschaften gesetzt ist,
+wird ihr Wert nur einmal eingesetzt und dann wieder auf Null gesetzt.
+Im folgenden Beispiel hat das letzte <code>f</code> nur einen Balken
+an seiner linken Seite (der als Achtelbalken der gesamten
+Gruppe gewertet wird).
+</p>
+<blockquote><pre class="verbatim">\relative a' {
+  a8[ r16 f g a]
+  a8[ r16
+  \set stemLeftBeamCount = #2
+  \set stemRightBeamCount = #1
+  f16
+  \set stemLeftBeamCount = #1
+  g16 a]
+}
+</pre><p>
+ <a href="../97/lily-4a2a8d53.ly">
+  <img align="middle"
+       border="0"
+       src="../97/lily-4a2a8d53.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Ausgewahlte-Schnipsel-1"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+<p><em> Gerade Fähnchen und überstehende Balkenenden</em>
+</p>
+
+<p>Gerade Fähnchen an einzelnen Noten und überstehende Balkenenden bei
+bebalkten Notengruppen sind möglich mit einer Kombination aus
+<code>stemLeftBeamCount</code>, <code>stemRightBeamCount</code> und Paaren von
+<code>[]</code>-Balkenbegrenzungen.
+</p>
+<p>Für gerade Fähnchen, die nach rechts zeigen, kann <code>[]</code> eingesetzt
+werden und <code>stemLeftBeamCount</code> auf Null gesetzt werden (wie
+Bsp. 1).
+</p>
+<p>Für gerade Fähnchen, die nach links zeigen, muss <code>stemRightBeamCount</code>
+eingesetzt werden (Bsp. 2).
+</p>
+<p>Für überstehende Balkenenden nach rechts muss <code>stemRightBeamCount</code>
+auf einen positiven Wert gesetzt werden, für Balkenenden, die nach links
+zeigen benutzt man <code>stemLeftBeamCount</code> (Bsp. 3).
+</p>
+<p>Manchmal können einzelne Noten, die von Pausen umgeben sind, auch Balkenenden
+in beide Richtungen tragen.  Das geschieht mit <code>[]</code>-Klammern (Bsp. 4).
+</p>
+<p>(<code>\set stemLeftBeamCount</code> entspricht immer dem Befehl
+<code>\once \set</code>.  Anders gesagt müssen die Einstellungen immer wieder
+wiederholt werden und die Fähnchen des letzten Sechzehntels im letzten
+Beispiel haben nichts mit dem <code>\set</code>-Befehl zwei Noten vorher zu tun.)
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    % Example 1
+    \new RhythmicStaff {
+      \set stemLeftBeamCount = #0
+      c16[]
+      r8.
+    }
+    % Example 2
+    \new RhythmicStaff {
+      r8.
+      \set stemRightBeamCount = #0
+      16[]
+    }
+    % Example 3
+    \new RhythmicStaff {
+      16 16
+      \set stemRightBeamCount = #2
+      16 r r
+      \set stemLeftBeamCount = #2
+      16 16 16
+    }
+    % Example 4
+    \new RhythmicStaff {
+      16 16
+      \set stemRightBeamCount = #2
+      16 r16
+      16[]
+      r16
+      \set stemLeftBeamCount = #2
+      16 16
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../3d/lily-4531314a.ly">
+  <img align="middle"
+       border="0"
+       src="../3d/lily-4531314a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-84"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="direction-and-placement.de.html">Richtung und Platzierung</a>,
+<a href="special-rhythmic-concerns.de.html#grace-notes">Verzierungen</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-Beam-2"></a>
+<a href="../internals/beam.de.html">Beam</a>,
+<a name="index-BeamEvent-1"></a>
+<a href="../internals/beamevent.de.html">BeamEvent</a>,
+<a name="index-Beam_005fengraver-1"></a>
+<a href="../internals/beam_005fengraver.de.html">Beam_engraver</a>,
+<a name="index-beam_002dinterface-2"></a>
+<a href="../internals/beam_002dinterface.de.html">beam-interface</a>,
+<a name="index-Stem_005fengraver"></a>
+<a href="../internals/stem_005fengraver.de.html">Stem_engraver</a>.
+</p>
+
+<hr size="6">
+<a name="Gespreizte-Balken"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#manual-beams" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Manuelle Balken&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Balken&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="bars.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Takte &gt; </a>]</td></tr></table>
+<a name="feathered-beams"></a>
+<h4 class="unnumberedsubsubsec">Gespreizte Balken</h4>
+
+<a name="index-Balken_002c-gespreizt"></a>
+<a name="index-gespreizte-Balken"></a>
+
+<a name="index-featherDurations"></a>
+<a name="index-featherDurations-1"></a>
+<a name="index-_005cfeatherDurations"></a>
+<a name="index-_005cfeatherDurations-1"></a>
+<a name="index-grow_002ddirection"></a>
+<a name="index-grow_002ddirection-1"></a>
+
+<p>Gespreizte Balken werden teilweise eingesetzt um anzuzeigen, dass
+kleine Notengruppen in beschleunigendem oder verlangsamendem Tempo
+gespielt werden sollen, ohne dass sich das Tempo des Stückes
+verändert.  Die Reichweite der gespreizten Balken muss manuell
+mit <code>[</code> und <code>]</code> angegeben werden und die Spreizung wird
+kontrolliert, indem der Balken-Eigenschaft <code>grow-direction</code>
+eine Richtung zugewiesen wird.
+</p>
+<p>Wenn die Anordnung der Noten und die MIDI-Ausgabe das <em>Ritardando</em>
+oder <em>Accelerando</em>, wie es die Spreizung angibt, reflektieren soll,
+müssen die Noten als ein musikalischer Ausdruck notiert werden,
+der von geschweiften Klammern umgeben ist und dem ein
+<code>featheredDurations</code>-(gespreizteDauern)-Befehl vorangestellt
+ist, der das Verhältnis der ersten und letzten Dauer definiert.
+</p>
+<p>Die eckigen Klammern geben die Reichweite des Balkens an und die
+geschweiften Klammern zeigen, auf welche Noten sich die Veränderung
+der Dauern auswirkt.  Normalerweise bezieht sich das auf die
+selbe Notengruppe, aber das ist nicht unbedingt erforderlich: beide
+Befehle sind unabhängig voneinander.
+</p>
+<p>Im folgenden Beispiel nehmen die acht 16-Noten exakt die gleiche
+Zeit ein wie eine halbe Note, aber die erste Note ist halb so lang
+wie die letzte der Gruppe, und die Noten dazwischen werden stufenweise
+verlängert.  Die ersten vier 32-Noten beschleunigen stufenweise
+das Tempo, während die darauffolgenden vier 32-Noten ein
+gleichmäßiges Tempo haben.
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  \override Beam.grow-direction = #LEFT
+  \featherDurations #(ly:make-moment 2/1)
+  { c16[ c c c c c c c] }
+  \override Beam.grow-direction = #RIGHT
+  \featherDurations #(ly:make-moment 2/3)
+  { c32[ d e f] }
+  % revert to non-feathered beams
+  \override Beam.grow-direction = #'()
+  { g32[ a b c] }
+}
+</pre><p>
+ <a href="../fb/lily-46cb6738.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-46cb6738.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die Platzierung der Noten im Druckbild entspricht den Notendauern
+nur annähernd, aber die MIDI-Ausgabe ist exakt.
+</p>
+<a name="Vordefinierte-Befehle-36"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\featherDurations</code>.
+</p>
+<a name="Siehe-auch-23"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Snippets:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-44"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p>Der <code>\featherDurations</code>-Befehl funktioniert nur mit kurzen
+Notenabschnitten, und wenn die Zahlen in den Brüchen klein
+sind.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#manual-beams" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Manuelle Balken&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Balken&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="bars.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Takte &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="beams.html">English</a>, <a href="beams.es.html">español</a>, <a href="beams.fr.html">français</a>, <a href="beams.it.html">italiano</a>, <a href="beams.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=" toc_current"><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Rhythmen-eingeben-1" href="writing-rhythms.de.html">1.2.1 Rhythmen eingeben</a>      </li>
+      <li class=""><a name="toc-Pausen-eingeben-1" href="writing-rests.de.html">1.2.2 Pausen eingeben</a>      </li>
+      <li class=""><a name="toc-Rhythmen-anzeigen-lassen-1" href="displaying-rhythms.de.html">1.2.3 Rhythmen anzeigen lassen</a>      </li>
+      <li class=" toc_current"><a name="toc-Balken-1" href="beams.de.html">1.2.4 Balken</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Automatische-Balken-1" href="beams.de.html#automatic-beams">Automatische Balken</a>        </li>
+        <li class=""><a name="toc-Einstellung-von-automatischen-Balken-1" href="beams.de.html#setting-automatic-beam-behavior">Einstellung von automatischen Balken</a>        </li>
+        <li class=""><a name="toc-Manuelle-Balken-1" href="beams.de.html#manual-beams">Manuelle Balken</a>        </li>
+        <li class=""><a name="toc-Gespreizte-Balken-1" href="beams.de.html#feathered-beams">Gespreizte Balken</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Takte-1" href="bars.de.html">1.2.5 Takte</a>      </li>
+      <li class=""><a name="toc-Besondere-rhythmische-Fragen-1" href="special-rhythmic-concerns.de.html">1.2.6 Besondere rhythmische Fragen</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

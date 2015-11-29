@@ -1,0 +1,581 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual d'aprenentatge del GNU LilyPond: 3.3.4 Modificar les propietats dels contextos</title>
+
+<meta name="description" content="Manual d'aprenentatge del GNU LilyPond: 3.3.4 Modificar les propietats dels contextos">
+<meta name="keywords" content="Manual d'aprenentatge del GNU LilyPond: 3.3.4 Modificar les propietats dels contextos">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Manual d'aprenentatge">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="C. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="contexts-and-engravers.ca.html#contexts-and-engravers" rel="up" title="3.3 Contextos i gravadors">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="C. Índex del LilyPond">
+<link href="engravers-explained.ca.html#engravers-explained" rel="previous" title="3.3.3 Explicació dels gravadors">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="learning devStatus">
+
+
+<div id="main">
+<a name="Modificar-les-propietats-dels-contextos"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Conceptes fonamentals&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ca.html" title="Capítol següent">&nbsp;Ajustament de la sortida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Explicació dels gravadors&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Contextos i gravadors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Afegir i eliminar gravadors &gt; </a>]</td></tr></table>
+<a name="modifying-context-properties"></a>
+<h3 class="subsection">3.3.4 Modificar les propietats dels contextos</h3>
+
+<a name="index-context_002c-propietats-de"></a>
+<a name="index-context_002c-propietats-de_002c-modificacio"></a>
+<a name="index-modificar-les-propietats-de-context"></a>
+<a name="index-_005cset"></a>
+<a name="index-_005cset-1"></a>
+<a name="index-set"></a>
+<a name="index-set-1"></a>
+<a name="index-_005cunset"></a>
+<a name="index-_005cunset-1"></a>
+<a name="index-unset"></a>
+<a name="index-unset-1"></a>
+
+<p>Els contextos es responsabilitzen de mantenir els valors d&rsquo;un cert
+nombre de <em>properties</em> de context.  Moltes d&rsquo;elles es poden
+canviar per influir en la interpretació del codi d&rsquo;entrada i
+canviar així l&rsquo;aparença de la sortida impresa.  Es modifiquen
+mitjançant la instrucció <code>\set</code>.  Aquesta instrucció pren la
+forma següent:
+</p>
+<blockquote><pre class="example">\set <em>NomDelContext</em>.<em>nomDeLaPropietat</em> = #<em>valor</em>
+</pre></blockquote>
+
+<p>On el <em>NomDelContext</em> és normalment <code>Score</code>,
+<code>Staff</code> o <code>Voice</code>.  Es pot ometre, i en aquest cas se
+suposa que és el context en curs (normalment <code>Voice</code>).
+</p>
+<p>Els noms de les propietats de context consisteixen en paraules
+unides sense cap guió o barra fixa, i on totes les paraules
+excepte la primera comencen en majúscula.  A continuació podem
+veure alguns exemples de noms de propietats utilitzades amb
+freqüència.  Hi ha moltes més que les que es mostren aquí.
+</p>
+<table>
+<thead><tr><th width="25%">nomDeLaPropietat</th><th width="15%">Tipus</th><th width="45%">Funció</th><th width="15%">Valor d&rsquo;exemple</th></tr></thead>
+<tr><td width="25%">extraNatural</td><td width="15%">Booleà</td><td width="45%">Si és vertader, posa becaires addicionals abans de les alteracions</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">currentBarNumber</td><td width="15%">Enter</td><td width="45%">Ajustar el número del compàs actual</td><td width="15%"><code>50</code></td></tr>
+<tr><td width="25%">doubleSlurs</td><td width="15%">Booleà</td><td width="45%">Si és vertader, imprimir lligadures d&rsquo;expressió per sobre i per sota de les notes</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">instrumentName</td><td width="15%">Text</td><td width="45%">Establir el nom del pentagrama, situat a l&rsquo;esquerra</td><td width="15%"><code>&quot;Cello I&quot;</code></td></tr>
+<tr><td width="25%">fontSize</td><td width="15%">Real</td><td width="45%">Augmentar o disminuir la mida de la font tipogràfica</td><td width="15%"><code>2.4</code></td></tr>
+<tr><td width="25%">stanza</td><td width="15%">Text</td><td width="45%">Establir el text que s&rsquo;imprimeix abans del començament d&rsquo;una estrofa</td><td width="15%"><code>&quot;2&quot;</code></td></tr>
+</table>
+
+<p>on un valor Booleà es vertader (<code>#t</code>, True) o fals
+(<code>#f</code>, False), un Enter és un nombre enter positiu, un nombre
+real és un nombre decimal positiu o negatiu, i el text es tanca
+entre cometes dobles.  Observeu l&rsquo;aparició de signes de coixinet
+(<code>#</code>), en dos llocs diferents: com a part del valor Booleà
+abans de la <code>t</code> o la <code>f</code>, i abans del <em>valor</em> dins
+de la instrucció <code>\set</code>.  Així doncs, quan s&rsquo;està escrivint
+un valor Booleà, s&rsquo;han d&rsquo;escriure dos signes de coixinet, per
+exemple: <code>##t</code>.
+</p>
+<a name="index-propietats-que-funcionen-en-contextos"></a>
+<a name="index-establir-propietats-en-contextos"></a>
+
+<p>Abans de poder establir qualsevol d&rsquo;aquestes propietats, hem de
+saber en quin context operen.  A vegades és quelcom obvi, però en
+ocasions pot ser quelcom complicat.  Si especifiquem un context
+equivocat, no es produeix cap missatge d&rsquo;error, però el
+funcionament esperat no tindrà lloc.  Per exemple, la propietat
+<code>instrumentName</code> (nom de l&rsquo;instrument) viu clarament dins del
+context de <code>Staff</code>, ja que és el pentagrama el que ha de ser
+anomenat.  En aquest exemple, el primer pentagrama resulta
+etiquetat, però no el segon, perquè hem omès el nom del context.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    \set Staff.instrumentName = #&quot;Soprano&quot;
+    c''2 c
+  }
+  \new Staff \relative {
+    \set instrumentName = #&quot;Alto&quot;  % Incorrecte!
+    d'2 d
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../9d/lily-c575b0ad.ly">
+  <img align="middle"
+       border="0"
+       src="../9d/lily-c575b0ad.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Recordeu que el nom del context predeterminat és <code>Voice</code>,
+així que la segona instrucció <code>\set</code> estableix la propietat
+<code>instrumentName</code> del context <code>Voice</code> a &ldquo;Alto&rdquo;, pero com
+el LilyPond no busca aquesta propietat al context <code>Voice</code>, no
+es realitza cap acció.  Això no és un error, i no es registra cap
+missatge al fitxer Log del registre d&rsquo;errors.
+</p>
+<p>De forma semblant, si el nom de la propietat s&rsquo;escriu amb alguna
+falta, no es produeix cap missatge d&rsquo;error, i clarament l&rsquo;acció
+esperada no pot tenir lloc.  De fet, es pot establir qualsevol
+&lsquo;property&rsquo; (fictícia) usant qualsevol nom que volem en qualsevol
+context que existeixi, mitjançant l&rsquo;ús de la instrucció
+<code>\set</code>.  Però si el nom no és conegut per al LilyPond, no
+produirà cap acció.  Alguns editors de text que donen suport als
+fitxers d&rsquo;entrada del LilyPond de manera especial, documenten els
+noms de propietats amb vinyetes quan passem sobre ells el punter
+del ratolí, com ara JEdit amb l&rsquo;extensió LilyPondTool, o destaquen
+els noms de propietats desconegudes de manera diferent, com ara
+ConTEXT.  Si no s&rsquo;utilitza un editor amb aquesta possibilitats, es
+recomana comprovar la correcció del nom de la propietat al manual
+de Referència de funcionament intern: vegeu
+<a name="index-Tunable-context-properties"></a>
+<a href="../internals/tunable-context-properties.ca.html">Tunable context properties</a> o <a name="index-Contexts"></a>
+<a href="../internals/contexts.ca.html">Contexts</a>.
+</p>
+<p>La propietat <code>instrumentName</code> tindrà efecte solament si
+s&rsquo;estableix dins del context <code>Staff</code>, però algunes propietats
+es poden establir a més d&rsquo;un context.  Per exemple, la propietat
+<code>extraNatural</code> està establerta de forma predeterminada al
+valor <code>##t</code> (vertader) per a tots els pentagrames.  Si
+s&rsquo;estableix a <code>##f</code> (fals) en un context de <code>Staff</code>
+determinat s&rsquo;aplicarà solament a les alteracions d&rsquo;aquest
+pentagrama.  Si s&rsquo;estableix a fals en el context de la partitura,
+<code>Score</code>, s&rsquo;aplicarà a tots els pentagrames.
+</p>
+<p>Així, això desactivarà els bequadres addicionals a un pentagrama:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    aeses'2 aes
+  }
+  \new Staff \relative {
+    \set Staff.extraNatural = ##f
+    aeses'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../2f/lily-b68f5016.ly">
+  <img align="middle"
+       border="0"
+       src="../2f/lily-b68f5016.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>i això els desactivarà a tots els pentagrames:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    aeses'2 aes
+  }
+  \new Staff \relative {
+    \set Score.extraNatural = ##f
+    aeses'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../3f/lily-957110f3.ly">
+  <img align="middle"
+       border="0"
+       src="../3f/lily-957110f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Com un exemple més, si s&rsquo;estableix <code>clefTransposition</code> dins
+del context de <code>Score</code>, aquesta instrucció canvia
+immediatament el valor de la transposició en tots els pentagrames
+en curs i estableix un nou valor predeterminat que s&rsquo;aplicarà a
+tots els pentagrames.
+</p>
+<p>La instrucció oposada, <code>\unset</code>, té l&rsquo;efecte de suprimir la
+propietat del context, el que ocasiona que la major part de les
+propietats tornin al seu valor predeterminat.  Normalment no és
+necessari l&rsquo;ús de <code>\unset</code>, atès que una nova instrucció
+<code>\set</code> farà l&rsquo;ajust desitjat.
+</p>
+<p>Les instruccions <code>\set</code> i <code>\unset</code> poden aparèixer en
+qualsevol lloc del fitxer d&rsquo;entrada i tindran un efecte a partir
+del temps on es troben i fins al final de la partitura o fins que la
+propietat es torni a establir mitjançant <code>\set</code> o
+<code>\unset</code>.  Provem a modificar la mida de la font tipogràfica,
+el que afecta la mida dels caps de les notes (entre altres coses)
+diverses vegades.  El canvi s&rsquo;agafa a partir del valor
+predeterminat, no el valor en curs.
+</p>
+<blockquote><pre class="verbatim">c4 d
+% fes que els caps de nota siguin més petits
+\set fontSize = #-4
+e4 f |
+% fes que els caps de nota siguin més grans
+\set fontSize = #2.5
+g4 a
+% torna a la mida predeterminada
+\unset fontSize
+b4 c |
+</pre><p>
+ <a href="../2e/lily-27a5ff5e.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-27a5ff5e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Hem pogut veure com establir els valors de diversos tipus de
+propietat diferents.  Observeu que els nombres enters i reals van
+sempre precedits d&rsquo;un símbol de coixinet, <code>#</code>, mentre que un
+valor booleà vertader o fals s&rsquo;especifica mitjançant
+<code>##t</code> i <code>##f</code>, amb dos coixinets.  Una propietat de
+test s&rsquo;ha de tancar entre cometes dobles, com abans, tot i que
+veurem més endavant que el text realment es pot especificar d&rsquo;una
+forma molt més general utilitzant la molt potent instrucció
+<code>markup</code>.
+</p>
+<a name="Canviar-les-propietats-d_0027un-context-amb-_005cwith"></a>
+<h4 class="subsubheading">Canviar les propietats d&rsquo;un context amb <code>\with</code></h4>
+
+<a name="index-_005cwith"></a>
+<a name="index-_005cwith-1"></a>
+<a name="index-with"></a>
+<a name="index-with-1"></a>
+<a name="index-context_002c--propietats-de_002c-establiment-amb-_005cwith"></a>
+
+<p>El valor predeterminat de les propietats de context es pot
+establir en el moment que es crea el context.  A vegades aquesta
+forma d&rsquo;establir el valor d&rsquo;una propietat és molt més clara, si ha
+de quedar fix durant tot el temps que duri el context.  Quan es
+crea un context amb una instrucció <code>\new</code> pot anar
+immediatament seguit d&rsquo;un bloc <code>\with { &hellip; }</code> en el
+que s&rsquo;estableix els valors predeterminats de les propietats.  Per
+exemple, si volem suprimir la impressió de bequadres addicionals per
+a tota la duració d&rsquo;un pentagrama, podem escriure:
+</p>
+<blockquote><pre class="example">\new Staff \with { extraNatural = ##f }
+</pre></blockquote>
+
+<p>de la forma següent:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff {
+    \relative {
+      gisis'4 gis aeses aes
+    }
+  }
+  \new Staff \with { extraNatural = ##f } {
+    \relative {
+      gisis'4 gis aeses aes
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../98/lily-b28fa1ef.ly">
+  <img align="middle"
+       border="0"
+       src="../98/lily-b28fa1ef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les propietats ajustades d&rsquo;aquesta manera encara poden canviar-se
+dinàmicament utilitzant <code>\set</code> i tornar-se al valor
+predeterminat que es va establir al bloc <code>\with</code> mitjançant
+<code>\unset</code>.
+</p>
+<a name="index-fontSize-_0028mida-de-la-tipografia_0029"></a>
+<a name="index-font_002c-mida-de-la"></a>
+<a name="index-mida-de-la-font"></a>
+
+<p>Així doncs, si la propietat <code>fontSize</code> s&rsquo;ajusta dins d&rsquo;una
+instrucció <code>\with</code>, té l&rsquo;efecte de reiniciar el valor
+predeterminat de la mida de la font tipogràfica.  Si més tard es
+modifica amb <code>\set</code>, aquest nou valor predeterminat pot
+restablir-se amb la instrucció <code>\unset fontSize</code>.
+</p>
+<a name="Canviar-las-propietats-d_0027un-context-amb-_005ccontext"></a>
+<h4 class="subsubheading">Canviar las propietats d&rsquo;un context amb <code>\context</code></h4>
+
+<a name="index-contextos_002c-establir-propietats-de_002c-amb-_005ccontext"></a>
+<a name="index-_005ccontext"></a>
+<a name="index-_005ccontext-1"></a>
+<a name="index-context-1"></a>
+<a name="index-context-2"></a>
+
+<p>Els valors de propietat dels contextos es poden establir per a
+<em>tots</em> els contextos d&rsquo;un tipus determinat, com per exemple
+tots els contextos de <code>Staff</code>, amb una única instrucció.  El
+tipus de context s&rsquo;identifica mitjançant la utilització del nom
+del seu tipus, com <code>Staff</code>, precedit d&rsquo;una barra invertida:
+<code>\Staff</code>.  L&rsquo;enunciat que estableix el valor de la propietat
+és el mateix que el que està en un bloc <code>\with</code>, presentat
+anteriorment.  Es col·loca en un bloc <code>\context</code> dins d&rsquo;un
+bloc <code>\layout</code>.  Cada bloc <code>\context</code> afecta a tots els
+contextos del tipus especificat al llarg del bloc <code>\score</code> o
+<code>\book</code> en el que apareix el bloc <code>\layout</code>.  A
+continuació presentem un exemple que mostra el format:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative {
+      cisis''4 e d cis
+    }
+  }
+  \layout {
+    \context {
+      \Staff
+      extraNatural = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../10/lily-62bd3fa9.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-62bd3fa9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si es vol aplicar la sobreescriptura de propietats a tos els
+pentagrames de la partitura:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        gisis'4 gis aeses aes
+      }
+    }
+    \new Staff {
+      \relative {
+        gisis'4 gis aeses aes
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score extraNatural = ##f
+    }
+  }
+}
+</pre><p>
+ <a href="../fb/lily-32f40d90.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-32f40d90.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les propietats de context establertes d&rsquo;aquesta forma es poden
+sobreescriure per a exemples concrets de contextos mitjançant
+enunciats dins d&rsquo;un bloc <code>\with</code>, i mitjançant instruccions
+<code>\set</code> intercalades dins d&rsquo;enunciats musicals.
+</p>
+<a name="Vegeu-tambe-27"></a>
+<h4 class="subsubheading">Vegeu també</h4>
+<p>Referència de la notació:
+<a name="index-Changing-context-default-settings"></a>
+<a href="../notation/changing-context-default-settings.ca.html">Changing context default settings</a>.
+<a name="index-The-set-command"></a>
+<a href="../notation/the-set-command.ca.html">The set command</a>
+</p>
+<p>Referència de funcionament intern:
+<a name="index-Contexts-1"></a>
+<a href="../internals/contexts.ca.html">Contexts</a>,
+<a name="index-Tunable-context-properties-1"></a>
+<a href="../internals/tunable-context-properties.ca.html">Tunable context properties</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Conceptes fonamentals&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ca.html" title="Capítol següent">&nbsp;Ajustament de la sortida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Explicació dels gravadors&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Contextos i gravadors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Afegir i eliminar gravadors &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="modifying-context-properties.html">English</a>, <a href="modifying-context-properties.cs.html">česky</a>, <a href="modifying-context-properties.de.html">deutsch</a>, <a href="modifying-context-properties.es.html">español</a>, <a href="modifying-context-properties.fr.html">français</a>, <a href="modifying-context-properties.hu.html">magyar</a>, <a href="modifying-context-properties.it.html">italiano</a>, <a href="modifying-context-properties.ja.html">日本語</a>, <a href="modifying-context-properties.nl.html">nederlands</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Manual d&rsquo;aprenentatge  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.ca.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacio-d_0027un-fitxer" href="compiling-a-file.ca.html">1.1 Compilació d&rsquo;un fitxer</a>    </li>
+    <li class=""><a name="toc-Com-escriure-fitxers-d_0027entrada-1" href="how-to-write-input-files.ca.html">1.2 Com escriure fitxers d&rsquo;entrada</a>    </li>
+    <li class=""><a name="toc-Gestio-dels-errors" href="dealing-with-errors.ca.html">1.3 Gestió dels errors</a>    </li>
+    <li class=""><a name="toc-Com-llegir-els-manuals-1" href="how-to-read-the-manuals.ca.html">1.4 Com llegir els manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacio-corrent" href="common-notation.ca.html">2. Notació corrent</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacio-en-un-sol-pentagrama" href="single-staff-notation.ca.html">2.1 Notació en un sol pentagrama</a>    </li>
+    <li class=""><a name="toc-Diverses-notes-a-la-vegada-1" href="multiple-notes-at-once.ca.html">2.2 Diverses notes a la vegada</a>    </li>
+    <li class=""><a name="toc-Cancons" href="songs.ca.html">2.3 Cançons</a>    </li>
+    <li class=""><a name="toc-Retocs-finals-1" href="final-touches.ca.html">2.4 Retocs finals</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Conceptes-fonamentals-1" href="fundamental-concepts.ca.html">3. Conceptes fonamentals</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Com-funcionen-els-fitxers-d_0027entrada-del-LilyPond-1" href="how-lilypond-input-files-work.ca.html">3.1 Com funcionen els fitxers d&rsquo;entrada del LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-veus-contenen-musica" href="voices-contain-music.ca.html">3.2 Les veus contenen música</a>    </li>
+    <li class=" toc_current"><a name="toc-Contextos-i-gravadors-1" href="contexts-and-engravers.ca.html">3.3 Contextos i gravadors</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Explicacio-dels-contextos" href="contexts-explained.ca.html">3.3.1 Explicació dels contextos</a>      </li>
+      <li class=""><a name="toc-Creacio-de-contextos" href="creating-contexts.ca.html">3.3.2 Creació de contextos</a>      </li>
+      <li class=""><a name="toc-Explicacio-dels-gravadors" href="engravers-explained.ca.html">3.3.3 Explicació dels gravadors</a>      </li>
+      <li class=" toc_current"><a name="toc-Modificar-les-propietats-dels-contextos-1" href="modifying-context-properties.ca.html">3.3.4 Modificar les propietats dels contextos</a>      </li>
+      <li class=""><a name="toc-Afegir-i-eliminar-gravadors-1" href="adding-and-removing-engravers.ca.html">3.3.5 Afegir i eliminar gravadors</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Extensio-de-les-plantilles" href="extending-the-templates.ca.html">3.4 Extensió de les plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ajustament-de-la-sortida-1" href="tweaking-output.ca.html">4. Ajustament de la sortida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elements-de-l_0027ajustament-1" href="tweaking-basics.ca.html">4.1 Elements de l&rsquo;ajustament</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionament-intern" href="the-internals-reference-manual.ca.html">4.2 Manual de referència de funcionament intern</a>    </li>
+    <li class=""><a name="toc-Aparenca-dels-objectes" href="appearance-of-objects.ca.html">4.3 Aparença dels objectes</a>    </li>
+    <li class=""><a name="toc-Col_00b7locacio-dels-objectes" href="placement-of-objects.ca.html">4.4 Col·locació dels objectes</a>    </li>
+    <li class=""><a name="toc-Espaiat-vertical-1" href="vertical-spacing.ca.html">4.5 Espaiat vertical</a>    </li>
+    <li class=""><a name="toc-Col_00b7lisions-d_0027objectes-1" href="collisions-of-objects.ca.html">4.6 Col·lisions d&rsquo;objectes</a>    </li>
+    <li class=""><a name="toc-Ajustaments-addicionals-1" href="further-tweaking.ca.html">4.7 Ajustaments addicionals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantilles-1" href="templates.ca.html">A. Plantilles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantilles-de-pentagrama-unic" href="single-staff-templates.ca.html">A.1 Plantilles de pentagrama únic</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-piano-1" href="piano-templates.ca.html">A.2 Plantilles de piano</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-quartet-de-corda-1" href="string-quartet-templates.ca.html">A.3 Plantilles de quartet de corda</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-conjunts-vocals-1" href="vocal-ensembles-templates.ca.html">A.4 Plantilles de conjunts vocals</a>    </li>
+    <li class=""><a name="toc-Plantilles-orquestrals-1" href="orchestral-templates.ca.html">A.5 Plantilles orquestrals</a>    </li>
+    <li class=""><a name="toc-Plantilles-per-a-notacio-antiga" href="ancient-notation-templates.ca.html">A.6 Plantilles per a notació antiga</a>    </li>
+    <li class=""><a name="toc-Altres-plantilles-1" href="other-templates.ca.html">A.7 Altres plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">C. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

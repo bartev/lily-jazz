@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2003-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond erweitern: 1.3.4 Artikulationszeichen zu Noten hinzufügen (Beispiel)</title>
+
+<meta name="description" content="LilyPond erweitern: 1.3.4 Artikulationszeichen zu Noten hinzufügen (Beispiel)">
+<meta name="keywords" content="LilyPond erweitern: 1.3.4 Artikulationszeichen zu Noten hinzufügen (Beispiel)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Extending">
+<link href="lilypond-index.de.html#lilypond-index" rel="index" title="B. LilyPond-Index">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="building-complicated-functions.de.html#building-complicated-functions" rel="up" title="1.3 Komplizierte Funktionen erstellen">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="B. LilyPond-Index">
+<link href="doubling-a-note-with-slurs-_0028example_0029.de.html#doubling-a-note-with-slurs-_0028example_0029" rel="previous" title="1.3.3 Verdoppelung einer Note mit Bindebögen (Beispiel)">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="extending devStatus">
+
+
+<div id="main">
+<a name="Artikulationszeichen-zu-Noten-hinzuf_00fcgen-_0028Beispiel_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Scheme-Tutorium&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.de.html" title="N&auml;chstes Kapitel">&nbsp;Schnittstellen für Programmierer &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="doubling-a-note-with-slurs-_0028example_0029.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Verdoppelung einer Note mit Bindebögen (Beispiel)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="building-complicated-functions.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Komplizierte Funktionen erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="interfaces-for-programmers.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Schnittstellen für Programmierer &gt; </a>]</td></tr></table>
+<a name="adding-articulation-to-notes-_0028example_0029"></a>
+<h3 class="subsection">1.3.4 Artikulationszeichen zu Noten hinzufügen (Beispiel)</h3>
+
+<p>Am einfachsten können Artikulationszeichen zu Noten
+hinzugefügt werden, indem man zwei musikalische Funktionen
+in einen Kontext einfügt, wie erklärt in
+<a name="index-Kontexte-erstellen-und-referenzieren"></a>
+<a href="../notation/creating-and-referencing-contexts.de.html">Kontexte erstellen und referenzieren</a>.  Hier soll jetzt eine musikalische
+Funktion entwickelt werden, die das vornimmt.  Daraus ergibt sich
+der zusätzliche Vorteil, dass diese musikalische Funktion eingesetzt
+werden kann, um eine Artikulation (wie etwa eine Fingersatzanweisung)
+einer einzigen Note innerhalb eines Akkordes hinzugefügt werden
+kann, was nicht möglich ist, wenn einfach unabhängige Noten ein einem
+Kontext miteinander verschmolzen werden.
+</p>
+<p>Eine <code>$variable</code> innerhalb von <code>#{...#}</code> ist das
+gleiche wie die normale Befehlsform <code>\variable</code> in
+üblicher LilyPond-Notation.  Es ist bekannt dass
+</p>
+<blockquote><pre class="example">{ \music -. -&gt; }
+</pre></blockquote>
+
+<p>in LilyPond nicht funktioniert.  Das Problem könnte vermieden
+werden, indem das Artikulationszeichen an einen leeren Akkord
+gehängt wird:
+</p>
+<blockquote><pre class="example">{ &lt;&lt; \music &lt;&gt; -. -&gt; &gt;&gt; }
+</pre></blockquote>
+
+<p>aber in diesem Beispiel soll gezeigt werden, wie man das in
+Scheme vornimmt.  Zunächst wird die Eingabe und die gewünschte
+Ausgabe examiniert:
+</p>
+<blockquote><pre class="example">%  Eingabe
+\displayMusic c4
+===&gt;
+(make-music
+  'NoteEvent
+  'duration
+  (ly:make-duration 2 0 1/1)
+  'pitch
+  (ly:make-pitch -1 0 0))))
+=====
+%  gewünschte Ausgabe
+\displayMusic c4-&gt;
+===&gt;
+(make-music
+  'NoteEvent
+  'articulations
+  (list (make-music
+          'ArticulationEvent
+          'articulation-type
+          &quot;accent&quot;))
+  'duration
+  (ly:make-duration 2 0 1/1)
+  'pitch
+  (ly:make-pitch -1 0 0))
+\displayMusic c4
+===&gt;
+(make-music
+  'EventChord
+  'elements
+  (list (make-music
+          'NoteEvent
+          'duration
+          (ly:make-duration 2 0 1/1)
+          'pitch
+          (ly:make-pitch -1 0 0))))
+</pre></blockquote>
+
+<p>Dabei ist zu sehen, dass eine Note (<code>c4</code>) als <code>NoteEvent</code>-Ausdruck
+repräsentiert ist.  Um eine Akzent-Artikulation hinzuzufügen, muss
+ein <code>ArticulationEvent</code>-Ausdruck zu der Elementeigenschaft <code>articulations</code>
+des <code>NoteEvent</code>-Ausdrucks hinzugefügt werden.
+</p>
+<p>Um diese Funktion zu bauen, wird folgendermaßen begonnen:
+</p>
+<blockquote><pre class="example">(define (add-accent note-event)
+  &quot;Add an accent ArticulationEvent to the articulations of `note-event',
+  which is supposed to be a NoteEvent expression.&quot;
+  (set! (ly:music-property note-event 'articulations)
+        (cons (make-music 'ArticulationEvent
+                'articulation-type &quot;accent&quot;)
+              (ly:music-property note-event 'articulations)))
+  note-event)
+</pre></blockquote>
+
+<p>Die erste Zeile definiert eine Funktion in Scheme: Die Bezeichnung
+der Funktion ist <code>add-accent</code> und sie hat eine Variable
+mit der Bezeichnung <code>note-event</code>.  In Scheme geht der Typ
+einer Variable oft direkt aus der Bezeichnung hervor (das ist auch
+eine gute Methode für andere Programmiersprachen).
+</p>
+<blockquote><pre class="example">&quot;Add an accent...&quot;
+</pre></blockquote>
+
+<p>ist eine (englische) Beschreibung, was diese Funktion tut.  Sie ist
+nicht unbedingt notwendig, aber genauso wie klare Variablen-Bezeichnungen
+ist auch das eine gute Methode.
+</p>
+<p>Es kann seltsam scheinen, warum das Notenereignis direkt verändert wird,
+anstatt mit einer Kopie zu arbeiten (<code>ly:music-deep-copy</code> kann dafür
+benützt werden).  Der Grund ist eine stille Übereinkunft: musikalische
+Funktionen dürfen ihre Argumente verändern: sie werden entweder von
+Grund auf erstellt (wie Eingabe des Benutzers) oder sind schon kopiert
+(etwa Verweis auf eine Variable mit  &lsquo;<samp>\Bezeichnung</samp>&rsquo; oder Noten aus
+einem Scheme-Ausdruck &lsquo;<samp>$(&hellip;)</samp>&rsquo; sind Kopien).  Weil es uneffizient
+wäre, unnötige Kopien zu erstellen, wird der Wiedergabewert einer musikalischen
+Funktion <em>nicht</em> kopiert.  Um sich also an die Übereinkunft zu halten,
+dürfen Argumente nicht mehr als einmal benützt werden, und sie wiederzugeben
+zählt als eine Benutzung.
+</p>
+<p>In einem früheren Beispiel wurden Noten konstruiert, indem ein musikalisches
+Argument wiederholt wurde.  In diesem Fall muss wenigstens eine Wiederholung
+eine Kopie ihres Arguments sein.  Wenn es keine Kopie ist, können seltsame
+Dinge passieren.  Wenn man beispielsweise <code>\relative</code> oder <code>\transpose</code>
+auf die resultierenden Noten anwendet, die die gleichen Elemente mehrmals
+enthalten, werden die Elemente mehrmals der <code>\relative</code>-Veränderung
+oder Transposition unterworfen.  Wenn man sie einer musikalischen Variable
+zuweist, wird dieser Fluch aufgehoben, denn der Verweis auf &lsquo;<samp>\Bezeichnung</samp>&rsquo;
+erstellt wiederum eine Kopie, die nicht die Identität der wiederholten
+Elemente überträgt.
+</p>
+<p>Während die Funktion oben keine musikalische Funktion ist, wird sie
+normalerweise inmitten musikalischer Funktionen eingesetzt.  Darum
+ist es sinnvoll, der gleichen Übereinkunft zu folgen, die für musikalische
+Funktionen gelten:  Die Eingabe kann verändert worden sein, um die
+Ausgabe zu produzieren, und der den Aufruf erstellt, ist verantwortlich
+für die Erstellung von Kopien, wenn er immernoch die unveränderten
+Argumente benötigt.  Wenn man sich LilyPonds eigene Funktionen wie etwa
+<code>music-map</code> anschaut, sieht man, dass sie denselben Prinzipien folgen.
+</p>
+<p>Aber wo waren wir?  Jetzt gibt es ein <code>note-event</code>, das verändert
+werden kann, nicht unter Einsatz von <code>ly:music-deep-copy</code> sondern
+aufgrund einer langen Erklärung.  Der Akzent wird zu seiner
+<code>'articulations</code>-Liste hinzugefügt:
+</p>
+<blockquote><pre class="example">(set! place neuer-Wert)
+</pre></blockquote>
+
+<p>Was in diesem Fall &bdquo;gesetzt&ldquo; werden soll (&bdquo;place&ldquo;) ist die
+&sbquo;&rsquo;articulations&lsquo;-Eigenschaft des <code>note-event</code>-Ausdrucks.
+</p>
+<blockquote><pre class="example">(ly:music-property note-event 'articulations)
+</pre></blockquote>
+
+<p><code>ly:music-property</code> ist die Funktion, mit der musikalische
+Eigenschaften erreicht werden können (die <code>'articulations</code>,
+<code>'duration</code>, <code>'pitch</code> usw., die in der Ausgabe von
+<code>\displayMusic</code> weiter oben angezeigt werden).  Der neue
+Wert ist, was ehemals die <code>'articulations</code>-Eigenschaft war, mit einem
+zusätzlichen Element: dem <code>ArticulationEvent</code>-Ausdruck,
+der aus der Ausgabe von <code>\displayMusic</code> kopiert werden kann:
+</p>
+<blockquote><pre class="example">(cons (make-music 'ArticulationEvent
+        'articulation-type &quot;accent&quot;)
+      (ly:music-property result-event-chord 'articulations))
+</pre></blockquote>
+
+<p><code>cons</code> wird benutzt, um ein Element vorne an eine Liste hinzuzufügen,
+ohne dass die originale Liste verändert wird.  Das ist es, was die
+Funktion tun soll:  die gleiche Liste wie vorher, aber mit dem neuen
+<code>ArticulationEvent</code>-Ausdruck.  Die Reihenfolge innerhalb
+der Elementeeigenschaft ist hier nicht relevant.
+</p>
+<p>Wenn schließlich die Akzent-Artikulation zu der entsprechenden
+<code>elements</code>-Eigenschaft hinzugefügt ist, kann
+<code>note-event</code> ausgegeben werden, darum die letzte Zeile
+der Funktion.
+</p>
+<p>Jetzt wird die <code>add-accent</code>-Funktion in eine musikalische
+Funktion umgewandelt (hierzu gehört etwas syntaktischer Zuckerguß und
+eine Deklaration des Typs ihres einzigen &bdquo;wirklichen&ldquo; Arguments:
+</p>
+<blockquote><pre class="example">addAccent = #(define-music-function (note-event)
+                                     (ly:music?)
+  &quot;Add an accent ArticulationEvent to the articulations of `note-event',
+  which is supposed to be a NoteEvent expression.&quot;
+  (set! (ly:music-property note-event 'articulations)
+        (cons (make-music 'ArticulationEvent
+                'articulation-type &quot;accent&quot;)
+              (ly:music-property note-event 'articulations)))
+  note-event)
+</pre></blockquote>
+
+<p>Eine Überprüfung, dass die Funktion richtig arbeitet, geschieht
+folgendermaßen:
+</p>
+<blockquote><pre class="example">\displayMusic \addAccent c4
+</pre></blockquote>
+
+
+
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Scheme-Tutorium&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.de.html" title="N&auml;chstes Kapitel">&nbsp;Schnittstellen für Programmierer &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="doubling-a-note-with-slurs-_0028example_0029.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Verdoppelung einer Note mit Bindebögen (Beispiel)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="building-complicated-functions.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Komplizierte Funktionen erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="interfaces-for-programmers.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Schnittstellen für Programmierer &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="adding-articulation-to-notes-_0028example_0029.html">English</a>, <a href="adding-articulation-to-notes-_0028example_0029.es.html">español</a>, <a href="adding-articulation-to-notes-_0028example_0029.fr.html">français</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Extending  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Scheme_002dTutorium-1" href="scheme-tutorial.de.html">1. Scheme-Tutorium</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Einleitung-in-Scheme-1" href="introduction-to-scheme.de.html">1.1 Einleitung in Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-in-LilyPond-1" href="scheme-in-lilypond.de.html">1.2 Scheme in LilyPond</a>    </li>
+    <li class=" toc_current"><a name="toc-Komplizierte-Funktionen-erstellen-1" href="building-complicated-functions.de.html">1.3 Komplizierte Funktionen erstellen</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Musikalische-Funktionen-darstellen-1" href="displaying-music-expressions.de.html">1.3.1 Musikalische Funktionen darstellen</a>      </li>
+      <li class=""><a name="toc-Eigenschaften-von-Musikobjekten-1" href="music-properties.de.html">1.3.2 Eigenschaften von Musikobjekten</a>      </li>
+      <li class=""><a name="toc-Verdoppelung-einer-Note-mit-Bindebogen-_0028Beispiel_0029" href="doubling-a-note-with-slurs-_0028example_0029.de.html">1.3.3 Verdoppelung einer Note mit Bindebögen (Beispiel)</a>      </li>
+      <li class=" toc_current"><a name="toc-Artikulationszeichen-zu-Noten-hinzufugen-_0028Beispiel_0029" href="adding-articulation-to-notes-_0028example_0029.de.html">1.3.4 Artikulationszeichen zu Noten hinzufügen (Beispiel)</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Schnittstellen-fur-Programmierer" href="interfaces-for-programmers.de.html">2. Schnittstellen für Programmierer</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond_002dCodeabschnitte-1" href="lilypond-code-blocks.de.html">2.1 LilyPond-Codeabschnitte</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">2.2 Scheme-Funktionen</a>    </li>
+    <li class=""><a name="toc-Musikalische-Funktionen-1" href="music-functions.de.html">2.3 Musikalische Funktionen</a>    </li>
+    <li class=""><a name="toc-Ereignisfunktionen-1" href="event-functions.de.html">2.4 Ereignisfunktionen</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsfunktionen-1" href="markup-functions.de.html">2.5 Textbeschriftungsfunktionen</a>    </li>
+    <li class=""><a name="toc-Kontexte-fur-Programmierer" href="contexts-for-programmers.de.html">2.6 Kontexte für Programmierer</a>    </li>
+    <li class=""><a name="toc-Callback_002dFunktionen-1" href="callback-functions.de.html">2.7 Callback-Funktionen</a>    </li>
+    <li class=""><a name="toc-Scheme_002dCode-innerhalb-LilyPonds-1" href="inline-scheme-code.de.html">2.8 Scheme-Code innerhalb LilyPonds</a>    </li>
+    <li class=""><a name="toc-Schwierige-Korrekturen-1" href="difficult-tweaks.de.html">2.9 Schwierige Korrekturen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-Scheme_002dSchnittstellen-1" href="lilypond-scheme-interfaces.de.html">3. LilyPond Scheme-Schnittstellen</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">B. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

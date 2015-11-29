@@ -1,0 +1,824 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 3.2.3 Crear notas al pie</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 3.2.3 Crear notas al pie">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 3.2.3 Crear notas al pie">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="titles-and-headers.es.html#titles-and-headers" rel="up" title="3.2 Títulos y encabezamientos">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="custom-titles-headers-and-footers.es.html#custom-titles-headers-and-footers" rel="previous" title="3.2.2 Títulos, encabezamientos y pies de página personalizados">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Crear-notas-al-pie"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Entrada y salida generales&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Problemas de espaciado &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="custom-titles-headers-and-footers.es.html#custom-layout-for-headers-and-footers" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Disposición personalizada de cabeceras y pies de página&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="titles-and-headers.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Títulos y encabezamientos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#footnotes-in-music-expressions" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Notas al pie dentro de expresiones musicales &gt; </a>]</td></tr></table>
+<a name="creating-footnotes"></a>
+<h3 class="subsection">3.2.3 Crear notas al pie</h3>
+
+<a name="index-notas-al-pie"></a>
+
+<p>Se pueden crear dos tipos de notas al pie: automáticas y manuales.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#footnotes-in-music-expressions" accesskey="1">Notas al pie dentro de expresiones musicales</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#footnotes-in-stand_002dalone-text" accesskey="2">Notas al pie en texto independiente</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Notas-al-pie-dentro-de-expresiones-musicales"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Entrada y salida generales&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Problemas de espaciado &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#creating-footnotes" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Crear notas al pie&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Crear notas al pie&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#footnotes-in-stand_002dalone-text" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Notas al pie en texto independiente &gt; </a>]</td></tr></table>
+<a name="footnotes-in-music-expressions"></a>
+<h4 class="unnumberedsubsubsec">Notas al pie dentro de expresiones musicales</h4>
+
+<a name="index-notas-al-pie-dentro-de-expresiones-musicales"></a>
+<a name="index-_005cfootnote"></a>
+<a name="index-_005cfootnote-1"></a>
+
+<a name="-Panoramica-de-las-notas-al-pie"></a>
+<h4 class="subsubheading"><i> Panorámica de las notas al pie</i></h4>
+
+<p>Las notas al pie dentro de expresiones musicales caen dentro de dos
+categorías:
+</p>
+<dl compact="compact">
+<dt> <em>Notas al pie basadas en eventos</em></dt>
+<dd><p>Se adjuntan a un evento en particular.  Son ejemplos de tales eventos
+las notas sueltas, las articulaciones (como indicaciones de digitación,
+acentos, indicaciones dinámicas) y los post-eventos (como las ligaduras de expresión
+y las barras de corchea manuales).  La forma general de las notas
+al pie basadas en eventos es como sigue:
+</p>
+<blockquote><pre class="example">[<var>dirección</var>] \footnote [<var>marca</var>] <var>desplazamiento</var> <var>texto-de-la-nota</var> <var>música</var>
+</pre></blockquote>
+
+</dd>
+<dt> <em>Notas al pie basadas en tiempo</em></dt>
+<dd><p>Se ligan a un punto temporal determinado, dentro de un contexto
+musical.  Algunas instrucciones como <code>\time</code> y <code>\clef</code> en
+realidad no usan eventos para crear objetos como la indicación de
+compás y la clave.  Un acorde tampoco crea un evento por sí mismo: su
+plica o corchete se crea al final de un paso de tiempo (nominalmente,
+a través de uno de los eventos de nota que contiene).  Una nota al pie
+basada en tiempo permite anotar tales objetos de presentación sin
+referirse a ningún evento.
+</p>
+<p>Una nota al pie basada en tiempo permite que tales objetos de
+presentación se puedan anotar sin hacer referencia a un evento.
+La forma general para las notas al pie basadas en tiempo es:
+</p>
+<blockquote><pre class="example">\footnote [<var>marca</var>] <var>desplazamiento</var> <var>texto-de-la-nota</var> [<var>Contexto</var>].<var>Nombre-del-Grob</var>
+</pre></blockquote>
+
+</dd>
+</dl>
+
+<p>Los elementos para las dos formas son como sigue:
+</p>
+<dl compact="compact">
+<dt> <var>dirección</var></dt>
+<dd><p>Si (y sólo si) el <code>\footnote</code> se está aplicando a un post-evento
+o articulación, debe ir precedida de un indicador de dirección
+(<code>-, _, ^</code>) con el objeto de adjuntar la <var>música</var> (con una
+marca de nota al pie) a la nota o silencio precedente.
+</p>
+</dd>
+<dt> <var>marca</var></dt>
+<dd><p>es un elemento de marcado o cadena de caracteres que especifica la
+marca de nota al pie que se usa para marcar tanto el punto de
+referencia como la propia nota al pie en la parte inferior de la
+página.  Se puede omitir (o, de forma equivalente, sustituirse por
+<code>\default</code>) en cuyo caso se genera un número secuencialmente de
+forma automática.  Tales secuencias numéricas se reinician en cada
+página que contiene una nota al pie.
+</p>
+</dd>
+<dt> <var>desplazamiento</var></dt>
+<dd><p>es una pareja de números tal como &lsquo;<samp>#(2 . 1)</samp>&rsquo; que especifica los
+desplazamientos en X y en Y en unidades de espacios de pentagrama a
+partir del límite del objeto en que se desea situar la marca.  Los
+valores de desplazamiento positivos se toman a partir del borde
+superior derecho, los valores negativos a partir del borde inferior
+izquierdo y cero implica que la marca se centra sobre el borde.
+</p>
+</dd>
+<dt> <var>Contexto</var></dt>
+<dd><p>es el contexto en que se crea el grob que recibe la nota al pie.
+Se puede omitir si el grob está en un contexto del nivel inferior,
+p.ej un contexto <code>Voice</code>.
+</p>
+</dd>
+<dt> <var>Nombre-del-Grob</var></dt>
+<dd><p>especifica un tipo de grob que marcar (como &lsquo;<samp>Flag</samp>&rsquo; para el
+corchete).  Si se da, la nota al pie no se adjunta a una expresión
+musical en particular, sino a todos los grobs del tipo
+especificado que ocurren en dicho momento de tiempo musical.
+</p>
+</dd>
+<dt> <var>texto-de-la-nota</var></dt>
+<dd><p>es el elemento de marccado o cadena de caracteres que especifica el
+texto de la nota al pie que utilizar en la parte baja de la página.
+</p>
+</dd>
+<dt> <var>música</var></dt>
+<dd><p>es el evento musical, post-evento o articulación que se
+está anotando.
+</p>
+</dd>
+</dl>
+
+<a name="-Notas-al-pie-basadas-en-eventos"></a>
+<h4 class="subsubheading"><i> Notas al pie basadas en eventos</i></h4>
+
+<a name="index-Notas-al-pie_002c-basadas-en-eventos"></a>
+
+<p>Una nota al pie se adjunta a un objeto de presentación causado
+directamente por el evento que corresponde a <var>música</var>, con la
+sintaxis siguiente:
+</p>
+<blockquote><pre class="example">\footnote [<var>marca</var>] <var>desplazamiento</var> <var>texto-de-la-nota</var> <var>música</var>
+</pre></blockquote>
+
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c'' {
+    \footnote #'(-1 . 3) &quot;Una nota&quot; a4
+    a4
+    \footnote #'(2 . 2) &quot;Un silencio&quot; r4
+    a4
+  }
+}
+</pre><p>
+ <a href="../7a/lily-ef2fa8dd.ly">
+  <img align="middle"
+       border="0"
+       src="../7a/lily-ef2fa8dd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>No es posible marcar un acrode <em>completo</em> con una nota al pie
+basada en evento: un acorde, incluso aquel que contiene una sola
+nota, no produce un verdadero evento por sí mismo.  Sin embargo,
+las notas individuales que están <em>dentro</em> del acorde sí se
+pueden marcar:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c'' {
+    \footnote #'(2 . 3) &quot;No funciona&quot; &lt;a-3&gt;2
+    &lt;\footnote #'(-2 . -3) &quot;Funciona&quot; a-3&gt;4
+    &lt;a-3 \footnote #'(3 . 1/2) &quot;También funciona&quot; c-5&gt;4
+  }
+}
+</pre><p>
+ <a href="../81/lily-8ff6a36e.ly">
+  <img align="middle"
+       border="0"
+       src="../81/lily-8ff6a36e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si se desea que la nota al pie se adjunte a un post-evento o
+articulación, la instrucción <code>\footnote</code> <em>debe</em> ir
+precedida por un indicador de dirección, <code>-, _, ^</code>, y seguida
+por el post-evento o articulación que se desea anotar como
+argumento <var>música</var>.  En esta forma, la <code>\footnote</code> se
+puede considerar como una simple copia de su último argumento con
+una marca de nota al pie adjunta.  La sintaxis es:
+</p>
+<blockquote><pre class="example"><var>dirección</var> \footnote [<var>marca</var>] <var>desplazamiento</var> <var>texto-de-la-nota</var> <var>música</var>
+</pre></blockquote>
+
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative {
+    a'4_\footnote #'(0 . -1) &quot;Ligadura forzada hacia abajo&quot; (
+    b8^\footnote #'(1 . 0.5) &quot;Barra manual forzada hacia arriba&quot; [
+    b8 ]
+    c4 )
+    c-\footnote #'(1 . 1) &quot;Tenuto&quot; --
+  }
+}
+</pre><p>
+ <a href="../55/lily-8776d01b.ly">
+  <img align="middle"
+       border="0"
+       src="../55/lily-8776d01b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="-notas-al-pie-basadas-en-tiempo"></a>
+<h4 class="subsubheading"><i> notas al pie basadas en tiempo</i></h4>
+
+<a name="index-notas-al-pie_002c-basadas-en-tiempo"></a>
+
+<p>Si el objeto de presentación que recibe la nota al pie está
+causado <em>indirectamente</em> por un evento (como un objeto
+<code>Accidental</code>, alteración, o <code>Stem</code>, plica, causados por
+un evento <code>NoteHead</code>, cabeza de nota), el nombre del grob
+<var>GrobName</var> del objeto de presentación es necesario después del
+texto de la nota al pie, en lugar de <var>música</var>:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c'' {
+    \footnote #'(-1 . -3) &quot;Un bemol&quot; Accidental
+    aes4 c
+    \footnote #'(-1 . 0.5) &quot;Otro bemol&quot; Accidental
+    ees
+    \footnote #'(1 . -2) &quot;Una plica&quot; Stem
+    aes
+  }
+}
+</pre><p>
+ <a href="../15/lily-d7fe0337.ly">
+  <img align="middle"
+       border="0"
+       src="../15/lily-d7fe0337.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Sin embargo, observe que cuando se especifica el nombre de un
+grob, se adjunta una nota al pie a todos los grobs de ese tipo
+dentro del instante de tiempo actual:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    \footnote #'(-1 . 3) &quot;Un bemol&quot; Accidental
+    &lt;ees ges bes&gt;4
+    \footnote #'(2 . 0.5) &quot;Articulación&quot; Script
+    c'-&gt;-.
+  }
+}
+</pre><p>
+ <a href="../27/lily-578d842b.ly">
+  <img align="middle"
+       border="0"
+       src="../27/lily-578d842b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Una nota dentro de un acorde puede recibir una nota al pie
+individual, basada en evento.  El único grob causado directamente
+por una nota de un acorde es &lsquo;<samp>NoteHead</samp>&rsquo;, por lo que la
+instrucción de nota al pie basada en evento <em>solamente</em> es
+apta para añadir una nota al pie a la &lsquo;<samp>NoteHead</samp>&rsquo; dentro de un
+acorde.  Todos los demás grobs de notas de acorde están causados
+indirectamente. La propia instrucción <code>\footnote</code> no ofrece
+ninguna sintaxis para especificar al mismo tiempo un tipo concreto
+de grob <em>y también</em> un evento concreto al que adjuntar la
+nota.  Sin embargo, se puede usat una instrucción <code>\footnote</code>
+basada en tiempo para especificar el tipo de grob, y luego añadir
+la instrucción <code>\single</code> como prefijo, con el objeto de que
+se aplique solamente al evento siguiente:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c'' {
+    &lt; \footnote #'(1 . -2) &quot;An A&quot; a
+      \single \footnote #'(-1 . -1) &quot;Un sostenido&quot; Accidental
+      cis
+      \single \footnote #'(0.5 . 0.5) &quot;Un bemol&quot; Accidental
+      ees fis
+    &gt;2
+  }
+}
+</pre><p>
+ <a href="../75/lily-dd4036a0.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-dd4036a0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><strong>Nota:</strong> Cuando las notas al pie se adjuntan a varios elementos musicales que
+están dentro del mismo momento musical, como ocurre en el ejemplo
+anterior, las notas al pie se numeran desde los elementos más
+altos a los más bajos tal y como aparecen en la salida impresa, no
+en el orden en que se escriben en el flujo de entrada.
+</p>
+</div>
+<p>Los objetos de presentación como las claves y las armaduras de
+cambio de tonalidad están, más bien, causadas por propiedades que
+cambian, y no por eventos.  Otros, como las líneas divisorias y
+los números de compás, son una consecuencia directa del paso del
+tiempo.  Por esta razón, las notas al pie sobre tales objetos
+tienen que basarse en su tiempo musical.  Las notas al pie basadas
+en tiempo so preferibles también cuando se marcan cosas como las
+plicas y las barras de corchea en <em>acordes</em>: dado que estas
+funcionalidades de cada acorde individual están asignadas
+normalmente a <em>un solo</em> evento dentro del acorde, sería
+imprudente descansar en una elección particular.
+</p>
+<p>En las notas al pie basadas en tiempo, siempre se debe especificar
+explícitamente el objeto de presentación en cuestión, y si el grob
+se crea dentro de un contexto distinto al de nivel más bajo, debe
+especificarse el contexto apropiado.
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c'' {
+    r1 |
+    \footnote #'(-0.5 . -1) &quot;Cambio de compás&quot; Staff.TimeSignature
+    \time 3/4
+    \footnote #'(1 . -1) &quot;Plica de acorde&quot; Stem
+    &lt;c e g&gt;4 q q
+    \footnote #'(-0.5 . 1) &quot;Línea divisoria&quot; Staff.BarLine
+    q q
+    \footnote #'(0.5 . -1) &quot;Cambio de tonalidad&quot; Staff.KeySignature
+    \key c\minor
+    q
+  }
+}
+</pre><p>
+ <a href="../c6/lily-2b346c41.ly">
+  <img align="middle"
+       border="0"
+       src="../c6/lily-2b346c41.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se pueden usar marcas personalizadas como alternativas a las
+marcas numéricas, y se puede suprimir la línea de anotación que
+une el objeto marcado con su marca:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    \footnote &quot;*&quot; #'(0.5 . -2) \markup { \italic &quot;* La primera nota&quot; } a'4
+    b8
+    \footnote \markup { \super &quot;$&quot; } #'(0.5 . 1)
+      \markup { \super &quot;$&quot; \italic &quot; La segunda nota&quot; } e
+    c4
+    \once \override Score.FootnoteItem.annotation-line = ##f
+    b-\footnote \markup \tiny &quot;+&quot; #'(0.1 . 0.1)
+      \markup { \super &quot;+&quot; \italic &quot; Editorial&quot; } \p
+  }
+}
+</pre><p>
+ <a href="../16/lily-8ec4b035.ly">
+  <img align="middle"
+       border="0"
+       src="../16/lily-8ec4b035.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se muestran más ejemplos de marcas personalizadas en
+<a href="#footnotes-in-stand_002dalone-text">Notas al pie en texto independiente</a>.
+</p>
+
+<hr size="6">
+<a name="Notas-al-pie-en-texto-independiente"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Entrada y salida generales&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Problemas de espaciado &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#footnotes-in-music-expressions" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Notas al pie dentro de expresiones musicales&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Crear notas al pie&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="reference-to-page-numbers.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Referencia a números de página &gt; </a>]</td></tr></table>
+<a name="footnotes-in-stand_002dalone-text"></a>
+<h4 class="unnumberedsubsubsec">Notas al pie en texto independiente</h4>
+
+<a name="index-notas-al-pie-en-texto-independiente"></a>
+
+<p>Se utilizan dentro de un elemento de marcado fuera de cualquier
+expresión musical.  No se traza una líne hasta el punto de referencia:
+la marca simplemente sigue al elemento de marcado que se referencia.
+Se pueden insertar las marcas automáticamente, en cuyo caso son
+numéricas.  De forma alternativa, se pueden aportar manualmente marcas
+personalizadas.
+</p>
+<p>Las notas al pie para texto independiente con marcas automáticas y
+personalizadas se crean de distintas formas.
+</p>
+<a name="-Notas-al-pie-en-texto-independiente-con-marcas-automaticas"></a>
+<h4 class="subsubheading"><i> Notas al pie en texto independiente con marcas automáticas</i></h4>
+
+<p>La sintaxis de una nota al pue sobre texto independiente con marcas
+automáticas es
+</p>
+<blockquote><pre class="example">\markup { &hellip; \auto-footnote <var>texto</var> <var>nota</var> &hellip; }
+</pre></blockquote>
+
+<p>Los elementos son:
+</p>
+<dl compact="compact">
+<dt> <var>texto</var></dt>
+<dd><p>es el elemento de marcado o cadena de caracteres que se desea anotar.
+</p>
+</dd>
+<dt> <var>nota</var></dt>
+<dd><p>es el elemento de marcado o cadena de caracteres que especifica el
+texto de la nota al pie que utilizar en la parte baja de la página.
+</p>
+</dd>
+</dl>
+
+<p>Por ejemplo:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \markup {
+    &quot;A simple&quot;
+    \auto-footnote &quot;tune&quot; \italic &quot; By me&quot;
+    &quot;is shown below.  It is a&quot;
+    \auto-footnote &quot;recent&quot; \italic &quot; Aug 2012&quot;
+    &quot;composition.&quot;
+  }
+  \relative {
+    a'4 b8 e c4 d
+  }
+}
+</pre><p>
+ <a href="../b9/lily-f79e7097.ly">
+  <img align="middle"
+       border="0"
+       src="../b9/lily-f79e7097.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="-Notas-al-pie-sobre-texto-independiente-con-marcas-personalizadas"></a>
+<h4 class="subsubheading"><i> Notas al pie sobre texto independiente con marcas personalizadas</i></h4>
+
+<p>La sintaxis de una nota al pie sobre texto independiente con marcas
+personalizadas es
+</p>
+<blockquote><pre class="example">\markup { &hellip; \footnote <var>marca</var> <var>nota</var> &hellip; }
+</pre></blockquote>
+
+<p>Los elementos son:
+</p>
+<dl compact="compact">
+<dt> <var>marca</var></dt>
+<dd><p>es un elemento de marcado o cadena de caracteres que especifica la
+marca que se usa para señalar el punto de referencia.  Observe que
+esta marca <em>no</em> se inserta automáticamente antes de la propia
+nota al pie.
+</p>
+</dd>
+<dt> <var>nota</var></dt>
+<dd><p>es el elemento de marcado o cadena de caracteres que especifica el
+texto de la nota que aparece en la parte baja de la página, precedida
+por la <var>marca</var> especificada.
+</p>
+</dd>
+</dl>
+
+<p>Se puede usar como marca un carácter fácil de teclear, como * ó +,
+según se muestra en <a href="#footnotes-in-music-expressions">Notas al pie dentro de expresiones musicales</a>.
+De forma alternativa, se pueden usar alias en ASCII (véase
+<a href="special-characters.es.html#ascii-aliases">Alias de ASCII</a>):
+</p>
+<blockquote><pre class="verbatim">\book {
+  \paper { #(include-special-characters) }
+  \header { tagline = ##f }
+  \markup {
+    &quot;A simple tune&quot;
+    \footnote &quot;*&quot; \italic &quot;* By me&quot;
+    &quot;is shown below.  It is a recent&quot;
+    \footnote \super &amp;dagger; \concat {
+      \super &amp;dagger; \italic &quot; Aug 2012&quot;
+    }
+    &quot;composition.&quot;
+  }
+  \relative {
+    a'4 b8 e c4 d
+  }
+}
+</pre><p>
+ <a href="../84/lily-3110fc87.ly">
+  <img align="middle"
+       border="0"
+       src="../84/lily-3110fc87.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>También pueden utilizarse códigos de caracteres Unicode para
+especificar las marcas (véase <a href="special-characters.es.html#unicode">Unicode</a>):
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \markup {
+    &quot;A simple tune&quot;
+    \footnote \super \char##x00a7 \concat {
+      \super \char##x00a7 \italic &quot; By me&quot;
+    }
+    &quot;is shown below.  It is a recent&quot;
+    \footnote \super \char##x00b6 \concat {
+      \super \char##x00b6 \italic &quot; Aug 2012&quot;
+    }
+    &quot;composition.&quot;
+  }
+  \relative {
+    a'4 b8 e c4 d
+  }
+}
+</pre><p>
+ <a href="../29/lily-e535693a.ly">
+  <img align="middle"
+       border="0"
+       src="../29/lily-e535693a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-42"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Manual de aprendizaje:
+<a name="index-Objetos-e-interfaces"></a>
+<a href="../learning/objects-and-interfaces.es.html">Objetos e interfaces</a>.
+</p>
+<p>Referencia de la notación:
+<a href="special-characters.es.html#ascii-aliases">Alias de ASCII</a>,
+<a href="outside-the-staff.es.html#balloon-help">Globos de ayuda</a>,
+<a href="list-of-special-characters.es.html">Lista de caracteres especiales</a>,
+<a href="writing-text.es.html#text-marks">Indicaciones de texto</a>,
+<a href="writing-text.es.html#text-scripts">Guiones de texto</a>,
+<a href="special-characters.es.html#unicode">Unicode</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-FootnoteEvent"></a>
+<a href="../internals/footnoteevent.es.html">FootnoteEvent</a>,
+<a name="index-FootnoteItem"></a>
+<a href="../internals/footnoteitem.es.html">FootnoteItem</a>,
+<a name="index-FootnoteSpanner"></a>
+<a href="../internals/footnotespanner.es.html">FootnoteSpanner</a>,
+<a name="index-Footnote_005fengraver"></a>
+<a href="../internals/footnote_005fengraver.es.html">Footnote_engraver</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-19"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>Varias notas al pie en la misma página solo pueden ir apiladas unas
+sobre otras; no se pueden imprimir en la misma línea.
+</p>
+<p>Las notas al pie no se pueden adjuntar a <code>MultiMeasureRests</code>
+(silencios multicompás), a barras de corchea automáticas ni a la
+letra de las canciones.
+</p>
+<p>Las notas al pie pueden colisionar con las pautas, objetos
+<code>\markup</code>, otras marcas de notas al pie y líneas de
+anotación.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Entrada y salida generales&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Problemas de espaciado &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#footnotes-in-music-expressions" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Notas al pie dentro de expresiones musicales&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Crear notas al pie&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="reference-to-page-numbers.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Referencia a números de página &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="creating-footnotes.html">English</a>, <a href="creating-footnotes.de.html">deutsch</a>, <a href="creating-footnotes.fr.html">français</a>, <a href="creating-footnotes.it.html">italiano</a>, <a href="creating-footnotes.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=" toc_current"><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Crear-titulos_002c-encabezamientos-y-pies-de-pagina" href="creating-titles-headers-and-footers.es.html">3.2.1 Crear títulos, encabezamientos y pies de página</a>      </li>
+      <li class=""><a name="toc-Titulos_002c-encabezamientos-y-pies-de-pagina-personalizados" href="custom-titles-headers-and-footers.es.html">3.2.2 Títulos, encabezamientos y pies de página personalizados</a>      </li>
+      <li class=" toc_current"><a name="toc-Crear-notas-al-pie-1" href="creating-footnotes.es.html">3.2.3 Crear notas al pie</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Notas-al-pie-dentro-de-expresiones-musicales-1" href="creating-footnotes.es.html#footnotes-in-music-expressions">Notas al pie dentro de expresiones musicales</a>        </li>
+        <li class=""><a name="toc-Notas-al-pie-en-texto-independiente-1" href="creating-footnotes.es.html#footnotes-in-stand_002dalone-text">Notas al pie en texto independiente</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Referencia-a-numeros-de-pagina" href="reference-to-page-numbers.es.html">3.2.4 Referencia a números de página</a>      </li>
+      <li class=""><a name="toc-Indice-general" href="table-of-contents.es.html">3.2.5 Índice general</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

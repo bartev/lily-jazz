@@ -1,0 +1,599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 3.2.1 Titel, Kopf- und Fußzeilen erstellen</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 3.2.1 Titel, Kopf- und Fußzeilen erstellen">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 3.2.1 Titel, Kopf- und Fußzeilen erstellen">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="titles-and-headers.de.html#titles-and-headers" rel="up" title="3.2 Titel">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="titles-and-headers.de.html#titles-and-headers" rel="previous" title="3.2 Titel">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Titel-Kopf-und-Fu_00dfzeilen-erstellen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="titles-and-headers.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Titel&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="titles-and-headers.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Titel&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#title-blocks-explained" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Wie funktioniert die Titel-Umgebung? &gt; </a>]</td></tr></table>
+<a name="creating-titles-headers-and-footers"></a>
+<h3 class="subsection">3.2.1 Titel, Kopf- und Fußzeilen erstellen</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#title-blocks-explained" accesskey="1">Wie funktioniert die Titel-Umgebung?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#default-layout-of-book-and-score-title-blocks" accesskey="2">Standardlayout von <code>book</code>- und Partitur-Titelumgebungen</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#default-layout-of-headers-and-footers" accesskey="3">Standardlayout von Kopf- und Fußzeilen</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Wie-funktioniert-die-Titel_002dUmgebung_003f"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#creating-titles-headers-and-footers" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Titel Kopf und Fußzeilen erstellen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-titles-headers-and-footers" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Titel Kopf und Fußzeilen erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#default-layout-of-book-and-score-title-blocks" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Standardlayout von book und Partitur Titelumgebungen &gt; </a>]</td></tr></table>
+<a name="title-blocks-explained"></a>
+<h4 class="unnumberedsubsubsec">Wie funktioniert die Titel-Umgebung?</h4>
+
+
+<p>Es gibt zwei Arten von Titelumgebungen: die Hauptumgebung, die über
+der ersten <code>\score</code>-Umgebung innerhalb eines &bdquo;book&ldquo; notiert
+wird, und individuelle Titelumgebungen, die innerhalb von
+<code>\score</code> auftreten können.  Textfelder für beide Typen werden
+in der <code>\header</code>-Umgebung eingegeben.
+</p>
+<p>Wenn in dem &bdquo;book&ldquo; nur eine einzelne Partitur vorkommt,
+kann die <code>\header</code>-Umgebung innheralb oder außerhalb der
+<code>\score</code>-Umgebung geschrieben werden.
+</p>
+<div class="warning"><p><strong>Achtung:</strong> Denken Sie daran, dass zuerst ein musikalischer Ausdruck
+notiert werden muss, wenn Sie eine \<code>header</code>-Umgebung innheralb
+einer \<code>score</code>-Umgebung verwenden wollen.
+</p>
+</div>
+<blockquote><pre class="verbatim">\header {
+  title = &quot;SUITE I.&quot;
+  composer = &quot;J. S. Bach.&quot;
+}
+
+\score {
+  \new Staff \relative {
+    \clef bass
+    \key g \major
+    \repeat unfold 2 { g,16( d' b') a b d, b' d, } |
+    \repeat unfold 2 { g,16( e' c') b c e, c' e, } |
+  }
+  \header {
+    piece = &quot;Prélude.&quot;
+  }
+}
+
+\score {
+  \new Staff \relative {
+    \clef bass
+    \key g \major
+    \partial 16 b16 |
+    &lt;g, d' b'~&gt;4 b'16 a( g fis) g( d e fis) g( a b c) |
+    d16( b g fis) g( e d c) b(c d e) fis( g a b) |
+  }
+  \header {
+    piece = &quot;Allemande.&quot;
+  }
+}
+</pre><p>
+ <a href="../12/lily-9b1c0743.ly">
+  <img align="middle"
+       border="0"
+       src="../12/lily-9b1c0743.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Textfelder der Haupttitelumgebung können in allen <code>\score</code>-Umgebungen
+gesetzt oder manuell unterdrückt werden:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \paper {
+    print-all-headers = ##t
+  }
+  \header {
+    title = &quot;DAS WOHLTEMPERIRTE CLAVIER&quot;
+    subtitle = &quot;TEIL I&quot;
+    % Do not display the tagline for this book
+    tagline = ##f
+  }
+  \markup { \vspace #1 }
+  \score {
+    \new PianoStaff &lt;&lt;
+      \new Staff { s1 }
+      \new Staff { \clef &quot;bass&quot; s1 }
+    &gt;&gt;
+    \header {
+      title = &quot;PRAELUDIUM I&quot;
+      opus = &quot;BWV 846&quot;
+      % Do not display the subtitle for this score
+      subtitle = ##f
+    }
+  }
+  \score {
+    \new PianoStaff &lt;&lt;
+      \new Staff { s1 }
+      \new Staff { \clef &quot;bass&quot; s1 }
+    &gt;&gt;
+    \header {
+      title = &quot;FUGA I&quot;
+      subsubtitle = &quot;A 4 VOCI&quot;
+      opus = &quot;BWV 846&quot;
+      % Do not display the subtitle for this score
+      subtitle = ##f
+    }
+  }
+}
+</pre><p>
+ <a href="../5f/lily-052526ee.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-052526ee.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-66"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="file-structure.de.html">Die Dateistruktur</a>,
+<a href="custom-headers-footers-and-titles.de.html#custom-layout-for-title-blocks">Angepasstes Layout für Titelumgebungen</a>.
+</p>
+
+<hr size="6">
+<a name="Standardlayout-von-book-und-Partitur-Titelumgebungen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#title-blocks-explained" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Wie funktioniert die Titel-Umgebung?&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-titles-headers-and-footers" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Titel Kopf und Fußzeilen erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#default-layout-of-headers-and-footers" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Standardlayout von Kopf und Fußzeilen &gt; </a>]</td></tr></table>
+<a name="default-layout-of-book-and-score-title-blocks"></a>
+<h4 class="unnumberedsubsubsec">Standardlayout von <code>book</code>- und Partitur-Titelumgebungen</h4>
+
+<p>Dieses Beispiel zeigt alle <code>\header</code>-(Überschrifen)-Variablen:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header {
+      % The following fields are centered
+    dedication = &quot;Dedication&quot;
+    title = &quot;Title&quot;
+    subtitle = &quot;Subtitle&quot;
+    subsubtitle = &quot;Subsubtitle&quot;
+      % The following fields are evenly spread on one line
+      % the field &quot;instrument&quot; also appears on following pages
+    instrument = \markup \with-color #green &quot;Instrument&quot;
+    poet = &quot;Poet&quot;
+    composer = &quot;Composer&quot;
+      % The following fields are placed at opposite ends of the same line
+    meter = &quot;Meter&quot;
+    arranger = &quot;Arranger&quot;
+      % The following fields are centered at the bottom
+    tagline = &quot;tagline goes at the bottom of the last page&quot;
+    copyright = &quot;copyright goes at the bottom of the first page&quot;
+  }
+  \score {
+    { s1 }
+    \header {
+        % The following fields are placed at opposite ends of the same line
+      piece = &quot;Piece 1&quot;
+      opus = &quot;Opus 1&quot;
+    }
+  }
+  \score {
+    { s1 }
+    \header {
+        % The following fields are placed at opposite ends of the same line
+      piece = &quot;Piece 2 on the same page&quot;
+      opus = &quot;Opus 2&quot;
+    }
+  }
+  \pageBreak
+  \score {
+    { s1 }
+    \header {
+        % The following fields are placed at opposite ends of the same line
+      piece = &quot;Piece 3 on a new page&quot;
+      opus = &quot;Opus 3&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../9a/lily-4faa50c5.ly">
+  <img align="middle"
+       border="0"
+       src="../9a/lily-4faa50c5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Beachten Sie:
+</p>
+<ul>
+<li>
+Die Instrumentenbezeichnung wird auf jeder Seite wiederholt.
+
+</li><li>
+Nur <code>piece</code> (Stück)uand <code>opus</code> werden für eine Partitur 
+(<code>\score</code>) gesetzt, wenn die <code>\paper</code>-Variable
+<code>print-all-headers</code> auf <code>##f</code> gesetzt ist (Standardeinstellung).
+
+</li><li>
+Textfelder, die in einer <code>\header</code>-Umgebung nicht benutzt werden,
+werden durch <code>\null</code>-Textbeschriftung ersetzt, sodass sie keinen
+leeren Platz belegen.
+
+</li><li>
+Die Standardeinstellungen von <code>scoreTitleMarkup</code> platzieren
+die Felder <code>piece</code> (Stück) und <code>opus</code> zu den gegenüberliegenden
+Seiten der selben Zeile.
+
+</li></ul>
+
+<p>Um die Standardeinstellungen des Layouts zu ändern, siehe
+<a href="custom-headers-footers-and-titles.de.html#custom-layout-for-title-blocks">Angepasstes Layout für Titelumgebungen</a>.
+</p>
+<a name="index-breakbefore"></a>
+<a name="index-breakbefore-1"></a>
+
+<p>Mit der Variable <code>breakbefore</code> innerhalb einer <code>\header</code>-Umgebung,
+die für sich auch eine <code>\score</code>-Umgebung darstellt, kann man
+die Hauptüberschriften auf der ersten Seite allein ausgeben, sodass die
+Noten (in der <code>score</code>-Umgebung definiert) erst auf der folgenden
+Seite beginnen.
+</p>
+<pre class="verbatim">\book {
+  \header {
+    title = &quot;This is my Title&quot;
+    subtitle = &quot;This is my Subtitle&quot;
+    copyright = &quot;This is the bottom of the first page&quot;
+  }
+  \score {
+    \repeat unfold 4 { e'' e'' e'' e'' }
+    \header {
+      piece = &quot;This is the Music&quot;
+      breakbefore = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../08/lily-8a682fdb.ly">
+  <img align="middle"
+       border="0"
+       src="../08/lily-8a682fdb.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<a name="Siehe-auch-121"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Handbuch zum Lernen:
+<a name="index-Wie-eine-LilyPond_002dEingabe_002dDatei-funktioniert-1"></a>
+<a href="../learning/how-lilypond-input-files-work.de.html">Wie eine LilyPond-Eingabe-Datei funktioniert</a>,
+</p>
+<p>Notationsreferenz:
+<a href="file-structure.de.html">Die Dateistruktur</a>,
+<a href="custom-headers-footers-and-titles.de.html#custom-layout-for-title-blocks">Angepasstes Layout für Titelumgebungen</a>.
+</p>
+<p>Installierte Dateien:
+&lsquo;<tt>ly/titling-init.ly</tt>&rsquo;.
+</p>
+
+<hr size="6">
+<a name="Standardlayout-von-Kopf-und-Fu_00dfzeilen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#default-layout-of-book-and-score-title-blocks" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Standardlayout von book und Partitur Titelumgebungen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-titles-headers-and-footers" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Titel Kopf und Fußzeilen erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="custom-headers-footers-and-titles.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Eigene Kopf und Fußzeilen sowie Titel &gt; </a>]</td></tr></table>
+<a name="default-layout-of-headers-and-footers"></a>
+<h4 class="unnumberedsubsubsec">Standardlayout von Kopf- und Fußzeilen</h4>
+
+<p><em>Kopf-</em> und <em>Fußzeilen</em> sind Textzeilen, die ganz oben
+und ganz unten auf der Seite stehen, unabhängig vom Textbereich eines
+Buches.  Sie können mit folgenden <code>\paper</code>-Variablen kontrolliert
+werden:
+</p>
+<ul>
+<li> <code>oddHeaderMarkup</code>
+</li><li> <code>evenHeaderMarkup</code>
+</li><li> <code>oddFooterMarkup</code>
+</li><li> <code>evenFooterMarkup</code>
+</li></ul>
+
+<p>Diese Beschriftungsvariablen können nur auf Textfelder einer
+Haupttitelumgebung (eine <code>\header</code>-Umgebung auf höchster Ebene, die
+sich auf alle <code>\score</code>-Umgebungen einer Datei bezieht)
+zugreifen und sind definiert in der Datei &lsquo;<tt>ly/titling-init.ly</tt>&rsquo;.  In
+den Standardeinstellungen
+</p>
+<ul>
+<li>
+werden Seitenzahlen automatisch ganz oben links (wenn gerade) oder ganz
+oben rechts (wenn ungerade) gesetzt, beginnend mit der zweiten Seite.
+
+</li><li>
+wird das <code>instrument</code>-Textfeld auf jeder Seite zentriert, beginnend
+mit der zweiten Seite.
+
+</li><li>
+wird der <code>copyright</code>-Text unten auf der ersten Zeite zentriert.
+
+</li><li>
+wird der Inhalt von <code>tagline</code> unten auf der letzten Seite zentriert
+und unterhalb des <code>copyright</code>-Texts, wenn es sich nur um eine Seite
+handelt.
+
+</li></ul>
+
+<p>
+ <a href="../05/lily-818bc09e.ly">
+  <img align="middle"
+       border="0"
+       src="../05/lily-818bc09e.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Die Standardeinstellung von <code>tagline</code> kann verändert werden,
+indem man ein <code>tagline</code>-Feld in die <code>\header</code>-Umgebung auf
+höchster Ebene schreibt.
+</p>
+<pre class="verbatim">\book {
+  \header {
+    tagline = &quot;... music notation for Everyone&quot;
+  }
+  \score {
+    \relative {
+      c'4 d e f
+    }
+  }
+}
+</pre><p>
+ <a href="../5b/lily-ec040e1c.ly">
+  <img align="middle"
+       border="0"
+       src="../5b/lily-ec040e1c.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Um die <em>tagline</em> ganz zu entfernen, wird ihr Inhalb als <code>##f</code>
+(falsch) definiert.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#default-layout-of-book-and-score-title-blocks" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Standardlayout von book und Partitur Titelumgebungen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-titles-headers-and-footers" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Titel Kopf und Fußzeilen erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="custom-headers-footers-and-titles.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Eigene Kopf und Fußzeilen sowie Titel &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="creating-titles-headers-and-footers.html">English</a>, <a href="creating-titles-headers-and-footers.es.html">español</a>, <a href="creating-titles-headers-and-footers.fr.html">français</a>, <a href="creating-titles-headers-and-footers.it.html">italiano</a>, <a href="creating-titles-headers-and-footers.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=" toc_current"><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Titel_002c-Kopf_002d-und-Fusszeilen-erstellen" href="creating-titles-headers-and-footers.de.html">3.2.1 Titel, Kopf- und Fußzeilen erstellen</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Wie-funktioniert-die-Titel_002dUmgebung_003f-1" href="creating-titles-headers-and-footers.de.html#title-blocks-explained">Wie funktioniert die Titel-Umgebung?</a>        </li>
+        <li class=""><a name="toc-Standardlayout-von-book_002d-und-Partitur_002dTitelumgebungen" href="creating-titles-headers-and-footers.de.html#default-layout-of-book-and-score-title-blocks">Standardlayout von <code>book</code>- und Partitur-Titelumgebungen</a>        </li>
+        <li class=""><a name="toc-Standardlayout-von-Kopf_002d-und-Fusszeilen" href="creating-titles-headers-and-footers.de.html#default-layout-of-headers-and-footers">Standardlayout von Kopf- und Fußzeilen</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Eigene-Kopf_002d-und-Fusszeilen-sowie-Titel" href="custom-headers-footers-and-titles.de.html">3.2.2 Eigene Kopf- und Fußzeilen sowie Titel</a>      </li>
+      <li class=""><a name="toc-Fussnoten-erstellen" href="creating-footnotes.de.html">3.2.3 Fußnoten erstellen</a>      </li>
+      <li class=""><a name="toc-Verweis-auf-die-Seitenzahlen-1" href="reference-to-page-numbers.de.html">3.2.4 Verweis auf die Seitenzahlen</a>      </li>
+      <li class=""><a name="toc-Inhaltsverzeichnis-1" href="table-of-contents.de.html">3.2.5 Inhaltsverzeichnis</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

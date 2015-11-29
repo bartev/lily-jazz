@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 a szerzők.
+
+Ezt a dokumentumot a GNU Free Documentation License (GNU Szabad
+Dokumentációs Licenc) 1.1-es vagy frissebb, a Free Software Foundation
+(Szabad Szoftver Alapítvány) által kiadott verziójának megfelelően
+lehet másolni, terjeszteni és/vagy módosítani, nem változtatható szakaszok nélkül.
+A licenc másolata a ,,GNU Free Documentation License" című függelékben
+található.
+
+ -->
+<!-- Created on november 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Tankönyv: 3.2.1 Hangzatos szólamok</title>
+
+<meta name="description" content="LilyPond Tankönyv: 3.2.1 Hangzatos szólamok">
+<meta name="keywords" content="LilyPond Tankönyv: 3.2.1 Hangzatos szólamok">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Tankönyv">
+<link href="lilypond-index.hu.html#lilypond-index" rel="index" title="C. LilyPond tárgymutató">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Tartalomjegyzék">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="A navigációs panel használata">
+<link href="voices-contain-music.hu.html#voices-contain-music" rel="up" title="3.2 A szólamok zenét tartalmaznak">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="C. LilyPond tárgymutató">
+<link href="voices-contain-music.hu.html#voices-contain-music" rel="previous" title="3.2 A szólamok zenét tartalmaznak">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="hu" class="learning devStatus">
+
+
+<div id="main">
+<a name="Hangzatos-sz_00f3lamok"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; Alapfogalmak&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.hu.html" title="Következő fejezet">&nbsp;A kimenet finomhangolása &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="voices-contain-music.hu.html" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; A szólamok zenét tartalmaznak&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.hu.html" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;A szólamok zenét tartalmaznak&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicitly-instantiating-voices.hu.html" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Szólamok kézi létrehozása &gt; </a>]</td></tr></table>
+<a name="i_0027m-hearing-voices"></a>
+<h3 class="subsection">3.2.1 Hangzatos szólamok</h3>
+
+
+<a name="index-polyphony-1"></a>
+<a name="index-layers"></a>
+<a name="index-multiple-voices"></a>
+<a name="index-voices_002c-multiple"></a>
+<a name="index-Voice-context"></a>
+<a name="index-context_002c-Voice"></a>
+<a name="index-simultaneous-music"></a>
+<a name="index-music_002c-simultaneous"></a>
+<a name="index-concurrent-music"></a>
+<a name="index-music_002c-concurrent"></a>
+<a name="index-voices-vs_002e-chords"></a>
+<a name="index-chords-vs_002e-voices"></a>
+
+<p>A LilyPond kotta legalsó rétege a  &lsquo;Szólam környezet&rsquo; vagy röviden &lsquo;Szólamok&rsquo;. 
+A szólamokat egyes csomagokban csak rétegeknek nevezzük.
+</p>
+<p>Valójában a szólam környezet az egyetlen, ami zenét tartalmazhat. 
+Ha szólam környezetet nem hozunk létre, akkor automatikusan készül 
+egy, ahogy láthattuk ennek a fejezetnek az elején. Egyes hangszerek 
+&ndash; mint az oboa is &ndash; egy időben csak egy hangot képesek kiadni. 
+Az ilyen hangszerekre írt zenék monofonikusak és csak egyetlen hangot 
+tartalmaznak (egy időben). Azon hangszerek esetén, melyek képesek egy 
+időben több hangot is kiadni &ndash; mint a zongora &ndash; sokszor többszörös 
+szólamokra van szükségünk, akár különböző ütemben. 
+</p>
+	
+<p>Egy egyszerű szólam  több hangjegyet is tartalmazhat egy akkordban, 
+tehát felmerül a kérdés, hogy mikor is van szükségünk többszörös szólamra. 
+Nézzük az első példát, 4 akkorddal:
+</p>
+<blockquote><pre class="verbatim">\key g \major
+&lt;d g&gt;4 &lt;d fis&gt; &lt;d a'&gt; &lt;d g&gt;
+</pre><p>
+ <a href="../65/lily-451c74c8.ly">
+  <img align="middle"
+       border="0"
+       src="../65/lily-451c74c8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>A fenti példa leírható egyszerű, kúpos („kacsacsőr”) zárójelekkel, <code>&lt; ... &gt;</code>, 
+így csak egy egyszeres szólamra volt szükségünk. De tegyük fel, hogy, hogy a FISZ 
+egy nyolcad, melyet egy másik G nyolcad követ. Ebben esetben két hangunk van, 
+mely ugyanakkor kezdődik, de különböző hanghosszúságú: a negyed D és a nyolcad FISZ. 
+Hogy írjuk ezt le? Nem írhatjuk akkordként, hiszen egy akkordban minden hang azonos 
+hosszúságú és nem írhatjuk egymást követő hangokként sem, hiszen egy időben kell kezdődniük a hangoknak. Ilyenkor van szükségünk két szólamra.
+</p>
+
+
+<p>Nézzük, hogy néz ez ki a LilyPond szintaxisában.
+</p>
+<a name="index-_003c_003c-_005c_005c-_003e_003e"></a>
+<a name="index-_003c_003c-_005c_005c-_003e_003e-1"></a>
+<a name="index-_005c_005c-2"></a>
+<a name="index-_005c_005c-3"></a>
+
+<p>A legegyszerűbb módja olyan részek rögzítésének, amelyek több mint egy hangot 
+tartalmaznak egy szólamban, hogy szekvenciát <code>{...}</code> használunk és ezt kombináljuk a szögletes zárójelekkel <code>&lt;&lt;...&gt;&gt;</code>.
+Az ilyen a részeket <code>\\</code> segítségével kell elválasztani ahhoz, hogy különböző szólamként jelenjenek meg. 
+Az elválasztó jelek nélkül a hangok egyetlen szólamként szerepelnének, ami általában hibát okoz. 
+Ez a technika használható olyan daraboknál melyek leginkább monofonikusak és néhány részük polifón.
+</p>
+
+<p>Itt egy példa, ami a fenti akkord egyik hangját két szólamra osztja és kötést is tartalmaz:
+</p>
+<blockquote><pre class="verbatim">\key g \major
+%    1. szólam                  2. szólam
+&lt;&lt; { g4 fis8( g) a4 g }  \\  { d4 d d d }  &gt;&gt;
+</pre><p>
+ <a href="../1d/lily-24db2385.ly">
+  <img align="middle"
+       border="0"
+       src="../1d/lily-24db2385.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Vegyük észre, hogy a második hang szárai lefele mutatnak.
+</p>
+
+<p>Íme egy másik egyszerű példa:
+</p>
+<blockquote><pre class="verbatim">\key d \minor
+%    1. szólam               2. szólam
+&lt;&lt; { r4 g g4. a8 }    \\ { d,2 d4 g }       &gt;&gt;
+&lt;&lt; { bes4 bes c bes } \\ { g4 g g8( a) g4 } &gt;&gt;
+&lt;&lt; { a2. r4 }         \\ { fis2. s4 }       &gt;&gt;
+</pre><p>
+ <a href="../82/lily-c1362698.ly">
+  <img align="middle"
+       border="0"
+       src="../82/lily-c1362698.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nem szükséges, hogy minden ütemet elválasszunk a  <code>&lt;&lt; \\ &gt;&gt;</code> segítségével.  
+Olyan zenék esetén, ahol csak néhány hang van minden ütemben, ez a felépítés 
+segíti a kód olvashatóságát, de ha már sok hang van, akkor jobb, ha a hangokat külön-külön jegyezzük le, például így:
+</p>
+
+<blockquote><pre class="verbatim">\key d \minor
+&lt;&lt; {
+  % 1. szólam
+  r4 g g4. a8 |
+  bes4 bes c bes |
+  a2. r4 |
+} \\ {
+  % 2. szólam
+  d,2 d4 g |
+  g4 g g8( a) g4 |
+  fis2. s4 |
+} &gt;&gt;
+</pre><p>
+ <a href="../75/lily-1d18cf8c.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-1d18cf8c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="index-voices_002c-naming"></a>
+<a name="index-voices-crossing-brackets"></a>
+<a name="index-slurs-crossing-brackets"></a>
+<a name="index-ties-crossing-brackest"></a>
+
+
+<p>A fenti példában csak két szólam van, de ha három vagy több szólamot kell 
+lejegyezni, azt is hasonlóan lehet megoldani visszaperjelek (back-slash) használatával.
+</p>
+<p>A szólam környezetek nevei <code>&quot;1&quot;</code>, <code>&quot;2&quot;</code>, stb. 
+Minden ilyen környezetben a függőleges elrendezés (kötések, szárak, dinamika, stb) megfelelően jelenik meg.
+</p>
+
+<blockquote><pre class="verbatim">\new Staff \relative {
+  % Fő hang
+  c'16 d e f
+  %   1. szólam       2. szólam                 3. szólam
+  &lt;&lt; { g4 f e } \\ { r8 e4 d c8~ } &gt;&gt;
+  &lt;&lt; { d2 e2 }  \\ { c8 b16 a b8 g~ g2 } \\ { s4 b4 c2 } &gt;&gt;
+}
+</pre><p>
+ <a href="../9e/lily-dd4a4923.ly">
+  <img align="middle"
+       border="0"
+       src="../9e/lily-dd4a4923.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p>A fő szólamtól különválasztva jelennek meg a <code>&lt;&lt; .. &gt;&gt;</code> között  
+szereplő szólamok (hangok). Ezt hívjuk <em>szimultán felépítésnek</em>. 
+Az átkötések és kötőívek csak az azonos szólamon belül kötik 
+össze a hangokat, tehát ezek nem kerülhetnek belülre vagy kívülre a 
+szimultán felépítéshez képest.
+Fordítva, szimultán felépítés esetén azok a párhuzamos szólamok, 
+amelyek ugyanabban az ötvonalban vannak, egy szólamnak minősülnek. 
+Egyéb szólamhoz kapcsolódó tulajdonságok átöröklődnek a szimultán 
+felépítésbe is. Itt egy másik példa, melynél a különböző szólamokban 
+különböző színű hangok szerepelnek. Vegyük észre, hogy 
+adott szólambeli változások nincsenek hatással más szólamokra, 
+de a változtatások ugyanabban a szólamban később is érvényesek. 
+Vegyük észre azt is, hogy az összekötött hangokat szétválaszthatja 
+az ütemhatár, ahogy a kék háromszöget jelző szólamban láthatjuk: 
+</p>
+
+<blockquote><pre class="verbatim">\new Staff \relative {
+  % Fő szólam
+  c'16 d e f
+  &lt;&lt;  % 1. ütem
+    {
+      \voiceOneStyle
+      g4 f e
+    }
+  \\
+    {
+      \voiceTwoStyle
+      r8 e4 d c8~
+    }
+  &gt;&gt;
+  &lt;&lt;  % 2. ütem
+     % 1. szólam folytatása
+    { d2 e2 }
+  \\
+     % 2. szólam folytatása
+    { c8 b16 a b8 g ~ g2 }
+  \\
+    {
+      \voiceThreeStyle
+      s4 b4 c2
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../55/lily-65e8f3bc.ly">
+  <img align="middle"
+       border="0"
+       src="../55/lily-65e8f3bc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cvoiceOneStyle"></a>
+<a name="index-_005cvoiceOneStyle-1"></a>
+<a name="index-_005cvoiceTwoStyle"></a>
+<a name="index-_005cvoiceTwoStyle-1"></a>
+<a name="index-_005cvoiceThreeStyle"></a>
+<a name="index-_005cvoiceThreeStyle-1"></a>
+<a name="index-_005cvoiceFourStyle"></a>
+<a name="index-_005cvoiceFourStyle-1"></a>
+<a name="index-_005cvoiceNeutralStyle"></a>
+<a name="index-_005cvoiceNeutralStyle-1"></a>
+
+
+<p>A <code>\voiceXXXStyle</code> parancsot elsősorban oktatási célra érdemes 
+használni, olyan esetben, mint amilyet ez is.  Ezek a parancsok 
+módosítják a hangok színét illetve a kottafejet, a  szárat, a 
+gerendákat és a hangfejek stílusát, így lesznek a szólamok könnyen felismerhetőek. 
+</p>
+<p>Az első szólam piros rombusz, a második kék háromszög, a 
+harmadik zöld áthúzott kör, a negyedik (itt nem használt) magenta kereszt. 
+A <code>\voiceNeutralStyle</code> (szintén nem használt a fenti példában) visszaállítja 
+a stílust az alapértelmezettre. Később az  <a href="visibility-and-color-of-objects.hu.html">Objektumok láthatósága és színe</a> 
+és <a href="using-variables-for-tweaks.hu.html">Változók felhasználása a finomhangoláshoz</a> fejezetekben majd látni fogjuk, 
+hogyan lehet hasonló parancsokat létrehozni.
+</p>
+
+<a name="index-polyphony-and-relative-note-entry"></a>
+<a name="index-relative-note-entry-and-polyphony"></a>
+
+
+<p>A polifónia nem változtatja meg a hangjegyek viszonyát a <code>\relative { }</code> blokkon belül. 
+Minden hangjegy helyzetét az azt megelőző hang illetve első hang helyzete határozza meg.
+</p>
+<blockquote><pre class="example">\relative c' { noteA &lt;&lt; &lt; noteB noteC &gt; \\ noteD &gt;&gt; noteE }
+</pre></blockquote>
+
+<p><code>noteB</code> is relative to <code>noteA</code>                      <br>
+<code>noteC</code> is relative to <code>noteB</code>, not <code>noteA</code>;   <br>
+<code>noteD</code> is relative to <code>noteB</code>, not <code>noteA</code> or
+<code>noteC</code>;                                                 <br>
+<code>noteE</code> is relative to <code>noteD</code>, not <code>noteA</code>.
+</p>
+
+<p>Van egy másik módszer, ami egyszerűbb, ha a hangjegyek a 
+szólamokon belül teljesen szét vannak választva. 
+Ezt úgy érthetjük el, hogy  a <code>\relative</code> parancsot használjuk minden szólam kezdetén:
+</p>
+
+<blockquote><pre class="example">\relative c' { noteA ... }
+&lt;&lt;
+  \relative c'' { &lt; noteB noteC &gt; ... }
+\\
+  \relative g' { noteD ... }
+&gt;&gt;
+\relative c' { noteE ... }
+</pre></blockquote>
+
+<p>Végül vizsgáljuk meg a szólamokat összetettebb zene esetén. 
+Nézzük Chopin Deux Nocturne, Op 32. művének első két ütemét. 
+A továbbiakban is ezt a példát fogjuk használni arra, hogy a 
+jelölésekre használható különböző technikákat szemléltessük, 
+ezért tekintsünk el attól, hogy az alábbi kód elsőre rejtélyesnek 
+tűnhet és koncentráljunk csak a zenére és a szólamokra &ndash; a nehezebb részeket majd a későbbi fejezetekben áttekintjük. 
+</p>
+
+
+<blockquote><p>
+ <a href="../61/lily-db440e0c.ly">
+  <img align="middle"
+       border="0"
+       src="../61/lily-db440e0c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>A szárak iránya gyakran jelzi két egyidejű dallamsor folytonosságát. 
+A fenti példánál a legfelső hangjegy szárai felfelé mutatnak, az alsóké mind lefelé. 
+Ez az első jelölés, amire szükségünk van több szólam lejegyzése során. 
+</p>
+
+<p>Leginkább viszont akkor van szükségünk többszörös szólamokra, amikor a hangok ugyanakkor kezdődnek ugyan, de különböző hosszúságúak. Nézzük azt a hangot, ami első ütem harmadik ütésekor kezdődik. Az ASZ egy pontozott negyed, az alatta levő F egy pontozatlan negyed,  a DESZ pedig egy fél hang.  Ezek nem írhatók le akkordként, hiszen akkord esetén minden hang azonos hosszúságú. Nem írhatóak le egymást követő hangokként sem, hiszen egy időben kell kezdődniük. Az ütemnek ebben a részében három szólamra van szükségünk, és normál esetben az egész ütem három szólamú, ahogy az alábbi példa mutatja, ahol különböző hangjegyfejeket használunk különböző színekkel a három szólamhoz. Szeretnénk ismét kihangsúlyozni, hogy az alábbi példa mögötti kódot később elmagyarázzuk, most csak hagyjuk figyelmen kívül azokat a részeket, amik nem érthetőek. 
+</p>
+
+<blockquote><p>
+ <a href="../17/lily-c726a2d8.ly">
+  <img align="middle"
+       border="0"
+       src="../17/lily-c726a2d8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Kezdjük a legelején a fenti zene kódolását.  
+Látni fogjuk, hogy beleütközünk majd több problémába is (de ez ne keserítsen el minket, a lényeg, hogy ezekből tanulunk :) ). 
+Kezdjük azzal, amit tanultunk: a <code>&lt;&lt; \\  &gt;&gt;</code>  használatával. 
+Gépeljük be a három szólam első ütemét:
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;
+    { c''2 aes4. bes8 } \\ { aes2 f4 fes } \\ { &lt;ees c&gt;2 des2 }
+  &gt;&gt;
+  &lt;c ees aes c&gt;1
+}
+</pre><p>
+ <a href="../d7/lily-3d3e67c3.ly">
+  <img align="middle"
+       border="0"
+       src="../d7/lily-3d3e67c3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-stem-down"></a>
+<a name="index-voices-and-stem-directions"></a>
+<a name="index-stem-directions-and-voices"></a>
+<a name="index-stem-up"></a>
+
+
+<p>A szárak iránya automatikusan hozzárendelődik a szólamokhoz, a páratlan-sorszámú szólamoknál felfelé, a párosoknál lefelé. Az első és második szólamhoz tartozó hangok szárai megfelelőek, de a harmadik szólamban a száraknak lefelé kellene állniuk. Ezt úgy javíthatjuk, hogy a harmadik szólamot átugorjuk (üresen hagyjuk) és a negyedik szólamba helyezzük az eredetileg harmadik szólamot. Ezt egyszerűen megtehetjük a <code>\\</code> segítségével:
+</p>
+
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;  % 1. szólam
+    { c''2 aes4. bes8 }
+  \\  % 2. szólam
+    { aes2 f4 fes }
+  \\  % 3. szólam - elhagyjuk
+  \\  % 4. szólam
+    { &lt;ees c&gt;2 des2 }
+  &gt;&gt;
+  &lt;c ees aes c&gt;1
+}
+</pre><p>
+ <a href="../a1/lily-bc1cf798.ly">
+  <img align="middle"
+       border="0"
+       src="../a1/lily-bc1cf798.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Látjuk, hogy ez megoldotta a problémát a szárak irányával kapcsolatban, 
+de előhozott egy másikat, ami többszörös szólamoknál néha előfordul &ndash; 
+a hangok szárai a szólamon belül ütköznek más kottafejekkel más szólamokban. 
+A hangok megtervezéséhez a LilyPond lehetővé teszi, hogy hangok illetve akkordok esetén, két hang ugyanazt a függőleges pozíciót foglalja el akár ellentétes szárirány esetén, viszont figyelembe veszi azt, hogy bizonyos esetekben a harmadik és a negyedik szólam elmozdulhat, ezzel elkerülve azt, hogy a kottafejek egymást fedjék. Ez általában működik, de a fenti példában egyértelmű, hogy az alacsonyabb szólamok alapértelmezetten nem jól helyezkednek el. Jelenleg még nem vagyunk készen rá, hogy ezt kijavítsuk, úgyhogy most ezt érintetlenül hagyjuk és visszatérünk rá egy későbbi fejezetben &ndash; lásd  <code>force-hshift</code> tulajdonság az <a href="fixing-overlapping-notation.hu.html">Egymást átfedő jelek javítása</a> fejezetben.
+</p>
+
+<a name="Lasd-meg-19"></a>
+<h4 class="subsubheading">Lásd még</h4>
+<p>Notation Reference: <a name="index-Multiple-voices"></a>
+<a href="../notation/multiple-voices.hu.html">Multiple voices</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; Alapfogalmak&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.hu.html" title="Következő fejezet">&nbsp;A kimenet finomhangolása &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="voices-contain-music.hu.html" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; A szólamok zenét tartalmaznak&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.hu.html" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;A szólamok zenét tartalmaznak&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicitly-instantiating-voices.hu.html" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Szólamok kézi létrehozása &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="i_0027m-hearing-voices.html">English</a>, <a href="i_0027m-hearing-voices.ca.html">català</a>, <a href="i_0027m-hearing-voices.cs.html">česky</a>, <a href="i_0027m-hearing-voices.de.html">deutsch</a>, <a href="i_0027m-hearing-voices.es.html">español</a>, <a href="i_0027m-hearing-voices.fr.html">français</a>, <a href="i_0027m-hearing-voices.it.html">italiano</a>, <a href="i_0027m-hearing-voices.ja.html">日本語</a>, <a href="i_0027m-hearing-voices.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.hu.html"
+         title="Documentation Index">&lt;&lt; Vissza a dokumentációk jegyzékéhez</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Tankönyv  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Elso-lecke" href="tutorial.hu.html">1. Első lecke</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Fajlok-forditasa" href="compiling-a-file.hu.html">1.1 Fájlok fordítása</a>    </li>
+    <li class=""><a name="toc-Bemeneti-fajlok-irasa" href="how-to-write-input-files.hu.html">1.2 Bemeneti fájlok írása</a>    </li>
+    <li class=""><a name="toc-Hogyan-olvassuk-a-dokumentaciot_003f" href="how-to-read-the-manuals.hu.html">1.3 Hogyan olvassuk a dokumentációt?</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Elemi-kottairas" href="common-notation.hu.html">2. Elemi kottaírás</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Egyszolamu-lejegyzes" href="single-staff-notation.hu.html">2.1 Egyszólamú lejegyzés</a>    </li>
+    <li class=""><a name="toc-Tobb-hang-egyszerre" href="multiple-notes-at-once.hu.html">2.2 Több hang egyszerre</a>    </li>
+    <li class=""><a name="toc-Dalok-1" href="songs.hu.html">2.3 Dalok</a>    </li>
+    <li class=""><a name="toc-Utolso-simitasok" href="final-touches.hu.html">2.4 Utolsó simítások</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Alapfogalmak-1" href="fundamental-concepts.hu.html">3. Alapfogalmak</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hogyan-mukodnek-a-LilyPond-bemeneti-fajlok_003f" href="how-lilypond-input-files-work.hu.html">3.1 Hogyan működnek a LilyPond bemeneti fájlok?</a>    </li>
+    <li class=" toc_current"><a name="toc-A-szolamok-zenet-tartalmaznak" href="voices-contain-music.hu.html">3.2 A szólamok zenét tartalmaznak</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Hangzatos-szolamok" href="i_0027m-hearing-voices.hu.html">3.2.1 Hangzatos szólamok</a>      </li>
+      <li class=""><a name="toc-Szolamok-kezi-letrehozasa" href="explicitly-instantiating-voices.hu.html">3.2.2 Szólamok kézi létrehozása</a>      </li>
+      <li class=""><a name="toc-Szolamok-es-vokalis-zene" href="voices-and-vocals.hu.html">3.2.3 Szólamok és vokális zene</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Kontextusok-es-abrazolok" href="contexts-and-engravers.hu.html">3.3 Kontextusok és ábrázolók</a>    </li>
+    <li class=""><a name="toc-A-sablonok-kibovitese" href="extending-the-templates.hu.html">3.4 A sablonok kibővítése</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-A-kimenet-finomhangolasa" href="tweaking-output.hu.html">4. A kimenet finomhangolása</a>
+  <ul class="toc">
+    <li class=""><a name="toc-A-finomhangolas-alapjai" href="tweaking-basics.hu.html">4.1 A finomhangolás alapjai</a>    </li>
+    <li class=""><a name="toc-A-belso-mukodes-referenciaja" href="the-internals-reference-manual.hu.html">4.2 A belső működés referenciája</a>    </li>
+    <li class=""><a name="toc-Objektumok-megjelenese" href="appearance-of-objects.hu.html">4.3 Objektumok megjelenése</a>    </li>
+    <li class=""><a name="toc-Objektumok-elhelyezese" href="placement-of-objects.hu.html">4.4 Objektumok elhelyezése</a>    </li>
+    <li class=""><a name="toc-Objektumok-utkozese" href="collisions-of-objects.hu.html">4.5 Objektumok ütközése</a>    </li>
+    <li class=""><a name="toc-Tovabbi-finomhangolas" href="further-tweaking.hu.html">4.6 További finomhangolás</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Sablonok-1" href="templates.hu.html">A. Sablonok</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Egy-kottasor-1" href="single-staff.hu.html">A.1 Egy kottasor</a>    </li>
+    <li class=""><a name="toc-Zongorasablonok-1" href="piano-templates.hu.html">A.2 Zongorasablonok</a>    </li>
+    <li class=""><a name="toc-Vonosnegyes-1" href="von_00c3_00b3sn_00c3_00a9gyes.hu.html">A.3 Vonósnégyes</a>    </li>
+    <li class=""><a name="toc-Korus" href="vocal-ensembles.hu.html">A.4 Kórus</a>    </li>
+    <li class=""><a name="toc-Zenekari-sablonok-1" href="orchestral-templates.hu.html">A.5 Zenekari sablonok</a>    </li>
+    <li class=""><a name="toc-Sablonok-regizenehez" href="ancient-notation-templates.hu.html">A.6 Sablonok régizenéhez</a>    </li>
+    <li class=""><a name="toc-Egyeb-sablonok" href="other-templates.hu.html">A.7 Egyéb sablonok</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-targymutato" href="lilypond-index.hu.html">C. LilyPond tárgymutató</a>  </li>
+<li>
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google keresés">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Keresés">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

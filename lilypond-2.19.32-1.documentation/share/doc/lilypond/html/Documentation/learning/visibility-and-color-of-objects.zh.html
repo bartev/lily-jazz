@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 4.3.1 Visibility and color of objects</title>
+
+<meta name="description" content="LilyPond Learning Manual: 4.3.1 Visibility and color of objects">
+<meta name="keywords" content="LilyPond Learning Manual: 4.3.1 Visibility and color of objects">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.zh.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.zh.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.zh.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.zh.html#SEC_About" rel="help" title="About This Document">
+<link href="appearance-of-objects.zh.html#appearance-of-objects" rel="up" title="4.3 Appearance of objects">
+<link href="lilypond-index.zh.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="appearance-of-objects.zh.html#appearance-of-objects" rel="previous" title="4.3 Appearance of objects">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Visibility-and-color-of-objects"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="appearance-of-objects.zh.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Appearance of objects&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="appearance-of-objects.zh.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Appearance of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-stencil-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The stencil property &gt; </a>]</td></tr></table>
+<a name="visibility-and-color-of-objects"></a>
+<h3 class="subsection">4.3.1 Visibility and color of objects</h3>
+
+<p>In the educational use of music we might wish to print a score
+with certain elements omitted as an exercise for the student,
+who is required to supply them.  As a simple example,
+let us suppose the exercise is to supply the missing bar lines
+in a piece of music.  But the bar lines are normally inserted
+automatically.  How do we prevent them printing?
+</p>
+<p>Before we tackle this, let us remember that object properties are
+grouped in what are called <em>interfaces</em> &ndash; see <a href="properties-found-in-interfaces.zh.html">Properties found in interfaces</a>.  This is simply to group together those
+properties that may be used together to tweak a graphical object &ndash; if
+one of them is allowed for an object, so are the others.  Some objects
+then use the properties in some interfaces, others use them from other
+interfaces.  The interfaces which contain the properties used by a
+particular grob are listed in the IR at the bottom of the page
+describing that grob, and those properties may be viewed by looking at
+those interfaces.
+</p>
+<p>We explained how to find information about grobs in <a href="properties-of-layout-objects.zh.html">Properties of layout objects</a>.  Using the same approach, we go to the IR to find the
+layout object which prints bar lines.  Going via <em>Backend</em> and
+<em>All layout objects</em> we find there is a layout object called
+<code>BarLine</code>.  Its properties include two that control its
+visibility: <code>break-visibility</code> and <code>stencil</code>.  Barline also
+supports a number of interfaces, including the <code>grob-interface</code>,
+where we find the <code>transparent</code> and the <code>color</code> properties.
+All of these can affect the visibility of bar lines (and, of course,
+by extension, many other layout objects too.)  Let&rsquo;s consider each of
+these in turn.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-stencil-property" accesskey="1">The <code>stencil</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-break_002dvisibility-property" accesskey="2">The <code>break-visibility</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-transparent-property" accesskey="3">The <code>transparent</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-color-property" accesskey="4">The <code>color</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="The-stencil-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#visibility-and-color-of-objects" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Visibility and color of objects&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Visibility and color of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-break_002dvisibility-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The break-visibility property &gt; </a>]</td></tr></table>
+<a name="the-stencil-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>stencil</code> property</h4>
+
+<a name="index-stencil-property"></a>
+
+<p>This property controls the appearance of the bar lines by specifying
+the symbol (glyph) which should be printed.  In common
+with many other properties, it can be set to print nothing by
+setting its value to <code>#f</code>.  Let&rsquo;s try it, as before, omitting
+the implied Context, <code>Voice</code>:
+</p>
+<a name="index-BarLine_002c-example-of-overriding"></a>
+<a name="index-stencil-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override BarLine.stencil = ##f
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../23/lily-d6e15238.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-d6e15238.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The bar lines are still printed.  What is wrong?  Go back to the IR
+and look again at the page giving the properties of BarLine.  At the
+top of the page it says &ldquo;Barline objects are created by:
+Bar_engraver&rdquo;.  Go to the <code>Bar_engraver</code> page.  At the bottom it
+gives a list of Contexts in which the bar engraver operates.  All of
+them are of the type <code>Staff</code>, so the reason the <code>\override</code>
+command failed to work as expected is because <code>Barline</code> is not in
+the default <code>Voice</code> context.  If the context is specified
+incorrectly, the command simply does not work.  No error message is
+produced, and nothing is logged in the log file.  Let&rsquo;s try correcting
+it by adding the correct context:
+</p>
+<a name="index-BarLine_002c-example-of-overriding-1"></a>
+<a name="index-stencil-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.stencil = ##f
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../18/lily-01332405.ly">
+  <img align="middle"
+       border="0"
+       src="../18/lily-01332405.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Now the bar lines have vanished.  Setting the <code>stencil</code>
+property to <code>#f</code> is such a frequent operation that there is a
+shorthand for it called <code>\omit</code>:
+<a name="index-_005comit"></a>
+<a name="index-_005comit-1"></a>
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \omit Staff.BarLine
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../a8/lily-ea36d276.ly">
+  <img align="middle"
+       border="0"
+       src="../a8/lily-ea36d276.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Note, though, that setting the <code>stencil</code> property to <code>#f</code>
+will cause errors when the dimensions of the object are required for
+correct processing.  For example, errors will be generated if the
+<code>stencil</code> property of the <code>NoteHead</code> object is set to
+<code>#f</code>.  If this is the case, you can instead use the
+<code>point-stencil</code> function, which sets the stencil to an object
+with zero size:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4 c
+  \once \override NoteHead.stencil = #point-stencil
+  c4 c
+}
+</pre><p>
+ <a href="../ef/lily-2e0c24f5.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-2e0c24f5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="The-break_002dvisibility-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-stencil-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The stencil property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Visibility and color of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-transparent-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The transparent property &gt; </a>]</td></tr></table>
+<a name="the-break_002dvisibility-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>break-visibility</code> property</h4>
+
+<a name="index-break_002dvisibility-property"></a>
+
+<p>We see from the <code>BarLine</code> properties in the IR that the
+<code>break-visibility</code> property requires a vector of three booleans.
+These control respectively whether bar lines are printed at the end of
+a line, in the middle of lines, and at the beginning of lines.  For
+our example we want all bar lines to be suppressed, so the value we
+need is <code>#(#f #f #f)</code> (also available
+under the name <code>all-invisible</code>).  Let&rsquo;s try that, remembering to include
+the <code>Staff</code> context.  Note also that in writing this value we
+have <code>##</code> before the opening parenthesis.  One <code>#</code> is required
+as part of vector constant syntax, and the first&nbsp;<code>#</code> is
+required, as always, to precede the value itself in the
+<code>\override</code> command.
+</p>
+<a name="index-BarLine_002c-example-of-overriding-2"></a>
+<a name="index-break_002dvisibility-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.break-visibility = ##(#f #f #f)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../c0/lily-dec055bc.ly">
+  <img align="middle"
+       border="0"
+       src="../c0/lily-dec055bc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>And we see this too removes all the bar lines.
+</p>
+<hr size="6">
+<a name="The-transparent-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-break_002dvisibility-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The break-visibility property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Visibility and color of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-color-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The color property &gt; </a>]</td></tr></table>
+<a name="the-transparent-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>transparent</code> property</h4>
+
+<a name="index-transparent-property"></a>
+<a name="index-transparency"></a>
+
+<p>We see from the properties specified in the <code>grob-interface</code> page
+in the IR that the <code>transparent</code> property is a boolean.  This
+should be set to <code>#t</code> to make the grob transparent.  In this next
+example let us make the time signature invisible rather than the bar
+lines.  To do this we need to find the grob name for the time
+signature.  Back to the &lsquo;All layout objects&rsquo; page in the IR to find
+the properties of the <code>TimeSignature</code> layout object.  This is
+produced by the <code>Time_signature_engraver</code> which you can check
+also lives in the <code>Staff</code> context and also supports the
+<code>grob-interface</code>.  So the command to make the time signature
+transparent is:
+</p>
+<a name="index-TimeSignature_002c-example-of-overriding"></a>
+<a name="index-transparent-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.TimeSignature.transparent = ##t
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../ee/lily-ad4aa5f5.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-ad4aa5f5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Again, setting the <code>transparent</code> property is a rather
+frequent operation, so we have a shorthand for it called
+<code>\hide</code>:
+<a name="index-_005chide"></a>
+<a name="index-_005chide-1"></a>
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \hide Staff.TimeSignature
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../ba/lily-6b5a1d24.ly">
+  <img align="middle"
+       border="0"
+       src="../ba/lily-6b5a1d24.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In either case, the time signature is gone, but this command
+leaves a gap where
+the time signature should be.  Maybe this is what is wanted for
+an exercise for the student to fill it in, but in other
+circumstances a gap might be undesirable.  To remove it, the
+stencil for the time signature should be set to <code>#f</code>
+instead:
+</p>
+<a name="index-TimeSignature_002c-example-of-overriding-1"></a>
+<a name="index-stencil-property_002c-example-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \omit Staff.TimeSignature
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../2d/lily-7d3df2e8.ly">
+  <img align="middle"
+       border="0"
+       src="../2d/lily-7d3df2e8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>and the difference is obvious: setting the stencil to <code>#f</code>
+(possibly via <code>\omit</code>)
+removes the object entirely; making the object <code>transparent</code>
+(which can be done using <code>\hide</code>)
+leaves it where it is, but makes it invisible.
+</p>
+<hr size="6">
+<a name="The-color-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-transparent-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The transparent property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Visibility and color of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="size-of-objects.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Size of objects &gt; </a>]</td></tr></table>
+<a name="the-color-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>color</code> property</h4>
+
+<a name="index-color-property"></a>
+
+<p>Finally let us try making the bar lines invisible by coloring
+them white.  (There is a difficulty with this in that the
+white bar line may or may not blank out the staff lines where
+they cross.  You may see in some of the examples below that this
+happens unpredictably.  The details of why this is so and how to
+control it are covered in <a name="index-Painting-objects-white"></a>
+<a href="../notation/visibility-of-objects.zh.html#painting-objects-white">Painting objects white</a>.  But at
+the moment we are learning about color, so please just accept this
+limitation for now.)
+</p>
+<p>The <code>grob-interface</code> specifies that the
+color property value is a list, but there is no
+explanation of what that list should be.  The list it
+requires is actually a list of values in internal units,
+but, to avoid having to know what these are, several ways
+are provided to specify colors.  The first way is to use one
+of the &lsquo;normal&rsquo; colors listed in the first table in
+<a name="index-List-of-colors"></a>
+<a href="../notation/list-of-colors.zh.html">List of colors</a>.  To set the bar lines to white
+we write:
+</p>
+<a name="index-BarLine_002c-example-of-overriding-3"></a>
+<a name="index-color-property_002c-example-5"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.color = #white
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../91/lily-c4d83361.ly">
+  <img align="middle"
+       border="0"
+       src="../91/lily-c4d83361.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>and again, we see the bar lines are not visible.  Note that
+<em>white</em> is not preceded by an apostrophe &ndash; it is not
+a symbol, but a <em>variable</em>.  When evaluated, it provides
+the list of internal values required to set the color to
+white.  The other colors in the normal list are variables
+too.  To convince yourself this is working you might like
+to change the color to one of the other variables in the
+list.
+</p>
+<a name="index-color_002c-X11"></a>
+<a name="index-X11-colors"></a>
+
+<a name="index-x11_002dcolor"></a>
+<a name="index-x11_002dcolor-1"></a>
+
+<p>The second way of changing the color is to use the list of
+X11 color names in the second list in <a name="index-List-of-colors-1"></a>
+<a href="../notation/list-of-colors.zh.html">List of colors</a>.
+However, these are mapped to the actual values by the function
+<code>x11-color</code> which
+converts X11 color symbols into the list of internal values like this:
+</p>
+<a name="index-BarLine_002c-example-of-overriding-4"></a>
+<a name="index-color-property_002c-example-6"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.color = #(x11-color 'white)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../5a/lily-e70922e2.ly">
+  <img align="middle"
+       border="0"
+       src="../5a/lily-e70922e2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Note that in this case the function <code>x11-color</code> takes
+a symbol as an argument, so the symbol must be preceded by
+an apostrophe to keep it from being evaluated as a variable, and
+the whole function call has to be enclosed in parentheses.
+</p>
+<a name="index-rgb-colors"></a>
+<a name="index-color_002c-rgb"></a>
+
+<a name="index-rgb_002dcolor"></a>
+<a name="index-rgb_002dcolor-1"></a>
+
+<p>There is another function, one which converts RGB values into
+internal colors &ndash; the <code>rgb-color</code> function.  This takes
+three arguments giving the intensities of the red, green and
+blue colors.  These take values in the range 0 to 1.  So to
+set the color to red the value should be <code>(rgb-color 1 0 0)</code>
+and to white it should be <code>(rgb-color 1 1 1)</code>:
+</p>
+<a name="index-BarLine_002c-example-of-overriding-5"></a>
+<a name="index-color-property_002c-example-7"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.color = #(rgb-color 1 1 1)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../85/lily-546c8119.ly">
+  <img align="middle"
+       border="0"
+       src="../85/lily-546c8119.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Finally, there is also a grey scale available as part of the
+X11 set of colors.  These range from black, <code>'grey0</code>,
+to white, <code>'grey100</code>, in steps of 1.  Let&rsquo;s illustrate
+this by setting all the layout objects in our example to
+various shades of grey:
+</p>
+<a name="index-StaffSymbol_002c-example-of-overriding"></a>
+<a name="index-TimeSignature_002c-example-of-overriding-2"></a>
+<a name="index-Clef_002c-example-of-overriding"></a>
+<a name="index-NoteHead_002c-example-of-overriding-4"></a>
+<a name="index-Stem_002c-example-of-overriding"></a>
+<a name="index-BarLine_002c-example-of-overriding-6"></a>
+<a name="index-color-property_002c-example-8"></a>
+<a name="index-x11_002dcolor_002c-example-of-using"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.StaffSymbol.color = #(x11-color 'grey30)
+  \override Staff.TimeSignature.color = #(x11-color 'grey60)
+  \override Staff.Clef.color = #(x11-color 'grey60)
+  \override Voice.NoteHead.color = #(x11-color 'grey85)
+  \override Voice.Stem.color = #(x11-color 'grey85)
+  \override Staff.BarLine.color = #(x11-color 'grey10)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../db/lily-46ccb958.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-46ccb958.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Note the contexts associated with each of the layout objects.
+It is important to get these right, or the commands will not
+work!  Remember, the context is the one in which the appropriate
+engraver is placed.  The default context for engravers can be
+found by starting from the layout object, going from there to
+the engraver which produces it, and on the engraver page in the
+IR it tells you in which context the engraver will normally be
+found.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-transparent-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The transparent property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Visibility and color of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="size-of-objects.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Size of objects &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (开发分支).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 其他语言：<a href="visibility-and-color-of-objects.ca.html">català</a>, <a href="visibility-and-color-of-objects.cs.html">česky</a>, <a href="visibility-and-color-of-objects.de.html">deutsch</a>, <a href="visibility-and-color-of-objects.es.html">español</a>, <a href="visibility-and-color-of-objects.fr.html">français</a>, <a href="visibility-and-color-of-objects.it.html">italiano</a>, <a href="visibility-and-color-of-objects.ja.html">日本語</a>, <a href="visibility-and-color-of-objects.nl.html">nederlands</a>。
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.zh.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (开发分支). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.zh.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.zh.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.zh.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.zh.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.zh.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.zh.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.zh.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.zh.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.zh.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.zh.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.zh.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.zh.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.zh.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.zh.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.zh.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Tweaking-output-1" href="tweaking-output.zh.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.zh.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.zh.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=" toc_current"><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.zh.html">4.3 Appearance of objects</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Visibility-and-color-of-objects-1" href="visibility-and-color-of-objects.zh.html">4.3.1 Visibility and color of objects</a>
+      <ul class="toc">
+        <li class=""><a name="toc-The-stencil-property-1" href="visibility-and-color-of-objects.zh.html#the-stencil-property">The <code>stencil</code> property</a>        </li>
+        <li class=""><a name="toc-The-break_002dvisibility-property-1" href="visibility-and-color-of-objects.zh.html#the-break_002dvisibility-property">The <code>break-visibility</code> property</a>        </li>
+        <li class=""><a name="toc-The-transparent-property-1" href="visibility-and-color-of-objects.zh.html#the-transparent-property">The <code>transparent</code> property</a>        </li>
+        <li class=""><a name="toc-The-color-property-1" href="visibility-and-color-of-objects.zh.html#the-color-property">The <code>color</code> property</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Size-of-objects-1" href="size-of-objects.zh.html">4.3.2 Size of objects</a>      </li>
+      <li class=""><a name="toc-Length-and-thickness-of-objects-1" href="length-and-thickness-of-objects.zh.html">4.3.3 Length and thickness of objects</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.zh.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.zh.html">4.5 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.zh.html">4.6 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.zh.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.zh.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.zh.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.zh.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.zh.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.zh.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.zh.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.zh.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.zh.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.zh.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.zh.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.zh.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

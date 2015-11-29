@@ -1,0 +1,38 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{graphics}
+\begin{document}
+\section{LilyPond snippets in a footnote}
+
+Test for snippets in a footnote\footnote{Here's the footnote:
+{%
+\parindent 0pt
+\noindent
+\ifx\preLilyPondExample \undefined
+\else
+  \expandafter\preLilyPondExample
+\fi
+\def\lilypondbook{}%
+\input{24/lily-400d0b93-systems.tex}
+\ifx\postLilyPondExample \undefined
+\else
+  \expandafter\postLilyPondExample
+\fi
+} }:
+\marginpar{ Yes, even as marginpar
+{%
+\parindent 0pt
+\noindent
+\ifx\preLilyPondExample \undefined
+\else
+  \expandafter\preLilyPondExample
+\fi
+\def\lilypondbook{}%
+\input{f7/lily-e9bc57b1-systems.tex}
+\ifx\postLilyPondExample \undefined
+\else
+  \expandafter\postLilyPondExample
+\fi
+} }
+
+\end{document}

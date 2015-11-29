@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: A.1.1 SATB template</title>
+
+<meta name="description" content="LilyPond Learning Manual: A.1.1 SATB template">
+<meta name="keywords" content="LilyPond Learning Manual: A.1.1 SATB template">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.nl.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.nl.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.nl.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.nl.html#SEC_About" rel="help" title="About This Document">
+<link href="built_002din-templates.nl.html#built_002din-templates" rel="up" title="A.1 Built-in templates">
+<link href="lilypond-index.nl.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="built_002din-templates.nl.html#built_002din-templates" rel="previous" title="A.1 Built-in templates">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="SATB-template"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="templates.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Templates&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="gnu-free-documentation-license.nl.html" title="Next chapter">&nbsp;GNU Free Documentation License &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="built_002din-templates.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Built-in templates&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="built_002din-templates.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Built-in templates&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="ssaattbb-template.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;SSAATTBB template &gt; </a>]</td></tr></table>
+<a name="satb-template"></a>
+<h3 class="appendixsubsec">A.1.1 SATB template</h3>
+
+<p>The music may be set out with one or two voices per staff by setting
+<code>TwoVoicesPerStaff</code> to <code>##f</code> or <code>##t</code> respectively.
+</p>
+<p>Here&rsquo;s the complete input file for producing a full four-part SATB
+arrangement with individual lyrics and piano accompaniment:
+</p>
+<blockquote><pre class="verbatim">  SopranoMusic = \relative { a'4\f a8 a a4 a }
+  SopranoLyrics = \lyricmode { Sop -- ra -- no ly -- rics }
+  AltoMusic = \relative { d'4\f d d d }
+  AltoLyrics = \lyricmode { Al -- to ly -- rics }
+  TenorMusic = \relative { a4\p a a a }
+  TenorLyrics = \lyricmode { Te -- nor ly -- rics }
+  BassMusic = \relative { c2\p c4 c }
+  BassLyrics = \lyricmode { Bass ly -- rics }
+  PianoRHMusic = \relative { c' e g c }
+  PianoDynamics = { s2\mp s4 s4 }
+  PianoLHMusic = \relative { c e g c }
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../8c/lily-7e212d8f.ly">
+  <img align="middle"
+       border="0"
+       src="../8c/lily-7e212d8f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The same input can be used to produce a score with two voices
+per staff just by setting <code>TwoVoicesPerStaff</code> to <code>##t</code>.
+Again, each voice has individual lyrics.
+</p>
+
+<blockquote><pre class="verbatim">  SopranoMusic = \relative { a'4\f a8 a a4 a }
+  SopranoLyrics = \lyricmode { Sop -- ra -- no ly -- rics }
+  AltoMusic = \relative { d'4\f d d d }
+  AltoLyrics = \lyricmode { Al -- to ly -- rics }
+  TenorMusic = \relative { a4\p a a a }
+  TenorLyrics = \lyricmode { Te -- nor ly -- rics }
+  BassMusic = \relative { c2\p c4 c }
+  BassLyrics = \lyricmode { Bass ly -- rics }
+  PianoRHMusic = \relative { c' e g c }
+  PianoDynamics = { s2\mp s4 s4 }
+  PianoLHMusic = \relative { c e g c }
+  TwoVoicesPerStaff = ##t
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../cf/lily-01cebe03.ly">
+  <img align="middle"
+       border="0"
+       src="../cf/lily-01cebe03.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>When <code>TwoVoicesPerStaff</code> is set to false or allowed to default,
+any of the music variables may be omitted to produce arrangements
+with fewer voices.  Here, for example, is how the input file for a
+Soprano/Bass duet might be written:
+</p>
+<blockquote><pre class="verbatim">  SopranoMusic = \relative { c'' c c c }
+  SopranoLyrics = \lyricmode { High voice ly -- rics }
+  BassMusic = \relative { a a a a }
+  BassLyrics = \lyricmode { Low voice ly -- rics }
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../10/lily-4272e89f.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-4272e89f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>A second verse or alternative lyrics may be added to each of the
+parts:
+</p>
+<blockquote><pre class="verbatim">  SopranoMusic = \relative { a'4 a a a }
+  SopranoLyricsOne = \lyricmode {
+    \set stanza = &quot;1.&quot;
+    Words to verse one
+  }
+  SopranoLyricsTwo = \lyricmode {
+    \set stanza = &quot;2.&quot;
+    Words to verse two
+  }
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../d8/lily-0aab29e8.ly">
+  <img align="middle"
+       border="0"
+       src="../d8/lily-0aab29e8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>When the lyrics and rhythms are the same for every part, the vocal
+music is best arranged on two staves with two voices in each.  Up to
+nine verses may be provided.  Here&rsquo;s an unaccompanied example with
+just three verses.
+</p>
+<blockquote><pre class="verbatim">  SopranoMusic = \relative { a' a a a }
+  AltoMusic = \relative { f' f f f }
+  VerseOne = \lyricmode {
+    \set stanza = &quot;1.&quot;
+    Words to verse one
+  }
+  VerseTwo = \lyricmode {
+    \set stanza = &quot;2.&quot;
+    Words to verse two
+  }
+  VerseThree = \lyricmode {
+    \set stanza = &quot;3.&quot;
+    Words to verse three
+  }
+  TenorMusic = \relative { a a a a }
+  BassMusic = \relative { f f f f }
+  TwoVoicesPerStaff = ##t
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../57/lily-1f788182.ly">
+  <img align="middle"
+       border="0"
+       src="../57/lily-1f788182.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Other variables may be given values.  The key signature and
+the time signature may be changed from the default:
+</p>
+<blockquote><pre class="verbatim">  Key = \key a \major
+  Time = {
+    \time 5/4
+    \tempo &quot;Allegro&quot; 4 = 144
+  }
+  SopranoMusic = \relative { gis' gis gis gis gis }
+  AltoMusic = \relative { cis' cis cis cis cis }
+  VerseOne = \lyricmode { Words to this du -- et }
+  TwoVoicesPerStaff = ##t
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../23/lily-1e2e3ed6.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-1e2e3ed6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The instrument names and/or the short instrument names may be
+changed:
+</p>
+<blockquote><pre class="verbatim">  SopranoMusic = \relative { c'' c c c }
+  SopranoLyrics = \lyricmode { High voice ly -- rics }
+  SopranoInstrumentName = &quot;Soprano 1&quot;
+  SopranoShortInstrumentName = &quot;S1&quot;
+  AltoMusic = \relative { a' a a a }
+  AltoLyrics = \lyricmode { Low voice ly -- rics }
+  AltoInstrumentName = &quot;Soprano 2&quot;
+  AltoShortInstrumentName = &quot;S2&quot;
+  \include &quot;satb.ly&quot;
+</pre><p>
+ <a href="../dd/lily-721c025e.ly">
+  <img align="middle"
+       border="0"
+       src="../dd/lily-721c025e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>although rather than do this it might be easier to use the
+<code>ssaattbb.ly</code> template, see <a href="ssaattbb-template.nl.html">SSAATTBB template</a>.
+</p>
+<p>A descant may be added by defining values for the variable
+<code>DescantMusic</code> and descant lyrics may be provided by defining
+values for <code>DescantLyrics</code>.  In a similar way a solo part may be
+added above the grouped choir staves by defining values for
+<code>SoloMusic</code> and <code>SoloLyrics</code>.
+</p>
+<p><code>\header</code> and <code>\paper</code> blocks may be added as normal.
+A <code>\layout</code> block may be provided as usual at top level, and
+the contents will be combined with (but will not override) the default
+settings provided in the template.  Alternatively, all the default
+settings provided by the template can be discarded by defining a
+<code>Layout</code> variable containing <em>all</em> the required settings:
+</p>
+<blockquote><pre class="example">Layout = \layout { ... }
+</pre></blockquote>
+
+<p>The complete set of variables which may be changed can be seen by
+examining the file &lsquo;<tt>ly/satb.ly</tt>&rsquo;, see
+<a href="other-sources-of-information.nl.html">Other sources of information</a>.
+</p>
+<a name="See-also-30"></a>
+<h4 class="subsubheading">See also</h4>
+<p>Learning Manual:
+<a href="organizing-pieces-with-variables.nl.html">Organizing pieces with variables</a>,
+<a href="vocal-ensembles-templates.nl.html">Vocal ensembles templates</a>,
+<a href="extending-the-templates.nl.html">Extending the templates</a>,
+<a href="other-sources-of-information.nl.html">Other sources of information</a>.
+</p>
+<a name="Known-issues-and-warnings"></a>
+<h4 class="subsubheading">Known issues and warnings</h4>
+<p>The setting of the <code>TwoVoicesPerStaff</code> variable applies for the
+entire duration of the score: it cannot be given different values at
+different times.
+</p>
+<p>More complex arrangements of SATB choral music are not possible with
+this simple built-in template.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="templates.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Templates&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="gnu-free-documentation-license.nl.html" title="Next chapter">&nbsp;GNU Free Documentation License &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="built_002din-templates.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Built-in templates&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="built_002din-templates.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Built-in templates&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="ssaattbb-template.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;SSAATTBB template &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Deze pagina is voor LilyPond-2.19.32 (ontwikkelingstak).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere talen: <a href="satb-template.de.html">deutsch</a>, <a href="satb-template.fr.html">français</a>, <a href="satb-template.it.html">italiano</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.nl.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (ontwikkelingstak). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.nl.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.nl.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.nl.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.nl.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.nl.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.nl.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.nl.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.nl.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.nl.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.nl.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.nl.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.nl.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.nl.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.nl.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.nl.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tweaking-output-1" href="tweaking-output.nl.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.nl.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.nl.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.nl.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.nl.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.nl.html">4.5 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.nl.html">4.6 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.nl.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Templates-1" href="templates.nl.html">A. Templates</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Built_002din-templates-1" href="built_002din-templates.nl.html">A.1 Built-in templates</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-SATB-template-1" href="satb-template.nl.html">A.1.1 SATB template</a>      </li>
+      <li class=""><a name="toc-SSAATTBB-template-1" href="ssaattbb-template.nl.html">A.1.2 SSAATTBB template</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.nl.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.nl.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.nl.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.nl.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.nl.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.nl.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.nl.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.nl.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.nl.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

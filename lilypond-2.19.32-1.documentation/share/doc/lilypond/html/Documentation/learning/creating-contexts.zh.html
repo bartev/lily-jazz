@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 3.3.2 Creating contexts</title>
+
+<meta name="description" content="LilyPond Learning Manual: 3.3.2 Creating contexts">
+<meta name="keywords" content="LilyPond Learning Manual: 3.3.2 Creating contexts">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.zh.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.zh.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.zh.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.zh.html#SEC_About" rel="help" title="About This Document">
+<link href="contexts-and-engravers.zh.html#contexts-and-engravers" rel="up" title="3.3 Contexts and engravers">
+<link href="lilypond-index.zh.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="contexts-explained.zh.html#contexts-explained" rel="previous" title="3.3.1 Contexts explained">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Creating-contexts"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Fundamental concepts&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.zh.html" title="Next chapter">&nbsp;Tweaking output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="contexts-explained.zh.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Contexts explained&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.zh.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts and engravers&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="engravers-explained.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Engravers explained &gt; </a>]</td></tr></table>
+<a name="creating-contexts"></a>
+<h3 class="subsection">3.3.2 Creating contexts</h3>
+
+<a name="index-_005cnew-2"></a>
+<a name="index-_005cnew-3"></a>
+<a name="index-new-2"></a>
+<a name="index-new-3"></a>
+<a name="index-new-contexts"></a>
+<a name="index-creating-contexts"></a>
+<a name="index-contexts_002c-creating"></a>
+
+<p>In an input file a score block, introduced with a <code>\score</code>
+command, contains a single music expression and an associated
+output definition (either a <code>\layout</code> or a <code>\midi</code> block).
+The <code>Score</code> context is usually left to be created automatically
+when the interpretation of that music expression starts.
+</p>
+<p>For scores with only one voice and one staff, the <code>Voice</code> and
+<code>Staff</code> contexts may also be left to be created automatically,
+but for more complex scores it is necessary to create them by hand.
+The simplest command that does this is <code>\new</code>.  It is prepended
+to a music expression, for example
+</p>
+<blockquote><pre class="example">\new <var>type</var> <var>music-expression</var>
+</pre></blockquote>
+
+<p>where <var>type</var> is a context name (like <code>Staff</code> or
+<code>Voice</code>).  This command creates a new context, and starts
+interpreting the <var>music-expression</var> within that context.
+</p>
+<div class="warning"><p><strong>Note:</strong> \<code>new Score</code> should not be used as the essential
+top-level <code>Score</code> context is created automatically when the music
+expression within the \<code>score</code> block is interpreted.  Score-wide
+default values of context properties can be changed within the
+\<code>layout</code> block.  See <a href="modifying-context-properties.zh.html">Modifying context properties</a>
+</p>
+</div>
+<p>You have seen many practical examples which created new
+<code>Staff</code> and <code>Voice</code> contexts in earlier sections, but
+to remind you how these commands are used in practice, here&rsquo;s an
+annotated real-music example:
+</p>
+<blockquote><pre class="verbatim">\score {  % start of single compound music expression
+  &lt;&lt;  % start of simultaneous staves section
+    \time 2/4
+    \new Staff {  % create RH staff
+      \clef &quot;treble&quot;
+      \key g \minor
+      \new Voice {  % create voice for RH notes
+        \relative {  % start of RH notes
+          d''4 ees16 c8. |
+          d4 ees16 c8. |
+        }  % end of RH notes
+      }  % end of RH voice
+    }  % end of RH staff
+    \new Staff &lt;&lt;  % create LH staff; needs two simultaneous voices
+      \clef &quot;bass&quot;
+      \key g \minor
+      \new Voice {  % create LH voice one
+        \voiceOne
+        \relative {  % start of LH voice one notes
+          g8 &lt;bes d&gt; ees, &lt;g c&gt; |
+          g8 &lt;bes d&gt; ees, &lt;g c&gt; |
+        }  % end of LH voice one notes
+      }  % end of LH voice one
+      \new Voice {  % create LH voice two
+        \voiceTwo
+        \relative {  % start of LH voice two notes
+          g4 ees |
+          g4 ees |
+        }  % end of LH voice two notes
+      }  % end of LH voice two
+    &gt;&gt;  % end of LH staff
+  &gt;&gt;  % end of simultaneous staves section
+}  % end of single compound music expression
+</pre><p>
+ <a href="../46/lily-bd6e6fdc.ly">
+  <img align="middle"
+       border="0"
+       src="../46/lily-bd6e6fdc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>(Note how all the statements which open a block with either a
+curly bracket, <code>{</code>, or double angle brackets, <code>&lt;&lt;</code>,
+are indented by two further spaces, and the corresponding
+closing bracket is indented by exactly the same amount.  While
+this is not required, following this practice will greatly
+reduce the number of &lsquo;unmatched bracket&rsquo; errors, and is
+strongly recommended.  It enables the structure of the music to
+be seen at a glance, and any unmatched brackets will be obvious.
+Note too how the LH staff is created using double angle brackets
+because it requires two voices for its music, whereas the RH staff
+is created with a single music expression surrounded by curly
+brackets because it requires only one voice.)
+</p>
+<a name="index-contexts_002c-naming"></a>
+<a name="index-naming-contexts"></a>
+
+<p>The <code>\new</code> command may also give an identifying name to the
+context to distinguish it from other contexts of the same type,
+</p>
+<blockquote><pre class="example">\new <var>type</var> = <var>id</var> <var>music-expression</var>
+</pre></blockquote>
+
+<p>Note the distinction between the name of the context type,
+<code>Staff</code>, <code>Voice</code>, etc, and the identifying name of a
+particular instance of that type, which can be any sequence of letters
+invented by the user.  Digits and spaces can also be used in the
+identifying name, but then it has to be placed in quotes,
+i.e. <code>\new Staff = &quot;MyStaff 1&quot; <var>music-expression</var></code>.
+The identifying name is used to
+refer back to that particular instance of a context.  We saw this in
+use in the section on lyrics, see <a href="voices-and-vocals.zh.html">Voices and vocals</a>.
+</p>
+
+<a name="See-also"></a>
+<h4 class="subsubheading">See also</h4>
+<p>Notation Reference: <a name="index-Creating-and-referencing-contexts"></a>
+<a href="../notation/creating-and-referencing-contexts.zh.html">Creating and referencing contexts</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Fundamental concepts&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.zh.html" title="Next chapter">&nbsp;Tweaking output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="contexts-explained.zh.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Contexts explained&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.zh.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts and engravers&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="engravers-explained.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Engravers explained &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (开发分支).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 其他语言：<a href="creating-contexts.ca.html">català</a>, <a href="creating-contexts.cs.html">česky</a>, <a href="creating-contexts.de.html">deutsch</a>, <a href="creating-contexts.es.html">español</a>, <a href="creating-contexts.fr.html">français</a>, <a href="creating-contexts.hu.html">magyar</a>, <a href="creating-contexts.it.html">italiano</a>, <a href="creating-contexts.ja.html">日本語</a>, <a href="creating-contexts.nl.html">nederlands</a>。
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.zh.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (开发分支). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.zh.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.zh.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.zh.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.zh.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.zh.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.zh.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.zh.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.zh.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.zh.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.zh.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.zh.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.zh.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.zh.html">3.2 Voices contain music</a>    </li>
+    <li class=" toc_current"><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.zh.html">3.3 Contexts and engravers</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Contexts-explained-1" href="contexts-explained.zh.html">3.3.1 Contexts explained</a>      </li>
+      <li class=" toc_current"><a name="toc-Creating-contexts-1" href="creating-contexts.zh.html">3.3.2 Creating contexts</a>      </li>
+      <li class=""><a name="toc-Engravers-explained-1" href="engravers-explained.zh.html">3.3.3 Engravers explained</a>      </li>
+      <li class=""><a name="toc-Modifying-context-properties-1" href="modifying-context-properties.zh.html">3.3.4 Modifying context properties</a>      </li>
+      <li class=""><a name="toc-Adding-and-removing-engravers-1" href="adding-and-removing-engravers.zh.html">3.3.5 Adding and removing engravers</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.zh.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tweaking-output-1" href="tweaking-output.zh.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.zh.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.zh.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.zh.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.zh.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.zh.html">4.5 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.zh.html">4.6 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.zh.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.zh.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.zh.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.zh.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.zh.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.zh.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.zh.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.zh.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.zh.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.zh.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.zh.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.zh.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1370 @@
+Grammar
+
+    1 start_symbol: lilypond
+
+    3 start_symbol: "#{"  embedded_lilypond
+
+    4 lilypond: /* empty */
+    5         | lilypond toplevel_expression
+    6         | lilypond assignment
+    7         | lilypond error
+    8         | lilypond "\version-error"
+
+   10 toplevel_expression:  lilypond_header
+   11                    | book_block
+   12                    | bookpart_block
+   13                    | BOOK_IDENTIFIER
+   14                    | score_block
+   15                    | composite_music
+   16                    | full_markup
+   17                    | full_markup_list
+   18                    | SCM_TOKEN
+   19                    | embedded_scm_active
+   20                    | output_def
+
+   21 embedded_scm_bare: SCM_TOKEN
+   22                  | SCM_IDENTIFIER
+
+   23 embedded_scm_active: SCM_IDENTIFIER
+   24                    | scm_function_call
+
+   25 embedded_scm_bare_arg: SCM_ARG
+   26                      | SCM_TOKEN
+   27                      | FRACTION
+   28                      | partial_markup
+   29                      | full_markup_list
+   30                      | context_modification
+   31                      | score_block
+   32                      | context_def_spec_block
+   33                      | book_block
+   34                      | bookpart_block
+   35                      | output_def
+
+   36 embedded_scm: embedded_scm_bare
+   37             | scm_function_call
+
+   38 embedded_scm_arg: embedded_scm_bare_arg
+   39                 | scm_function_call
+   40                 | music_assign
+
+   41 scm_function_call: SCM_FUNCTION function_arglist
+
+   42 embedded_lilypond_number: '-' embedded_lilypond_number
+   43                         | bare_number_common
+   44                         | UNSIGNED NUMBER_IDENTIFIER
+
+   45 embedded_lilypond: /* empty */
+   46                  | identifier_init_nonumber
+   47                  | embedded_lilypond_number
+   48                  | post_event post_events
+   49                  | multiplied_duration
+   50                  | music_embedded music_embedded music_list
+   51                  | error
+   52                  | "\version-error" embedded_lilypond
+
+   53 lilypond_header_body: /* empty */
+   54                     | lilypond_header_body assignment
+   55                     | lilypond_header_body embedded_scm
+
+   56 lilypond_header: "\header" '{' lilypond_header_body '}'
+
+   57 assignment_id: STRING
+
+   58 assignment: assignment_id '=' identifier_init
+   59           | assignment_id property_path '=' identifier_init
+   60           | assignment_id '.' property_path '=' identifier_init
+
+   61 identifier_init: identifier_init_nonumber
+   62                | number_expression
+   63                | post_event_nofinger post_events
+
+   64 identifier_init_nonumber: score_block
+   65                         | book_block
+   66                         | bookpart_block
+   67                         | output_def
+   68                         | context_def_spec_block
+   69                         | music_assign
+   70                         | pitch_or_music
+   71                         | FRACTION
+   72                         | string
+   73                         | embedded_scm
+   74                         | partial_markup
+   75                         | full_markup_list
+   76                         | context_modification
+   77                         | partial_function "\etc"
+
+   78 partial_function: MUSIC_FUNCTION function_arglist_partial
+   79                 | EVENT_FUNCTION function_arglist_partial
+   80                 | SCM_FUNCTION function_arglist_partial
+   81                 | "\override" grob_prop_path '='
+   82                 | "\set" context_prop_spec '='
+   83                 | MUSIC_FUNCTION 
+                          "scheme?" 
+                          function_arglist_optional 
+                          partial_function 
+   84                 | EVENT_FUNCTION 
+                          "scheme?" 
+                          function_arglist_optional 
+                          partial_function 
+   85                 | SCM_FUNCTION 
+                          "scheme?" 
+                          function_arglist_optional 
+                          partial_function 
+   86                 | "\override" grob_prop_path '=' partial_function
+   87                 | "\set" context_prop_spec '=' partial_function
+   88                 | MUSIC_FUNCTION 
+                          "optional?" 
+                          "scheme?" 
+                          function_arglist_nonbackup 
+                          partial_function 
+   89                 | EVENT_FUNCTION 
+                          "optional?" 
+                          "scheme?" 
+                          function_arglist_nonbackup 
+                          partial_function 
+   90                 | SCM_FUNCTION 
+                          "optional?" 
+                          "scheme?" 
+                          function_arglist_nonbackup 
+                          partial_function 
+
+   91 context_def_spec_block: "\context" '{' context_def_spec_body '}'
+
+   92 context_mod_arg: embedded_scm
+
+   94 context_mod_arg:  composite_music
+
+   95 context_def_spec_body: /* empty */
+   96                      | context_def_spec_body context_mod
+   97                      | context_def_spec_body context_modification
+   98                      | context_def_spec_body context_mod_arg
+
+   99 book_block: "\book" '{' book_body '}'
+
+  100 book_body: /* empty */
+  101          | BOOK_IDENTIFIER
+  102          | book_body paper_block
+  103          | book_body bookpart_block
+  104          | book_body score_block
+  105          | book_body composite_music
+  106          | book_body full_markup
+  107          | book_body full_markup_list
+  108          | book_body SCM_TOKEN
+  109          | book_body embedded_scm_active
+
+  111 book_body: book_body  lilypond_header
+  112          | book_body error
+
+  113 bookpart_block: "\bookpart" '{' bookpart_body '}'
+
+  114 bookpart_body: /* empty */
+  115              | BOOK_IDENTIFIER
+  116              | bookpart_body paper_block
+  117              | bookpart_body score_block
+  118              | bookpart_body composite_music
+  119              | bookpart_body full_markup
+  120              | bookpart_body full_markup_list
+  121              | bookpart_body SCM_TOKEN
+  122              | bookpart_body embedded_scm_active
+
+  124 bookpart_body: bookpart_body  lilypond_header
+  125              | bookpart_body error
+
+  126 score_block: "\score" '{' score_body '}'
+
+  127 score_body: score_items
+  128           | score_body error
+
+  129 score_item: embedded_scm
+  130           | music
+  131           | output_def
+
+  132 score_items: /* empty */
+  133            | score_items score_item
+
+  135 score_items: score_items  lilypond_header
+
+  136 paper_block: output_def
+
+  137 output_def: output_def_body '}'
+
+  138 output_def_head: "\paper"
+  139                | "\midi"
+  140                | "\layout"
+
+  141 output_def_head_with_mode_switch: output_def_head
+
+  142 music_or_context_def: music_assign
+  143                     | context_def_spec_block
+
+  144 output_def_body: output_def_head_with_mode_switch '{'
+  145                | output_def_body assignment
+  146                | output_def_body embedded_scm_active
+  147                | output_def_body SCM_TOKEN
+
+  149 output_def_body: output_def_body  music_or_context_def
+  150                | output_def_body error
+
+  151 tempo_event: "\tempo" steno_duration '=' tempo_range
+  152            | "\tempo" text steno_duration '=' tempo_range
+  153            | "\tempo" text
+
+  154 music_list: /* empty */
+  155           | music_list music_embedded
+  156           | music_list error
+
+  157 braced_music_list: '{' music_list '}'
+
+  158 music: music_assign
+  159      | lyric_element_music
+  160      | pitch_as_music
+
+  161 pitch_as_music: pitch_or_music
+
+  162 music_embedded: music
+  163               | music_embedded_backup
+  164               | music_embedded_backup 
+                        "(backed-up?)" 
+                        lyric_element_music 
+  165               | multiplied_duration post_events
+
+  166 music_embedded_backup: embedded_scm
+
+  167 music_assign: simple_music
+  168             | composite_music
+
+  169 repeated_music: "\repeat" simple_string unsigned_number music
+  170               | "\repeat" 
+                        simple_string 
+                        unsigned_number 
+                        music 
+                        "\alternative" 
+                        braced_music_list 
+
+  171 sequential_music: "\sequential" braced_music_list
+  172                 | braced_music_list
+
+  173 simultaneous_music: "\simultaneous" braced_music_list
+  174                   | "<<" music_list ">>"
+
+  175 simple_music: event_chord
+  176             | music_property_def
+  177             | context_change
+
+  179 context_modification: "\with"  '{' context_mod_list '}'
+  180                     | "\with" CONTEXT_MOD_IDENTIFIER
+  181                     | CONTEXT_MOD_IDENTIFIER
+  182                     | "\with" context_modification_arg
+
+  183 context_modification_arg: embedded_scm
+  184                         | MUSIC_IDENTIFIER
+
+  185 optional_context_mod: /* empty */
+  186                     | context_modification
+
+  187 context_mod_list: /* empty */
+  188                 | context_mod_list context_mod
+  189                 | context_mod_list CONTEXT_MOD_IDENTIFIER
+  190                 | context_mod_list context_mod_arg
+
+  191 context_prefix: "\context" symbol optional_id optional_context_mod
+  192               | "\new" symbol optional_id optional_context_mod
+
+  193 new_lyrics: "\addlyrics" optional_context_mod lyric_mode_music
+  194           | new_lyrics 
+                    "\addlyrics" 
+                    optional_context_mod 
+                    lyric_mode_music 
+
+  195 basic_music: music_function_call
+  196            | repeated_music
+  197            | music_bare
+  198            | "\lyricsto" simple_string lyric_mode_music
+  199            | "\lyricsto" symbol '=' simple_string lyric_mode_music
+
+  200 contextable_music: basic_music
+  201                  | pitch_as_music
+  202                  | event_chord
+
+  203 contexted_basic_music: context_prefix contextable_music new_lyrics
+  204                      | context_prefix contextable_music
+  205                      | context_prefix contexted_basic_music
+
+  206 composite_music: basic_music
+  207                | contexted_basic_music
+  208                | basic_music new_lyrics
+
+  209 music_bare: mode_changed_music
+  210           | MUSIC_IDENTIFIER
+  211           | grouped_music_list
+
+  212 grouped_music_list: simultaneous_music
+  213                   | sequential_music
+
+  214 symbol_list_arg: SYMBOL_LIST
+  215                | SYMBOL_LIST '.' symbol_list_rev
+
+  216 symbol_list_rev: symbol_list_part
+  217                | symbol_list_rev '.' symbol_list_part
+
+  218 symbol_list_part: symbol_list_element
+
+  219 symbol_list_element: STRING
+  220                    | embedded_scm_bare
+
+  221 function_arglist_nonbackup: function_arglist_common
+  222                           | "optional?" 
+                                    "scheme?" 
+                                    function_arglist_nonbackup 
+                                    post_event_nofinger 
+  223                           | "optional?" 
+                                    "scheme?" 
+                                    function_arglist_nonbackup 
+                                    '-' 
+                                    UNSIGNED 
+  224                           | "optional?" 
+                                    "scheme?" 
+                                    function_arglist_nonbackup 
+                                    '-' 
+                                    REAL 
+  225                           | "optional?" 
+                                    "scheme?" 
+                                    function_arglist_nonbackup 
+                                    '-' 
+                                    NUMBER_IDENTIFIER 
+  226                           | "optional?" 
+                                    "scheme?" 
+                                    function_arglist_nonbackup 
+                                    embedded_scm_arg 
+  227                           | "optional?" 
+                                    "scheme?" 
+                                    function_arglist_nonbackup 
+                                    bare_number_common 
+  228                           | function_arglist_nonbackup_reparse 
+                                    "(reparsed?)" 
+                                    pitch_or_music 
+  229                           | function_arglist_nonbackup_reparse 
+                                    "(reparsed?)" 
+                                    duration_length 
+  230                           | function_arglist_nonbackup_reparse 
+                                    "(reparsed?)" 
+                                    bare_number_common 
+  231                           | function_arglist_nonbackup_reparse 
+                                    "(reparsed?)" 
+                                    SCM_ARG 
+  232                           | function_arglist_nonbackup_reparse 
+                                    "(reparsed?)" 
+                                    lyric_element_music 
+  233                           | function_arglist_nonbackup_reparse 
+                                    "(reparsed?)" 
+                                    symbol_list_arg 
+
+  234 function_arglist_nonbackup_reparse: "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            SCM_IDENTIFIER 
+  235                                   | "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            pitch 
+  236                                   | "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            steno_tonic_pitch 
+  237                                   | "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            STRING 
+  238                                   | "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            full_markup 
+  239                                   | "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            UNSIGNED 
+  240                                   | "optional?" 
+                                            "scheme?" 
+                                            function_arglist_nonbackup 
+                                            DURATION_IDENTIFIER 
+
+  241 function_arglist_backup: function_arglist_common
+  242                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 embedded_scm_arg 
+  243                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 post_event_nofinger 
+  244                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 pitch 
+  245                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 steno_tonic_pitch 
+  246                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 full_markup 
+  247                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 UNSIGNED 
+  248                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 REAL 
+  249                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 NUMBER_IDENTIFIER 
+  250                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 '-' 
+                                 UNSIGNED 
+  251                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 '-' 
+                                 REAL 
+  252                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 '-' 
+                                 NUMBER_IDENTIFIER 
+  253                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 DURATION_IDENTIFIER 
+  254                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 SCM_IDENTIFIER 
+  255                        | "optional?" 
+                                 "scheme?" 
+                                 function_arglist_backup 
+                                 STRING 
+  256                        | function_arglist_backup 
+                                 "(reparsed?)" 
+                                 pitch_or_music 
+  257                        | function_arglist_backup 
+                                 "(reparsed?)" 
+                                 bare_number_common 
+  258                        | function_arglist_backup 
+                                 "(reparsed?)" 
+                                 duration_length 
+  259                        | function_arglist_backup 
+                                 "(reparsed?)" 
+                                 symbol_list_arg 
+
+  260 function_arglist: function_arglist_nonbackup
+  261                 | "optional?" 
+                          "scheme?" 
+                          function_arglist_skip_nonbackup 
+                          "\default" 
+
+  262 function_arglist_skip_nonbackup: function_arglist_nonbackup
+  263                                | "optional?" 
+                                         "scheme?" 
+                                         function_arglist_skip_nonbackup 
+
+  264 function_arglist_partial: "scheme?" function_arglist_optional
+  265                         | "scheme?" function_arglist_partial_optional
+  266                         | "optional?" 
+                                  "scheme?" 
+                                  function_arglist_nonbackup 
+  267                         | "optional?" 
+                                  "scheme?" 
+                                  function_arglist_partial 
+
+  268 function_arglist_partial_optional: "scheme?" function_arglist_optional
+  269                                  | "scheme?" 
+                                           function_arglist_partial_optional 
+  270                                  | "optional?" 
+                                           "scheme?" 
+                                           function_arglist_backup 
+  271                                  | "optional?" 
+                                           "scheme?" 
+                                           function_arglist_partial_optional 
+
+  272 function_arglist_common: EXPECT_NO_MORE_ARGS
+  273                        | "scheme?" 
+                                 function_arglist_optional 
+                                 embedded_scm_arg 
+  274                        | "scheme?" 
+                                 function_arglist_optional 
+                                 bare_number_common 
+  275                        | "scheme?" 
+                                 function_arglist_optional 
+                                 post_event_nofinger 
+  276                        | "scheme?" 
+                                 function_arglist_optional 
+                                 '-' 
+                                 NUMBER_IDENTIFIER 
+  277                        | function_arglist_common_reparse 
+                                 "(reparsed?)" 
+                                 SCM_ARG 
+  278                        | function_arglist_common_reparse 
+                                 "(reparsed?)" 
+                                 lyric_element_music 
+  279                        | function_arglist_common_reparse 
+                                 "(reparsed?)" 
+                                 pitch_or_music 
+  280                        | function_arglist_common_reparse 
+                                 "(reparsed?)" 
+                                 bare_number_common 
+  281                        | function_arglist_common_reparse 
+                                 "(reparsed?)" 
+                                 duration_length 
+  282                        | function_arglist_common_reparse 
+                                 "(reparsed?)" 
+                                 symbol_list_arg 
+
+  283 function_arglist_common_reparse: "scheme?" 
+                                         function_arglist_optional 
+                                         SCM_IDENTIFIER 
+  284                                | "scheme?" 
+                                         function_arglist_optional 
+                                         pitch 
+  285                                | "scheme?" 
+                                         function_arglist_optional 
+                                         steno_tonic_pitch 
+  286                                | "scheme?" 
+                                         function_arglist_optional 
+                                         STRING 
+  287                                | "scheme?" 
+                                         function_arglist_optional 
+                                         full_markup 
+  288                                | "scheme?" 
+                                         function_arglist_optional 
+                                         UNSIGNED 
+  289                                | "scheme?" 
+                                         function_arglist_optional 
+                                         DURATION_IDENTIFIER 
+  290                                | "scheme?" 
+                                         function_arglist_optional 
+                                         '-' 
+                                         UNSIGNED 
+  291                                | "scheme?" 
+                                         function_arglist_optional 
+                                         '-' 
+                                         REAL 
+
+  292 function_arglist_optional: function_arglist_backup
+  293                          | "optional?" 
+                                   "scheme?" 
+                                   function_arglist_skip_backup 
+                                   "\default" 
+  294                          | function_arglist_skip_backup "(backed-up?)"
+
+  295 function_arglist_skip_backup: function_arglist_backup
+  296                             | "optional?" 
+                                      "scheme?" 
+                                      function_arglist_skip_backup 
+
+  297 music_function_call: MUSIC_FUNCTION function_arglist
+
+  298 optional_id: /* empty */
+  299            | '=' simple_string
+
+  301 lyric_mode_music:  grouped_music_list
+  302                 | MUSIC_IDENTIFIER
+
+  303 mode_changed_music: mode_changing_head grouped_music_list
+  304                   | mode_changing_head_with_context 
+                            optional_context_mod 
+                            grouped_music_list 
+
+  305 mode_changing_head: "\notemode"
+  306                   | "\drummode"
+  307                   | "\figuremode"
+  308                   | "\chordmode"
+  309                   | "\lyricmode"
+
+  310 mode_changing_head_with_context: "\drums"
+  311                                | "\figures"
+  312                                | "\chords"
+  313                                | "\lyrics"
+
+  314 context_change: "\change" symbol '=' simple_string
+
+  315 property_path: symbol_list_rev
+  316              | symbol_list_rev property_path
+
+  317 property_operation: symbol '=' scalar
+  318                   | "\unset" symbol
+  319                   | "\override" property_path '=' scalar
+  320                   | "\revert" revert_arg
+
+  321 revert_arg: revert_arg_backup "(backed-up?)" symbol_list_arg
+
+  322 revert_arg_backup: revert_arg_part
+
+  323 revert_arg_part: symbol_list_part
+  324                | revert_arg_backup 
+                         "(backed-up?)" 
+                         SCM_ARG 
+                         '.' 
+                         symbol_list_part 
+  325                | revert_arg_backup 
+                         "(backed-up?)" 
+                         SCM_ARG 
+                         symbol_list_part 
+
+  326 context_def_mod: "\consists"
+  327                | "\remove"
+  328                | "\accepts"
+  329                | "\defaultchild"
+  330                | "\denies"
+  331                | "\alias"
+  332                | "\type"
+  333                | "\description"
+  334                | "\name"
+
+  335 context_mod: property_operation
+  336            | context_def_mod STRING
+  337            | context_def_mod embedded_scm
+
+  338 grob_prop_spec: symbol_list_rev
+
+  339 grob_prop_path: grob_prop_spec
+  340               | grob_prop_spec property_path
+
+  341 context_prop_spec: symbol_list_rev
+
+  342 simple_revert_context: symbol_list_part
+
+  343 music_property_def: "\override" grob_prop_path '=' scalar
+  344                   | "\revert" simple_revert_context revert_arg
+  345                   | "\set" context_prop_spec '=' scalar
+  346                   | "\unset" context_prop_spec
+
+  347 string: STRING
+  348       | full_markup
+
+  349 text: STRING
+  350     | full_markup
+  351     | embedded_scm_bare
+
+  352 simple_string: STRING
+  353              | embedded_scm_bare
+
+  354 symbol: STRING
+  355       | embedded_scm_bare
+
+  356 scalar: embedded_scm_arg
+  357       | pitch_or_music
+  358       | SCM_IDENTIFIER
+  359       | bare_number
+  360       | '-' bare_number
+  361       | string
+
+  362 event_chord: simple_element post_events
+  363            | CHORD_REPETITION optional_notemode_duration post_events
+  364            | MULTI_MEASURE_REST optional_notemode_duration post_events
+  365            | tempo_event
+  366            | note_chord_element
+
+  367 note_chord_element: chord_body optional_notemode_duration post_events
+
+  368 chord_body: "<" chord_body_elements ">"
+  369           | FIGURE_OPEN figure_list FIGURE_CLOSE
+
+  370 chord_body_elements: /* empty */
+  371                    | chord_body_elements chord_body_element
+
+  372 chord_body_element: pitch_or_tonic_pitch 
+                            exclamations 
+                            questions 
+                            octave_check 
+                            post_events 
+  373                   | DRUM_PITCH post_events
+  374                   | music_function_chord_body
+
+  375 music_function_chord_body: music_function_call
+  376                          | MUSIC_IDENTIFIER
+  377                          | embedded_scm
+
+  378 event_function_event: EVENT_FUNCTION function_arglist
+
+  379 post_events: /* empty */
+  380            | post_events post_event
+
+  381 post_event_nofinger: direction_less_event
+  382                    | script_dir music_function_call
+  383                    | "--"
+  384                    | "__"
+  385                    | script_dir direction_reqd_event
+  386                    | script_dir direction_less_event
+  387                    | '^' fingering
+  388                    | '_' fingering
+
+  389 post_event: post_event_nofinger
+  390           | '-' fingering
+
+  391 string_number_event: E_UNSIGNED
+
+  392 direction_less_event: string_number_event
+  393                     | EVENT_IDENTIFIER
+  394                     | tremolo_type
+  395                     | event_function_event
+
+  396 direction_reqd_event: gen_text_def
+  397                     | script_abbreviation
+
+  398 octave_check: /* empty */
+  399             | '=' quotes
+
+  400 quotes: /* empty */
+  401       | sub_quotes
+  402       | sup_quotes
+
+  403 sup_quotes: '''
+  404           | sup_quotes '''
+
+  405 sub_quotes: ','
+  406           | sub_quotes ','
+
+  407 steno_pitch: NOTENAME_PITCH quotes
+
+  408 steno_tonic_pitch: TONICNAME_PITCH quotes
+
+  409 pitch: steno_pitch
+  410      | PITCH_IDENTIFIER quotes
+
+  411 pitch_or_tonic_pitch: pitch
+  412                     | steno_tonic_pitch
+
+  413 gen_text_def: full_markup
+  414             | STRING
+  415             | embedded_scm
+
+  416 fingering: UNSIGNED
+
+  417 script_abbreviation: '^'
+  418                    | '+'
+  419                    | '-'
+  420                    | '!'
+  421                    | ">"
+  422                    | '.'
+  423                    | '_'
+
+  424 script_dir: '_'
+  425           | '^'
+  426           | '-'
+
+  427 duration_length: multiplied_duration
+
+  428 maybe_notemode_duration: /* empty */
+  429                        | multiplied_duration
+
+  430 optional_notemode_duration: maybe_notemode_duration
+
+  431 steno_duration: UNSIGNED dots
+  432               | DURATION_IDENTIFIER dots
+
+  433 multiplied_duration: steno_duration
+  434                    | multiplied_duration '*' UNSIGNED
+  435                    | multiplied_duration '*' FRACTION
+
+  436 dots: /* empty */
+  437     | dots '.'
+
+  438 tremolo_type: ':'
+  439             | ':' UNSIGNED
+
+  440 bass_number: UNSIGNED
+  441            | STRING
+  442            | full_markup
+  443            | embedded_scm_bare
+
+  444 figured_bass_alteration: '-'
+  445                        | '+'
+  446                        | '!'
+
+  447 bass_figure: "_"
+  448            | bass_number
+  449            | bass_figure ']'
+  450            | bass_figure figured_bass_alteration
+  451            | bass_figure figured_bass_modification
+
+  452 figured_bass_modification: "\+"
+  453                          | "\!"
+  454                          | '/'
+  455                          | "\"
+
+  456 br_bass_figure: bass_figure
+  457               | '[' bass_figure
+
+  458 figure_list: /* empty */
+  459            | figure_list br_bass_figure
+
+  460 optional_rest: /* empty */
+  461              | "\rest"
+
+  462 pitch_or_music: pitch 
+                        exclamations 
+                        questions 
+                        octave_check 
+                        maybe_notemode_duration 
+                        optional_rest 
+                        post_events 
+  463               | new_chord post_events
+
+  464 simple_element: DRUM_PITCH optional_notemode_duration
+  465               | RESTNAME optional_notemode_duration
+
+  466 lyric_element: full_markup
+  467              | STRING
+  468              | LYRIC_ELEMENT
+
+  469 lyric_element_music: lyric_element 
+                             optional_notemode_duration 
+                             post_events 
+
+  470 new_chord: steno_tonic_pitch maybe_notemode_duration
+  471          | steno_tonic_pitch 
+                   optional_notemode_duration 
+                   chord_separator 
+                   chord_items 
+
+  472 chord_items: /* empty */
+  473            | chord_items chord_item
+
+  474 chord_separator: ":"
+  475                | "^"
+  476                | "/" steno_tonic_pitch
+  477                | "/+" steno_tonic_pitch
+
+  478 chord_item: chord_separator
+  479           | step_numbers
+  480           | CHORD_MODIFIER
+
+  481 step_numbers: step_number
+  482             | step_numbers '.' step_number
+
+  483 step_number: UNSIGNED
+  484            | UNSIGNED '+'
+  485            | UNSIGNED "-"
+
+  486 tempo_range: unsigned_number
+  487            | unsigned_number '-' unsigned_number
+
+  488 number_expression: number_expression '+' number_term
+  489                  | number_expression '-' number_term
+  490                  | number_term
+
+  491 number_term: number_factor
+  492            | number_factor '*' number_factor
+  493            | number_factor '/' number_factor
+
+  494 number_factor: '-' number_factor
+  495              | bare_number
+
+  496 bare_number_common: REAL
+  497                   | NUMBER_IDENTIFIER
+  498                   | REAL NUMBER_IDENTIFIER
+
+  499 bare_number: bare_number_common
+  500            | UNSIGNED
+  501            | UNSIGNED NUMBER_IDENTIFIER
+
+  502 unsigned_number: UNSIGNED
+  503                | NUMBER_IDENTIFIER
+  504                | embedded_scm
+
+  505 exclamations: /* empty */
+  506             | exclamations '!'
+
+  507 questions: /* empty */
+  508          | questions '?'
+
+  510 full_markup_list: "\markuplist" 0 markup_list
+
+  511 markup_mode: "\markup"
+
+  512 full_markup: markup_mode markup_top
+
+  513 partial_markup: markup_mode markup_head_1_list "\etc"
+
+  514 markup_top: markup_list
+  515           | markup_head_1_list simple_markup
+  516           | simple_markup
+
+  518 markup_scm: embedded_scm_bare 1 "(backed-up?)"
+
+  519 markup_list: markup_composed_list
+  520            | markup_uncomposed_list
+
+  521 markup_uncomposed_list: markup_braced_list
+  522                       | markup_command_list
+  523                       | markup_scm MARKUPLIST_IDENTIFIER
+
+  525 markup_uncomposed_list: "\score-lines" 2 '{' score_body '}'
+
+  526 markup_composed_list: markup_head_1_list markup_uncomposed_list
+
+  527 markup_braced_list: '{' markup_braced_list_body '}'
+
+  528 markup_braced_list_body: /* empty */
+  529                        | markup_braced_list_body markup
+  530                        | markup_braced_list_body markup_list
+
+  531 markup_command_list: MARKUP_LIST_FUNCTION markup_command_list_arguments
+
+  532 markup_command_basic_arguments: "markup-list?" 
+                                        markup_command_list_arguments 
+                                        markup_list 
+  533                               | "scheme?" 
+                                        markup_command_list_arguments 
+                                        embedded_scm 
+  534                               | EXPECT_NO_MORE_ARGS
+
+  535 markup_command_list_arguments: markup_command_basic_arguments
+  536                              | "markup?" 
+                                       markup_command_list_arguments 
+                                       markup 
+
+  537 markup_head_1_item: MARKUP_FUNCTION 
+                            "markup?" 
+                            markup_command_list_arguments 
+
+  538 markup_head_1_list: markup_head_1_item
+  539                   | markup_head_1_list markup_head_1_item
+
+  540 simple_markup: STRING
+
+  542 simple_markup: "\score" 3 '{' score_body '}'
+  543              | MARKUP_FUNCTION markup_command_basic_arguments
+  544              | markup_scm MARKUP_IDENTIFIER
+
+  545 markup: markup_head_1_list simple_markup
+  546       | simple_markup
+
+
+Terminals, with rules where they appear
+
+
+
+    237 238 239 240 242 243 244 245 246 247 248 249 250 251 252 253
+    238 239 240 242 243 244 245 246 247 248 249 250 251 252 253 254
+    254 255 261 263 264 265 266 267 268 269 270 271 273 274 275 276
+    255 261 263 266 267 270 271 293 296
+    279 280 281 282
+    283 284 285 286 287 288 289 290 291 293 296 533
+    485 500 501 502
+    487 489 494
+"#{" (340) 3
+"(backed-up?)" (335) 164 294 321 324 325 518
+"(reparsed?)" (336) 228 229 230 231 232 233 256 257 258 259 277 278
+"-" (320) 485
+"--" (265) 383
+"/" (321) 476
+"/+" (317) 477
+":" (319) 474
+"<" (322) 368
+"<<" (324) 174
+">" (323) 368 421
+">>" (325) 174
+"\!" (327) 453
+"\" (326) 455
+"\+" (328) 452
+"\accepts" (273) 328
+"\addlyrics" (262) 193 194
+"\alias" (274) 331
+"\alternative" (260) 170
+"\book" (275) 99
+"\bookpart" (276) 113
+"\change" (277) 314
+"\chordmode" (278) 308
+"\chords" (279) 312
+"\consists" (280) 326
+"\context" (281) 91 191
+"\default" (282) 261 293
+"\defaultchild" (283) 329
+"\denies" (284) 330
+"\description" (285) 333
+"\drummode" (286) 306
+"\drums" (287) 310
+"\etc" (288) 77 513
+"\figuremode" (289) 307
+"\figures" (290) 311
+"\header" (291) 56
+"\layout" (293) 140
+"\lyricmode" (294) 309
+"\lyrics" (295) 313
+"\lyricsto" (296) 198 199
+"\markup" (297) 511
+"\markuplist" (298) 510
+"\midi" (299) 139
+"\name" (300) 334
+"\new" (316) 192
+"\notemode" (301) 305
+"\override" (302) 81 86 319 343
+"\paper" (303) 138
+"\remove" (304) 327
+"\repeat" (259) 169 170
+"\rest" (305) 461
+"\revert" (306) 320 344
+"\score" (307) 126 542
+"\score-lines" (308) 525
+"\sequential" (309) 171
+"\set" (310) 82 87 345
+"\simultaneous" (311) 173
+"\tempo" (312) 151 152 153
+"\type" (313) 332
+"\unset" (314) 318 346
+"\version-error" (292) 8 52
+"\with" (315) 179 180 182
+"^" (318) 475
+"_" (331) 447
+"__" (264) 384
+"end of input" (0) 0
+"markup-list?" (337) 532
+"markup?" (333) 536 537
+"optional?" (338) 88 89 90 222 223 224 225 226 227 234 235 236 237
+"scheme?" (334) 83 84 85 88 89 90 222 223 224 225 226 227 234 235 236
+'!' (33) 420 446 506
+''' (39) 403 404
+'*' (42) 434 435 492
+'+' (43) 418 445 484 488
+',' (44) 405 406
+'-' (45) 42 223 224 225 250 251 252 276 290 291 360 390 419 426 444
+'.' (46) 60 215 217 324 422 437 482
+'/' (47) 454 493
+':' (58) 438 439
+'=' (61) 58 59 60 81 82 86 87 151 152 199 299 314 317 319 343 345 399
+'?' (63) 508
+'[' (91) 457
+']' (93) 449
+'^' (94) 387 417 425
+'_' (95) 388 423 424
+'{' (123) 56 91 99 113 126 144 157 179 525 527 542
+'}' (125) 56 91 99 113 126 137 157 179 525 527 542
+BOOK_IDENTIFIER (341) 13 101 115
+CHORD_MODIFIER (342) 480
+CHORD_REPETITION (343) 363
+COMPOSITE (261)
+CONTEXT_MOD_IDENTIFIER (344) 180 181 189
+DRUM_PITCH (345) 373 464
+DURATION_IDENTIFIER (263) 240 253 289 432
+E_UNSIGNED (268) 391
+error (256) 7 51 112 125 128 150 156
+EVENT_FUNCTION (266) 79 84 89 378
+EVENT_IDENTIFIER (267) 393
+EXPECT_NO_MORE_ARGS (339) 272 534
+FIGURE_CLOSE (329) 369
+FIGURE_OPEN (330) 369
+FRACTION (347) 27 71 435
+LYRIC_ELEMENT (348) 468
+MARKUP_FUNCTION (349) 537 543
+MARKUP_IDENTIFIER (351) 544
+MARKUP_LIST_FUNCTION (350) 531
+MARKUPLIST_IDENTIFIER (352) 523
+MULTI_MEASURE_REST (332) 364
+MUSIC_FUNCTION (353) 78 83 88 297
+MUSIC_IDENTIFIER (354) 184 210 302 376
+NOTENAME_PITCH (355) 407
+NUMBER_IDENTIFIER (271) 44 225 249 252 276 497 498 501 503
+PITCH_IDENTIFIER (346) 410
+PREC_BOT (258)
+PREC_TOP (272)
+REAL (269) 224 248 251 291 496 498
+RESTNAME (356) 465
+SCM_ARG (357) 25 231 277 324 325
+SCM_FUNCTION (358) 41 80 85 90
+SCM_IDENTIFIER (359) 22 23 234 254 283 358
+SCM_TOKEN (360) 18 21 26 108 121 147
+STRING (361) 57 219 237 255 286 336 347 349 352 354 414 441 467 540
+SYMBOL_LIST (362) 214 215
+TONICNAME_PITCH (363) 408
+UNARY_MINUS (364)
+UNSIGNED (270) 44 223 239 247 250 288 290 416 431 434 439 440 483 484
+
+Nonterminals, with rules where they appear
+
+
+assignment (144)
+    on left: 58 59 60, on right: 6 54 145
+assignment_id (143)
+    on left: 57, on right: 58 59 60
+bare_number (289)
+    on left: 499 500 501, on right: 359 360 495
+basic_music (189)
+    on left: 195 196 197 198 199, on right: 200 206 208
+bass_number (267)
+    on left: 440 441 442 443, on right: 448
+book_block (152)
+    on left: 99, on right: 11 33 65
+bookpart_block (155)
+    on left: 113, on right: 12 34 66 103
+br_bass_figure (271)
+    on left: 456 457, on right: 459
+braced_music_list (172)
+    on left: 157, on right: 170 171 172 173
+chord_body (237)
+    on left: 368 369, on right: 367
+chord_body_element (239)
+    on left: 372 373 374, on right: 371
+chord_body_elements (238)
+    on left: 370 371, on right: 368 371
+chord_item (281)
+    on left: 478 479 480, on right: 473
+chord_items (279)
+    on left: 472 473, on right: 471 473
+chord_separator (280)
+    on left: 474 475 476 477, on right: 471 478
+composite_music (192)
+    on left: 206 207 208, on right: 15 94 105 118 168
+context_change (217)
+    on left: 314, on right: 177
+context_def_spec_block (148)
+    on left: 91, on right: 32 68 143
+context_def_spec_body (151)
+    on left: 95 96 97 98, on right: 91 96 97 98
+context_mod (224)
+    on left: 335 336 337, on right: 96 188
+context_mod_arg (149)
+    on left: 92 94, on right: 98 190
+context_modification_arg (184)
+    on left: 183 184, on right: 182
+context_prefix (187)
+    on left: 191 192, on right: 203 204 205
+context_prop_spec (227)
+    on left: 341, on right: 82 87 345 346
+contextable_music (190)
+    on left: 200 201 202, on right: 203 204
+contexted_basic_music (191)
+    on left: 203 204 205, on right: 205 207
+direction_less_event (246)
+    on left: 392 393 394 395, on right: 381 386
+direction_reqd_event (247)
+    on left: 396 397, on right: 385
+dots (265)
+    on left: 436 437, on right: 431 432 437
+duration_length (260)
+    on left: 427, on right: 229 258 281
+embedded_lilypond (140)
+    on left: 45 46 47 48 49 50 51 52, on right: 3 52
+embedded_lilypond_number (139)
+    on left: 42 43 44, on right: 42 47
+embedded_scm_active (134)
+    on left: 23 24, on right: 19 109 122 146
+embedded_scm_arg (137)
+    on left: 38 39 40, on right: 226 242 273 356
+event_chord (235)
+    on left: 362 363 364 365 366, on right: 175 202
+event_function_event (241)
+    on left: 378, on right: 395
+exclamations (291)
+    on left: 505 506, on right: 372 462 506
+figure_list (272)
+    on left: 458 459, on right: 369 459
+figured_bass_alteration (268)
+    on left: 444 445 446, on right: 450
+figured_bass_modification (270)
+    on left: 452 453 454 455, on right: 451
+fingering (257)
+    on left: 416, on right: 387 388 390
+full_markup_list (293)
+    on left: 510, on right: 17 29 75 107 120
+function_arglist (202)
+    on left: 260 261, on right: 41 297 378
+function_arglist_skip_nonbackup (203)
+    on left: 262 263, on right: 261 263
+gen_text_def (256)
+    on left: 413 414 415, on right: 396
+grob_prop_path (226)
+    on left: 339 340, on right: 81 86 343
+grob_prop_spec (225)
+    on left: 338, on right: 339 340
+grouped_music_list (194)
+    on left: 212 213, on right: 211 301 303 304
+identifier_init (145)
+    on left: 61 62 63, on right: 58 59 60
+lilypond (130)
+    on left: 4 5 6 7 8, on right: 1 5 6 7 8
+lilypond_header (142)
+    on left: 56, on right: 10 111 124 135
+lilypond_header_body (141)
+    on left: 53 54 55, on right: 54 55 56
+lyric_element (276)
+    on left: 466 467 468, on right: 469
+lyric_element_music (277)
+    on left: 469, on right: 159 164 232 278
+lyric_mode_music (212)
+    on left: 301 302, on right: 193 194 198 199
+markup (314)
+    on left: 545 546, on right: 529 536
+markup_braced_list (305)
+    on left: 527, on right: 521
+markup_braced_list_body (306)
+    on left: 528 529 530, on right: 527 529 530
+markup_command_list (307)
+    on left: 531, on right: 522
+markup_composed_list (304)
+    on left: 526, on right: 519
+markup_head_1_item (310)
+    on left: 537, on right: 538 539
+markup_head_1_list (311)
+    on left: 538 539, on right: 513 515 526 539 545
+markup_list (301)
+    on left: 519 520, on right: 510 514 530 532
+markup_mode (295)
+    on left: 511, on right: 512 513
+markup_scm (299)
+    on left: 518, on right: 523 544
+markup_top (298)
+    on left: 514 515 516, on right: 512
+markup_uncomposed_list (302)
+    on left: 521 522 523 525, on right: 520 526
+maybe_notemode_duration (261)
+    on left: 428 429, on right: 430 462 470
+mode_changed_music (214)
+    on left: 303 304, on right: 209
+mode_changing_head (215)
+    on left: 305 306 307 308 309, on right: 303
+music (173)
+    on left: 158 159 160, on right: 130 162 169 170
+music_assign (177)
+    on left: 167 168, on right: 40 69 142 158
+music_bare (193)
+    on left: 209 210 211, on right: 197
+music_embedded (175)
+    on left: 162 163 164 165, on right: 50 155
+music_embedded_backup (176)
+    on left: 166, on right: 163 164
+music_function_call (210)
+    on left: 297, on right: 195 375 382
+music_function_chord_body (240)
+    on left: 375 376 377, on right: 374
+music_list (171)
+    on left: 154 155 156, on right: 50 155 156 157 174
+music_or_context_def (167)
+    on left: 142 143, on right: 149
+music_property_def (229)
+    on left: 343 344 345 346, on right: 176
+new_chord (278)
+    on left: 470 471, on right: 463
+new_lyrics (188)
+    on left: 193 194, on right: 194 203 208
+note_chord_element (236)
+    on left: 367, on right: 366
+number_expression (285)
+    on left: 488 489 490, on right: 62 488 489
+number_factor (287)
+    on left: 494 495, on right: 491 492 493 494
+number_term (286)
+    on left: 491 492 493, on right: 488 489 490
+octave_check (248)
+    on left: 398 399, on right: 372 462
+optional_id (211)
+    on left: 298 299, on right: 191 192
+optional_rest (273)
+    on left: 460 461, on right: 462
+output_def (164)
+    on left: 137, on right: 20 35 67 131 136
+output_def_head (165)
+    on left: 138 139 140, on right: 141
+output_def_head_with_mode_switch (166)
+    on left: 141, on right: 144
+paper_block (163)
+    on left: 136, on right: 102 116
+partial_markup (297)
+    on left: 513, on right: 28 74
+pitch (254)
+    on left: 409 410, on right: 235 244 284 411 462
+pitch_as_music (174)
+    on left: 161, on right: 160 201
+pitch_or_music (274)
+    on left: 462 463, on right: 70 161 228 256 279 357
+pitch_or_tonic_pitch (255)
+    on left: 411 412, on right: 372
+post_event (244)
+    on left: 389 390, on right: 48 380
+property_operation (219)
+    on left: 317 318 319 320, on right: 335
+property_path (218)
+    on left: 315 316, on right: 59 60 316 319 340
+questions (292)
+    on left: 507 508, on right: 372 462 508
+quotes (249)
+    on left: 400 401 402, on right: 399 407 408 410
+repeated_music (178)
+    on left: 169 170, on right: 196
+revert_arg (220)
+    on left: 321, on right: 320 344
+revert_arg_backup (221)
+    on left: 322, on right: 321 324 325
+revert_arg_part (222)
+    on left: 323 324 325, on right: 322
+scalar (234)
+    on left: 356 357 358 359 360 361, on right: 317 319 343 345
+scm_function_call (138)
+    on left: 41, on right: 24 37 39
+score_block (158)
+    on left: 126, on right: 14 31 64 104 117
+score_body (159)
+    on left: 127 128, on right: 126 128 525 542
+score_item (160)
+    on left: 129 130 131, on right: 133
+score_items (161)
+    on left: 132 133 135, on right: 127 133 135
+script_dir (259)
+    on left: 424 425 426, on right: 382 385 386
+sequential_music (179)
+    on left: 171 172, on right: 213
+simple_element (275)
+    on left: 464 465, on right: 362
+simple_markup (312)
+    on left: 540 542 543 544, on right: 515 516 545 546
+simple_music (181)
+    on left: 175 176 177, on right: 167
+simple_revert_context (228)
+    on left: 342, on right: 344
+simple_string (232)
+    on left: 352 353, on right: 169 170 198 199 299 314
+simultaneous_music (180)
+    on left: 173 174, on right: 212
+start_symbol (128)
+    on left: 1 3, on right: 0
+steno_duration (263)
+    on left: 431 432, on right: 151 152 433
+steno_pitch (252)
+    on left: 407, on right: 409
+step_number (283)
+    on left: 483 484 485, on right: 481 482
+step_numbers (282)
+    on left: 481 482, on right: 479 482
+string (230)
+    on left: 347 348, on right: 72 361
+string_number_event (245)
+    on left: 391, on right: 392
+sub_quotes (251)
+    on left: 405 406, on right: 401 406
+sup_quotes (250)
+    on left: 403 404, on right: 402 404
+symbol (233)
+    on left: 354 355, on right: 191 192 199 314 317 318
+symbol_list_arg (195)
+    on left: 214 215, on right: 233 259 282 321
+symbol_list_element (198)
+    on left: 219 220, on right: 218
+symbol_list_part (197)
+    on left: 218, on right: 216 217 323 324 325 342
+symbol_list_rev (196)
+    on left: 216 217, on right: 215 217 315 316 338 341
+tempo_event (170)
+    on left: 151 152 153, on right: 365
+tempo_range (284)
+    on left: 486 487, on right: 151 152
+text (231)
+    on left: 349 350 351, on right: 152 153
+tremolo_type (266)
+    on left: 438 439, on right: 394
+unsigned_number (290)
+    on left: 502 503 504, on right: 169 170 486 487

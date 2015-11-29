@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 3.3.2 1 つのソースから異なる版を生成する</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 3.3.2 1 つのソースから異なる版を生成する">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 3.3.2 1 つのソースから異なる版を生成する">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="working-with-input-files.ja.html#working-with-input-files" rel="up" title="3.3 入力ファイルに取り組む">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="including-lilypond-files.ja.html#including-lilypond-files" rel="previous" title="3.3.1 LilyPond ファイルをインクルードする">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t1-_3064_306e_30bd_30fc_30b9_304b_3089_7570_306a_308b_7248_3092_751f_6210_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="including-lilypond-files.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; LilyPond ファイルをインクルードする&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="working-with-input-files.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;入力ファイルに取り組む&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-variables" title="次のセクション" accesskey="n" rel="next">&nbsp;変数を使用する &gt; </a>]</td></tr></table>
+<a name="different-editions-from-one-source"></a>
+<h3 class="subsection">3.3.2 1 つのソースから異なる版を生成する</h3>
+
+<p><code>同じ音楽ソースから異なるバージョンの楽譜を容易に生成できるようにするために、いくつかの方法が用意されています。長い音楽や注記のセクションをさまざまなやり方で組み合わせる場合には、おそらく変数が最も役に立つでしょう。差し替え用の短い音楽セクションの中から 1 つを選択する場合にはタグが役に立ち、楽曲の一部をいろいろな箇所で組み合わせることもできます。
+</code></p>
+<p><code>どのような方法をとるにしても、楽譜構造から音楽表記を分離しておくと、音楽表記に手を触れずに楽譜構造を変更することが簡単に行えます。
+</code></p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#using-variables" accesskey="1">変数を使用する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#using-tags" accesskey="2">タグを使用する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#using-global-settings" accesskey="3">グローバル設定を使用する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_5909_6570_3092_4f7f_7528_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#different-editions-from-one-source" title="前のセクション" accesskey="p" rel="previous"> &lt; 1 つのソースから異なる版を生成する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#different-editions-from-one-source" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;1 つのソースから異なる版を生成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-tags" title="次のセクション" accesskey="n" rel="next">&nbsp;タグを使用する &gt; </a>]</td></tr></table>
+<a name="using-variables"></a>
+<h4 class="unnumberedsubsubsec">変数を使用する</h4>
+
+<a name="index-variables_002c-use-of-_0028_5909_6570_3092_4f7f_7528_3059_308b_0029"></a>
+
+<p><code>音楽のセクションが変数の中で定義されている場合、そのセクションを楽譜の異なる部分で再利用することができます
+-- <a name="index-Organizing-pieces-with-variables-1"></a>
+<a href="../learning/organizing-pieces-with-variables.ja.html">Organizing pieces with variables</a> を参照してください。例えば、<var>アカペラ</var> のボーカル譜はリハーサル目的ですべてのパートをまとめたピアノ譜を持つことがよくあります。これは声楽全般で言えることです。その場合、音楽を入力する必要があるのは 1 回だけです。2 つの変数からの音楽を 1 つの譜に組み込むことができます
+-- <a href="multiple-voices.ja.html#automatic-part-combining">自動パート結合</a> を参照してください。ここに例を挙げます:
+</code></p>
+<blockquote><pre class="verbatim">sopranoMusic = \relative { a'4 b c b8( a) }
+altoMusic = \relative { e'4 e e f }
+tenorMusic = \relative { c'4 b e d8( c) }
+bassMusic = \relative { a4 gis a d, }
+allLyrics = \lyricmode {King of glo -- ry }
+&lt;&lt;
+  \new Staff = &quot;Soprano&quot; \sopranoMusic
+  \new Lyrics \allLyrics
+  \new Staff = &quot;Alto&quot; \altoMusic
+  \new Lyrics \allLyrics
+  \new Staff = &quot;Tenor&quot; {
+    \clef &quot;treble_8&quot;
+    \tenorMusic
+  }
+  \new Lyrics \allLyrics
+  \new Staff = &quot;Bass&quot; {
+    \clef &quot;bass&quot;
+    \bassMusic
+  }
+  \new Lyrics \allLyrics
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;RH&quot; {
+      \set Staff.printPartCombineTexts = ##f
+      \partcombine
+      \sopranoMusic
+      \altoMusic
+    }
+    \new Staff = &quot;LH&quot; {
+      \set Staff.printPartCombineTexts = ##f
+      \clef &quot;bass&quot;
+      \partcombine
+      \tenorMusic
+      \bassMusic
+    }
+  &gt;&gt;
+&gt;&gt;
+</pre><p>
+ <a href="../ef/lily-c86b794c.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-c86b794c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>音楽表記には変更を加えずに、楽譜構造の文を変えるだけで、ボーカル パートだけあるいはピアノ パートだけの楽譜を作り出すことができます。
+</code></p>
+<p><code>長い楽譜では、変数定義をそれぞれ別々のファイルの中に置いて、それらのファイルをインクルードすることになるかもしれません
+-- <a href="including-lilypond-files.ja.html">LilyPond ファイルをインクルードする</a> を参照してください。
+</code></p>
+<hr size="6">
+<a name="g_t_30bf_30b0_3092_4f7f_7528_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-variables" title="前のセクション" accesskey="p" rel="previous"> &lt; 変数を使用する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#different-editions-from-one-source" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;1 つのソースから異なる版を生成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-global-settings" title="次のセクション" accesskey="n" rel="next">&nbsp;グローバル設定を使用する &gt; </a>]</td></tr></table>
+<a name="using-tags"></a>
+<h4 class="unnumberedsubsubsec">タグを使用する</h4>
+
+<a name="index-_005ctag"></a>
+<a name="index-_005ctag-1"></a>
+<a name="index-_005ckeepWithTag"></a>
+<a name="index-_005ckeepWithTag-1"></a>
+<a name="index-_005cremoveWithTag"></a>
+<a name="index-_005cremoveWithTag-1"></a>
+<a name="index-_005cpushToTag"></a>
+<a name="index-_005cpushToTag-1"></a>
+<a name="index-_005cappendToTag"></a>
+<a name="index-_005cappendToTag-1"></a>
+<a name="index-tag-_0028_30bf_30b0_0029"></a>
+<a name="index-keep-tagged-music-_0028_30bf_30b0_306e_4ed8_3044_305f_97f3_697d_3092_4fdd_6301_3059_308b_0029"></a>
+<a name="index-remove-tagged-music-_0028_30bf_30b0_306e_4ed8_3044_305f_97f3_697d_3092_6392_9664_3059_308b_0029"></a>
+<a name="index-splice-into-tagged-music-_0028_30bf_30b0_306e_4ed8_3044_305f_97f3_697d_3092_7d44_307f_5408_308f_305b_308b_0029"></a>
+
+<p><code><code>\tag #'<var>partA</var></code> コマンドは音楽表記に
+<var>partA</var> という名前を付けます。この方法でタグを付けられた表記は、後で <code>\keepWithTag #'<var>name</var></code> と
+<code>\removeWithTag #'<var>name</var></code> のどちらかを用いて、名前によって選択あるいは排除することができます。タグの付いた音楽にそのようなフィルタを適用した結果は以下のようになります:
+</code></p>
+<table>
+<thead><tr><th width="50%"><p><code> フィルタ
+  </code></p></th><th width="50%"><p><code> 結果
+</code></p></th></tr></thead>
+<tr><td width="50%"><p><code><code>\keepWithTag #'<var>name</var></code> が前に付くタグ付きの音楽
+  </code></p></td><td width="50%"><p><code> タグの付いていない音楽と <var>name</var> というタグの付いた音楽がインクルードされます。他のタグ名を持つタグ付き音楽は排除されます。
+</code></p></td></tr>
+<tr><td width="50%"><p><code><code>\removeWithTag #'<var>name</var></code> が前に付くタグ付きの音楽
+  </code></p></td><td width="50%"><p><code> タグの付いていない音楽と <var>name</var> 以外のタグを持つ音楽がインクルードされます。<var>name</var> というタグの付いた音楽は排除されます。
+</code></p></td></tr>
+<tr><td width="50%"><p><code><code>\keepWithTag</code> と <code>\removeWithTag</code> のどちらも前に付かないタグ付きの音楽
+  </code></p></td><td width="50%"><p><code> タグの付いた音楽とタグの付いていない音楽すべてがインクルードされます。
+</code></p></td></tr>
+</table>
+
+<p><code><code>\tag</code>、<code>\keepWithTag</code> それに <code>\removeWithTag</code> コマンドの引数はシンボル (<code>#'score</code> や <code>#'part</code> など) とその後に続けて音楽表記であるべきです。
+</code></p>
+<p><code>以下の例では、楽曲を 2 つのバージョンで示しています。1 つはトリルを通常の記譜法で示していて、もう 1 つはトリルを明示的に展開しています:
+</code></p>
+<blockquote><pre class="verbatim">music = \relative {
+  g'8. c32 d
+  \tag #'trills {d8.\trill }
+  \tag #'expand {\repeat unfold 3 {e32 d} }
+  c32 d
+ }
+
+\score {
+  \keepWithTag #'trills \music
+}
+\score {
+  \keepWithTag #'expand \music
+}
+</pre><p>
+ <a href="../77/lily-c3ab160a.ly">
+  <img align="middle"
+       border="0"
+       src="../77/lily-c3ab160a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code><code>\keepWithTag</code> を使う代わりに、音楽セクションを排除する方が楽な場合もあります:
+</code></p>
+<blockquote><pre class="verbatim">music = \relative {
+  g'8. c32 d
+  \tag #'trills {d8.\trill }
+  \tag #'expand {\repeat unfold 3 {e32 d} }
+  c32 d
+ }
+
+\score {
+  \removeWithTag #'expand
+  \music
+}
+\score {
+  \removeWithTag #'trills
+  \music
+}
+</pre><p>
+ <a href="../f6/lily-3091fb42.ly">
+  <img align="middle"
+       border="0"
+       src="../f6/lily-3091fb42.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>タグ フィルタリングはアーティキュレーション、テキストなどにも適用することができます。フィルタリングを行うにはアーティキュレーションの前に
+</code></p>
+<blockquote><pre class="example"><code>-\tag #'<var>your-tag</var>
+</code></pre></blockquote>
+
+<p><code>を置きます。例えば、以下は条件付の運指指示を持つ音符と条件付注記を持つ音符を定義しています:
+</code></p>
+<blockquote><pre class="example"><code>c1-\tag #'finger ^4
+c1-\tag #'warn ^&quot;Watch!&quot;
+</code></pre></blockquote>
+
+<p><code>複数の <code>\tag</code> エントリで、表記に複数のタグを付ける場合もあります:
+</code></p>
+<blockquote><pre class="verbatim">music = \relative c'' {
+  \tag #'a \tag #'both { a4 a a a }
+  \tag #'b \tag #'both { b4 b b b }
+}
+&lt;&lt;
+\keepWithTag #'a \music
+\keepWithTag #'b \music
+\keepWithTag #'both \music
+&gt;&gt;
+</pre><p>
+ <a href="../46/lily-cfd21f58.ly">
+  <img align="middle"
+       border="0"
+       src="../46/lily-cfd21f58.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>単一の音楽表記に複数の <code>\removeWithTag</code> フィルタを適用することによって、いくつかの異なる名前のタグが付いたセクションを排除することができます:
+</code></p>
+<blockquote><pre class="verbatim">music = \relative c'' {
+\tag #'A { a4 a a a }
+\tag #'B { b4 b b b }
+\tag #'C { c4 c c c }
+\tag #'D { d4 d d d }
+}
+{
+\removeWithTag #'B
+\removeWithTag #'C
+\music
+}
+</pre><p>
+ <a href="../61/lily-6ee0fcfa.ly">
+  <img align="middle"
+       border="0"
+       src="../61/lily-6ee0fcfa.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>単一の音楽表記に複数の <code>\keepWithTag</code> フィルタを適用すると、タグ付きセクションは <em>すべて</em> 排除されます。なぜなら、最初のフィルタはあるタグ名以外を持つセクションを排除し、2 番目のフィルタがそのタグ名を持つセクションを排除するからです。
+</code></p>
+<p><code>既存の音楽表記のある特定の場所にいくつか音を組み込みたいことがあります。<code>\pushToTag</code> と <code>\appendToTag</code> を使って、既存の音楽構造の <code>要素</code> の前または後に素材を追加することができます。すべての音楽構造が <code>要素</code> を持つわけではありませんが、連続するか同時進行する音楽構造はまず間違いなく <code>要素</code> を持ちます:
+</code></p>
+<blockquote><pre class="verbatim">test = { \tag #'here { \tag #'here &lt;&lt;c''&gt;&gt; } }
+
+{
+  \pushToTag #'here c'
+  \pushToTag #'here e'
+  \pushToTag #'here g' \test
+  \appendToTag #'here c'
+  \appendToTag #'here e'
+  \appendToTag #'here g' \test
+}
+</pre><p>
+ <a href="../ae/lily-29bf0c21.ly">
+  <img align="middle"
+       border="0"
+       src="../ae/lily-29bf0c21.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>どちらのコマンドもタグ、組み込む素材、それにタグ付けされた音楽表記を
+取り、タグが出現するたびに素材を組み込みます。これらのコマンドは変更するものを全てコピーするので、オリジナルの <code>\test</code> が元の意味を保持し続けることを保証します。
+</code></p>
+<a name="g_t_53c2_7167-117"></a>
+<h4 class="subsubheading">参照</h4>
+<p><code>学習マニュアル:
+<a name="index-Organizing-pieces-with-variables-2"></a>
+<a href="../learning/organizing-pieces-with-variables.ja.html">Organizing pieces with variables</a>
+</code></p>
+<p><code>記譜法リファレンス:
+<a href="multiple-voices.ja.html#automatic-part-combining">自動パート結合</a>,
+<a href="including-lilypond-files.ja.html">LilyPond ファイルをインクルードする</a>
+</code></p>
+
+
+<hr size="6">
+<a name="g_t_30b0_30ed_30fc_30d0_30eb_8a2d_5b9a_3092_4f7f_7528_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-tags" title="前のセクション" accesskey="p" rel="previous"> &lt; タグを使用する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#different-editions-from-one-source" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;1 つのソースから異なる版を生成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="special-characters.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;特殊文字 &gt; </a>]</td></tr></table>
+<a name="using-global-settings"></a>
+<h4 class="unnumberedsubsubsec">グローバル設定を使用する</h4>
+
+<a name="index-include_002dsettings"></a>
+
+<p><code>別のファイルからグローバル設定をインクルードすることができます:
+</code></p>
+<blockquote><pre class="example"><code>lilypond -dinclude-settings=MY_SETTINGS.ly MY_SCORE.ly
+</code></pre></blockquote>
+
+<p><code>ページ サイズ、フォント、書体などのような設定のグループを別々のファイルに保存することができます。こうすることにより、適当な設定ファイルを指定するだけで、同じ楽譜から異なる版を作り出すことができます。
+</code></p>
+<p><code>このテクニックはスタイル シートでも使えます。<a name="index-Style-sheets"></a>
+<a href="../learning/style-sheets.ja.html">Style sheets</a> を参照してください。
+</code></p>
+<a name="g_t_53c2_7167-49"></a>
+<h4 class="subsubheading">参照</h4>
+<p><code>学習マニュアル:
+<a name="index-Organizing-pieces-with-variables-3"></a>
+<a href="../learning/organizing-pieces-with-variables.ja.html">Organizing pieces with variables</a>,
+<a name="index-Style-sheets-1"></a>
+<a href="../learning/style-sheets.ja.html">Style sheets</a>
+</code></p>
+<p><code>記譜法リファレンス:
+<a href="including-lilypond-files.ja.html">LilyPond ファイルをインクルードする</a>
+</code></p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-tags" title="前のセクション" accesskey="p" rel="previous"> &lt; タグを使用する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#different-editions-from-one-source" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;1 つのソースから異なる版を生成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="special-characters.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;特殊文字 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="different-editions-from-one-source.html">English</a>, <a href="different-editions-from-one-source.de.html">deutsch</a>, <a href="different-editions-from-one-source.es.html">español</a>, <a href="different-editions-from-one-source.fr.html">français</a>, <a href="different-editions-from-one-source.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=""><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=""><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=""><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>    </li>
+    <li class=" toc_current"><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>
+    <ul class="toc">
+      <li class=""><a name="toc-LilyPond-_30d5_30a1_30a4_30eb_3092_30a4_30f3_30af_30eb_30fc_30c9_3059_308b-1" href="including-lilypond-files.ja.html">3.3.1 LilyPond ファイルをインクルードする</a>      </li>
+      <li class=" toc_current"><a name="toc-1-_3064_306e_30bd_30fc_30b9_304b_3089_7570_306a_308b_7248_3092_751f_6210_3059_308b-1" href="different-editions-from-one-source.ja.html">3.3.2 1 つのソースから異なる版を生成する</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_5909_6570_3092_4f7f_7528_3059_308b-1" href="different-editions-from-one-source.ja.html#using-variables">変数を使用する</a>        </li>
+        <li class=""><a name="toc-_30bf_30b0_3092_4f7f_7528_3059_308b-1" href="different-editions-from-one-source.ja.html#using-tags">タグを使用する</a>        </li>
+        <li class=""><a name="toc-_30b0_30ed_30fc_30d0_30eb_8a2d_5b9a_3092_4f7f_7528_3059_308b-1" href="different-editions-from-one-source.ja.html#using-global-settings">グローバル設定を使用する</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-_7279_6b8a_6587_5b57-1" href="special-characters.ja.html">3.3.3 特殊文字</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

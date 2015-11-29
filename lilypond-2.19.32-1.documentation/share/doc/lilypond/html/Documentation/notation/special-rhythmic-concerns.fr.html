@@ -1,0 +1,880 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel de notation: 1.2.6 Fonctionnalités rythmiques particulières</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel de notation: 1.2.6 Fonctionnalités rythmiques particulières">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel de notation: 1.2.6 Fonctionnalités rythmiques particulières">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel de notation">
+<link href="lilypond-command-index.fr.html#lilypond-command-index" rel="index" title="D. Index des commandes LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="rhythms.fr.html#rhythms" rel="up" title="1.2 Rythme">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="E. Index de LilyPond">
+<link href="bars.fr.html#bars" rel="previous" title="1.2.5 Mesures">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="notation devStatus">
+
+
+<div id="main">
+<a name="Fonctionnalit_00e9s-rythmiques-particuli_00e8res"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="bars.fr.html#rehearsal-marks" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Indications de repère&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Rythme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#grace-notes" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Notes d'ornement &gt; </a>]</td></tr></table>
+<a name="special-rhythmic-concerns"></a>
+<h3 class="subsection">1.2.6 Fonctionnalités rythmiques particulières</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#grace-notes" accesskey="1">Notes d&rsquo;ornement</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#aligning-to-cadenzas" accesskey="2">Alignement et cadences</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#time-administration" accesskey="3">Gestion du temps</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Notes-d_0027ornement"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#special-rhythmic-concerns" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Fonctionnalités rythmiques particulières&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#special-rhythmic-concerns" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Fonctionnalités rythmiques particulières&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#aligning-to-cadenzas" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Alignement et cadences &gt; </a>]</td></tr></table>
+<a name="grace-notes"></a>
+<h4 class="unnumberedsubsubsec">Notes d&rsquo;ornement</h4>
+
+<a name="index-ornements"></a>
+<a name="index-broderies"></a>
+<a name="index-notes-d_0027ornement"></a>
+<a name="index-appoggiature"></a>
+<a name="index-acciaccature"></a>
+<a name="index-petite-note"></a>
+
+<a name="index-_005cgrace"></a>
+<a name="index-_005cgrace-1"></a>
+<a name="index-_005cslashedGrace"></a>
+<a name="index-_005cslashedGrace-1"></a>
+<a name="index-_005cacciaccatura"></a>
+<a name="index-_005cacciaccatura-1"></a>
+<a name="index-_005cappoggiatura"></a>
+<a name="index-_005cappoggiatura-1"></a>
+
+<p>Les petites notes sont des ornements entièrement écrits.  Leur taille
+est un peu plus petite que celle des notes normales et elles n&rsquo;occupent
+pas de temps dans la mesure.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4 \grace b16 a4(
+  \grace { b16 c16 } a2)
+}
+</pre><p>
+ <a href="../fc/lily-30ab1861.ly">
+  <img align="middle"
+       border="0"
+       src="../fc/lily-30ab1861.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les plus courantes sont les acciaccatures, qui doivent se jouer très
+vite, et qui s&rsquo;écrivent sous forme d&rsquo;une petite note barrée (sur la
+hampe) et liée.  L&rsquo;appoggiature est une petite note non barrée, qui vole
+une fraction à la durée de la note réelle qui la suit. LilyPond dispose
+aussi, grâce à la fonction <code>\slashedGrace</code>, d&rsquo;une petite note
+barrée et dépourvue de liaison, qui viendra s&rsquo;insérer entre deux notes
+déjà liées.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \acciaccatura d''8 c4
+  \appoggiatura e8 d4
+  \acciaccatura { g16 f } e2
+  \slashedGrace a,8 g4
+  \slashedGrace b16 a4(
+  \slashedGrace b8 a2)
+}
+</pre><p>
+ <a href="../b5/lily-f5e446e7.ly">
+  <img align="middle"
+       border="0"
+       src="../b5/lily-f5e446e7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les petites notes se placent de façon synchrone entre les différentes
+portées.  Dans l&rsquo;exemple suivant, il y a deux petites double-croches
+pour chaque petite croche.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative { e''2 \grace { c16 d e f } e2 }
+  \new Staff \relative { c''2 \grace { g8 b } c2 }
+&gt;&gt;
+</pre><p>
+ <a href="../4a/lily-4310325b.ly">
+  <img align="middle"
+       border="0"
+       src="../4a/lily-4310325b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-notes-d_0027ornement-en-fin-de-note"></a>
+
+<a name="index-_005cafterGrace"></a>
+<a name="index-_005cafterGrace-1"></a>
+<a name="index-afterGrace"></a>
+<a name="index-afterGrace-1"></a>
+
+<p>La commande <code>\afterGrace</code> sert à placer une petite note après une
+note réelle &ndash; et non <em>avant</em> comme d&rsquo;ordinaire.  Cette commande
+requiert deux arguments : la note réelle, et la ou les petites notes qui
+s&rsquo;y rattachent.
+</p>
+<blockquote><pre class="verbatim">\relative { c''1 \afterGrace d1 { c16[ d] } c1 }
+</pre><p>
+ <a href="../9d/lily-579a946f.ly">
+  <img align="middle"
+       border="0"
+       src="../9d/lily-579a946f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les petites notes se placent alors aux trois quarts de la durée de la
+note réelle.  Cette fraction peut être changée en définissant
+<code>afterGraceFraction</code>.  Dans l&rsquo;exemple suivant, vous pouvez observer
+la différence entre le comportement par défaut, à 15/16 et enfin à la
+moitié de la durée de base.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    c''1 \afterGrace d1 { c16[ d] } c1
+  }
+  \new Staff \relative {
+    #(define afterGraceFraction (cons 15 16))
+    c''1 \afterGrace d1 { c16[ d] } c1
+  }
+  \new Staff \relative {
+    #(define afterGraceFraction (cons 1 2))
+    c''1 \afterGrace d1 { c16[ d] } c1
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../14/lily-a3846b47.ly">
+  <img align="middle"
+       border="0"
+       src="../14/lily-a3846b47.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Des silences invisibles permettent d&rsquo;ajuster l&rsquo;espace entre les petites
+notes et la note réelle.  Nous pourrions positionner ces petites notes à
+sept huitièmes de la durée de la note de base :
+</p>
+<blockquote><pre class="verbatim">\new Voice \relative {
+  &lt;&lt;
+    { d''1^\trill_( }
+    { s2 s4. \grace { c16 d } }
+  &gt;&gt;
+  c1)
+}
+</pre><p>
+ <a href="../d3/lily-e3c0616a.ly">
+  <img align="middle"
+       border="0"
+       src="../d3/lily-e3c0616a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-retouche-des-notes-d_0027ornement"></a>
+<a name="index-notes-d_0027ornement-et-retouches"></a>
+<a name="index-notes-d_0027ornement_002c-mise-en-forme"></a>
+
+<p>Les expressions <code>\grace</code> obéissent à des règles typographiques
+particulières, notamment en matière d&rsquo;orientation et de taille des
+objets.  De ce fait, toute subtilité de mise en forme devra être
+indiquée <strong>à l&rsquo;intérieur</strong> de l&rsquo;expression introduite par
+<code>\grace</code> ; ces réglages additionnels doivent également être
+désactivés dans cette même expression.
+</p>
+<blockquote><pre class="verbatim">\new Voice \relative {
+  \acciaccatura {
+    \stemDown
+    f''16-&gt;
+    \stemNeutral
+  }
+  g4 e c2
+}
+</pre><p>
+ <a href="../c4/lily-6ac27812.ly">
+  <img align="middle"
+       border="0"
+       src="../c4/lily-6ac27812.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-hampe-barree"></a>
+
+<a name="Morceaux-choisis-35"></a>
+<h4 class="subsubheading">Morceaux choisis</h4>
+
+<p><em> Utilisation de hampe barrée pour une note normale</em>
+</p>
+
+<p>Le trait que l&rsquo;on trouve sur les hampes des acciaccatures peut être
+appliqué dans d&rsquo;autres situations.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \override Flag.stroke-style = #&quot;grace&quot;
+  c8( d2) e8( f4)
+}
+</pre><p>
+ <a href="../64/lily-b651cb38.ly">
+  <img align="middle"
+       border="0"
+       src="../64/lily-b651cb38.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Mise en forme des notes d&rsquo;ornement</em>
+</p>
+
+<p>Il est possible de changer globalement la mise en forme des notes
+d&rsquo;ornement dans un morceau, au moyen des fonctions
+<code>add-grace-property</code> et <code>remove-grace-property</code>.  Ici,
+par exemple, on ôte la définition de l&rsquo;orientation des objets
+<code>Stem</code> pour toutes les petites notes, afin que les hampes ne
+soient pas toujours orientées vers le haut, et on leur préfère des
+têtes en forme de croix.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \new Staff {
+    $(remove-grace-property 'Voice 'Stem 'direction)
+    $(add-grace-property 'Voice 'NoteHead 'style 'cross)
+    \new Voice {
+       \acciaccatura { f16 } g4
+       \grace { d16 e } f4
+       \appoggiatura { f,32 g a } e2
+    }
+  }
+}
+</pre><p>
+ <a href="../ae/lily-c6e4657f.ly">
+  <img align="middle"
+       border="0"
+       src="../ae/lily-c6e4657f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Redéfinition des réglages de mise en forme par défaut des notes d&rsquo;ornement</em>
+</p>
+
+<p>Vous pouvez modifier les valeurs des variables <code>startGraceMusic</code>,
+<code>stopGraceMusic</code>, <code>startAcciaccaturaMusic</code>,
+<code>stopAcciaccaturaMusic</code>, <code>startAppoggiaturaMusic</code> et
+<code>stopAppoggiaturaMusic</code> afin d&rsquo;en personnaliser les effets.  Pour
+plus de détails, voir le fichier &lsquo;<tt>ly/grace-init.ly</tt>&rsquo;.
+</p>
+
+<blockquote><pre class="verbatim">startAcciaccaturaMusic = {
+  &lt;&gt;(
+  \override Flag.stroke-style = #&quot;grace&quot;
+  \slurDashed
+}
+
+stopAcciaccaturaMusic = {
+  \revert Flag.stroke-style
+  \slurSolid
+  &lt;&gt;)
+}
+
+\relative c'' {
+  \acciaccatura d8 c1
+}
+</pre><p>
+ <a href="../30/lily-1ac4e463.ly">
+  <img align="middle"
+       border="0"
+       src="../30/lily-1ac4e463.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Positionnement des notes d&rsquo;ornement avec espace flottant</em>
+</p>
+
+<p>Lorsqu&rsquo;est activée la propriété <code>strict-grace-spacing</code>,
+l&rsquo;espacement des notes d&rsquo;ornement se fera de manière « élastique ».
+Autrement dit, elles seront décollées de leur note de rattachement :
+LilyPond commence par espacer les notes normales, puis les ornements
+sont placés à la gauche de leur note de rattachement.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  &lt;&lt;
+    \override Score.SpacingSpanner.strict-grace-spacing = ##t
+    \new Staff \new Voice {
+      \afterGrace c4 { c16[ c8 c16] }
+      c8[ \grace { b16 d } c8]
+      c4 r
+    }
+    \new Staff {
+      c16 c c c c c c c c4 r
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../db/lily-b9f7b044.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-b9f7b044.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-181"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Glossaire musicologique :
+<a name="index-grace-notes"></a>
+<a href="../music-glossary/grace-notes.fr.html">ornements</a>,
+<a name="index-acciaccatura"></a>
+<a href="../music-glossary/acciaccatura.fr.html">acciacature</a>,
+<a name="index-appoggiatura"></a>
+<a href="../music-glossary/appoggiatura.fr.html">appogiature</a>.
+</p>
+<p>Manuel de notation :
+<a href="beams.fr.html#manual-beams">Barres de ligature manuelles</a>,
+<a href="writing-rhythms.fr.html#scaling-durations">Changement d&rsquo;échelle des durées</a>.
+</p>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>ly/grace-init.ly</tt>&rsquo;.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+<p>Référence des propriétés internes :
+<a name="index-GraceMusic"></a>
+<a href="../internals/gracemusic.fr.html">GraceMusic</a>,
+<a name="index-Grace_005fauto_005fbeam_005fengraver"></a>
+<a href="../internals/grace_005fauto_005fbeam_005fengraver.fr.html">Grace_auto_beam_engraver</a>,
+<a name="index-Grace_005fbeam_005fengraver"></a>
+<a href="../internals/grace_005fbeam_005fengraver.fr.html">Grace_beam_engraver</a>,
+<a name="index-Grace_005fengraver"></a>
+<a href="../internals/grace_005fengraver.fr.html">Grace_engraver</a>,
+<a name="index-Grace_005fspacing_005fengraver"></a>
+<a href="../internals/grace_005fspacing_005fengraver.fr.html">Grace_spacing_engraver</a>.
+</p>
+<a name="Problemes-connus-et-avertissements-63"></a>
+<h4 class="subsubheading">Problèmes connus et avertissements</h4>
+
+<a name="index-acciaccature_002c-multinotes"></a>
+<a name="index-note-d_0027ornement_002c-synchronisation"></a>
+<a name="index-synchronisation-des-notes-d_0027ornement"></a>
+
+<p>Un groupe de notes ligaturées constituant une <em>acciaccatura</em>
+apparaîtra comme une <em>appoggiatura</em>, c&rsquo;est-à-dire sans trait.
+</p>
+
+<p>La synchronisation des petites notes se fait de façon parfois
+surprenante, car les autres objets de la portée &ndash; barre de mesure,
+armure, etc. &ndash; sont eux aussi synchrones.  Pensez-y lorsque vous
+mêlez des portées comprenant des petites notes et d&rsquo;autres sans :
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative { e''4 \bar &quot;.|:&quot; \grace c16 d2. }
+  \new Staff \relative { c''4 \bar &quot;.|:&quot; d2. }
+&gt;&gt;
+</pre><p>
+ <a href="../b3/lily-25312367.ly">
+  <img align="middle"
+       border="0"
+       src="../b3/lily-25312367.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Il est possible de remédier à cela en insérant, sur les autres portées,
+des silences invisibles dans une expression précédée de <code>\grace</code> et
+correspondant à la durée des petites notes :
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative { e''4 \bar &quot;.|:&quot; \grace c16 d2. }
+  \new Staff \relative { c''4 \bar &quot;.|:&quot; \grace s16 d2. }
+&gt;&gt;
+</pre><p>
+ <a href="../77/lily-fe6a65cd.ly">
+  <img align="middle"
+       border="0"
+       src="../77/lily-fe6a65cd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Bien que la partie visible contient un <code>\acciaccatura</code> ou un
+<code>\appoggiatura</code>, veillez bien à utiliser l&rsquo;instruction
+<code>\grace</code> dans la partie invisible, au risque de voir apparaître un
+tronçon de liaison connectant la petite note invisible à la note qui la
+suit.
+</p>
+<p>Seules des expressions musicales séquentielles peuvent être utilisées
+pour des petites notes ; il n&rsquo;est pas possible d&rsquo;imbriquer ni de
+juxtaposer des sections de petites notes, faute de quoi le traitement du
+code peut échouer ou produire des erreurs.
+</p>
+<p>En ce qui concerne la sortie MIDI, les petites notes ont une durée du
+quart de la valeur que vous leur attribuez.  Par voie de conséquence, si
+la durée globale d&rsquo;une succession de petites notes venait à dépasser la
+durée de la note qui précède, vous déclencheriez une erreur du type
+&laquo;&nbsp;<code>Going back in MIDI time</code>&nbsp;&raquo;.  Il vous faudra donc raccourcir les
+petites notes.  Par exemple,
+</p>
+<blockquote><pre class="example">c'8 \acciaccatura { c'8[ d' e' f' g'] }
+</pre></blockquote>
+
+<p>deviendrait
+</p>
+<blockquote><pre class="example">c'8 \acciaccatura { c'16[ d' e' f' g'] }
+</pre></blockquote>
+
+<p>ou bien modifier explicitement l&rsquo;échelle des durées :
+</p>
+<blockquote><pre class="example">c'8 \acciaccatura { \scaleDurations 1/2 { c'8[ d' e' f' g'] } }
+</pre></blockquote>
+
+<p>Voir <a href="writing-rhythms.fr.html#scaling-durations">Changement d&rsquo;échelle des durées</a>.
+</p>
+
+<hr size="6">
+<a name="Alignement-et-cadences"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#grace-notes" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Notes d'ornement&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#special-rhythmic-concerns" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Fonctionnalités rythmiques particulières&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#time-administration" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Gestion du temps &gt; </a>]</td></tr></table>
+<a name="aligning-to-cadenzas"></a>
+<h4 class="unnumberedsubsubsec">Alignement et cadences</h4>
+
+<a name="index-cadenza-1"></a>
+<a name="index-cadence"></a>
+<a name="index-cadence-et-alignement"></a>
+<a name="index-alignement-et-cadence"></a>
+
+<p>Dans un contexte orchestral, une cadence constitue un problème
+spécifique.  Lors du montage d&rsquo;une partition contenant une cadence,
+tous les autres instruments doivent sauter autant de notes que ce
+qu&rsquo;en comporte la cadence, faute de quoi ils démarreraient trop tôt ou
+trop tard.
+</p>
+<p>Les fonctions <code>mmrest-of-length</code> ou <code>skip-of-length</code>
+permettent de pallier ce problème.  Ces fonctions Scheme prennent en
+argument un fragment de musique, et génèrent un <code>\skip</code> ou un
+silence multimesure d&rsquo;une durée correspondant à ce fragment.
+</p>
+<blockquote><pre class="verbatim">MyCadenza = \relative {
+  c'4 d8 e f g g4
+  f2 g4 g
+}
+
+\new GrandStaff &lt;&lt;
+  \new Staff {
+    \MyCadenza c'1
+    \MyCadenza c'1
+  }
+  \new Staff {
+    #(mmrest-of-length MyCadenza)
+    c'1
+    #(skip-of-length MyCadenza)
+    c'1
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../d1/lily-cca35027.ly">
+  <img align="middle"
+       border="0"
+       src="../d1/lily-cca35027.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-275"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Glossaire musicologique :
+<a name="index-cadenza-2"></a>
+<a href="../music-glossary/cadenza.fr.html">cadenza</a>.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+
+<hr size="6">
+<a name="Gestion-du-temps"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#aligning-to-cadenzas" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Alignement et cadences&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#special-rhythmic-concerns" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Fonctionnalités rythmiques particulières&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="expressive-marks.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Signes d'interprétation &gt; </a>]</td></tr></table>
+<a name="time-administration"></a>
+<h4 class="unnumberedsubsubsec">Gestion du temps</h4>
+
+<a name="index-temps_002c-gestion-du"></a>
+<a name="index-musique-non-mesuree-1"></a>
+<a name="index-non-mesuree_002c-musique"></a>
+
+<a name="index-currentBarNumber-2"></a>
+<a name="index-currentBarNumber-3"></a>
+<a name="index-measurePosition-2"></a>
+<a name="index-measurePosition-3"></a>
+<a name="index-measureLength-2"></a>
+<a name="index-measureLength-3"></a>
+
+<p>Le temps est administré par le <code>Timing_translator</code>, qui réside en
+principe dans le contexte <code>Score</code>.  Un alias, <code>Timing</code>, sera
+ajouté au contexte auquel le <code>Timing_translator</code> est rattaché.
+Déclarer explicitement un contexte <code>Voice</code> ou <code>Staff</code> assure
+l&rsquo;existence de cet alias.
+</p>
+<p><code>Timing</code> dispose des propriétés suivantes afin de garder trace du
+minutage de la partition.
+</p>
+<a name="index-numero-de-mesure"></a>
+<a name="index-mesure_002c-numero-de"></a>
+
+<dl compact="compact">
+<dt> <code>currentBarNumber</code></dt>
+<dd><p>Le numéro de la mesure en cours.  Un exemple d&rsquo;utilisation se trouve au
+chapitre <a href="bars.fr.html#bar-numbers">Numéros de mesure</a>.
+</p>
+</dd>
+<dt> <code>measureLength</code></dt>
+<dd><p>La longueur de la mesure, dans la métrique en cours.  Pour une mesure
+à 4/4, elle est de 1, et de 3/4 pour une mesure à 6/8.  Sa valeur
+détermine où peut s&rsquo;insérer une barre et comment seront générées les
+ligatures automatiques.
+</p>
+</dd>
+<dt> <code>measurePosition</code></dt>
+<dd><p>Le moment où l&rsquo;on en est dans la mesure en cours.  Cette quantité est
+remise à 0 dès lors qu&rsquo;on dépasse <code>measureLength</code> ; la variable
+<code>currentBarNumber</code> est alors incrémentée.
+</p>
+</dd>
+<dt> <code>timing</code></dt>
+<dd><p>Lorsqu&rsquo;on lui assigne la valeur <em>vrai</em>, les valeurs ci-dessus
+mentionnées sont mises à jour à chaque pas.  Fixée à <em>faux</em>, le
+graveur restera indéfiniment dans la mesure en cours.
+</p>
+</dd>
+</dl>
+
+<p>Le calage peut être modifié en réglant explicitement l&rsquo;une de ces
+variables.  Dans l&rsquo;exemple qui suit, nous réglons la métrique à 4/4,
+tout en fixant <code>measureLength</code> à 5/4.  Arrivé à 4/8 dans la
+troisième mesure, nous avançons de 1/8, en assignant 5/8 à
+<code>measurePosition</code>, raccourcissant donc cette mesure d&rsquo;une croche.
+La barre de mesure suivante tombera donc à 9/8 et non à 5/8.
+</p>
+<blockquote><pre class="verbatim">\new Voice \relative {
+  \set Timing.measureLength = #(ly:make-moment 5/4)
+  c'1 c4 |
+  c1 c4 |
+  c4 c
+  \set Timing.measurePosition = #(ly:make-moment 5/8)
+  b4 b b8 |
+  c4 c1 |
+}
+</pre><p>
+ <a href="../3b/lily-97003c3e.ly">
+  <img align="middle"
+       border="0"
+       src="../3b/lily-97003c3e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Comme le montre cet exemple, <code>ly:make-moment n d</code> construit une
+durée de n/d fois une ronde. Par conséquent, <code>ly:make-moment 1 8</code>
+correspond à une croche, et <code>ly:make-moment 7 16</code> à la durée de
+sept doubles croches.
+</p>
+<a name="Voir-aussi-220"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a href="displaying-rhythms.fr.html#unmetered-music">Musique sans métrique</a>,
+<a href="bars.fr.html#bar-numbers">Numéros de mesure</a>.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+<p>Références des propriétés internes :
+<a name="index-Timing_005ftranslator-4"></a>
+<a href="../internals/timing_005ftranslator.fr.html">Timing_translator</a>,
+<a name="index-Score"></a>
+<a href="../internals/score.fr.html">Score</a>
+</p>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#aligning-to-cadenzas" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Alignement et cadences&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#special-rhythmic-concerns" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Fonctionnalités rythmiques particulières&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="expressive-marks.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Signes d'interprétation &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="special-rhythmic-concerns.html">English</a>, <a href="special-rhythmic-concerns.de.html">deutsch</a>, <a href="special-rhythmic-concerns.es.html">español</a>, <a href="special-rhythmic-concerns.it.html">italiano</a>, <a href="special-rhythmic-concerns.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel de notation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Notation-musicale-generale" href="musical-notation.fr.html">1. Notation musicale générale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hauteurs-1" href="pitches.fr.html">1.1 Hauteurs</a>    </li>
+    <li class=" toc_current"><a name="toc-Rythme-1" href="rhythms.fr.html">1.2 Rythme</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Ecriture-du-rythme" href="writing-rhythms.fr.html">1.2.1 Écriture du rythme</a>      </li>
+      <li class=""><a name="toc-Ecriture-des-silences" href="writing-rests.fr.html">1.2.2 Écriture des silences</a>      </li>
+      <li class=""><a name="toc-Gravure-du-rythme-1" href="displaying-rhythms.fr.html">1.2.3 Gravure du rythme</a>      </li>
+      <li class=""><a name="toc-Barres-de-ligature-1" href="beams.fr.html">1.2.4 Barres de ligature</a>      </li>
+      <li class=""><a name="toc-Mesures-1" href="bars.fr.html">1.2.5 Mesures</a>      </li>
+      <li class=" toc_current"><a name="toc-Fonctionnalites-rythmiques-particulieres" href="special-rhythmic-concerns.fr.html">1.2.6 Fonctionnalités rythmiques particulières</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Notes-d_0027ornement-1" href="special-rhythmic-concerns.fr.html#grace-notes">Notes d&rsquo;ornement</a>        </li>
+        <li class=""><a name="toc-Alignement-et-cadences-1" href="special-rhythmic-concerns.fr.html#aligning-to-cadenzas">Alignement et cadences</a>        </li>
+        <li class=""><a name="toc-Gestion-du-temps-1" href="special-rhythmic-concerns.fr.html#time-administration">Gestion du temps</a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Signes-d_0027interpretation" href="expressive-marks.fr.html">1.3 Signes d&rsquo;interprétation</a>    </li>
+    <li class=""><a name="toc-Repetitions-et-reprises" href="repeats.fr.html">1.4 Répétitions et reprises</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="simultaneous-notes.fr.html">1.5 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Notation-sur-la-portee" href="staff-notation.fr.html">1.6 Notation sur la portée</a>    </li>
+    <li class=""><a name="toc-Annotations-editoriales" href="editorial-annotations.fr.html">1.7 Annotations éditoriales</a>    </li>
+    <li class=""><a name="toc-Texte-1" href="text.fr.html">1.8 Texte</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-specialisee" href="specialist-notation.fr.html">2. Notation spécialisée</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musique-vocale-1" href="vocal-music.fr.html">2.1 Musique vocale</a>    </li>
+    <li class=""><a name="toc-Instruments-utilisant-des-portees-multiples" href="keyboard-and-other-multi_002dstaff-instruments.fr.html">2.2 Instruments utilisant des portées multiples</a>    </li>
+    <li class=""><a name="toc-Cordes-non-frettees" href="unfretted-string-instruments.fr.html">2.3 Cordes non frettées</a>    </li>
+    <li class=""><a name="toc-Instruments-a-cordes-frettees" href="fretted-string-instruments.fr.html">2.4 Instruments à cordes frettées</a>    </li>
+    <li class=""><a name="toc-Percussions-1" href="percussion.fr.html">2.5 Percussions</a>    </li>
+    <li class=""><a name="toc-Instruments-a-vent" href="wind-instruments.fr.html">2.6 Instruments à vent</a>    </li>
+    <li class=""><a name="toc-Notation-des-accords-1" href="chord-notation.fr.html">2.7 Notation des accords</a>    </li>
+    <li class=""><a name="toc-Musique-contemporaine-1" href="contemporary-music.fr.html">2.8 Musique contemporaine</a>    </li>
+    <li class=""><a name="toc-Notations-anciennes-1" href="ancient-notation.fr.html">2.9 Notations anciennes</a>    </li>
+    <li class=""><a name="toc-Musiques-du-monde-1" href="world-music.fr.html">2.10 Musiques du monde</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Generalites-en-matiere-d_0027entree-et-sortie" href="general-input-and-output.fr.html">3. Généralités en matière d&rsquo;entrée et sortie</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Agencement-du-code-1" href="input-structure.fr.html">3.1 Agencement du code</a>    </li>
+    <li class=""><a name="toc-Titres-et-entetes" href="titles-and-headers.fr.html">3.2 Titres et entêtes</a>    </li>
+    <li class=""><a name="toc-Travail-sur-des-fichiers-texte-1" href="working-with-input-files.fr.html">3.3 Travail sur des fichiers texte</a>    </li>
+    <li class=""><a name="toc-Controle-des-sorties" href="controlling-output.fr.html">3.4 Contrôle des sorties</a>    </li>
+    <li class=""><a name="toc-Generation-de-fichiers-MIDI" href="creating-midi-output.fr.html">3.5 Génération de fichiers MIDI</a>    </li>
+    <li class=""><a name="toc-Extraction-d_0027informations-musicales-1" href="extracting-musical-information.fr.html">3.6 Extraction d&rsquo;informations musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Gestion-de-l_0027espace-1" href="spacing-issues.fr.html">4. Gestion de l&rsquo;espace</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Mise-en-forme-de-la-page-1" href="page-layout.fr.html">4.1 Mise en forme de la page</a>    </li>
+    <li class=""><a name="toc-Mise-en-forme-de-la-partition-1" href="score-layout.fr.html">4.2 Mise en forme de la partition</a>    </li>
+    <li class=""><a name="toc-Sauts-1" href="breaks.fr.html">4.3 Sauts</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.4 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Espacement-horizontal-1" href="horizontal-spacing.fr.html">4.5 Espacement horizontal</a>    </li>
+    <li class=""><a name="toc-Reduction-du-nombre-de-pages-de-la-partition" href="fitting-music-onto-fewer-pages.fr.html">4.6 Réduction du nombre de pages de la partition</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modification-des-reglages-predefinis" href="changing-defaults.fr.html">5. Modification des réglages prédéfinis</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextes-d_0027interpretation" href="interpretation-contexts.fr.html">5.1 Contextes d&rsquo;interprétation</a>    </li>
+    <li class=""><a name="toc-En-quoi-consiste-la-reference-des-proprietes-internes" href="explaining-the-internals-reference.fr.html">5.2 En quoi consiste la référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Modification-de-proprietes" href="modifying-properties.fr.html">5.3 Modification de propriétés</a>    </li>
+    <li class=""><a name="toc-Proprietes-et-contextes-utiles" href="useful-concepts-and-properties.fr.html">5.4 Propriétés et contextes utiles</a>    </li>
+    <li class=""><a name="toc-Retouches-avancees" href="advanced-tweaks.fr.html">5.5 Retouches avancées</a>    </li>
+    <li class=""><a name="toc-Utilisation-de-fonctions-musicales-1" href="using-music-functions.fr.html">5.6 Utilisation de fonctions musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tables-du-manuel-de-notation-1" href="notation-manual-tables.fr.html">A. Tables du manuel de notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Table-des-noms-d_0027accord-1" href="chord-name-chart.fr.html">A.1 Table des noms d&rsquo;accord</a>    </li>
+    <li class=""><a name="toc-Modificateurs-d_0027accord-usuels-1" href="common-chord-modifiers.fr.html">A.2 Modificateurs d&rsquo;accord usuels</a>    </li>
+    <li class=""><a name="toc-Accordages-predefinis" href="predefined-string-tunings.fr.html">A.3 Accordages prédéfinis</a>    </li>
+    <li class=""><a name="toc-Diagrammes-d_0027accord-predefinis" href="predefined-fretboard-diagrams.fr.html">A.4 Diagrammes d&rsquo;accord prédéfinis</a>    </li>
+    <li class=""><a name="toc-Formats-de-papier-predefinis" href="predefined-paper-sizes.fr.html">A.5 Formats de papier prédéfinis</a>    </li>
+    <li class=""><a name="toc-Instruments-MIDI-1" href="midi-instruments.fr.html">A.6 Instruments MIDI</a>    </li>
+    <li class=""><a name="toc-Liste-des-couleurs-1" href="list-of-colors.fr.html">A.7 Liste des couleurs</a>    </li>
+    <li class=""><a name="toc-La-fonte-Feta-1" href="the-feta-font.fr.html">A.8 La fonte Feta</a>    </li>
+    <li class=""><a name="toc-Styles-de-tete-de-note" href="note-head-styles.fr.html">A.9 Styles de tête de note</a>    </li>
+    <li class=""><a name="toc-Styles-de-clef-1" href="clef-styles.fr.html">A.10 Styles de clef</a>    </li>
+    <li class=""><a name="toc-Commandes-pour-markup-1" href="text-markup-commands.fr.html">A.11 Commandes pour <em>markup</em></a>    </li>
+    <li class=""><a name="toc-Commandes-pour-liste-de-markups-1" href="text-markup-list-commands.fr.html">A.12 Commandes pour liste de <em>markups</em></a>    </li>
+    <li class=""><a name="toc-Liste-des-caracteres-speciaux" href="list-of-special-characters.fr.html">A.13 Liste des caractères spéciaux</a>    </li>
+    <li class=""><a name="toc-Liste-des-signes-d_0027articulation-1" href="list-of-articulations.fr.html">A.14 Liste des signes d&rsquo;articulation</a>    </li>
+    <li class=""><a name="toc-Notes-utilisees-en-percussion" href="percussion-notes.fr.html">A.15 Notes utilisées en percussion</a>    </li>
+    <li class=""><a name="toc-Glossaire-technique-1" href="technical-glossary.fr.html">A.16 Glossaire technique</a>    </li>
+    <li class=""><a name="toc-Liste-des-proprietes-de-contexte" href="all-context-properties.fr.html">A.17 Liste des propriétés de contexte</a>    </li>
+    <li class=""><a name="toc-Proprietes-de-mise-en-forme" href="layout-properties.fr.html">A.18 Propriétés de mise en forme</a>    </li>
+    <li class=""><a name="toc-Fonctions-musicales-predefinies" href="available-music-functions.fr.html">A.19 Fonctions musicales prédéfinies</a>    </li>
+    <li class=""><a name="toc-Identificateurs-de-modification-de-contexte-1" href="context-modification-identifiers.fr.html">A.20 Identificateurs de modification de contexte</a>    </li>
+    <li class=""><a name="toc-Types-de-predicats-predefinis" href="predefined-type-predicates.fr.html">A.21 Types de prédicats prédéfinis</a>    </li>
+    <li class=""><a name="toc-Fonctions-Scheme-1" href="scheme-functions.fr.html">A.22 Fonctions Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Aide_002dmemoire" href="cheat-sheet.fr.html">B. Aide-mémoire</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-des-commandes-LilyPond-1" href="lilypond-command-index.fr.html">D. Index des commandes LilyPond</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">E. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

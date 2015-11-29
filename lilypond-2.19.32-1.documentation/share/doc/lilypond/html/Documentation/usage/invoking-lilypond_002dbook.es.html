@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond: manual de utilización del programa: 3.4 Invocar lilypond-book</title>
+
+<meta name="description" content="LilyPond: manual de utilización del programa: 3.4 Invocar lilypond-book">
+<meta name="keywords" content="LilyPond: manual de utilización del programa: 3.4 Invocar lilypond-book">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Utilización">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="B. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="lilypond_002dbook.es.html#lilypond_002dbook" rel="up" title="3. Ejecución de lilypond-book">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="B. Índice de LilyPond">
+<link href="music-fragment-options.es.html#music-fragment-options" rel="previous" title="3.3 Opciones de fragmentos de música">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="usage devStatus">
+
+
+<div id="main">
+<a name="Invocar-lilypond_002dbook"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="lilypond_002dbook.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; lilypond-book&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="external-programs.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Programas externos &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="music-fragment-options.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Opciones de fragmentos de música&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="lilypond_002dbook.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;lilypond-book&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="filename-extensions.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Extensiones de nombres de archivo &gt; </a>]</td></tr></table>
+<a name="invoking-lilypond_002dbook"></a>
+<h2 class="section">3.4 Invocar <code>lilypond-book</code></h2>
+
+<p><code>lilypond-book</code> produce un archivo con una de las siguientes
+extensiones: &lsquo;<tt>.tex</tt>&rsquo;, &lsquo;<tt>.texi</tt>&rsquo;, &lsquo;<tt>.html</tt>&rsquo; o &lsquo;<tt>.xml</tt>&rsquo;,
+dependiendo del formato de salida.  Todos los archivos &lsquo;<tt>.tex</tt>&rsquo;,
+&lsquo;<tt>.texi</tt>&rsquo; y &lsquo;<tt>.xml</tt>&rsquo; necesitan un procesado posterior.
+</p>
+<a name="Instrucciones-especificas-de-formato"></a>
+<h3 class="subheading">Instrucciones específicas de formato</h3>
+
+<a name="LaTeX-3"></a>
+<h4 class="subsubheading">LaTeX</h4>
+
+<p>Hay dos formas de procesar el documento en LaTeX para su impresión
+o publicación: hacer un archivo PDF directamente con PDFLaTeX, o
+generar un archivo PostScript con LaTeX a través de un traductor de
+DVI a PostScript como <code>dvips</code>.  la primera forma es más
+sencilla y es la que se recomienda<sup><a name="DOCF4" href="#FOOT4">1</a></sup>, y cualquiera
+que sea el método que utilice, podrá convertir fácilmente entre
+PostScript y PDF con herramientas como <code>ps2pdf</code> y
+<code>pdf2ps</code> que vienen incluidas con Ghostscript.
+</p>
+<p>Para producir un archivo PDF por medio de PDFLaTeX, utilice
+</p>
+<blockquote><pre class="example">lilypond-book --pdf miarchivo.pdftex
+pdflatex miarchivo.tex
+</pre></blockquote>
+
+<a name="index-tipografias-de-outline"></a>
+<a name="index-type1_002c-tipografias"></a>
+<a name="index-dvips"></a>
+<a name="index-invocacion-de-dvips"></a>
+
+<p>Para producir una salida PDF por medio de
+LaTeX/<code>dvips</code>/<code>ps2pdf</code>, debe hacer
+</p>
+<blockquote><pre class="example">lilypond-book miarchivo.lytex
+latex miarchivo.tex
+dvips -Ppdf miarchivo.dvi
+ps2pdf miarchivo.ps
+</pre></blockquote>
+
+<p>El archivo &lsquo;<tt>.dvi</tt>&rsquo; creado por este proceso no contiene las cabezas
+de las notas.  Esto es normal; si sigue las instrucciones, las cabezas
+aparecerán en los archivos &lsquo;<tt>.ps</tt>&rsquo; y &lsquo;<tt>.pdf</tt>&rsquo;.
+</p>
+<p>La ejecución de <code>dvips</code> puede dar como resultado algunas
+advertencias sobre las fuentes tipográficas; son inocuas y se pueden
+ignorar.  Si está ejecutando <code>latex</code> en modo de dos columnas,
+recuerde añadir &lsquo;<samp>-t landscape</samp>&rsquo; a las opciones de <code>dvips</code>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-4"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>La instrucción <code>\pageBreak</code> no funciona dentro de un entorno
+<code>\begin{lilypond} &hellip; \end{lilypond}</code>.
+</p>
+<p>Muchas variables del bloque <code>\paper</code> tampoco funcionan dentro de
+un entorno <code>\begin{lilypond} &hellip; \end{lilypond}</code>.  Use
+<code>\newcommand</code> con <code>\betweenLilyPondSystem</code> en el preámbulo:
+</p>
+<blockquote><pre class="example">\newcommand{\betweenLilyPondSystem}[1]{\vspace{36mm}\linebreak}
+</pre></blockquote>
+
+
+<a name="Texinfo-3"></a>
+<h4 class="subsubheading">Texinfo</h4>
+
+<p>Para producir un documento de Texinfo (en cualquier formato de
+salida), siga el procedimiento normal para Texinfo, esto es: o bien
+llame a <code>texi2pdf</code> o a <code>texi2dvi</code> o a
+<code>makeinfo</code>, según el formato de la salida que quiera crear.
+Consulte la documentación de Texinfo para ver más detalles.
+</p>
+
+<a name="Opciones-de-la-linea-de-ordenes"></a>
+<h3 class="subheading">Opciones de la línea de órdenes</h3>
+
+<p><code>lilypond-book</code> acepta las siguientes opciones de la línea de
+órdenes:
+</p>
+<dl compact="compact">
+<dt> <code>-f <var>formato</var></code></dt>
+<dt> <code>--format=<var>formato</var></code></dt>
+<dd><p>Especificar el tipo del documento que se va a procesar: <code>html</code>,
+<code>latex</code>, <code>texi</code> (predeterminado) o <code>docbook</code>.  Si falta
+esta opción, <code>lilypond-book</code> tratará de detectar el formato
+automáticamente, véase <a href="filename-extensions.es.html">Extensiones de nombres de archivo</a>. Por el
+momento, <code>texi</code> es lo mismo que <code>texi-html</code>.
+</p>
+
+</dd>
+<dt> <code>-F <var>filtro</var></code></dt>
+<dt> <code>--filter=<var>filtro</var></code></dt>
+<dd><p>Conducir los fragmentos a través de <var>filter</var> por medio de una
+tubería.  <code>lilypond-book</code> no obedecerá &ndash;filter y &ndash;process al
+mismo tiempo.  Por ejemplo,
+</p>
+<blockquote><pre class="example">lilypond-book --filter='convert-ly --from=2.0.0 -' mi-libro.tely
+</pre></blockquote>
+
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Imprimir un breve mensaje de ayuda.
+</p>
+</dd>
+<dt> <code>-I <var>directorio</var></code></dt>
+<dt> <code>--include=<var>directorio</var></code></dt>
+<dd><p>Añadir <var>directorio</var> a la ruta de inclusión.
+<code>lilypond-book</code> busca también los fragmentos ya compilados en
+la ruta de inclusión, y no los vuelve a escribir en el directorio de
+salida, así que en ciertos casos es necesario invocar instrucciones de
+procesado posteriores como <code>makeinfo</code> o <code>latex</code> con
+las mismas opciones &lsquo;<samp>-I <var>directorio</var></samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>-l <var>nivel_de_registro</var></code></dt>
+<dt> <code>--loglevel=<var>nivel_de_registro</var></code></dt>
+<dd><p>Fijar el nivel en que la salida es prolija, al valor
+<var>nivel_de_registro</var>. Los valores posibles son <code>NONE</code> (nada),
+<code>ERROR</code> (errores), <code>WARNING</code> (advertencias), <code>PROGRESS</code>
+(avance; predeterminado) y <code>DEBUG</code> (depuración). Si esta opción
+no se utiliza, y la variable de entorno <code>LILYPOND_BOOK_LOGLEVEL</code>
+está establecida, se usa su valor como el nivel de registro.
+</p>
+</dd>
+<dt> <code>-o <var>directorio</var></code></dt>
+<dt> <code>--output=<var>directorio</var></code></dt>
+<dd><p>Colocar los archivos generados en el <var>directorio</var>.  La ejecución
+de <code>lilypond-book</code> genera montañas de pequeños archivos que
+luego procesará LilyPond.  Para evitar toda esta parafernalia en el
+mismo directorio que la fuente, utilice la opción &lsquo;<samp>--output</samp>&rsquo;, y
+cambie a este directorio antes de ejecutar <code>latex</code> o
+<code>makeinfo</code>.
+</p>
+<blockquote><pre class="example">lilypond-book --output=out miarchivo.lytex
+cd out
+&hellip;
+</pre></blockquote>
+
+</dd>
+<dt> <code>--skip-lily-check</code></dt>
+<dd><p>Evitar el fracaso si no se encuentra ninguna salida de lilypond.  Se
+usa para la documentación de LilyPond en formato Info sin imágenes.
+</p>
+</dd>
+<dt> <code>--skip-png-check</code></dt>
+<dd><p>Evitar el fracaso si no se encuentran las imágenes PNG de los archivos
+EPS.  Se usa para la documentación de LilyPond en formato Info sin
+imágenes.
+</p>
+</dd>
+<dt> <code>--lily-output-dir=<var>directorio</var></code></dt>
+<dd><p>Escribir archivos lily-XXX en el directorio <var>directorio</var>, enlazar
+en el directorio de &lsquo;<samp>--output</samp>&rsquo;.  Use esta opción para ahorrar
+tiempo de construcción para documentos de distintos directorios que
+comparten muchos fragmentos idénticos de código.
+</p>
+</dd>
+<dt> <code>--lily-loglevel=<var>nivel_de_registro</var></code></dt>
+<dd><p>Fijar el nivel en que la salida es prolija para las llamadas de la
+instrucción invocada <code>lilypond</code>, al valor
+<var>nivel_de_registro</var>.  Los valores posibles son <code>NONE</code> (nada),
+<code>ERROR</code> (errores), <code>WARNING</code> (advertencias),
+<code>BASIC_PROGRESS</code> (avance básico), <code>PROGRESS</code> (avance),
+<code>INFO</code> (información; predeterminado) y <code>DEBUG</code>
+(depuración). Si no se utiliza esta opción y la variable de entorno
+<code>LILYPOND_LOGLEVEL</code> está establecida, su valor se usa como nivel
+de registro.
+</p>
+
+</dd>
+<dt> <code>--info-images-dir=<var>directorio</var></code></dt>
+<dd><p>Dar formato a la salida de Texinfo de manera que Info busque las
+imágenes de música en <var>directorio</var>.
+</p>
+</dd>
+<dt> <code>--latex-program=<var>prog</var></code></dt>
+<dd><p>Ejecutar el programa <code>prog</code> en vez de <code>latex</code>.  Esto
+es útil si nuestro documento se procesa con <code>xelatex</code>, por
+ejemplo.
+</p>
+</dd>
+<dt> <code>--left-padding=<var>cantidad</var></code></dt>
+<dd><p>Rellenar las cajas EPS en esta medida, alrededor. <var>cantidad</var> se
+mide en milímetros, y es 3.0 como valor predeterminado.  Esta opción
+se debe usar si las líneas de música están muy pegadas al margen
+derecho.
+</p>
+<p>El ancho de un sistema que está muy ajustado dentro de su rectángulo
+puede variar, debido a los elementos de notación que están pegados al
+margen izquierdo, como los números de compás y el nombre del
+instrumento.  Esta opción acorta todas las líneas y las mueve a la
+derecha en la misma medida.
+</p>
+</dd>
+<dt> <code>-P <var>instrucción</var></code></dt>
+<dt> <code>--process=<var>instrucción</var></code></dt>
+<dd><p>Procesar los fragmentos de LilyPond utilizando <var>instrucción</var>.  La
+instrucción predeterminada es <code>lilypond</code>.  <code>lilypond-book</code>
+no obedecerá a &lsquo;<samp>--filter</samp>&rsquo; y a &lsquo;<samp>--process</samp>&rsquo; al mismo tiempo.
+</p>
+</dd>
+<dt> <code>--pdf</code></dt>
+<dd><p>Crear archivos PDF para su uso con PDFLaTeX.
+</p>
+</dd>
+<dt> <code>--redirect-lilypond-output</code></dt>
+<dd><p>De forma predeterminada, la salida se imprime por la consola.  Esta
+opción redirecciona toda la salida hacia archivos de registro situados
+en el mismo directorio que los archivos fuente.
+</p>
+</dd>
+<dt> <code>--use-source-file-names</code></dt>
+<dd><p>Escribir los archivos de salida de los fragmentos de música con el
+mismo nombre de base que su archivo fuente.  Esta opción sólo funciona
+para fragmentos incluidos con <code>lilypondfile</code> y sólo si los
+directorios determinados por las opciones &lsquo;<samp>--output-dir</samp>&rsquo; y
+&lsquo;<samp>--lily-output-dir</samp>&rsquo; son distintos.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--verbose</code></dt>
+<dd><p>Ser prolijo.  Equivale a <code>--loglevel=DEBUG</code>.
+</p>
+</dd>
+<dt> <code>-v</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Imprimir la información de la versión.
+</p></dd>
+</dl>
+
+<a name="Advertencias-y-problemas-conocidos-3"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+
+<p>La instrucción de Texinfo <code>@pagesizes</code> no se interpreta.  De
+forma similar, las instrucciones de LaTeX que cambian los márgenes
+y anchos de línea después del preámbulo se ignoran.
+</p>
+<p>Sólo se procesa el primer <code>\score</code> de un bloque LilyPond.
+</p>
+
+<div class="footnote">
+<hr>
+<h3>Notas el pie</h3>
+<p class="footnote"><small>[<a name="FOOT4" href="#DOCF4">1</a>]</small> Observe que PDFLaTeX y
+LaTeX podrían no ser utilizables para compilar cualquier documento
+LaTeX, y es por lo que explicamos las dos formas.
+</p></div>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="lilypond_002dbook.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; lilypond-book&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="external-programs.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Programas externos &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="music-fragment-options.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Opciones de fragmentos de música&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="lilypond_002dbook.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;lilypond-book&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="filename-extensions.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Extensiones de nombres de archivo &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="invoking-lilypond_002dbook.html">English</a>, <a href="invoking-lilypond_002dbook.ca.html">català</a>, <a href="invoking-lilypond_002dbook.de.html">deutsch</a>, <a href="invoking-lilypond_002dbook.fr.html">français</a>, <a href="invoking-lilypond_002dbook.it.html">italiano</a>, <a href="invoking-lilypond_002dbook.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Utilización  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Ejecutar-LilyPond-1" href="running-lilypond.es.html">1. Ejecutar LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilizacion-normal" href="normal-usage.es.html">1.1 Utilización normal</a>    </li>
+    <li class=""><a name="toc-Utilizacion-desde-la-linea-de-ordenes" href="command_002dline-usage.es.html">1.2 Utilización desde la línea de órdenes</a>    </li>
+    <li class=""><a name="toc-Mensajes-de-error-1" href="error-messages.es.html">1.3 Mensajes de error</a>    </li>
+    <li class=""><a name="toc-Errores-comunes-1" href="common-errors.es.html">1.4 Errores comunes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Actualizar-ficheros-con-convert_002dly-1" href="updating-files-with-convert_002dly.es.html">2. Actualizar ficheros con <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-_00bfPor-que-cambia-la-sintaxis_003f" href="why-does-the-syntax-change_003f.es.html">2.1 ¿Por qué cambia la sintaxis?</a>    </li>
+    <li class=""><a name="toc-Invocar-convert_002dly-1" href="invoking-convert_002dly.es.html">2.2 Invocar <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Opciones-de-la-linea-de-ordenes-para-convert_002dly" href="command-line-options-for-convert_002dly.es.html">2.3 Opciones de la línea de órdenes para <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemas-con-convert_002dly-1" href="problems-running-convert_002dly.es.html">2.4 Problemas con <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversiones-manuales-1" href="manual-conversions.es.html">2.5 Conversiones manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Ejecucion-de-lilypond_002dbook" href="lilypond_002dbook.es.html">3. Ejecución de <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Un-ejemplo-de-documento-musicologico" href="an-example-of-a-musicological-document.es.html">3.1 Un ejemplo de documento musicológico</a>    </li>
+    <li class=""><a name="toc-Integrar-musica-y-texto" href="integrating-music-and-text.es.html">3.2 Integrar música y texto</a>    </li>
+    <li class=""><a name="toc-Opciones-de-fragmentos-de-musica" href="music-fragment-options.es.html">3.3 Opciones de fragmentos de música</a>    </li>
+    <li class=" toc_current"><a name="toc-Invocar-lilypond_002dbook-1" href="invoking-lilypond_002dbook.es.html">3.4 Invocar <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Extensiones-de-nombres-de-archivo-1" href="filename-extensions.es.html">3.5 Extensiones de nombres de archivo</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-lilypond_002dbook-1" href="lilypond_002dbook-templates.es.html">3.6 Plantillas de lilypond-book</a>    </li>
+    <li class=""><a name="toc-Compartir-el-indice-general" href="sharing-the-table-of-contents.es.html">3.7 Compartir el índice general</a>    </li>
+    <li class=""><a name="toc-Metodos-alternativos-para-mezclar-texto-y-musica" href="alternate-methods-of-mixing-text-and-music.es.html">3.8 Métodos alternativos para mezclar texto y música</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Programas-externos-1" href="external-programs.es.html">4. Programas externos</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Apuntar-y-pulsar-1" href="point-and-click.es.html">4.1 Apuntar y pulsar</a>    </li>
+    <li class=""><a name="toc-Apoyo-respecto-de-los-editores-de-texto-1" href="text-editor-support.es.html">4.2 Apoyo respecto de los editores de texto</a>    </li>
+    <li class=""><a name="toc-Conversion-desde-otros-formatos" href="converting-from-other-formats.es.html">4.3 Conversión desde otros formatos</a>    </li>
+    <li class=""><a name="toc-Salida-de-LilyPond-dentro-de-otros-programas-1" href="lilypond-output-in-other-programs.es.html">4.4 Salida de LilyPond dentro de otros programas</a>    </li>
+    <li class=""><a name="toc-Archivos-include-independientes-1" href="independent-includes.es.html">4.5 Archivos <code>include</code> independientes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Sugerencias-para-escribir-archivos-de-entrada-1" href="suggestions-for-writing-files.es.html">5. Sugerencias para escribir archivos de entrada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Sugerencias-de-tipo-general-1" href="general-suggestions.es.html">5.1 Sugerencias de tipo general</a>    </li>
+    <li class=""><a name="toc-Tipografiar-musica-existente" href="typesetting-existing-music.es.html">5.2 Tipografiar música existente</a>    </li>
+    <li class=""><a name="toc-Proyectos-grandes-1" href="large-projects.es.html">5.3 Proyectos grandes</a>    </li>
+    <li class=""><a name="toc-Solucion-de-problemas" href="troubleshooting.es.html">5.4 Solución de problemas</a>    </li>
+    <li class=""><a name="toc-Make-y-los-Makefiles-1" href="make-and-makefiles.es.html">5.5 Make y los Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">B. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

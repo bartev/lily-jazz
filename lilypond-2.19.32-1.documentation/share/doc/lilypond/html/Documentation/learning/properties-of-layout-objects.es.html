@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual de aprendizaje de GNU LilyPond: 4.2.1 Propiedades de los objetos de presentación</title>
+
+<meta name="description" content="Manual de aprendizaje de GNU LilyPond: 4.2.1 Propiedades de los objetos de presentación">
+<meta name="keywords" content="Manual de aprendizaje de GNU LilyPond: 4.2.1 Propiedades de los objetos de presentación">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Manual de aprendizaje">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="C. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="the-internals-reference-manual.es.html#the-internals-reference-manual" rel="up" title="4.2 Manual de referencia de funcionamiento interno">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="C. Índice de LilyPond">
+<link href="the-internals-reference-manual.es.html#the-internals-reference-manual" rel="previous" title="4.2 Manual de referencia de funcionamiento interno">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="learning devStatus">
+
+
+<div id="main">
+<a name="Propiedades-de-los-objetos-de-presentaci_00f3n"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="the-internals-reference-manual.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Manual de referencia de funcionamiento interno&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Manual de referencia de funcionamiento interno&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="properties-found-in-interfaces.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Propiedades de los interfaces &gt; </a>]</td></tr></table>
+<a name="properties-of-layout-objects"></a>
+<h3 class="subsection">4.2.1 Propiedades de los objetos de presentación</h3>
+
+<a name="index-propiedades-de-los-objetos-de-presentacion"></a>
+<a name="index-propiedades-de-los-grobs"></a>
+<a name="index-grobs_002c-propiedades-de"></a>
+<a name="index-presentacion_002c-propiedades-de-los-objetos-de"></a>
+<a name="index-Referencia-de-funcionamiento-interno"></a>
+
+<p>Suponga que tiene una partitura con una ligadura de expresión que para
+su gusto es demasiado fina y quiere trazarla un poco más gruesa. ¿Cómo
+debe proceder?  Ya sabe, por las afirmaciones anteriores acerca de la
+flexibilidad de LilyPond, que tal posibilidad existe, y seguramente
+piensa que una cierta instrucción de sobreescritura <code>\override</code>
+será necesaria.  Pero ¿existe una propiedad de grosor para las
+ligaduras? y, si la hay, ¿cómo se puede modificar?  Aquí es donde
+interviene el Manual de Funcionamiento Interno.  Contiene toda la
+información que puede necesitar para construir ésta y todas las demás
+instrucciones <code>\override</code>, de sobreescritura.
+</p>
+<p>Una advertencia antes de dirigir nuestra mirada a la referencia de
+funcionamiento interno.  Éste es un documento de <strong>referencia</strong>,
+lo que significa que hay pocas o ninguna explicación en él: su
+propósito es presentar la información de forma precisa y concisa.  Por
+tanto, podrá parecerle desalentador a primera vista.  ¡No se preocupe!
+La guía y las explicaciones que presentamos aquí le permitirán extraer
+la información de la referencia de funcionamiento interno por sí mismo
+con tan sólo algo de práctica.
+</p>
+<a name="index-sobreescritura_002c-ejemplo-de"></a>
+<a name="index-Referencia-de-Funcionamiento-Interno_002c-ejemplo-de-utilizacion"></a>
+<a name="index-_005caddlyrics_002c-ejemplo"></a>
+
+<p>Utilicemos un ejemplo concreto con un sencillo fragmento de música
+real:
+</p>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../cb/lily-2b99ebc6.ly">
+  <img align="middle"
+       border="0"
+       src="../cb/lily-2b99ebc6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Suponga ahora que decidimos que nos gustan las ligaduras algo más
+gruesas.  ¿Es posible?  La ligadura es, ciertamente, un objeto de
+presentación, así que la cuestión es &lsquo;¿Hay una propiedad
+perteneciente a las ligaduras de expresión que controle su grosor?&rsquo;
+Para responder a esta pregunta debemos mirar el manual de Referencia
+de Funcionamiento Interno, abreviadamente RFI<sup><a name="DOCF1" href="#FOOT1">1</a></sup>.
+</p>
+<p>El RFI de la versión de LilyPond que está usando se puede encontrar en
+la página web de LilyPond en <a href="http://lilypond.org">http://lilypond.org</a>.  Vaya a la
+página de la documentación y siga el enlace Manual de Referencia de
+Funcionamiento Interno (RFI).  Para nuestros propósitos pedagógicos
+sería mejor que utilizase la versión en HTML, no la &lsquo;en una sola
+página&rsquo; ni el PDF.  Para que los siguientes párrafos tengan algún
+sentido deberá consultarlo realmente al tiempo que lee.
+</p>
+<p>Bajo el encabezamiento <strong>Top</strong> podrá ver cinco enlaces.
+Seleccione el enlace <em>Backend</em>, que es donde se encuentra la
+información sobre los objetos de presentación.  Una vez allí, bajo el
+encabezamiento <strong>Backend</strong>, siga el enlace <em>All layout
+objects</em>.  La página que aparece relaciona todos los objetos de
+presentación que se usan en su versión de LilyPond, en orden
+alfabético.  Siga el enlace Slur (ligadura de expresión), y aparecerán
+relacionadas las propiedades de las ligaduras de expresión o Slurs.
+</p>
+<p>Una forma alternativa de encontrar esta página es a partir de la
+Referencia de la Notación.  En una de las páginas que tratan de las
+ligaduras de expresión podrá encontrar un enlace al manual de
+referencia del funcionamiento interno.  Este enlace le llevará
+directamente a esta página, aunque si tiene una idea del nombre del
+objeto de presentación que pretende trucar, le resultará más fácil ir
+directamente al RFI y buscar allí.
+</p>
+<p>Esta página sobre las ligaduras de expresión dentro del manual RFI nos
+dice en primer lugar que los objetos Slur se crean por el grabador
+Slur_engraver.  A continuación relaciona los ajustes estándar.
+Navegue por ellos buscando una propiedad que pudiera controlar
+el grosor de las ligaduras, y encontrará
+</p>
+<blockquote><pre class="example"><code>thickness</code> (number)
+     <code>1.2</code>
+     Line thickness, generally measured in <code>line-thickness</code>
+</pre></blockquote>
+
+<p>Esto promete ser una buena opción para cambiar el grosor.  Nos dice
+que el valor de <code>thickness</code> es un simple <em>número</em>, que el
+valor predeterminado es 1.2, y que las unidades están dentro de otra
+propiedad llamada <code>line-thickness</code>.
+</p>
+<p>Como dijimos con anterioridad, existen entre pocas y ninguna
+explicación en el RFI, pero ya tenemos información suficiente para
+probar a cambiar el grosor de la ligadura.  Vemos que el nombre del
+objeto de presentación es <code>Slur</code>, que el nombre de la propiedad
+que debemos cambiar es <code>thickness</code> y que el nuevo valor debe ser
+un número algo más grande que 1.2 si queremos hacer las ligaduras más
+gruesas.
+</p>
+<p>Ahora podemos construir la instrucción de sobreescritura
+<code>\override</code> simplemente mediante la sustitución de los valores
+que hemos encontrado para los nombres, omitiendo el contexto.
+Usaremos un valor muy grande para el grosor al principio, para estar
+seguros de que la instrucción está funcionando.  Obtenemos lo
+siguiente:
+</p>
+<blockquote><pre class="example">\override Slur.thickness = #5.0
+</pre></blockquote>
+
+<p>¡No olvide el <code>#'</code> antes del nombre de la propiedad y&nbsp;<code>#</code>
+antes del valor nuevo!
+</p>
+<p>La pregunta final es &lsquo;¿Dónde se debe colocar esta instrucción?&rsquo;
+Aunque nos falta seguridad y estamos todavía aprendiendo, la mejor
+respuesta es: &lsquo;Dentro de la música, antes de la primera ligadura y
+cerca de ella.&rsquo;  Hagámoslo así:
+</p>
+<a name="index-Slur_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-thickness_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    % Increase thickness of all following slurs from 1.2 to 5.0
+    \override Slur.thickness = #5.0
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../e4/lily-c0d9199e.ly">
+  <img align="middle"
+       border="0"
+       src="../e4/lily-c0d9199e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>y podemos ver que la ligadura, es sin duda, más pesada.
+</p>
+<p>Así pues, ésta es la forma básica de construir instrucciones
+<code>\override</code> o de sobreescritura.  Existen unas cuantas
+complicaciones más con las que nos encontraremos en secciones
+posteriores, pero ahora conoce todos los principios esenciales que
+necesita para hacerlo por sí mismo (aunque aún necesita algo de
+práctica).  La cual vendrá proporcionada por los ejemplos que vienen a
+continuación.
+</p>
+<a name="-Busqueda-del-contexto"></a>
+<h4 class="subsubheading"><i> Búsqueda del contexto</i></h4>
+
+<a name="index-contexto_002c-encontrar"></a>
+<a name="index-contexto_002c-buscar-el_002c-correcto"></a>
+
+<p>Pero en primer lugar ¿qué habría pasado si hubiésemos tenido que
+especificar el contexto? ¿Cuál sería?  Podemos suponer que las
+ligaduras están en el contexto de Voz, por estar claramente asociados
+de manera estrecha con las líneas individuales de música, pero
+¿podemos estar seguros?  Para averiguarlo, vayamos de nuevo al inicio
+de la página del RFI que describe las ligaduras (Slur), donde dice
+&lsquo;Slur objects are created by: Slur engraver&rsquo; («Los objetos de
+ligadura de expresión se crean por: el grabador Slur»).  Así pues, las
+ligaduras de expresión se crean en cualquier contexto en el que se
+encuentre el grabador <code>Slur_engraver</code>.  Siga el enlace a la
+página del grabador <code>Slur_engraver</code>.  Al final del todo, dice que
+el grabador <code>Slur_engraver</code> es parte de siete contextos de voz,
+incluido el contexto de voz estándar, <code>Voice</code>, por lo que nuestra
+suposición era acertada.  Y a causa de que <code>Voice</code> es uno de los
+contextos de más bajo nivel que se encuentra implícito sin ambigüedad
+por el hecho de que estamos escribiendo notas, podemos omitirlo en
+este lugar concreto.
+</p>
+<a name="-Sobreescritura-por-una-sola-vez"></a>
+<h4 class="subsubheading"><i> Sobreescritura por una sola vez</i></h4>
+
+<a name="index-sobreescritura-por-una-sola-vez"></a>
+<a name="index-once-override"></a>
+
+<a name="index-_005conce-2"></a>
+<a name="index-_005conce-3"></a>
+<a name="index-once-2"></a>
+<a name="index-once-3"></a>
+
+<p>Como puede ver, <em>todas</em> las ligaduras son más gruesas en el
+último ejemplo.  Pero ¿y si quisiéramos que solamente la primera
+ligadura fuese más gruesa?  Esto se consigue con la instrucción o
+prefijo <code>\once</code>.  Colocado inmediatamente antes de la instrucción
+<code>\override</code> ocasiona que solamente cambie la ligadura que
+comienza en la nota <strong>inmediata siguiente</strong>.  Si la nota
+inmediata siguiente no da inicio a una ligadura, la instrucción no
+tiene ningún efecto en absoluto: no se recuerda hasta que se
+encuentre alguna ligadura, sino que simplemente se ignora.  Así pues,
+la instrucción que lleva <code>\once</code> se debe reposicionar de la forma
+siguiente:
+</p>
+<a name="index-Slur_002c-ejemplo-de-sobreescritura-1"></a>
+<a name="index-thickness_002c-propiedad_002c-ejemplo-1"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    bes8[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../3a/lily-69d2a6d0.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-69d2a6d0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Hemos hecho que ahora solamente la primera ligadura sea más gruesa.
+</p>
+<p>La instrucción o prefijo <code>\once</code> también se puede usar antes de
+la instrucción <code>\set</code>.
+</p>
+<a name="-Recuperacion-del-ajuste"></a>
+<h4 class="subsubheading"><i> Recuperación del ajuste</i></h4>
+
+<a name="index-revertir"></a>
+<a name="index-predeterminadas_002c-recuperar-las-propiedades"></a>
+
+<a name="index-_005crevert-2"></a>
+<a name="index-_005crevert-3"></a>
+<a name="index-revert-2"></a>
+<a name="index-revert-3"></a>
+
+<p>Finalmente ¿y si quisiéramos que solamente las dos primeras ligaduras
+fuesen más gruesas?  En fin; podríamos usar dos instrucciones, cada
+una de ellas precedida por el prefijo <code>\once</code>, situadas
+inmediatamente antes de cada una de las notas en que comienzan las
+ligaduras:
+</p>
+<a name="index-Slur_002c-ejemplo-de-sobreescritura-2"></a>
+<a name="index-thickness_002c-propiedad_002c-ejemplo-2"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    bes[( g]) g |
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../13/lily-ed496687.ly">
+  <img align="middle"
+       border="0"
+       src="../13/lily-ed496687.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>o podríamos omitir la instrucción prefija <code>\once</code> y utilizar la
+instrucción <code>\revert</code> (restablecer) para devolver la propiedad
+del grosor, <code>thickness</code>, a su valor predeterminado después de la
+segunda ligadura:
+</p>
+<a name="index-Slur_002c-ejemplo-de-sobreescritura-3"></a>
+<a name="index-thickness_002c-propiedad_002c-ejemplo-3"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of all following slurs from 1.2 to 5.0
+    \override Slur.thickness = #5.0
+    bes[( g]) g |
+    g8[( es]) es
+    % Revert thickness of all following slurs to default of 1.2
+    \revert Slur.thickness
+    d8[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../7e/lily-af8e6759.ly">
+  <img align="middle"
+       border="0"
+       src="../7e/lily-af8e6759.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>la instrucción <code>\revert</code> se puede utilizar para devolver
+cualquier propiedad que se haya cambiado con <code>\override</code> a su
+valor predeterminado.  Puede utilizar el método que mejor se adapte a
+aquello que quiere hacer.
+</p>
+<p>Así finaliza nuestra introducción al manual de RFI, y el método básico
+de trucaje.  A continuación, en las últimas secciones de este capítulo
+encontrará varios ejemplos, en parte para introducirle en algunas de
+las posibilidades adicionales del manual RFI, y en parte para
+proporcionarle más práctica en cómo extraer información de él.  Estos
+ejemplos irán conteniendo cada vez menos palabras de guía y
+explicación.
+</p>
+<div class="footnote">
+<hr>
+<h3>Notas el pie</h3>
+<p class="footnote"><small>[<a name="FOOT1" href="#DOCF1">1</a>]</small> <strong>IR</strong>
+(Internals Reference) en inglés
+</p></div>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="the-internals-reference-manual.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Manual de referencia de funcionamiento interno&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Manual de referencia de funcionamiento interno&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="properties-found-in-interfaces.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Propiedades de los interfaces &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="properties-of-layout-objects.html">English</a>, <a href="properties-of-layout-objects.ca.html">català</a>, <a href="properties-of-layout-objects.cs.html">česky</a>, <a href="properties-of-layout-objects.de.html">deutsch</a>, <a href="properties-of-layout-objects.fr.html">français</a>, <a href="properties-of-layout-objects.it.html">italiano</a>, <a href="properties-of-layout-objects.ja.html">日本語</a>, <a href="properties-of-layout-objects.nl.html">nederlands</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Manual de aprendizaje  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.es.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacion-del-archivo" href="compiling-a-file.es.html">1.1 Compilación del archivo</a>    </li>
+    <li class=""><a name="toc-Como-escribir-archivos-de-entrada" href="how-to-write-input-files.es.html">1.2 Cómo escribir archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Tratar-con-los-errores-1" href="dealing-with-errors.es.html">1.3 Tratar con los errores</a>    </li>
+    <li class=""><a name="toc-Como-leer-los-manuales" href="how-to-read-the-manuals.es.html">1.4 Cómo leer los manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-corriente" href="common-notation.es.html">2. Notación corriente</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacion-en-un-solo-pentagrama" href="single-staff-notation.es.html">2.1 Notación en un solo pentagrama</a>    </li>
+    <li class=""><a name="toc-Varias-notas-a-la-vez-1" href="multiple-notes-at-once.es.html">2.2 Varias notas a la vez</a>    </li>
+    <li class=""><a name="toc-Canciones-1" href="songs.es.html">2.3 Canciones</a>    </li>
+    <li class=""><a name="toc-Retoques-finales-1" href="final-touches.es.html">2.4 Retoques finales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptos-fundamentales-1" href="fundamental-concepts.es.html">3. Conceptos fundamentales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Como-funcionan-los-archivos-de-entrada-de-LilyPond" href="how-lilypond-input-files-work.es.html">3.1 Cómo funcionan los archivos de entrada de LilyPond</a>    </li>
+    <li class=""><a name="toc-Las-voces-contienen-musica" href="voices-contain-music.es.html">3.2 Las voces contienen música</a>    </li>
+    <li class=""><a name="toc-Contextos-y-grabadores-1" href="contexts-and-engravers.es.html">3.3 Contextos y grabadores</a>    </li>
+    <li class=""><a name="toc-Extender-las-plantillas-1" href="extending-the-templates.es.html">3.4 Extender las plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Trucar-la-salida-1" href="tweaking-output.es.html">4. Trucar la salida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elementos-de-trucaje-1" href="tweaking-basics.es.html">4.1 Elementos de trucaje</a>    </li>
+    <li class=" toc_current"><a name="toc-Manual-de-referencia-de-funcionamiento-interno-1" href="the-internals-reference-manual.es.html">4.2 Manual de referencia de funcionamiento interno</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Propiedades-de-los-objetos-de-presentacion" href="properties-of-layout-objects.es.html">4.2.1 Propiedades de los objetos de presentación</a>      </li>
+      <li class=""><a name="toc-Propiedades-de-los-interfaces-1" href="properties-found-in-interfaces.es.html">4.2.2 Propiedades de los interfaces</a>      </li>
+      <li class=""><a name="toc-Tipos-de-propiedades-1" href="types-of-properties.es.html">4.2.3 Tipos de propiedades</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Apariencia-de-los-objetos-1" href="appearance-of-objects.es.html">4.3 Apariencia de los objetos</a>    </li>
+    <li class=""><a name="toc-Colocacion-de-los-objetos" href="placement-of-objects.es.html">4.4 Colocación de los objetos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.5 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Colisiones-de-objetos-1" href="collisions-of-objects.es.html">4.6 Colisiones de objetos</a>    </li>
+    <li class=""><a name="toc-Trucajes-adicionales-1" href="further-tweaking.es.html">4.7 Trucajes adicionales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantillas-1" href="templates.es.html">A. Plantillas</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantillas-de-pentagrama-unico" href="single-staff-templates.es.html">A.1 Plantillas de pentagrama único</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-piano-1" href="piano-templates.es.html">A.2 Plantillas de piano</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-cuarteto-de-cuerda-1" href="string-quartet-templates.es.html">A.3 Plantillas de cuarteto de cuerda</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-conjuntos-vocales-1" href="vocal-ensembles-templates.es.html">A.4 Plantillas de conjuntos vocales</a>    </li>
+    <li class=""><a name="toc-Plantillas-orquestales-1" href="orchestral-templates.es.html">A.5 Plantillas orquestales</a>    </li>
+    <li class=""><a name="toc-Plantillas-para-notacion-antigua" href="ancient-notation-templates.es.html">A.6 Plantillas para notación antigua</a>    </li>
+    <li class=""><a name="toc-Otras-plantillas-1" href="other-templates.es.html">A.7 Otras plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">C. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

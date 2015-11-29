@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel d'initiation: 4.6.1 Déplacement d'objets</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel d'initiation: 4.6.1 Déplacement d'objets">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel d'initiation: 4.6.1 Déplacement d'objets">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel d'initiation">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="C. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="collisions-of-objects.fr.html#collisions-of-objects" rel="up" title="4.6 Collisions d'objets">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="C. Index de LilyPond">
+<link href="collisions-of-objects.fr.html#collisions-of-objects" rel="previous" title="4.6 Collisions d'objets">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="learning devStatus">
+
+
+<div id="main">
+<a name="D_00e9placement-d_0027objets"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Retouche de partition&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.fr.html" title="Chapitre suivant">&nbsp;Modèles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="collisions-of-objects.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Collisions d'objets&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Collisions d'objets&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fixing-overlapping-notation.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Correction des collisions d'objets &gt; </a>]</td></tr></table>
+<a name="moving-objects"></a>
+<h3 class="subsection">4.6.1 Déplacement d&rsquo;objets</h3>
+
+<a name="index-deplacement-d_0027objets-se-chevauchant"></a>
+<a name="index-deplacement-d_0027objets-en-collision"></a>
+<a name="index-deplacement-de-grobs-en-collision"></a>
+<a name="index-objets_002c-evitement-des-collisions"></a>
+<a name="index-grobs_002c-evitement-des-collisions"></a>
+
+<p>Aussi surprenant que cela puisse paraître, LilyPond n&rsquo;est pas parfait.
+Certains éléments sur la partition peuvent se chevaucher, ce qui est
+regrettable mais, le plus souvent, facile à corriger.  En général, quand
+on déplace des objets, c&rsquo;est pour des raisons de lisibilité ou
+d&rsquo;esthétique &ndash; ils rendraient mieux avec un peu plus ou un peu moins
+d&rsquo;espace autour d&rsquo;eux.
+</p>
+<p>Il y a trois façons de résoudre les problèmes de chevauchement.  Il est
+préférable de les aborder dans l&rsquo;ordre suivant :
+</p>
+<ol>
+<li>
+L&rsquo;<strong>orientation</strong> d&rsquo;un objet qui en chevauche un autre peut être
+changée grâce aux commandes prédéfinies dont la liste a été donnée
+plus haut à propos des objets de portée (voir
+<a href="within_002dstaff-objects.fr.html">Objets inclus dans la portée</a>).
+Les queues de note, les liaisons de phrasé et de prolongation, les
+crochets, les nuances et les n-olets peuvent facilement être
+repositionnés de cette manière.  En contrepartie, vous n&rsquo;avez le choix
+qu&rsquo;entre deux positions, sans personnalisation possible.
+
+</li><li>
+Les <strong>propriétés d&rsquo;objet</strong>, auxquelles LilyPond a recours pour
+positionner les objets, sont modifiables avec <code>\override</code>.  Il y a
+deux avantages à changer ces propriétés : (a) d&rsquo;autres objets
+pourront être déplacés automatiquement si nécessaire pour faire de la
+place, et (b) la même retouche peut s&rsquo;appliquer à toutes les occurrences
+du même type d&rsquo;objet.  Ces propriétés sont :
+
+<ul>
+<li>
+<code>direction</code>
+
+<p>Ce point a déjà été traité en détails &ndash; voir
+<a href="within_002dstaff-objects.fr.html">Objets inclus dans la portée</a>.
+</p>
+
+</li><li>
+<code>padding</code>, <code>right-padding</code>, <code>staff-padding</code>
+
+<a name="index-decalage-_0028padding_0029"></a>
+<a name="index-padding_002c-propriete"></a>
+<a name="index-right_002dpadding_002c-propriete"></a>
+<a name="index-staff_002dpadding_002c-propriete"></a>
+
+<p>Au moment de positionner un objet, la valeur de sa propriété
+<code>padding</code> détermine l&rsquo;espace à laisser libre entre celui-ci et le
+coin le plus proche de l&rsquo;objet à côté duquel il est placé.  Vous
+remarquerez que c&rsquo;est la valeur <code>padding</code> de l&rsquo;objet <strong>à
+placer</strong> qui compte ; la valeur <code>padding</code> de l&rsquo;objet déjà placé
+est ignorée.  Les espaces libres déterminés par <code>padding</code>
+s&rsquo;appliquent à tous les objets associés à la
+<code>side-position-interface</code>.
+</p>
+<p>Le positionnement de groupes d&rsquo;altérations est contrôlé par
+<code>right-padding</code>, et non plus <code>padding</code>.  Cette propriété
+appartient à l&rsquo;objet <code>AccidentalPlacement</code> qui, vous le
+remarquerez, prend place dans le contexte <strong>Staff</strong>.  Dans le
+processus de composition, les têtes de notes sont disposées en premier,
+puis les altérations, s&rsquo;il y en a, sont ajoutées à gauche des têtes de
+note suivant la propriété <code>right-padding</code> qui détermine
+l&rsquo;espacement par rapport aux têtes de note.  C&rsquo;est pourquoi seule la
+propriété <code>right-padding</code> de l&rsquo;objet <code>AccidentalPlacement</code>
+joue sur le positionnement des altérations.
+</p>
+<p>La propriété <code>staff-padding</code> est très proche de la propriété
+<code>padding</code> : <code>padding</code> contrôle l&rsquo;espace minimum entre un
+objet qui accepte la <code>side-position-interface</code> et l&rsquo;objet le plus
+proche (généralement une note ou une ligne de portée) ;
+<code>staff-padding</code> ne s&rsquo;applique qu&rsquo;aux objets qui sont toujours
+placés au-dehors de la portée &ndash; il contrôle l&rsquo;espace minimum à insérer
+entre la portée et l&rsquo;objet extérieur.  Attention : <code>staff-padding</code>
+concerne les objets positionnés par rapport à la portée et n&rsquo;a aucun
+effet sur les objets qui sont positionnés par rapport à une note ; tout
+aménagement qui lui serait apporté ne provoquera pas d&rsquo;eereur, mais sera
+ignoré.
+</p>
+<p>Pour trouver quelle propriété <code>padding</code> employer pour l&rsquo;objet que
+vous cherchez à repositionner, il vous faut consulter les propriétés de
+l&rsquo;objet dans la Référence des propriétés internes.  Prenez garde que les
+propriétés <code>padding</code> ne sont pas forcément traitées dans l&rsquo;objet en
+question ; il faut alors regarder les objets qui semblent s&rsquo;en
+rapprocher.
+</p>
+<p>Toutes les valeurs <code>padding</code> sont exprimées en espace de portée.
+Pour la plupart des objets, la valeur par défaut est aux alentours de
+1,0 et parfois moins (cela dépend de chaque objet).  Il est possible de
+la modifier lorsqu&rsquo;on a besoin d&rsquo;un espace vide plus grand (ou plus
+petit).
+</p>
+
+</li><li>
+<code>self-alignment-X</code>
+
+<a name="index-self_002dalignment_002dX_002c--propriete"></a>
+
+<p>Cette propriété sert à aligner les objets sur la gauche, sur la droite
+ou à les centrer par rapport au point de référence des objets parents.
+Elle peut être utilisée avec tous les objets qui acceptent la
+<code>self-alignment-interface</code>.  Il s&rsquo;agit, en général, des objets qui
+contiennent du texte.  Les valeurs admises sont <code>LEFT</code>,
+<code>RIGHT</code> et <code>CENTER</code>.  On peut aussi attribuer à
+la place une valeur numérique entre <code>-1</code> et <code>+1</code>,
+où <code>-1</code> signifie alignement sur la gauche, <code>+1</code>
+alignement sur la droite, et les nombres intermédiaires déplacent
+progressivement le texte de la gauche vers la droite.  Des valeurs
+numériques supérieures à <code>1</code> sont également admises
+pour déplacer le texte encore plus loin vers la gauche, ou des
+valeurs inférieures à <code>-1</code> pour déplacer le texte encore
+plus loin vers la droite.  Un écart de <code>1</code> en valeur
+correspond à un déplacement de la moitié de la longueur du
+texte.
+</p>
+
+</li><li>
+<code>extra-spacing-width</code>
+
+<a name="index-extra_002dspacing_002dwidth_002c-propriete"></a>
+
+<p>Cette propriété est utilisée pour tous les objets qui acceptent la
+<code>item-interface</code>.  Elle reçoit deux nombres, le premier étant
+ajouté au bord gauche et le second au bord droit.  Des nombres
+négatifs déplacent le coin vers la gauche, des nombres positifs
+vers la droite, si bien que pour élargir un objet, le premier nombre
+doit être négatif et le second positif.  Attention : tous les
+objets n&rsquo;acceptent pas forcément les deux nombres.  Par exemple, l&rsquo;objet
+<code>Accidental</code> ne retient que le premier nombre (coin gauche).
+</p>
+
+</li><li>
+<code>staff-position</code>
+
+<a name="index-staff_002dposition_002c-propriete"></a>
+
+<p><code>staff-position</code> est une propriété de la
+<code>staff-symbol-referencer-interface</code>, qui s&rsquo;applique aux objets
+positionnés par rapport à la portée.  Elle indique, en demi-espace de
+portée, la position verticale des objets par rapport à la ligne médiane
+de la portée.  C&rsquo;est bien pratique pour résoudre des problèmes de
+collision entre des objets comme les silences valant mesure entière,
+les liaisons et les notes de différentes voix.
+</p>
+
+</li><li>
+<code>horizontal-shift</code>
+
+<a name="index-horizontal_002dshift_002c-propriete"></a>
+<a name="index-notes_002c-empilement"></a>
+<a name="index-empilement-de-notes-1"></a>
+<a name="index-notes_002c-collisions"></a>
+<a name="index-collisions-de-notes-1"></a>
+<a name="index-shift_002c-commandes-1"></a>
+<a name="index-_005cshiftOff-2"></a>
+<a name="index-_005cshiftOff-3"></a>
+<a name="index-shiftOff-2"></a>
+<a name="index-shiftOff-3"></a>
+<a name="index-_005cshiftOn-2"></a>
+<a name="index-_005cshiftOn-3"></a>
+<a name="index-shiftOn-2"></a>
+<a name="index-shiftOn-3"></a>
+<a name="index-_005cshiftOnn-2"></a>
+<a name="index-_005cshiftOnn-3"></a>
+<a name="index-shiftOnn-2"></a>
+<a name="index-shiftOnn-3"></a>
+<a name="index-_005cshiftOnnn-2"></a>
+<a name="index-_005cshiftOnnn-3"></a>
+<a name="index-shiftOnnn-2"></a>
+<a name="index-shiftOnnn-3"></a>
+
+<p>Au sein d&rsquo;une même voix, toutes les notes intervenant au même instant
+musical sont regroupées dans un empilement (une colonne) et est créé un
+objet <code>NoteColumn</code> afin de contrôler le positionnement horizontal
+de ce groupe de notes &ndash; voir « Empilement de notes » dans
+<a href="explicitly-instantiating-voices.fr.html">Instanciation explicite des voix</a>.  Si, et seulement si deux ou
+plusieurs empilements au sein d&rsquo;un même contexte de portée ont une
+orientation de hampe identique et se produisent au même instant musical,
+les valeurs de leurs propriétés <code>horizontal-shift</code> permettront de
+les ordonner, les empilements de rang supérieur étant progressivement
+décalés pour éviter les chevauchements des têtes.  Cette propriété est
+déterminée par les commandes <code>\voiceXXX</code> et peut se voir aménagée
+par une commande <code>\override</code> ou, plus habituellemnt, par les
+commandes <code>\shiftOn</code>.  Notez bien que cette propriété ne fait
+qu&rsquo;affecter un rang aux empilements pour leur décalage ; elle ne
+détermine en rien la magnitude du décalage, qui sera augmentera
+progressivement et selon un pas proprotionnel à la largeur des têtes de
+chaque rang.  Le pas, généralement de la moitié de la largeur d&rsquo;une
+tête, peut aller jusqu&rsquo;à la pleine largeur de tête en cas de groupes
+resserrés.
+</p>
+</li><li>
+<code>force-hshift</code>
+
+<a name="index-force_002dhshift_002c-propriete"></a>
+
+<p>La propriété <code>force-hshift</code> appartient à <code>NoteColumn</code> (en
+réalité à la <code>note-column-interface</code>).  Le fait de la modifier
+permet de déplacer un empilement dans le cas de chevauchement
+d&rsquo;empilements.  Notez bien qu&rsquo;elle sera sans effet en l&rsquo;absence de
+chevauchement.  Elle s&rsquo;exprime en unité appropriée aux colonnes
+de notes, à savoir la largeur des têtes de note de la première voix.
+Son utilisation est réservée à des situations complexes dans lesquelles
+les commandes habituelles <code>\shiftOn</code>
+(voir <a href="explicitly-instantiating-voices.fr.html">Instanciation explicite des voix</a>) ne suffisent plus à
+résoudre les conflits.  Elle est alors préférable à l&rsquo;utilisation de la
+propriété <code>extra-offset</code>, dans la mesure où on n&rsquo;a pas besoin
+d&rsquo;exprimer la distance en espace de portée et où le fait de déplacer
+les notes à l&rsquo;intérieur ou à l&rsquo;extérieur d&rsquo;une <code>NoteColumn</code> affecte
+d&rsquo;autres actions comme les fusions de notes.
+</p>
+</li></ul>
+
+
+</li><li>
+Pour terminer, quand toutes les autres méthodes ont échoué, il est
+possible de repositionner verticalement les objets à la main par rapport
+à la ligne médiane de la portée, ou en les déplaçant à une distance
+donnée vers une nouvelle position.  Les inconvénients sont qu&rsquo;il faut
+individuellement, pour chaque objet, trouver les valeurs correctes de
+repositionnement souvent par tâtonnement et que, puisque le
+mouvement est opéré après que LilyPond a placé tous les autres
+objets, c&rsquo;est à l&rsquo;utilisateur de résoudre tous les problèmes de
+collision qui pourraient survenir.  Et le pire avec cette méthode est
+que, le jour où la musique est modifiée, il faut de nouveau rechercher
+les valeurs de repositionnement.  Les propriétés à utiliser pour ce type
+de repositionnement manuel sont :
+
+
+<dl compact="compact">
+<dt> <code>extra-offset</code></dt>
+<dd>
+<a name="index-extra_002doffset_002c-propriete"></a>
+
+<p>Cette propriété s&rsquo;applique à tout objet acceptant la
+<code>grob-interface</code>.  Elle reçoit une paire de nombres qui indiquent
+le déplacement supplémentaire dans le sens horizontal et vertical.  Des
+nombres négatifs déplacent l&rsquo;objet vers la gauche ou vers la droite.
+L&rsquo;unité utilisée est l&rsquo;espace de portée.  Le déplacement supplémentaire
+intervient une fois que la composition des objets est achevée, si bien
+qu&rsquo;un objet peut être repositionné à n&rsquo;importe quel endroit sans
+perturber quoi que ce soit.
+</p>
+</dd>
+<dt> <code>positions</code></dt>
+<dd>
+<a name="index-positions_002c-propriete"></a>
+
+<p>Cette propriété est très utile pour ajuster manuellement l&rsquo;inclinaison
+et la hauteur des barres de ligature, des liaisons et des n-olets.  Elle
+est suivie de deux nombres qui donnent la position des extrémités gauche
+et droite des barres, liaisons, etc. par rapport à la ligne médiane de
+la portée.  L&rsquo;unité de référence est l&rsquo;intervalle de lignes de portée.
+Attention toutefois au fait que les liaisons et phrasés ne peuvent pas
+être repositionnés n&rsquo;importe où.  LilyPond commence par dresser la liste
+des emplacements possibles pour les liaisons et choisit par défaut la
+liaison qui « semble la meilleure ».  Si la propriété <code>positions</code>
+a été retouchée, la liaison la plus proche de la position demandée sera
+retenue dans la liste.
+</p></dd>
+</dl>
+
+</li></ol>
+
+<p>Il est possible qu&rsquo;un objet ne dispose pas de toutes ces propriétés.  Il
+est donc nécessaire de consulter la RPI pour vérifier quelles sont les
+propriétés disponibles pour l&rsquo;objet en question.
+</p>
+<p>Voici une liste d&rsquo;objets les plus couramment impliqués dans les
+collisions, avec le nom de l&rsquo;objet à consulter dans la RPI afin de
+trouver les propriétés à retoucher pour obtenir un déplacement.
+</p>
+
+<table>
+<thead><tr><th width="50%">Type d&rsquo;objet</th><th width="50%">Nom d&rsquo;objet</th></tr></thead>
+<tr><td width="50%">Articulations</td><td width="50%"><code>Script</code></td></tr>
+<tr><td width="50%">Barres de ligature</td><td width="50%"><code>Beam</code></td></tr>
+<tr><td width="50%">Doigté</td><td width="50%"><code>Fingering</code></td></tr>
+<tr><td width="50%">Liaisons de phrasé</td><td width="50%"><code>Slur</code></td></tr>
+<tr><td width="50%">Liaisons de prolongation</td><td width="50%"><code>Tie</code></td></tr>
+<tr><td width="50%">N-olets</td><td width="50%"><code>TupletBracket</code></td></tr>
+<tr><td width="50%">Nuances (verticalement)</td><td width="50%"><code>DynamicLineSpanner</code></td></tr>
+<tr><td width="50%">Nuances (horizontalement)</td><td width="50%"><code>DynamicText</code></td></tr>
+<tr><td width="50%">Reprises / marques de texte</td><td width="50%"><code>RehearsalMark</code></td></tr>
+<tr><td width="50%">Texte, par ex. <code>^&quot;texte&quot;</code></td><td width="50%"><code>TextScript</code></td></tr>
+</table>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Retouche de partition&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.fr.html" title="Chapitre suivant">&nbsp;Modèles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="collisions-of-objects.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Collisions d'objets&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Collisions d'objets&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fixing-overlapping-notation.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Correction des collisions d'objets &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="moving-objects.html">English</a>, <a href="moving-objects.ca.html">català</a>, <a href="moving-objects.cs.html">česky</a>, <a href="moving-objects.de.html">deutsch</a>, <a href="moving-objects.es.html">español</a>, <a href="moving-objects.it.html">italiano</a>, <a href="moving-objects.ja.html">日本語</a>, <a href="moving-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel d&rsquo;initiation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-1" href="tutorial.fr.html">1. Tutoriel</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilation-d_0027un-fichier-1" href="compiling-a-file.fr.html">1.1 Compilation d&rsquo;un fichier</a>    </li>
+    <li class=""><a name="toc-Composition-d_0027un-fichier-source-1" href="how-to-write-input-files.fr.html">1.2 Composition d&rsquo;un fichier source</a>    </li>
+    <li class=""><a name="toc-Gestion-des-erreurs-1" href="dealing-with-errors.fr.html">1.3 Gestion des erreurs</a>    </li>
+    <li class=""><a name="toc-Bien-lire-le-manuel-1" href="how-to-read-the-manuals.fr.html">1.4 Bien lire le manuel</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bases-de-notation-musicale-1" href="common-notation.fr.html">2. Bases de notation musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-sur-une-seule-portee" href="single-staff-notation.fr.html">2.1 Notation sur une seule portée</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="multiple-notes-at-once.fr.html">2.2 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Chansons-1" href="songs.fr.html">2.3 Chansons</a>    </li>
+    <li class=""><a name="toc-Dernieres-precisions" href="final-touches.fr.html">2.4 Dernières précisions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concepts-fondamentaux-1" href="fundamental-concepts.fr.html">3. Concepts fondamentaux</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Organisation-des-fichiers-LilyPond-1" href="how-lilypond-input-files-work.fr.html">3.1 Organisation des fichiers LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-voix-contiennent-la-musique-1" href="voices-contain-music.fr.html">3.2 Les voix contiennent la musique</a>    </li>
+    <li class=""><a name="toc-Contextes-et-graveurs-1" href="contexts-and-engravers.fr.html">3.3 Contextes et graveurs</a>    </li>
+    <li class=""><a name="toc-Extension-des-modeles" href="extending-the-templates.fr.html">3.4 Extension des modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Retouche-de-partition-1" href="tweaking-output.fr.html">4. Retouche de partition</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Retouches-elementaires" href="tweaking-basics.fr.html">4.1 Retouches élémentaires</a>    </li>
+    <li class=""><a name="toc-Le-manuel-de-reference-des-proprietes-internes" href="the-internals-reference-manual.fr.html">4.2 Le manuel de référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Apparence-des-objets-1" href="appearance-of-objects.fr.html">4.3 Apparence des objets</a>    </li>
+    <li class=""><a name="toc-Positionnement-des-objets-1" href="placement-of-objects.fr.html">4.4 Positionnement des objets</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.5 Espacement vertical</a>    </li>
+    <li class=" toc_current"><a name="toc-Collisions-d_0027objets-1" href="collisions-of-objects.fr.html">4.6 Collisions d&rsquo;objets</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Deplacement-d_0027objets" href="moving-objects.fr.html">4.6.1 Déplacement d&rsquo;objets</a>      </li>
+      <li class=""><a name="toc-Correction-des-collisions-d_0027objets-1" href="fixing-overlapping-notation.fr.html">4.6.2 Correction des collisions d&rsquo;objets</a>      </li>
+      <li class=""><a name="toc-Exemple-concret-1" href="real-music-example.fr.html">4.6.3 Exemple concret</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Autres-retouches-1" href="further-tweaking.fr.html">4.7 Autres retouches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modeles" href="templates.fr.html">A. Modèles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Gabarits-preprogrammes" href="built_002din-templates.fr.html">A.1 Gabarits préprogrammés</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-portee-unique" href="single-staff-templates.fr.html">A.2 Modèles pour portée unique</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-piano" href="piano-templates.fr.html">A.3 Modèles pour piano</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-quatuor-a-cordes" href="string-quartet-templates.fr.html">A.4 Modèles pour quatuor à cordes</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-ensemble-vocal" href="vocal-ensembles-templates.fr.html">A.5 Modèles pour ensemble vocal</a>    </li>
+    <li class=""><a name="toc-Orchestre-1" href="orchestral-templates.fr.html">A.6 Orchestre</a>    </li>
+    <li class=""><a name="toc-Exemples-de-notation-ancienne-1" href="ancient-notation-templates.fr.html">A.7 Exemples de notation ancienne</a>    </li>
+    <li class=""><a name="toc-Autres-modeles" href="other-templates.fr.html">A.8 Autres modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">C. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

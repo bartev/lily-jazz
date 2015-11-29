@@ -1,0 +1,837 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 degli autori.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Guida alla Notazione di LilyPond: 2.1.6 Opera e musical</title>
+
+<meta name="description" content="Guida alla Notazione di LilyPond: 2.1.6 Opera e musical">
+<meta name="keywords" content="Guida alla Notazione di LilyPond: 2.1.6 Opera e musical">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Guida alla Notazione">
+<link href="lilypond-command-index.it.html#lilypond-command-index" rel="index" title="D. Indice dei comandi di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="vocal-music.it.html#vocal-music" rel="up" title="2.1 Musica vocale">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="E. Indice di LilyPond">
+<link href="choral.it.html#choral" rel="previous" title="2.1.5 Musica corale">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="notation devStatus">
+
+
+<div id="main">
+<a name="Opera-e-musical"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="choral.it.html#divided-voices" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Voci divise&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vocal-music.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Musica vocale&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#references-for-opera-and-stage-musicals" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Riferimenti per opera e musical &gt; </a>]</td></tr></table>
+<a name="opera-and-stage-musicals"></a>
+<h3 class="subsection">2.1.6 Opera e musical</h3>
+
+<p>La musica, il testo cantato e i dialoghi delle opere e dei musical
+sono di solito impostati in una o più delle seguenti forme:
+</p>
+<ul>
+<li>
+Una <em>partitura del direttore</em> contenente l&rsquo;intera partitura
+orchestrale e le parti vocali, insieme a un libretto con le battute
+d&rsquo;entrata se ci sono dei passaggi parlati.
+
+</li><li>
+Le <em>parti orchestrali</em> contenenti la musica degli strumenti
+individuali dell&rsquo;orchestra o della band.
+
+</li><li>
+Una <em>partitura vocale</em> contenente tutte le parti vocali con
+accompagnamento del pianoforte.  L&rsquo;accompagnamento di solito è
+una riduzione orchestrale e in questo caso il nome dello strumento
+orchestrale originale viene spesso indicato.  Le partiture
+vocali talvolta hanno anche le didascalie e il libretto
+con le battute d&rsquo;entrata.
+
+</li><li>
+Un <em>libro vocale</em> contenente soltanto le parti vocali
+(nessun accompagnamento), talvolta insieme al libretto.
+
+</li><li>
+Un <em>libretto</em> contenente i passaggi estesi dei dialoghi
+parlati solitamente presenti nei musical, insieme alle parole
+delle parti cantate.  Le didascalie sono solitamente incluse.
+È possibile usare LilyPond per creare i libretti, ma dato che
+non contengono musica è preferibile usare altri metodi.
+
+</li></ul>
+
+<p>Le sezioni della documentazione di LilyPond che trattano gli
+argomenti necessari per creare partiture negli stili più comuni
+nell&rsquo;opera e nei musical sono indicati nei riferimenti seguenti.
+A questi seguono sezioni che trattano le tecniche specifiche
+che sono peculiari per le partiture di opera e musical.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#references-for-opera-and-stage-musicals" accesskey="1">Riferimenti per opera e musical</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#character-names" accesskey="2">Nomi dei personaggi</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#musical-cues" accesskey="3">Suggerimenti musicali</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spoken-music" accesskey="4">Musica parlata</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dialogue-over-music" accesskey="5">Dialogo sopra la musica</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Riferimenti-per-opera-e-musical"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#opera-and-stage-musicals" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Opera e musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#opera-and-stage-musicals" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Opera e musical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#character-names" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Nomi dei personaggi &gt; </a>]</td></tr></table>
+<a name="references-for-opera-and-stage-musicals"></a>
+<h4 class="unnumberedsubsubsec">Riferimenti per opera e musical</h4>
+
+<ul>
+<li>
+La partitura di un direttore d&rsquo;orchestra contiene molti righi e
+testi vocali raggruppati.  I modi per raggruppare i righi sono
+mostrati in <a href="displaying-staves.it.html#grouping-staves">Raggruppare i righi</a>.  Per annidare gruppi di
+righi leggere <a href="displaying-staves.it.html#nested-staff-groups">Gruppi di righi annidati</a>.
+
+</li><li>
+La stampa di righi vuoti nelle partiture musicali e vocali dei direttori
+è solitamente soppressa.  Per creare tale partitura leggere
+<a href="modifying-single-staves.it.html#hiding-staves">Nascondere i righi</a>.
+
+</li><li>
+La scrittura di parti orchestrali è trattata in <a href="writing-parts.it.html">Scrittura delle parti</a>.
+Altre sezioni del capitolo Notazione specialistica potrebbero essere
+rilevanti, a seconda dell&rsquo;orchestrazione usata.  Molti strumenti
+sono strumenti traspositori, vedi <a href="displaying-pitches.it.html#instrument-transpositions">Trasporto strumentale</a>.
+
+</li><li>
+Se il numero di sistemi per pagina cambia da pagina a pagina, è di uso
+comune separare i sistemi con un segno separatore di sistemi.
+Vedi <a href="displaying-staves.it.html#separating-systems">Separare i sistemi</a>.
+
+</li><li>
+Per maggiori informazioni sulle proprietà di formattazione della pagina
+leggere <a href="page-layout.it.html">Page layout</a>.
+
+</li><li>
+Si possono inserire suggerimenti di dialogo, didascalie e note a pié di
+pagina, vedi <a href="creating-footnotes.it.html">Creating footnotes</a> e <a href="text.it.html">Testo</a>.  Didascalie estese
+possono essere aggiunte anche con una sezione di markup indipendenti
+tra i due blocchi <code>\score</code>, vedi <a href="writing-text.it.html#separate-text">Testo separato</a>.
+
+</li></ul>
+
+<a name="Vedi-anche-231"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Glossario musicale:
+<a name="index-Frenched-score"></a>
+<a href="../music-glossary/frenched-score.it.html">Partitura senza righi vuoti</a>,
+<a name="index-Frenched-staves"></a>
+<a href="../music-glossary/frenched-staves.it.html">Rigo temporaneo</a>,
+<a name="index-transposing-instrument-1"></a>
+<a href="../music-glossary/transposing-instrument.it.html">Strumento traspositore</a>.
+</p>
+<p>Guida alla notazione:
+<a href="creating-footnotes.it.html">Creating footnotes</a>,
+<a href="displaying-staves.it.html#grouping-staves">Raggruppare i righi</a>,
+<a href="modifying-single-staves.it.html#hiding-staves">Nascondere i righi</a>,
+<a href="displaying-pitches.it.html#instrument-transpositions">Trasporto strumentale</a>,
+<a href="displaying-staves.it.html#nested-staff-groups">Gruppi di righi annidati</a>,
+<a href="page-layout.it.html">Page layout</a>,
+<a href="displaying-staves.it.html#separating-systems">Separare i sistemi</a>,
+<a href="changing-multiple-pitches.it.html#transpose">Trasposizione</a>,
+<a href="writing-parts.it.html">Scrittura delle parti</a>,
+<a href="writing-text.it.html">Inserimento del testo</a>.
+</p>
+<p>Frammenti:
+<a href="../snippets/musica-vocale.it.html">Vocal music</a>.
+</p>
+
+<hr size="6">
+<a name="Nomi-dei-personaggi"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#references-for-opera-and-stage-musicals" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Riferimenti per opera e musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#opera-and-stage-musicals" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Opera e musical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#musical-cues" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Suggerimenti musicali &gt; </a>]</td></tr></table>
+<a name="character-names"></a>
+<h4 class="unnumberedsubsubsec">Nomi dei personaggi</h4>
+
+<a name="index-nomi-dei-personaggi"></a>
+<a name="index-personaggi_002c-nomi-dei"></a>
+
+<p>I nomi dei personaggi sono solitamente mostrati a sinistra del rigo quando
+il rigo è dedicato a quel personaggio soltanto:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \set Staff.vocalName = \markup \smallCaps Kaspar
+      \set Staff.shortVocalName = \markup \smallCaps Kas.
+      \relative {
+  \clef &quot;G_8&quot;
+  c'4 c c c
+  \break
+  c4 c c c
+      }
+    }
+    \new Staff {
+      \set Staff.vocalName = \markup \smallCaps Melchior
+      \set Staff.shortVocalName = \markup \smallCaps Mel
+      \clef &quot;bass&quot;
+      \relative {
+  a4 a a a
+  a4 a a a
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../aa/lily-4e486d5d.ly">
+  <img align="middle"
+       border="0"
+       src="../aa/lily-4e486d5d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Quando due o più personaggi condividono lo stesso rigo, il nome del
+personaggio è solitamente collocato sopra il rigo all&rsquo;inizio di ogni
+sezione appartenente a quel personaggio.  È possibile fare ciò con
+i markup.  Spesso si usa un tipo di carattere preciso a questo scopo.
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  \clef &quot;G_8&quot;
+  c4^\markup \fontsize #1 \smallCaps Kaspar
+  c c c
+  \clef &quot;bass&quot;
+  a4^\markup \fontsize #1 \smallCaps Melchior
+  a a a
+  \clef &quot;G_8&quot;
+  c4^\markup \fontsize #1 \smallCaps Kaspar
+  c c c
+}
+</pre><p>
+ <a href="../a9/lily-29402bab.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-29402bab.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Altrimenti, se ci sono molti cambi di personaggi, è più semplice
+impostare una variabile per salvare le  definizioni di ogni
+personaggio, in modo che il cambio di personaggio possa essere
+indicato in modo facile e conciso.
+</p>
+<blockquote><pre class="verbatim">kaspar = {
+  \clef &quot;G_8&quot;
+  \set Staff.shortVocalName = &quot;Kas.&quot;
+  \set Staff.midiInstrument = &quot;voice oohs&quot;
+  &lt;&gt;^\markup \smallCaps &quot;Kaspar&quot;
+}
+
+melchior = {
+  \clef &quot;bass&quot;
+  \set Staff.shortVocalName = &quot;Mel.&quot;
+  \set Staff.midiInstrument = &quot;choir aahs&quot;
+  &lt;&gt;^\markup \smallCaps &quot;Melchior&quot;
+}
+
+\relative c' {
+  \kaspar
+  c4 c c c
+  \melchior
+  a4 a a a
+  \kaspar
+  c4 c c c
+}
+</pre><p>
+ <a href="../57/lily-e5f955d5.ly">
+  <img align="middle"
+       border="0"
+       src="../57/lily-e5f955d5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vedi-anche-196"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Manuale di apprendimento:
+<a name="index-Organizzare-i-brani-con-le-variabili-1"></a>
+<a href="../learning/organizing-pieces-with-variables.it.html">Organizzare i brani con le variabili</a>.
+</p>
+<p>Guida alla notazione:
+<a href="text.it.html">Testo</a>,
+<a href="text-markup-commands.it.html">Text markup commands</a>.
+</p>
+
+<hr size="6">
+<a name="Suggerimenti-musicali"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#character-names" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Nomi dei personaggi&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#opera-and-stage-musicals" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Opera e musical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spoken-music" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Musica parlata &gt; </a>]</td></tr></table>
+<a name="musical-cues"></a>
+<h4 class="unnumberedsubsubsec">Suggerimenti musicali</h4>
+
+<a name="index-suggerimenti-musicali"></a>
+<a name="index-cues"></a>
+
+<p>I suggerimenti musicali possono essere inseriti nelle pariture vocali, nei
+libri vocali e nelle parti orchestrali per indicare quale musica in un&rsquo;altra
+parte precede immediatamente un&rsquo;entrata.  I suggerimenti sono spesso inseriti
+anche nella riduzione per pianoforte nelle partiture vocali per indicare
+cosa sta suonando ogni strumento dell&rsquo;orchestra.  Ciò aiuta il direttore
+quando non è disponibile la partitura completa.
+</p>
+<p>Il meccanismo di base per inserire i suggerimenti è spiegato dettagliatamente
+in <a href="writing-parts.it.html#quoting-other-voices">Citare altre voci</a> e <a href="writing-parts.it.html#formatting-cue-notes">Formattazione delle notine</a>.  Ma quando si
+devono inserire molti suggerimenti, per esempio per aiutare il direttore
+in una partitura vocale, il nome dello strumento deve essere posizionato
+attentamente proprio prima dell&rsquo;inizio delle citazioni in corpo più piccolo
+(&ldquo;cue notes&rdquo;).   L&rsquo;esempio seguente mostra come si fa.
+</p>
+<blockquote><pre class="verbatim">flute = \relative {
+  s4 s4 e'' g
+}
+\addQuote &quot;flute&quot; { \flute }
+
+pianoRH = \relative {
+  c''4. g8
+  % posiziona il nome dello strumento citato proprio prima delle citazioni in corpo piccolo,
+  % e sopra il rigo
+  &lt;&gt;^\markup { \right-align { \tiny &quot;Flute&quot; } }
+  \cueDuring &quot;flute&quot; #UP { g4 bes4 }
+}
+pianoLH = \relative { c4 &lt;c' e&gt; e, &lt;g c&gt; }
+
+\score {
+  \new PianoStaff &lt;&lt;
+    \new Staff {
+      \pianoRH
+    }
+    \new Staff {
+      \clef &quot;bass&quot;
+      \pianoLH
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../03/lily-5c4742f3.ly">
+  <img align="middle"
+       border="0"
+       src="../03/lily-5c4742f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se viene citato uno strumento traspositore, la parte strumentale deve
+specificare la sua armatura di chiave in modo che la conversione delle
+sue notine sia fatta automaticamente.  Il prossimo esempio mostra questa
+trasposizioone per un clarinetto in Si bemolle.  Le note in questo esempio
+si trovano in basso nel rigo, quindi viene specificato <code>DOWN</code> in
+<code>\cueDuring</code> (in modo che i gambi vadano giù) e il nome dello strumento
+è posizionato sotto il rigo.
+</p>
+<blockquote><pre class="verbatim">clarinet = \relative c' {
+  \transposition bes
+  fis4 d d c
+}
+\addQuote &quot;clarinet&quot; { \clarinet }
+
+pianoRH = \relative c'' {
+  \transposition c'
+  % posiziona il nome dello strumento citato sotto il rigo
+  &lt;&gt;_\markup { \right-align { \tiny &quot;Clar.&quot; } }
+  \cueDuring &quot;clarinet&quot; #DOWN { c4. g8 }
+  g4 bes4
+}
+pianoLH = \relative { c4 &lt;c' e&gt; e, &lt;g c&gt; }
+
+\score {
+  &lt;&lt;
+    \new PianoStaff &lt;&lt;
+      \new Staff {
+  \new Voice {
+    \pianoRH
+  }
+      }
+      \new Staff {
+  \clef &quot;bass&quot;
+  \pianoLH
+      }
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../1e/lily-349d4555.ly">
+  <img align="middle"
+       border="0"
+       src="../1e/lily-349d4555.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Da questi due esempi è evidente che inserire molte citazioni in corpo
+piccolo in una partitura vocale sarebbe noioso, e le note della parte
+per pianoforte sarebbero confuse. Tuttavia, come mostra il frammento
+seguente, è possibile definire una funzione musicale per ridurre l&rsquo;input
+e rendere più chiare le note per pianoforte.
+</p>
+<a name="Frammenti-di-codice-selezionati-45"></a>
+<h4 class="subsubheading">Frammenti di codice selezionati</h4>
+
+<p><em> Aggiungere citazioni orchestrali a una partitura vocale</em>
+</p>
+
+<p>L&rsquo;esempio seguente mostra un approccio per simplificare l&rsquo;aggiunta di
+citazioni orchestrali a una riduzione per pianoforte di una partitura
+vocale.  La funzione musicale <code>\cueWhile</code> prende quattro argomenti:
+la musica da cui prendere la citazione, come è definita da <code>\addQuote</code>,
+il nome da inserire prima delle notine, poi o <code>#UP</code> o <code>#DOWN</code> per
+specificare o <code>\voiceOne</code> col nome sopra il rigo o <code>\voiceTwo</code>
+col nome sotto il rigo, e infine la musica per pianoforte che deve apparire
+in parallelo alle notine.  Il nome dello strumento citato è posto a sinistra
+delle notine.  Molti passaggi possono essere citati, ma non possono
+sovrapporsi l&rsquo;un l&rsquo;altro nel tempo.
+</p>
+
+<blockquote><pre class="verbatim">cueWhile =
+#(define-music-function
+   (instrument name dir music)
+   (string? string? ly:dir? ly:music?)
+   #{
+     \cueDuring $instrument #dir {
+       \once \override TextScript.self-alignment-X = #RIGHT
+       \once \override TextScript.direction = $dir
+       &lt;&gt;-\markup { \tiny #name }
+       $music
+     }
+   #})
+
+flute = \relative c'' {
+  \transposition c'
+  s4 s4 e g
+}
+\addQuote &quot;flute&quot; { \flute }
+
+clarinet = \relative c' {
+  \transposition bes
+  fis4 d d c
+}
+\addQuote &quot;clarinet&quot; { \clarinet }
+
+singer = \relative c'' { c4. g8 g4 bes4 }
+words = \lyricmode { here's the lyr -- ics }
+
+pianoRH = \relative c'' {
+  \transposition c'
+  \cueWhile &quot;clarinet&quot; &quot;Clar.&quot; #DOWN { c4. g8 }
+  \cueWhile &quot;flute&quot; &quot;Flute&quot; #UP { g4 bes4 }
+}
+pianoLH = \relative c { c4 &lt;c' e&gt; e, &lt;g c&gt; }
+
+\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;singer&quot; {
+        \singer
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;singer&quot;
+      \words
+    }
+    \new PianoStaff &lt;&lt;
+      \new Staff {
+        \new Voice {
+          \pianoRH
+        }
+      }
+      \new Staff {
+        \clef &quot;bass&quot;
+        \pianoLH
+      }
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../44/lily-fe244fd7.ly">
+  <img align="middle"
+       border="0"
+       src="../44/lily-fe244fd7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vedi-anche-269"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Glossario musicale:
+<a name="index-cue_002dnotes"></a>
+<a href="../music-glossary/cue_002dnotes.it.html">Notine o Citazioni in corpo più piccolo</a>.
+</p>
+<p>Guida alla notazione:
+<a href="aligning-objects.it.html">Aligning objects</a>,
+<a href="direction-and-placement.it.html">Direction and placement</a>,
+<a href="writing-parts.it.html#formatting-cue-notes">Formattazione delle notine</a>,
+<a href="writing-parts.it.html#quoting-other-voices">Citare altre voci</a>,
+<a href="using-music-functions.it.html">Using music functions</a>.
+</p>
+<p>Frammenti:
+<a href="../snippets/musica-vocale.it.html">Vocal music</a>.
+</p>
+<p>Guida al funzionamento interno:
+<a name="index-CueVoice-2"></a>
+<a href="../internals/cuevoice.it.html">CueVoice</a>.
+</p>
+<a name="Problemi-noti-e-avvertimenti-20"></a>
+<h4 class="subsubheading">Problemi noti e avvertimenti</h4>
+<p><code>\cueDuring</code> inserisce automaticamente un contesto <code>CueVoice</code> e
+tutte le notine sono poste in quel contesto.  Ciò significa che non è
+possibile avere due sequenze sovrapposte di notine con questa tecnica.
+Si possono inserire sequenze sovrapposte solo dichiarando esplicitamente
+contesti <code>CueVoice</code> distinti e usando <code>\quoteDuring</code> per estrarre
+e inserire le notine.
+</p>
+
+<hr size="6">
+<a name="Musica-parlata"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#musical-cues" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Suggerimenti musicali&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#opera-and-stage-musicals" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Opera e musical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#dialogue-over-music" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Dialogo sopra la musica &gt; </a>]</td></tr></table>
+<a name="spoken-music"></a>
+<h4 class="unnumberedsubsubsec">Musica parlata</h4>
+
+<a name="index-parlato"></a>
+<a name="index-Sprechgesang"></a>
+<p>Effetti come il &lsquo;parlato&rsquo; o &lsquo;Sprechgesang&rsquo; chiedono all&rsquo;esecutore
+di parlare senza intonare note ma andando comunque a ritmo; tali effetti
+si indicano con teste di nota barrate, come è illustrato in <a href="note-heads.it.html#special-note-heads">Teste di nota speciali</a>.
+</p>
+
+<hr size="6">
+<a name="Dialogo-sopra-la-musica"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spoken-music" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Musica parlata&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#opera-and-stage-musicals" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Opera e musical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="chants-psalms-and-hymns.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Canti salmi e inni &gt; </a>]</td></tr></table>
+<a name="dialogue-over-music"></a>
+<h4 class="unnumberedsubsubsec">Dialogo sopra la musica</h4>
+
+<p>Il dialogo parallelo alla musica appare solitamente sopra i righi in
+corsivo, con l&rsquo;inizio di ogni frase collegato a un momento musicale
+ben preciso.
+</p>
+<p>In caso di brevi intromissioni può bastare un semplice <code>\markup</code>.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'4^\markup { \smallCaps { Alex - } \italic { He's gone } } a a a
+  a4 a a^\markup { \smallCaps { Bethan - } \italic Where? } a
+  a4 a a a
+}
+</pre><p>
+ <a href="../6b/lily-3ab0bf62.ly">
+  <img align="middle"
+       border="0"
+       src="../6b/lily-3ab0bf62.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In caso di frasi più lunghe può essere necessario espandere la musica
+per poter far entrare le parole.  Non c&rsquo;è modo di fare ciò del tutto
+automaticamente in LilyPond e sarà necessario anche qualche intervento
+manuale per formattare la pagina.
+</p>
+<p>In caso di frasi lunghe o di passaggi con molti dialoghi serrati,
+l&rsquo;uso di un contesto Lyrics darà risultati migliori.  Il contesto Lyrics
+non deve essere associato a una voce musicale; occorre invece assegnare
+a ogni parte del dialogo una durata esplicita.  Se c&rsquo;è un vuoto nel
+dialogo, la parola finale deve essere separata dal resto e la durata
+divisa tra le due così che la musica sottostante abbia spazio sufficiente.
+</p>
+<p>Se il dialogo si estende per più di un rigo sarà necessario inserire
+manualmente dei <code>\break</code> e aggiustare il posizionamento del dialogo
+per evitare di entrare nel margine destro.  La parola finale dell&rsquo;ultima
+misura di un rigo deve anche essere separata, come mostrato prima.
+</p>
+<p>Ecco un esempio che illustra come fare.
+</p>
+
+<blockquote><pre class="verbatim">music = \relative {
+  \repeat unfold 3 { a'4 a a a }
+}
+
+dialogue = \lyricmode {
+  \markup {
+    \fontsize #1 \upright \smallCaps Abe:
+    &quot;Say this over measures one and&quot;
+  }4*7
+  &quot;two&quot;4 |
+  \break
+  &quot;and this over measure&quot;4*3
+  &quot;three&quot;4 |
+}
+
+\score {
+  &lt;&lt;
+    \new Lyrics \with {
+      \override LyricText.font-shape = #'italic
+      \override LyricText.self-alignment-X = #LEFT
+    }
+    { \dialogue }
+    \new Staff {
+      \new Voice { \music }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../5b/lily-53024566.ly">
+  <img align="middle"
+       border="0"
+       src="../5b/lily-53024566.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Vedi-anche-155"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Guida alla notazione:
+<a href="common-notation-for-vocal-music.it.html#manual-syllable-durations">Durate manuali delle sillabe</a>,
+<a href="text.it.html">Testo</a>.
+</p>
+<p>Internal Reference:
+<a name="index-LyricText-2"></a>
+<a href="../internals/lyrictext.it.html">LyricText</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spoken-music" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Musica parlata&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#opera-and-stage-musicals" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Opera e musical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="chants-psalms-and-hymns.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Canti salmi e inni &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="opera-and-stage-musicals.html">English</a>, <a href="opera-and-stage-musicals.de.html">deutsch</a>, <a href="opera-and-stage-musicals.es.html">español</a>, <a href="opera-and-stage-musicals.fr.html">français</a>, <a href="opera-and-stage-musicals.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Guida alla Notazione  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notazione-musicale-1" href="musical-notation.it.html">1. Notazione musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Altezze-1" href="pitches.it.html">1.1 Altezze</a>    </li>
+    <li class=""><a name="toc-Ritmi-1" href="rhythms.it.html">1.2 Ritmi</a>    </li>
+    <li class=""><a name="toc-Segni-di-espressione-1" href="expressive-marks.it.html">1.3 Segni di espressione</a>    </li>
+    <li class=""><a name="toc-Ripetizioni-1" href="repeats.it.html">1.4 Ripetizioni</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="simultaneous-notes.it.html">1.5 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Notazione-del-rigo-1" href="staff-notation.it.html">1.6 Notazione del rigo</a>    </li>
+    <li class=""><a name="toc-Note-editoriali-1" href="editorial-annotations.it.html">1.7 Note editoriali</a>    </li>
+    <li class=""><a name="toc-Testo-1" href="text.it.html">1.8 Testo</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Notazione-specialistica-1" href="specialist-notation.it.html">2. Notazione specialistica</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Musica-vocale-1" href="vocal-music.it.html">2.1 Musica vocale</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Notazione-comune-per-la-musica-vocale-1" href="common-notation-for-vocal-music.it.html">2.1.1 Notazione comune per la musica vocale</a>      </li>
+      <li class=""><a name="toc-Tecniche-specifiche-per-il-testo-vocale-1" href="techniques-specific-to-lyrics.it.html">2.1.2 Tecniche specifiche per il testo vocale</a>      </li>
+      <li class=""><a name="toc-Strofe-1" href="stanzas.it.html">2.1.3 Strofe</a>      </li>
+      <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.1.4 Canzoni</a>      </li>
+      <li class=""><a name="toc-Musica-corale-1" href="choral.it.html">2.1.5 Musica corale</a>      </li>
+      <li class=" toc_current"><a name="toc-Opera-e-musical-1" href="opera-and-stage-musicals.it.html">2.1.6 Opera e musical</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Riferimenti-per-opera-e-musical-1" href="opera-and-stage-musicals.it.html#references-for-opera-and-stage-musicals">Riferimenti per opera e musical</a>        </li>
+        <li class=""><a name="toc-Nomi-dei-personaggi-1" href="opera-and-stage-musicals.it.html#character-names">Nomi dei personaggi</a>        </li>
+        <li class=""><a name="toc-Suggerimenti-musicali-1" href="opera-and-stage-musicals.it.html#musical-cues">Suggerimenti musicali</a>        </li>
+        <li class=""><a name="toc-Musica-parlata-1" href="opera-and-stage-musicals.it.html#spoken-music">Musica parlata</a>        </li>
+        <li class=""><a name="toc-Dialogo-sopra-la-musica-1" href="opera-and-stage-musicals.it.html#dialogue-over-music">Dialogo sopra la musica</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Canti-salmi-e-inni-1" href="chants-psalms-and-hymns.it.html">2.1.7 Canti salmi e inni</a>      </li>
+      <li class=""><a name="toc-Musica-vocale-antica-1" href="ancient-vocal-music.it.html">2.1.8 Musica vocale antica</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Keyboard-and-other-multi_002dstaff-instruments-1" href="keyboard-and-other-multi_002dstaff-instruments.it.html">2.2 Keyboard and other multi-staff instruments</a>    </li>
+    <li class=""><a name="toc-Unfretted-string-instruments-1" href="unfretted-string-instruments.it.html">2.3 Unfretted string instruments</a>    </li>
+    <li class=""><a name="toc-Fretted-string-instruments-1" href="fretted-string-instruments.it.html">2.4 Fretted string instruments</a>    </li>
+    <li class=""><a name="toc-Percussion-1" href="percussion.it.html">2.5 Percussion</a>    </li>
+    <li class=""><a name="toc-Wind-instruments-1" href="wind-instruments.it.html">2.6 Wind instruments</a>    </li>
+    <li class=""><a name="toc-Chord-notation-1" href="chord-notation.it.html">2.7 Chord notation</a>    </li>
+    <li class=""><a name="toc-Contemporary-music-1" href="contemporary-music.it.html">2.8 Contemporary music</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.it.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-World-music-1" href="world-music.it.html">2.10 World music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-General-input-and-output-1" href="general-input-and-output.it.html">3. General input and output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Input-structure-1" href="input-structure.it.html">3.1 Input structure</a>    </li>
+    <li class=""><a name="toc-Titles-and-headers-1" href="titles-and-headers.it.html">3.2 Titles and headers</a>    </li>
+    <li class=""><a name="toc-Working-with-input-files-1" href="working-with-input-files.it.html">3.3 Working with input files</a>    </li>
+    <li class=""><a name="toc-Controlling-output-1" href="controlling-output.it.html">3.4 Controlling output</a>    </li>
+    <li class=""><a name="toc-Creating-MIDI-output-1" href="creating-midi-output.it.html">3.5 Creating MIDI output</a>    </li>
+    <li class=""><a name="toc-Extracting-musical-information-1" href="extracting-musical-information.it.html">3.6 Extracting musical information</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spacing-issues-1" href="spacing-issues.it.html">4. Spacing issues</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Page-layout-1" href="page-layout.it.html">4.1 Page layout</a>    </li>
+    <li class=""><a name="toc-Score-layout-1" href="score-layout.it.html">4.2 Score layout</a>    </li>
+    <li class=""><a name="toc-Breaks-1" href="breaks.it.html">4.3 Breaks</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.it.html">4.4 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Horizontal-spacing-1" href="horizontal-spacing.it.html">4.5 Horizontal spacing</a>    </li>
+    <li class=""><a name="toc-Fitting-music-onto-fewer-pages-1" href="fitting-music-onto-fewer-pages.it.html">4.6 Fitting music onto fewer pages</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Changing-defaults-1" href="changing-defaults.it.html">5. Changing defaults</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretation-contexts-1" href="interpretation-contexts.it.html">5.1 Interpretation contexts</a>    </li>
+    <li class=""><a name="toc-Explaining-the-Internals-Reference-1" href="explaining-the-internals-reference.it.html">5.2 Explaining the Internals Reference</a>    </li>
+    <li class=""><a name="toc-Modifying-properties-1" href="modifying-properties.it.html">5.3 Modifying properties</a>    </li>
+    <li class=""><a name="toc-Useful-concepts-and-properties-1" href="useful-concepts-and-properties.it.html">5.4 Useful concepts and properties</a>    </li>
+    <li class=""><a name="toc-Advanced-tweaks-1" href="advanced-tweaks.it.html">5.5 Advanced tweaks</a>    </li>
+    <li class=""><a name="toc-Using-music-functions-1" href="using-music-functions.it.html">5.6 Using music functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.it.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.it.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.it.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.it.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.it.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.it.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.it.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.it.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.it.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.it.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.it.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.it.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.it.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.it.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.it.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.it.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.it.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.it.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.it.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.it.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.it.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.it.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.it.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cheat-sheet-1" href="cheat-sheet.it.html">B. Cheat sheet</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-dei-comandi-di-LilyPond-1" href="lilypond-command-index.it.html">D. Indice dei comandi di LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">E. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

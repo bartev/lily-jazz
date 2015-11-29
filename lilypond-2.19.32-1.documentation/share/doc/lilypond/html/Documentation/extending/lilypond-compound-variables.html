@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2004-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Extending LilyPond: 1.2.6 LilyPond compound variables</title>
+
+<meta name="description" content="Extending LilyPond: 1.2.6 LilyPond compound variables">
+<meta name="keywords" content="Extending LilyPond: 1.2.6 LilyPond compound variables">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Extending">
+<link href="lilypond-index.html#lilypond-index" rel="index" title="B. LilyPond index">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="scheme-in-lilypond.html#scheme-in-lilypond" rel="up" title="1.2 Scheme in LilyPond">
+<link href="lilypond-index.html#lilypond-index" rel="next" title="B. LilyPond index">
+<link href="object-properties.html#object-properties" rel="previous" title="1.2.5 Object properties">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="extending devStatus">
+
+
+<div id="main">
+<a name="LilyPond-compound-variables"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="object-properties.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Object properties&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="scheme-in-lilypond.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Scheme in LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#offsets" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Offsets &gt; </a>]</td></tr></table>
+<a name="lilypond-compound-variables"></a>
+<h3 class="subsection">1.2.6 LilyPond compound variables</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#offsets" accesskey="1">Offsets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#fractions" accesskey="2">Fractions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#extents" accesskey="3">Extents</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#property-alists" accesskey="4">Property alists</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#alist-chains" accesskey="5">Alist chains</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Offsets"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#lilypond-compound-variables" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-compound-variables" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#fractions" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Fractions &gt; </a>]</td></tr></table>
+<a name="offsets"></a>
+<h4 class="unnumberedsubsubsec">Offsets</h4>
+
+<p>Two-dimensional offsets (X and Y coordinates) are stored as <em>pairs</em>.
+The <code>car</code> of the offset is the X coordinate, and the <code>cdr</code> is
+the Y coordinate.
+</p>
+<blockquote><pre class="example">\override TextScript.extra-offset = #'(1 . 2)
+</pre></blockquote>
+
+<p>This assigns the pair <code>(1 . 2)</code> to the <code>extra-offset</code>
+property of the
+TextScript object.  These numbers are measured in staff-spaces, so
+this command moves the object 1 staff space to the right, and 2 spaces up.
+</p>
+<p>Procedures for working with offsets are found in &lsquo;<tt>scm/lily-library.scm</tt>&rsquo;.
+</p>
+<hr size="6">
+<a name="Fractions"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#offsets" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Offsets&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-compound-variables" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#extents" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Extents &gt; </a>]</td></tr></table>
+<a name="fractions"></a>
+<h4 class="unnumberedsubsubsec">Fractions</h4>
+
+<p>Fractions as used by LilyPond are again stored as <em>pairs</em>, this
+time of unsigned integers.  While Scheme can represent rational numbers
+as a native type, musically &lsquo;<samp>2/4</samp>&rsquo; and &lsquo;<samp>1/2</samp>&rsquo; are not the same,
+and we need to be able to distinguish between them.  Similarly there are
+no negative &lsquo;fractions&rsquo; in LilyPond&rsquo;s mind.  So <code>2/4</code> in LilyPond
+means <code>(2 . 4)</code> in Scheme, and <code>#2/4</code> in LilyPond means
+<code>1/2</code> in Scheme.
+</p>
+<hr size="6">
+<a name="Extents"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#fractions" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Fractions&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-compound-variables" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#property-alists" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Property alists &gt; </a>]</td></tr></table>
+<a name="extents"></a>
+<h4 class="unnumberedsubsubsec">Extents</h4>
+
+<p>Pairs are also used to store intervals, which represent a range of numbers
+from the minimum (the <code>car</code>) to the maximum (the <code>cdr</code>).
+Intervals are used to store the X- and Y- extents of printable objects.
+For X extents, the <code>car</code> is the left hand X coordinate, and the
+<code>cdr</code> is the right hand X coordinate.  For Y extents, the <code>car</code>
+is the bottom coordinate, and the <code>cdr</code> is the top coordinate.
+</p>
+<p>Procedures for working with intervals are found in
+&lsquo;<tt>scm/lily-library.scm</tt>&rsquo;.  These procedures should be used when possible
+to ensure consistency of code.
+</p>
+<hr size="6">
+<a name="Property-alists"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#extents" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Extents&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-compound-variables" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#alist-chains" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Alist chains &gt; </a>]</td></tr></table>
+<a name="property-alists"></a>
+<h4 class="unnumberedsubsubsec">Property alists</h4>
+
+<p>A property alist is a LilyPond data structure that is an alist whose
+keys are properties and whose values are Scheme expressions that give
+the desired value for the property.
+</p>
+<p>LilyPond properties are Scheme symbols, such as <code>'thickness</code>.
+</p>
+<hr size="6">
+<a name="Alist-chains"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#property-alists" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Property alists&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-compound-variables" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="internal-music-representation.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Internal music representation &gt; </a>]</td></tr></table>
+<a name="alist-chains"></a>
+<h4 class="unnumberedsubsubsec">Alist chains</h4>
+
+<p>An alist chain is a list containing property alists.
+</p>
+<p>The set of all properties that will apply to a grob is typically
+stored as an alist chain.  In order to find the value for a particular
+property that a grob should have, each alist in the chain is searched in
+order, looking for an entry containing the property key.  The first alist
+entry found is returned, and the value is the property value.
+</p>
+<p>The Scheme procedure <code>chain-assoc-get</code> is normally used to get
+grob property values.
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#property-alists" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Property alists&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-compound-variables" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;LilyPond compound variables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="internal-music-representation.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Internal music representation &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Other languages: <a href="lilypond-compound-variables.de.html">deutsch</a>, <a href="lilypond-compound-variables.es.html">español</a>, <a href="lilypond-compound-variables.fr.html">français</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Extending  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Scheme-tutorial-1" href="scheme-tutorial.html">1. Scheme tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-Scheme-1" href="introduction-to-scheme.html">1.1 Introduction to Scheme</a>    </li>
+    <li class=" toc_current"><a name="toc-Scheme-in-LilyPond-1" href="scheme-in-lilypond.html">1.2 Scheme in LilyPond</a>
+    <ul class="toc">
+      <li class=""><a name="toc-LilyPond-Scheme-syntax-1" href="lilypond-scheme-syntax.html">1.2.1 LilyPond Scheme syntax</a>      </li>
+      <li class=""><a name="toc-LilyPond-variables-1" href="lilypond-variables.html">1.2.2 LilyPond variables</a>      </li>
+      <li class=""><a name="toc-Input-variables-and-Scheme-1" href="input-variables-and-scheme.html">1.2.3 Input variables and Scheme</a>      </li>
+      <li class=""><a name="toc-Importing-Scheme-in-LilyPond-1" href="importing-scheme-in-lilypond.html">1.2.4 Importing Scheme in LilyPond</a>      </li>
+      <li class=""><a name="toc-Object-properties-1" href="object-properties.html">1.2.5 Object properties</a>      </li>
+      <li class=" toc_current"><a name="toc-LilyPond-compound-variables-1" href="lilypond-compound-variables.html">1.2.6 LilyPond compound variables</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Offsets-1" href="lilypond-compound-variables.html#offsets">Offsets</a>        </li>
+        <li class=""><a name="toc-Fractions-1" href="lilypond-compound-variables.html#fractions">Fractions</a>        </li>
+        <li class=""><a name="toc-Extents-1" href="lilypond-compound-variables.html#extents">Extents</a>        </li>
+        <li class=""><a name="toc-Property-alists-1" href="lilypond-compound-variables.html#property-alists">Property alists</a>        </li>
+        <li class=""><a name="toc-Alist-chains-1" href="lilypond-compound-variables.html#alist-chains">Alist chains</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Internal-music-representation-1" href="internal-music-representation.html">1.2.7 Internal music representation</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Building-complicated-functions-1" href="building-complicated-functions.html">1.3 Building complicated functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-for-programmers-1" href="interfaces-for-programmers.html">2. Interfaces for programmers</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-code-blocks-1" href="lilypond-code-blocks.html">2.1 LilyPond code blocks</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.html">2.2 Scheme functions</a>    </li>
+    <li class=""><a name="toc-Music-functions-1" href="music-functions.html">2.3 Music functions</a>    </li>
+    <li class=""><a name="toc-Event-functions-1" href="event-functions.html">2.4 Event functions</a>    </li>
+    <li class=""><a name="toc-Markup-functions-1" href="markup-functions.html">2.5 Markup functions</a>    </li>
+    <li class=""><a name="toc-Contexts-for-programmers-1" href="contexts-for-programmers.html">2.6 Contexts for programmers</a>    </li>
+    <li class=""><a name="toc-Callback-functions-1" href="callback-functions.html">2.7 Callback functions</a>    </li>
+    <li class=""><a name="toc-Difficult-tweaks-1" href="difficult-tweaks.html">2.8 Difficult tweaks</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-Scheme-interfaces-1" href="lilypond-scheme-interfaces.html">3. LilyPond Scheme interfaces</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.html">B. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

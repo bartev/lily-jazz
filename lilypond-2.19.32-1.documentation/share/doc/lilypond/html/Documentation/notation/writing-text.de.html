@@ -1,0 +1,946 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 1.8.1 Text eingeben</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 1.8.1 Text eingeben">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 1.8.1 Text eingeben">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="text.de.html#text" rel="up" title="1.8 Text">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="text.de.html#text" rel="previous" title="1.8 Text">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Text-eingeben"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="text.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Text&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="text.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Text&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#text-scripts" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Textarten &gt; </a>]</td></tr></table>
+<a name="writing-text"></a>
+<h3 class="subsection">1.8.1 Text eingeben</h3>
+
+<p>Dieser Abschnitt zeigt verschiedene Arten, wie Text in die Partitur
+eingefügt werden kann.
+</p>
+<a name="index-Text_002c-andere-Sprachen"></a>
+
+<div class="warning"><p><strong>Achtung:</strong> Wenn man Zeichen mit Akzenten und Umlaute oder besondere
+Zeichen (wie etwa Text mit anderen Alphabeten) eingeben möchte,
+kann man die Zeichen einfach direkt in die Datei einfügen.  Die
+Datei muss als UTF-8 gespeichert werden.  Für mehr Information
+siehe <a href="special-characters.de.html#text-encoding">Zeichenkodierung</a>.
+</p>
+</div>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#text-scripts" accesskey="1">Textarten</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#text-spanners" accesskey="2">Text mit Verbindungslinien</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#text-marks" accesskey="3">Textartige Zeichen</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#separate-text" accesskey="4">Separater Text</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Textarten"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#writing-text" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Text eingeben&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-text" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Text eingeben&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#text-spanners" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Text mit Verbindungslinien &gt; </a>]</td></tr></table>
+<a name="text-scripts"></a>
+<h4 class="unnumberedsubsubsec">Textarten</h4>
+
+<a name="index-Textarten"></a>
+<a name="index-Textelemente_002c-nicht-leer"></a>
+<a name="index-zitierter-Text"></a>
+
+<p>Am einfachsten kann Text mit geraden Anführungsstrichen
+in eine Partitur eingefügt werden, wie das folgende Beispiel
+zeigt.  Derartiger Text kann manuell über oder unter dem
+Notensystem platziert werden, die Syntax hierzu ist beschrieben
+in <a href="direction-and-placement.de.html">Richtung und Platzierung</a>.
+</p>
+<blockquote><pre class="verbatim">\relative { a'8^&quot;pizz.&quot; g f e a4-&quot;scherz.&quot; f }
+</pre><p>
+ <a href="../74/lily-6bdf2f33.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-6bdf2f33.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese Syntax ist eine Kurzform, komplexere Formatierungen
+können einem Text hinzugefügt werden, wenn man
+explizit den <code>\markup</code>-Befehl mit darauf folgenden
+geschweiften Klammern einsetzt, wie beschrieben in
+<a href="formatting-text.de.html">Text formatieren</a>.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'8^\markup { \italic pizz. } g f e
+  a4_\markup { \tiny scherz. \bold molto } f }
+</pre><p>
+ <a href="../63/lily-99508079.ly">
+  <img align="middle"
+       border="0"
+       src="../63/lily-99508079.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Standardmäßig haben Textbeschriftungen keinen Einfluss auf die
+Positionierung der Noten.  Man kann aber auch bestimmen, dass
+die Breite des Textes mit berücksichtigt wird.  Im nächsten
+Beispiel fordert der erste Text keinen Platz, während der
+zweite die Note nach rechts verschiebt.  Das Verhalten wird mit
+dem Befehl <code>\textLengthOn</code> (Textlänge an) erreicht, rückgängig
+kann es mit dem Befehl <code>\textLengthOff</code> gemacht werden.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'8^&quot;pizz.&quot; g f e
+  \textLengthOn
+  a4_&quot;scherzando&quot; f
+}
+</pre><p>
+ <a href="../e7/lily-23c41d74.ly">
+  <img align="middle"
+       border="0"
+       src="../e7/lily-23c41d74.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Neben Textbeschriftungen können auch Artikulationen an Noten angehängt
+werden.  Siehe auch <a href="expressive-marks-attached-to-notes.de.html#articulations-and-ornamentations">Artikulationszeichen und Verzierungen</a>.
+</p>
+<p>Zu weiterer Information zu der relativen Anordnung von Textbeschriftungen
+und Artikulationen, siehe <a name="index-Positionierung-von-Objekten-2"></a>
+<a href="../learning/placement-of-objects.de.html">Positionierung von Objekten</a>.
+</p>
+<a name="index-_005ctextLengthOn-2"></a>
+<a name="index-_005ctextLengthOn-3"></a>
+<a name="index-_005ctextLengthOff-2"></a>
+<a name="index-_005ctextLengthOff-3"></a>
+<a name="index-textLengthOn-2"></a>
+<a name="index-textLengthOn-3"></a>
+<a name="index-textLengthOff-2"></a>
+<a name="index-textLengthOff-3"></a>
+
+<a name="Vordefinierte-Befehle-27"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\textLengthOn</code>,
+<code>\textLengthOff</code>.
+</p>
+
+<a name="Siehe-auch-36"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Handbuch zum Lernen:
+<a name="index-Positionierung-von-Objekten-3"></a>
+<a href="../learning/placement-of-objects.de.html">Positionierung von Objekten</a>.
+</p>
+<p>Notationsreferenz:
+<a href="formatting-text.de.html">Text formatieren</a>,
+<a href="direction-and-placement.de.html">Richtung und Platzierung</a>,
+<a href="expressive-marks-attached-to-notes.de.html#articulations-and-ornamentations">Artikulationszeichen und Verzierungen</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/text.de.html">Text</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-TextScript-1"></a>
+<a href="../internals/textscript.de.html">TextScript</a>.
+</p>
+<a name="index-Text-ausserhalb-des-Randes"></a>
+<a name="index-Rand_002c-uberhangender-Text"></a>
+<a name="index-Seitenrand_002c-uberhangender-Text"></a>
+<a name="index-Gesangstext_002c-innerhalb-des-Randes-behalten"></a>
+<a name="index-Text_002c-innerhalb-des-Randes-behalten"></a>
+
+<a name="Bekannte-Probleme-und-Warnungen-5"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p>Eine Überprüfung, ob sich auch alle Textbeschriftungen und Gesangstext
+innerhalb der Ränder der Noten befinden, braucht verhältnismäßig
+viel Rechenaufwand.  Sollten Sie aber etwas bessere Leistung bevorzugen,
+schreiben Sie in Ihre Datei:
+</p>
+<blockquote><pre class="example">\override Score.PaperColumn.keep-inside-line = ##f
+</pre></blockquote>
+
+
+
+<hr size="6">
+<a name="Text-mit-Verbindungslinien"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#text-scripts" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Textarten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-text" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Text eingeben&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#text-marks" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Textartige Zeichen &gt; </a>]</td></tr></table>
+<a name="text-spanners"></a>
+<h4 class="unnumberedsubsubsec">Text mit Verbindungslinien</h4>
+
+<a name="index-Textstrecker"></a>
+<a name="index-Strecker_002c-Text"></a>
+
+<p>Einige Aufführungsanweisungen, etwa <var>rallentando</var> oder
+<var>accelerando</var>, werden als Text geschrieben, gefolgt von
+einer gestrichelten Linie, die anzeigt, wie weit sich die Anweisung
+auswirkt.  Solche Objekte, &bdquo;Strecker&ldquo; (engl. spanners) genannt,
+können von einer Note bis zu einer anderen mit folgender
+Anweisung erstellt werden:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \override TextSpanner.bound-details.left.text = &quot;rit.&quot;
+  b'1\startTextSpan
+  e,\stopTextSpan
+}
+</pre><p>
+ <a href="../74/lily-1141f164.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-1141f164.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Textstrecker_002c-Formatierung"></a>
+<a name="index-Formatierung-von-Textstreckern"></a>
+<a name="index-Strecker_002c-Text_002d_002c-Formatierung"></a>
+
+<p>Der Text wird durch Objekteigenschaften beeinflusst.  In den
+Standardeinstellungen wird er kursiv ausgegeben, aber eine andere
+Formatierung kann erreicht werden, indem man <code>\markup</code>-Blöcke
+einsetzt, wie beschrieben in <a href="formatting-text.de.html">Text formatieren</a>.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \override TextSpanner.bound-details.left.text =
+    \markup { \upright &quot;rit.&quot; }
+  b'1\startTextSpan c
+  e,\stopTextSpan
+}
+</pre><p>
+ <a href="../a7/lily-173376eb.ly">
+  <img align="middle"
+       border="0"
+       src="../a7/lily-173376eb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Auch der Stil der Linie kann ähnlich wie der Text mit den Objekteigenschaften
+geändert werden.  Diese Syntax ist beschrieben in <a href="line-styles.de.html">Linienstile</a>.
+Textstrecker sind Teil des <code>Dynamic</code>-Kontextes, siehe
+<a name="index-Dynamics-1"></a>
+<a href="../internals/dynamik.de.html">Dynamics</a>.
+</p>
+<a name="index-textSpannerUp"></a>
+<a name="index-textSpannerUp-1"></a>
+<a name="index-textSpannerDown"></a>
+<a name="index-textSpannerDown-1"></a>
+<a name="index-textSpannerNeutral"></a>
+<a name="index-textSpannerNeutral-1"></a>
+<a name="index-_005ctextSpannerUp"></a>
+<a name="index-_005ctextSpannerUp-1"></a>
+<a name="index-_005ctextSpannerDown"></a>
+<a name="index-_005ctextSpannerDown-1"></a>
+<a name="index-_005ctextSpannerNeutral"></a>
+<a name="index-_005ctextSpannerNeutral-1"></a>
+
+<a name="Vordefinierte-Befehle-24"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\textSpannerUp</code>,
+<code>\textSpannerDown</code>,
+<code>\textSpannerNeutral</code>.
+</p>
+
+<a name="Ausgewahlte-Schnipsel-22"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+
+<p><em> Dynamiktextstrecker nachgestellt</em>
+</p>
+<p>Die \cresc, \dim und \decresc Strecker können umdefiniert werden,
+um nachgestellt zu funktionieren und einen Textstrecker zu produzieren.  Eigene
+Strecker können auch einfach definiert werden.  Klammer- und Textcrescendi können
+einfach vermischt werden.  \&lt; und \&gt; erstellen normalerweise Klammern, \cresc
+usw. dagegen normalerweise Textspanner.
+</p>
+
+<blockquote><pre class="verbatim">% Some sample text dynamic spanners, to be used as postfix operators
+crpoco =
+#(make-music 'CrescendoEvent
+             'span-direction START
+             'span-type 'text
+             'span-text &quot;cresc. poco a poco&quot;)
+
+\relative c' {
+  c4\cresc d4 e4 f4 |
+  g4 a4\! b4\crpoco c4 |
+  c4 d4 e4 f4 |
+  g4 a4\! b4\&lt; c4 |
+  g4\dim a4 b4\decresc c4\!
+}
+</pre><p>
+ <a href="../1a/lily-d51bf5ba.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-d51bf5ba.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Eigene Dynamiktextspanner nachgestellt</em>
+</p>
+<p>Die Nachstellung funktioniert für eigene Crescendo-Textstrecker.
+Die Strecker sollten an der ersten Note eines Taktes beginnen.  Man muss
+-\mycresc benutzen, sonst wird der Beginn des Streckers der nächsten Note
+zugewiesen.
+</p>
+
+<blockquote><pre class="verbatim">% Two functions for (de)crescendo spanners where you can explicitly give the
+% spanner text.
+mycresc =
+#(define-music-function (mymarkup) (markup?)
+   (make-music 'CrescendoEvent
+               'span-direction START
+               'span-type 'text
+               'span-text mymarkup))
+mydecresc =
+#(define-music-function (mymarkup) (markup?)
+   (make-music 'DecrescendoEvent
+               'span-direction START
+               'span-type 'text
+               'span-text mymarkup))
+
+\relative c' {
+  c4-\mycresc &quot;custom cresc&quot; c4 c4 c4 |
+  c4 c4 c4 c4 |
+  c4-\mydecresc &quot;custom decresc&quot; c4 c4 c4 |
+  c4 c4\! c4 c4
+}
+</pre><p>
+ <a href="../d1/lily-8a5bfff1.ly">
+  <img align="middle"
+       border="0"
+       src="../d1/lily-8a5bfff1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Siehe-auch-46"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="line-styles.de.html">Linienstile</a>,
+<a href="expressive-marks-attached-to-notes.de.html#dynamics">Dynamik</a>,
+<a href="formatting-text.de.html">Text formatieren</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/text.de.html">Text</a>,
+<a href="../snippets/ausdrucksbezeichnungen.de.html">Expressive marks</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-TextSpanner"></a>
+<a href="../internals/textspanner.de.html">TextSpanner</a>
+</p>
+
+<hr size="6">
+<a name="Textartige-Zeichen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#text-spanners" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Text mit Verbindungslinien&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-text" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Text eingeben&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#separate-text" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Separater Text &gt; </a>]</td></tr></table>
+<a name="text-marks"></a>
+<h4 class="unnumberedsubsubsec">Textartige Zeichen</h4>
+
+<a name="index-Textzeichen"></a>
+<a name="index-textartige-Zeichen"></a>
+<a name="index-Zeichen_002c-textartige"></a>
+<a name="index-Text-am-Taktstrich"></a>
+<a name="index-Coda-am-Taktstrich"></a>
+<a name="index-Segno-an-Taktstrich"></a>
+<a name="index-Fermate-an-Taktstrich"></a>
+<a name="index-Taktstrich_002c-Symbole-anfugen"></a>
+<a name="index-Symbole-auf-der-Taktstrich"></a>
+
+<a name="index-_005cmark-2"></a>
+<a name="index-_005cmark-3"></a>
+<a name="index-mark-2"></a>
+<a name="index-mark-3"></a>
+<a name="index-_005cmarkup"></a>
+<a name="index-_005cmarkup-1"></a>
+<a name="index-markup"></a>
+<a name="index-markup-1"></a>
+
+<p>Verschiedene Textelemente können der Partitur hinzugefügt werden,
+indem man die Syntax für Zeichen einsetzen, wie beschrieben in
+<a href="bars.de.html#rehearsal-marks">Übungszeichen</a>:
+</p>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4
+  \mark &quot;Allegro&quot;
+  c c c
+}
+</pre><p>
+ <a href="../a7/lily-b39a9034.ly">
+  <img align="middle"
+       border="0"
+       src="../a7/lily-b39a9034.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese Syntax ermöglicht es, beliebigen Text über eine Taktlinie
+zu platzieren, weitere Formatierungsmöglichkeiten sind mit dem
+<code>\markup</code>-Befehl gegeben, wie beschrieben in
+<a href="formatting-text.de.html">Text formatieren</a>:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;c' e&gt;1
+  \mark \markup { \italic { colla parte } }
+  &lt;d f&gt;2 &lt;e g&gt;
+  &lt;c f aes&gt;1
+}
+</pre><p>
+ <a href="../ef/lily-a18cf1ad.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-a18cf1ad.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese Syntax ermöglicht es auch, besondere Zeichen einzufügen, wie
+etwa Coda-, Segno- oder Fermatenzeichen, indem das entsprechende
+Symbol mit dem Befehl <code>\musicglyph</code> angegeben wird, wie
+beschrieben in
+<a href="formatting-text.de.html#music-notation-inside-markup">Musikalische Notation innerhalb einer Textbeschriftung</a>:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;bes' f&gt;2 &lt;aes d&gt;
+  \mark \markup { \musicglyph #&quot;scripts.ufermata&quot; }
+  &lt;e g&gt;1
+}
+</pre><p>
+ <a href="../a3/lily-dd1ab842.ly">
+  <img align="middle"
+       border="0"
+       src="../a3/lily-dd1ab842.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Derartige Objekte werden über dem höchsten System einer Partitur
+gesetzt &ndash; abhängig davon, ob sie mitten im Takt oder an seinem
+Ende notiert werden, werden sie zwischen Noten oder über der
+Taktlinie gesetzt.  Wenn sie an einem Zeilenumbruch angegeben
+werden, wird das Zeichen zu Beginn der nächsten Zeile ausgegeben.
+</p>
+<blockquote><pre class="verbatim">\mark &quot;Allegro&quot;
+c1 c
+\mark &quot;assai&quot; \break
+c  c
+</pre><p>
+ <a href="../24/lily-d3d647b4.ly">
+  <img align="middle"
+       border="0"
+       src="../24/lily-d3d647b4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Ausgewahlte-Schnipsel-44"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+
+<p><em> Printing marks at the end of a line</em>
+</p>
+
+<p>Marks can be printed at the end of the current line, instead of the
+beginning of the following line.  In such cases, it might be preferable
+to align the right end of the mark with the bar line.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  g2 c
+  d,2 a'
+  \once \override Score.RehearsalMark.break-visibility = #end-of-line-visible
+  \once \override Score.RehearsalMark.self-alignment-X = #RIGHT
+  \mark &quot;D.C. al Fine&quot;
+  \break
+  g2 b,
+  c1 \bar &quot;||&quot;
+}
+</pre><p>
+ <a href="../77/lily-408aac56.ly">
+  <img align="middle"
+       border="0"
+       src="../77/lily-408aac56.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Zeichen über jedem System ausgeben</em>
+</p>
+
+<p>Normalerweise werden Textzeichen nur über dem obersten Notensystem gesetzt.  Sie
+können aber auch über jedem System ausgegeben werden.
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff { c''1 \mark &quot;molto&quot; c'' }
+    \new Staff { c'1 \mark &quot;molto&quot; c' }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      \remove &quot;Mark_engraver&quot;
+      \remove &quot;Staff_collecting_engraver&quot;
+    }
+    \context {
+      \Staff
+      \consists &quot;Mark_engraver&quot;
+      \consists &quot;Staff_collecting_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../47/lily-ea55cd8f.ly">
+  <img align="middle"
+       border="0"
+       src="../47/lily-ea55cd8f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-165"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="bars.de.html#rehearsal-marks">Übungszeichen</a>,
+<a href="formatting-text.de.html">Text formatieren</a>,
+<a href="formatting-text.de.html#music-notation-inside-markup">Musikalische Notation innerhalb einer Textbeschriftung</a>,
+<a href="the-feta-font.de.html">Die Feta-Schriftart</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/text.de.html">Text</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-MarkEvent-1"></a>
+<a href="../internals/markevent.de.html">MarkEvent</a>,
+<a name="index-Mark_005fengraver-1"></a>
+<a href="../internals/mark_005fengraver.de.html">Mark_engraver</a>,
+<a name="index-RehearsalMark-1"></a>
+<a href="../internals/rehearsalmark.de.html">RehearsalMark</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-40"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p>Wenn ein Zeichen am Ende des letzten Taktes einer Partitur gesetzt wird
+(wenn also keine nächste Zeile mehr kommt), wird das Zeichen nicht
+ausgegeben.
+</p>
+
+
+<hr size="6">
+<a name="Separater-Text"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#text-marks" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Textartige Zeichen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-text" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Text eingeben&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="formatting-text.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Text formatieren &gt; </a>]</td></tr></table>
+<a name="separate-text"></a>
+<h4 class="unnumberedsubsubsec">Separater Text</h4>
+
+<a name="index-separater-Text"></a>
+<a name="index-Text-alleine"></a>
+<a name="index-nur-Text"></a>
+<a name="index-Text_002c-oberste-Ebene"></a>
+<a name="index-oberste-Ebene_002c-Text"></a>
+
+<a name="index-_005cmarkup-2"></a>
+<a name="index-_005cmarkup-3"></a>
+<a name="index-markup-2"></a>
+<a name="index-markup-3"></a>
+
+<p>Eine <code>\markup</code>-Umgebung kann auch für sich alleine existieren,
+außerhalb einer <code>\score</code>-Umgebung, als ein Ausdruck auf der
+höchsten Ebene.  Diese Syntax ist beschrieben in <a href="file-structure.de.html">Die Dateistruktur</a>.
+</p>
+<blockquote><pre class="verbatim">\markup {
+  Morgen, morgen, und morgen...
+}
+</pre><p>
+ <a href="../5f/lily-fbedae24.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-fbedae24.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Damit kann Text unabhängig von den Noten gesetzt werden.  Das
+bietet sich vor allem in Situationen an, in denen mehrere Stücke
+in einer Datei vorkommen, wie beschrieben in
+<a href="multiple-scores-in-a-book.de.html">Mehrere Partituren in einem Buch</a>.
+</p>
+<blockquote><pre class="verbatim">\score {
+  c'1
+}
+\markup {
+  Morgen, übermorgen, und überübermorgen...
+}
+\score {
+  c'1
+}
+</pre><p>
+ <a href="../ad/lily-2dd73150.ly">
+  <img align="middle"
+       border="0"
+       src="../ad/lily-2dd73150.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Unabhängige Textabschnitte können über mehrere Seiten reichen, so
+dass man Textdokumente oder Bücher ausschließlich mit LilyPond
+setzen kann.  Einzelheiten zu den vielfältigen Möglichkeiten finden
+sich in <a href="formatting-text.de.html#multi_002dpage-markup">Textbeschriftung über mehrere Seiten</a>.
+</p>
+<a name="index-_005cmarkuplist"></a>
+<a name="index-_005cmarkuplist-1"></a>
+<a name="index-_005cmarkup-4"></a>
+<a name="index-_005cmarkup-5"></a>
+<a name="index-markuplist"></a>
+<a name="index-markuplist-1"></a>
+<a name="index-markup-4"></a>
+<a name="index-markup-5"></a>
+
+<a name="Vordefinierte-Befehle"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\markup</code>,
+<code>\markuplist</code>.
+</p>
+
+<a name="Ausgewahlte-Schnipsel-59"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+
+<p><em> Isolierter Text in zwei Spalten</em>
+</p>
+
+<p>Isolierter Text kann in mehreren Spalten mit <code>\markup</code>-Befehlen
+angeordnet werden:
+</p>
+
+<blockquote><pre class="verbatim">\markup {
+  \fill-line {
+    \hspace #1
+    \column {
+      \line { O sacrum convivium }
+      \line { in quo Christus sumitur, }
+      \line { recolitur memoria passionis ejus, }
+      \line { mens impletur gratia, }
+      \line { futurae gloriae nobis pignus datur. }
+      \line { Amen. }
+    }
+    \hspace #2
+    \column \italic {
+      \line { O sacred feast }
+      \line { in which Christ is received, }
+      \line { the memory of His Passion is renewed, }
+      \line { the mind is filled with grace, }
+      \line { and a pledge of future glory is given to us. }
+      \line { Amen. }
+    }
+    \hspace #1
+  }
+}
+</pre><p>
+ <a href="../65/lily-6c4b8578.ly">
+  <img align="middle"
+       border="0"
+       src="../65/lily-6c4b8578.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-21"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz:
+<a href="formatting-text.de.html">Text formatieren</a>,
+<a href="file-structure.de.html">Die Dateistruktur</a>,
+<a href="multiple-scores-in-a-book.de.html">Mehrere Partituren in einem Buch</a>,
+<a href="formatting-text.de.html#multi_002dpage-markup">Textbeschriftung über mehrere Seiten</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/text.de.html">Text</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-TextScript-2"></a>
+<a href="../internals/textscript.de.html">TextScript</a>.
+</p>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#text-marks" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Textartige Zeichen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-text" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Text eingeben&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="formatting-text.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Text formatieren &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="writing-text.html">English</a>, <a href="writing-text.es.html">español</a>, <a href="writing-text.fr.html">français</a>, <a href="writing-text.it.html">italiano</a>, <a href="writing-text.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=" toc_current"><a name="toc-Text-1" href="text.de.html">1.8 Text</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Text-eingeben-1" href="writing-text.de.html">1.8.1 Text eingeben</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Textarten-1" href="writing-text.de.html#text-scripts">Textarten</a>        </li>
+        <li class=""><a name="toc-Text-mit-Verbindungslinien-1" href="writing-text.de.html#text-spanners">Text mit Verbindungslinien</a>        </li>
+        <li class=""><a name="toc-Textartige-Zeichen-1" href="writing-text.de.html#text-marks">Textartige Zeichen</a>        </li>
+        <li class=""><a name="toc-Separater-Text-1" href="writing-text.de.html#separate-text">Separater Text</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Text-formatieren-1" href="formatting-text.de.html">1.8.2 Text formatieren</a>      </li>
+      <li class=""><a name="toc-Schriftarten-1" href="fonts.de.html">1.8.3 Schriftarten</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

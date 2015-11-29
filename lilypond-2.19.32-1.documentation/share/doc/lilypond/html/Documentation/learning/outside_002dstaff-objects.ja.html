@@ -1,0 +1,565 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond 学習マニュアル: 4.4.3 譜外部オブジェクト</title>
+
+<meta name="description" content="GNU LilyPond 学習マニュアル: 4.4.3 譜外部オブジェクト">
+<meta name="keywords" content="GNU LilyPond 学習マニュアル: 4.4.3 譜外部オブジェクト">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 学習マニュアル">
+<link href="lilypond-index.ja.html#lilypond-index" rel="index" title="C. LilyPond インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="placement-of-objects.ja.html#placement-of-objects" rel="up" title="4.4 オブジェクトの配置">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="C. LilyPond インデックス">
+<link href="within_002dstaff-objects.ja.html#within_002dstaff-objects" rel="previous" title="4.4.2 譜内部オブジェクト">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="learning devStatus">
+
+
+<div id="main">
+<a name="g_t_8b5c_5916_90e8_30aa_30d6_30b8_30a7_30af_30c8"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="within_002dstaff-objects.ja.html#fingering" title="前のセクション" accesskey="p" rel="previous"> &lt; 運指&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="placement-of-objects.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;オブジェクトの配置&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-outside_002dstaff_002dpriority-property" title="次のセクション" accesskey="n" rel="next">&nbsp;outside-staff-priority プロパティ &gt; </a>]</td></tr></table>
+<a name="outside_002dstaff-objects"></a>
+<h3 class="subsection">4.4.3 譜外部オブジェクト</h3>
+
+<p>譜外部オブジェクトは自動的に衝突を回避するよう配置されます。配置が最適でない場合に自動配置をオーバライドする方法がいくつかあります。
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-outside_002dstaff_002dpriority-property" accesskey="1"><code>outside-staff-priority</code> プロパティ</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-_005ctextlengthon-command" accesskey="2"><code>\textLengthOn</code> コマンド</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dynamics-placement" accesskey="3">強弱記号の配置</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#grob-sizing" accesskey="4">グラフィカル オブジェクトのサイズ</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="outside_002dstaff_002dpriority-_30d7_30ed_30d1_30c6_30a3"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#outside_002dstaff-objects" title="前のセクション" accesskey="p" rel="previous"> &lt; 譜外部オブジェクト&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜外部オブジェクト&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-_005ctextlengthon-command" title="次のセクション" accesskey="n" rel="next">&nbsp;\textLengthOn コマンド &gt; </a>]</td></tr></table>
+<a name="the-outside_002dstaff_002dpriority-property"></a>
+<h4 class="unnumberedsubsubsec"><code>outside-staff-priority</code> プロパティ</h4>
+
+<p>小さな値の <code>outside-staff-priority</code> プロパティを持つオブジェクトは譜の近くに配置され、他の譜外部オブジェクトは衝突を避けるのに必要な分だけ離されます。<code>outside-staff-priority</code> は <code>grob-interface</code> の中で定義されているため、すべてのレイアウト  オブジェクトのプロパティです。デフォルトでは、すべての譜内部オブジェクトの <code>outside-staff-priority</code> は
+<code>#f</code> にセットされていて、譜外部オブジェクトが作成されたときにその譜外部オブジェクトの <code>outside-staff-priority</code> に適当な数値がセットされます。以下の表はいくつかの一般的な譜外部オブジェクトのデフォルトの
+<code>outside-staff-priority</code> 値を示しています。
+</p>
+<table>
+<thead><tr><th width="30%">レイアウト オブジェクト</th><th width="30%">優先度</th><th width="30%">以下のオブジェクトの配置を制御する:</th></tr></thead>
+<tr><td width="30%"><code>RehearsalMark</code></td><td width="30%"><code>1500</code></td><td width="30%">リハーサル記号</td></tr>
+<tr><td width="30%"><code>MetronomeMark</code></td><td width="30%"><code>1000</code></td><td width="30%">メトロノーム記号</td></tr>
+<tr><td width="30%"><code>VoltaBracketSpanner</code></td><td width="30%"><code>600</code></td><td width="30%">Volta (番号付きのリピート) の囲み</td></tr>
+<tr><td width="30%"><code>TextScript</code></td><td width="30%"><code>450</code></td><td width="30%">マークアップ テキスト</td></tr>
+<tr><td width="30%"><code>MultiMeasureRestText</code></td><td width="30%"><code>450</code></td><td width="30%">全休符上のテキスト</td></tr>
+<tr><td width="30%"><code>OttavaBracket</code></td><td width="30%"><code>400</code></td><td width="30%">オッターバ (オクターブを上下させる記号) の囲み</td></tr>
+<tr><td width="30%"><code>TextSpanner</code></td><td width="30%"><code>350</code></td><td width="30%">テキスト スパナ</td></tr>
+<tr><td width="30%"><code>DynamicLineSpanner</code></td><td width="30%"><code>250</code></td><td width="30%">すべての強弱記号</td></tr>
+<tr><td width="30%"><code>BarNumber</code></td><td width="30%"><code>100</code></td><td width="30%">小節番号</td></tr>
+<tr><td width="30%"><code>TrillSpanner</code></td><td width="30%"><code>50</code></td><td width="30%">トリル記号</td></tr>
+</table>
+
+<p>これらのうちのいくつかのデフォルトでの配置を示している例を挙げます。
+</p>
+<a name="index-text-spanner-_0028_30c6_30ad_30b9_30c8-_30b9_30d1_30ca_0029"></a>
+<a name="index-ottava-bracket-_0028_30aa_30c3_30bf_30fc_30d0_56f2_307f_0029"></a>
+
+<a name="index-_005cstartTextSpan"></a>
+<a name="index-_005cstartTextSpan-1"></a>
+<a name="index-startTextSpan"></a>
+<a name="index-startTextSpan-1"></a>
+<a name="index-_005cstopTextSpan"></a>
+<a name="index-_005cstopTextSpan-1"></a>
+<a name="index-stopTextSpan"></a>
+<a name="index-stopTextSpan-1"></a>
+
+<a name="index-TextSpanner_002c-example-of-overriding-_0028TextSpanner-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029"></a>
+<a name="index-bound_002ddetails-property_002c-example-_0028bound_002ddetails-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+
+<blockquote><pre class="verbatim">% 以降のテキスト スパナの詳細を設定します
+\override TextSpanner.bound-details.left.text
+    = \markup { \small \bold Slower }
+% 強弱記号を譜の上に配置します
+\dynamicUp
+% オッターバ囲みの開始
+\ottava #1
+c''4 \startTextSpan
+% 強弱テキストとヘアピンを付け加えます
+c''4\pp\&lt;
+c''4
+% テキスト スクリプトを付け加えます
+c''4^Text |
+c''4 c''
+% 強弱テキストを付け加え、強弱ヘアピンを終わらせます
+c''4\ff c'' \stopTextSpan |
+% オッターバ囲みを終わらせます
+\ottava #0
+c'4 c' c' c' |
+</pre><p>
+ <a href="../c7/lily-f6f4000a.ly">
+  <img align="middle"
+       border="0"
+       src="../c7/lily-f6f4000a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>この例はテキスト スパナ &ndash; 音楽の上に置かれる延長線付きのテキスト &ndash; の作成方法についても示しています。スパナは <code>\startTextSpan</code> コマンドから
+<code>\stopTextSpan</code> コマンドまで延び、テキストのフォーマットは
+<code>\override TextSpanner</code> コマンドによって定義されます。詳細は <a name="index-_30c6_30ad_30b9_30c8-_30b9_30d1_30ca"></a>
+<a href="../notation/text-spanners.ja.html">テキスト スパナ</a> を参照してください。
+</p>
+<p>この例はさらにオッターバ囲みを作成する方法についても示しています。
+</p>
+<a name="index-tweaking-bar-number-placement-_0028_5c0f_7bc0_756a_53f7_306e_914d_7f6e_3092_8abf_7bc0_3059_308b_0029"></a>
+<a name="index-bar-numbers_002c-tweaking-placement-_0028_5c0f_7bc0_756a_53f7_306e_914d_7f6e_3092_8abf_7bc0_3059_308b_0029"></a>
+<a name="index-tweaking-metronome-mark-placement-_0028_30e1_30c8_30ed_30ce_30fc_30e0_8a18_53f7_306e_914d_7f6e_3092_8abf_7bc0_3059_308b_0029"></a>
+<a name="index-metronome-mark_002c-tweaking-placement-_0028_30e1_30c8_30ed_30ce_30fc_30e0_8a18_53f7_306e_914d_7f6e_3092_8abf_7bc0_3059_308b_0029"></a>
+<a name="index-tweaking-rehearsal-mark-placement-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_914d_7f6e_3092_8abf_7bc0_3059_308b_0029"></a>
+<a name="index-rehearsal-marks_002c-tweaking-placement-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_914d_7f6e_3092_8abf_7bc0_3059_308b_0029"></a>
+
+<p><code>outside-staff-priority</code> のデフォルト値による配置があなたの望みに合わない場合、いずれかのオブジェクトの優先度をオーバライドすることになるかもしれません。上記の例で、オッターバ囲みをテキスト スパナの下に配置したいとします。すべきことは、<code>OttavaBracket</code> は <code>Staff</code> コンテキストの中に作成されるということを思い出し、<code>OttavaBracket</code> の優先度を内部リファレンスか上記の表で調べて、それを <code>TextSpanner</code> の値よりも小さくすることです:
+</p>
+<a name="index-TextSpanner_002c-example-of-overriding-_0028TextSpanner-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029-1"></a>
+<a name="index-bound_002ddetails-property_002c-example-_0028bound_002ddetails-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-1"></a>
+
+<blockquote><pre class="verbatim">% 以降のテキスト スパナの詳細を設定します
+\override TextSpanner.bound-details.left.text
+    = \markup { \small \bold Slower }
+% 強弱記号を譜の上に配置します
+\dynamicUp
+% 以降のオッターバ囲みをテキスト スパナの下に配置します
+\once \override Staff.OttavaBracket.outside-staff-priority = #340
+% オッターバ囲みの開始
+\ottava #1
+c''4 \startTextSpan
+% 強弱テキストを付け加えます
+c''4\pp
+% 強弱の線スパナを付け加えます
+c''4\&lt;
+% テキスト スクリプトを付け加えます
+c''4^Text |
+c''4 c''
+% 強弱テキストを付け加えます
+c''4\ff c'' \stopTextSpan |
+% オッターバ囲みを終わらせます
+\ottava #0
+c'4 c' c' c' |
+</pre><p>
+ <a href="../1b/lily-54dc92b4.ly">
+  <img align="middle"
+       border="0"
+       src="../1b/lily-54dc92b4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これらのオブジェクトのいくつか
+&ndash; 特に、小節番号、メトロノーム記号、それにリハーサル記号 &ndash;
+はデフォルトでは <code>Score</code> コンテキストの中にあるため、それらのプロパティをオーバライドする場合は適切なコンテキストを指定する必要があることに注意してください。
+</p>
+<a name="index-slurs-and-outside_002dstaff_002dpriority-_0028_30b9_30e9_30fc_3068-outside_002dstaff_002dpriority_0029"></a>
+<a name="index-slurs-and-articulations-_0028_30b9_30e9_30fc_3068_30a2_30fc_30c6_30a3_30ad_30e5_30ec_30fc_30b7_30e7_30f3_0029"></a>
+<a name="index-articulations-and-slurs-_0028_30a2_30fc_30c6_30a3_30ad_30e5_30ec_30fc_30b7_30e7_30f3_3068_30b9_30e9_30fc_0029"></a>
+
+<p>スラーはデフォルトでは譜内部オブジェクトに分類されています。しかしながら、譜の上部に配置された音符に付くスラーはしばしば譜の上に表示されます。このことは、スラーがまず最初に配置されるため、アーティキュレーションなどの譜外部オブジェクトをあまりにも高い位置に押し上げる可能性があります。アーティキュレーションの <code>avoid-slur</code> プロパティに
+<code>'inside</code> をセットすることでアーティキュレーションをスラーよりも内側に配置することができます。しかし、<code>avoid-slur</code> プロパティはアーティキュレーションの
+<code>outside-staff-priority</code> が <code>#f</code> にセットされている場合にのみ効果を持ちます。代替手段として、スラーの <code>outside-staff-priority</code> に数値をセットすることによって、スラーを他の譜外部オブジェクトとともに
+<code>outside-staff-priority</code> 値に従って配置することができます。ここで、2 つの方法の効果を示す例を挙げます:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4( c^\markup { \tiny \sharp } d4.) c8 |
+  c4(
+    \once \override TextScript.avoid-slur = #'inside
+    \once \override TextScript.outside-staff-priority = ##f
+    c4^\markup { \tiny \sharp } d4.) c8 |
+  \once \override Slur.outside-staff-priority = #500
+    c4( c^\markup { \tiny \sharp } d4.) c8 |
+}
+</pre><p>
+ <a href="../23/lily-244d87e7.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-244d87e7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>outside-staff-priority</code> は、個々のオブジェクトの垂直方向の配置を制御するために使用することもできます。しかしながら、その結果は常に望み通りになるわけではありません。<a href="automatic-behavior.ja.html">自動配置</a> にある例で &ldquo;Text3&rdquo; を &ldquo;Text4&rdquo; の上に配置したいとします。すべきことは <code>TextScript</code> の優先度を内部リファレンスか上記の表で調べて、&ldquo;Text3&rdquo; の優先度を大きくすることです:
+</p>
+<a name="index-TextScript_002c-example-of-overriding-_0028TextScript-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029"></a>
+<a name="index-outside_002dstaff_002dpriority-property_002c-example-_0028outside_002dstaff_002dpriority-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+
+<blockquote><pre class="verbatim">c''2^&quot;Text1&quot;
+c''2^&quot;Text2&quot; |
+\once \override TextScript.outside-staff-priority = #500
+c''2^&quot;Text3&quot;
+c''2^&quot;Text4&quot; |
+</pre><p>
+ <a href="../50/lily-f5954fc4.ly">
+  <img align="middle"
+       border="0"
+       src="../50/lily-f5954fc4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これはたしかに &ldquo;Text3&rdquo; を &ldquo;Text4&rdquo; の上に配置しています。しかし、&ldquo;Text3&rdquo;を &ldquo;Text2&rdquo; の上に配置して、&ldquo;Text4&rdquo; を押し下げてもいます。おそらく、これはそれほど望ましい結果ではないでしょう。本当に望んでいることは、すべての注釈を譜の上に譜から同じ距離だけ離して配置することです。そうするには明らかに、テキストのためにもっと広いスペースを確保するために、音符を水平方向に広げる必要があります。これは <code>\textLengthOn</code> コマンドを用いることで達成できます。
+</p>
+<hr size="6">
+<a name="g_t_005ctextLengthOn-_30b3_30de_30f3_30c9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-outside_002dstaff_002dpriority-property" title="前のセクション" accesskey="p" rel="previous"> &lt; outside-staff-priority プロパティ&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜外部オブジェクト&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#dynamics-placement" title="次のセクション" accesskey="n" rel="next">&nbsp;強弱記号の配置 &gt; </a>]</td></tr></table>
+<a name="the-_005ctextlengthon-command"></a>
+<h4 class="unnumberedsubsubsec"><code>\textLengthOn</code> コマンド</h4>
+
+<a name="index-notes_002c-spreading-out-with-text-_0028_30c6_30ad_30b9_30c8_306b_5408_308f_305b_3066_97f3_7b26_306e_9593_9694_3092_5e83_3052_308b_0029"></a>
+
+<a name="index-_005ctextLengthOn"></a>
+<a name="index-_005ctextLengthOn-1"></a>
+<a name="index-textLengthOn"></a>
+<a name="index-textLengthOn-1"></a>
+<a name="index-_005ctextLengthOff"></a>
+<a name="index-_005ctextLengthOff-1"></a>
+<a name="index-textLengthOff"></a>
+<a name="index-textLengthOff-1"></a>
+
+<p>デフォルトでは、音楽のレイアウトが考慮されている限り、マークアップによって作り出されるテキストは水平方向のスペースと関係しません。<code>\textLengthOn</code> コマンドはこの動作を逆にして、テキストの配置に便宜をはかる必要がある限り、音符の間隔を広げます:
+</p>
+<blockquote><pre class="verbatim">\textLengthOn  % 音符の間隔を広げてテキストに揃えます
+c''2^&quot;Text1&quot;
+c''2^&quot;Text2&quot; |
+c''2^&quot;Text3&quot;
+c''2^&quot;Text4&quot; |
+</pre><p>
+ <a href="../3a/lily-afd48c58.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-afd48c58.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>デフォルトの動作に戻すためのコマンドは <code>\textLengthOff</code> です。効果を与えるのが単一の音楽タイミングであれば、<code>\textLengthOn</code>
+に <code>\once</code> を付ける方法もあります。
+</p>
+<a name="index-markup-text_002c-allowing-collisions-_0028_30de_30fc_30af_30a2_30c3_30d7-_30c6_30ad_30b9_30c8_306e_885d_7a81_3092_8a31_53ef_3059_308b_0029"></a>
+
+<p>マークアップ テキストは譜の上に突き出している音符を避けます。このことが望ましくない場合、優先度を <code>#f</code> にセットすることによって上方向への自動再配置を Off にすることになるかもしれません。ここで、マークアップ テキストがそのような音符とどのように相互作用するかを示す例を挙げます。
+</p>
+<a name="index-TextScript_002c-example-of-overriding-_0028TextScript-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029-1"></a>
+<a name="index-outside_002dstaff_002dpriority-property_002c-example-_0028outside_002dstaff_002dpriority-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  % このマークアップは短いため衝突は起きません
+  c''2^&quot;Tex&quot; c'' |
+  R1 |
+
+  % このマークアップは長くて納まりきらないため、上に押し上げられます
+  c,,2^&quot;Text&quot; c'' |
+  R1 |
+
+  % 衝突回避を OFF にします
+  \once \override TextScript.outside-staff-priority = ##f
+  c,,2^&quot;Long Text   &quot; c'' |
+  R1 |
+
+  % 衝突回避を OFF にします
+  \once \override TextScript.outside-staff-priority = ##f
+  \textLengthOn        % そして textLengthOn を ON にします
+  c,,2^&quot;Long Text   &quot;  % 後ろにスペースが付け加えられます
+  c''2 |
+}
+</pre><p>
+ <a href="../26/lily-84934991.ly">
+  <img align="middle"
+       border="0"
+       src="../26/lily-84934991.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="g_t_5f37_5f31_8a18_53f7_306e_914d_7f6e"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-_005ctextlengthon-command" title="前のセクション" accesskey="p" rel="previous"> &lt; \textLengthOn コマンド&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜外部オブジェクト&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#grob-sizing" title="次のセクション" accesskey="n" rel="next">&nbsp;グラフィカル オブジェクトのサイズ &gt; </a>]</td></tr></table>
+<a name="dynamics-placement"></a>
+<h4 class="unnumberedsubsubsec">強弱記号の配置</h4>
+
+<a name="index-tweaking-dynamics-placement-_0028_5f37_5f31_8a18_53f7_306e_914d_7f6e_3092_8abf_6574_3059_308b_0029"></a>
+<a name="index-dynamics_002c-tweaking-placement-_0028_5f37_5f31_8a18_53f7_306e_914d_7f6e_3092_8abf_6574_3059_308b_0029"></a>
+
+<p>通常、強弱記号は譜の下に配置されます。しかしながら、<code>\dynamicUp</code> コマンドを使うことで上に配置されるかもしれません。強弱記号は、その記号が付いている音符と垂直方向の関係で配置され、フレージング スラーや小節番号などの譜内部オブジェクトのすべてよりも下 (あるいは上) に配置されます。このことは、以下の例のように、到底受け入れられない結果を生み出す可能性があります:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;bass&quot;
+  \key aes \major
+  \time 9/8
+  \dynamicUp
+  bes4.~\f\&lt; \( bes4 bes8 des4\ff\&gt; c16 bes\! |
+  ees,2.~\)\mf ees4 r8 |
+}
+</pre><p>
+ <a href="../88/lily-461e4504.ly">
+  <img align="middle"
+       border="0"
+       src="../88/lily-461e4504.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>しかしながら、音符とそれに付けられた強弱記号が互いに近い場合、自動配置は後の方にある強弱記号を譜から離すことによって衝突を避けます。しかし、以下のかなり不自然な例が示すように、それは最適な配置ではないかもしれません:
+</p>
+<blockquote><pre class="verbatim">\dynamicUp
+a4\f b\mf c\mp b\p
+</pre><p>
+ <a href="../99/lily-d9ad2384.ly">
+  <img align="middle"
+       border="0"
+       src="../99/lily-d9ad2384.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>&lsquo;実際&rsquo; の音楽で同じような状況があった場合、音符の間隔をもう少し広げて、すべての強弱記号が譜から垂直方向に同じだけ離れるようにする方が望ましいかもしれません。マークアップ テキストの場合は <code>\textLengthOn</code> コマンドを用いることによってそうすることができますが、強弱記号には等価のコマンドがありません。そのため、<code>\override</code> コマンドを用いてそれを達成する方法を見出す必要があります。
+</p>
+<hr size="6">
+<a name="g_t_30b0_30e9_30d5_30a3_30ab_30eb-_30aa_30d6_30b8_30a7_30af_30c8_306e_30b5_30a4_30ba"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#dynamics-placement" title="前のセクション" accesskey="p" rel="previous"> &lt; 強弱記号の配置&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜外部オブジェクト&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="collisions-of-objects.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;オブジェクトの衝突 &gt; </a>]</td></tr></table>
+<a name="grob-sizing"></a>
+<h4 class="unnumberedsubsubsec">グラフィカル オブジェクトのサイズ</h4>
+
+<a name="index-grob-sizing-_0028_30b0_30e9_30d5_30a3_30ab_30eb-_30aa_30d6_30b8_30a7_30af_30c8_306e_30b5_30a4_30ba_3092_6c7a_5b9a_3059_308b_0029"></a>
+<a name="index-sizing-grobs-_0028_30b0_30e9_30d5_30a3_30ab_30eb-_30aa_30d6_30b8_30a7_30af_30c8_306e_30b5_30a4_30ba_3092_6c7a_5b9a_3059_308b_0029"></a>
+
+<p>まず最初に、グラフィカル オブジェクトのサイズがどのように決定されるかを学ばなくてはなりません。すべてのグラフィカル オブジェクトの内部では参照ポイントが定義され、それはそれらの親オブジェクトとの相対位置を決定するために使用されます。このポイントは親オブジェクトから垂直方向に <code>X-offset</code>、垂直方向に <code>Y-offset</code> 離れた位置になります。オブジェクトの水平方向の広がりは数値のペア <code>X-extent</code> で与えられ、そのペアはオブジェクトの左端と右端の参照ポイントとの相対関係について述べています。垂直方向の広がりも同様に数値のペア <code>Y-extent</code> によって与えられます。これらは <code>grob-interface</code> をサポートするすべてのグラフィカル オブジェクトが持つプロパティです。
+</p>
+<a name="index-extra_002dspacing_002dwidth"></a>
+
+<p>デフォルトでは、譜外部オブジェクトには 0 の幅が与えられているため、水平方向で重なる可能性があります。これは <code>extra-spacing-width</code> に <code>'(+inf.0 . -inf.0)</code> をセットすることによって、左端の広がりにプラス無限大、右端の広がりにマイナス無限大を付け加えるというトリックによって達成されています。そのため、譜外部オブジェクトが水平方向で重ならないことを保証するには、<code>extra-spacing-width</code> の値を <code>'(0 . 0)</code> にオーバライドする必要があります。これにより、本当の幅が明らかになります。以下は強弱記号テキストに対してこれを行うコマンドです:
+</p>
+<blockquote><pre class="example">\override DynamicText.extra-spacing-width = #'(0 . 0)
+</pre></blockquote>
+
+<p>これが前の例で機能するかどうかを見てみましょう:
+</p>
+<a name="index-DynamicText_002c-example-of-overriding-_0028DynamicText-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029"></a>
+<a name="index-extra_002dspacing_002dwidth-property_002c-example-_0028extra_002dspacing_002dwidth-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+
+<blockquote><pre class="verbatim">\dynamicUp
+\override DynamicText.extra-spacing-width = #'(0 . 0)
+a4\f b\mf c\mp b\p |
+</pre><p>
+ <a href="../5f/lily-6801ea69.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-6801ea69.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>確かに強弱記号の再配置をストップさせています。しかし、2 つの問題が残っています。強弱記号を互いにもう少し離すべきであり、それらは譜から同じ距離にあるほうが望ましいです。最初の問題は簡単に解決できます。<code>extra-spacing-width</code> を 0 にする代わりに、もう少し大きな値を与えるのです。単位は 2 本の譜線の間隔なので、左端を 1 単位の半分だけ左に移動させ、右端を 1 単位の半分だけ右に移動させると解決になります:
+</p>
+<a name="index-DynamicText_002c-example-of-overriding-_0028DynamicText-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029-1"></a>
+<a name="index-extra_002dspacing_002dwidth-property_002c-example-_0028extra_002dspacing_002dwidth-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-1"></a>
+
+<blockquote><pre class="verbatim">\dynamicUp
+% Extend width by 1 staff space
+\override DynamicText.extra-spacing-width = #'(-0.5 . 0.5)
+a4\f b\mf c\mp b\p
+</pre><p>
+ <a href="../a5/lily-0085d78f.ly">
+  <img align="middle"
+       border="0"
+       src="../a5/lily-0085d78f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これで前よりも良くなりました。しかし、強弱記号が音符に合わせて上下するよりも、同じベースラインで揃っている方が望ましいでしょう。それを行うためのプロパティは <code>staff-padding</code> であり、後に続くセクションでカバーされています。
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#dynamics-placement" title="前のセクション" accesskey="p" rel="previous"> &lt; 強弱記号の配置&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜外部オブジェクト&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="collisions-of-objects.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;オブジェクトの衝突 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="outside_002dstaff-objects.html">English</a>, <a href="outside_002dstaff-objects.ca.html">català</a>, <a href="outside_002dstaff-objects.cs.html">česky</a>, <a href="outside_002dstaff-objects.de.html">deutsch</a>, <a href="outside_002dstaff-objects.es.html">español</a>, <a href="outside_002dstaff-objects.fr.html">français</a>, <a href="outside_002dstaff-objects.it.html">italiano</a>, <a href="outside_002dstaff-objects.nl.html">nederlands</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 学習マニュアル  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_30c1_30e5_30fc_30c8_30ea_30a2_30eb-1" href="tutorial.ja.html">1. チュートリアル</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d5_30a1_30a4_30eb_3092_30b3_30f3_30d1_30a4_30eb_3059_308b-1" href="compiling-a-file.ja.html">1.1 ファイルをコンパイルする</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306e_66f8_304d_65b9-1" href="how-to-write-input-files.ja.html">1.2 入力ファイルの書き方</a>    </li>
+    <li class=""><a name="toc-_30a8_30e9_30fc_306b_5bfe_51e6_3059_308b-1" href="dealing-with-errors.ja.html">1.3 エラーに対処する</a>    </li>
+    <li class=""><a name="toc-_3053_306e_30de_30cb_30e5_30a2_30eb_306e_8aad_307f_65b9-1" href="how-to-read-the-manuals.ja.html">1.4 このマニュアルの読み方</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_4e00_822c_7684_306a_8a18_8b5c_6cd5-1" href="common-notation.ja.html">2. 一般的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_8868_8868_8a18-1" href="single-staff-notation.ja.html">2.1 単一譜表表記</a>    </li>
+    <li class=""><a name="toc-_540c_6642_306b_6f14_594f_3059_308b_8907_6570_306e_97f3_7b26-1" href="multiple-notes-at-once.ja.html">2.2 同時に演奏する複数の音符</a>    </li>
+    <li class=""><a name="toc-_6b4c_66f2-1" href="songs.ja.html">2.3 歌曲</a>    </li>
+    <li class=""><a name="toc-_4ed5_4e0a_3052-1" href="final-touches.ja.html">2.4 仕上げ</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_57fa_790e_3068_306a_308b_30b3_30f3_30bb_30d7_30c8-1" href="fundamental-concepts.ja.html">3. 基礎となるコンセプト</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-_5165_529b_30d5_30a1_30a4_30eb_306e_4ed5_7d44_307f-1" href="how-lilypond-input-files-work.ja.html">3.1 LilyPond 入力ファイルの仕組み</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_4fdd_6301_3059_308b_30dc_30a4_30b9-1" href="voices-contain-music.ja.html">3.2 音楽を保持するボイス</a>    </li>
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3068_30a8_30f3_30b0_30e9_30fc_30d0-1" href="contexts-and-engravers.ja.html">3.3 コンテキストとエングラーバ</a>    </li>
+    <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8_3092_62e1_5f35_3059_308b-1" href="extending-the-templates.ja.html">3.4 テンプレートを拡張する</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_51fa_529b_3092_8abf_6574_3059_308b-1" href="tweaking-output.ja.html">4. 出力を調整する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_8abf_6574_306e_57fa_672c-1" href="tweaking-basics.ja.html">4.1 調整の基本</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9-_30de_30cb_30e5_30a2_30eb-1" href="the-internals-reference-manual.ja.html">4.2 内部リファレンス マニュアル</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_898b_305f_76ee-1" href="appearance-of-objects.ja.html">4.3 オブジェクトの見た目</a>    </li>
+    <li class=" toc_current"><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_914d_7f6e-1" href="placement-of-objects.ja.html">4.4 オブジェクトの配置</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_81ea_52d5_914d_7f6e-1" href="automatic-behavior.ja.html">4.4.1 自動配置</a>      </li>
+      <li class=""><a name="toc-_8b5c_5185_90e8_30aa_30d6_30b8_30a7_30af_30c8-1" href="within_002dstaff-objects.ja.html">4.4.2 譜内部オブジェクト</a>      </li>
+      <li class=" toc_current"><a name="toc-_8b5c_5916_90e8_30aa_30d6_30b8_30a7_30af_30c8-1" href="outside_002dstaff-objects.ja.html">4.4.3 譜外部オブジェクト</a>
+      <ul class="toc">
+        <li class=""><a name="toc-outside_002dstaff_002dpriority-_30d7_30ed_30d1_30c6_30a3-1" href="outside_002dstaff-objects.ja.html#the-outside_002dstaff_002dpriority-property"><code>outside-staff-priority</code> プロパティ</a>        </li>
+        <li class=""><a name="toc-_005ctextLengthOn-_30b3_30de_30f3_30c9-1" href="outside_002dstaff-objects.ja.html#the-_005ctextlengthon-command"><code>\textLengthOn</code> コマンド</a>        </li>
+        <li class=""><a name="toc-_5f37_5f31_8a18_53f7_306e_914d_7f6e-1" href="outside_002dstaff-objects.ja.html#dynamics-placement">強弱記号の配置</a>        </li>
+        <li class=""><a name="toc-_30b0_30e9_30d5_30a3_30ab_30eb-_30aa_30d6_30b8_30a7_30af_30c8_306e_30b5_30a4_30ba-1" href="outside_002dstaff-objects.ja.html#grob-sizing">グラフィカル オブジェクトのサイズ</a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_885d_7a81-1" href="collisions-of-objects.ja.html">4.5 オブジェクトの衝突</a>    </li>
+    <li class=""><a name="toc-_66f4_306a_308b_8abf_6574-1" href="further-tweaking.ja.html">4.6 更なる調整</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="templates.ja.html">A. テンプレート</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_30c6_30f3_30d7_30ec_30fc_30c8-1" href="single-staff-templates.ja.html">A.1 単一譜テンプレート</a>    </li>
+    <li class=""><a name="toc-_30d4_30a2_30ce-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="piano-templates.ja.html">A.2 ピアノ テンプレート</a>    </li>
+    <li class=""><a name="toc-_5f26_697d_56db_91cd_594f_30c6_30f3_30d7_30ec_30fc_30c8-1" href="string-quartet-templates.ja.html">A.3 弦楽四重奏テンプレート</a>    </li>
+    <li class=""><a name="toc-_5408_5531_30c6_30f3_30d7_30ec_30fc_30c8-1" href="vocal-ensembles-templates.ja.html">A.4 合唱テンプレート</a>    </li>
+    <li class=""><a name="toc-_30aa_30fc_30b1_30b9_30c8_30e9-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="orchestral-templates.ja.html">A.5 オーケストラ テンプレート</a>    </li>
+    <li class=""><a name="toc-_53e4_4ee3_306e_8a18_8b5c_6cd5_30c6_30f3_30d7_30ec_30fc_30c8-1" href="ancient-notation-templates.ja.html">A.6 古代の記譜法テンプレート</a>    </li>
+    <li class=""><a name="toc-_305d_306e_4ed6_306e_30c6_30f3_30d7_30ec_30fc_30c8-1" href="other-templates.ja.html">A.7 その他のテンプレート</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">C. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

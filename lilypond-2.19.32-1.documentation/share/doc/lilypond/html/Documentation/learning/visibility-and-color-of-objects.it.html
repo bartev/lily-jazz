@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manuale di apprendimento di LilyPond: 4.3.1 Visibilità e colore degli oggetti</title>
+
+<meta name="description" content="Manuale di apprendimento di LilyPond: 4.3.1 Visibilità e colore degli oggetti">
+<meta name="keywords" content="Manuale di apprendimento di LilyPond: 4.3.1 Visibilità e colore degli oggetti">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Manuale di apprendimento">
+<link href="lilypond-index.it.html#lilypond-index" rel="index" title="C. Indice di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="appearance-of-objects.it.html#appearance-of-objects" rel="up" title="4.3 Aspetto degli oggetti">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="C. Indice di LilyPond">
+<link href="appearance-of-objects.it.html#appearance-of-objects" rel="previous" title="4.3 Aspetto degli oggetti">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="learning devStatus">
+
+
+<div id="main">
+<a name="Visibilit_00e0-e-colore-degli-oggetti"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="appearance-of-objects.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Aspetto degli oggetti&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="appearance-of-objects.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Aspetto degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-stencil-property" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;La proprietà stencil &gt; </a>]</td></tr></table>
+<a name="visibility-and-color-of-objects"></a>
+<h3 class="subsection">4.3.1 Visibilità e colore degli oggetti</h3>
+
+<p>Potremmo voler creare una partitura priva di alcuni elementi a
+scopo didattico, perché lo studente possa esercitarsi
+a inserirli.  Vediamo un semplice esempio e immaginiamo che
+l&rsquo;esercizio consista nell&rsquo;inserire le stanghette mancanti
+di un brano.  Ma di norma le stanghette sono inserite
+automaticamente: come lo possiamo impedire?
+</p>
+<p>Prima di iniziare, occorre ricordare che le proprietà degli oggetti sono
+raggruppate nelle cosiddette <em>interfacce</em> &ndash; si veda <a href="properties-found-in-interfaces.it.html">Proprietà presenti nelle interfacce</a>.  Queste servono semplicemente a raggruppare quelle
+proprietà che possono essere usate insieme per modificare un oggetto
+grafico &ndash; se una di queste è ammessa per un oggetto, lo sono anche le
+altre.  Alcuni oggetti usano le proprietà di alcune interfacce, altri
+quelle di altre interfacce.  Le interfacce che contengono le proprietà
+usate da un particolare grob (oggetto grafico) sono elencate nella guida al
+Funzionamento interno in fondo alla pagina che descrive il grob; queste
+proprietà possono essere individuate consultando quelle interfacce.
+</p>
+<p>In <a href="properties-of-layout-objects.it.html">Proprietà degli oggetti di formattazione</a> abbiamo spiegato come trovare le
+informazioni sui grob.  Usando lo stesso approccio, andiamo nella guida
+al Funzionamento interno per trovare l&rsquo;oggetto grafico relativo alla
+stanghetta (<em>bar line</em>).  Passando da <em>Backend</em> e <em>All layout objects</em>
+troviamo un oggetto grafico chiamato <code>BarLine</code>.  Tra le sue proprietà ce ne sono
+due che controllano la visibilità: <code>break-visibility</code> e <code>stencil</code>.  Anche
+Barline supporta varie interfacce, tra cui la <code>grob-interface</code>,
+dove troviamo le proprietà <code>transparent</code> e <code>color</code>.
+Tutte queste proprietà hanno degli effetti sulla visibilità delle stanghette (e,
+ovviamente, anche di molti altri oggetti grafici).  Vediamole una per
+volta.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-stencil-property" accesskey="1">La proprietà <code>stencil</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-break_002dvisibility-property" accesskey="2">La proprietà <code>break-visibility</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-transparent-property" accesskey="3">La proprietà <code>transparent</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-color-property" accesskey="4">La proprietà <code>color</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="La-propriet_00e0-stencil"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#visibility-and-color-of-objects" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Visibilità e colore degli oggetti&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Visibilità e colore degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-break_002dvisibility-property" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;La proprietà break-visibility &gt; </a>]</td></tr></table>
+<a name="the-stencil-property"></a>
+<h4 class="unnumberedsubsubsec">La proprietà <code>stencil</code></h4>
+
+<a name="index-proprieta-stencil"></a>
+<a name="index-stencil_002c-proprieta"></a>
+
+<p>Questa proprietà controlla l&rsquo;aspetto delle stanghette specificando il
+simbolo (glifo) da usare.  Come nel caso di molte altre proprietà,
+si può far in modo che non usi nessun simbolo impostando il suo
+valore su <code>#f</code>.  Proviamo, come prima, omettendo il contesto
+implicito, <code>Voice</code>:
+</p>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura"></a>
+<a name="index-proprieta-stencil_002c-esempio"></a>
+<a name="index-stencil_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override BarLine.stencil = ##f
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../23/lily-d6e15238.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-d6e15238.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Le stanghette sono ancora visibili.  Cosa abbiamo sbagliato?  Torna alla
+guida del Funzionamento interno e scorri di nuovo la pagina che elenca
+le proprietà di BarLine.  In cima alla pagina dice &ldquo;Barline objects are
+created by: Bar_engraver&rdquo;.  Vai alla pagina <code>Bar_engraver</code>.  In fondo
+si trova una lista dei contesti nel quale opera l&rsquo;incisore della battuta.
+Tutti questi sono di tipo <code>Staff</code>, dunque la ragione per cui il comando
+<code>\override</code> precedente non funziona è che <code>Barline</code> non si trova
+nel contesto predefinito, <code>Voice</code>.  Se il contesto indicato non è
+corretto, il comando non funziona.  Non viene generato alcun messaggio
+di errore e non viene registrato niente nel file di log.  Proviamo a
+correggerlo specificando il contesto giusto:
+</p>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura-1"></a>
+<a name="index-proprieta-stencil_002c-esempio-1"></a>
+<a name="index-stencil_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.stencil = ##f
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../18/lily-01332405.ly">
+  <img align="middle"
+       border="0"
+       src="../18/lily-01332405.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ora le stanghette sono sparite.  Impostare la proprietà <code>stencil</code>
+su <code>#f</code> è un&rsquo;operazione talmente frequente che è stata creata una
+scorciatoia, <code>\omit</code>:
+<a name="index-_005comit"></a>
+<a name="index-_005comit-1"></a>
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \omit Staff.BarLine
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../a8/lily-ea36d276.ly">
+  <img align="middle"
+       border="0"
+       src="../a8/lily-ea36d276.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si noti però che impostare la proprietà <code>stencil</code> su <code>#f</code>
+causerà degli errori nel caso in cui le dimensioni dell&rsquo;oggetto
+siano necessarie per elaborarlo correttamente.  Ad esempio, si creano
+degli errori se la proprietà <code>stencil</code> dell&rsquo;oggetto <code>NoteHead</code> è
+impostata su <code>#f</code>.  In questo caso è possibile usare invece la funzione
+<code>point-stencil</code>, che trasforma lo stencil in un oggetto a dimensione
+zero:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4 c
+  \once \override NoteHead.stencil = #point-stencil
+  c4 c
+}
+</pre><p>
+ <a href="../ef/lily-2e0c24f5.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-2e0c24f5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="La-propriet_00e0-break_002dvisibility"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-stencil-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà stencil&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Visibilità e colore degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-transparent-property" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;La proprietà transparent &gt; </a>]</td></tr></table>
+<a name="the-break_002dvisibility-property"></a>
+<h4 class="unnumberedsubsubsec">La proprietà <code>break-visibility</code></h4>
+
+<a name="index-proprieta-break_002dvisibility"></a>
+<a name="index-break_002dvisibility_002c-proprieta"></a>
+
+<p>Nella pagina di <code>BarLine</code> della guida al Funzionamento interno
+vediamo che la proprietà <code>break-visibility</code> richiede un vettore di
+tre valori booleani.
+Questi valori controllano rispettivamente se le stanghette debbano
+comparire alla fine, in mezzo o all&rsquo;inizio dei righi.  Dato
+che nel nostro esempio vogliamo sopprimere tutte le stanghette, il valore
+che ci serve è <code>#(#f #f #f)</code> (equivalente al nome <code>all-invisible</code>).
+Proviamo, ricordando di includere il contesto <code>Staff</code>.  Si noti che prima
+della parentesi di apertura abbiamo <code>##</code>.  Un <code>#</code> è necessario
+perché introduce un vettore, mentre il primo&nbsp;<code>#</code> deve precedere, come
+sempre, il valore del comando <code>\override</code>.
+</p>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura-2"></a>
+<a name="index-proprieta-break_002dvisibility_002c-esempio"></a>
+<a name="index-break_002dvisibility_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.break-visibility = ##(#f #f #f)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../c0/lily-dec055bc.ly">
+  <img align="middle"
+       border="0"
+       src="../c0/lily-dec055bc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>E vediamo che anche questo comando elimina tutte le stanghette.
+</p>
+<hr size="6">
+<a name="La-propriet_00e0-transparent"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-break_002dvisibility-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà break-visibility&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Visibilità e colore degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-color-property" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;La proprietà color &gt; </a>]</td></tr></table>
+<a name="the-transparent-property"></a>
+<h4 class="unnumberedsubsubsec">La proprietà <code>transparent</code></h4>
+
+<a name="index-proprieta-transparent"></a>
+<a name="index-transparent_002c-proprieta"></a>
+<a name="index-trasparenza"></a>
+
+<p>Nelle proprietà specificate nella pagina <code>grob-interface</code> della
+guida al Funzionamento interno vediamo che la proprietà <code>transparent</code> è
+un booleano.  Quindi deve essere impostata su <code>#t</code> («true», &rsquo;vero&rsquo;) per
+rendere trasparente il grob.  Nel prossimo esempio rendiamo trasparente
+il segno di tempo invece delle stanghette.  Per farlo dobbiamo trovare
+il nome del grob del segno di tempo (in inglese <em>time signature</em>).
+Torniamo alla pagina &lsquo;All layout objects&rsquo; per scoprire quali sono le
+proprietà dell&rsquo;oggetto di formattazione <code>TimeSignature</code>.  Tale grob
+è generato dall&rsquo;incisore <code>Time_signature_engraver</code>, che opera
+nel contesto <code>Staff</code> e supporta l&rsquo;interfaccia <code>grob-interface</code>.
+Quindi il comando che rende trasparente l&rsquo;indicazione di tempo è:
+</p>
+<a name="index-TimeSignature_002c-esempio-di-sovrascrittura"></a>
+<a name="index-proprieta-transparent_002c-esempio-1"></a>
+<a name="index-transparent_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.TimeSignature.transparent = ##t
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../ee/lily-ad4aa5f5.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-ad4aa5f5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Impostare la proprietà <code>transparent</code> è un&rsquo;operazione piuttosto
+frequente, perciò è stata creata la scorciatoia <code>\hide</code>:
+<a name="index-_005chide"></a>
+<a name="index-_005chide-1"></a>
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \hide Staff.TimeSignature
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../ba/lily-6b5a1d24.ly">
+  <img align="middle"
+       border="0"
+       src="../ba/lily-6b5a1d24.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>L&rsquo;indicazione di tempo è scomparsa; è rimasto però uno spazio al suo posto.  Magari
+questo è quello che si desidera, ad esempio per creare un esercizio in cui uno
+studente deve riempire degli spazi vuoti.  Ma in altre circostanze ciò può
+non essere gradito.  Per eliminare lo spazio vuoto bisogna impostare la
+proprietà stencil su <code>#f</code>:
+</p>
+<a name="index-TimeSignature_002c-esempio-di-sovrascrittura-1"></a>
+<a name="index-proprieta-stencil_002c-esempio-2"></a>
+<a name="index-stencil_002c-esempio-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \omit Staff.TimeSignature
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../2d/lily-7d3df2e8.ly">
+  <img align="middle"
+       border="0"
+       src="../2d/lily-7d3df2e8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>la differenza è ovvia: se si imposta lo stencil su <code>#f</code> (possibilmente
+con <code>\omit</code>) l&rsquo;oggetto scompare del tutto; se si rende l&rsquo;oggetto
+<code>trasparente</code> questo resta dove è, anche se invisibile.
+</p>
+<hr size="6">
+<a name="La-propriet_00e0-color"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-transparent-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà transparent&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Visibilità e colore degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="size-of-objects.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Dimensione degli oggetti &gt; </a>]</td></tr></table>
+<a name="the-color-property"></a>
+<h4 class="unnumberedsubsubsec">La proprietà <code>color</code></h4>
+
+<a name="index-proprieta-color"></a>
+<a name="index-color_002c-proprieta"></a>
+
+<p>Infine, proviamo a rendere le stanghette invisibili colorandole
+di bianco.  (Si tratta di un metodo problematico perché la
+stanghetta bianca può imbiancare o meno le linee del rigo che
+incrocia.  Puoi vedere in alcuni degli esempi successivi che questo
+accade in modo imprevedibile.  I motivi per cui questo accade e il
+modo in cui è possibile controllarlo sono esposti in <a name="index-Painting-objects-white"></a>
+<a href="../notation/visibility-of-objects.it.html#painting-objects-white">Painting objects white</a>.
+Ma per il momento stiamo imparando la proprietà color, quindi accettiamo questa limitazione.)
+</p>
+<p>L&rsquo;interfaccia <code>grob-interface</code> stabilisce che il valore della
+proprietà color è una lista, ma non spiega cosa debba essere questa
+lista.  La lista di cui ha bisogno è in realtà una lista di valori
+in unità interne, ma per evitare di dover imparare quali siano queste
+unità vengono forniti vari modi di specificare un colore.  Il primo
+modo consiste nell&rsquo;usare uno dei colori &lsquo;normali&rsquo; elencati nella
+prima tabella in <a name="index-List-of-colors"></a>
+<a href="../notation/list-of-colors.it.html">List of colors</a>.  Per rendere bianche le
+stanghette scriviamo:
+</p>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura-3"></a>
+<a name="index-proprieta-color-1"></a>
+<a name="index-color_002c-proprieta-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.color = #white
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../91/lily-c4d83361.ly">
+  <img align="middle"
+       border="0"
+       src="../91/lily-c4d83361.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>e di nuovo vediamo che le stanghette non sono visibili.  Si noti
+che <em>white</em> non è preceduto da un apostrofo, perché non
+è un simbolo, ma una <em>variabile</em>.  Quando viene esaminata, fornisce
+la lista di valori interni necessari per impostare il colore su
+bianco.  Gli altri colori nella lista normale sono anch&rsquo;essi
+delle variabili.  Per convincerti che funziona potresti provare a
+cambiare il colore e usare una delle altre variabili presenti
+nella lista.
+</p>
+<a name="index-color_002c-X11"></a>
+<a name="index-colori-X11"></a>
+<a name="index-X11_002c-colori"></a>
+
+<a name="index-x11_002dcolor"></a>
+<a name="index-x11_002dcolor-1"></a>
+
+<p>Il secondo modo per cambiare il colore è attraverso la lista
+di nomi di colori X11 che si trova in <a name="index-List-of-colors-1"></a>
+<a href="../notation/list-of-colors.it.html">List of colors</a>.
+Questi colori vengono trasformati in valori reali dalla funzione
+<code>x11-color</code>, che converte i simboli di colore X11 nella lista
+di valori interni:
+</p>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura-4"></a>
+<a name="index-proprieta-color_002c-esempio"></a>
+<a name="index-color_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.color = #(x11-color 'white)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../5a/lily-e70922e2.ly">
+  <img align="middle"
+       border="0"
+       src="../5a/lily-e70922e2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si noti che in questo caso la funzione <code>x11-color</code> prende
+un simbolo come argomento, dunque il simbolo deve essere preceduto
+da un apostrofo per impedire che sia considerato una variabile e
+l&rsquo;intera funzione deve essere racchiusa tra parentesi.
+</p>
+<a name="index-colori-rgb"></a>
+<a name="index-rgb_002c-colori"></a>
+<a name="index-color_002c-rgb"></a>
+
+<a name="index-rgb_002dcolor"></a>
+<a name="index-rgb_002dcolor-1"></a>
+
+<p>Esiste un&rsquo;altra funzione, che converte i valori RGB in colori
+interni, la funzione <code>rgb-color</code>.  Prende tre argomenti
+che specificano l&rsquo;intensità dei colori rosso, verde e blu.
+I valori vanno da 0 a 1.  Quindi per avere il colore rosso
+il valore sarà <code>(rgb-color 1 0 0)</code>
+e per avere il bianco sarà <code>(rgb-color 1 1 1)</code>:
+</p>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura-5"></a>
+<a name="index-proprieta-color_002c-esempio-1"></a>
+<a name="index-color_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.BarLine.color = #(rgb-color 1 1 1)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../85/lily-546c8119.ly">
+  <img align="middle"
+       border="0"
+       src="../85/lily-546c8119.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Infine, è disponibile anche una scala di grigi, appartenente all&rsquo;insieme
+di colori X11.  Questi vanno dal nero, <code>'grey0</code>,
+al bianco, <code>'grey100</code>, con cadenza di 1.  Ecco un
+esempio in cui tutti gli oggetti di formattazione sono
+impostati su diverse tonalità di grigio:
+</p>
+<a name="index-StaffSymbol_002c-esempio-di-sovrascrittura"></a>
+<a name="index-TimeSignature_002c-esempio-di-sovrascrittura-2"></a>
+<a name="index-Clef_002c-esempio-di-sovrascrittura"></a>
+<a name="index-NoteHead_002c-esempio-di-sovrascrittura-4"></a>
+<a name="index-Stem_002c-esempio-di-sovrascrittura"></a>
+<a name="index-BarLine_002c-esempio-di-sovrascrittura-6"></a>
+<a name="index-proprieta-color_002c-esempio-2"></a>
+<a name="index-color_002c-esempio-2"></a>
+<a name="index-x11_002dcolor_002c-esempio-di-utilizzo"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \time 12/16
+  \override Staff.StaffSymbol.color = #(x11-color 'grey30)
+  \override Staff.TimeSignature.color = #(x11-color 'grey60)
+  \override Staff.Clef.color = #(x11-color 'grey60)
+  \override Voice.NoteHead.color = #(x11-color 'grey85)
+  \override Voice.Stem.color = #(x11-color 'grey85)
+  \override Staff.BarLine.color = #(x11-color 'grey10)
+  c''4 b8 c d16 c d8 |
+  g,8 a16 b8 c d4 e16 |
+  e8
+}
+</pre><p>
+ <a href="../db/lily-46ccb958.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-46ccb958.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nota i contesti associati a ciascuno degli oggetti di formattazione.
+È importante scegliere quelli giusti, altrimenti i comandi non
+funzioneranno!  Ricorda, il contesto è quello in cui si trova il
+relativo incisore.  Il contesto predefinito per gli incisori si trova
+partendo dall&rsquo;oggetto di formattazione (<em>layout object</em>) per poi
+andare all&rsquo;incisore che lo produce: la pagina dell&rsquo;incisore nella
+guida al Funzionamento interno riporterà a quale contesto
+appartenga di norma l&rsquo;incisore.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-transparent-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà transparent&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#visibility-and-color-of-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Visibilità e colore degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="size-of-objects.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Dimensione degli oggetti &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="visibility-and-color-of-objects.html">English</a>, <a href="visibility-and-color-of-objects.ca.html">català</a>, <a href="visibility-and-color-of-objects.cs.html">česky</a>, <a href="visibility-and-color-of-objects.de.html">deutsch</a>, <a href="visibility-and-color-of-objects.es.html">español</a>, <a href="visibility-and-color-of-objects.fr.html">français</a>, <a href="visibility-and-color-of-objects.ja.html">日本語</a>, <a href="visibility-and-color-of-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Manuale di apprendimento  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.it.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilare-un-file-1" href="compiling-a-file.it.html">1.1 Compilare un file</a>    </li>
+    <li class=""><a name="toc-Come-scrivere-i-file-di-input-1" href="how-to-write-input-files.it.html">1.2 Come scrivere i file di input</a>    </li>
+    <li class=""><a name="toc-Gestire-gli-errori-1" href="dealing-with-errors.it.html">1.3 Gestire gli errori</a>    </li>
+    <li class=""><a name="toc-Come-leggere-i-manuali-1" href="how-to-read-the-manuals.it.html">1.4 Come leggere i manuali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notazione-comunemente-utilizzata-1" href="common-notation.it.html">2. Notazione comunemente utilizzata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notazione-su-un-solo-pentagramma-1" href="single-staff-notation.it.html">2.1 Notazione su un solo pentagramma</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="multiple-notes-at-once.it.html">2.2 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.3 Canzoni</a>    </li>
+    <li class=""><a name="toc-Ritocchi-finali-1" href="final-touches.it.html">2.4 Ritocchi finali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concetti-fondamentali-1" href="fundamental-concepts.it.html">3. Concetti fondamentali</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Come-funzionano-i-file-di-input-di-LilyPond-1" href="how-lilypond-input-files-work.it.html">3.1 Come funzionano i file di input di LilyPond</a>    </li>
+    <li class=""><a name="toc-Le-voci-contengono-la-musica-1" href="voices-contain-music.it.html">3.2 Le voci contengono la musica</a>    </li>
+    <li class=""><a name="toc-Contesti-e-incisori-1" href="contexts-and-engravers.it.html">3.3 Contesti e incisori</a>    </li>
+    <li class=""><a name="toc-Estendere-i-modelli-1" href="extending-the-templates.it.html">3.4 Estendere i modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Modifica-dell_0027output-1" href="tweaking-output.it.html">4. Modifica dell&rsquo;output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modifiche-di-base-1" href="tweaking-basics.it.html">4.1 Modifiche di base</a>    </li>
+    <li class=""><a name="toc-Manuale-del-Funzionamento-interno-1" href="the-internals-reference-manual.it.html">4.2 Manuale del Funzionamento interno</a>    </li>
+    <li class=" toc_current"><a name="toc-Aspetto-degli-oggetti-1" href="appearance-of-objects.it.html">4.3 Aspetto degli oggetti</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Visibilita-e-colore-degli-oggetti" href="visibility-and-color-of-objects.it.html">4.3.1 Visibilità e colore degli oggetti</a>
+      <ul class="toc">
+        <li class=""><a name="toc-La-proprieta-stencil" href="visibility-and-color-of-objects.it.html#the-stencil-property">La proprietà <code>stencil</code></a>        </li>
+        <li class=""><a name="toc-La-proprieta-break_002dvisibility" href="visibility-and-color-of-objects.it.html#the-break_002dvisibility-property">La proprietà <code>break-visibility</code></a>        </li>
+        <li class=""><a name="toc-La-proprieta-transparent" href="visibility-and-color-of-objects.it.html#the-transparent-property">La proprietà <code>transparent</code></a>        </li>
+        <li class=""><a name="toc-La-proprieta-color" href="visibility-and-color-of-objects.it.html#the-color-property">La proprietà <code>color</code></a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Dimensione-degli-oggetti-1" href="size-of-objects.it.html">4.3.2 Dimensione degli oggetti</a>      </li>
+      <li class=""><a name="toc-Lunghezza-e-spessore-degli-oggetti-1" href="length-and-thickness-of-objects.it.html">4.3.3 Lunghezza e spessore degli oggetti</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Posizionamento-degli-oggetti-1" href="placement-of-objects.it.html">4.4 Posizionamento degli oggetti</a>    </li>
+    <li class=""><a name="toc-Spaziatura-verticale-1" href="vertical-spacing.it.html">4.5 Spaziatura verticale</a>    </li>
+    <li class=""><a name="toc-Collisioni-tra-oggetti-1" href="collisions-of-objects.it.html">4.6 Collisioni tra oggetti</a>    </li>
+    <li class=""><a name="toc-Altre-modifiche-1" href="further-tweaking.it.html">4.7 Altre modifiche</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modelli-1" href="templates.it.html">A. Modelli</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modelli-integrati-1" href="built_002din-templates.it.html">A.1 Modelli integrati</a>    </li>
+    <li class=""><a name="toc-Modelli-per-rigo-singolo-1" href="single-staff-templates.it.html">A.2 Modelli per rigo singolo</a>    </li>
+    <li class=""><a name="toc-Modelli-per-pianoforte-1" href="piano-templates.it.html">A.3 Modelli per pianoforte</a>    </li>
+    <li class=""><a name="toc-Modelli-per-quartetto-d_0027archi-1" href="string-quartet-templates.it.html">A.4 Modelli per quartetto d&rsquo;archi</a>    </li>
+    <li class=""><a name="toc-Modelli-per-gruppi-vocali-1" href="vocal-ensembles-templates.it.html">A.5 Modelli per gruppi vocali</a>    </li>
+    <li class=""><a name="toc-Modelli-per-orchestra-1" href="orchestral-templates.it.html">A.6 Modelli per orchestra</a>    </li>
+    <li class=""><a name="toc-Modelli-per-notazione-antica-1" href="ancient-notation-templates.it.html">A.7 Modelli per notazione antica</a>    </li>
+    <li class=""><a name="toc-Altri-modelli-1" href="other-templates.it.html">A.8 Altri modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">C. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

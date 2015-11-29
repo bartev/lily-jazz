@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Handbuch zum Lernen: 4.4.2 within-staff (Objekte innerhalb des Notensystems)</title>
+
+<meta name="description" content="LilyPond Handbuch zum Lernen: 4.4.2 within-staff (Objekte innerhalb des Notensystems)">
+<meta name="keywords" content="LilyPond Handbuch zum Lernen: 4.4.2 within-staff (Objekte innerhalb des Notensystems)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Learning Manual">
+<link href="lilypond-index.de.html#lilypond-index" rel="index" title="C. LilyPond-Index">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="placement-of-objects.de.html#placement-of-objects" rel="up" title="4.4 Positionierung von Objekten">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="C. LilyPond-Index">
+<link href="automatic-behavior.de.html#automatic-behavior" rel="previous" title="4.4.1 Automatisches Verhalten">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="learning devStatus">
+
+
+<div id="main">
+<a name="within_002dstaff-_0028Objekte-innerhalb-des-Notensystems_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Die Ausgabe verbessern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.de.html" title="N&auml;chstes Kapitel">&nbsp;Vorlagen &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="automatic-behavior.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatisches Verhalten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="placement-of-objects.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Positionierung von Objekten&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-direction-property" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Die direction-Eigenschaft &gt; </a>]</td></tr></table>
+<a name="within_002dstaff-objects"></a>
+<h3 class="subsection">4.4.2 within-staff (Objekte innerhalb des Notensystems)</h3>
+
+<p>Es wurde schon gezeigt, wie die Befehle <code>\voiceXXX</code> die Richtung
+von Bögen, Fingersatz und allen anderen Objekten beeinflusst,
+die von der Richtung der Notenhälsen abhängen &ndash; siehe <a href="explicitly-instantiating-voices.de.html">Stimmen explizit beginnen</a>.
+Diese Befehle
+sind nötig, wenn polyphone Musik geschrieben wird, damit sich
+die einzelnen Melodielinien klar abzeichnen.  Es kann aber von Zeit
+zu Zeit nötig sein, dieses automatische Verhalten zu verändern.  Das
+kann entweder für ganze Abschnitte, aber genauso auch nur für eine
+einzelne Note vorgenommen werden.  Die Eigenschaft, die die Richtung
+bestimmt, ist die <code>direction</code>-Eigenschaft eines jeden Layout-Objekts.
+Es soll erst erklärt werden, was sie bewirkt und dann eine Anzahl
+an fertigen Befehlen für die üblicheren Situationen präsentiert werden,
+mit denen Sie gleich loslegen können.
+</p>
+<p>Manche Layout-Objekte, wie Legato- und Bindebögen, biegen sich
+oder zeigen entweder nach oben oder nach unten, andere, wie
+Hälse und Fähnchen, verändern auch die Position rechts oder links,
+je nach der Richtung, in die sie zeigen.  Das wird automatisch
+berücksichtigt, wenn die <code>direction</code>-Eigenschaft verändert
+wird.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-direction-property" accesskey="1">The <code>direction</code>-Eigenschaft (Richtung)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#fingering" accesskey="2">Fingersatz</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Die-direction_002dEigenschaft"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Die Ausgabe verbessern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.de.html" title="N&auml;chstes Kapitel">&nbsp;Vorlagen &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#within_002dstaff-objects" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; within-staff (Objekte innerhalb des Notensystems)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;within-staff (Objekte innerhalb des Notensystems)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#fingering" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Fingersatz &gt; </a>]</td></tr></table>
+<a name="the-direction-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>direction</code>-Eigenschaft (Richtung)</h4>
+
+<a name="index-down"></a>
+<a name="index-down-1"></a>
+<a name="index-up"></a>
+<a name="index-up-1"></a>
+<a name="index-center"></a>
+<a name="index-center-1"></a>
+<a name="index-neutral"></a>
+<a name="index-neutral-1"></a>
+<a name="index-hoch_002dEigenschaft"></a>
+<a name="index-runter_002dEigenschaft"></a>
+<a name="index-zentriert_002dEigenschaft"></a>
+<a name="index-neutral_002dEigenschaft"></a>
+
+<p>Das folgende Beispiel zeigt im ersten Takt die Standardeinstellung
+für Legatobögen, die bei hohen Noten oberhalb, bei tiefen Noten indessen
+unterhalb platziert werden. Im nächsten Takt werden beide Bögen nach
+unten gezwungen, im darauf folgenden Takt nach oben, um schließlich
+wieder auf den Standard eingestellt zu werden.
+</p>
+<a name="index-Legatobogen_002c-Beispiel-zur-Veranderung-3"></a>
+<a name="index-Richtungseigenschaft_002c-Beispiel"></a>
+
+<blockquote><pre class="verbatim">a'4( g') c''( a') |
+\override Slur.direction = #DOWN
+a'4( g') c''( a') |
+\override Slur.direction = #UP
+a'4( g') c''( a') |
+\revert Slur.direction
+a'4( g') c''( a') |
+</pre><p>
+ <a href="../eb/lily-b31fb814.ly">
+  <img align="middle"
+       border="0"
+       src="../eb/lily-b31fb814.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wir haben hier die Konstanten <code>DOWN</code> und <code>UP</code>
+eingesetzt.  Sie haben die Werte <code>-1</code> bzw. <code>+1</code>, und
+diese numerischen Werte können ebenso benutzt werden.  Auch
+der Wert <code>0</code> kann in manchen Fällen benutzt werden.  Er
+bedeutet für die Legatobögen das gleiche wie <code>UP</code>, für einige
+andere Objekte jedoch &bdquo;zentriert&ldquo;.  Es gibt hierzu die Konstante
+<code>CENTER</code>, die den Wert <code>0</code> hat.
+</p>
+<p>Es gibt aber einfachere Befehle, die normalerweise benutzt werden.
+Hier eine Tabelle der häufigsten.  Die Bedeutung des Befehls wird
+erklärt, wenn sie nicht selbstverständlich ist.
+</p>
+<table>
+<thead><tr><th width="20%">Runter/Links</th><th width="20%">Rauf/Rechts</th><th width="25%">Rückgängig</th><th width="35%">Wirkung</th></tr></thead>
+<tr><td width="20%"><code>\arpeggioArrowDown</code></td><td width="20%"><code>\arpeggioArrowUp</code></td><td width="25%"><code>\arpeggioNormal</code></td><td width="35%">Arpeggio mit Pfeil nach unten, oben oder ohne Pfeil</td></tr>
+<tr><td width="20%"><code>\dotsDown</code></td><td width="20%"><code>\dotsUp</code></td><td width="25%"><code>\dotsNeutral</code></td><td width="35%">Richtung der Verschiebung eines Punktes, um Notenlinien zu vermeiden</td></tr>
+<tr><td width="20%"><code>\dynamicDown</code></td><td width="20%"><code>\dynamicUp</code></td><td width="25%"><code>\dynamicNeutral</code></td><td width="35%">Position der Dynamik-Bezeichnung relativ zum System</td></tr>
+<tr><td width="20%"><code>\phrasingSlurDown</code></td><td width="20%"><code>\phrasingSlurUp</code></td><td width="25%"><code>\phrasingSlurNeutral</code></td><td width="35%">Befehl für Richtung von Phrasierungsbögen</td></tr>
+<tr><td width="20%"><code>\slurDown</code></td><td width="20%"><code>\slurUp</code></td><td width="25%"><code>\slurNeutral</code></td><td width="35%">Befehl für Richtung von Legatobögen</td></tr>
+<tr><td width="20%"><code>\stemDown</code></td><td width="20%"><code>\stemUp</code></td><td width="25%"><code>\stemNeutral</code></td><td width="35%">Befehl für Richtung von Hälsen</td></tr>
+<tr><td width="20%"><code>\textSpannerDown</code></td><td width="20%"><code>\textSpannerUp</code></td><td width="25%"><code>\textSpannerNeutral</code></td><td width="35%">Position von Textbeschriftungen, die als Strecker eingegeben werden</td></tr>
+<tr><td width="20%"><code>\tieDown</code></td><td width="20%"><code>\tieUp</code></td><td width="25%"><code>\tieNeutral</code></td><td width="35%">Befehl für Richtung von Bindebögen</td></tr>
+<tr><td width="20%"><code>\tupletDown</code></td><td width="20%"><code>\tupletUp</code></td><td width="25%"><code>\tupletNeutral</code></td><td width="35%">Befehl für Richtung von Klammern/Zahlen der N-tolen</td></tr>
+</table>
+
+<p>Die neutralen/normalen Varianten dieser Befehle verwenden intern
+<code>\revert</code> und können daher <strong>nicht</strong> mit einem
+vorangestellten <code>\once</code> benutzt werden.  Wenn Sie die
+Wirkung eines der anderen Befehle (die intern <code>\override</code> verwenden)
+auf eine einzige Noten begrenzen wollen, müssen Sie ihm ein <code>\once</code>
+voranstellen, genauso wie Sie es auch bei einem expliziten <code>\override</code>
+machen würden.
+</p>
+<p>Falls nur ein einziges Layout Objekt nach oben oder unten gezwungen werden
+soll, können auch die Richtungsindikatoren <code>^</code> oder <code>_</code> verwendet werden:
+</p>
+<blockquote><pre class="verbatim">a'4( g') c''( a') |
+a'4^( g') c''_( a') |
+</pre><p>
+ <a href="../ea/lily-76950ae3.ly">
+  <img align="middle"
+       border="0"
+       src="../ea/lily-76950ae3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Fingersatz"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Die Ausgabe verbessern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.de.html" title="N&auml;chstes Kapitel">&nbsp;Vorlagen &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-direction-property" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Die direction-Eigenschaft&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;within-staff (Objekte innerhalb des Notensystems)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside_002dstaff-objects.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Objekte außerhalb des Notensystems &gt; </a>]</td></tr></table>
+<a name="fingering"></a>
+<h4 class="unnumberedsubsubsec">Fingersatz</h4>
+
+<a name="index-Fingersatz_002c-Positionierung"></a>
+<a name="index-Fingersatz_002c-Akkorde"></a>
+
+<p>Die Positionierung von Fingersatz kann auch durch den Wert
+seiner <code>direction</code>-Eigenschaft beeinflusst werden, aber
+eine Veränderung von  <code>direction</code> hat keinen Einfluss auf
+Akkorde. es gibt auch hier
+besondere Befehle, mit denen der Fingersatz von einzelnen
+Noten in Akkorden kontrolliert werden kann, wobei mögliche
+Positionen über, unter der Note und rechts bzw. links von
+ihr sind.
+</p>
+<p>Zunächst die Wirkungsweise von <code>direction</code> auf
+den Fingersatz: im ersten Takt der Standard, dann
+die Wirkung von <code>DOWN</code> (runter) und <code>UP</code>
+(hinauf).
+</p>
+<a name="index-Fingersatz_002c-Beispiel-zur-Veranderung"></a>
+<a name="index-direction_002dEigenschaft_002c-Beispiel-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4-5 a-3 f-1 c'-5 |
+  \override Fingering.direction = #DOWN
+  c4-5 a-3 f-1 c'-5 |
+  \override Fingering.direction = #UP
+  c4-5 a-3 f-1 c'-5 |
+}
+</pre><p>
+ <a href="../85/lily-70324033.ly">
+  <img align="middle"
+       border="0"
+       src="../85/lily-70324033.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Eine Beeinflussung der <code>direction</code>-Eigenschaft ist jedoch
+nicht die einfachste Art, Fingersatzbezeichnungen manuell über oder
+unter das System zu setzen.  Normalerweise bietet es sich an,
+<code>_</code> oder <code>^</code> anstelle von <code>-</code> vor der Fingersatz-Zahl
+zu benutzen.  Hier das vorherigen Beispiel mit dieser Methode:
+</p>
+<a name="index-Fingersatz_002dBeispiel"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4-5 a-3 f-1 c'-5 |
+  c4_5 a_3 f_1 c'_5 |
+  c4^5 a^3 f^1 c'^5 |
+}
+</pre><p>
+ <a href="../4e/lily-1b648776.ly">
+  <img align="middle"
+       border="0"
+       src="../4e/lily-1b648776.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die <code>direction</code>-Eigenschaft wirkt sich nicht auf
+Akkorde aus, während die Präfixe <code>_</code> und <code>^</code> funktionieren.
+Standardmäßig wird der Fingersatz automatisch entweder
+über oder unter dem Akkord gesetzt:
+</p>
+<a name="index-Fingersatz_002dBeispiel-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-5 g-3&gt;4
+  &lt;c-5 g-3 e-2&gt;4
+  &lt;c-5 g-3 e-2 c-1&gt;4
+}
+</pre><p>
+ <a href="../dc/lily-1efbbd59.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-1efbbd59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>aber das kann manuell geändert werden, um einzelne Fingersatzanweisungen
+nach oben oder unten zu zwingen:
+</p>
+<a name="index-Fingersatz_002dBeispiel-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-5 g-3 e-2 c-1&gt;4
+  &lt;c^5 g_3 e_2 c_1&gt;4
+  &lt;c^5 g^3 e^2 c_1&gt;4
+}
+</pre><p>
+ <a href="../b8/lily-153895ca.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-153895ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Noch bessere Kontrolle über die Positionierung von Fingersatz für
+einzelne Noten in einem Akkord ist mit dem
+<code>\set fingeringOrientations</code>-Befehl möglich.  Die Syntax
+lautet:
+</p>
+<blockquote><pre class="example"><code>\set fingeringOrientations = #'([up] [left/right] [down])</code>
+</pre></blockquote>
+
+<p><code>\set</code>wird benutzt, weil <code>fingeringOrientations</code> eine
+Eigenschaft des <code>Voice</code>-Kontextes ist, erstellt und eingesetzt
+vom <code>New_fingering_engraver</code>.
+</p>
+<p>Die Eigenschaft kann als Wert eine Liste mit einem bis drei Einträgen
+haben.  Damit wird bestimmt, ob Fingersatz oberhalb gesetzt
+werden kann (wenn <code>up</code> in der Liste auftaucht), darunter
+(wenn<code>down</code> auftaucht), links (wenn <code>left</code> auftaucht)
+oder rechts (wenn <code>right</code> auftaucht).  Wenn andererseits
+ein Wert nicht auftaucht, wir auch kein Fingersatz in dieser Richtung
+gesetzt.  LilyPond nimmt diese Beschränkung als Bedingung und
+errechnet die besten Positionen für die Noten des nächsten Akkordes.
+Die seitliche Positionierung kann nur auf einer Seite des Akkordes
+geschehen, nicht auf beiden gleichzeitig, es kann also nur entweder
+<code>left</code> oder <code>right</code> auftreten, nicht beide gleichzeitig.
+</p>
+<div class="warning"><p><strong>Achtung:</strong> Damit eine einzelne Note mit diesem Befehl beeinflusst werden
+kann, muss sie als ein &bdquo;Ein-Noten-Akkord&ldquo; geschrieben
+werden, indem einfache spitze Klammern um die Note positioniert
+werden.
+</p>
+</div>
+<p>Hier ein paar Beispiele:
+</p>
+<a name="index-Fingersatz_002dBeispiel-3"></a>
+<a name="index-_005cset_002c-Benutzungsbeispiel"></a>
+<a name="index-fingerOrientations_002dEigenschaft_002c-Beispiel"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \set fingeringOrientations = #'(left)
+  &lt;f'-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(up left down)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(up left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(right)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+}
+</pre><p>
+ <a href="../b7/lily-13a8f6df.ly">
+  <img align="middle"
+       border="0"
+       src="../b7/lily-13a8f6df.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn die Fingersatzbezeichnung zu gedrungen aussieht,
+kann auch die Schriftgröße (<code>font-size</code>) verringert
+werden.  Der Standardwert kann aus dem
+<code>Fingering</code>-Objekt in der IR entnommen werden,
+er ist <code>-5</code>, versuchen wir es also mit <code>-7</code>.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \override Fingering.font-size = #-7
+  \set fingeringOrientations = #'(left)
+  &lt;f'-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(up left down)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(up left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(right)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+}
+</pre><p>
+ <a href="../b1/lily-f768b697.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-f768b697.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Die Ausgabe verbessern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.de.html" title="N&auml;chstes Kapitel">&nbsp;Vorlagen &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-direction-property" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Die direction-Eigenschaft&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;within-staff (Objekte innerhalb des Notensystems)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside_002dstaff-objects.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Objekte außerhalb des Notensystems &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="within_002dstaff-objects.html">English</a>, <a href="within_002dstaff-objects.ca.html">català</a>, <a href="within_002dstaff-objects.cs.html">česky</a>, <a href="within_002dstaff-objects.es.html">español</a>, <a href="within_002dstaff-objects.fr.html">français</a>, <a href="within_002dstaff-objects.it.html">italiano</a>, <a href="within_002dstaff-objects.ja.html">日本語</a>, <a href="within_002dstaff-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Learning Manual  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorium-1" href="tutorial.de.html">1. Tutorium</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eine-Quelldatei-ubersetzen" href="compiling-a-file.de.html">1.1 Eine Quelldatei übersetzen</a>    </li>
+    <li class=""><a name="toc-Wie-werden-Eingabe_002dDateien-geschrieben-1" href="how-to-write-input-files.de.html">1.2 Wie werden Eingabe-Dateien geschrieben</a>    </li>
+    <li class=""><a name="toc-Fehlerbehandlung-1" href="dealing-with-errors.de.html">1.3 Fehlerbehandlung</a>    </li>
+    <li class=""><a name="toc-Wie-die-Handbucher-gelesen-werden-sollten" href="how-to-read-the-manuals.de.html">1.4 Wie die Handbücher gelesen werden sollten</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ubliche-Notation" href="common-notation.de.html">2. Übliche Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-auf-einem-System-1" href="single-staff-notation.de.html">2.1 Notation auf einem System</a>    </li>
+    <li class=""><a name="toc-Mehrere-Noten-auf-einmal-1" href="multiple-notes-at-once.de.html">2.2 Mehrere Noten auf einmal</a>    </li>
+    <li class=""><a name="toc-Lieder-1" href="songs.de.html">2.3 Lieder</a>    </li>
+    <li class=""><a name="toc-Letzter-Schliff-1" href="final-touches.de.html">2.4 Letzter Schliff</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Grundbegriffe-1" href="fundamental-concepts.de.html">3. Grundbegriffe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Wie-eine-LilyPond_002dEingabe_002dDatei-funktioniert-1" href="how-lilypond-input-files-work.de.html">3.1 Wie eine LilyPond-Eingabe-Datei funktioniert</a>    </li>
+    <li class=""><a name="toc-Voice-enthalt-Noten" href="voices-contain-music.de.html">3.2 Voice enthält Noten</a>    </li>
+    <li class=""><a name="toc-Kontexte-und-Engraver-1" href="contexts-and-engravers.de.html">3.3 Kontexte und Engraver</a>    </li>
+    <li class=""><a name="toc-Erweiterung-der-Vorlagen-1" href="extending-the-templates.de.html">3.4 Erweiterung der Vorlagen</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Die-Ausgabe-verbessern-1" href="tweaking-output.de.html">4. Die Ausgabe verbessern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Grundlagen-fur-die-Optimierung" href="tweaking-basics.de.html">4.1 Grundlagen für die Optimierung</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-1" href="the-internals-reference-manual.de.html">4.2 Die Referenz der Programminterna</a>    </li>
+    <li class=""><a name="toc-Erscheinung-von-Objekten-1" href="appearance-of-objects.de.html">4.3 Erscheinung von Objekten</a>    </li>
+    <li class=" toc_current"><a name="toc-Positionierung-von-Objekten-1" href="placement-of-objects.de.html">4.4 Positionierung von Objekten</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Automatisches-Verhalten-1" href="automatic-behavior.de.html">4.4.1 Automatisches Verhalten</a>      </li>
+      <li class=" toc_current"><a name="toc-within_002dstaff-_0028Objekte-innerhalb-des-Notensystems_0029-1" href="within_002dstaff-objects.de.html">4.4.2 within-staff (Objekte innerhalb des Notensystems)</a>
+      <ul class="toc">
+        <li class=""><a name="toc-The-direction_002dEigenschaft-_0028Richtung_0029" href="within_002dstaff-objects.de.html#the-direction-property">The <code>direction</code>-Eigenschaft (Richtung)</a>        </li>
+        <li class=""><a name="toc-Fingersatz-1" href="within_002dstaff-objects.de.html#fingering">Fingersatz</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Objekte-ausserhalb-des-Notensystems" href="outside_002dstaff-objects.de.html">4.4.3 Objekte außerhalb des Notensystems</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.5 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Kollision-von-Objekten-1" href="collisions-of-objects.de.html">4.6 Kollision von Objekten</a>    </li>
+    <li class=""><a name="toc-Weitere-Optimierungen-1" href="further-tweaking.de.html">4.7 Weitere Optimierungen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Vorlagen-1" href="templates.de.html">A. Vorlagen</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingebaute-Vorlagen-1" href="built_002din-templates.de.html">A.1 Eingebaute Vorlagen</a>    </li>
+    <li class=""><a name="toc-Vorlagen-fur-ein-einzelnes-System" href="single-staff-templates.de.html">A.2 Vorlagen für ein einzelnes System</a>    </li>
+    <li class=""><a name="toc-Klaviervorlagen-1" href="piano-templates.de.html">A.3 Klaviervorlagen</a>    </li>
+    <li class=""><a name="toc-Vorlagen-fur-Streichquartette" href="string-quartet-templates.de.html">A.4 Vorlagen für Streichquartette</a>    </li>
+    <li class=""><a name="toc-Vokalensemble-1" href="vocal-ensembles-templates.de.html">A.5 Vokalensemble</a>    </li>
+    <li class=""><a name="toc-Orchestervorlagen-1" href="orchestral-templates.de.html">A.6 Orchestervorlagen</a>    </li>
+    <li class=""><a name="toc-Vorlagen-fur-alte-Notation" href="ancient-notation-templates.de.html">A.7 Vorlagen für alte Notation</a>    </li>
+    <li class=""><a name="toc-Andere-Vorlagen-1" href="other-templates.de.html">A.8 Andere Vorlagen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">C. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

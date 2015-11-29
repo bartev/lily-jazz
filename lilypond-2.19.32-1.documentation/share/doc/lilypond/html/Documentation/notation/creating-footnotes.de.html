@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 3.2.3 Fußnoten erstellen</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 3.2.3 Fußnoten erstellen">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 3.2.3 Fußnoten erstellen">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="titles-and-headers.de.html#titles-and-headers" rel="up" title="3.2 Titel">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="custom-headers-footers-and-titles.de.html#custom-headers-footers-and-titles" rel="previous" title="3.2.2 Eigene Kopf- und Fußzeilen sowie Titel">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Fu_00dfnoten-erstellen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="custom-headers-footers-and-titles.de.html#custom-layout-for-headers-and-footers" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Angepasstes Layout für Kopf und Fußzeilen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="titles-and-headers.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Titel&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#footnotes-overview" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Übersicht über Fußnoten &gt; </a>]</td></tr></table>
+<a name="creating-footnotes"></a>
+<h3 class="subsection">3.2.3 Fußnoten erstellen</h3>
+
+<p>Zwei Arten an Fußnoten können erstellt werden: automatische und
+manuelle Fußnoten.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#footnotes-overview" accesskey="1">Übersicht über Fußnoten</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#automatic-footnotes" accesskey="2">Automatische Fußnoten</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#manual-footnotes" accesskey="3">Manuelle Fußnoten</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_00dcbersicht-_00fcber-Fu_00dfnoten"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#creating-footnotes" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Fußnoten erstellen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Fußnoten erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-footnotes" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Automatische Fußnoten &gt; </a>]</td></tr></table>
+<a name="footnotes-overview"></a>
+<h4 class="unnumberedsubsubsec">Übersicht über Fußnoten</h4>
+
+<p>Automatische Fußnoten erstellen aufsteigende Zahlenverweise, während
+mit manuellen Fußnoten eigene angepasste Verweise erstellt werden
+können.  Fußnoten werden normalerweise wie ein <code>\tweak</code>-Befehl
+an Noten gehängt und können deshalb auch direkt mit den Grobs
+(graphischen Objekten) verknüpft werden, die von den meisten
+musikalischen Elementen und Postelementen erstellt werden.  In Fällen, wo
+das nicht funktioniert (etwa bei Taktstrichen und Taktartänderungen, wo
+die Grobs als Folge einer Eigenschaftsänderung erstellt werden), können
+Fußnoten als einzelnstehendes musikalisches Ereigenis ersetllt werden,
+das sich auf alle Grobs eines bestimmten Typs zu einer bestimmten Zeit
+bezieht.
+</p>
+<p>Der vollständige Befehl ist:
+</p>
+<blockquote><pre class="example">\footnote <var>Zeichen</var> <var>Verschiebung</var> <var>Grob-Bezeichnung</var> <var>Fußnote</var>
+<var>Noten</var>
+</pre></blockquote>
+
+<p>Die Elemente sind folgende:
+</p>
+<dl compact="compact">
+<dt><var></var></dt>
+<dd><p>Zeichen
+ist eine Beschriftung oder Zeichenkette, die das Fußnotenzeichen
+angbit, welches für den Referenzpunkt als auch für die Fußnote
+unten auf der Seite benützt wird.  Es kann ausgelassen werden
+(oder durch <code>\default</code> ersetzt werden); in diesem Fall wird
+eine aufsteigende Zahlenfolge erstellt.
+</p>
+</dd>
+<dt> <var>Verschiebung (offset)</var></dt>
+<dd><p>ist ein Zahlenpaar wie etwa &lsquo;<samp>#(2 . 1)</samp>&rsquo;, das die X- und Y-Verschiebung
+vom Referenzpunkt aus angibt, wo das Zeichen gesetzt werden soll.
+</p>
+</dd>
+<dt> <var>Grob-Bezeichnung</var></dt>
+<dd><p>gibt die Grob-Art an, der ein Fußnotenzeichen hinzugefügt werden soll
+(wie etwa &lsquo;<samp>#'Flag</samp>&rsquo;).  Wenn sie angegeben wird, wird der entsprechende
+Grob als Referenzpunkt eingesetzt, auch wenn das referenzierte Element
+nicht die <var>Noten</var> selber sind, sondern ein Grob, der durch sie
+erstellt wird.  Das Element kann ausgelassen werden (oder durch
+<code>\default</code> ersetzt werden); dann wird nur ein direkt erstellter Grob
+mit Fußnote versehen.
+</p>
+</dd>
+<dt> <var>Fußnote</var></dt>
+<dd><p>Diese Beschriftung oder Zeichenkette bezeichnet den Fußnotentext, der
+am unteren Seitenrand gesetzt werden soll.
+</p>
+</dd>
+<dt> <var>Noten</var></dt>
+<dd><p>Das ist das Element, ein musikalisches Ereignis oder eine Akkordkonstruktion
+oder ein Post-Ereignis, das die Fußnote erhält.  Man kann es nicht auslassen,
+aber man <em>kann</em> es durch <code>\default</code> ersetzten.  In diesem Fall
+wird die Fußnote aber nicht an einen bestimmten musikalischen Ausdruck
+angehänt, sondern an einen zeitlichen Moment.  In diesem Fall muss man
+zwingend die <var>Grob-Bezeichnung</var> angeben, um den Grob-Typ auszuwählen, auf
+den sich die Fußnote bezieht (etwa &lsquo;<samp>#'TimeSignature</samp>&rsquo;).
+</p></dd>
+</dl>
+
+<p>Wie auch mit <code>\tweak</code> muss dem <code>\footnote</code>-Befehl <code>-</code>
+vorangestellt werde,n wenn er an ein Post-Ereignis oder eine
+Artikulation angehängt werden soll, damit der Parser das Ergebnis
+der vorherigen Note oder Pause zuordnen kann.
+</p>
+
+<hr size="6">
+<a name="Automatische-Fu_00dfnoten"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#footnotes-overview" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Übersicht über Fußnoten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Fußnoten erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#manual-footnotes" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Manuelle Fußnoten &gt; </a>]</td></tr></table>
+<a name="automatic-footnotes"></a>
+<h4 class="unnumberedsubsubsec">Automatische Fußnoten</h4>
+
+<a name="index-Fussnoten_002c-automatisch"></a>
+
+<p>Automatische Fußnoten haben vier Argumente: die <var>(x . y)</var>-Position des Indikators,
+die optionale <var>Grob-Bezeichnung</var>, die die Anmerkung erhalten soll,
+die <var>Fußnote</var>-Beschriftung, die den Inhalt der Fußnote enthält, und
+natürlich die <var>Noten</var>, welche mit einer Fußnote versehen werden sollen.
+</p>
+<p>Der Befehl <code>\footnote</code> muss <em>vor</em> dem Grob geschrieben
+werden, auf den sich die Fußnote bezieht.
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    \footnote #'(0.5 . -2)
+      \markup { Die erste Note }
+    a'4 b8
+    \footnote #'(0.5 . 1)
+      \markup { Die dritte Note } Flag
+    e\noBeam c4 d4
+  }
+}
+</pre><p>
+ <a href="../5e/lily-112f2dfb.ly">
+  <img align="middle"
+       border="0"
+       src="../5e/lily-112f2dfb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Noten in Akkorden stellen keine Schwierigkeit dar:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    &lt;
+    \footnote #'(1 . -1.25) &quot;Hier ein C&quot; c
+    \footnote #'(2 . -0.25) \markup { \italic &quot;Ein Es&quot; } es
+    \footnote #'(2 . 3) \markup { \bold &quot;Das ist ein G&quot; } g
+    &gt;1
+  }
+}
+</pre><p>
+ <a href="../27/lily-f56f1d34.ly">
+  <img align="middle"
+       border="0"
+       src="../27/lily-f56f1d34.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><strong>Achtung:</strong> Wenn Fußnoten die selbe vertikale Position haben, werden
+sie von oben nach unten nummeriert.
+</p>
+</div>
+<p>Hier noch einige Beispiele von Grobs, die mit Fußnoten
+versehen sind, wobei auch die Position des Fußnotentextes relativ zu
+Tagline und Copyright gezeigt wird.
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { copyright = \markup { &quot;Copyright 1970&quot; } }
+  \relative {
+    a'4-\footnote #'(-3 . 0) \markup { \bold Forte } \f
+    -\footnote #'(0 . 1.5) \markup { Ein Bogen } (
+    b8)-\footnote #'(0 . -2) \markup { Balken } [ e]
+    \single\footnote #'(1 . -1)
+      \markup  { \teeny { Das ist ein Hals } } Stem
+    c4
+    \single\footnote #'(0 . 0.5)
+      \markup \italic { Ein warnendes Versetzungszeichen } AccidentalCautionary
+    \footnote #'(1 . 1) &quot;Die Note selber&quot;
+    dis?4-\footnote #'(0.5 . -0.5) \markup \italic { langsamer werden }
+         _&quot;rit.&quot;
+  }
+}
+</pre><p>
+ <a href="../dc/lily-828f8cdf.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-828f8cdf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Für eine <code>\markup</code>-Beschriftung auf oberster Ebene braucht man
+den Befehl <code>\auto-footnote</code>:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \markup { \auto-footnote &quot;Eine einfache Melodie&quot; \italic &quot;Von mir&quot; }
+  \relative {
+    a'4 b8 e c4 d
+  }
+}
+</pre><p>
+ <a href="../93/lily-8478ed91.ly">
+  <img align="middle"
+       border="0"
+       src="../93/lily-8478ed91.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Manuelle-Fu_00dfnoten"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-footnotes" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatische Fußnoten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Fußnoten erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="reference-to-page-numbers.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Verweis auf die Seitenzahlen &gt; </a>]</td></tr></table>
+<a name="manual-footnotes"></a>
+<h4 class="unnumberedsubsubsec">Manuelle Fußnoten</h4>
+
+<a name="index-Fussnoten_002c-manuell"></a>
+
+<p>Manuell erstellte Fußnoten haben ein zusätzliches erstes Argument
+<var>Zeichen</var>, das das Fußnotenzeichen erstellt.  Im Gegensatz zu
+automatisch erstellten Fußnotenzeichen erscheinen sie nicht unbedingt
+vor dem Fußnotentext unten auf der Seite &ndash; das Herstellen eines visualen
+Zusammenhanges ist dem Setzer überlassen.  LilyPond stellt nur ischer, dass
+der zugehörige Text unten auf der selben Seite erscheint.
+</p>
+<p>Davon abgesehen ist die Benutzung identisch mit automatischen Fußnoten.
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    \footnote
+          &quot;1&quot; #'(0.5 . -2)
+          \markup { \italic &quot;1. Die erste Note&quot; }
+    a'4
+    b8
+    \footnote
+          \markup { \bold &quot;2&quot; } #'(0.5 . 1)
+          &quot;2. Die zweite Note&quot;
+    e
+    c4
+    d-\footnote &quot;3&quot; #'(0.5 . -1) &quot;3. Piano&quot; \p
+  }
+}
+</pre><p>
+ <a href="../d8/lily-d3b98c72.ly">
+  <img align="middle"
+       border="0"
+       src="../d8/lily-d3b98c72.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Fußnoten für Akkordnoten werden wie folgt notiert:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    &lt;
+    \footnote &quot;1&quot; #'(1 . -1.25) &quot;1. C&quot; c
+    \footnote
+       \markup { \bold &quot;b&quot; } #'(2 . -0.25) &quot;b. E-flat&quot; es
+    \footnote &quot;3&quot; #'(2 . 3) \markup { \italic &quot;iii. G&quot; } g
+    &gt;1
+  }
+}
+</pre><p>
+ <a href="../9c/lily-cd7e9333.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-cd7e9333.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><strong>Achtung:</strong> Wenn Fußnoten die selbe vertikale Position haben, werden
+sie von oben nach unten nummeriert.
+</p>
+</div>
+<p>Hier einige Beispiele manueller Fußnoten, die auch die relative
+Position der Fußnotentexte zu Tagline und Copyright anzeigen:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative {
+    a'4-\footnote
+      \markup { \teeny 1 } #'(-3 . 0)
+      \markup { 1. \bold Forte } \f
+    -\footnote
+      \markup { \teeny b } #'(0 . 1.5)
+      \markup { b. Ein Bogen } (
+    b8)-\footnote
+      \markup { \teeny 3 } #'(0 . -2)
+      \markup { 3. Balken } [
+    e]
+    \single\footnote
+      \markup { 4 } #'(1 . -1)
+      \markup  { \bold 4. { Das ist ein Hals } } Stem
+    c4
+    \single\footnote
+      \markup \concat \teeny { &quot;sharp (v)&quot; }
+          #'(0 . 0.5)
+      \markup \italic { v. Ein warndendes Versetzungszeichen } AccidentalCautionary
+    dis?4-\footnote
+      \markup \concat \teeny { &quot;a&quot; } #'(0.5 . -0.5)
+      \markup \italic { a. Langsamer werden } _&quot;rit.&quot;
+    \footnote
+      \markup { \teeny \musicglyph #&quot;rests.4&quot; }
+          #'(1.5 . -0.25)
+      \markup { \null } \breathe
+  }
+}
+</pre><p>
+ <a href="../67/lily-0f190e1a.ly">
+  <img align="middle"
+       border="0"
+       src="../67/lily-0f190e1a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Eine <code>\markup</code>-Beschriftung der höchsten Ebene wird wie folgt
+annotiert:
+</p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \markup { &quot;Eine einfache Melodie&quot; \footnote &quot;*&quot; \italic &quot;* Von mir&quot; }
+  \relative {
+    a'4 b8 e c4 d4
+  }
+}
+</pre><p>
+ <a href="../d9/lily-e0cd8016.ly">
+  <img align="middle"
+       border="0"
+       src="../d9/lily-e0cd8016.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-221"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Handbuch zum Lernen:
+<a name="index-Objekte-und-Schnittstellen"></a>
+<a href="../learning/objects-and-interfaces.de.html">Objekte und Schnittstellen</a>.
+</p>
+<p>Notationsreferenz:
+<a href="outside-the-staff.de.html#balloon-help">Erklärungen in Ballonform</a>,
+<a href="page-layout.de.html">Seitenlayout</a>,
+<a href="writing-text.de.html#text-marks">Textartige Zeichen</a>,
+<a href="writing-text.de.html#text-scripts">Textarten</a>,
+<a href="titles-and-headers.de.html">Titel</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-FootnoteEvent"></a>
+<a href="../internals/footnoteevent.de.html">FootnoteEvent</a>,
+<a name="index-FootnoteItem"></a>
+<a href="../internals/footnoteitem.de.html">FootnoteItem</a>,
+<a name="index-FootnoteSpanner"></a>
+<a href="../internals/footnotespanner.de.html">FootnoteSpanner</a>,
+<a name="index-Footnote_005fengraver"></a>
+<a href="../internals/footnote_005fengraver.de.html">Footnote_engraver</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-51"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p>Mehrere Fußnoten auf einer Seite können ausschließlich übereinander
+gedruckt werden und nicht auf der gleiche Zeile gesetzt werden.
+Fußnoten können nicht an <code>MultiMeasureRests</code> (mehrtaktige Pause)
+angehängt werden und können mit <code>Staff</code>-(Notensystem)-,
+<code>\markup</code>-(Beschriftungs)-Objekten und anderen Fußnoten
+zusammenstoßen.  Wenn man den manuellen Fußnotenbefehl einsetzt,
+braucht man in der <code>\paper</code>-Umgebung den Eintrag
+<code>footnote-auto-number = ##f</code>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Allgemeine Eingabe und Ausgabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.de.html" title="N&auml;chstes Kapitel">&nbsp;Abstände &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-footnotes" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatische Fußnoten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Fußnoten erstellen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="reference-to-page-numbers.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Verweis auf die Seitenzahlen &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="creating-footnotes.html">English</a>, <a href="creating-footnotes.es.html">español</a>, <a href="creating-footnotes.fr.html">français</a>, <a href="creating-footnotes.it.html">italiano</a>, <a href="creating-footnotes.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=" toc_current"><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Titel_002c-Kopf_002d-und-Fusszeilen-erstellen" href="creating-titles-headers-and-footers.de.html">3.2.1 Titel, Kopf- und Fußzeilen erstellen</a>      </li>
+      <li class=""><a name="toc-Eigene-Kopf_002d-und-Fusszeilen-sowie-Titel" href="custom-headers-footers-and-titles.de.html">3.2.2 Eigene Kopf- und Fußzeilen sowie Titel</a>      </li>
+      <li class=" toc_current"><a name="toc-Fussnoten-erstellen" href="creating-footnotes.de.html">3.2.3 Fußnoten erstellen</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Ubersicht-uber-Fussnoten" href="creating-footnotes.de.html#footnotes-overview">Übersicht über Fußnoten</a>        </li>
+        <li class=""><a name="toc-Automatische-Fussnoten" href="creating-footnotes.de.html#automatic-footnotes">Automatische Fußnoten</a>        </li>
+        <li class=""><a name="toc-Manuelle-Fussnoten" href="creating-footnotes.de.html#manual-footnotes">Manuelle Fußnoten</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Verweis-auf-die-Seitenzahlen-1" href="reference-to-page-numbers.de.html">3.2.4 Verweis auf die Seitenzahlen</a>      </li>
+      <li class=""><a name="toc-Inhaltsverzeichnis-1" href="table-of-contents.de.html">3.2.5 Inhaltsverzeichnis</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

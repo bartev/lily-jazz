@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel d'initiation: 3.3.4 Modification des propriétés d'un contexte</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel d'initiation: 3.3.4 Modification des propriétés d'un contexte">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel d'initiation: 3.3.4 Modification des propriétés d'un contexte">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel d'initiation">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="C. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="contexts-and-engravers.fr.html#contexts-and-engravers" rel="up" title="3.3 Contextes et graveurs">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="C. Index de LilyPond">
+<link href="engravers-explained.fr.html#engravers-explained" rel="previous" title="3.3.3 Tout savoir sur les graveurs">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="learning devStatus">
+
+
+<div id="main">
+<a name="Modification-des-propri_00e9t_00e9s-d_0027un-contexte"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Concepts fondamentaux&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.fr.html" title="Chapitre suivant">&nbsp;Retouche de partition &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Tout savoir sur les graveurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Contextes et graveurs&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Ajout et suppression de graveurs &gt; </a>]</td></tr></table>
+<a name="modifying-context-properties"></a>
+<h3 class="subsection">3.3.4 Modification des propriétés d&rsquo;un contexte</h3>
+
+<a name="index-contexte_002c-proprietes"></a>
+<a name="index-proprietes-d_0027un-contexte_002c-modification"></a>
+<a name="index-modification-des-proprietes-d_0027un-contexte"></a>
+
+<a name="index-_005cset"></a>
+<a name="index-_005cset-1"></a>
+<a name="index-set"></a>
+<a name="index-set-1"></a>
+<a name="index-_005cunset"></a>
+<a name="index-_005cunset-1"></a>
+<a name="index-unset"></a>
+<a name="index-unset-1"></a>
+
+<p>Les contextes gèrent les différentes valeurs des nombreuses
+<em>propriétés</em> qui leur sont attachées.  Beaucoup d&rsquo;entre elles
+sont susceptibles d&rsquo;être modifiées afin d&rsquo;influer sur l&rsquo;interprétation
+de l&rsquo;input et ainsi changer l&rsquo;apparence du résultat.  On les modifie
+grâce à la commande <code>\set</code>, qui s&rsquo;utilise ainsi :
+</p>
+<blockquote><pre class="example">\set <em>ContexteNommé</em>.<em>propriétéNommée</em> = #<em>valeur</em>
+</pre></blockquote>
+
+<p>où <em>ContexteNommé</em> est habituellement <code>Score</code>,
+<code>Staff</code> ou <code>Voice</code>.  S&rsquo;il n&rsquo;est pas mentionné, il sera
+considéré comme étant <code>Voice</code>.
+</p>
+<p>Les noms des propriétés de contexte sont composés de mots accolés sans
+trait d&rsquo;union ni caractère souligné, et dont seul le premier n&rsquo;aura pas
+d&rsquo;initiale en majuscule.  Voici quelques exemples de celles les plus
+communément utilisées.
+</p>
+<table>
+<thead><tr><th width="25%">propriétéNommée</th><th width="15%">Type</th><th width="45%">Fonction</th><th width="15%">Exemple de valeur</th></tr></thead>
+<tr><td width="25%">extraNatural</td><td width="15%">Booléen</td><td width="45%">Si vrai, ajoute un bécarre avant une altération accidentelle</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">currentBarNumber</td><td width="15%">Entier</td><td width="45%">Détermine le numéro de la mesure en cours</td><td width="15%"><code>50</code></td></tr>
+<tr><td width="25%">doubleSlurs</td><td width="15%">Booléen</td><td width="45%">Si vrai, imprime les liaisons au-dessous <strong>et</strong> au-dessus
+  des notes</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">instrumentName</td><td width="15%">Texte</td><td width="45%">Détermine le nom à afficher en début de portée</td><td width="15%"><code>&quot;Cello I&quot;</code></td></tr>
+<tr><td width="25%">fontSize</td><td width="15%">Réel</td><td width="45%">Augmente ou diminue la taille de la fonte</td><td width="15%"><code>2.4</code></td></tr>
+<tr><td width="25%">stanza</td><td width="15%">Texte</td><td width="45%">Détermine le texte à imprimer avant le début d&rsquo;un couplet</td><td width="15%"><code>&quot;2&quot;</code></td></tr>
+</table>
+
+<p>où un booléen correspond soit à vrai (<code>#t</code> pour <em>True</em> en
+anglais) ou faux (<code>#f</code> pour <em>False</em> en anglais), un entier est
+un nombre entier positif, un réel est un nombre décimal positif ou
+négatif, et texte correspond à une suite de caractères encadrée par des
+apostrophes doubles.  Attention à la présence des signes dièse
+(<code>#</code>) dans deux cas particuliers : ils sont partie intégrante
+des valeurs booléennes et précèdent les <code>t</code> ou <code>f</code>, mais
+doivent aussi précéder <em>valeur</em> dans le libellé de la commande
+<code>\set</code>. Il faudra donc, dans le cas d&rsquo;une valeur booléenne, ne pas
+oublier de saisir deux signes dièse &ndash; par exemple <code>##t</code>.
+</p>
+<a name="index-proprietes-et-contextes"></a>
+<a name="index-reglage-de-proprietes-au-sein-des-contextes"></a>
+
+<p>Avant de déterminer l&rsquo;une de ces propriétés, nous devons savoir dans
+quel contexte elle intervient.  Si cela est bien souvent évident, il
+peut arriver que cela tourne au cauchemar.  Lorsque vous ne spécifiez
+pas le bon contexte, aucun message d&rsquo;erreur ne s&rsquo;affiche et l&rsquo;effet
+attendu n&rsquo;est pas au rendez-vous.  Par exemple, le <code>instrumentName</code>
+est de manière incontestable membre du contexte <code>Staff</code>, puisque
+c&rsquo;est bien la portée que l&rsquo;on va nommer.
+Dans l&rsquo;exemple suivant, la première portée affiche effectivement un nom,
+alors que ce n&rsquo;est pas le cas pour la deuxième dans la mesure où le
+contexte n&rsquo;a pas été spécifié.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    \set Staff.instrumentName = #&quot;Soprano&quot;
+    c''4 c
+ }
+  \new Staff \relative {
+  \set instrumentName = #&quot;Alto&quot;  % Wrong!
+  d'4 d
+ }
+&gt;&gt;
+</pre><p>
+ <a href="../ef/lily-f5c422f3.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-f5c422f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Dans la mesure où le nom de contexte par défaut est <code>Voice</code>, la
+deuxième commande <code>\set</code> a défini &laquo;&nbsp;Alto&nbsp;&raquo; comme propriété
+<code>instrumentName</code> du contexte de voix.  Puisque LilyPond n&rsquo;ira pas
+chercher une telle propriété dans le contexte <code>Voice</code>, celle-ci ne
+sera pas interprétée.  Il ne s&rsquo;agit pas d&rsquo;une erreur, aucun message
+d&rsquo;erreur ne sera ni émis ni enregistré.
+</p>
+<p>De la même manière, une faute d&rsquo;orthographe dans le nom de la propriété
+ne générera aucun message d&rsquo;erreur et l&rsquo;action escomptée ne se produira
+pas.  Vous pourriez déterminer par la commande <code>\set</code> n&rsquo;importe
+quelle &laquo;&nbsp;propriété&nbsp;&raquo;, même fictive, à partir de n&rsquo;importe quel nom et
+dans n&rsquo;importe lequel des contextes disponibles.  Mais tant que ce nom
+est inconnu de LilyPond, rien ne se passera.  Certains éditeurs de texte
+disposent d&rsquo;une prise en charge spécifique aux fichiers source LilyPond,
+à l&rsquo;instar de LilyPondTool couplé à JEdit et qui documente les noms des
+propriétés dans une infobulle lorsque vous les survolez à la souris, ou
+les souligne différemment s&rsquo;ils sont inconnus, comme ConTEXT.  Dans le
+cas où votre éditeur ne dispose pas de ces fonctionnalités, nous vous
+recommandons de vérifier le nom des propriétés que vous manipulez dans
+la Référence des propriétés internes &ndash; voir
+<a name="index-Tunable-context-properties"></a>
+<a href="../internals/tunable-context-properties.fr.html">Tunable context properties</a>, ou <a name="index-Contexts"></a>
+<a href="../internals/contexts.fr.html">Contexts</a>.
+</p>
+<p>La propriété <code>instrumentName</code> ne sera prise en compte que si elle
+est définie dans un contexte <code>Staff</code> ; d&rsquo;autres propriétés
+peuvent par contre être définies dans plusieurs contextes différents.
+C&rsquo;est le cas de la propriété <code>extraNatural</code> qui est définie par
+défaut à <code>##t</code> (vrai) pour toutes les portées.  Si vous lui
+attribuez la valeur <code>##f</code> (faux) dans un contexte <code>Staff</code>
+particulier, elle ne s&rsquo;appliquera qu&rsquo;aux altérations de la portée en
+question ; si vous lui attribuez la valeur &laquo;&nbsp;faux&nbsp;&raquo; au niveau du
+contexte <code>Score</code>, cela s&rsquo;appliquera alors à toutes les portées.
+</p>
+<p>Voici comment supprimer les bécarres supplémentaires pour une portée :
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    aeses'2 aes
+  }
+  \new Staff \relative {
+    \set Staff.extraNatural = ##f
+    aeses'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../2f/lily-b68f5016.ly">
+  <img align="middle"
+       border="0"
+       src="../2f/lily-b68f5016.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>et pour toutes les portées :
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    aeses'2 aes
+  }
+  \new Staff \relative {
+    \set Score.extraNatural = ##f
+    aeses'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../3f/lily-957110f3.ly">
+  <img align="middle"
+       border="0"
+       src="../3f/lily-957110f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Autre exemple, si la propriété <code>clefTransposition</code> est déterminée
+au niveau du contexte <code>Score</code>, elle modifiera la valeur de la
+transposition en cours pour toutes les portées actives ; cette valeur
+sera considérée comme étant la nouvelle valeur par défaut pour toutes
+les portées à venir.
+</p>
+<p>La commande opposée, <code>\unset</code>, efface la propriété du contexte ; la
+plupart des propriétés reviennent de ce fait à leur valeur par défaut.
+En règle générale, la commande <code>\unset</code> n&rsquo;est pas nécessaire dès
+lors que vous faites appel à une nouvelle commande <code>\set</code> pour
+modifier le réglage.
+</p>
+<p>Les commandes <code>\set</code> et <code>\unset</code> peuvent intervenir n&rsquo;importe
+où dans votre fichier source.  Elles seront effectives dès leur
+apparition et jusqu&rsquo;à la fin de la partition, à moins d&rsquo;être affectées
+par un <code>\unset</code> ou un nouveau <code>\set</code>.  À titre d&rsquo;exemple, nous
+allons jouer avec la taille des fontes, ce qui affecte entre autres la
+grosseur des têtes de note.  Les modifications s&rsquo;appliquent toujours par
+rapport à la valeur par défaut, non par rapport à la dernière valeur
+définie.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  % make note heads smaller
+  \set fontSize = #-4
+  e4 f |
+  % make note heads larger
+  \set fontSize = #2.5
+  g4 a
+  % return to default size
+  \unset fontSize
+  b4 c |
+}
+</pre><p>
+ <a href="../3d/lily-111cc624.ly">
+  <img align="middle"
+       border="0"
+       src="../3d/lily-111cc624.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nous venons de voir comment déterminer la valeur de différents types de
+propriété.  N&rsquo;oubliez pas que les nombres, entiers ou réels, doivent
+être précédés d&rsquo;un signe dièse (<code>#</code>) et les valeurs vrai ou faux de
+deux signes dièse &ndash; respectivement <code>##t</code> et <code>##f</code> &ndash;. Une
+valeur textuelle doit être encadrée de guillemets anglais,
+<code>&quot;&hellip;&quot;</code>, bien que, comme nous le constaterons plus tard, la
+commande <code>\markup</code> permet aussi de spécifier du texte.
+</p>
+
+<a name="Definition-des-proprietes-de-contexte-avec-_005cwith"></a>
+<h4 class="subsubheading">Définition des propriétés de contexte avec <code>\with</code></h4>
+
+<a name="index-_005cwith"></a>
+<a name="index-_005cwith-1"></a>
+<a name="index-with"></a>
+<a name="index-with-1"></a>
+
+<a name="index-proprietes-d_0027un-contexte_002c-definition-avec-_005cwith"></a>
+
+<p>Les propriétés d&rsquo;un contexte peuvent aussi être réglées lors de la
+création de ce contexte.  Ceci constitue parfois une façon plus claire
+de spécifier les valeurs d&rsquo;une propriété pour la durée de vie du
+contexte.  Lorsque vous créez un contexte à l&rsquo;aide de la commande
+<code>\new</code>, vous pouvez la faire suivre immédiatement d&rsquo;un bloc
+<code>\with { &hellip; }</code> qui contiendra les réglages des différentes
+propriétés.  Ainsi, si nous voulions par exemple annuler l&rsquo;impression
+des bécarres supplémentaires sur la durée d&rsquo;une portée, nous
+écririons :
+</p>
+<blockquote><pre class="example">\new Staff \with { extraNatural = ##f }
+</pre></blockquote>
+
+<p>ce qui donnerait :
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff
+    \relative {
+      gisis'4 gis aeses aes
+    }
+  \new Staff \with { extraNatural = ##f } {
+    \relative {
+      gisis'4 gis aeses aes
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../92/lily-ecff2cb7.ly">
+  <img align="middle"
+       border="0"
+       src="../92/lily-ecff2cb7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les propriétés réglées de cette manière peuvent néanmoins être modifiées
+de façon dynamique grâce à <code>\set</code> ; un <code>\unset</code> les ramènera à
+leur valeur initialisée par <code>\with</code>.
+</p>
+<a name="index-fontSize_002c-valeur-par-defaut-et-reglage"></a>
+
+<p>La propriété <code>fontSize</code> constitue une exception : lorsqu&rsquo;elle
+est déterminée au sein d&rsquo;un bloc <code>\with</code>, cela redéfinit la valeur
+par défaut de la taille de fonte.  Une modification est possible par la
+commande <code>\set</code>, mais la commande <code>\unset fontSize</code> fera
+revenir à la nouvelle valeur par défaut.
+</p>
+
+<a name="Definition-des-proprietes-de-contexte-avec-_005ccontext"></a>
+<h4 class="subsubheading">Définition des propriétés de contexte avec <code>\context</code></h4>
+
+<a name="index-proprietes-d_0027un-contexte_002c-definition-avec-_005ccontext"></a>
+
+<a name="index-_005ccontext"></a>
+<a name="index-_005ccontext-1"></a>
+<a name="index-context"></a>
+<a name="index-context-1"></a>
+
+<p>Vous pouvez régler les valeurs des propriétés de contexte en une seule
+fois pour tous les contextes d&rsquo;un même type, par exemple tous les
+contextes <code>Staff</code>.  Le type du contexte doit être donné
+explicitement d&rsquo;après son nom, par exemple <code>Staff</code>, précédé d&rsquo;une
+oblique inverse, donc nous saisirons <code>\Staff</code>.  La manière de
+régler la valeur des propriétés est la même que ce que nous avons vu
+avec la commande <code>\with</code>, puisqu&rsquo;on se place dans un bloc
+<code>\context</code> inclus dans un bloc <code>\layout</code>.  Chaque bloc
+<code>\context</code> affectera tous les contextes concernés par le bloc
+<code>\score</code> ou <code>\book</code> au sein duquel apparaît ce bloc
+<code>\layout</code>.  Voici comment le mettre en place :
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative {
+      cisis''4 e d cis
+    }
+  }
+  \layout {
+    \context {
+      \Staff
+      extraNatural = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../10/lily-62bd3fa9.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-62bd3fa9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Dans le cas où ces ajustements de propriété doivent affecter
+toutes les portées de la partition, nous utiliserons alors :
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        gisis'4 gis aeses aes
+      }
+    }
+    \new Staff {
+      \relative {
+        gisis'4 gis aeses aes
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score extraNatural = ##f
+    }
+  }
+}
+</pre><p>
+ <a href="../fb/lily-32f40d90.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-32f40d90.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les propriétés de contexte ainsi définies peuvent être adaptées pour
+chacun des contextes en particulier grâce à un bloc <code>\with</code> ou bien
+une commande <code>\set</code> au fil des notes.
+</p>
+<a name="Voir-aussi-32"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a name="index-Modification-des-reglages-par-defaut-d_0027un-contexte"></a>
+<a href="../notation/changing-context-default-settings.fr.html">Modification des réglages par défaut d'un contexte</a>,
+<a name="index-La-commande-de-fixation-_0028set_0029"></a>
+<a href="../notation/the-set-command.fr.html">La commande de fixation (set)</a>.
+</p>
+<p>Référence des propriétés internes :
+<a name="index-Contexts-1"></a>
+<a href="../internals/contexts.fr.html">Contexts</a>,
+<a name="index-Tunable-context-properties-1"></a>
+<a href="../internals/tunable-context-properties.fr.html">Tunable context properties</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Concepts fondamentaux&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.fr.html" title="Chapitre suivant">&nbsp;Retouche de partition &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Tout savoir sur les graveurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Contextes et graveurs&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Ajout et suppression de graveurs &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="modifying-context-properties.html">English</a>, <a href="modifying-context-properties.ca.html">català</a>, <a href="modifying-context-properties.cs.html">česky</a>, <a href="modifying-context-properties.de.html">deutsch</a>, <a href="modifying-context-properties.es.html">español</a>, <a href="modifying-context-properties.hu.html">magyar</a>, <a href="modifying-context-properties.it.html">italiano</a>, <a href="modifying-context-properties.ja.html">日本語</a>, <a href="modifying-context-properties.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel d&rsquo;initiation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-1" href="tutorial.fr.html">1. Tutoriel</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilation-d_0027un-fichier-1" href="compiling-a-file.fr.html">1.1 Compilation d&rsquo;un fichier</a>    </li>
+    <li class=""><a name="toc-Composition-d_0027un-fichier-source-1" href="how-to-write-input-files.fr.html">1.2 Composition d&rsquo;un fichier source</a>    </li>
+    <li class=""><a name="toc-Gestion-des-erreurs-1" href="dealing-with-errors.fr.html">1.3 Gestion des erreurs</a>    </li>
+    <li class=""><a name="toc-Bien-lire-le-manuel-1" href="how-to-read-the-manuals.fr.html">1.4 Bien lire le manuel</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bases-de-notation-musicale-1" href="common-notation.fr.html">2. Bases de notation musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-sur-une-seule-portee" href="single-staff-notation.fr.html">2.1 Notation sur une seule portée</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="multiple-notes-at-once.fr.html">2.2 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Chansons-1" href="songs.fr.html">2.3 Chansons</a>    </li>
+    <li class=""><a name="toc-Dernieres-precisions" href="final-touches.fr.html">2.4 Dernières précisions</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Concepts-fondamentaux-1" href="fundamental-concepts.fr.html">3. Concepts fondamentaux</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Organisation-des-fichiers-LilyPond-1" href="how-lilypond-input-files-work.fr.html">3.1 Organisation des fichiers LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-voix-contiennent-la-musique-1" href="voices-contain-music.fr.html">3.2 Les voix contiennent la musique</a>    </li>
+    <li class=" toc_current"><a name="toc-Contextes-et-graveurs-1" href="contexts-and-engravers.fr.html">3.3 Contextes et graveurs</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Tout-savoir-sur-les-contextes-1" href="contexts-explained.fr.html">3.3.1 Tout savoir sur les contextes</a>      </li>
+      <li class=""><a name="toc-Creation-d_0027un-contexte" href="creating-contexts.fr.html">3.3.2 Création d&rsquo;un contexte</a>      </li>
+      <li class=""><a name="toc-Tout-savoir-sur-les-graveurs-1" href="engravers-explained.fr.html">3.3.3 Tout savoir sur les graveurs</a>      </li>
+      <li class=" toc_current"><a name="toc-Modification-des-proprietes-d_0027un-contexte" href="modifying-context-properties.fr.html">3.3.4 Modification des propriétés d&rsquo;un contexte</a>      </li>
+      <li class=""><a name="toc-Ajout-et-suppression-de-graveurs-1" href="adding-and-removing-engravers.fr.html">3.3.5 Ajout et suppression de graveurs</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Extension-des-modeles" href="extending-the-templates.fr.html">3.4 Extension des modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Retouche-de-partition-1" href="tweaking-output.fr.html">4. Retouche de partition</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Retouches-elementaires" href="tweaking-basics.fr.html">4.1 Retouches élémentaires</a>    </li>
+    <li class=""><a name="toc-Le-manuel-de-reference-des-proprietes-internes" href="the-internals-reference-manual.fr.html">4.2 Le manuel de référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Apparence-des-objets-1" href="appearance-of-objects.fr.html">4.3 Apparence des objets</a>    </li>
+    <li class=""><a name="toc-Positionnement-des-objets-1" href="placement-of-objects.fr.html">4.4 Positionnement des objets</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.5 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Collisions-d_0027objets-1" href="collisions-of-objects.fr.html">4.6 Collisions d&rsquo;objets</a>    </li>
+    <li class=""><a name="toc-Autres-retouches-1" href="further-tweaking.fr.html">4.7 Autres retouches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modeles" href="templates.fr.html">A. Modèles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Gabarits-preprogrammes" href="built_002din-templates.fr.html">A.1 Gabarits préprogrammés</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-portee-unique" href="single-staff-templates.fr.html">A.2 Modèles pour portée unique</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-piano" href="piano-templates.fr.html">A.3 Modèles pour piano</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-quatuor-a-cordes" href="string-quartet-templates.fr.html">A.4 Modèles pour quatuor à cordes</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-ensemble-vocal" href="vocal-ensembles-templates.fr.html">A.5 Modèles pour ensemble vocal</a>    </li>
+    <li class=""><a name="toc-Orchestre-1" href="orchestral-templates.fr.html">A.6 Orchestre</a>    </li>
+    <li class=""><a name="toc-Exemples-de-notation-ancienne-1" href="ancient-notation-templates.fr.html">A.7 Exemples de notation ancienne</a>    </li>
+    <li class=""><a name="toc-Autres-modeles" href="other-templates.fr.html">A.8 Autres modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">C. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

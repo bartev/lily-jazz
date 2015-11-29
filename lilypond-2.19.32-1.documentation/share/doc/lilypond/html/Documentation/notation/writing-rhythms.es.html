@@ -1,0 +1,1391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 1.2.1 Escritura de las duraciones (valores rítmicos)</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 1.2.1 Escritura de las duraciones (valores rítmicos)">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 1.2.1 Escritura de las duraciones (valores rítmicos)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="rhythms.es.html#rhythms" rel="up" title="1.2 Duraciones">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="rhythms.es.html#rhythms" rel="previous" title="1.2 Duraciones">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Escritura-de-las-duraciones-_0028valores-r_00edtmicos_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="rhythms.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Duraciones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Duraciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#durations" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Duración de las notas &gt; </a>]</td></tr></table>
+<a name="writing-rhythms"></a>
+<h3 class="subsection">1.2.1 Escritura de las duraciones (valores rítmicos)</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#durations" accesskey="1">Duración de las notas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#tuplets" accesskey="2">Grupos especiales</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#scaling-durations" accesskey="3">Escalar las duraciones</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#ties" accesskey="4">Ligaduras de unión</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Duraci_00f3n-de-las-notas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#writing-rhythms" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Escritura de las duraciones (valores rítmicos)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-rhythms" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Escritura de las duraciones (valores rítmicos)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#tuplets" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Grupos especiales &gt; </a>]</td></tr></table>
+<a name="durations"></a>
+<h4 class="unnumberedsubsubsec">Duración de las notas</h4>
+
+<a name="index-duracion-de-las-notas"></a>
+<a name="index-notas_002c-duracion-de"></a>
+<a name="index-longitud-de-las-notas"></a>
+<a name="index-notas_002c-longitud-de"></a>
+
+<a name="index-_005clonga"></a>
+<a name="index-_005clonga-1"></a>
+<a name="index-longa"></a>
+<a name="index-longa-1"></a>
+<a name="index-_005cbreve"></a>
+<a name="index-_005cbreve-1"></a>
+<a name="index-breve"></a>
+<a name="index-breve-1"></a>
+<a name="index-_005cmaxima"></a>
+<a name="index-_005cmaxima-1"></a>
+<a name="index-maxima"></a>
+<a name="index-maxima-1"></a>
+
+<p>Las duraciones se designan mediante números y puntos. Las duraciones
+se introducen como sus valores recíprocos respecto de la redonda.  Por
+ejemplo, una negra se escribe usando un <code>4</code> (puesto que es 1/4 de
+redonda), mientras que una blanca se escribe con un <code>2</code> (por ser
+1/2 de redonda).  Para notas mayores de la redonda se deben usar las
+instrucciones <code>\longa</code> (que es una breve doble) y
+<code>\breve</code>. Se pueden especificar duraciones tan cortas como la
+garrapatea (con el número 128).  Son posibles valores más cortos, pero
+sólo como notas unidas por una barra.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 8/1
+  c''\longa c\breve c1 c2
+  c4 c8 c16 c32 c64 c128 c128
+}
+</pre><p>
+ <a href="../24/lily-1b588bc0.ly">
+  <img align="middle"
+       border="0"
+       src="../24/lily-1b588bc0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Aquí se pueden ver las mismas duraciones con el barrado automático
+desactivado.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 8/1
+  \autoBeamOff
+  c''\longa c\breve c1 c2
+  c4 c8 c16 c32 c64 c128 c128
+}
+</pre><p>
+ <a href="../41/lily-2c8b3dd2.ly">
+  <img align="middle"
+       border="0"
+       src="../41/lily-2c8b3dd2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se puede escribir una nota con la duración de una cuádruple breve
+mediante <code>\maxima</code>, pero esto está contemplado solamente dentro
+de la notación musical antigua.  Para ver más detalles, consulte
+<a href="ancient-notation.es.html">Notación antigua</a>.
+</p>
+<a name="index-duracion-predeterminada"></a>
+<a name="index-predeterminada_002c-duracion-de-la-nota"></a>
+<a name="index-nota_002c-duracion-predeterminada"></a>
+
+<p>Si la duración se omite, su valor será el de la duración de la nota
+anterior.  Por omisión, el valor de la primera nota es el de una
+negra.
+</p>
+<blockquote><pre class="verbatim">\relative { a' a a2 a a4 a a1 a }
+</pre><p>
+ <a href="../6d/lily-93423490.ly">
+  <img align="middle"
+       border="0"
+       src="../6d/lily-93423490.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-notas_002c-con-puntillo"></a>
+<a name="index-puntillo_002c-notas-con"></a>
+<a name="index-notas_002c-con-doble-puntillo"></a>
+<a name="index-doble-puntillo_002c-notas-con"></a>
+
+<a name="index-_002e"></a>
+<a name="index-_002e-1"></a>
+
+<p>Para obtener duraciones de notas con puntillo, escriba un punto
+(<code>.</code>) después del número.  Las notas con doble puntillo se
+especifican escribiendo dos puntos, y así sucesivamente.
+</p>
+<blockquote><pre class="verbatim">\relative { a'4 b c4. b8 a4. b4.. c8. }
+</pre><p>
+ <a href="../1e/lily-9d75bef8.ly">
+  <img align="middle"
+       border="0"
+       src="../1e/lily-9d75bef8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ciertas duraciones no se pueden representar sólo con duraciones
+binarias y puntillos; la única forma de representarlas es ligando dos
+o más notas.  Para ver más detalles, consulte <a href="#ties">Ligaduras de unión</a>.
+</p>
+<p>Para ver de qué manera se pueden especificar las duraciones de las
+sílabas de la letra y cómo alinear la letra a las notas, consulte
+<a href="vocal-music.es.html">Música vocal</a>.
+</p>
+<p>Opcionalmente se pueden espaciar las notas de forma estrictamente
+proporcional a sus duraciones.  Para ver más detalles sobre este y
+otros ajustes que controlan la notación proporcional, consulte
+<a href="proportional-notation.es.html">Notación proporcional</a>.
+</p>
+<a name="index-_005cdotsUp"></a>
+<a name="index-_005cdotsUp-1"></a>
+<a name="index-dotsUp"></a>
+<a name="index-dotsUp-1"></a>
+<a name="index-_005cdotsDown"></a>
+<a name="index-_005cdotsDown-1"></a>
+<a name="index-dotsDown"></a>
+<a name="index-dotsDown-1"></a>
+<a name="index-_005cdotsNeutral"></a>
+<a name="index-_005cdotsNeutral-1"></a>
+<a name="index-dotsNeutral"></a>
+<a name="index-dotsNeutral-1"></a>
+
+<p>Normalmente los puntillos se desplazan hacia arriba para evitar las
+líneas del pentagrama, excepto en situaciones de polifonía. Se pueden
+situar los puntillos manualmente encima o debajo de las líneas de la
+pauta; véase <a href="direction-and-placement.es.html">Dirección y posición</a>.
+</p>
+<a name="Instrucciones-predefinidas-30"></a>
+<h4 class="subsubheading">Instrucciones predefinidas</h4>
+<p><code>\autoBeamOn</code>,
+<code>\autoBeamOff</code>,
+<code>\dotsUp</code>,
+<code>\dotsDown</code>,
+<code>\dotsNeutral</code>.
+</p>
+
+<a name="Fragmentos-de-codigo-seleccionados-45"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+
+
+<p><em> Formas alternativas de la figura breve</em>
+</p>
+
+<p>Las figuras de breve también están disponibles con dos líneas
+verticales a los lados de la cabeza en lugar de una sola línea y la
+forma en estilo barroco.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 4/2
+  c\breve |
+  \override Staff.NoteHead.style = #'altdefault
+  b\breve
+  \override Staff.NoteHead.style = #'baroque
+  b\breve
+  \revert Staff.NoteHead.style
+  a\breve
+}
+</pre><p>
+ <a href="../01/lily-53d694e2.ly">
+  <img align="middle"
+       border="0"
+       src="../01/lily-53d694e2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Modificar el número de puntillos de una nota</em>
+</p>
+
+<p>La cantidad de puntillos de una nota se puede modificar
+independientemente de los puntillos que se escriben después de la nota.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  c4.. a16 r2 |
+  \override Dots.dot-count = #4
+  c4.. a16 r2 |
+  \override Dots.dot-count = #0
+  c4.. a16 r2 |
+  \revert Dots.dot-count
+  c4.. a16 r2 |
+}
+</pre><p>
+ <a href="../61/lily-403678cb.ly">
+  <img align="middle"
+       border="0"
+       src="../61/lily-403678cb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-70"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-breve-2"></a>
+<a href="../music-glossary/breve.es.html">breve</a>,
+<a name="index-longa-2"></a>
+<a href="../music-glossary/longa.es.html">longa</a>,
+<a name="index-maxima-2"></a>
+<a href="../music-glossary/maxima.es.html">maxima</a>,
+<a name="index-note-value"></a>
+<a href="../music-glossary/note-value.es.html">note value</a>,
+<a name="index-Duration-names-notes-and-rests"></a>
+<a href="../music-glossary/duration-names-notes-and-rests.es.html">Duration names notes and rests</a>.
+</p>
+<p>Referencia de la notación:
+<a href="beams.es.html#automatic-beams">Barras automáticas</a>,
+<a href="#ties">Ligaduras de unión</a>,
+<a href="inside-the-staff.es.html#stems">Plicas</a>,
+<a href="#writing-rhythms">Escritura de las duraciones (valores rítmicos)</a>,
+<a href="writing-rests.es.html">Escritura de silencios</a>,
+<a href="vocal-music.es.html">Música vocal</a>,
+<a href="ancient-notation.es.html">Notación antigua</a>,
+<a href="proportional-notation.es.html">Notación proporcional</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/duraciones.es.html">Rhythms</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-Dots"></a>
+<a href="../internals/dots.es.html">Dots</a>,
+<a name="index-DotColumn"></a>
+<a href="../internals/dotcolumn.es.html">DotColumn</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-11"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>No existe un límite fundamental para las duraciones de los silencios
+(tanto para el más largo como para el más corto), pero el numero de
+glifos es limitado: sólo se pueden imprimir desde el silencio de
+garrapatea (128) hasta el de máxima (8 redondas).
+</p>
+
+<hr size="6">
+<a name="Grupos-especiales"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#durations" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Duración de las notas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-rhythms" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Escritura de las duraciones (valores rítmicos)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#scaling-durations" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Escalar las duraciones &gt; </a>]</td></tr></table>
+<a name="tuplets"></a>
+<h4 class="unnumberedsubsubsec">Grupos especiales</h4>
+
+<a name="index-grupos-especiales"></a>
+<a name="index-tresillos"></a>
+
+<a name="index-_005ctuplet"></a>
+<a name="index-_005ctuplet-1"></a>
+<a name="index-tuplet"></a>
+<a name="index-tuplet-1"></a>
+
+<p>Los grupos especiales se obtienen a partir de una expresión
+musical con la instrucción <code>\tuplet</code>, multiplicando la
+rapidez de la expresión musical por una fracción:
+</p>
+<blockquote><pre class="example">\tuplet <var>fracción</var> { <var>música</var> }
+</pre></blockquote>
+
+<p>El nomerador de la fracción se imprime encima o debajo de las
+notas, opcionalmente con un corchete.  El grupo especial más común
+es el tresillo, en el que 3&nbsp;notas tienen el valor que
+normalmente tienen&nbsp;2:
+</p>
+<blockquote><pre class="verbatim">a2 \tuplet 3/2 { b4 b b }
+c4 c \tuplet 3/2 { b4 a g }
+</pre><p>
+ <a href="../16/lily-a0e16bd1.ly">
+  <img align="middle"
+       border="0"
+       src="../16/lily-a0e16bd1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-agrupacion-de-grupes-especiales"></a>
+<p>Si se están escribiendo pasajes con muchos grupos de valoración
+especial, resulta fastidioso tener que escribir una instrucción
+<code>\tuplet</code> distinta para cada grupo.  Es posible especificar
+la duración de un conjunto de grupos directamente antes de la
+música para que así se agrupen automáticamente:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  g'2 r8 \tuplet 3/2 8 { cis16 d e e f g g f e }
+}
+</pre><p>
+ <a href="../14/lily-cb2ac048.ly">
+  <img align="middle"
+       border="0"
+       src="../14/lily-cb2ac048.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-grupos-de-valoracion-especial_002c-colocacion-del-corchete"></a>
+
+<a name="index-_005ctupletUp"></a>
+<a name="index-_005ctupletUp-1"></a>
+<a name="index-tupletUp"></a>
+<a name="index-tupletUp-1"></a>
+<a name="index-_005ctupletDown"></a>
+<a name="index-_005ctupletDown-1"></a>
+<a name="index-tupletDown"></a>
+<a name="index-tupletDown-1"></a>
+<a name="index-_005ctupletNeutral"></a>
+<a name="index-_005ctupletNeutral-1"></a>
+<a name="index-tupletNeutral"></a>
+<a name="index-tupletNeutral-1"></a>
+
+<p>Se pueden colocar manualmente los corchetes de tresillo encima o
+debajo de la pauta; véase <a href="direction-and-placement.es.html">Dirección y posición</a>.
+</p>
+<p>Los grupos pueden anidarse unos dentro de otros:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \autoBeamOff
+  c''4 \tuplet 5/4 { f8 e f \tuplet 3/2 { e[ f g] } } f4
+}
+</pre><p>
+ <a href="../a7/lily-ee350816.ly">
+  <img align="middle"
+       border="0"
+       src="../a7/lily-ee350816.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La modificación de los grupos especiales anidados que comienzan en el
+mismo instante musical se debe hacer con <code>\tweak</code>.
+</p>
+<p>Para modificar la duración de las notas sin imprimir un corchete de
+grupo especial, véase <a href="#scaling-durations">Escalar las duraciones</a>.
+</p>
+<a name="Instrucciones-predefinidas-40"></a>
+<h4 class="subsubheading">Instrucciones predefinidas</h4>
+<p><code>\tupletUp</code>,
+<code>\tupletDown</code>,
+<code>\tupletNeutral</code>.
+</p>
+<a name="Fragmentos-de-codigo-seleccionados-10"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+<a name="index-grupos-especiales_002c-formato-de"></a>
+<a name="index-tresillos_002c-formato-de"></a>
+
+<a name="index-tupletNumberFormatFunction"></a>
+<a name="index-tupletNumberFormatFunction-1"></a>
+<a name="index-tupletSpannerDuration"></a>
+<a name="index-tupletSpannerDuration-1"></a>
+
+
+<p><em> Entering several tuplets using only one \tuplet command</em>
+</p>
+
+<p>The property <code>tupletSpannerDuration</code> sets how long each of the
+tuplets contained within the brackets after <code>\tuplet</code> should
+last. Many consecutive tuplets can then be placed within a single
+<code>\tuplet</code> expression, thus saving typing.
+</p>
+<p>There are several ways to set <code>tupletSpannerDuration</code>.  The
+command <code>\tupletSpan</code> sets it to a given duration, and clears it
+when instead of a duration <code>\default</code> is specified.  Another way
+is to use an optional argument with <code>\tuplet</code>.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \time 2/4
+  \tupletSpan 4
+  \tuplet 3/2 { c8^&quot;\\tupletSpan 4&quot; c c c c c }
+  \tupletSpan \default
+  \tuplet 3/2 { c8^&quot;\\tupletSpan \\default&quot; c c c c c }
+  \tuplet 3/2 4 { c8^&quot;\\tuplet 3/2 4 {...}&quot; c c c c c }
+}
+</pre><p>
+ <a href="../ef/lily-c0110f61.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-c0110f61.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-grupos-de-valoracion-especial_002c-modificacion-del-numero"></a>
+
+<a name="index-TupletNumber"></a>
+<a name="index-TupletNumber-1"></a>
+
+
+<p><em> Cambiar el número del grupo especial</em>
+</p>
+
+<p>De forma predeterminada sólo se imprime sobre el corchete de grupo el
+numerador del grupo especial. De forma alternativa, se puede imprimr
+un quebrado en la forma numerador:denominador del número del grupo, o
+eliminar el número.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \tuplet 3/2 { c8 c c }
+  \tuplet 3/2 { c8 c c }
+  \override TupletNumber.text = #tuplet-number::calc-fraction-text
+  \tuplet 3/2 { c8 c c }
+  \omit TupletNumber
+  \tuplet 3/2 { c8 c c }
+}
+</pre><p>
+ <a href="../3b/lily-cf151080.ly">
+  <img align="middle"
+       border="0"
+       src="../3b/lily-cf151080.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Números de agrupación especial distintos a los predeterminados</em>
+</p>
+
+<p>LilyPond también proporciona funciones de formato para imprimir
+números de grupo especial diferentes a la propia fracción, así
+como para añadir una figura al número o a la fracción de la
+agrupación.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \once \override TupletNumber.text =
+    #(tuplet-number::non-default-tuplet-denominator-text 7)
+  \tuplet 3/2  { c4. c4. c4. c4. }
+  \once \override TupletNumber.text =
+    #(tuplet-number::non-default-tuplet-fraction-text 12 7)
+  \tuplet 3/2  { c4. c4. c4. c4. }
+  \once \override TupletNumber.text =
+    #(tuplet-number::append-note-wrapper
+      (tuplet-number::non-default-tuplet-fraction-text 12 7) &quot;8&quot;)
+  \tuplet 3/2  { c4. c4. c4. c4. }
+  \once \override TupletNumber.text =
+    #(tuplet-number::append-note-wrapper
+      tuplet-number::calc-denominator-text &quot;4&quot;)
+  \tuplet 3/2  { c8 c8 c8 c8 c8 c8 }
+  \once \override TupletNumber.text =
+    #(tuplet-number::append-note-wrapper
+      tuplet-number::calc-fraction-text &quot;4&quot;)
+  \tuplet 3/2  { c8 c8 c8 c8 c8 c8 }
+  \once \override TupletNumber.text =
+    #(tuplet-number::fraction-with-notes &quot;4.&quot; &quot;8&quot;)
+  \tuplet 3/2  { c4. c4. c4. c4. }
+  \once \override TupletNumber.text =
+    #(tuplet-number::non-default-fraction-with-notes 12 &quot;8&quot; 4 &quot;4&quot;)
+  \tuplet 3/2  { c4. c4. c4. c4. }
+}
+</pre><p>
+ <a href="../ca/lily-5572ccc2.ly">
+  <img align="middle"
+       border="0"
+       src="../ca/lily-5572ccc2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Controlar la visibilidad de los corchetes de grupo especial</em>
+</p>
+
+<p>El comportamiento predeterminado de la visibilidad de los corchetes de
+grupo de valoración especial es imprimir el corchete a no ser que haya
+una barra de la misma longitud que el grupo especial.  Para controlar
+la visibilidad de los corchetes de grupo, establezca la propiedad
+<code>'bracket-visibility</code> a <code>#t</code> (imprimir el corchete siempre),
+<code>#f</code> (no imprimirlo nunca) o <code>#'if-no-beam</code> (imprimir el
+corchete solamente si no hay barra).
+</p>
+
+<blockquote><pre class="verbatim">music = \relative c'' {
+  \tuplet 3/2 { c16[ d e } f8]
+  \tuplet 3/2 { c8 d e }
+  \tuplet 3/2 { c4 d e }
+}
+
+\new Voice {
+  \relative c' {
+    &lt;&lt; \music s4^&quot;default&quot; &gt;&gt;
+    \override TupletBracket.bracket-visibility = #'if-no-beam
+    &lt;&lt; \music s4^&quot;'if-no-beam&quot; &gt;&gt;
+    \override TupletBracket.bracket-visibility = ##t
+    &lt;&lt; \music s4^&quot;#t&quot; &gt;&gt;
+    \override TupletBracket.bracket-visibility = ##f
+    &lt;&lt; \music s4^&quot;#f&quot; &gt;&gt;
+    %% v2.18 :
+    \omit TupletBracket
+    &lt;&lt; \music s4^&quot;omit&quot; &gt;&gt;
+  }
+}
+</pre><p>
+ <a href="../fd/lily-2ca5235a.ly">
+  <img align="middle"
+       border="0"
+       src="../fd/lily-2ca5235a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Permitir saltos de línea dentro de grupos especiales con barra</em>
+</p>
+
+<p>Este ejemplo artificial muestra cómo se pueden permitir tanto los
+saltos de línea manuales como los automáticos dentro de un grupo de
+valoración especial unido por una barra.  Observe que estos grupos
+sincopados se deben barrar manualmente.
+</p>
+
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Voice
+    % Permit line breaks within tuplets
+    \remove &quot;Forbid_line_break_engraver&quot;
+    % Allow beams to be broken at line breaks
+    \override Beam.breakable = ##t
+  }
+}
+\relative c'' {
+  a8
+  \repeat unfold 5 { \tuplet 3/2 { c[ b a] } }
+  % Insert a manual line break within a tuplet
+  \tuplet 3/2 { c[ b \bar &quot;&quot; \break a] }
+  \repeat unfold 5 { \tuplet 3/2 { c[ b a] } }
+  c8
+}
+</pre><p>
+ <a href="../00/lily-d3c140fb.ly">
+  <img align="middle"
+       border="0"
+       src="../00/lily-d3c140fb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-200"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-triplet"></a>
+<a href="../music-glossary/triplet.es.html">triplet</a>,
+<a name="index-tuplet-2"></a>
+<a href="../music-glossary/tuplet.es.html">tuplet</a>,
+<a name="index-polymetric"></a>
+<a href="../music-glossary/polymetric.es.html">polymetric</a>.
+</p>
+<p>Manual de aprendizaje:
+<a name="index-Metodos-de-trucaje"></a>
+<a href="../learning/tweaking-methods.es.html">Métodos de trucaje</a>.
+</p>
+<p>Referencia de la notación:
+<a href="special-rhythmic-concerns.es.html#time-administration">Gestión del tiempo</a>,
+<a href="#scaling-durations">Escalar las duraciones</a>,
+<a href="the-tweak-command.es.html">La instrucción <code>\tweak</code></a>,
+<a href="displaying-rhythms.es.html#polymetric-notation">Notación polimétrica</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/duraciones.es.html">Rhythms</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-TupletBracket"></a>
+<a href="../internals/tupletbracket.es.html">TupletBracket</a>,
+<a name="index-TupletNumber-2"></a>
+<a href="../internals/tupletnumber.es.html">TupletNumber</a>,
+<a name="index-TimeScaledMusic"></a>
+<a href="../internals/timescaledmusic.es.html">TimeScaledMusic</a>.
+</p>
+<a name="index-adorno_002c-notas-de_002c-dentro-de-corchetes-de-grupo-especial"></a>
+
+<a name="Advertencias-y-problemas-conocidos-48"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>Las notas de adorno se pueden escribir dentro de los corchetes de
+grupo especial, <em>excepto</em> cuando un pentagrama comienza por una
+nota de adorno seguida de un grupo de valoración especial.  En este
+caso concreto, se debe poner la nota de adorno antes de la instrucción
+<code>\tuplet</code> para evitar errores.
+</p>
+<a name="index-indicaciones-de-tempo-dentro-de-corchetes-de-grupo-especial"></a>
+
+<p>Cuando se utiliza un grupo de valoración especial al comienzo de una
+pieza con una indicación de <code>\tempo</code>, la música se debe escribir
+explícitamente dentro de un bloque <code>\new Voice</code>, tal y como se
+explica en <a name="index-Las-voces-contienen-musica"></a>
+<a href="../learning/voices-contain-music.es.html">Las voces contienen música</a>.
+</p>
+
+<hr size="6">
+<a name="Escalar-las-duraciones"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#tuplets" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Grupos especiales&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-rhythms" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Escritura de las duraciones (valores rítmicos)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ties" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Ligaduras de unión &gt; </a>]</td></tr></table>
+<a name="scaling-durations"></a>
+<h4 class="unnumberedsubsubsec">Escalar las duraciones</h4>
+
+<a name="index-escalar-las-duraciones"></a>
+<a name="index-duraciones_002c-escalado-de"></a>
+
+<p>La duración de las figuras, silencios o acordes se puede multiplicar
+por un factor <code>N/M</code> añadiendo <code>*N/M</code> (o <code>*N</code> si <code>M</code> es
+1) a la duración.  Esto no afectará a la apariencia de las notas o
+silencios que se producen, pero la duración alterada se usará para
+calcular la posición dentro del compás y para establecer la duración
+en la salida MIDI.  Los factores de multiplicación se pueden combinar
+en la forma <code>*L*M/N</code>.  Los factores son parte de la duración: si
+no especificamos una duración para las notas siguientes, la duración
+por omisión que se toma de la nota anterior incluirá cualquier factor
+de escala que se haya aplicado.
+</p>
+<p>En el siguiente ejemplo las tres primeras notas duran exactamente dos
+partes, pero no se imprime ningún corchete de tresillo.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 2/4
+  % Alter durations to triplets
+  a'4*2/3 gis a
+  % Normal durations
+  a4 a
+  % Double the duration of chord
+  &lt;a d&gt;4*2
+  % Duration of quarter, appears like sixteenth
+  b16*4 c4
+}
+</pre><p>
+ <a href="../50/lily-92b86899.ly">
+  <img align="middle"
+       border="0"
+       src="../50/lily-92b86899.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La duración de los silencios espaciadores también se puede modificar
+mediante un multiplicador.  Esto es útil para saltar muchos compases,
+como por ejemplo <code>s1*23</code>.
+</p>
+<a name="index-compresion-de-musica"></a>
+<a name="index-expansion-de-musica"></a>
+
+<a name="index-_005cscaleDurations"></a>
+<a name="index-_005cscaleDurations-1"></a>
+<a name="index-scaleDurations"></a>
+<a name="index-scaleDurations-1"></a>
+
+<p>De la misma forma, se pueden comprimir por una fracción trozos de
+música más largos, como si cada nota, acorde o silencio tuviera la
+fracción como multiplicador.  Esto dejará intacta la apariencia de la
+<em>música</em>, pero la duración interna de las notas se multiplicará
+por la fracción <em>numerador</em>/<em>denominador</em>.
+He aquí un ejemplo que muestra cómo
+se puede comprimir y expandir la música:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 2/4
+  % Normal durations
+  &lt;c'' a&gt;4 c8 a
+  % Scale music by *2/3
+  \scaleDurations 2/3 {
+    &lt;c a f&gt;4. c8 a f
+  }
+  % Scale music by *2
+  \scaleDurations 2/1 {
+    &lt;c' a&gt;4 c8 b
+  }
+}
+</pre><p>
+ <a href="../17/lily-46ce36b0.ly">
+  <img align="middle"
+       border="0"
+       src="../17/lily-46ce36b0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Una aplicación de esta instrucción se encuentra en la notación
+polimétrica, véase <a href="displaying-rhythms.es.html#polymetric-notation">Notación polimétrica</a>.
+</p>
+<a name="Vease-tambien-116"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Referencia de la notación:
+<a href="#tuplets">Grupos especiales</a>,
+<a href="writing-rests.es.html#invisible-rests">Silencios invisibles</a>,
+<a href="displaying-rhythms.es.html#polymetric-notation">Notación polimétrica</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/duraciones.es.html">Rhythms</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-8"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>El cálculo de la posición dentro de un compás sdebe tener en
+cuenta todos los factores de escalado que se han aplicado a las
+notas dentro de ese compás, y cualquier acarreo fraccionado desde
+los compases anteriores.  Este cálculo se efectúa utilizando
+números racionales.  Si un numerador o denominador intermedio en
+dicho proceso de cálculo sobrepasa la cantidad de 2^30, la
+ejecución y el tipografiado se detendrán en ese punto sin indicar
+ningún error.
+</p>
+<hr size="6">
+<a name="Ligaduras-de-uni_00f3n"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#scaling-durations" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Escalar las duraciones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-rhythms" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Escritura de las duraciones (valores rítmicos)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="writing-rests.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Escritura de silencios &gt; </a>]</td></tr></table>
+<a name="ties"></a>
+<h4 class="unnumberedsubsubsec">Ligaduras de unión</h4>
+
+<a name="index-ligadura-de-union"></a>
+
+<a name="index-_007e"></a>
+<a name="index-_007e-1"></a>
+
+<p>Una ligadura de unión conecta dos notas adyacentes de la misma altura.  La ligadura
+en efecto extiende la longitud de una nota.
+</p>
+<div class="warning"><p><strong>Nota:</strong> No deben confundirse las ligaduras de unión con las
+<em>ligaduras de expresión</em>, que indican articulación, ni con las
+<em>ligaduras de fraseo</em>, que indican el fraseo musical.  Una
+ligadura de unión es tan sólo una manera de extender la duración de
+una nota, algo parecido a lo que hace el puntillo.
+</p>
+</div>
+<p>Se introduce una ligadura de unión escribiendo el símbolo de la
+tilde curva (<code>~</code>) después de la primera de cada pareja de
+notas que se quieren unir.  Esto indica que la nota se une a la
+siguiente, que debe tener la misma altura.
+</p>
+<blockquote><pre class="verbatim">{ a'2~ 4~ 16 r r8 }
+</pre><p>
+ <a href="../8b/lily-8d1e4d6e.ly">
+  <img align="middle"
+       border="0"
+       src="../8b/lily-8d1e4d6e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se usan ligaduras de unión bien cuando la nota atraviesa la barra de
+compás o bien cuando no se pueden usar puntillos para denotar el
+ritmo.  También se deben usar ligaduras cuando las notas atraviesan
+subdivisiones del compás de mayor duración:
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  r8^&quot;sí&quot; c~ 2 r4 |
+  r8^&quot;no&quot; c2~ 8 r4
+}
+</pre><p>
+ <a href="../d9/lily-4ae8c2f5.ly">
+  <img align="middle"
+       border="0"
+       src="../d9/lily-4ae8c2f5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si necesitamos ligar muchas notas a través de las líneas divisorias,
+nos podría resultar más fácil utilizar la división automática de las
+notas, véase <a href="displaying-rhythms.es.html#automatic-note-splitting">División automática de las notas</a>.  Este mecanismo divide
+automáticamente las notas largas y las liga a través de las barras de
+compás.
+</p>
+<a name="index-ligaduras-y-acordes"></a>
+<a name="index-acordes-y-ligaduras"></a>
+
+<p>Cuando se aplica una ligadura de unión a un acorde, se conectan todas
+las cabezas de las notas cuyas alturas coinciden.  Si no coincide
+ningún par de cabezas, no se crea ninguna ligadura.  Los acordes se
+pueden ligar parcialmente colocando las ligaduras dentro del acorde.
+</p>
+<blockquote><pre class="verbatim">&lt;c e g&gt;~ &lt;c e g c&gt;
+&lt;c~ e g~ b&gt; &lt;c e g b&gt;
+</pre><p>
+ <a href="../e2/lily-ed74582b.ly">
+  <img align="middle"
+       border="0"
+       src="../e2/lily-ed74582b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-repeticion_002c-ligaduras-de-union-en"></a>
+<a name="index-ligaduras-de-union_002c-repeticiones-y"></a>
+<a name="index-primera-y-segunda-vez_002c-corchetes-y-ligaduras-en"></a>
+<a name="index-ligaduras-de-union-y-corchetes-de-primera-y-segunda-vez"></a>
+
+<a name="index-_005crepeatTie"></a>
+<a name="index-_005crepeatTie-1"></a>
+<a name="index-repeatTie"></a>
+<a name="index-repeatTie-1"></a>
+
+<p>Cuando la segunda vez de una repetición comienza con una nota ligada,
+es necesario especificar la ligadura repetida como sigue:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \repeat volta 2 { c'' g &lt;c e&gt;2~ }
+  \alternative {
+    % First alternative: following note is tied normally
+    { &lt;c e&gt;2. r4 }
+    % Second alternative: following note has a repeated tie
+    { &lt;c e&gt;2\repeatTie d4 c }
+  }
+}
+</pre><p>
+ <a href="../ca/lily-52c9b1dc.ly">
+  <img align="middle"
+       border="0"
+       src="../ca/lily-52c9b1dc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-laissez-vibrer"></a>
+<a name="index-ligaduras-laissez-vibrer"></a>
+
+<a name="index-_005claissezVibrer"></a>
+<a name="index-_005claissezVibrer-1"></a>
+<a name="index-laissezVibrer"></a>
+<a name="index-laissezVibrer-1"></a>
+
+<p>Las ligaduras <var>L.v.</var> (<var>laissez vibrer</var>, dejar
+vibrar) indican que las notas no se deben apagar al final.  Se usan en
+la notación para piano, arpa y otros instrumentos de cuerda y
+percusión.  Se pueden introducir de la siguiente manera:
+</p>
+<blockquote><pre class="verbatim">&lt;c' f' g'&gt;1\laissezVibrer
+</pre><p>
+ <a href="../ba/lily-e495fa8c.ly">
+  <img align="middle"
+       border="0"
+       src="../ba/lily-e495fa8c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-ligaduras_002c-colocacion"></a>
+
+<a name="index-_005ctieUp"></a>
+<a name="index-_005ctieUp-1"></a>
+<a name="index-tieUp"></a>
+<a name="index-tieUp-1"></a>
+<a name="index-_005ctieDown"></a>
+<a name="index-_005ctieDown-1"></a>
+<a name="index-tieDown"></a>
+<a name="index-tieDown-1"></a>
+<a name="index-_005ctieNeutral"></a>
+<a name="index-_005ctieNeutral-1"></a>
+<a name="index-tieNeutral"></a>
+<a name="index-tieNeutral-1"></a>
+
+<p>Es posible hacer manualmente que las ligaduras de unión se curven
+hacia arriba o hacia abajo; véase <a href="direction-and-placement.es.html">Dirección y posición</a>.
+</p>
+<a name="index-ligaduras_002c-apariencia"></a>
+<a name="index-ligaduras-de-puntos"></a>
+<a name="index-ligaduras-discontinuas"></a>
+<a name="index-discontinuas_002c-ligaduras"></a>
+<a name="index-puntos_002c-ligaduras-de"></a>
+
+<a name="index-_005ctieDotted"></a>
+<a name="index-_005ctieDotted-1"></a>
+<a name="index-tieDotted"></a>
+<a name="index-tieDotted-1"></a>
+<a name="index-_005ctieDashed"></a>
+<a name="index-_005ctieDashed-1"></a>
+<a name="index-tieDashed"></a>
+<a name="index-tieDashed-1"></a>
+<a name="index-_005ctieSolid"></a>
+<a name="index-_005ctieSolid-1"></a>
+<a name="index-tieSolid"></a>
+<a name="index-tieSolid-1"></a>
+
+<p>Se puede hacer que las ligaduras de expresión sean discontinuas,
+punteadas o una combinación de continuas y discontinuas.
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  \tieDotted
+  c2~ 2
+  \tieDashed
+  c2~ 2
+  \tieHalfDashed
+  c2~ 2
+  \tieHalfSolid
+  c2~ 2
+  \tieSolid
+  c2~ 2
+}
+</pre><p>
+ <a href="../e1/lily-931aae5e.ly">
+  <img align="middle"
+       border="0"
+       src="../e1/lily-931aae5e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se pueden especificar patrones de discontinuidad personalizados:
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  \tieDashPattern #0.3 #0.75
+  c2~ 2
+  \tieDashPattern #0.7 #1.5
+  c2~ 2
+  \tieSolid
+  c2~ 2
+}
+</pre><p>
+ <a href="../8b/lily-751d9ae5.ly">
+  <img align="middle"
+       border="0"
+       src="../8b/lily-751d9ae5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Las definiciones de patrones de discontinuidad para las ligaduras de
+unión tienen la misma estructura que las definiciones de patrones de
+discontinuidad para las ligaduras de expresión.  Para ver más
+información acerca de los patrones de discontinuidad complejos,
+consulte los fragmentos de código bajo <a href="expressive-marks-as-curves.es.html#slurs">Ligaduras de expresión</a>.
+</p>
+<p>Sobreescriba las propiedades de disposición <var>whiteout</var> y
+<var>layer</var> para las ligaduras de unión que colisionen con otros
+objetos del pentagrama.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \override Tie.layer = #-2
+  \override Staff.TimeSignature.layer = #-1
+  \override Staff.KeySignature.layer = #-1
+  \override Staff.TimeSignature.whiteout = ##t
+  \override Staff.KeySignature.whiteout = ##t
+  b'2 b~
+  \time 3/4
+  \key a \major
+  b r4
+}
+</pre><p>
+ <a href="../e4/lily-635910fa.ly">
+  <img align="middle"
+       border="0"
+       src="../e4/lily-635910fa.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Instrucciones-predefinidas-28"></a>
+<h4 class="subsubheading">Instrucciones predefinidas</h4>
+<p><code>\tieUp</code>,
+<code>\tieDown</code>,
+<code>\tieNeutral</code>,
+<code>\tieDotted</code>,
+<code>\tieDashed</code>,
+<code>\tieDashPattern</code>,
+<code>\tieHalfDashed</code>,
+<code>\tieHalfSolid</code>,
+<code>\tieSolid</code>.
+</p>
+<a name="Fragmentos-de-codigo-seleccionados-17"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+
+<p><em> Uso de ligaduras en los arpegios</em>
+</p>
+
+<p>En ocasiones se usan ligaduras de unión para escribir los arpegios.
+En este caso, las dos notas ligadas no tienen que ser consecutivas.
+Esto se puede conseguir estableciendo la propiedad
+<code>tieWaitForNote</code> al valor <code>#t</code>.  La misma funcionalidad
+es de utilidad, por ejemplo, para ligar un trémolo a un acorde, pero
+en principio también se puede usar para notas normales consecutivas.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \set tieWaitForNote = ##t
+  \grace { c16[ ~ e ~ g] ~ } &lt;c, e g&gt;2
+  \repeat tremolo 8 { c32 ~ c' ~ } &lt;c c,&gt;1
+  e8 ~ c ~ a ~ f ~ &lt;e' c a f&gt;2
+  \tieUp
+  c8 ~ a
+  \tieDown
+  \tieDotted
+  g8 ~ c g2
+}
+</pre><p>
+ <a href="../2c/lily-ef875947.ly">
+  <img align="middle"
+       border="0"
+       src="../2c/lily-ef875947.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Grabado manual de las ligaduras</em>
+</p>
+
+<p>Se pueden grabar a mano las ligaduras modificando la propiedad
+<code>tie-configuration</code> del objeto <code>TieColumn</code>. El primer número
+indica la distancia a partir de la tercera línea del pentagrama en
+espacios de pentagrama, y el segundo número indica la dirección (1 =
+hacia arriba, -1 = hacia abajo).
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  &lt;c e g&gt;2~ &lt;c e g&gt;
+  \override TieColumn.tie-configuration =
+    #'((0.0 . 1) (-2.0 . 1) (-4.0 . 1))
+  &lt;c e g&gt;2~ &lt;c e g&gt;
+}
+</pre><p>
+ <a href="../26/lily-2857e227.ly">
+  <img align="middle"
+       border="0"
+       src="../26/lily-2857e227.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-186"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-tie"></a>
+<a href="../music-glossary/tie.es.html">tie</a>,
+<a name="index-laissez-vibrer-1"></a>
+<a href="../music-glossary/laissez-vibrer.es.html">laissez vibrer</a>.
+</p>
+<p>Referencia de la notación:
+<a href="expressive-marks-as-curves.es.html#slurs">Ligaduras de expresión</a>,
+<a href="displaying-rhythms.es.html#automatic-note-splitting">División automática de las notas</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/slurs.es.html">slurs</a>,
+<a href="../snippets/duraciones.es.html">Rhythms</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-LaissezVibrerTie"></a>
+<a href="../internals/laissezvibrertie.es.html">LaissezVibrerTie</a>,
+<a name="index-LaissezVibrerTieColumn"></a>
+<a href="../internals/laissezvibrertiecolumn.es.html">LaissezVibrerTieColumn</a>,
+<a name="index-TieColumn"></a>
+<a href="../internals/tiecolumn.es.html">TieColumn</a>,
+<a name="index-Tie"></a>
+<a href="../internals/tie.es.html">Tie</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-37"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>Un cambio de pentagrama cuando hay una ligadura activa no producirá
+una ligadura inclinada.
+</p>
+<p>Los cambios de clave o de octava durante una ligadura de unión no
+están bien definidos realmente.  En estos casos puede ser preferible
+una ligadura de expresión.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación musical&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Notación especializada &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#scaling-durations" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Escalar las duraciones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#writing-rhythms" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Escritura de las duraciones (valores rítmicos)&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="writing-rests.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Escritura de silencios &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="writing-rhythms.html">English</a>, <a href="writing-rhythms.de.html">deutsch</a>, <a href="writing-rhythms.fr.html">français</a>, <a href="writing-rhythms.it.html">italiano</a>, <a href="writing-rhythms.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=" toc_current"><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Escritura-de-las-duraciones-_0028valores-ritmicos_0029" href="writing-rhythms.es.html">1.2.1 Escritura de las duraciones (valores rítmicos)</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Duracion-de-las-notas" href="writing-rhythms.es.html#durations">Duración de las notas</a>        </li>
+        <li class=""><a name="toc-Grupos-especiales-1" href="writing-rhythms.es.html#tuplets">Grupos especiales</a>        </li>
+        <li class=""><a name="toc-Escalar-las-duraciones-1" href="writing-rhythms.es.html#scaling-durations">Escalar las duraciones</a>        </li>
+        <li class=""><a name="toc-Ligaduras-de-union" href="writing-rhythms.es.html#ties">Ligaduras de unión</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Escritura-de-silencios-1" href="writing-rests.es.html">1.2.2 Escritura de silencios</a>      </li>
+      <li class=""><a name="toc-Impresion-de-las-duraciones" href="displaying-rhythms.es.html">1.2.3 Impresión de las duraciones</a>      </li>
+      <li class=""><a name="toc-Barras-1" href="beams.es.html">1.2.4 Barras</a>      </li>
+      <li class=""><a name="toc-Compases-1" href="bars.es.html">1.2.5 Compases</a>      </li>
+      <li class=""><a name="toc-Asuntos-ritmicos-especiales" href="special-rhythmic-concerns.es.html">1.2.6 Asuntos rítmicos especiales</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

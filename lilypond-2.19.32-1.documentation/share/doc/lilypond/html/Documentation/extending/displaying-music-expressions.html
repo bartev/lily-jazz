@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2004-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Extending LilyPond: 1.3.1 Displaying music expressions</title>
+
+<meta name="description" content="Extending LilyPond: 1.3.1 Displaying music expressions">
+<meta name="keywords" content="Extending LilyPond: 1.3.1 Displaying music expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Extending">
+<link href="lilypond-index.html#lilypond-index" rel="index" title="B. LilyPond index">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="building-complicated-functions.html#building-complicated-functions" rel="up" title="1.3 Building complicated functions">
+<link href="lilypond-index.html#lilypond-index" rel="next" title="B. LilyPond index">
+<link href="building-complicated-functions.html#building-complicated-functions" rel="previous" title="1.3 Building complicated functions">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="extending devStatus">
+
+
+<div id="main">
+<a name="Displaying-music-expressions"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="building-complicated-functions.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building complicated functions&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="building-complicated-functions.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Building complicated functions&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="music-properties.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Music properties &gt; </a>]</td></tr></table>
+<a name="displaying-music-expressions"></a>
+<h3 class="subsection">1.3.1 Displaying music expressions</h3>
+
+<a name="index-internal-storage"></a>
+<a name="index-displaying-music-expressions"></a>
+<a name="index-internal-representation_002c-displaying"></a>
+<a name="index-displayMusic"></a>
+<a name="index-_005cdisplayMusic"></a>
+<a name="index-_005cdisplayMusic-1"></a>
+
+<p>When writing a music function it is often instructive to inspect how
+a music expression is stored internally.  This can be done with the
+music function <code>\displayMusic</code>
+</p>
+<blockquote><pre class="example">{
+  \displayMusic { c'4\f }
+}
+</pre></blockquote>
+
+<p>will display
+</p>
+<blockquote><pre class="example">(make-music
+  'SequentialMusic
+  'elements
+  (list (make-music
+          'NoteEvent
+          'articulations
+          (list (make-music
+                  'AbsoluteDynamicEvent
+                  'text
+                  &quot;f&quot;))
+          'duration
+          (ly:make-duration 2 0 1/1)
+          'pitch
+          (ly:make-pitch 0 0 0))))
+</pre></blockquote>
+
+<p>By default, LilyPond will print these messages to the console along
+with all the other messages.  To split up these messages and save
+the results of <code>\display{STUFF}</code>, you can specify an optional
+output port to use:
+</p>
+<blockquote><pre class="example">{
+  \displayMusic #(open-output-file &quot;display.txt&quot;) { c'4\f }
+}
+</pre></blockquote>
+
+<p>This will overwrite a previous output file whenever it is called; if you
+need to write more than one expression, you would use a variable for
+your port and reuse it:
+</p><blockquote><pre class="example">{
+  port = #(open-output-file &quot;display.txt&quot;)
+  \displayMusic \port { c'4\f }
+  \displayMusic \port { d'4 }
+  #(close-output-port port)
+}
+</pre></blockquote>
+
+<p>Guile&rsquo;s manual describes ports in detail.  Closing the port is actually
+only necessary if you need to read the file before Lilypond finishes; in
+the first example, we did not bother to do so.
+</p>
+<p>A bit of reformatting makes the above information easier to read:
+</p>
+<blockquote><pre class="example">(make-music 'SequentialMusic
+  'elements (list
+	     (make-music 'NoteEvent
+               'articulations (list
+			       (make-music 'AbsoluteDynamicEvent
+				 'text
+				 &quot;f&quot;))
+	       'duration (ly:make-duration 2 0 1/1)
+	       'pitch    (ly:make-pitch 0 0 0))))
+</pre></blockquote>
+
+<p>A <code>{ &hellip; }</code> music sequence has the name
+<code>SequentialMusic</code>, and its inner expressions are stored as a list
+in its <code>'elements</code> property.  A note is represented as a
+<code>NoteEvent</code> object (storing the duration and pitch properties) with
+attached information (in this case, an <code>AbsoluteDynamicEvent</code> with
+a <code>&quot;f&quot;</code> text property) stored in its <code>articulations</code> property.
+</p>
+<a name="index-void"></a>
+<a name="index-void-1"></a>
+<p><code>\displayMusic</code> returns the music it displays, so it will get
+interpreted as well as displayed.  To avoid interpretation, write
+<code>\void</code> before <code>\displayMusic</code>.
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Scheme tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.html" title="Next chapter">&nbsp;Interfaces for programmers &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="building-complicated-functions.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building complicated functions&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="building-complicated-functions.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Building complicated functions&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="music-properties.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Music properties &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Other languages: <a href="displaying-music-expressions.de.html">deutsch</a>, <a href="displaying-music-expressions.es.html">español</a>, <a href="displaying-music-expressions.fr.html">français</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Extending  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Scheme-tutorial-1" href="scheme-tutorial.html">1. Scheme tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-Scheme-1" href="introduction-to-scheme.html">1.1 Introduction to Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-in-LilyPond-1" href="scheme-in-lilypond.html">1.2 Scheme in LilyPond</a>    </li>
+    <li class=" toc_current"><a name="toc-Building-complicated-functions-1" href="building-complicated-functions.html">1.3 Building complicated functions</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Displaying-music-expressions-1" href="displaying-music-expressions.html">1.3.1 Displaying music expressions</a>      </li>
+      <li class=""><a name="toc-Music-properties-1" href="music-properties.html">1.3.2 Music properties</a>      </li>
+      <li class=""><a name="toc-Doubling-a-note-with-slurs-_0028example_0029-1" href="doubling-a-note-with-slurs-_0028example_0029.html">1.3.3 Doubling a note with slurs (example)</a>      </li>
+      <li class=""><a name="toc-Adding-articulation-to-notes-_0028example_0029-1" href="adding-articulation-to-notes-_0028example_0029.html">1.3.4 Adding articulation to notes (example)</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-for-programmers-1" href="interfaces-for-programmers.html">2. Interfaces for programmers</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-code-blocks-1" href="lilypond-code-blocks.html">2.1 LilyPond code blocks</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.html">2.2 Scheme functions</a>    </li>
+    <li class=""><a name="toc-Music-functions-1" href="music-functions.html">2.3 Music functions</a>    </li>
+    <li class=""><a name="toc-Event-functions-1" href="event-functions.html">2.4 Event functions</a>    </li>
+    <li class=""><a name="toc-Markup-functions-1" href="markup-functions.html">2.5 Markup functions</a>    </li>
+    <li class=""><a name="toc-Contexts-for-programmers-1" href="contexts-for-programmers.html">2.6 Contexts for programmers</a>    </li>
+    <li class=""><a name="toc-Callback-functions-1" href="callback-functions.html">2.7 Callback functions</a>    </li>
+    <li class=""><a name="toc-Difficult-tweaks-1" href="difficult-tweaks.html">2.8 Difficult tweaks</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-Scheme-interfaces-1" href="lilypond-scheme-interfaces.html">3. LilyPond Scheme interfaces</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.html">B. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manuale di apprendimento di LilyPond: 4.4.2 Oggetti interni al rigo</title>
+
+<meta name="description" content="Manuale di apprendimento di LilyPond: 4.4.2 Oggetti interni al rigo">
+<meta name="keywords" content="Manuale di apprendimento di LilyPond: 4.4.2 Oggetti interni al rigo">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Manuale di apprendimento">
+<link href="lilypond-index.it.html#lilypond-index" rel="index" title="C. Indice di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="placement-of-objects.it.html#placement-of-objects" rel="up" title="4.4 Posizionamento degli oggetti">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="C. Indice di LilyPond">
+<link href="automatic-behavior.it.html#automatic-behavior" rel="previous" title="4.4.1 Comportamento automatico">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="learning devStatus">
+
+
+<div id="main">
+<a name="Oggetti-interni-al-rigo"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="automatic-behavior.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Comportamento automatico&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="placement-of-objects.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Posizionamento degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-direction-property" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;La proprietà direction &gt; </a>]</td></tr></table>
+<a name="within_002dstaff-objects"></a>
+<h3 class="subsection">4.4.2 Oggetti interni al rigo</h3>
+
+<p>Abbiamo già visto come i comandi <code>\voiceXXX</code> influenzino
+la direzione di legature di portamento e di valore, delle diteggiature e
+di qualsiasi altro elemento che dipenda dalla direzione dei gambi (vedi
+<a href="explicitly-instantiating-voices.it.html">Definire esplicitamente le voci</a>).
+Questi comandi sono fondamentali quando si scrive musica polifonica,
+perché permettono di distinguere le linee melodiche che si intrecciano.
+Talvolta, però, capita di voler modificare questo comportamento
+automatico.  Si può fare per intere sezioni musicali o anche per
+una singola nota.  La proprietà che controlla questo comportamento
+è la proprietà <code>direction</code> di ogni oggetto di formattazione.
+Spieghiamo prima che cosa fa e poi presentiamo alcuni comandi
+già pronti, che ti eviteranno di dover scrivere sovrascritture
+esplicite per le modifiche più comuni.
+</p>
+<p>Alcuni oggetti di formattazione, come le legature di portamento e di
+valore, si incurvano, si piegano o puntano verso l&rsquo;alto o il basso; altri,
+come i gambi e le code, a seconda dell&rsquo;orientamento si dispongono anche sulla
+destra o sulla sinistra.  Tutto questo viene controllato automaticamente
+quando si imposta la proprietà <code>direction</code>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-direction-property" accesskey="1">La proprietà <code>direction</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#fingering" accesskey="2">Diteggiatura</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="La-propriet_00e0-direction"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#within_002dstaff-objects" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Oggetti interni al rigo&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti interni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#fingering" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Diteggiatura &gt; </a>]</td></tr></table>
+<a name="the-direction-property"></a>
+<h4 class="unnumberedsubsubsec">La proprietà <code>direction</code></h4>
+
+<a name="index-down"></a>
+<a name="index-direzione_002c-giu"></a>
+<a name="index-up"></a>
+<a name="index-direzione_002c-su"></a>
+<a name="index-center"></a>
+<a name="index-direzione_002c-centrale"></a>
+<a name="index-neutral"></a>
+<a name="index-direzione_002c-neutrale"></a>
+
+<p>L&rsquo;esempio seguente mostra il posizionamento predefinito delle legature di
+portamento nella prima battuta, con legature che iniziano sulle note
+alte poste sopra le note e quelle che iniziano sulle note basse posizionate
+sotto, seguita da una battuta con entrambe le legature forzate verso il
+basso, un&rsquo;altra battuta con entrambe le legatura forzate verso l&rsquo;alto e infine
+una battuta con entrambe le legature ripristinate al comportamento predefinito.
+</p>
+<a name="index-Slur_002c-esempio-di-sovrascrittura-3"></a>
+<a name="index-legatura-di-portamento_002c-esempio-di-sovrascrittura-1"></a>
+<a name="index-proprieta-direction_002c-esempio"></a>
+<a name="index-direction_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">a'4( g') c''( a') |
+\override Slur.direction = #DOWN
+a'4( g') c''( a') |
+\override Slur.direction = #UP
+a'4( g') c''( a') |
+\revert Slur.direction
+a'4( g') c''( a') |
+</pre><p>
+ <a href="../eb/lily-b31fb814.ly">
+  <img align="middle"
+       border="0"
+       src="../eb/lily-b31fb814.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Abbiamo usato le costanti <code>DOWN</code> (giù) e <code>UP</code> (su).
+Queste hanno rispettivamente i valori <code>-1</code> e <code>+1</code>, ed
+è possibile usare tali valori numerici al loro posto.  In alcuni casi
+si può usare anche il valore <code>0</code>, che significa <code>UP</code> per le
+legature di portamento, ma per alcuni oggetti significa &lsquo;center&rsquo; (centro).
+Esiste una costante, <code>CENTER</code> che ha valore <code>0</code>.
+</p>
+<p>Tuttavia queste sovrascritture esplicite solitamente non vengono usate, perché
+ci sono dei comandi predefiniti equivalenti e più semplici.  Ecco una tabella
+con quelli più utilizzati; il significato di ognuno è esplicitato laddove
+non è ovvio.
+</p>
+<table>
+<thead><tr><th width="20%">Giù/Sinistra</th><th width="20%">Su/Destra</th><th width="25%">Ripristina</th><th width="35%">Effetto</th></tr></thead>
+<tr><td width="20%"><code>\arpeggioArrowDown</code></td><td width="20%"><code>\arpeggioArrowUp</code></td><td width="25%"><code>\arpeggioNormal</code></td><td width="35%">Aggiunge una freccia in fondo, in cima o toglie la freccia</td></tr>
+<tr><td width="20%"><code>\dotsDown</code></td><td width="20%"><code>\dotsUp</code></td><td width="25%"><code>\dotsNeutral</code></td><td width="35%">Direzione dello spostamento per evitare le linee del rigo</td></tr>
+<tr><td width="20%"><code>\dynamicDown</code></td><td width="20%"><code>\dynamicUp</code></td><td width="25%"><code>\dynamicNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\phrasingSlurDown</code></td><td width="20%"><code>\phrasingSlurUp</code></td><td width="25%"><code>\phrasingSlurNeutral</code></td><td width="35%">Nota: è diverso dai comandi slur</td></tr>
+<tr><td width="20%"><code>\slurDown</code></td><td width="20%"><code>\slurUp</code></td><td width="25%"><code>\slurNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\stemDown</code></td><td width="20%"><code>\stemUp</code></td><td width="25%"><code>\stemNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\textSpannerDown</code></td><td width="20%"><code>\textSpannerUp</code></td><td width="25%"><code>\textSpannerNeutral</code></td><td width="35%">Il testo inserito come oggetto estensore (spanner) va sotto/sopra il rigo</td></tr>
+<tr><td width="20%"><code>\tieDown</code></td><td width="20%"><code>\tieUp</code></td><td width="25%"><code>\tieNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\tupletDown</code></td><td width="20%"><code>\tupletUp</code></td><td width="25%"><code>\tupletNeutral</code></td><td width="35%">I gruppi irregolare sono sotto/sopra le note</td></tr>
+</table>
+
+
+<p>Le varianti neutral/normal di questi comandi usano <code>\revert</code> e queste
+<strong>non</strong> possono essere precedute da <code>\once</code>.  Se desideri limitare
+l&rsquo;effetto degli altri comandi (che usano <code>\override</code>) a un singolo
+momento temporale, devi farli precedere da <code>\once</code> come faresti con
+delle sovrascritture esplicite.
+</p>
+<p>Oppure, se solo un oggetto della formattazione deve essere forzato verso
+l&rsquo;alto o verso il basso, si possono usare gli indicatori di
+direzione, <code>^</code> o <code>_</code>:
+</p>
+<blockquote><pre class="verbatim">a'4( g') c''( a') |
+a'4^( g') c''_( a') |
+</pre><p>
+ <a href="../ea/lily-76950ae3.ly">
+  <img align="middle"
+       border="0"
+       src="../ea/lily-76950ae3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Diteggiatura"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-direction-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà direction&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti interni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside_002dstaff-objects.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Oggetti esterni al rigo &gt; </a>]</td></tr></table>
+<a name="fingering"></a>
+<h4 class="unnumberedsubsubsec">Diteggiatura</h4>
+
+<a name="index-diteggiatura_002c-posizionamento"></a>
+<a name="index-diteggiatura_002c-accordi"></a>
+
+<p>Anche il posizionamento della diteggiatura sulle singole note può essere
+controllato dalla proprietà <code>direction</code>, ma la modifica di <code>direction</code>
+non produce effetti sugli accordi.  Come vedremo, ci sono comandi specifici
+che permettono di controllare la diteggiatura delle singole note degli
+accordi, col segno di diteggiatura posizionato sopra, sotto, a sinistra
+o a destra di ogni nota.
+</p>
+<p>Vediamo innanzitutto l&rsquo;effetto di <code>direction</code> sulla diteggiatura
+attaccata alle singole note.  La prima battuta mostra il comportamento
+predefinito e le due battute successive mostrano gli effetti dei valori
+<code>DOWN</code> e <code>UP</code>:
+</p>
+<a name="index-Fingering_002c-esempio-di-sovrascrittura"></a>
+<a name="index-proprieta-direction_002c-esempio-1"></a>
+<a name="index-direction_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4-5 a-3 f-1 c'-5 |
+  \override Fingering.direction = #DOWN
+  c4-5 a-3 f-1 c'-5 |
+  \override Fingering.direction = #UP
+  c4-5 a-3 f-1 c'-5 |
+}
+</pre><p>
+ <a href="../85/lily-70324033.ly">
+  <img align="middle"
+       border="0"
+       src="../85/lily-70324033.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Tuttavia sovrascrivere la proprietà <code>direction</code> non è il modo
+più semplice di definire a mano la diteggiatura sopra o sotto
+le note; di solito è preferibile usare <code>_</code> o <code>^</code> invece di <code>-</code>
+prima del numero della diteggiatura.  Ecco l&rsquo;esempio precedente riscritto
+usando questo metodo:
+</p>
+<a name="index-fingering_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4-5 a-3 f-1 c'-5 |
+  c4_5 a_3 f_1 c'_5 |
+  c4^5 a^3 f^1 c'^5 |
+}
+</pre><p>
+ <a href="../4e/lily-1b648776.ly">
+  <img align="middle"
+       border="0"
+       src="../4e/lily-1b648776.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La proprietà <code>direction</code> viene ignorata negli accordi, ma i
+prefissi direzionali, <code>_</code> e <code>^</code> funzionano.  Per impostazione
+predefinita, la diteggiatura viene disposta automaticamente sopra e
+sotto le note di un accordo:
+</p>
+<a name="index-fingering_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-5 g-3&gt;4
+  &lt;c-5 g-3 e-2&gt;4
+  &lt;c-5 g-3 e-2 c-1&gt;4
+}
+</pre><p>
+ <a href="../dc/lily-1efbbd59.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-1efbbd59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>ma può essere sovrascritta per forzare manualmente in su o in giù tutti o
+alcuni dei singoli numeri della diteggiatura:
+</p>
+<a name="index-fingering_002c-esempio-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-5 g-3 e-2 c-1&gt;4
+  &lt;c^5 g_3 e_2 c_1&gt;4
+  &lt;c^5 g^3 e^2 c_1&gt;4
+}
+</pre><p>
+ <a href="../b8/lily-153895ca.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-153895ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>È possibile avere un controllo ancora maggiore sulla disposizione della
+diteggiatura delle singole note di un accordo usando il comando
+<code>\set fingeringOrientations</code>.  Il formato di questo comando è:
+</p>
+<blockquote><pre class="example"><code>\set fingeringOrientations = #'([up] [left/right] [down])</code>
+</pre></blockquote>
+
+<p>Si usa <code>\set</code> perché <code>fingeringOrientations</code> è una
+proprietà del contesto <code>Voice</code>, creato e usato dall&rsquo;incisore
+<code>New_fingering_engraver</code>.
+</p>
+<p>Questa proprietà accetta come valori una lista comprendente da uno a tre elementi.
+Stabilisce se la diteggiatura debba essere posizionata sopra (se nella
+lista c&rsquo;è <code>up</code>), sotto (se c&rsquo;è <code>down</code>), a sinistra (se c&rsquo;è
+<code>left</code>) o a destra (se c&rsquo;è <code>right</code>).  Nel caso vengano inseriti valori
+non accettati dalla lista, non sarà invece collocata alcuna diteggiatura.  LilyPond
+prende in considerazione questi limiti e trova la migliore disposizione per
+la diteggiatura delle note degli accordi che seguono.  Nota che <code>left</code> e
+<code>right</code> si escludono a vicenda &ndash; la diteggiatura può essere posta
+solo da un lato o dall&rsquo;altro, non da entrambi.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Per controllare la posizione della diteggiatura di una
+singola nota con questo comando bisogna scrivere la nota come un accordo
+con una nota sola, ovvero racchiuderla tra parentesi angolari.
+</p>
+</div>
+<p>Ecco alcuni esempi:
+</p>
+<a name="index-fingering_002c-esempio-3"></a>
+<a name="index-_005cset_002c-esempio-di-utilizzo"></a>
+<a name="index-proprieta-fingeringOrientations_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \set fingeringOrientations = #'(left)
+  &lt;f'-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(up left down)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(up left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(right)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+}
+</pre><p>
+ <a href="../b7/lily-13a8f6df.ly">
+  <img align="middle"
+       border="0"
+       src="../b7/lily-13a8f6df.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se la diteggiatura appare eccessivamente fitta, si può ridurre la dimensione del
+tipo di carattere modificando la proprietà <code>font-size</code>.  Si può vedere
+nell&rsquo;oggetto <code>Fingering</code> della guida al Funzionamento interno che il
+valore predefinito di tale proprietà è <code>-5</code>, dunque proviamo
+con <code>-7</code>:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \override Fingering.font-size = #-7
+  \set fingeringOrientations = #'(left)
+  &lt;f'-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(up left down)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(up left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(right)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+}
+</pre><p>
+ <a href="../b1/lily-f768b697.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-f768b697.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-direction-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà direction&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti interni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside_002dstaff-objects.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Oggetti esterni al rigo &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="within_002dstaff-objects.html">English</a>, <a href="within_002dstaff-objects.ca.html">català</a>, <a href="within_002dstaff-objects.cs.html">česky</a>, <a href="within_002dstaff-objects.de.html">deutsch</a>, <a href="within_002dstaff-objects.es.html">español</a>, <a href="within_002dstaff-objects.fr.html">français</a>, <a href="within_002dstaff-objects.ja.html">日本語</a>, <a href="within_002dstaff-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Manuale di apprendimento  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.it.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilare-un-file-1" href="compiling-a-file.it.html">1.1 Compilare un file</a>    </li>
+    <li class=""><a name="toc-Come-scrivere-i-file-di-input-1" href="how-to-write-input-files.it.html">1.2 Come scrivere i file di input</a>    </li>
+    <li class=""><a name="toc-Gestire-gli-errori-1" href="dealing-with-errors.it.html">1.3 Gestire gli errori</a>    </li>
+    <li class=""><a name="toc-Come-leggere-i-manuali-1" href="how-to-read-the-manuals.it.html">1.4 Come leggere i manuali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notazione-comunemente-utilizzata-1" href="common-notation.it.html">2. Notazione comunemente utilizzata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notazione-su-un-solo-pentagramma-1" href="single-staff-notation.it.html">2.1 Notazione su un solo pentagramma</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="multiple-notes-at-once.it.html">2.2 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.3 Canzoni</a>    </li>
+    <li class=""><a name="toc-Ritocchi-finali-1" href="final-touches.it.html">2.4 Ritocchi finali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concetti-fondamentali-1" href="fundamental-concepts.it.html">3. Concetti fondamentali</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Come-funzionano-i-file-di-input-di-LilyPond-1" href="how-lilypond-input-files-work.it.html">3.1 Come funzionano i file di input di LilyPond</a>    </li>
+    <li class=""><a name="toc-Le-voci-contengono-la-musica-1" href="voices-contain-music.it.html">3.2 Le voci contengono la musica</a>    </li>
+    <li class=""><a name="toc-Contesti-e-incisori-1" href="contexts-and-engravers.it.html">3.3 Contesti e incisori</a>    </li>
+    <li class=""><a name="toc-Estendere-i-modelli-1" href="extending-the-templates.it.html">3.4 Estendere i modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Modifica-dell_0027output-1" href="tweaking-output.it.html">4. Modifica dell&rsquo;output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modifiche-di-base-1" href="tweaking-basics.it.html">4.1 Modifiche di base</a>    </li>
+    <li class=""><a name="toc-Manuale-del-Funzionamento-interno-1" href="the-internals-reference-manual.it.html">4.2 Manuale del Funzionamento interno</a>    </li>
+    <li class=""><a name="toc-Aspetto-degli-oggetti-1" href="appearance-of-objects.it.html">4.3 Aspetto degli oggetti</a>    </li>
+    <li class=" toc_current"><a name="toc-Posizionamento-degli-oggetti-1" href="placement-of-objects.it.html">4.4 Posizionamento degli oggetti</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Comportamento-automatico-1" href="automatic-behavior.it.html">4.4.1 Comportamento automatico</a>      </li>
+      <li class=" toc_current"><a name="toc-Oggetti-interni-al-rigo-1" href="within_002dstaff-objects.it.html">4.4.2 Oggetti interni al rigo</a>
+      <ul class="toc">
+        <li class=""><a name="toc-La-proprieta-direction" href="within_002dstaff-objects.it.html#the-direction-property">La proprietà <code>direction</code></a>        </li>
+        <li class=""><a name="toc-Diteggiatura-1" href="within_002dstaff-objects.it.html#fingering">Diteggiatura</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Oggetti-esterni-al-rigo-1" href="outside_002dstaff-objects.it.html">4.4.3 Oggetti esterni al rigo</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Spaziatura-verticale-1" href="vertical-spacing.it.html">4.5 Spaziatura verticale</a>    </li>
+    <li class=""><a name="toc-Collisioni-tra-oggetti-1" href="collisions-of-objects.it.html">4.6 Collisioni tra oggetti</a>    </li>
+    <li class=""><a name="toc-Altre-modifiche-1" href="further-tweaking.it.html">4.7 Altre modifiche</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modelli-1" href="templates.it.html">A. Modelli</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modelli-integrati-1" href="built_002din-templates.it.html">A.1 Modelli integrati</a>    </li>
+    <li class=""><a name="toc-Modelli-per-rigo-singolo-1" href="single-staff-templates.it.html">A.2 Modelli per rigo singolo</a>    </li>
+    <li class=""><a name="toc-Modelli-per-pianoforte-1" href="piano-templates.it.html">A.3 Modelli per pianoforte</a>    </li>
+    <li class=""><a name="toc-Modelli-per-quartetto-d_0027archi-1" href="string-quartet-templates.it.html">A.4 Modelli per quartetto d&rsquo;archi</a>    </li>
+    <li class=""><a name="toc-Modelli-per-gruppi-vocali-1" href="vocal-ensembles-templates.it.html">A.5 Modelli per gruppi vocali</a>    </li>
+    <li class=""><a name="toc-Modelli-per-orchestra-1" href="orchestral-templates.it.html">A.6 Modelli per orchestra</a>    </li>
+    <li class=""><a name="toc-Modelli-per-notazione-antica-1" href="ancient-notation-templates.it.html">A.7 Modelli per notazione antica</a>    </li>
+    <li class=""><a name="toc-Altri-modelli-1" href="other-templates.it.html">A.8 Altri modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">C. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

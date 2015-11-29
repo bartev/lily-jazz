@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 5.1.1 Was sind Kontexte?</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 5.1.1 Was sind Kontexte?">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 5.1.1 Was sind Kontexte?">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="interpretation-contexts.de.html#interpretation-contexts" rel="up" title="5.1 Interpretationskontexte">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="interpretation-contexts.de.html#interpretation-contexts" rel="previous" title="5.1 Interpretationskontexte">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Was-sind-Kontexte_003f"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="interpretation-contexts.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Interpretationskontexte&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="interpretation-contexts.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Interpretationskontexte&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#score-_002d-the-master-of-all-contexts" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Score -- der Vater aller Kontexte &gt; </a>]</td></tr></table>
+<a name="contexts-explained"></a>
+<h3 class="subsection">5.1.1 Was sind Kontexte?</h3>
+
+<p>Kontexte sind hierarchisch geordnet:
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#score-_002d-the-master-of-all-contexts" accesskey="1">Score &ndash; der Vater aller Kontexte</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#top_002dlevel-contexts-_002d-staff-containers" accesskey="2">Oberste Kontexte &ndash; Container für Systeme</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#intermediate_002dlevel-contexts-_002d-staves" accesskey="3">Mittlere Kontexte &ndash; Systeme</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#bottom_002dlevel-contexts-_002d-voices" accesskey="4">Unterste Kontexte &ndash; Stimmen</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Score-_002d_002d-der-Vater-aller-Kontexte"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#contexts-explained" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Was sind Kontexte?&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#contexts-explained" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Was sind Kontexte?&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#top_002dlevel-contexts-_002d-staff-containers" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Oberste Kontexte -- Container für Systeme &gt; </a>]</td></tr></table>
+<a name="score-_002d-the-master-of-all-contexts"></a>
+<h4 class="unnumberedsubsubsec">Score &ndash; der Vater aller Kontexte</h4>
+
+<p><code>Score</code> (Partitur) ist der höchste Notationskontext.  Kein anderer Kontext
+kann einen <code>Score</code>-Kontext enthalten.  Im Normalfall kümmert
+sich der <code>Score</code>-Kontext um die Verwaltung der Taktarten und sorgt
+dafür, dass Elemente wie Schlüssel und Taktart- oder Tonartbezeichnungen
+über die Systeme hinweg aneinander ausgerichtet sind.
+</p>
+<p>Ein <code>Score</code>-Kontext wird eingerichtet, wenn eine
+<code>\score {&hellip;}</code> oder <code>\layout {&hellip;}</code>-Umgebung
+interpretiert wird.
+</p>
+<hr size="6">
+<a name="Oberste-Kontexte-_002d_002d-Container-f_00fcr-Systeme"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#score-_002d-the-master-of-all-contexts" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Score -- der Vater aller Kontexte&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#contexts-explained" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Was sind Kontexte?&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#intermediate_002dlevel-contexts-_002d-staves" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Mittlere Kontexte -- Systeme &gt; </a>]</td></tr></table>
+<a name="top_002dlevel-contexts-_002d-staff-containers"></a>
+<h4 class="unnumberedsubsubsec">Oberste Kontexte &ndash; Container für Systeme</h4>
+
+<p>Diese Kontexte fassen Systeme zu Gruppen zusammen und werden darum hier
+als Systemgruppen bezeichnet (engl. staffgroup).
+</p>
+<p><strong><em>StaffGroup</em></strong>
+</p>
+<p>Gruppiert Systeme und fügt eine eckige Klammer auf der linken Seite
+hinzu.  Die Taktstriche der enthaltenen Systeme werden vertikal
+miteinander verbunden. <code>StaffGroup</code> besteht nur aus einer Ansammlung
+von Systemen mit einer eckigen Klammer zu Beginn der Zeile und
+durchgezogenen Taktstriche.
+</p>
+<p><strong><em>ChoirStaff</em></strong>
+</p>
+<p>Entspricht <code>StaffGroup</code>, außer dass die Taktstriche der enthaltenen
+Systeme nicht vertikal miteinander verbunden sind.
+</p>
+<p><strong><em>GrandStaff</em></strong>
+</p>
+<p>Gruppiert Systeme mit einer geschweiften Klammer zur Linken.  Die
+Taktlinien der enthaltenen Systeme werden vertikal verbunden.
+</p>
+<p><strong><em>PianoStaff</em></strong>
+</p>
+<p>Entspricht <code>GrandStaff</code>, hat aber zusätzlich Unterstützung für
+Instrumentenbezeichnungen zu Beginn jeder Systemgruppe.
+</p>
+
+<hr size="6">
+<a name="Mittlere-Kontexte-_002d_002d-Systeme"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#top_002dlevel-contexts-_002d-staff-containers" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Oberste Kontexte -- Container für Systeme&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#contexts-explained" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Was sind Kontexte?&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#bottom_002dlevel-contexts-_002d-voices" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Unterste Kontexte -- Stimmen &gt; </a>]</td></tr></table>
+<a name="intermediate_002dlevel-contexts-_002d-staves"></a>
+<h4 class="unnumberedsubsubsec">Mittlere Kontexte &ndash; Systeme</h4>
+
+<p>Diese Kontexte stellen verschiedene Arten einzelner Notationssysteme
+(engl. staff) dar.
+</p>
+<p><strong><em>Staff</em></strong>
+</p>
+<p>Kümmert sich um Schlüssel, Taktstriche, Tonarten und Versetzungszeichen.
+Er kann <code>Voice</code>-Kontexte enthalten.
+</p>
+<p><strong><em>RhythmicStaff</em></strong>
+</p>
+<p>Entspricht <code>Staff</code>, aber dient zur Notation von Rhythmen: Tonhöhen
+werden ignoriert und die Noten auf einer einzigen Linie ausgegeben.
+</p>
+<p><strong><em>TabStaff</em></strong>
+</p>
+<p>Ein Kontext um Tabulaturen zu erstellen.  Die Standardeinstellung ist
+eine Gitarrentabulatur mit sechs Notenlinien.
+</p>
+<p><strong><em>DrumStaff</em></strong>
+</p>
+<p>Ein Kontext zur Notation von Perkussion.  Er kann
+<code>DrumVoice</code>-Kontexte enthalten.
+</p>
+<p><strong><em>VaticanaStaff</em></strong>
+</p>
+<p>Entspricht <code>Staff</code>, aber eignet sich besonders zum Notensatz des
+Gregorianischen Chorals.
+</p>
+<p><strong><em>MensuralStaff</em></strong>
+</p>
+<p>Entspricht <code>Staff</code>, aber eignet sich zum Notensatz von Noten in
+der Mensuralnotation.
+</p>
+
+<hr size="6">
+<a name="Unterste-Kontexte-_002d_002d-Stimmen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#intermediate_002dlevel-contexts-_002d-staves" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Mittlere Kontexte -- Systeme&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#contexts-explained" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Was sind Kontexte?&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="creating-and-referencing-contexts.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Kontexte erstellen und referenzieren &gt; </a>]</td></tr></table>
+<a name="bottom_002dlevel-contexts-_002d-voices"></a>
+<h4 class="unnumberedsubsubsec">Unterste Kontexte &ndash; Stimmen</h4>
+
+<p>Stimmen-(<code>Voice</code>-Kontexte initialisieren bestimmte Eigenschaften
+und laden bestimmte Engraver.  Weil es sich bei Stimmen um die
+untersten Kontexte handelt, können sie keine weiteren Kontexte enthalten.
+</p>
+<p><strong><em>Voice</em></strong>
+</p>
+<p>Entspricht einer Stimme auf einem Notensystem.  Der Kontext kümmert sich
+um die Umsetzung von Noten, Dynamikzeichen, Hälsen, Balken, diversen Texten,
+Bögen und Pausen.  Wenn mehr als eine Stimme pro System benötigt wird,
+muss dieser Kontext explizit initialisiert werden.
+</p>
+<p><strong><em>VaticanaVoice</em></strong>
+</p>
+<p>Entspricht <code>Voice</code>, aber eignet sich besonders zum Notensatz
+des Gregorianischen Chorals.
+</p>
+<p><strong><em>MensuralVoice</em></strong>
+</p>
+<p>Entspricht <code>Voice</code>, aber mit Änderungen, um Mensuralnotation
+setzen zu können.
+</p>
+<p><strong><em>Lyrics</em></strong>
+</p>
+<p>Entspricht einer Stimme mit Gesangstext.  Kümmert sich um den Satz
+des Gesangstextes auf einer Zeile.
+</p>
+<p><strong><em>DrumVoice</em></strong>
+</p>
+<p>Der Stimmenkontext in einem Perkussionssystem.
+</p>
+<p><strong><em>FiguredBass</em></strong>
+</p>
+<p>Der Kontext, in dem Generalbassziffern (<code>BassFigure</code>-Objekte)
+gesetzt werden, die in der <code>\figuremode</code>-Umgebung
+notiert werden.
+</p>
+<p><strong><em>TabVoice</em></strong>
+</p>
+<p>Dieser Stimmenkontext wird in einer Tabulatur (<code>TabStaff</code>-Kontext)
+benutzt.  Er wird normalerweise implizit erstellt.
+</p>
+<p><strong><em>CueVoice</em></strong>
+</p>
+<p>Ein Stimmenkontext, der Noten in reduzierter Größe ausgibt und
+vor allem dazu da ist, Stichnoten zu setzen.  Siehe auch
+<a href="writing-parts.de.html#formatting-cue-notes">Stichnoten formatieren</a>.  Wird normalerweise implizit erstellt,
+wenn Stichnoten gesetzt werden.
+</p>
+
+<p><strong><em>ChordNames</em></strong>
+</p>
+<p>Ausgabe von Akkordsymbolen.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#intermediate_002dlevel-contexts-_002d-staves" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Mittlere Kontexte -- Systeme&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#contexts-explained" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Was sind Kontexte?&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="creating-and-referencing-contexts.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Kontexte erstellen und referenzieren &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="contexts-explained.html">English</a>, <a href="contexts-explained.es.html">español</a>, <a href="contexts-explained.fr.html">français</a>, <a href="contexts-explained.it.html">italiano</a>, <a href="contexts-explained.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Was-sind-Kontexte_003f-1" href="contexts-explained.de.html">5.1.1 Was sind Kontexte?</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Score-_002d_002d-der-Vater-aller-Kontexte-1" href="contexts-explained.de.html#score-_002d-the-master-of-all-contexts">Score &ndash; der Vater aller Kontexte</a>        </li>
+        <li class=""><a name="toc-Oberste-Kontexte-_002d_002d-Container-fur-Systeme" href="contexts-explained.de.html#top_002dlevel-contexts-_002d-staff-containers">Oberste Kontexte &ndash; Container für Systeme</a>        </li>
+        <li class=""><a name="toc-Mittlere-Kontexte-_002d_002d-Systeme-1" href="contexts-explained.de.html#intermediate_002dlevel-contexts-_002d-staves">Mittlere Kontexte &ndash; Systeme</a>        </li>
+        <li class=""><a name="toc-Unterste-Kontexte-_002d_002d-Stimmen-1" href="contexts-explained.de.html#bottom_002dlevel-contexts-_002d-voices">Unterste Kontexte &ndash; Stimmen</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Kontexte-erstellen-und-referenzieren-1" href="creating-and-referencing-contexts.de.html">5.1.2 Kontexte erstellen und referenzieren</a>      </li>
+      <li class=""><a name="toc-Kontexte-am-Leben-halten-1" href="keeping-contexts-alive.de.html">5.1.3 Kontexte am Leben halten</a>      </li>
+      <li class=""><a name="toc-Umgebungs_002dPlugins-verandern" href="modifying-context-plug_002dins.de.html">5.1.4 Umgebungs-Plugins verändern</a>      </li>
+      <li class=""><a name="toc-Die-Standardeinstellungen-von-Kontexten-andern" href="changing-context-default-settings.de.html">5.1.5 Die Standardeinstellungen von Kontexten ändern</a>      </li>
+      <li class=""><a name="toc-Neue-Kontexte-definieren-1" href="defining-new-contexts.de.html">5.1.6 Neue Kontexte definieren</a>      </li>
+      <li class=""><a name="toc-Reihenfolge-des-Kontextlayouts-1" href="context-layout-order.de.html">5.1.7 Reihenfolge des Kontextlayouts</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

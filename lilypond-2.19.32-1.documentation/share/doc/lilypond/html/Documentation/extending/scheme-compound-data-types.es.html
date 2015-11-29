@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2003-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Extender LilyPond: A.1.4 Tipos de datos compuestos de Scheme</title>
+
+<meta name="description" content="Extender LilyPond: A.1.4 Tipos de datos compuestos de Scheme">
+<meta name="keywords" content="Extender LilyPond: A.1.4 Tipos de datos compuestos de Scheme">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Extender">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="E. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="introduction-to-scheme.es.html#introduction-to-scheme" rel="up" title="A.1 Introducción a Scheme">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="scheme-simple-data-types.es.html#scheme-simple-data-types" rel="previous" title="A.1.3 Tipos de datos simples de Scheme">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="extending devStatus">
+
+
+<div id="main">
+<a name="Tipos-de-datos-compuestos-de-Scheme"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Tutorial de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces para programadores &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="scheme-simple-data-types.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Tipos de datos simples de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="introduction-to-scheme.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Introducción a Scheme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#pairs" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Parejas &gt; </a>]</td></tr></table>
+<a name="scheme-compound-data-types"></a>
+<h3 class="subsection">A.1.4 Tipos de datos compuestos de Scheme</h3>
+
+<p>También existen tipos de datos compuestos en Scheme.  Entre los tipos
+más usados en la programación de LilyPond se encuentran las parejas,
+las listas, las listas-A y las tablas de hash.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#pairs" accesskey="1">Parejas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#lists" accesskey="2">Listas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#association-lists-_0028alists_0029" accesskey="3">Listas asociativas (listas-A)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#hash-tables" accesskey="4">Tablas de hash</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Parejas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Tutorial de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces para programadores &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#scheme-compound-data-types" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Tipos de datos compuestos de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#scheme-compound-data-types" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipos de datos compuestos de Scheme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#lists" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Listas &gt; </a>]</td></tr></table>
+<a name="pairs"></a>
+<h4 class="unnumberedsubsubsec">Parejas</h4>
+
+<p>El tipo fundacional de datos compuestos de Scheme es la <code>pareja</code>.
+Como se espera por su nombre, una pareja son dos valores unidos en uno
+solo.  El operador que se usa para formar una pareja se llama
+<code>cons</code>.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (cons 4 5)
+(4 . 5)
+guile&gt;
+</pre></td></tr></table>
+
+<p>Observe que la pareja se imprime como dos elementos rodeados por
+paréntesis y separados por un espacio, un punto (<code>.</code>) y otro
+espacio.  El punto <em>no es</em> un punto decimal, sino más bien un
+indicador de pareja.
+</p>
+<p>Las parejas también se pueden introducir como valores literales
+precediéndolos de un carácter de comilla simple o apóstrofo.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; '(4 . 5)
+(4 . 5)
+guile&gt;
+</pre></td></tr></table>
+
+<p>Los dos elementos de una pareja pueden ser cualquier valor válido de
+Scheme:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (cons #t #f)
+(#t . #f)
+guile&gt; '(&quot;bla-bla&quot; . 3.1415926535)
+(&quot;bla-bla&quot; . 3.1415926535)
+guile&gt;
+</pre></td></tr></table>
+
+<p>Se puede accede al primero y segundo elementos de la pareja mediante
+los procedimientos de Scheme <code>car</code> y <code>cdr</code>, respectivamente.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (define mipareja (cons 123 &quot;Hola&quot;)
+&hellip; )
+guile&gt; (car mipareja)
+123
+guile&gt; (cdr mipareja)
+&quot;Hola&quot;
+guile&gt;
+</pre></td></tr></table>
+
+
+<p>Nota: <code>cdr</code> se pronuncia &quot;could-er&quot;, según Sussman y Abelson,
+véase
+<a href="http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-14.html#footnote_Temp_133">http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-14.html#footnote_Temp_133</a>
+</p>
+<hr size="6">
+<a name="Listas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Tutorial de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces para programadores &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#pairs" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Parejas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#scheme-compound-data-types" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipos de datos compuestos de Scheme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#association-lists-_0028alists_0029" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Listas asociativas (listas-A) &gt; </a>]</td></tr></table>
+<a name="lists"></a>
+<h4 class="unnumberedsubsubsec">Listas</h4>
+
+<p>Una estructura de datos muy común en Scheme es la <em>lista</em>.
+Formalmente, una lista se define como la lista vacía (representada
+como <code>'()</code>, o bien como una pareja cuyo <code>cdr</code> es una lista.
+</p>
+<p>Existen muchas formas de crear listas.  Quizá la más común es con el
+procedimiento <code>list</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (list 1 2 3 &quot;abc&quot; 17.5)
+(1 2 3 &quot;abc&quot; 17.5)
+</pre></td></tr></table>
+
+<p>Como se ve, una lista se imprime en la forma de elementos individuales
+separados por espacios y encerradas entre paréntesis.  A diferencia de
+las parejas, no hay ningún punto entre los elementos.
+</p>
+<p>También se puede escribir una lista como una lista literal encerrando
+sus elementos entre paréntesis y añadiendo un apóstrofo:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; '(17 23 &quot;fulano&quot; &quot;mengano&quot; &quot;zutano&quot;)
+(17 23 &quot;fulano&quot; &quot;mengano&quot; &quot;zutano&quot;)
+</pre></td></tr></table>
+
+<p>Las listas son una parte fundamental de Scheme.  De hecho, Scheme se
+considera un dialecto de Lisp, donde &lsquo;lisp&rsquo; es una abreviatura de
+&lsquo;List Processing&rsquo; (proceso de listas).  Todas las expresiones de
+Scheme son listas.
+</p>
+
+<hr size="6">
+<a name="Listas-asociativas-_0028listas_002dA_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Tutorial de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces para programadores &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#lists" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Listas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#scheme-compound-data-types" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipos de datos compuestos de Scheme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#hash-tables" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Tablas de hash &gt; </a>]</td></tr></table>
+<a name="association-lists-_0028alists_0029"></a>
+<h4 class="unnumberedsubsubsec">Listas asociativas (listas-A)</h4>
+
+<p>Un tipo especial de listas son las <em>listas asociativas</em> o
+<em>listas-A</em>.  Se puede usar una lista-A para almacenar datos para
+su fácil recuperación posterior.
+</p>
+<p>Las listas-A son listas cuyos elementos son parejas.  El <code>car</code> de
+cada elemento se llama <em>clave</em>, y el <code>cdr</code> de cada elemento
+se llama <em>valor</em>.  El procedimiento de Scheme <code>assoc</code> se usa
+para recuperar un elemento de la lista-A, y <code>cdr</code> se usa para
+recuperar el valor:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (define mi-lista-a '((1  . &quot;A&quot;) (2 . &quot;B&quot;) (3 . &quot;C&quot;)))
+guile&gt; mi-lista-a
+((1 . &quot;A&quot;) (2 . &quot;B&quot;) (3 . &quot;C&quot;))
+guile&gt; (assoc 2 mi-lista-a)
+(2 . &quot;B&quot;)
+guile&gt; (cdr (assoc 2 mi-lista-a))
+&quot;B&quot;
+guile&gt;
+</pre></td></tr></table>
+
+<p>Las listas-A se usan mucho en LilyPond para almacenar propiedades y
+otros datos.
+</p>
+
+<hr size="6">
+<a name="Tablas-de-hash"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Tutorial de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces para programadores &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#association-lists-_0028alists_0029" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Listas asociativas (listas-A)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#scheme-compound-data-types" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipos de datos compuestos de Scheme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="calculations-in-scheme.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Cálculos en Scheme &gt; </a>]</td></tr></table>
+<a name="hash-tables"></a>
+<h4 class="unnumberedsubsubsec">Tablas de hash</h4>
+
+<p>Estructuras de datos que se utilizan en LilyPond de forma ocasional.
+Una tabla de hash es similar a una matriz, pero los índices de la
+matriz pueden ser cualquier tipo de valor de Scheme, no sólo enteros.
+</p>
+<p>Las tablas de hash son más eficientes que las listas-A si hay una gran
+cantidad de datos que almacenar y los datos cambian con muy poca
+frecuencia.
+</p>
+<p>La sintaxis para crear tablas de hash es un poco compleja, pero
+veremos ejemplos de ello en el código fuente de LilyPond.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (define h (make-hash-table 10))
+guile&gt; h
+#&lt;hash-table 0/31&gt;
+guile&gt; (hashq-set! h 'key1 &quot;val1&quot;)
+&quot;val1&quot;
+guile&gt; (hashq-set! h 'key2 &quot;val2&quot;)
+&quot;val2&quot;
+guile&gt; (hashq-set! h 3 &quot;val3&quot;)
+&quot;val3&quot;
+</pre></td></tr></table>
+
+<p>Los valores se recuperan de las tablas de hash mediante
+<code>hashq-ref</code>.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (hashq-ref h 3)
+&quot;val3&quot;
+guile&gt; (hashq-ref h 'key2)
+&quot;val2&quot;
+guile&gt;
+</pre></td></tr></table>
+
+<p>Las claves y los valores se recuperan como una pareja con
+<code>hashq-get-handle</code>.  Ésta es la forma preferida, porque devuelve
+<code>#f</code> si no se encuentra la clave.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">guile&gt; (hashq-get-handle h 'key1)
+(key1 . &quot;val1&quot;)
+guile&gt; (hashq-get-handle h 'frob)
+#f
+guile&gt;
+</pre></td></tr></table>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="scheme-tutorial.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Tutorial de Scheme&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces para programadores &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#association-lists-_0028alists_0029" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Listas asociativas (listas-A)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#scheme-compound-data-types" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipos de datos compuestos de Scheme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="calculations-in-scheme.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Cálculos en Scheme &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="scheme-compound-data-types.html">English</a>, <a href="scheme-compound-data-types.de.html">deutsch</a>, <a href="scheme-compound-data-types.fr.html">français</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Extender  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Tutorial-de-Scheme-1" href="scheme-tutorial.es.html">A. Tutorial de Scheme</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Introduccion-a-Scheme" href="introduction-to-scheme.es.html">A.1 Introducción a Scheme</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Cajon-de-arena-de-Scheme" href="scheme-sandbox.es.html">A.1.1 Cajón de arena de Scheme</a>      </li>
+      <li class=""><a name="toc-Variables-de-Scheme-1" href="scheme-variables.es.html">A.1.2 Variables de Scheme</a>      </li>
+      <li class=""><a name="toc-Tipos-de-datos-simples-de-Scheme-1" href="scheme-simple-data-types.es.html">A.1.3 Tipos de datos simples de Scheme</a>      </li>
+      <li class=" toc_current"><a name="toc-Tipos-de-datos-compuestos-de-Scheme-1" href="scheme-compound-data-types.es.html">A.1.4 Tipos de datos compuestos de Scheme</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Parejas-1" href="scheme-compound-data-types.es.html#pairs">Parejas</a>        </li>
+        <li class=""><a name="toc-Listas-1" href="scheme-compound-data-types.es.html#lists">Listas</a>        </li>
+        <li class=""><a name="toc-Listas-asociativas-_0028listas_002dA_0029-1" href="scheme-compound-data-types.es.html#association-lists-_0028alists_0029">Listas asociativas (listas-A)</a>        </li>
+        <li class=""><a name="toc-Tablas-de-hash-1" href="scheme-compound-data-types.es.html#hash-tables">Tablas de hash</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Calculos-en-Scheme" href="calculations-in-scheme.es.html">A.1.5 Cálculos en Scheme</a>      </li>
+      <li class=""><a name="toc-Procedimientos-de-Scheme-1" href="scheme-procedures.es.html">A.1.6 Procedimientos de Scheme</a>      </li>
+      <li class=""><a name="toc-Condicionales-de-Scheme-1" href="scheme-conditionals.es.html">A.1.7 Condicionales de Scheme</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Scheme-dentro-de-LilyPond-1" href="scheme-in-lilypond.es.html">A.2 Scheme dentro de LilyPond</a>    </li>
+    <li class=""><a name="toc-Construir-funciones-complicadas-1" href="building-complicated-functions.es.html">A.3 Construir funciones complicadas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-para-programadores-1" href="interfaces-for-programmers.es.html">B. Interfaces para programadores</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Bloques-de-codigo-de-LilyPond" href="lilypond-code-blocks.es.html">B.1 Bloques de código de LilyPond</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">B.2 Funciones de Scheme</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-1" href="music-functions.es.html">B.3 Funciones musicales</a>    </li>
+    <li class=""><a name="toc-Funciones-de-eventos-1" href="event-functions.es.html">B.4 Funciones de eventos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-marcado-1" href="markup-functions.es.html">B.5 Funciones de marcado</a>    </li>
+    <li class=""><a name="toc-Contextos-para-programadores-1" href="contexts-for-programmers.es.html">B.6 Contextos para programadores</a>    </li>
+    <li class=""><a name="toc-Funciones-de-callback-1" href="callback-functions.es.html">B.7 Funciones de callback</a>    </li>
+    <li class=""><a name="toc-Codigo-de-Scheme-en-linea" href="inline-scheme-code.es.html">B.8 Código de Scheme en línea</a>    </li>
+    <li class=""><a name="toc-Trucos-dificiles" href="difficult-tweaks.es.html">B.9 Trucos difíciles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-de-Scheme-de-LilyPond-1" href="lilypond-scheme-interfaces.es.html">C. Interfaces de Scheme de LilyPond</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">D. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

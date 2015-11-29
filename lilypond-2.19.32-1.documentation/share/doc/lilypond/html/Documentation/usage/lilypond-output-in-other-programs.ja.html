@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; アプリケーション使用方法: 4.4 LilyPond 出力を他のプログラムで使用する</title>
+
+<meta name="description" content="GNU LilyPond &ndash; アプリケーション使用方法: 4.4 LilyPond 出力を他のプログラムで使用する">
+<meta name="keywords" content="GNU LilyPond &ndash; アプリケーション使用方法: 4.4 LilyPond 出力を他のプログラムで使用する">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 使用方法">
+<link href="lilypond-index.ja.html#lilypond-index" rel="index" title="B. LilyPond インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="external-programs.ja.html#external-programs" rel="up" title="4. 外部プログラム">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="B. LilyPond インデックス">
+<link href="other-formats.ja.html#other-formats" rel="previous" title="4.3.5 その他のフォーマット">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="usage devStatus">
+
+
+<div id="main">
+<a name="LilyPond-_51fa_529b_3092_4ed6_306e_30d7_30ed_30b0_30e9_30e0_3067_4f7f_7528_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 外部プログラム&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ja.html" title="次の章">&nbsp;LilyPond 入力ファイルの記述に対する提案 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="other-formats.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; その他のフォーマット&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="external-programs.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;外部プログラム&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#many-quotes-from-a-large-score" title="次のセクション" accesskey="n" rel="next">&nbsp;大きな楽譜から多くの引用を行う &gt; </a>]</td></tr></table>
+<a name="lilypond-output-in-other-programs"></a>
+<h2 class="section">4.4 LilyPond 出力を他のプログラムで使用する</h2>
+
+<p><tt>このセクションでは、<code>lilypond-book</code> を用いた自動手法ではない、テキストと楽譜を統合する手法を示します。
+</tt></p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#many-quotes-from-a-large-score" accesskey="1">大きな楽譜から多くの引用を行う</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#inserting-lilypond-output-into-openoffice_002eorg" accesskey="2">LilyPond 出力を OpenOffice.org に挿入する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#inserting-lilypond-output-into-other-programs" accesskey="3">LilyPond 出力を他のプログラムに挿入する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_5927_304d_306a_697d_8b5c_304b_3089_591a_304f_306e_5f15_7528_3092_884c_3046"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 外部プログラム&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ja.html" title="次の章">&nbsp;LilyPond 入力ファイルの記述に対する提案 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#lilypond-output-in-other-programs" title="前のセクション" accesskey="p" rel="previous"> &lt; LilyPond 出力を他のプログラムで使用する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-output-in-other-programs" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;LilyPond 出力を他のプログラムで使用する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#inserting-lilypond-output-into-openoffice_002eorg" title="次のセクション" accesskey="n" rel="next">&nbsp;LilyPond 出力を OpenOffice.org に挿入する &gt; </a>]</td></tr></table>
+<a name="many-quotes-from-a-large-score"></a>
+<h3 class="unnumberedsubsec">大きな楽譜から多くの引用を行う</h3>
+
+<p><tt>大きな楽譜から多くの断片を引用する必要がある場合、システムをクリップする機能を使うことができます。<a name="index-Extracting-fragments-of-music"></a>
+<a href="../notation/extracting-fragments-of-music.ja.html">Extracting fragments of music</a> を参照してください。
+</tt></p>
+<hr size="6">
+<a name="LilyPond-_51fa_529b_3092-OpenOffice_002eorg-_306b_633f_5165_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 外部プログラム&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ja.html" title="次の章">&nbsp;LilyPond 入力ファイルの記述に対する提案 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#many-quotes-from-a-large-score" title="前のセクション" accesskey="p" rel="previous"> &lt; 大きな楽譜から多くの引用を行う&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-output-in-other-programs" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;LilyPond 出力を他のプログラムで使用する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#inserting-lilypond-output-into-other-programs" title="次のセクション" accesskey="n" rel="next">&nbsp;LilyPond 出力を他のプログラムに挿入する &gt; </a>]</td></tr></table>
+<a name="inserting-lilypond-output-into-openoffice_002eorg"></a>
+<h3 class="unnumberedsubsec">LilyPond 出力を OpenOffice.org に挿入する</h3>
+
+<a name="index-OpenOffice_002eorg"></a>
+
+<p><tt><a href="http://ooolilypond.sourceforge.net">OOoLilyPond</a> を用いて
+LilyPond 記譜を OpenOffice.org に付け加えることができます。
+</tt></p>
+
+<hr size="6">
+<a name="LilyPond-_51fa_529b_3092_4ed6_306e_30d7_30ed_30b0_30e9_30e0_306b_633f_5165_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 外部プログラム&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ja.html" title="次の章">&nbsp;LilyPond 入力ファイルの記述に対する提案 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#inserting-lilypond-output-into-openoffice_002eorg" title="前のセクション" accesskey="p" rel="previous"> &lt; LilyPond 出力を OpenOffice.org に挿入する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-output-in-other-programs" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;LilyPond 出力を他のプログラムで使用する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="independent-includes.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;独立した include &gt; </a>]</td></tr></table>
+<a name="inserting-lilypond-output-into-other-programs"></a>
+<h3 class="unnumberedsubsec">LilyPond 出力を他のプログラムに挿入する</h3>
+
+<p><tt>LilyPond 出力を他のプログラムに挿入するには、<code>lilypond-book</code> ではなく、<code>lilypond</code> を使用します。それぞれの例を個々に作成してドキュメントに付け加えます。大抵のプログラムに &lsquo;<tt>PNG</tt>&rsquo;, &lsquo;<tt>EPS</tt>&rsquo;, あるいは &lsquo;<tt>PDF</tt>&rsquo; フォーマットの
+LilyPond 出力を挿入することができます。
+</tt></p>
+<p><tt>LilyPond 楽譜の周りの空白を減らすには、以下のオプションを使用します:
+the following options
+</tt></p>
+<blockquote><pre class="example"><tt>\paper{
+  indent=0\mm
+  line-width=120\mm
+  oddFooterMarkup=##f
+  oddHeaderMarkup=##f
+  bookTitleMarkup = ##f
+  scoreTitleMarkup = ##f
+}
+
+{ c1 }
+</tt></pre></blockquote>
+
+<p><tt>有用な画像ファイルを作り出すには、以下のようにします:
+</tt></p>
+<blockquote><pre class="example"><tt>EPS
+
+lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts myfile.ly
+
+PNG
+
+lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts --png myfile.ly
+
+透過 PNG
+
+lilypond -dbackend=eps -dno-gs-load-fonts -dinclude-eps-fonts \
+  -dpixmap-format=pngalpha --png myfile.ly
+</tt></pre></blockquote>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 外部プログラム&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.ja.html" title="次の章">&nbsp;LilyPond 入力ファイルの記述に対する提案 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#inserting-lilypond-output-into-openoffice_002eorg" title="前のセクション" accesskey="p" rel="previous"> &lt; LilyPond 出力を OpenOffice.org に挿入する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#lilypond-output-in-other-programs" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;LilyPond 出力を他のプログラムで使用する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="independent-includes.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;独立した include &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="lilypond-output-in-other-programs.html">English</a>, <a href="lilypond-output-in-other-programs.ca.html">català</a>, <a href="lilypond-output-in-other-programs.de.html">deutsch</a>, <a href="lilypond-output-in-other-programs.es.html">español</a>, <a href="lilypond-output-in-other-programs.fr.html">français</a>, <a href="lilypond-output-in-other-programs.hu.html">magyar</a>, <a href="lilypond-output-in-other-programs.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 使用方法  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-lilypond-_3092_5b9f_884c_3059_308b-1" href="running-lilypond.ja.html">1. <code>lilypond</code> を実行する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_901a_5e38_306e_4f7f_7528_65b9_6cd5-1" href="normal-usage.ja.html">1.1 通常の使用方法</a>    </li>
+    <li class=""><a name="toc-_30b3_30de_30f3_30c9-_30e9_30a4_30f3_306e_4f7f_7528_65b9_6cd5-1" href="command_002dline-usage.ja.html">1.2 コマンド ラインの使用方法</a>    </li>
+    <li class=""><a name="toc-_30a8_30e9_30fc-_30e1_30c3_30bb_30fc_30b8-1" href="error-messages.ja.html">1.3 エラー メッセージ</a>    </li>
+    <li class=""><a name="toc-_4e00_822c_7684_306a_30a8_30e9_30fc-1" href="common-errors.ja.html">1.4 一般的なエラー</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-convert_002dly-_3092_4f7f_3063_3066_30d5_30a1_30a4_30eb_3092_66f4_65b0_3059_308b-1" href="updating-files-with-convert_002dly.ja.html">2. <code>convert-ly</code> を使ってファイルを更新する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_4f55_6545_69cb_6587_306f_5909_66f4_3055_308c_308b_306e_304b_ff1f-1" href="why-does-the-syntax-change_003f.ja.html">2.1 何故構文は変更されるのか？</a>    </li>
+    <li class=""><a name="toc-convert_002dly-_3092_547c_3073_51fa_3059-1" href="invoking-convert_002dly.ja.html">2.2 <code>convert-ly</code> を呼び出す</a>    </li>
+    <li class=""><a name="toc-convert_002dly-_306e_30b3_30de_30f3_30c9-_30e9_30a4_30f3-_30aa_30d7_30b7_30e7_30f3-1" href="command-line-options-for-convert_002dly.ja.html">2.3 <code>convert-ly</code> のコマンド ライン オプション</a>    </li>
+    <li class=""><a name="toc-convert_002dly-_306e_554f_984c_70b9-1" href="problems-running-convert_002dly.ja.html">2.4 <code>convert-ly</code> の問題点</a>    </li>
+    <li class=""><a name="toc-_624b_52d5_5909_63db-1" href="manual-conversions.ja.html">2.5 手動変換</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-lilypond_002dbook-_3092_5b9f_884c_3059_308b" href="lilypond_002dbook.ja.html">3. <code>lilypond-book</code> を実行する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_97f3_697d_5b66_306e_30c9_30ad_30e5_30e1_30f3_30c8_306e_4f8b-1" href="an-example-of-a-musicological-document.ja.html">3.1 音楽学のドキュメントの例</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_3068_30c6_30ad_30b9_30c8_3092_7d71_5408_3059_308b-1" href="integrating-music-and-text.ja.html">3.2 楽譜とテキストを統合する</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_65ad_7247_30aa_30d7_30b7_30e7_30f3-1" href="music-fragment-options.ja.html">3.3 楽譜断片オプション</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-_3092_547c_3073_51fa_3059-1" href="invoking-lilypond_002dbook.ja.html">3.4 <code>lilypond-book</code> を呼び出す</a>    </li>
+    <li class=""><a name="toc-_30d5_30a1_30a4_30eb_62e1_5f35_5b50-1" href="filename-extensions.ja.html">3.5 ファイル拡張子</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="lilypond_002dbook-templates.ja.html">3.6 lilypond-book テンプレート</a>    </li>
+    <li class=""><a name="toc-_76ee_6b21_3092_5171_6709_3059_308b-1" href="sharing-the-table-of-contents.ja.html">3.7 目次を共有する</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8_3068_697d_8b5c_3092_7d44_307f_5408_308f_305b_308b_4ed6_306e_65b9_6cd5-1" href="alternative-methods-of-mixing-text-and-music.ja.html">3.8 テキストと楽譜を組み合わせる他の方法</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_5916_90e8_30d7_30ed_30b0_30e9_30e0-1" href="external-programs.ja.html">4. 外部プログラム</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30dd_30a4_30f3_30c8_ff06_30af_30ea_30c3_30af-1" href="point-and-click.ja.html">4.1 ポイント＆クリック</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-_30a8_30c7_30a3_30bf-_30b5_30dd_30fc_30c8-1" href="text-editor-support.ja.html">4.2 テキスト エディタ サポート</a>    </li>
+    <li class=""><a name="toc-_4ed6_306e_30d5_30a9_30fc_30de_30c3_30c8_304b_3089_5909_63db_3059_308b-1" href="converting-from-other-formats.ja.html">4.3 他のフォーマットから変換する</a>    </li>
+    <li class=" toc_current"><a name="toc-LilyPond-_51fa_529b_3092_4ed6_306e_30d7_30ed_30b0_30e9_30e0_3067_4f7f_7528_3059_308b-1" href="lilypond-output-in-other-programs.ja.html">4.4 LilyPond 出力を他のプログラムで使用する</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_5927_304d_306a_697d_8b5c_304b_3089_591a_304f_306e_5f15_7528_3092_884c_3046-1" href="lilypond-output-in-other-programs.ja.html#many-quotes-from-a-large-score">大きな楽譜から多くの引用を行う</a>      </li>
+      <li class=""><a name="toc-LilyPond-_51fa_529b_3092-OpenOffice_002eorg-_306b_633f_5165_3059_308b-1" href="lilypond-output-in-other-programs.ja.html#inserting-lilypond-output-into-openoffice_002eorg">LilyPond 出力を OpenOffice.org に挿入する</a>      </li>
+      <li class=""><a name="toc-LilyPond-_51fa_529b_3092_4ed6_306e_30d7_30ed_30b0_30e9_30e0_306b_633f_5165_3059_308b-1" href="lilypond-output-in-other-programs.ja.html#inserting-lilypond-output-into-other-programs">LilyPond 出力を他のプログラムに挿入する</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_72ec_7acb_3057_305f-include-1" href="independent-includes.ja.html">4.5 独立した <code>include</code></a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-_5165_529b_30d5_30a1_30a4_30eb_306e_8a18_8ff0_306b_5bfe_3059_308b_63d0_6848-1" href="suggestions-for-writing-files.ja.html">5. LilyPond 入力ファイルの記述に対する提案</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_4e00_822c_7684_306a_63d0_6848-1" href="general-suggestions.ja.html">5.1 一般的な提案</a>    </li>
+    <li class=""><a name="toc-_65e2_5b58_306e_97f3_697d_3092_8b5c_523b_3059_308b-1" href="typesetting-existing-music.ja.html">5.2 既存の音楽を譜刻する</a>    </li>
+    <li class=""><a name="toc-_5927_304d_306a_30d7_30ed_30b8_30a7_30af_30c8-1" href="large-projects.ja.html">5.3 大きなプロジェクト</a>    </li>
+    <li class=""><a name="toc-_30c8_30e9_30d6_30eb_30b7_30e5_30fc_30c8-1" href="troubleshooting.ja.html">5.4 トラブルシュート</a>    </li>
+    <li class=""><a name="toc-Make-_3068-Makefile-1" href="make-and-makefiles.ja.html">5.5 Make と Makefile</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">B. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

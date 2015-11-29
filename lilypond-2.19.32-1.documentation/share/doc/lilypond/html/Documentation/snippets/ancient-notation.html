@@ -1,0 +1,1735 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This document has been placed in the public domain.
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond snippets: Ancient notation</title>
+
+<meta name="description" content="LilyPond snippets: Ancient notation">
+<meta name="keywords" content="LilyPond snippets: Ancient notation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Snippets">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="index.html#index" rel="up" title="LilyPond &mdash; Snippets">
+<link href="templates.html#templates-vocal-ensemble-template" rel="next" title="Vocal ensemble template">
+<link href="winds.html#winds" rel="previous" title="Winds">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="snippets devStatus">
+
+
+<div id="main">
+<a name="Ancient-notation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="winds.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Winds&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="winds.html#winds-woodwind-diagrams-listing" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Winds: Woodwind diagrams listing&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="index.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Top&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-adding-a-figured-bass-above-or-below-the-notes" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Adding a figured bass above or below the notes &gt; </a>]</td></tr></table>
+<a name="ancient-notation"></a>
+<h1 class="unnumbered">Ancient notation</h1>
+
+<a name="index-Ancient-notation"></a>
+<p><a href="../notation/ancient-notation.html">Ancient notation</a>
+</p>
+
+<a name="adding-a-figured-bass-above-or-below-the-notes.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Adding-a-figured-bass-above-or-below-the-notes"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-ancient-fonts" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Ancient fonts &gt; </a>]</td></tr></table>
+<a name="ancient-notation-adding-a-figured-bass-above-or-below-the-notes"></a>
+<h2 class="unnumberedsec">Adding a figured bass above or below the notes</h2>
+
+
+<p>When writing a figured bass, you can place the figures above or below
+the bass notes, by defining the
+<code>BassFigureAlignmentPositioning.direction</code> property (exclusively
+in a <code>Staff</code> context). Choices are <code>#UP</code> (or <code>#1</code>),
+<code>#CENTER</code> (or <code>#0</code>) and <code>#DOWN</code> (or <code>#-1</code>).
+</p>
+<p>This property can be changed as many times as you wish. Use
+<code>\once \override</code> if you don&rsquo;t want the override to apply to the
+whole score.
+</p>
+
+<pre class="verbatim">bass = {
+  \clef bass
+  g4 b, c d
+  e d8 c d2
+}
+
+continuo = \figuremode {
+  &lt;_&gt;4 &lt;6&gt;4 &lt;5/&gt;4
+  \override Staff.BassFigureAlignmentPositioning.direction = #UP
+  %\bassFigureStaffAlignmentUp
+  &lt; _+ &gt;4 &lt;6&gt;
+  \set Staff.useBassFigureExtenders = ##t
+  \override Staff.BassFigureAlignmentPositioning.direction = #DOWN
+  %\bassFigureStaffAlignmentDown
+  &lt;4&gt;4. &lt;4&gt;8 &lt;_+&gt;4
+}
+
+\score {
+  &lt;&lt;
+    \new Staff = bassStaff \bass
+    \context Staff = bassStaff \continuo
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../34/lily-fdcff975.ly">
+  <img align="middle"
+       border="0"
+       src="../34/lily-fdcff975.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="ancient-fonts.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Ancient-fonts"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-adding-a-figured-bass-above-or-below-the-notes" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Adding a figured bass above or below the notes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-ancient-notation-template-_002d-modern-transcription-of-gregorian-music" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Ancient notation template -- modern transcription of gregorian music &gt; </a>]</td></tr></table>
+<a name="ancient-notation-ancient-fonts"></a>
+<h2 class="unnumberedsec">Ancient fonts</h2>
+
+
+<p>Shown here are many (all?) of the symbols that are included in
+LilyPond&rsquo;s support for ancient notation.
+</p>
+
+<pre class="verbatim">upperStaff = \new VaticanaStaff = &quot;upperStaff&quot; &lt;&lt;
+  \context VaticanaVoice &lt;&lt;
+    \transpose c c {
+
+      \override NoteHead.style = #'vaticana.punctum
+      \key es \major
+      \clef &quot;vaticana-fa2&quot;
+      c1 des e f ges
+
+      \override NoteHead.style = #'vaticana.inclinatum
+      a! b ces'
+      \bar &quot;|&quot;
+
+      \override NoteHead.style = #'vaticana.quilisma
+      b! des'! ges! fes!
+      \breathe
+      \clef &quot;vaticana-fa1&quot;
+      \override NoteHead.style = #'vaticana.plica
+      es d
+      \override NoteHead.style = #'vaticana.reverse.plica
+      c d
+      \bar &quot;|&quot;
+
+      \override NoteHead.style = #'vaticana.punctum.cavum
+      es f
+      \override NoteHead.style = #'vaticana.lpes
+      g as
+      \override NoteHead.style = #'vaticana.upes
+      bes as
+      \override NoteHead.style = #'vaticana.vupes
+      g f
+      \override NoteHead.style = #'vaticana.linea.punctum
+      \once \override Staff.BarLine.bar-extent = #'(-1 . 1) \bar &quot;|&quot;
+
+      es d
+      \override NoteHead.style = #'vaticana.epiphonus
+      c d
+      \override NoteHead.style = #'vaticana.cephalicus
+      es f
+
+      \override Staff.KeySignature.glyph-name-alist = #alteration-medicaea-glyph-name-alist
+      \override Staff.Accidental.glyph-name-alist = #alteration-medicaea-glyph-name-alist
+      \override Staff.Custos.style = #'medicaea
+      \override NoteHead.style = #'medicaea.punctum
+      \clef &quot;medicaea-fa2&quot;
+      ces des
+      \bar &quot;|&quot;
+
+      e! f! ges
+      \clef &quot;medicaea-do2&quot;
+      \override NoteHead.style = #'medicaea.inclinatum
+      a! b! ces'
+      \override NoteHead.style = #'medicaea.virga
+      b! a!
+      \bar &quot;|&quot;
+
+      ges fes
+      \clef &quot;medicaea-fa1&quot;
+      \override NoteHead.style = #'medicaea.rvirga
+      e des ces
+
+      \override Staff.KeySignature.glyph-name-alist = #alteration-hufnagel-glyph-name-alist
+      \override Staff.Accidental.glyph-name-alist = #alteration-hufnagel-glyph-name-alist
+      \override Staff.Custos.style = #'hufnagel
+      \override NoteHead.style = #'hufnagel.punctum
+      \clef &quot;hufnagel-fa2&quot;
+      ces des es
+      \bar &quot;|&quot;
+
+      fes ges
+      \clef &quot;hufnagel-do2&quot;
+      \override NoteHead.style = #'hufnagel.lpes
+      as! bes! ces'
+      \override NoteHead.style = #'hufnagel.virga
+      bes! as!
+      \bar &quot;|&quot;
+
+      ges! fes!
+      \clef &quot;hufnagel-do-fa&quot;
+      \override NoteHead.style = #'hufnagel.punctum
+      es! des ces des! es! fes!
+      \bar &quot;||&quot;
+
+      s32*1
+    }
+  &gt;&gt;
+&gt;&gt;
+
+lowerStaff = \new MensuralStaff = &quot;lowerStaff&quot; &lt;&lt;
+  \context MensuralVoice &lt;&lt;
+    \transpose c c {
+
+      \key a \major
+      cis'1 d'\breve gis'\breve e'\breve \[ e'\longa fis'\longa \]
+      \set Staff.forceClef = ##t
+      \clef &quot;neomensural-c2&quot;
+      cis1
+      \bar &quot;|&quot;
+
+      \[ g\breve dis''\longa \]
+      b\breve \[ a\longa d\longa \]
+      \clef &quot;petrucci-c2&quot;
+
+      fis1 ces1
+      \clef &quot;petrucci-c2&quot;
+      r\longa
+      \set Staff.forceClef = ##t
+      \clef &quot;mensural-c2&quot;
+      r\breve
+      \bar &quot;|&quot;
+
+      r2
+      \clef &quot;mensural-g&quot;
+      r4 r8 r16 r16
+      \override NoteHead.style = #'mensural
+      \override Rest.style = #'mensural
+      \clef &quot;petrucci-f&quot;
+      c8 b, c16 b, c32 b, c64 b, c64 b,
+      d8 e d16 e d32 e d64 e d64 e
+      r\longa
+      \set Staff.forceClef = ##t
+      \clef &quot;petrucci-f&quot;
+      r\breve
+      \bar &quot;|&quot;
+
+      r\breve
+      \clef &quot;mensural-f&quot;
+      r2 r4 r8 r16 r16
+
+      \set Staff.forceClef = ##t
+      \clef &quot;mensural-f&quot;
+      e\breve f g a1
+      \clef &quot;mensural-g&quot;
+
+      \[ bes'!\longa a'!\longa c''!\longa \]
+      e'1 d' c' d' \bar &quot;|&quot;
+      \bar &quot;|&quot;
+
+      bes'!\longa fis'!1 as'!1 ges'!\longa % lig
+      \set Staff.forceClef = ##t
+      \clef &quot;mensural-g&quot;
+      e'2 d' c' \bar &quot;|&quot;
+
+      \set Staff.forceClef = ##t
+      \clef &quot;petrucci-g&quot;
+      c'2 d' e' f'
+      \clef &quot;petrucci-g&quot;
+      g' as'! bes'! cis''!
+      bes'! as'! gis'! fis'!
+      \set Staff.forceClef = ##t
+      \clef &quot;mensural-g&quot;
+      es'! des'! cis'!1 \bar &quot;||&quot;
+    }
+  &gt;&gt;
+&gt;&gt;
+
+\paper {
+  line-thickness = #(/ staff-space 5.0)
+}
+
+\score {
+  &lt;&lt;
+    \upperStaff
+    \lowerStaff
+  &gt;&gt;
+  \layout {
+    indent = 0.0
+    line-width = 17.25\cm
+    \context {
+      \Score
+      timing = ##f
+    }
+    \context {
+      \MensuralVoice
+      \override NoteHead.style = #'neomensural
+      \override Rest.style = #'neomensural
+      \override Flag.style = #'mensural
+      \override Stem.thickness = #1.0
+    }
+    \context {
+      \MensuralStaff
+      \revert  BarLine.transparent
+      \override KeySignature.glyph-name-alist = #alteration-mensural-glyph-name-alist
+      clefGlyph = #&quot;clefs.petrucci.c2&quot;
+    }
+    \context {
+      \VaticanaStaff
+      \revert  BarLine.transparent
+      \override StaffSymbol.thickness = #2.0
+      \override KeySignature.glyph-name-alist = #alteration-vaticana-glyph-name-alist
+      \override Custos.neutral-position = #4
+    }
+  }
+}
+</pre><p>
+ <a href="../79/lily-f8d4225a.ly">
+  <img align="middle"
+       border="0"
+       src="../79/lily-f8d4225a.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="ancient-notation-template----modern-transcription-of-gregorian-music.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Ancient-notation-template-_002d_002d-modern-transcription-of-gregorian-music"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-ancient-fonts" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Ancient fonts&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-ancient-time-signatures" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Ancient time signatures &gt; </a>]</td></tr></table>
+<a name="ancient-notation-ancient-notation-template-_002d-modern-transcription-of-gregorian-music"></a>
+<h2 class="unnumberedsec">Ancient notation template &ndash; modern transcription of gregorian music</h2>
+
+
+<p>This example demonstrates how to do modern transcription of Gregorian
+music. Gregorian music has no measure, no stems; it uses only half and
+quarter note heads, and special marks, indicating rests of different
+length.
+</p>
+
+<pre class="verbatim">\include &quot;gregorian.ly&quot;
+
+chant = \relative c' {
+  \set Score.timing = ##f
+  f4 a2 \divisioMinima
+  g4 b a2 f2 \divisioMaior
+  g4( f) f( g) a2 \finalis
+}
+
+verba = \lyricmode {
+  Lo -- rem ip -- sum do -- lor sit a -- met
+}
+
+\score {
+  \new Staff &lt;&lt;
+    \new Voice = &quot;melody&quot; \chant
+    \new Lyrics = &quot;one&quot; \lyricsto melody \verba
+  &gt;&gt;
+  \layout {
+    \context {
+      \Staff
+      \remove &quot;Time_signature_engraver&quot;
+      \remove &quot;Bar_engraver&quot;
+      \hide Stem
+    }
+    \context {
+      \Voice
+      \override Stem.length = #0
+    }
+    \context {
+      \Score
+      barAlways = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../d2/lily-2e3ff4ee.ly">
+  <img align="middle"
+       border="0"
+       src="../d2/lily-2e3ff4ee.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="ancient-time-signatures.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Ancient-time-signatures"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-ancient-notation-template-_002d-modern-transcription-of-gregorian-music" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Ancient notation template -- modern transcription of gregorian music&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-chant-or-psalms-notation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Chant or psalms notation &gt; </a>]</td></tr></table>
+<a name="ancient-notation-ancient-time-signatures"></a>
+<h2 class="unnumberedsec">Ancient time signatures</h2>
+
+
+<p>Time signatures may also be engraved in an old style.
+</p>
+
+
+
+<pre class="verbatim">{
+  \override Staff.TimeSignature.style = #'neomensural
+  s1
+}
+</pre><p>
+ <a href="../f5/lily-0a4d50cc.ly">
+  <img align="middle"
+       border="0"
+       src="../f5/lily-0a4d50cc.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="chant-or-psalms-notation.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Chant-or-psalms-notation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-ancient-time-signatures" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Ancient time signatures&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-custodes" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Custodes &gt; </a>]</td></tr></table>
+<a name="ancient-notation-chant-or-psalms-notation"></a>
+<h2 class="unnumberedsec">Chant or psalms notation</h2>
+
+
+<p>This form of notation is used for Psalm chant, where verses aren&rsquo;t
+always the same length.
+</p>
+
+<pre class="verbatim">stemOff = \hide Staff.Stem
+stemOn  = \undo \stemOff
+
+\score {
+  \new Staff \with { \remove &quot;Time_signature_engraver&quot; }
+  {
+    \key g \minor
+    \cadenzaOn
+    \stemOff a'\breve bes'4 g'4
+    \stemOn a'2 \bar &quot;||&quot;
+    \stemOff a'\breve g'4 a'4
+    \stemOn f'2 \bar &quot;||&quot;
+    \stemOff a'\breve^\markup { \italic flexe }
+    \stemOn g'2 \bar &quot;||&quot;
+  }
+}
+</pre><p>
+ <a href="../52/lily-0d2d2907.ly">
+  <img align="middle"
+       border="0"
+       src="../52/lily-0d2d2907.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="custodes.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Custodes"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-chant-or-psalms-notation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Chant or psalms notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-incipit" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Incipit &gt; </a>]</td></tr></table>
+<a name="ancient-notation-custodes"></a>
+<h2 class="unnumberedsec">Custodes</h2>
+
+
+<p>Custodes may be engraved in various styles.
+</p>
+
+<pre class="verbatim">\layout { ragged-right = ##t }
+
+\new Staff \with { \consists &quot;Custos_engraver&quot; } \relative c' {
+  \override Staff.Custos.neutral-position = #4
+
+  \override Staff.Custos.style = #'hufnagel
+  c1^&quot;hufnagel&quot; \break
+  &lt;d a' f'&gt;1
+
+  \override Staff.Custos.style = #'medicaea
+  c1^&quot;medicaea&quot; \break
+  &lt;d a' f'&gt;1
+
+  \override Staff.Custos.style = #'vaticana
+  c1^&quot;vaticana&quot; \break
+  &lt;d a' f'&gt;1
+
+  \override Staff.Custos.style = #'mensural
+  c1^&quot;mensural&quot; \break
+  &lt;d a' f'&gt;1
+}
+</pre><p>
+ <a href="../ad/lily-fcd5c406.ly">
+  <img align="middle"
+       border="0"
+       src="../ad/lily-fcd5c406.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="incipit.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Incipit"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-custodes" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Custodes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-mensurstriche-layout-_0028bar-lines-between-the-staves_0029" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Mensurstriche layout (bar lines between the staves) &gt; </a>]</td></tr></table>
+<a name="ancient-notation-incipit"></a>
+<h2 class="unnumberedsec">Incipit</h2>
+
+
+<p>When transcribing mensural music, an incipit at the beginning of the piece is
+useful to indicate the original key and tempo.  Musicians today are used
+to bar lines, but these were not known during the period of mensural music.  As
+a compromise, bar lines are often printed between the staves, a layout style
+called mensurstriche layout.
+</p>
+<pre class="verbatim">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A short excerpt from the Jubilate Deo by Orlande de Lassus
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+global = {
+  \set Score.skipBars = ##t
+  \key g \major
+  \time 4/4
+
+  % the actual music
+  \skip 1*8
+
+  % let finis bar go through all staves
+  \override Staff.BarLine.transparent = ##f
+
+  % finis bar
+  \bar &quot;|.&quot;
+}
+
+discantusIncipit = {
+  \clef &quot;neomensural-c1&quot;
+  \key f \major
+  \time 2/2
+  c''1.
+}
+
+discantusNotes = {
+  \transpose c' c'' {
+    \clef &quot;treble&quot;
+    d'2. d'4 |
+    b e' d'2 |
+    c'4 e'4.( d'8 c' b |
+    a4) b a2 |
+    b4.( c'8 d'4) c'4 |
+    \once \hide NoteHead
+    c'1 |
+    b\breve |
+  }
+}
+
+discantusLyrics = \lyricmode {
+  Ju -- bi -- la -- te De -- o,
+  om -- nis ter -- ra, __ om-
+  &quot;...&quot;
+  -us.
+}
+
+altusIncipit = {
+  \clef &quot;neomensural-c3&quot;
+  \key f \major
+  \time 2/2
+  r1 f'1.
+}
+
+altusNotes = {
+  \transpose c' c'' {
+    \clef &quot;treble&quot;
+    r2 g2. e4 fis g |
+    a2 g4 e |
+    fis g4.( fis16 e fis4) |
+    g1 |
+    \once \hide NoteHead
+    g1 |
+    g\breve |
+  }
+}
+
+altusLyrics = \lyricmode {
+  Ju -- bi -- la -- te
+  De -- o, om -- nis ter -- ra,
+  &quot;...&quot;
+  -us.
+}
+
+tenorIncipit = {
+  \clef &quot;neomensural-c4&quot;
+  \key f \major
+  \time 2/2
+  r\longa
+  r\breve
+  r1 c'1.
+}
+
+tenorNotes = {
+  \transpose c' c' {
+    \clef &quot;treble_8&quot;
+    R1 |
+    R1 |
+    R1 |
+    % two measures
+    r2 d'2. d'4 b e' |
+    \once \hide NoteHead
+    e'1 |
+    d'\breve |
+  }
+}
+
+tenorLyrics = \lyricmode {
+  Ju -- bi -- la -- te
+  &quot;...&quot;
+  -us.
+}
+
+bassusIncipit = {
+  \clef &quot;mensural-f&quot;
+  \key f \major
+  \time 2/2
+  r\maxima
+  f1.
+}
+
+bassusNotes = {
+  \transpose c' c' {
+    \clef &quot;bass&quot;
+    R1 |
+    R1 |
+    R1 |
+    R1 |
+    g2. e4 |
+    \once \hide NoteHead
+    e1 |
+    g\breve |
+  }
+}
+
+bassusLyrics = \lyricmode {
+  Ju -- bi-
+  &quot;...&quot;
+  -us.
+}
+
+\score {
+  &lt;&lt;
+    \new StaffGroup = choirStaff &lt;&lt;
+      \new Voice = &quot;discantusNotes&quot; &lt;&lt;
+        \set Staff.instrumentName = #&quot;Discantus&quot;
+        \incipit \discantusIncipit
+        \global
+        \discantusNotes
+      &gt;&gt;
+      \new Lyrics \lyricsto discantusNotes { \discantusLyrics }
+      \new Voice = &quot;altusNotes&quot; &lt;&lt;
+        \set Staff.instrumentName = #&quot;Altus&quot;
+        \global
+        \incipit \altusIncipit
+        \altusNotes
+      &gt;&gt;
+      \new Lyrics \lyricsto altusNotes { \altusLyrics }
+      \new Voice = &quot;tenorNotes&quot; &lt;&lt;
+        \set Staff.instrumentName = #&quot;Tenor&quot;
+        \global
+        \incipit \tenorIncipit
+        \tenorNotes
+      &gt;&gt;
+      \new Lyrics \lyricsto tenorNotes { \tenorLyrics }
+      \new Voice = &quot;bassusNotes&quot; &lt;&lt;
+        \set Staff.instrumentName = #&quot;Bassus&quot;
+        \global
+        \incipit \bassusIncipit
+        \bassusNotes
+      &gt;&gt;
+      \new Lyrics \lyricsto bassusNotes { \bassusLyrics }
+    &gt;&gt;
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      %% no bar lines in staves or lyrics
+      \hide BarLine
+    }
+    %% the next two instructions keep the lyrics between the bar lines
+    \context {
+      \Lyrics
+      \consists &quot;Bar_engraver&quot;
+      \consists &quot;Separating_line_group_engraver&quot;
+    }
+    \context {
+      \Voice
+      %% no slurs
+      \hide Slur
+      %% Comment in the below &quot;\remove&quot; command to allow line
+      %% breaking also at those bar lines where a note overlaps
+      %% into the next measure.  The command is commented out in this
+      %% short example score, but especially for large scores, you
+      %% will typically yield better line breaking and thus improve
+      %% overall spacing if you comment in the following command.
+      %%\remove &quot;Forbid_line_break_engraver&quot;
+    }
+    indent = 6\cm
+    incipit-width = 4\cm
+  }
+}
+</pre><p>
+ <a href="../da/lily-51fa331e.ly">
+  <img align="middle"
+       border="0"
+       src="../da/lily-51fa331e.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="mensurstriche-layout-bar-lines-between-the-staves.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Mensurstriche-layout-_0028bar-lines-between-the-staves_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-incipit" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Incipit&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-rest-styles" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Rest styles &gt; </a>]</td></tr></table>
+<a name="ancient-notation-mensurstriche-layout-_0028bar-lines-between-the-staves_0029"></a>
+<h2 class="unnumberedsec">Mensurstriche layout (bar lines between the staves)</h2>
+
+
+<p>The mensurstriche-layout where the bar lines do not show on the staves
+but between staves can be achieved with a <code>StaffGroup</code> instead of
+a <code>ChoirStaff</code>.  The bar line on staves is blanked out by setting
+the <code>transparent</code> property.
+</p>
+
+<pre class="verbatim">global = {
+  \hide Staff.BarLine
+  s1 s
+  % the final bar line is not interrupted
+  \undo \hide Staff.BarLine
+  \bar &quot;|.&quot;
+}
+
+\new StaffGroup \relative c'' {
+  &lt;&lt;
+    \new Staff { &lt;&lt; \global { c1 c } &gt;&gt; }
+    \new Staff { &lt;&lt; \global { c c } &gt;&gt; }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../43/lily-dfdd537d.ly">
+  <img align="middle"
+       border="0"
+       src="../43/lily-dfdd537d.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="rest-styles.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Rest-styles"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-mensurstriche-layout-_0028bar-lines-between-the-staves_0029" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Mensurstriche layout (bar lines between the staves)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-using-tags-to-produce-mensural-and-modern-music-from-the-same-source" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Using tags to produce mensural and modern music from the same source &gt; </a>]</td></tr></table>
+<a name="ancient-notation-rest-styles"></a>
+<h2 class="unnumberedsec">Rest styles</h2>
+
+
+<p>Rests may be used in various styles.
+</p>
+<pre class="verbatim">}
+
+\new Staff \relative c {
+  \cadenzaOn
+
+  \override Staff.Rest.style = #'mensural
+  r\maxima^\markup \typewriter { mensural }
+  r\longa r\breve r1 r2 r4 r8 r16 s32 s64 s128 s128
+  \bar &quot;&quot;
+  \break
+
+  \override Staff.Rest.style = #'neomensural
+  r\maxima^\markup \typewriter { neomensural }
+  r\longa r\breve r1 r2 r4 r8 r16 s32 s64 s128 s128
+  \bar &quot;&quot;
+  \break
+
+  \override Staff.Rest.style = #'classical
+  r\maxima^\markup \typewriter { classical }
+  r\longa r\breve r1 r2 r4 r8 r16 r32 r64 r128 s128
+  \bar &quot;&quot;
+  \break
+
+  \override Staff.Rest.style = #'z
+  r\maxima^\markup \typewriter { z-style }
+  r\longa r\breve r1 r2 r4 r8 r16 r32 r64 r128 s128
+  \bar &quot;&quot;
+  \break
+
+  \override Staff.Rest.style = #'default
+  r\maxima^\markup \typewriter { default }
+  r\longa r\breve r1 r2 r4 r8 r16 r32 r64 r128 s128
+}
+</pre><p>
+ <a href="../a8/lily-d792fa6b.ly">
+  <img align="middle"
+       border="0"
+       src="../a8/lily-d792fa6b.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="using-tags-to-produce-mensural-and-modern-music-from-the-same-source.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Using-tags-to-produce-mensural-and-modern-music-from-the-same-source"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-rest-styles" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Rest styles&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ancient-notation-vertical-line-as-a-baroque-articulation-mark" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ancient notation: Vertical line as a baroque articulation mark &gt; </a>]</td></tr></table>
+<a name="ancient-notation-using-tags-to-produce-mensural-and-modern-music-from-the-same-source"></a>
+<h2 class="unnumberedsec">Using tags to produce mensural and modern music from the same source</h2>
+
+
+<p>By using tags, it&rsquo;s possible to use the same music to produce both
+mensural and modern music.  In this snippet, a function <code>menrest</code>
+is introduced, allowing mensural rests to be pitched as in the
+original, but with modern rests in the standard staff position.  Tags
+are used to produce different types of bar line at the end of the
+music, but tags can also be used where other differences are needed:
+for example using &ldquo;whole measure rests&rdquo; (R1, R\breve etc.) in
+modern music, but normal rests (r1, r\breve, etc.) in the mensural
+version.  Note that converting mensural music to its modern equivalent
+is usually referred to as <code>transcription</code>.
+</p>
+
+<pre class="verbatim">menrest = #(define-music-function (note)
+  (ly:music?)
+#{
+    \tag #'mens $(make-music 'RestEvent note)
+    \tag #'mod $(make-music 'RestEvent note 'pitch '())
+#})
+
+MensStyle = {
+  \autoBeamOff
+  \override NoteHead #'style = #'petrucci
+  \override Score.BarNumber #'transparent = ##t
+  \override Stem.neutral-direction = #up
+}
+
+finalis = {
+  \once \override BreathingSign.stencil = #ly:breathing-sign::finalis
+  \once \override BreathingSign.Y-offset = #0
+  \once \override BreathingSign.minimum-X-extent = #'(-1.0 . 0.0)
+  \once \override BreathingSign.minimum-Y-extent = #'(-2.5 . 2.5)
+
+  \breathe
+}
+
+Music = \relative c'' {
+  \set Score.tempoHideNote = ##t
+  \key f \major
+  \time 4/4
+  g1 d'2 \menrest bes4 bes2 a2 r4 g4 fis2. \tag #'mens { \finalis } \tag #'mod { \bar &quot;||&quot; }
+}
+
+MenLyr = \lyricmode { So farre, deere life, deare life }
+ModLyr = \lyricmode { So far, dear life, dear life }
+
+\score {
+  \keepWithTag #'mens {
+    &lt;&lt;
+      \new MensuralStaff
+      {
+        \new MensuralVoice = Cantus \clef &quot;mensural-c1&quot; \MensStyle \Music
+      }
+      \new Lyrics \lyricsto Cantus \MenLyr
+    &gt;&gt;
+  }
+}
+
+\score {
+  \keepWithTag #'mod {
+    \new ChoirStaff &lt;&lt;
+      \new Staff
+      {
+        \new Voice = Sop \with {
+          \remove &quot;Note_heads_engraver&quot;
+          \consists &quot;Completion_heads_engraver&quot;
+          \remove &quot;Rest_engraver&quot;
+          \consists &quot;Completion_rest_engraver&quot; }
+        {
+          \shiftDurations #1 #0 { \autoBeamOff \Music }
+        }
+      }
+      \new Lyrics \lyricsto Sop \ModLyr
+    &gt;&gt;
+  }
+}
+</pre><p>
+ <a href="../51/lily-68dd5446.ly">
+  <img align="middle"
+       border="0"
+       src="../51/lily-68dd5446.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<a name="vertical-line-as-a-baroque-articulation-mark.ly"></a>
+
+<hr size="6">
+<a name="Ancient-notation_003a-Vertical-line-as-a-baroque-articulation-mark"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-using-tags-to-produce-mensural-and-modern-music-from-the-same-source" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Using tags to produce mensural and modern music from the same source&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="world-music.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;World music &gt; </a>]</td></tr></table>
+<a name="ancient-notation-vertical-line-as-a-baroque-articulation-mark"></a>
+<h2 class="unnumberedsec">Vertical line as a baroque articulation mark</h2>
+
+
+<p>This short vertical line placed above the note is commonly used in
+baroque music.  Its meaning can vary, but generally indicates notes
+that should be played with more &ldquo;weight&rdquo;.  The following example
+demonstrates how to achieve such a notation.
+</p>
+
+<pre class="verbatim">upline =
+#(let ((m (make-articulation &quot;stopped&quot;)))
+   (set! (ly:music-property m 'tweaks)
+         (acons 'font-size 3
+                (acons 'stencil (lambda (grob)
+                                  (grob-interpret-markup
+                                   grob
+                                   (make-draw-line-markup '(0 . 1))))
+                       (ly:music-property m 'tweaks))))
+   m)
+
+
+\relative c' {
+  a'4^\upline a( c d')_\upline
+}
+</pre><p>
+ <a href="../48/lily-842a3573.ly">
+  <img align="middle"
+       border="0"
+       src="../48/lily-842a3573.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#ancient-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ancient notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="world-music.html" title="Next chapter">&nbsp;World music &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ancient-notation-using-tags-to-produce-mensural-and-modern-music-from-the-same-source" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ancient notation: Using tags to produce mensural and modern music from the same source&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#ancient-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Ancient notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="world-music.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;World music &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Snippets  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Pitches-1" href="pitches.html">Pitches</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-ambitus-per-voice-1" href="pitches.html#pitches-adding-ambitus-per-voice">Adding ambitus per voice</a>    </li>
+    <li class=""><a name="toc-Adding-an-ottava-marking-to-a-single-voice-1" href="pitches.html#pitches-adding-an-ottava-marking-to-a-single-voice">Adding an ottava marking to a single voice</a>    </li>
+    <li class=""><a name="toc-Altering-the-length-of-beamed-stems-1" href="pitches.html#pitches-altering-the-length-of-beamed-stems">Altering the length of beamed stems</a>    </li>
+    <li class=""><a name="toc-Ambitus-with-multiple-voices-1" href="pitches.html#pitches-ambitus-with-multiple-voices">Ambitus with multiple voices</a>    </li>
+    <li class=""><a name="toc-Ambitus-1" href="pitches.html#pitches-ambitus">Ambitus</a>    </li>
+    <li class=""><a name="toc-Applying-note-head-styles-depending-on-the-step-of-the-scale" href="pitches.html#pitches-applying-note-head-styles-depending-on-the-step-of-the-scale">Applying note head styles depending on the step of the scale</a>    </li>
+    <li class=""><a name="toc-Automatically-changing-the-stem-direction-of-the-middle-note-based-on-the-melody" href="pitches.html#pitches-automatically-changing-the-stem-direction-of-the-middle-note-based-on-the-melody">Automatically changing the stem direction of the middle note based on the melody</a>    </li>
+    <li class=""><a name="toc-Changing-ottava-text" href="pitches.html#pitches-changing-ottava-text">Changing ottava text</a>    </li>
+    <li class=""><a name="toc-Changing-the-ambitus-gap" href="pitches.html#pitches-changing-the-ambitus-gap">Changing the ambitus gap</a>    </li>
+    <li class=""><a name="toc-Changing-the-interval-of-lines-on-the-stave" href="pitches.html#pitches-changing-the-interval-of-lines-on-the-stave">Changing the interval of lines on the stave</a>    </li>
+    <li class=""><a name="toc-Clefs-can-be-transposed-by-arbitrary-amounts" href="pitches.html#pitches-clefs-can-be-transposed-by-arbitrary-amounts">Clefs can be transposed by arbitrary amounts</a>    </li>
+    <li class=""><a name="toc-Coloring-notes-depending-on-their-pitch-1" href="pitches.html#pitches-coloring-notes-depending-on-their-pitch">Coloring notes depending on their pitch</a>    </li>
+    <li class=""><a name="toc-Creating-a-sequence-of-notes-on-various-pitches" href="pitches.html#pitches-creating-a-sequence-of-notes-on-various-pitches">Creating a sequence of notes on various pitches</a>    </li>
+    <li class=""><a name="toc-Creating-custom-key-signatures-1" href="pitches.html#pitches-creating-custom-key-signatures">Creating custom key signatures</a>    </li>
+    <li class=""><a name="toc-Forcing-a-clef-symbol-to-be-displayed" href="pitches.html#pitches-forcing-a-clef-symbol-to-be-displayed">Forcing a clef symbol to be displayed</a>    </li>
+    <li class=""><a name="toc-Generating-random-notes" href="pitches.html#pitches-generating-random-notes">Generating random notes</a>    </li>
+    <li class=""><a name="toc-Hiding-accidentals-on-tied-notes-at-the-start-of-a-new-system" href="pitches.html#pitches-hiding-accidentals-on-tied-notes-at-the-start-of-a-new-system">Hiding accidentals on tied notes at the start of a new system</a>    </li>
+    <li class=""><a name="toc-Keep-change-clefs-full-sized-1" href="pitches.html#pitches-keep-change-clefs-full-sized">Keep change clefs full sized</a>    </li>
+    <li class=""><a name="toc-Makam-example" href="pitches.html#pitches-makam-example">Makam example</a>    </li>
+    <li class=""><a name="toc-Modifying-the-Ottava-spanner-slope" href="pitches.html#pitches-modifying-the-ottava-spanner-slope">Modifying the Ottava spanner slope</a>    </li>
+    <li class=""><a name="toc-Non_002dtraditional-key-signatures" href="pitches.html#pitches-non_002dtraditional-key-signatures">Non-traditional key signatures</a>    </li>
+    <li class=""><a name="toc-Numbers-as-easy-note-heads" href="pitches.html#pitches-numbers-as-easy-note-heads">Numbers as easy note heads</a>    </li>
+    <li class=""><a name="toc-Orchestra-choir-and-piano-template-1" href="pitches.html#pitches-orchestra-choir-and-piano-template">Orchestra choir and piano template</a>    </li>
+    <li class=""><a name="toc-Ottava-text" href="pitches.html#pitches-ottava-text">Ottava text</a>    </li>
+    <li class=""><a name="toc-Preventing-extra-naturals-from-being-automatically-added" href="pitches.html#pitches-preventing-extra-naturals-from-being-automatically-added">Preventing extra naturals from being automatically added</a>    </li>
+    <li class=""><a name="toc-Preventing-natural-signs-from-being-printed-when-the-key-signature-changes" href="pitches.html#pitches-preventing-natural-signs-from-being-printed-when-the-key-signature-changes">Preventing natural signs from being printed when the key signature changes</a>    </li>
+    <li class=""><a name="toc-Quoting-another-voice-with-transposition-1" href="pitches.html#pitches-quoting-another-voice-with-transposition">Quoting another voice with transposition</a>    </li>
+    <li class=""><a name="toc-Separating-key-cancellations-from-key-signature-changes" href="pitches.html#pitches-separating-key-cancellations-from-key-signature-changes">Separating key cancellations from key signature changes</a>    </li>
+    <li class=""><a name="toc-Transposing-pitches-with-minimum-accidentals-_0028_0022Smart_0022-transpose_0029" href="pitches.html#pitches-transposing-pitches-with-minimum-accidentals-_0028_0022smart_0022-transpose_0029">Transposing pitches with minimum accidentals (&quot;Smart&quot; transpose)</a>    </li>
+    <li class=""><a name="toc-Tweaking-clef-properties-1" href="pitches.html#pitches-tweaking-clef-properties">Tweaking clef properties</a>    </li>
+    <li class=""><a name="toc-Using-autochange-with-more-than-one-voice" href="pitches.html#pitches-using-autochange-with-more-than-one-voice">Using autochange with more than one voice</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Rhythms-1" href="rhythms.html">Rhythms</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-beams-slurs-ties-etc_002e-when-using-tuplet-and-non_002dtuplet-rhythms" href="rhythms.html#rhythms-adding-beams-slurs-ties-etc_002e-when-using-tuplet-and-non_002dtuplet-rhythms">Adding beams slurs ties etc. when using tuplet and non-tuplet rhythms</a>    </li>
+    <li class=""><a name="toc-Adding-drum-parts" href="rhythms.html#rhythms-adding-drum-parts">Adding drum parts</a>    </li>
+    <li class=""><a name="toc-Adjusting-grace-note-spacing-1" href="rhythms.html#rhythms-adjusting-grace-note-spacing">Adjusting grace note spacing</a>    </li>
+    <li class=""><a name="toc-Aligning-bar-numbers" href="rhythms.html#rhythms-aligning-bar-numbers">Aligning bar numbers</a>    </li>
+    <li class=""><a name="toc-Alternative-breve-notes-1" href="rhythms.html#rhythms-alternative-breve-notes">Alternative breve notes</a>    </li>
+    <li class=""><a name="toc-Automatic-beam-subdivisions" href="rhythms.html#rhythms-automatic-beam-subdivisions">Automatic beam subdivisions</a>    </li>
+    <li class=""><a name="toc-Automatically-change-durations" href="rhythms.html#rhythms-automatically-change-durations">Automatically change durations</a>    </li>
+    <li class=""><a name="toc-Avoiding-collisions-with-chord-fingerings-3" href="rhythms.html#rhythms-avoiding-collisions-with-chord-fingerings">Avoiding collisions with chord fingerings</a>    </li>
+    <li class=""><a name="toc-Beam-endings-in-Score-context" href="rhythms.html#rhythms-beam-endings-in-score-context">Beam endings in Score context</a>    </li>
+    <li class=""><a name="toc-Beams-across-line-breaks" href="rhythms.html#rhythms-beams-across-line-breaks">Beams across line breaks</a>    </li>
+    <li class=""><a name="toc-Changing-beam-knee-gap" href="rhythms.html#rhythms-changing-beam-knee-gap">Changing beam knee gap</a>    </li>
+    <li class=""><a name="toc-Changing-form-of-multi_002dmeasure-rests" href="rhythms.html#rhythms-changing-form-of-multi_002dmeasure-rests">Changing form of multi-measure rests</a>    </li>
+    <li class=""><a name="toc-Changing-the-number-of-augmentation-dots-per-note-1" href="rhythms.html#rhythms-changing-the-number-of-augmentation-dots-per-note">Changing the number of augmentation dots per note</a>    </li>
+    <li class=""><a name="toc-Changing-the-tempo-without-a-metronome-mark-2" href="rhythms.html#rhythms-changing-the-tempo-without-a-metronome-mark">Changing the tempo without a metronome mark</a>    </li>
+    <li class=""><a name="toc-Changing-the-tuplet-number" href="rhythms.html#rhythms-changing-the-tuplet-number">Changing the tuplet number</a>    </li>
+    <li class=""><a name="toc-Changing-time-signatures-inside-a-polymetric-section-using-_005cscaleDurations" href="rhythms.html#rhythms-changing-time-signatures-inside-a-polymetric-section-using-_005cscaledurations">Changing time signatures inside a polymetric section using \scaleDurations</a>    </li>
+    <li class=""><a name="toc-Chant-or-psalms-notation-2" href="rhythms.html#rhythms-chant-or-psalms-notation">Chant or psalms notation</a>    </li>
+    <li class=""><a name="toc-Compound-time-signatures" href="rhythms.html#rhythms-compound-time-signatures">Compound time signatures</a>    </li>
+    <li class=""><a name="toc-Conducting-signs-measure-grouping-signs" href="rhythms.html#rhythms-conducting-signs-measure-grouping-signs">Conducting signs measure grouping signs</a>    </li>
+    <li class=""><a name="toc-Consistently-left-aligned-bar-numbers" href="rhythms.html#rhythms-consistently-left-aligned-bar-numbers">Consistently left aligned bar numbers</a>    </li>
+    <li class=""><a name="toc-Controlling-tuplet-bracket-visibility-1" href="rhythms.html#rhythms-controlling-tuplet-bracket-visibility">Controlling tuplet bracket visibility</a>    </li>
+    <li class=""><a name="toc-Creating-metronome-marks-in-markup-mode" href="rhythms.html#rhythms-creating-metronome-marks-in-markup-mode">Creating metronome marks in markup mode</a>    </li>
+    <li class=""><a name="toc-Engraving-ties-manually" href="rhythms.html#rhythms-engraving-ties-manually">Engraving ties manually</a>    </li>
+    <li class=""><a name="toc-Engraving-tremolos-with-floating-beams-1" href="rhythms.html#rhythms-engraving-tremolos-with-floating-beams">Engraving tremolos with floating beams</a>    </li>
+    <li class=""><a name="toc-Entering-several-tuplets-using-only-one-_005ctuplet-command" href="rhythms.html#rhythms-entering-several-tuplets-using-only-one-_005ctuplet-command">Entering several tuplets using only one \tuplet command</a>    </li>
+    <li class=""><a name="toc-Flat-flags-and-beam-nibs" href="rhythms.html#rhythms-flat-flags-and-beam-nibs">Flat flags and beam nibs</a>    </li>
+    <li class=""><a name="toc-Forcing-rehearsal-marks-to-start-from-a-given-letter-or-number" href="rhythms.html#rhythms-forcing-rehearsal-marks-to-start-from-a-given-letter-or-number">Forcing rehearsal marks to start from a given letter or number</a>    </li>
+    <li class=""><a name="toc-Generating-custom-flags" href="rhythms.html#rhythms-generating-custom-flags">Generating custom flags</a>    </li>
+    <li class=""><a name="toc-Guitar-strum-rhythms" href="rhythms.html#rhythms-guitar-strum-rhythms">Guitar strum rhythms</a>    </li>
+    <li class=""><a name="toc-Heavily-customized-polymetric-time-signatures-1" href="rhythms.html#rhythms-heavily-customized-polymetric-time-signatures">Heavily customized polymetric time signatures</a>    </li>
+    <li class=""><a name="toc-Making-an-object-invisible-with-the-_0027transparent-property-1" href="rhythms.html#rhythms-making-an-object-invisible-with-the-_0027transparent-property">Making an object invisible with the &rsquo;transparent property</a>    </li>
+    <li class=""><a name="toc-Making-slurs-with-complex-dash-structure-1" href="rhythms.html#rhythms-making-slurs-with-complex-dash-structure">Making slurs with complex dash structure</a>    </li>
+    <li class=""><a name="toc-Manually-controlling-beam-positions-1" href="rhythms.html#rhythms-manually-controlling-beam-positions">Manually controlling beam positions</a>    </li>
+    <li class=""><a name="toc-Merging-multi_002dmeasure-rests-in-a-polyphonic-part" href="rhythms.html#rhythms-merging-multi_002dmeasure-rests-in-a-polyphonic-part">Merging multi-measure rests in a polyphonic part</a>    </li>
+    <li class=""><a name="toc-Modifying-tuplet-bracket-length" href="rhythms.html#rhythms-modifying-tuplet-bracket-length">Modifying tuplet bracket length</a>    </li>
+    <li class=""><a name="toc-Moving-dotted-notes-in-polyphony-1" href="rhythms.html#rhythms-moving-dotted-notes-in-polyphony">Moving dotted notes in polyphony</a>    </li>
+    <li class=""><a name="toc-Multi_002dmeasure-rest-markup-1" href="rhythms.html#rhythms-multi_002dmeasure-rest-markup">Multi-measure rest markup</a>    </li>
+    <li class=""><a name="toc-Non_002ddefault-tuplet-numbers" href="rhythms.html#rhythms-non_002ddefault-tuplet-numbers">Non-default tuplet numbers</a>    </li>
+    <li class=""><a name="toc-Partcombine-and-autoBeamOff" href="rhythms.html#rhythms-partcombine-and-autobeamoff">Partcombine and autoBeamOff</a>    </li>
+    <li class=""><a name="toc-Permitting-line-breaks-within-beamed-tuplets" href="rhythms.html#rhythms-permitting-line-breaks-within-beamed-tuplets">Permitting line breaks within beamed tuplets</a>    </li>
+    <li class=""><a name="toc-Positioning-grace-note-beams-at-the-height-of-normal-note-beams" href="rhythms.html#rhythms-positioning-grace-note-beams-at-the-height-of-normal-note-beams">Positioning grace note beams at the height of normal note beams</a>    </li>
+    <li class=""><a name="toc-Positioning-grace-notes-with-floating-space" href="rhythms.html#rhythms-positioning-grace-notes-with-floating-space">Positioning grace notes with floating space</a>    </li>
+    <li class=""><a name="toc-Positioning-multi_002dmeasure-rests-1" href="rhythms.html#rhythms-positioning-multi_002dmeasure-rests">Positioning multi-measure rests</a>    </li>
+    <li class=""><a name="toc-Preventing-final-mark-from-removing-final-tuplet" href="rhythms.html#rhythms-preventing-final-mark-from-removing-final-tuplet">Preventing final mark from removing final tuplet</a>    </li>
+    <li class=""><a name="toc-Printing-bar-numbers-at-regular-intervals" href="rhythms.html#rhythms-printing-bar-numbers-at-regular-intervals">Printing bar numbers at regular intervals</a>    </li>
+    <li class=""><a name="toc-Printing-bar-numbers-inside-boxes-or-circles" href="rhythms.html#rhythms-printing-bar-numbers-inside-boxes-or-circles">Printing bar numbers inside boxes or circles</a>    </li>
+    <li class=""><a name="toc-Printing-bar-numbers-with-changing-regular-intervals-1" href="rhythms.html#rhythms-printing-bar-numbers-with-changing-regular-intervals">Printing bar numbers with changing regular intervals</a>    </li>
+    <li class=""><a name="toc-Printing-metronome-and-rehearsal-marks-below-the-staff-2" href="rhythms.html#rhythms-printing-metronome-and-rehearsal-marks-below-the-staff">Printing metronome and rehearsal marks below the staff</a>    </li>
+    <li class=""><a name="toc-Printing-music-with-different-time-signatures" href="rhythms.html#rhythms-printing-music-with-different-time-signatures">Printing music with different time signatures</a>    </li>
+    <li class=""><a name="toc-Printing-the-bar-number-for-the-first-measure" href="rhythms.html#rhythms-printing-the-bar-number-for-the-first-measure">Printing the bar number for the first measure</a>    </li>
+    <li class=""><a name="toc-Redefining-grace-note-global-defaults" href="rhythms.html#rhythms-redefining-grace-note-global-defaults">Redefining grace note global defaults</a>    </li>
+    <li class=""><a name="toc-Removing-bar-numbers-from-a-score-1" href="rhythms.html#rhythms-removing-bar-numbers-from-a-score">Removing bar numbers from a score</a>    </li>
+    <li class=""><a name="toc-Removing-connecting-bar-lines-on-StaffGroup-PianoStaff-or-GrandStaff-1" href="rhythms.html#rhythms-removing-connecting-bar-lines-on-staffgroup-pianostaff-or-grandstaff">Removing connecting bar lines on StaffGroup PianoStaff or GrandStaff</a>    </li>
+    <li class=""><a name="toc-Rest-styles-1" href="rhythms.html#rhythms-rest-styles">Rest styles</a>    </li>
+    <li class=""><a name="toc-Reverting-default-beam-endings" href="rhythms.html#rhythms-reverting-default-beam-endings">Reverting default beam endings</a>    </li>
+    <li class=""><a name="toc-Rhythmic-slashes-1" href="rhythms.html#rhythms-rhythmic-slashes">Rhythmic slashes</a>    </li>
+    <li class=""><a name="toc-Skips-in-lyric-mode-_00282_0029" href="rhythms.html#rhythms-skips-in-lyric-mode-_00282_0029">Skips in lyric mode (2)</a>    </li>
+    <li class=""><a name="toc-Skips-in-lyric-mode-1" href="rhythms.html#rhythms-skips-in-lyric-mode">Skips in lyric mode</a>    </li>
+    <li class=""><a name="toc-Stemlets" href="rhythms.html#rhythms-stemlets">Stemlets</a>    </li>
+    <li class=""><a name="toc-Strict-beat-beaming" href="rhythms.html#rhythms-strict-beat-beaming">Strict beat beaming</a>    </li>
+    <li class=""><a name="toc-Subdividing-beams" href="rhythms.html#rhythms-subdividing-beams">Subdividing beams</a>    </li>
+    <li class=""><a name="toc-Three_002dsided-box-1" href="rhythms.html#rhythms-three_002dsided-box">Three-sided box</a>    </li>
+    <li class=""><a name="toc-Time-signature-in-parentheses-_002d-method-3" href="rhythms.html#rhythms-time-signature-in-parentheses-_002d-method-3">Time signature in parentheses - method 3</a>    </li>
+    <li class=""><a name="toc-Time-signature-in-parentheses-1" href="rhythms.html#rhythms-time-signature-in-parentheses">Time signature in parentheses</a>    </li>
+    <li class=""><a name="toc-Time-signature-printing-only-the-numerator-as-a-number-_0028instead-of-the-fraction_0029-1" href="rhythms.html#rhythms-time-signature-printing-only-the-numerator-as-a-number-_0028instead-of-the-fraction_0029">Time signature printing only the numerator as a number (instead of the fraction)</a>    </li>
+    <li class=""><a name="toc-Tweaking-grace-layout-within-music-1" href="rhythms.html#rhythms-tweaking-grace-layout-within-music">Tweaking grace layout within music</a>    </li>
+    <li class=""><a name="toc-Using-alternative-flag-styles" href="rhythms.html#rhythms-using-alternative-flag-styles">Using alternative flag styles</a>    </li>
+    <li class=""><a name="toc-Using-grace-note-slashes-with-normal-heads" href="rhythms.html#rhythms-using-grace-note-slashes-with-normal-heads">Using grace note slashes with normal heads</a>    </li>
+    <li class=""><a name="toc-Using-ties-with-arpeggios" href="rhythms.html#rhythms-using-ties-with-arpeggios">Using ties with arpeggios</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Expressive-marks-1" href="expressive-marks.html">Expressive marks</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-beams-slurs-ties-etc_002e-when-using-tuplet-and-non_002dtuplet-rhythms-1" href="expressive-marks.html#expressive-marks-adding-beams-slurs-ties-etc_002e-when-using-tuplet-and-non_002dtuplet-rhythms">Adding beams slurs ties etc. when using tuplet and non-tuplet rhythms</a>    </li>
+    <li class=""><a name="toc-Adding-parentheses-around-an-expressive-mark-or-chordal-note" href="expressive-marks.html#expressive-marks-adding-parentheses-around-an-expressive-mark-or-chordal-note">Adding parentheses around an expressive mark or chordal note</a>    </li>
+    <li class=""><a name="toc-Adding-timing-marks-to-long-glissandi-1" href="expressive-marks.html#expressive-marks-adding-timing-marks-to-long-glissandi">Adding timing marks to long glissandi</a>    </li>
+    <li class=""><a name="toc-Adjusting-the-shape-of-falls-and-doits" href="expressive-marks.html#expressive-marks-adjusting-the-shape-of-falls-and-doits">Adjusting the shape of falls and doits</a>    </li>
+    <li class=""><a name="toc-Alternative-breve-notes" href="expressive-marks.html#expressive-marks-alternative-breve-notes">Alternative breve notes</a>    </li>
+    <li class=""><a name="toc-Asymmetric-slurs" href="expressive-marks.html#expressive-marks-asymmetric-slurs">Asymmetric slurs</a>    </li>
+    <li class=""><a name="toc-Breathing-signs" href="expressive-marks.html#expressive-marks-breathing-signs">Breathing signs</a>    </li>
+    <li class=""><a name="toc-Broken-Crescendo-Hairpin" href="expressive-marks.html#expressive-marks-broken-crescendo-hairpin">Broken Crescendo Hairpin</a>    </li>
+    <li class=""><a name="toc-Caesura-_0028_0022railtracks_0022_0029-with-fermata" href="expressive-marks.html#expressive-marks-caesura-_0028_0022railtracks_0022_0029-with-fermata">Caesura (&quot;railtracks&quot;) with fermata</a>    </li>
+    <li class=""><a name="toc-Center-text-below-hairpin-dynamics-1" href="expressive-marks.html#expressive-marks-center-text-below-hairpin-dynamics">Center text below hairpin dynamics</a>    </li>
+    <li class=""><a name="toc-Changing-_005cflageolet-mark-size-1" href="expressive-marks.html#expressive-marks-changing-_005cflageolet-mark-size">Changing \flageolet mark size</a>    </li>
+    <li class=""><a name="toc-Changing-text-and-spanner-styles-for-text-dynamics-1" href="expressive-marks.html#expressive-marks-changing-text-and-spanner-styles-for-text-dynamics">Changing text and spanner styles for text dynamics</a>    </li>
+    <li class=""><a name="toc-Changing-the-appearance-of-a-slur-from-solid-to-dotted-or-dashed" href="expressive-marks.html#expressive-marks-changing-the-appearance-of-a-slur-from-solid-to-dotted-or-dashed">Changing the appearance of a slur from solid to dotted or dashed</a>    </li>
+    <li class=""><a name="toc-Changing-the-breath-mark-symbol" href="expressive-marks.html#expressive-marks-changing-the-breath-mark-symbol">Changing the breath mark symbol</a>    </li>
+    <li class=""><a name="toc-Changing-the-number-of-augmentation-dots-per-note" href="expressive-marks.html#expressive-marks-changing-the-number-of-augmentation-dots-per-note">Changing the number of augmentation dots per note</a>    </li>
+    <li class=""><a name="toc-Combining-dynamics-with-markup-texts" href="expressive-marks.html#expressive-marks-combining-dynamics-with-markup-texts">Combining dynamics with markup texts</a>    </li>
+    <li class=""><a name="toc-Contemporary-glissando" href="expressive-marks.html#expressive-marks-contemporary-glissando">Contemporary glissando</a>    </li>
+    <li class=""><a name="toc-Controlling-spanner-visibility-after-a-line-break-1" href="expressive-marks.html#expressive-marks-controlling-spanner-visibility-after-a-line-break">Controlling spanner visibility after a line break</a>    </li>
+    <li class=""><a name="toc-Controlling-the-vertical-ordering-of-scripts-1" href="expressive-marks.html#expressive-marks-controlling-the-vertical-ordering-of-scripts">Controlling the vertical ordering of scripts</a>    </li>
+    <li class=""><a name="toc-Creating-a-delayed-turn-2" href="expressive-marks.html#expressive-marks-creating-a-delayed-turn">Creating a delayed turn</a>    </li>
+    <li class=""><a name="toc-Creating-arpeggios-across-notes-in-different-voices" href="expressive-marks.html#expressive-marks-creating-arpeggios-across-notes-in-different-voices">Creating arpeggios across notes in different voices</a>    </li>
+    <li class=""><a name="toc-Creating-cross_002dstaff-arpeggios-in-a-piano-staff" href="expressive-marks.html#expressive-marks-creating-cross_002dstaff-arpeggios-in-a-piano-staff">Creating cross-staff arpeggios in a piano staff</a>    </li>
+    <li class=""><a name="toc-Creating-cross_002dstaff-arpeggios-in-other-contexts" href="expressive-marks.html#expressive-marks-creating-cross_002dstaff-arpeggios-in-other-contexts">Creating cross-staff arpeggios in other contexts</a>    </li>
+    <li class=""><a name="toc-Creating-double_002ddigit-fingerings" href="expressive-marks.html#expressive-marks-creating-double_002ddigit-fingerings">Creating double-digit fingerings</a>    </li>
+    <li class=""><a name="toc-Creating-_0022real_0022-parenthesized-dynamics-1" href="expressive-marks.html#expressive-marks-creating-_0022real_0022-parenthesized-dynamics">Creating &quot;real&quot; parenthesized dynamics</a>    </li>
+    <li class=""><a name="toc-Creating-simultaneous-rehearsal-marks" href="expressive-marks.html#expressive-marks-creating-simultaneous-rehearsal-marks">Creating simultaneous rehearsal marks</a>    </li>
+    <li class=""><a name="toc-Creating-slurs-across-voices-1" href="expressive-marks.html#expressive-marks-creating-slurs-across-voices">Creating slurs across voices</a>    </li>
+    <li class=""><a name="toc-Creating-text-spanners-2" href="expressive-marks.html#expressive-marks-creating-text-spanners">Creating text spanners</a>    </li>
+    <li class=""><a name="toc-Double-glissando" href="expressive-marks.html#expressive-marks-double-glissando">Double glissando</a>    </li>
+    <li class=""><a name="toc-Dynamics-custom-text-spanner-postfix-1" href="expressive-marks.html#expressive-marks-dynamics-custom-text-spanner-postfix">Dynamics custom text spanner postfix</a>    </li>
+    <li class=""><a name="toc-Dynamics-text-spanner-postfix-1" href="expressive-marks.html#expressive-marks-dynamics-text-spanner-postfix">Dynamics text spanner postfix</a>    </li>
+    <li class=""><a name="toc-Glissandi-can-skip-grobs-1" href="expressive-marks.html#expressive-marks-glissandi-can-skip-grobs">Glissandi can skip grobs</a>    </li>
+    <li class=""><a name="toc-Hairpins-with-different-line-styles-1" href="expressive-marks.html#expressive-marks-hairpins-with-different-line-styles">Hairpins with different line styles</a>    </li>
+    <li class=""><a name="toc-Hiding-the-extender-line-for-text-dynamics" href="expressive-marks.html#expressive-marks-hiding-the-extender-line-for-text-dynamics">Hiding the extender line for text dynamics</a>    </li>
+    <li class=""><a name="toc-Horizontally-aligning-custom-dynamics-_0028e_002eg_002e-_0022sempre-pp_0022-_0022piu-f_0022-_0022subito-p_0022_0029-1" href="expressive-marks.html#expressive-marks-horizontally-aligning-custom-dynamics-_0028e_002eg_002e-_0022sempre-pp_0022-_0022piu-f_0022-_0022subito-p_0022_0029">Horizontally aligning custom dynamics (e.g. &quot;sempre pp&quot; &quot;piu f&quot; &quot;subito p&quot;)</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029" href="expressive-marks.html#expressive-marks-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029">How to print two rehearsal marks above and below the same barline (method 1)</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029-1" href="expressive-marks.html#expressive-marks-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029">How to print two rehearsal marks above and below the same barline (method 2)</a>    </li>
+    <li class=""><a name="toc-Inserting-a-caesura-1" href="expressive-marks.html#expressive-marks-inserting-a-caesura">Inserting a caesura</a>    </li>
+    <li class=""><a name="toc-Laissez-vibrer-ties-2" href="expressive-marks.html#expressive-marks-laissez-vibrer-ties">Laissez vibrer ties</a>    </li>
+    <li class=""><a name="toc-Line-arrows" href="expressive-marks.html#expressive-marks-line-arrows">Line arrows</a>    </li>
+    <li class=""><a name="toc-Making-slurs-with-complex-dash-structure" href="expressive-marks.html#expressive-marks-making-slurs-with-complex-dash-structure">Making slurs with complex dash structure</a>    </li>
+    <li class=""><a name="toc-Modifying-default-values-for-articulation-shorthand-notation" href="expressive-marks.html#expressive-marks-modifying-default-values-for-articulation-shorthand-notation">Modifying default values for articulation shorthand notation</a>    </li>
+    <li class=""><a name="toc-Moving-slur-positions-vertically-1" href="expressive-marks.html#expressive-marks-moving-slur-positions-vertically">Moving slur positions vertically</a>    </li>
+    <li class=""><a name="toc-Positioning-arpeggios-1" href="expressive-marks.html#expressive-marks-positioning-arpeggios">Positioning arpeggios</a>    </li>
+    <li class=""><a name="toc-Positioning-text-markups-inside-slurs-2" href="expressive-marks.html#expressive-marks-positioning-text-markups-inside-slurs">Positioning text markups inside slurs</a>    </li>
+    <li class=""><a name="toc-Printing-hairpins-in-various-styles" href="expressive-marks.html#expressive-marks-printing-hairpins-in-various-styles">Printing hairpins in various styles</a>    </li>
+    <li class=""><a name="toc-Printing-hairpins-using-al-niente-notation" href="expressive-marks.html#expressive-marks-printing-hairpins-using-al-niente-notation">Printing hairpins using al niente notation</a>    </li>
+    <li class=""><a name="toc-Printing-metronome-and-rehearsal-marks-below-the-staff" href="expressive-marks.html#expressive-marks-printing-metronome-and-rehearsal-marks-below-the-staff">Printing metronome and rehearsal marks below the staff</a>    </li>
+    <li class=""><a name="toc-Setting-hairpin-behavior-at-bar-lines-1" href="expressive-marks.html#expressive-marks-setting-hairpin-behavior-at-bar-lines">Setting hairpin behavior at bar lines</a>    </li>
+    <li class=""><a name="toc-Setting-the-minimum-length-of-hairpins" href="expressive-marks.html#expressive-marks-setting-the-minimum-length-of-hairpins">Setting the minimum length of hairpins</a>    </li>
+    <li class=""><a name="toc-Showing-the-same-articulation-above-and-below-a-note-or-chord-1" href="expressive-marks.html#expressive-marks-showing-the-same-articulation-above-and-below-a-note-or-chord">Showing the same articulation above and below a note or chord</a>    </li>
+    <li class=""><a name="toc-Snap_002dpizzicato-or-Bartok-pizzicato" href="expressive-marks.html#expressive-marks-snap_002dpizzicato-or-bartok-pizzicato">Snap-pizzicato or Bartok pizzicato</a>    </li>
+    <li class=""><a name="toc-Using-a-tick-as-the-breath-mark-symbol" href="expressive-marks.html#expressive-marks-using-a-tick-as-the-breath-mark-symbol">Using a tick as the breath mark symbol</a>    </li>
+    <li class=""><a name="toc-Using-arpeggioBracket-to-make-divisi-more-visible-1" href="expressive-marks.html#expressive-marks-using-arpeggiobracket-to-make-divisi-more-visible">Using arpeggioBracket to make divisi more visible</a>    </li>
+    <li class=""><a name="toc-Using-double-slurs-for-legato-chords" href="expressive-marks.html#expressive-marks-using-double-slurs-for-legato-chords">Using double slurs for legato chords</a>    </li>
+    <li class=""><a name="toc-Using-the-whiteout-property-1" href="expressive-marks.html#expressive-marks-using-the-whiteout-property">Using the whiteout property</a>    </li>
+    <li class=""><a name="toc-Vertical-line-as-a-baroque-articulation-mark" href="expressive-marks.html#expressive-marks-vertical-line-as-a-baroque-articulation-mark">Vertical line as a baroque articulation mark</a>    </li>
+    <li class=""><a name="toc-Vertically-aligning-dynamics-across-multiple-notes" href="expressive-marks.html#expressive-marks-vertically-aligning-dynamics-across-multiple-notes">Vertically aligning dynamics across multiple notes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Repeats-1" href="repeats.html">Repeats</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-volta-brackets-to-additional-staves" href="repeats.html#repeats-adding-volta-brackets-to-additional-staves">Adding volta brackets to additional staves</a>    </li>
+    <li class=""><a name="toc-Centered-measure-numbers-2" href="repeats.html#repeats-centered-measure-numbers">Centered measure numbers</a>    </li>
+    <li class=""><a name="toc-Changing-the-default-bar-lines-1" href="repeats.html#repeats-changing-the-default-bar-lines">Changing the default bar lines</a>    </li>
+    <li class=""><a name="toc-Cross_002dstaff-tremolos-1" href="repeats.html#repeats-cross_002dstaff-tremolos">Cross-staff tremolos</a>    </li>
+    <li class=""><a name="toc-Engraving-tremolos-with-floating-beams" href="repeats.html#repeats-engraving-tremolos-with-floating-beams">Engraving tremolos with floating beams</a>    </li>
+    <li class=""><a name="toc-Isolated-percent-repeats" href="repeats.html#repeats-isolated-percent-repeats">Isolated percent repeats</a>    </li>
+    <li class=""><a name="toc-Measure-counter-1" href="repeats.html#repeats-measure-counter">Measure counter</a>    </li>
+    <li class=""><a name="toc-Numbering-groups-of-measures-2" href="repeats.html#repeats-numbering-groups-of-measures">Numbering groups of measures</a>    </li>
+    <li class=""><a name="toc-Percent-repeat-count-visibility" href="repeats.html#repeats-percent-repeat-count-visibility">Percent repeat count visibility</a>    </li>
+    <li class=""><a name="toc-Percent-repeat-counter" href="repeats.html#repeats-percent-repeat-counter">Percent repeat counter</a>    </li>
+    <li class=""><a name="toc-Positioning-segno-and-coda-_0028with-line-break_0029" href="repeats.html#repeats-positioning-segno-and-coda-_0028with-line-break_0029">Positioning segno and coda (with line break)</a>    </li>
+    <li class=""><a name="toc-Setting-the-double-repeat-default-for-volte" href="repeats.html#repeats-setting-the-double-repeat-default-for-volte">Setting the double repeat default for volte</a>    </li>
+    <li class=""><a name="toc-Shortening-volta-brackets" href="repeats.html#repeats-shortening-volta-brackets">Shortening volta brackets</a>    </li>
+    <li class=""><a name="toc-Volta-below-chords" href="repeats.html#repeats-volta-below-chords">Volta below chords</a>    </li>
+    <li class=""><a name="toc-Volta-multi-staff" href="repeats.html#repeats-volta-multi-staff">Volta multi staff</a>    </li>
+    <li class=""><a name="toc-Volta-text-markup-using-repeatCommands" href="repeats.html#repeats-volta-text-markup-using-repeatcommands">Volta text markup using repeatCommands</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Simultaneous-notes-1" href="simultaneous-notes.html">Simultaneous notes</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Additional-voices-to-avoid-collisions" href="simultaneous-notes.html#simultaneous-notes-additional-voices-to-avoid-collisions">Additional voices to avoid collisions</a>    </li>
+    <li class=""><a name="toc-Changing-a-single-note_0027s-size-in-a-chord-1" href="simultaneous-notes.html#simultaneous-notes-changing-a-single-note_0027s-size-in-a-chord">Changing a single note&rsquo;s size in a chord</a>    </li>
+    <li class=""><a name="toc-Changing-partcombine-texts" href="simultaneous-notes.html#simultaneous-notes-changing-partcombine-texts">Changing partcombine texts</a>    </li>
+    <li class=""><a name="toc-Clusters-1" href="simultaneous-notes.html#simultaneous-notes-clusters">Clusters</a>    </li>
+    <li class=""><a name="toc-Combining-two-parts-on-the-same-staff-1" href="simultaneous-notes.html#simultaneous-notes-combining-two-parts-on-the-same-staff">Combining two parts on the same staff</a>    </li>
+    <li class=""><a name="toc-Displaying-complex-chords-1" href="simultaneous-notes.html#simultaneous-notes-displaying-complex-chords">Displaying complex chords</a>    </li>
+    <li class=""><a name="toc-Double-glissando-1" href="simultaneous-notes.html#simultaneous-notes-double-glissando">Double glissando</a>    </li>
+    <li class=""><a name="toc-Forcing-horizontal-shift-of-notes-1" href="simultaneous-notes.html#simultaneous-notes-forcing-horizontal-shift-of-notes">Forcing horizontal shift of notes</a>    </li>
+    <li class=""><a name="toc-Making-an-object-invisible-with-the-_0027transparent-property-2" href="simultaneous-notes.html#simultaneous-notes-making-an-object-invisible-with-the-_0027transparent-property">Making an object invisible with the &rsquo;transparent property</a>    </li>
+    <li class=""><a name="toc-Moving-dotted-notes-in-polyphony" href="simultaneous-notes.html#simultaneous-notes-moving-dotted-notes-in-polyphony">Moving dotted notes in polyphony</a>    </li>
+    <li class=""><a name="toc-Suppressing-warnings-for-clashing-note-columns-1" href="simultaneous-notes.html#simultaneous-notes-suppressing-warnings-for-clashing-note-columns">Suppressing warnings for clashing note columns</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Staff-notation-1" href="staff-notation.html">Staff notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-ambitus-per-voice" href="staff-notation.html#staff-notation-adding-ambitus-per-voice">Adding ambitus per voice</a>    </li>
+    <li class=""><a name="toc-Adding-an-extra-staff-at-a-line-break" href="staff-notation.html#staff-notation-adding-an-extra-staff-at-a-line-break">Adding an extra staff at a line break</a>    </li>
+    <li class=""><a name="toc-Adding-an-extra-staff" href="staff-notation.html#staff-notation-adding-an-extra-staff">Adding an extra staff</a>    </li>
+    <li class=""><a name="toc-Adding-indicators-to-staves-which-get-split-after-a-break-1" href="staff-notation.html#staff-notation-adding-indicators-to-staves-which-get-split-after-a-break">Adding indicators to staves which get split after a break</a>    </li>
+    <li class=""><a name="toc-Adding-orchestral-cues-to-a-vocal-score-1" href="staff-notation.html#staff-notation-adding-orchestral-cues-to-a-vocal-score">Adding orchestral cues to a vocal score</a>    </li>
+    <li class=""><a name="toc-Adding-timing-marks-to-long-glissandi" href="staff-notation.html#staff-notation-adding-timing-marks-to-long-glissandi">Adding timing marks to long glissandi</a>    </li>
+    <li class=""><a name="toc-Alternative-bar-numbering-2" href="staff-notation.html#staff-notation-alternative-bar-numbering">Alternative bar numbering</a>    </li>
+    <li class=""><a name="toc-Centered-measure-numbers" href="staff-notation.html#staff-notation-centered-measure-numbers">Centered measure numbers</a>    </li>
+    <li class=""><a name="toc-Changing-the-default-bar-lines" href="staff-notation.html#staff-notation-changing-the-default-bar-lines">Changing the default bar lines</a>    </li>
+    <li class=""><a name="toc-Changing-the-number-of-lines-in-a-staff" href="staff-notation.html#staff-notation-changing-the-number-of-lines-in-a-staff">Changing the number of lines in a staff</a>    </li>
+    <li class=""><a name="toc-Changing-the-staff-size-1" href="staff-notation.html#staff-notation-changing-the-staff-size">Changing the staff size</a>    </li>
+    <li class=""><a name="toc-Creating-blank-staves-3" href="staff-notation.html#staff-notation-creating-blank-staves">Creating blank staves</a>    </li>
+    <li class=""><a name="toc-Creating-custom-key-signatures-3" href="staff-notation.html#staff-notation-creating-custom-key-signatures">Creating custom key signatures</a>    </li>
+    <li class=""><a name="toc-Creating-double_002ddigit-fingerings-1" href="staff-notation.html#staff-notation-creating-double_002ddigit-fingerings">Creating double-digit fingerings</a>    </li>
+    <li class=""><a name="toc-Cross-staff-stems" href="staff-notation.html#staff-notation-cross-staff-stems">Cross staff stems</a>    </li>
+    <li class=""><a name="toc-Display-bracket-with-only-one-staff-in-a-system-1" href="staff-notation.html#staff-notation-display-bracket-with-only-one-staff-in-a-system">Display bracket with only one staff in a system</a>    </li>
+    <li class=""><a name="toc-Extending-a-TrillSpanner-1" href="staff-notation.html#staff-notation-extending-a-trillspanner">Extending a TrillSpanner</a>    </li>
+    <li class=""><a name="toc-Extending-glissandi-across-repeats-1" href="staff-notation.html#staff-notation-extending-glissandi-across-repeats">Extending glissandi across repeats</a>    </li>
+    <li class=""><a name="toc-Forcing-measure-width-to-adapt-to-MetronomeMark_0027s-width" href="staff-notation.html#staff-notation-forcing-measure-width-to-adapt-to-metronomemark_0027s-width">Forcing measure width to adapt to MetronomeMark&rsquo;s width</a>    </li>
+    <li class=""><a name="toc-Glissandi-can-skip-grobs" href="staff-notation.html#staff-notation-glissandi-can-skip-grobs">Glissandi can skip grobs</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029-1" href="staff-notation.html#staff-notation-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029">How to print two rehearsal marks above and below the same barline (method 1)</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029" href="staff-notation.html#staff-notation-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029">How to print two rehearsal marks above and below the same barline (method 2)</a>    </li>
+    <li class=""><a name="toc-Incipit-1" href="staff-notation.html#staff-notation-incipit">Incipit</a>    </li>
+    <li class=""><a name="toc-Inserting-score-fragments-above-a-staff-as-markups" href="staff-notation.html#staff-notation-inserting-score-fragments-above-a-staff-as-markups">Inserting score fragments above a staff as markups</a>    </li>
+    <li class=""><a name="toc-Letter-tablature-formatting-1" href="staff-notation.html#staff-notation-letter-tablature-formatting">Letter tablature formatting</a>    </li>
+    <li class=""><a name="toc-Making-glissandi-breakable-1" href="staff-notation.html#staff-notation-making-glissandi-breakable">Making glissandi breakable</a>    </li>
+    <li class=""><a name="toc-Making-some-staff-lines-thicker-than-the-others" href="staff-notation.html#staff-notation-making-some-staff-lines-thicker-than-the-others">Making some staff lines thicker than the others</a>    </li>
+    <li class=""><a name="toc-Measure-counter-2" href="staff-notation.html#staff-notation-measure-counter">Measure counter</a>    </li>
+    <li class=""><a name="toc-Mensurstriche-layout-_0028bar-lines-between-the-staves_0029" href="staff-notation.html#staff-notation-mensurstriche-layout-_0028bar-lines-between-the-staves_0029">Mensurstriche layout (bar lines between the staves)</a>    </li>
+    <li class=""><a name="toc-Modifying-the-Ottava-spanner-slope-1" href="staff-notation.html#staff-notation-modifying-the-ottava-spanner-slope">Modifying the Ottava spanner slope</a>    </li>
+    <li class=""><a name="toc-Nesting-staves-1" href="staff-notation.html#staff-notation-nesting-staves">Nesting staves</a>    </li>
+    <li class=""><a name="toc-Non_002dtraditional-key-signatures-1" href="staff-notation.html#staff-notation-non_002dtraditional-key-signatures">Non-traditional key signatures</a>    </li>
+    <li class=""><a name="toc-Numbering-groups-of-measures-1" href="staff-notation.html#staff-notation-numbering-groups-of-measures">Numbering groups of measures</a>    </li>
+    <li class=""><a name="toc-Orchestra-choir-and-piano-template" href="staff-notation.html#staff-notation-orchestra-choir-and-piano-template">Orchestra choir and piano template</a>    </li>
+    <li class=""><a name="toc-Putting-lyrics-inside-the-staff" href="staff-notation.html#staff-notation-putting-lyrics-inside-the-staff">Putting lyrics inside the staff</a>    </li>
+    <li class=""><a name="toc-Quoting-another-voice-with-transposition" href="staff-notation.html#staff-notation-quoting-another-voice-with-transposition">Quoting another voice with transposition</a>    </li>
+    <li class=""><a name="toc-Quoting-another-voice" href="staff-notation.html#staff-notation-quoting-another-voice">Quoting another voice</a>    </li>
+    <li class=""><a name="toc-Removing-brace-on-first-line-of-piano-score-2" href="staff-notation.html#staff-notation-removing-brace-on-first-line-of-piano-score">Removing brace on first line of piano score</a>    </li>
+    <li class=""><a name="toc-Removing-the-first-empty-line-1" href="staff-notation.html#staff-notation-removing-the-first-empty-line">Removing the first empty line</a>    </li>
+    <li class=""><a name="toc-Setting-system-separators-1" href="staff-notation.html#staff-notation-setting-system-separators">Setting system separators</a>    </li>
+    <li class=""><a name="toc-Tick-bar-lines" href="staff-notation.html#staff-notation-tick-bar-lines">Tick bar lines</a>    </li>
+    <li class=""><a name="toc-Time-signature-in-parentheses-_002d-method-3-1" href="staff-notation.html#staff-notation-time-signature-in-parentheses-_002d-method-3">Time signature in parentheses - method 3</a>    </li>
+    <li class=""><a name="toc-Time-signature-in-parentheses" href="staff-notation.html#staff-notation-time-signature-in-parentheses">Time signature in parentheses</a>    </li>
+    <li class=""><a name="toc-Tweaking-clef-properties-2" href="staff-notation.html#staff-notation-tweaking-clef-properties">Tweaking clef properties</a>    </li>
+    <li class=""><a name="toc-Use-square-bracket-at-the-start-of-a-staff-group" href="staff-notation.html#staff-notation-use-square-bracket-at-the-start-of-a-staff-group">Use square bracket at the start of a staff group</a>    </li>
+    <li class=""><a name="toc-Using-autochange-with-more-than-one-voice-1" href="staff-notation.html#staff-notation-using-autochange-with-more-than-one-voice">Using autochange with more than one voice</a>    </li>
+    <li class=""><a name="toc-Vertical-aligned-StaffGroups-without-connecting-SystemStartBar-1" href="staff-notation.html#staff-notation-vertical-aligned-staffgroups-without-connecting-systemstartbar">Vertical aligned StaffGroups without connecting SystemStartBar</a>    </li>
+    <li class=""><a name="toc-Volta-below-chords-1" href="staff-notation.html#staff-notation-volta-below-chords">Volta below chords</a>    </li>
+    <li class=""><a name="toc-Volta-multi-staff-1" href="staff-notation.html#staff-notation-volta-multi-staff">Volta multi staff</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Editorial-annotations-1" href="editorial-annotations.html">Editorial annotations</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-fingerings-to-a-score-1" href="editorial-annotations.html#editorial-annotations-adding-fingerings-to-a-score">Adding fingerings to a score</a>    </li>
+    <li class=""><a name="toc-Adding-links-to-objects-1" href="editorial-annotations.html#editorial-annotations-adding-links-to-objects">Adding links to objects</a>    </li>
+    <li class=""><a name="toc-Adding-markups-in-a-tablature" href="editorial-annotations.html#editorial-annotations-adding-markups-in-a-tablature">Adding markups in a tablature</a>    </li>
+    <li class=""><a name="toc-Allowing-fingerings-to-be-printed-inside-the-staff-1" href="editorial-annotations.html#editorial-annotations-allowing-fingerings-to-be-printed-inside-the-staff">Allowing fingerings to be printed inside the staff</a>    </li>
+    <li class=""><a name="toc-Alternative-bar-numbering" href="editorial-annotations.html#editorial-annotations-alternative-bar-numbering">Alternative bar numbering</a>    </li>
+    <li class=""><a name="toc-Analysis-brackets-above-the-staff" href="editorial-annotations.html#editorial-annotations-analysis-brackets-above-the-staff">Analysis brackets above the staff</a>    </li>
+    <li class=""><a name="toc-Applying-note-head-styles-depending-on-the-step-of-the-scale-1" href="editorial-annotations.html#editorial-annotations-applying-note-head-styles-depending-on-the-step-of-the-scale">Applying note head styles depending on the step of the scale</a>    </li>
+    <li class=""><a name="toc-Avoiding-collisions-with-chord-fingerings-2" href="editorial-annotations.html#editorial-annotations-avoiding-collisions-with-chord-fingerings">Avoiding collisions with chord fingerings</a>    </li>
+    <li class=""><a name="toc-Blanking-staff-lines-using-the-_005cwhiteout-command-1" href="editorial-annotations.html#editorial-annotations-blanking-staff-lines-using-the-_005cwhiteout-command">Blanking staff lines using the \whiteout command</a>    </li>
+    <li class=""><a name="toc-Changing-a-single-note_0027s-size-in-a-chord" href="editorial-annotations.html#editorial-annotations-changing-a-single-note_0027s-size-in-a-chord">Changing a single note&rsquo;s size in a chord</a>    </li>
+    <li class=""><a name="toc-Changing-the-appearance-of-a-slur-from-solid-to-dotted-or-dashed-1" href="editorial-annotations.html#editorial-annotations-changing-the-appearance-of-a-slur-from-solid-to-dotted-or-dashed">Changing the appearance of a slur from solid to dotted or dashed</a>    </li>
+    <li class=""><a name="toc-Coloring-notes-depending-on-their-pitch" href="editorial-annotations.html#editorial-annotations-coloring-notes-depending-on-their-pitch">Coloring notes depending on their pitch</a>    </li>
+    <li class=""><a name="toc-Controlling-the-placement-of-chord-fingerings-1" href="editorial-annotations.html#editorial-annotations-controlling-the-placement-of-chord-fingerings">Controlling the placement of chord fingerings</a>    </li>
+    <li class=""><a name="toc-Creating-a-delayed-turn" href="editorial-annotations.html#editorial-annotations-creating-a-delayed-turn">Creating a delayed turn</a>    </li>
+    <li class=""><a name="toc-Creating-blank-staves-1" href="editorial-annotations.html#editorial-annotations-creating-blank-staves">Creating blank staves</a>    </li>
+    <li class=""><a name="toc-Creating-double_002ddigit-fingerings-2" href="editorial-annotations.html#editorial-annotations-creating-double_002ddigit-fingerings">Creating double-digit fingerings</a>    </li>
+    <li class=""><a name="toc-Default-direction-of-stems-on-the-center-line-of-the-staff" href="editorial-annotations.html#editorial-annotations-default-direction-of-stems-on-the-center-line-of-the-staff">Default direction of stems on the center line of the staff</a>    </li>
+    <li class=""><a name="toc-Drawing-boxes-around-grobs" href="editorial-annotations.html#editorial-annotations-drawing-boxes-around-grobs">Drawing boxes around grobs</a>    </li>
+    <li class=""><a name="toc-Drawing-circles-around-note-heads" href="editorial-annotations.html#editorial-annotations-drawing-circles-around-note-heads">Drawing circles around note heads</a>    </li>
+    <li class=""><a name="toc-Drawing-circles-around-various-objects" href="editorial-annotations.html#editorial-annotations-drawing-circles-around-various-objects">Drawing circles around various objects</a>    </li>
+    <li class=""><a name="toc-Embedding-native-PostScript-in-a-_005cmarkup-block" href="editorial-annotations.html#editorial-annotations-embedding-native-postscript-in-a-_005cmarkup-block">Embedding native PostScript in a \markup block</a>    </li>
+    <li class=""><a name="toc-Grid-lines_003a-changing-their-appearance" href="editorial-annotations.html#editorial-annotations-grid-lines_003a-changing-their-appearance">Grid lines: changing their appearance</a>    </li>
+    <li class=""><a name="toc-Grid-lines_003a-emphasizing-rhythms-and-notes-synchronization" href="editorial-annotations.html#editorial-annotations-grid-lines_003a-emphasizing-rhythms-and-notes-synchronization">Grid lines: emphasizing rhythms and notes synchronization</a>    </li>
+    <li class=""><a name="toc-Hammer-on-and-pull-off-using-chords" href="editorial-annotations.html#editorial-annotations-hammer-on-and-pull-off-using-chords">Hammer on and pull off using chords</a>    </li>
+    <li class=""><a name="toc-Hammer-on-and-pull-off-using-voices-1" href="editorial-annotations.html#editorial-annotations-hammer-on-and-pull-off-using-voices">Hammer on and pull off using voices</a>    </li>
+    <li class=""><a name="toc-Hammer-on-and-pull-off" href="editorial-annotations.html#editorial-annotations-hammer-on-and-pull-off">Hammer on and pull off</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029-3" href="editorial-annotations.html#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029">How to print two rehearsal marks above and below the same barline (method 1)</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029-3" href="editorial-annotations.html#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029">How to print two rehearsal marks above and below the same barline (method 2)</a>    </li>
+    <li class=""><a name="toc-Making-some-staff-lines-thicker-than-the-others-1" href="editorial-annotations.html#editorial-annotations-making-some-staff-lines-thicker-than-the-others">Making some staff lines thicker than the others</a>    </li>
+    <li class=""><a name="toc-Marking-notes-of-spoken-parts-with-a-cross-on-the-stem-1" href="editorial-annotations.html#editorial-annotations-marking-notes-of-spoken-parts-with-a-cross-on-the-stem">Marking notes of spoken parts with a cross on the stem</a>    </li>
+    <li class=""><a name="toc-Measure-counter" href="editorial-annotations.html#editorial-annotations-measure-counter">Measure counter</a>    </li>
+    <li class=""><a name="toc-Numbering-groups-of-measures-3" href="editorial-annotations.html#editorial-annotations-numbering-groups-of-measures">Numbering groups of measures</a>    </li>
+    <li class=""><a name="toc-Positioning-fingering-indications-precisely" href="editorial-annotations.html#editorial-annotations-positioning-fingering-indications-precisely">Positioning fingering indications precisely</a>    </li>
+    <li class=""><a name="toc-Positioning-text-markups-inside-slurs-1" href="editorial-annotations.html#editorial-annotations-positioning-text-markups-inside-slurs">Positioning text markups inside slurs</a>    </li>
+    <li class=""><a name="toc-Printing-text-from-right-to-left-1" href="editorial-annotations.html#editorial-annotations-printing-text-from-right-to-left">Printing text from right to left</a>    </li>
+    <li class=""><a name="toc-String-number-extender-lines-3" href="editorial-annotations.html#editorial-annotations-string-number-extender-lines">String number extender lines</a>    </li>
+    <li class=""><a name="toc-Using-PostScript-to-generate-special-note-head-shapes" href="editorial-annotations.html#editorial-annotations-using-postscript-to-generate-special-note-head-shapes">Using PostScript to generate special note head shapes</a>    </li>
+    <li class=""><a name="toc-Using-the-whiteout-property" href="editorial-annotations.html#editorial-annotations-using-the-whiteout-property">Using the whiteout property</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Text-1" href="text.html">Text</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-markups-in-a-tablature-3" href="text.html#text-adding-markups-in-a-tablature">Adding markups in a tablature</a>    </li>
+    <li class=""><a name="toc-Adding-the-current-date-to-a-score-1" href="text.html#text-adding-the-current-date-to-a-score">Adding the current date to a score</a>    </li>
+    <li class=""><a name="toc-Adjusting-lyrics-vertical-spacing-3" href="text.html#text-adjusting-lyrics-vertical-spacing">Adjusting lyrics vertical spacing</a>    </li>
+    <li class=""><a name="toc-Aligning-and-centering-instrument-names-2" href="text.html#text-aligning-and-centering-instrument-names">Aligning and centering instrument names</a>    </li>
+    <li class=""><a name="toc-Aligning-objects-created-with-the-_005cmark-command" href="text.html#text-aligning-objects-created-with-the-_005cmark-command">Aligning objects created with the \mark command</a>    </li>
+    <li class=""><a name="toc-Aligning-syllables-with-melisma" href="text.html#text-aligning-syllables-with-melisma">Aligning syllables with melisma</a>    </li>
+    <li class=""><a name="toc-Blanking-staff-lines-using-the-_005cwhiteout-command" href="text.html#text-blanking-staff-lines-using-the-_005cwhiteout-command">Blanking staff lines using the \whiteout command</a>    </li>
+    <li class=""><a name="toc-Center-text-below-hairpin-dynamics" href="text.html#text-center-text-below-hairpin-dynamics">Center text below hairpin dynamics</a>    </li>
+    <li class=""><a name="toc-Centering-markup-on-note-heads-automatically-1" href="text.html#text-centering-markup-on-note-heads-automatically">Centering markup on note heads automatically</a>    </li>
+    <li class=""><a name="toc-Changing-ottava-text-1" href="text.html#text-changing-ottava-text">Changing ottava text</a>    </li>
+    <li class=""><a name="toc-Changing-the-default-text-font-family-1" href="text.html#text-changing-the-default-text-font-family">Changing the default text font family</a>    </li>
+    <li class=""><a name="toc-Combining-dynamics-with-markup-texts-1" href="text.html#text-combining-dynamics-with-markup-texts">Combining dynamics with markup texts</a>    </li>
+    <li class=""><a name="toc-Combining-two-parts-on-the-same-staff" href="text.html#text-combining-two-parts-on-the-same-staff">Combining two parts on the same staff</a>    </li>
+    <li class=""><a name="toc-Creating-_0022real_0022-parenthesized-dynamics" href="text.html#text-creating-_0022real_0022-parenthesized-dynamics">Creating &quot;real&quot; parenthesized dynamics</a>    </li>
+    <li class=""><a name="toc-Creating-simultaneous-rehearsal-marks-1" href="text.html#text-creating-simultaneous-rehearsal-marks">Creating simultaneous rehearsal marks</a>    </li>
+    <li class=""><a name="toc-Creating-text-spanners" href="text.html#text-creating-text-spanners">Creating text spanners</a>    </li>
+    <li class=""><a name="toc-Demonstrating-all-headers-2" href="text.html#text-demonstrating-all-headers">Demonstrating all headers</a>    </li>
+    <li class=""><a name="toc-Embedding-native-PostScript-in-a-_005cmarkup-block-1" href="text.html#text-embedding-native-postscript-in-a-_005cmarkup-block">Embedding native PostScript in a \markup block</a>    </li>
+    <li class=""><a name="toc-Formatting-lyrics-syllables-1" href="text.html#text-formatting-lyrics-syllables">Formatting lyrics syllables</a>    </li>
+    <li class=""><a name="toc-How-to-put-ties-between-syllables-in-lyrics" href="text.html#text-how-to-put-ties-between-syllables-in-lyrics">How to put ties between syllables in lyrics</a>    </li>
+    <li class=""><a name="toc-Lyrics-alignment" href="text.html#text-lyrics-alignment">Lyrics alignment</a>    </li>
+    <li class=""><a name="toc-Markup-lines" href="text.html#text-markup-lines">Markup lines</a>    </li>
+    <li class=""><a name="toc-Multi_002dmeasure-rest-markup" href="text.html#text-multi_002dmeasure-rest-markup">Multi-measure rest markup</a>    </li>
+    <li class=""><a name="toc-Ottava-text-1" href="text.html#text-ottava-text">Ottava text</a>    </li>
+    <li class=""><a name="toc-Outputting-the-version-number-1" href="text.html#text-outputting-the-version-number">Outputting the version number</a>    </li>
+    <li class=""><a name="toc-Piano-template-with-centered-lyrics-2" href="text.html#text-piano-template-with-centered-lyrics">Piano template with centered lyrics</a>    </li>
+    <li class=""><a name="toc-Printing-bar-numbers-with-changing-regular-intervals" href="text.html#text-printing-bar-numbers-with-changing-regular-intervals">Printing bar numbers with changing regular intervals</a>    </li>
+    <li class=""><a name="toc-Printing-marks-at-the-end-of-a-line" href="text.html#text-printing-marks-at-the-end-of-a-line">Printing marks at the end of a line</a>    </li>
+    <li class=""><a name="toc-Printing-marks-on-every-staff" href="text.html#text-printing-marks-on-every-staff">Printing marks on every staff</a>    </li>
+    <li class=""><a name="toc-Printing-text-from-right-to-left" href="text.html#text-printing-text-from-right-to-left">Printing text from right to left</a>    </li>
+    <li class=""><a name="toc-Putting-lyrics-inside-the-staff-2" href="text.html#text-putting-lyrics-inside-the-staff">Putting lyrics inside the staff</a>    </li>
+    <li class=""><a name="toc-Stand_002dalone-two_002dcolumn-markup" href="text.html#text-stand_002dalone-two_002dcolumn-markup">Stand-alone two-column markup</a>    </li>
+    <li class=""><a name="toc-String-number-extender-lines-1" href="text.html#text-string-number-extender-lines">String number extender lines</a>    </li>
+    <li class=""><a name="toc-Three_002dsided-box" href="text.html#text-three_002dsided-box">Three-sided box</a>    </li>
+    <li class=""><a name="toc-UTF_002d8" href="text.html#text-utf_002d8">UTF-8</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves-3" href="text.html#text-vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves">Vocal ensemble template with lyrics aligned below and above the staves</a>    </li>
+    <li class=""><a name="toc-Volta-text-markup-using-repeatCommands-1" href="text.html#text-volta-text-markup-using-repeatcommands">Volta text markup using repeatCommands</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Vocal-music-1" href="vocal-music.html">Vocal music</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-ambitus-per-voice-2" href="vocal-music.html#vocal-music-adding-ambitus-per-voice">Adding ambitus per voice</a>    </li>
+    <li class=""><a name="toc-Adding-indicators-to-staves-which-get-split-after-a-break" href="vocal-music.html#vocal-music-adding-indicators-to-staves-which-get-split-after-a-break">Adding indicators to staves which get split after a break</a>    </li>
+    <li class=""><a name="toc-Adding-orchestral-cues-to-a-vocal-score" href="vocal-music.html#vocal-music-adding-orchestral-cues-to-a-vocal-score">Adding orchestral cues to a vocal score</a>    </li>
+    <li class=""><a name="toc-Adjusting-lyrics-vertical-spacing-2" href="vocal-music.html#vocal-music-adjusting-lyrics-vertical-spacing">Adjusting lyrics vertical spacing</a>    </li>
+    <li class=""><a name="toc-Aligning-syllables-with-melisma-1" href="vocal-music.html#vocal-music-aligning-syllables-with-melisma">Aligning syllables with melisma</a>    </li>
+    <li class=""><a name="toc-Ambitus-with-multiple-voices" href="vocal-music.html#vocal-music-ambitus-with-multiple-voices">Ambitus with multiple voices</a>    </li>
+    <li class=""><a name="toc-Ambitus" href="vocal-music.html#vocal-music-ambitus">Ambitus</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-template-_002d_002d-modern-transcription-of-gregorian-music-1" href="vocal-music.html#vocal-music-ancient-notation-template-_002d-modern-transcription-of-gregorian-music">Ancient notation template &ndash; modern transcription of gregorian music</a>    </li>
+    <li class=""><a name="toc-Anglican-psalm-template-1" href="vocal-music.html#vocal-music-anglican-psalm-template">Anglican psalm template</a>    </li>
+    <li class=""><a name="toc-Arranging-separate-lyrics-on-a-single-line-1" href="vocal-music.html#vocal-music-arranging-separate-lyrics-on-a-single-line">Arranging separate lyrics on a single line</a>    </li>
+    <li class=""><a name="toc-Changing-stanza-fonts" href="vocal-music.html#vocal-music-changing-stanza-fonts">Changing stanza fonts</a>    </li>
+    <li class=""><a name="toc-Chant-or-psalms-notation-1" href="vocal-music.html#vocal-music-chant-or-psalms-notation">Chant or psalms notation</a>    </li>
+    <li class=""><a name="toc-Forcing-hyphens-to-be-shown" href="vocal-music.html#vocal-music-forcing-hyphens-to-be-shown">Forcing hyphens to be shown</a>    </li>
+    <li class=""><a name="toc-Formatting-lyrics-syllables" href="vocal-music.html#vocal-music-formatting-lyrics-syllables">Formatting lyrics syllables</a>    </li>
+    <li class=""><a name="toc-How-to-put-ties-between-syllables-in-lyrics-1" href="vocal-music.html#vocal-music-how-to-put-ties-between-syllables-in-lyrics">How to put ties between syllables in lyrics</a>    </li>
+    <li class=""><a name="toc-Hymn-template-1" href="vocal-music.html#vocal-music-hymn-template">Hymn template</a>    </li>
+    <li class=""><a name="toc-Lyrics-alignment-1" href="vocal-music.html#vocal-music-lyrics-alignment">Lyrics alignment</a>    </li>
+    <li class=""><a name="toc-Marking-notes-of-spoken-parts-with-a-cross-on-the-stem" href="vocal-music.html#vocal-music-marking-notes-of-spoken-parts-with-a-cross-on-the-stem">Marking notes of spoken parts with a cross on the stem</a>    </li>
+    <li class=""><a name="toc-Obtaining-2_002e12-lyrics-spacing-in-newer-versions" href="vocal-music.html#vocal-music-obtaining-2_002e12-lyrics-spacing-in-newer-versions">Obtaining 2.12 lyrics spacing in newer versions</a>    </li>
+    <li class=""><a name="toc-Orchestra-choir-and-piano-template-2" href="vocal-music.html#vocal-music-orchestra-choir-and-piano-template">Orchestra choir and piano template</a>    </li>
+    <li class=""><a name="toc-Piano-template-with-melody-and-lyrics-2" href="vocal-music.html#vocal-music-piano-template-with-melody-and-lyrics">Piano template with melody and lyrics</a>    </li>
+    <li class=""><a name="toc-Putting-lyrics-inside-the-staff-1" href="vocal-music.html#vocal-music-putting-lyrics-inside-the-staff">Putting lyrics inside the staff</a>    </li>
+    <li class=""><a name="toc-SATB-Choir-template-_002d-four-staves-1" href="vocal-music.html#vocal-music-satb-choir-template-_002d-four-staves">SATB Choir template - four staves</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-lyrics-and-chords" href="vocal-music.html#vocal-music-single-staff-template-with-notes-lyrics-and-chords">Single staff template with notes lyrics and chords</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-lyrics-chords-and-frets-2" href="vocal-music.html#vocal-music-single-staff-template-with-notes-lyrics-chords-and-frets">Single staff template with notes lyrics chords and frets</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-and-lyrics-1" href="vocal-music.html#vocal-music-single-staff-template-with-notes-and-lyrics">Single staff template with notes and lyrics</a>    </li>
+    <li class=""><a name="toc-Skips-in-lyric-mode-_00282_0029-1" href="vocal-music.html#vocal-music-skips-in-lyric-mode-_00282_0029">Skips in lyric mode (2)</a>    </li>
+    <li class=""><a name="toc-Skips-in-lyric-mode" href="vocal-music.html#vocal-music-skips-in-lyric-mode">Skips in lyric mode</a>    </li>
+    <li class=""><a name="toc-Using-arpeggioBracket-to-make-divisi-more-visible" href="vocal-music.html#vocal-music-using-arpeggiobracket-to-make-divisi-more-visible">Using arpeggioBracket to make divisi more visible</a>    </li>
+    <li class=""><a name="toc-Using-tags-to-produce-mensural-and-modern-music-from-the-same-source" href="vocal-music.html#vocal-music-using-tags-to-produce-mensural-and-modern-music-from-the-same-source">Using tags to produce mensural and modern music from the same source</a>    </li>
+    <li class=""><a name="toc-Vertically-aligning-ossias-and-lyrics" href="vocal-music.html#vocal-music-vertically-aligning-ossias-and-lyrics">Vertically aligning ossias and lyrics</a>    </li>
+    <li class=""><a name="toc-Vertically-centered-common-lyrics" href="vocal-music.html#vocal-music-vertically-centered-common-lyrics">Vertically centered common lyrics</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-automatic-piano-reduction" href="vocal-music.html#vocal-music-vocal-ensemble-template-with-automatic-piano-reduction">Vocal ensemble template with automatic piano reduction</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves-2" href="vocal-music.html#vocal-music-vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves">Vocal ensemble template with lyrics aligned below and above the staves</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-verse-and-refrain-1" href="vocal-music.html#vocal-music-vocal-ensemble-template-with-verse-and-refrain">Vocal ensemble template with verse and refrain</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template" href="vocal-music.html#vocal-music-vocal-ensemble-template">Vocal ensemble template</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Chords-1" href="chords.html">Chords</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-a-figured-bass-above-or-below-the-notes-2" href="chords.html#chords-adding-a-figured-bass-above-or-below-the-notes">Adding a figured bass above or below the notes</a>    </li>
+    <li class=""><a name="toc-Adding-bar-lines-to-ChordNames-context" href="chords.html#chords-adding-bar-lines-to-chordnames-context">Adding bar lines to ChordNames context</a>    </li>
+    <li class=""><a name="toc-Avoiding-collisions-with-chord-fingerings" href="chords.html#chords-avoiding-collisions-with-chord-fingerings">Avoiding collisions with chord fingerings</a>    </li>
+    <li class=""><a name="toc-Bar-chords-notation-for-Guitar-_0028with-Text-Spanner_0029" href="chords.html#chords-bar-chords-notation-for-guitar-_0028with-text-spanner_0029">Bar chords notation for Guitar (with Text Spanner)</a>    </li>
+    <li class=""><a name="toc-Changing-chord-separator" href="chords.html#chords-changing-chord-separator">Changing chord separator</a>    </li>
+    <li class=""><a name="toc-Changing-the-chord-names-to-German-or-semi_002dGerman-notation" href="chords.html#chords-changing-the-chord-names-to-german-or-semi_002dgerman-notation">Changing the chord names to German or semi-German notation</a>    </li>
+    <li class=""><a name="toc-Changing-the-positions-of-figured-bass-alterations" href="chords.html#chords-changing-the-positions-of-figured-bass-alterations">Changing the positions of figured bass alterations</a>    </li>
+    <li class=""><a name="toc-Chord-name-exceptions" href="chords.html#chords-chord-name-exceptions">Chord name exceptions</a>    </li>
+    <li class=""><a name="toc-chord-name-major7" href="chords.html#chords-chord-name-major7">chord name major7</a>    </li>
+    <li class=""><a name="toc-Clusters-2" href="chords.html#chords-clusters">Clusters</a>    </li>
+    <li class=""><a name="toc-Controlling-the-placement-of-chord-fingerings-2" href="chords.html#chords-controlling-the-placement-of-chord-fingerings">Controlling the placement of chord fingerings</a>    </li>
+    <li class=""><a name="toc-Cross_002dstaff-chords-_002d-beaming-problems-workaround" href="chords.html#chords-cross_002dstaff-chords-_002d-beaming-problems-workaround">Cross-staff chords - beaming problems workaround</a>    </li>
+    <li class=""><a name="toc-Displaying-complex-chords" href="chords.html#chords-displaying-complex-chords">Displaying complex chords</a>    </li>
+    <li class=""><a name="toc-Manually-break-figured-bass-extenders-for-only-some-numbers" href="chords.html#chords-manually-break-figured-bass-extenders-for-only-some-numbers">Manually break figured bass extenders for only some numbers</a>    </li>
+    <li class=""><a name="toc-Showing-chords-at-changes" href="chords.html#chords-showing-chords-at-changes">Showing chords at changes</a>    </li>
+    <li class=""><a name="toc-Simple-lead-sheet" href="chords.html#chords-simple-lead-sheet">Simple lead sheet</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-lyrics-and-chords-2" href="chords.html#chords-single-staff-template-with-notes-lyrics-and-chords">Single staff template with notes lyrics and chords</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-lyrics-chords-and-frets" href="chords.html#chords-single-staff-template-with-notes-lyrics-chords-and-frets">Single staff template with notes lyrics chords and frets</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-and-chords" href="chords.html#chords-single-staff-template-with-notes-and-chords">Single staff template with notes and chords</a>    </li>
+    <li class=""><a name="toc-Vertically-centering-paired-figured-bass-extenders-1" href="chords.html#chords-vertically-centering-paired-figured-bass-extenders">Vertically centering paired figured bass extenders</a>    </li>
+    <li class=""><a name="toc-Volta-below-chords-2" href="chords.html#chords-volta-below-chords">Volta below chords</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Keyboards-1" href="keyboards.html">Keyboards</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Accordion_002ddiscant-symbols" href="keyboards.html#keyboards-accordion_002ddiscant-symbols">Accordion-discant symbols</a>    </li>
+    <li class=""><a name="toc-Accordion-register-symbols" href="keyboards.html#keyboards-accordion-register-symbols">Accordion register symbols</a>    </li>
+    <li class=""><a name="toc-Changing-the-text-for-sustain-markings-1" href="keyboards.html#keyboards-changing-the-text-for-sustain-markings">Changing the text for sustain markings</a>    </li>
+    <li class=""><a name="toc-Clusters" href="keyboards.html#keyboards-clusters">Clusters</a>    </li>
+    <li class=""><a name="toc-Controlling-the-placement-of-chord-fingerings" href="keyboards.html#keyboards-controlling-the-placement-of-chord-fingerings">Controlling the placement of chord fingerings</a>    </li>
+    <li class=""><a name="toc-Creating-slurs-across-voices-2" href="keyboards.html#keyboards-creating-slurs-across-voices">Creating slurs across voices</a>    </li>
+    <li class=""><a name="toc-Cross_002dstaff-chords-_002d-beaming-problems-workaround-2" href="keyboards.html#keyboards-cross_002dstaff-chords-_002d-beaming-problems-workaround">Cross-staff chords - beaming problems workaround</a>    </li>
+    <li class=""><a name="toc-Cross_002dstaff-tremolos" href="keyboards.html#keyboards-cross_002dstaff-tremolos">Cross-staff tremolos</a>    </li>
+    <li class=""><a name="toc-Fine_002dtuning-pedal-brackets-1" href="keyboards.html#keyboards-fine_002dtuning-pedal-brackets">Fine-tuning pedal brackets</a>    </li>
+    <li class=""><a name="toc-Indicating-cross_002dstaff-chords-with-arpeggio-bracket" href="keyboards.html#keyboards-indicating-cross_002dstaff-chords-with-arpeggio-bracket">Indicating cross-staff chords with arpeggio bracket</a>    </li>
+    <li class=""><a name="toc-Jazz-combo-template" href="keyboards.html#keyboards-jazz-combo-template">Jazz combo template</a>    </li>
+    <li class=""><a name="toc-Laissez-vibrer-ties" href="keyboards.html#keyboards-laissez-vibrer-ties">Laissez vibrer ties</a>    </li>
+    <li class=""><a name="toc-Piano-template-_0028simple_0029-1" href="keyboards.html#keyboards-piano-template-_0028simple_0029">Piano template (simple)</a>    </li>
+    <li class=""><a name="toc-Piano-template-with-centered-lyrics" href="keyboards.html#keyboards-piano-template-with-centered-lyrics">Piano template with centered lyrics</a>    </li>
+    <li class=""><a name="toc-Piano-template-with-melody-and-lyrics" href="keyboards.html#keyboards-piano-template-with-melody-and-lyrics">Piano template with melody and lyrics</a>    </li>
+    <li class=""><a name="toc-Removing-brace-on-first-line-of-piano-score" href="keyboards.html#keyboards-removing-brace-on-first-line-of-piano-score">Removing brace on first line of piano score</a>    </li>
+    <li class=""><a name="toc-Using-autochange-with-more-than-one-voice-2" href="keyboards.html#keyboards-using-autochange-with-more-than-one-voice">Using autochange with more than one voice</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-automatic-piano-reduction-1" href="keyboards.html#keyboards-vocal-ensemble-template-with-automatic-piano-reduction">Vocal ensemble template with automatic piano reduction</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Percussion-1" href="percussion.html">Percussion</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-drum-parts-1" href="percussion.html#percussion-adding-drum-parts">Adding drum parts</a>    </li>
+    <li class=""><a name="toc-Heavily-customized-polymetric-time-signatures" href="percussion.html#percussion-heavily-customized-polymetric-time-signatures">Heavily customized polymetric time signatures</a>    </li>
+    <li class=""><a name="toc-Jazz-combo-template-1" href="percussion.html#percussion-jazz-combo-template">Jazz combo template</a>    </li>
+    <li class=""><a name="toc-Percussion-beaters" href="percussion.html#percussion-percussion-beaters">Percussion beaters</a>    </li>
+    <li class=""><a name="toc-Printing-music-with-different-time-signatures-1" href="percussion.html#percussion-printing-music-with-different-time-signatures">Printing music with different time signatures</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fretted-strings-1" href="fretted-strings.html">Fretted strings</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-fingerings-to-a-score" href="fretted-strings.html#fretted-strings-adding-fingerings-to-a-score">Adding fingerings to a score</a>    </li>
+    <li class=""><a name="toc-Adding-fingerings-to-tablatures" href="fretted-strings.html#fretted-strings-adding-fingerings-to-tablatures">Adding fingerings to tablatures</a>    </li>
+    <li class=""><a name="toc-Adding-markups-in-a-tablature-1" href="fretted-strings.html#fretted-strings-adding-markups-in-a-tablature">Adding markups in a tablature</a>    </li>
+    <li class=""><a name="toc-Allowing-fingerings-to-be-printed-inside-the-staff-2" href="fretted-strings.html#fretted-strings-allowing-fingerings-to-be-printed-inside-the-staff">Allowing fingerings to be printed inside the staff</a>    </li>
+    <li class=""><a name="toc-Bar-chords-notation-for-Guitar-_0028with-Text-Spanner_0029-1" href="fretted-strings.html#fretted-strings-bar-chords-notation-for-guitar-_0028with-text-spanner_0029">Bar chords notation for Guitar (with Text Spanner)</a>    </li>
+    <li class=""><a name="toc-Changing-fret-orientations" href="fretted-strings.html#fretted-strings-changing-fret-orientations">Changing fret orientations</a>    </li>
+    <li class=""><a name="toc-Chord-glissando-in-tablature" href="fretted-strings.html#fretted-strings-chord-glissando-in-tablature">Chord glissando in tablature</a>    </li>
+    <li class=""><a name="toc-ChordChanges-for-FretBoards" href="fretted-strings.html#fretted-strings-chordchanges-for-fretboards">ChordChanges for FretBoards</a>    </li>
+    <li class=""><a name="toc-Controlling-the-placement-of-chord-fingerings-3" href="fretted-strings.html#fretted-strings-controlling-the-placement-of-chord-fingerings">Controlling the placement of chord fingerings</a>    </li>
+    <li class=""><a name="toc-Customizing-fretboard-fret-diagrams" href="fretted-strings.html#fretted-strings-customizing-fretboard-fret-diagrams">Customizing fretboard fret diagrams</a>    </li>
+    <li class=""><a name="toc-Customizing-markup-fret-diagrams-1" href="fretted-strings.html#fretted-strings-customizing-markup-fret-diagrams">Customizing markup fret diagrams</a>    </li>
+    <li class=""><a name="toc-Defining-predefined-fretboards-for-other-instruments" href="fretted-strings.html#fretted-strings-defining-predefined-fretboards-for-other-instruments">Defining predefined fretboards for other instruments</a>    </li>
+    <li class=""><a name="toc-Faking-a-hammer-in-tablatures" href="fretted-strings.html#fretted-strings-faking-a-hammer-in-tablatures">Faking a hammer in tablatures</a>    </li>
+    <li class=""><a name="toc-Fingerings-string-indications-and-right_002dhand-fingerings" href="fretted-strings.html#fretted-strings-fingerings-string-indications-and-right_002dhand-fingerings">Fingerings string indications and right-hand fingerings</a>    </li>
+    <li class=""><a name="toc-Flamenco-notation" href="fretted-strings.html#fretted-strings-flamenco-notation">Flamenco notation</a>    </li>
+    <li class=""><a name="toc-Fret-diagrams-explained-and-developed" href="fretted-strings.html#fretted-strings-fret-diagrams-explained-and-developed">Fret diagrams explained and developed</a>    </li>
+    <li class=""><a name="toc-Fretboards-alternate-tables" href="fretted-strings.html#fretted-strings-fretboards-alternate-tables">Fretboards alternate tables</a>    </li>
+    <li class=""><a name="toc-Fretted_002dstring-harmonics-in-tablature" href="fretted-strings.html#fretted-strings-fretted_002dstring-harmonics-in-tablature">Fretted-string harmonics in tablature</a>    </li>
+    <li class=""><a name="toc-Guitar-slides" href="fretted-strings.html#fretted-strings-guitar-slides">Guitar slides</a>    </li>
+    <li class=""><a name="toc-Guitar-strum-rhythms-1" href="fretted-strings.html#fretted-strings-guitar-strum-rhythms">Guitar strum rhythms</a>    </li>
+    <li class=""><a name="toc-Hammer-on-and-pull-off-using-chords-1" href="fretted-strings.html#fretted-strings-hammer-on-and-pull-off-using-chords">Hammer on and pull off using chords</a>    </li>
+    <li class=""><a name="toc-Hammer-on-and-pull-off-using-voices" href="fretted-strings.html#fretted-strings-hammer-on-and-pull-off-using-voices">Hammer on and pull off using voices</a>    </li>
+    <li class=""><a name="toc-Hammer-on-and-pull-off-1" href="fretted-strings.html#fretted-strings-hammer-on-and-pull-off">Hammer on and pull off</a>    </li>
+    <li class=""><a name="toc-How-to-change-fret-diagram-position" href="fretted-strings.html#fretted-strings-how-to-change-fret-diagram-position">How to change fret diagram position</a>    </li>
+    <li class=""><a name="toc-Jazz-combo-template-2" href="fretted-strings.html#fretted-strings-jazz-combo-template">Jazz combo template</a>    </li>
+    <li class=""><a name="toc-Laissez-vibrer-ties-1" href="fretted-strings.html#fretted-strings-laissez-vibrer-ties">Laissez vibrer ties</a>    </li>
+    <li class=""><a name="toc-Letter-tablature-formatting" href="fretted-strings.html#fretted-strings-letter-tablature-formatting">Letter tablature formatting</a>    </li>
+    <li class=""><a name="toc-Open-string-harmonics-in-tablature" href="fretted-strings.html#fretted-strings-open-string-harmonics-in-tablature">Open string harmonics in tablature</a>    </li>
+    <li class=""><a name="toc-Placement-of-right_002dhand-fingerings" href="fretted-strings.html#fretted-strings-placement-of-right_002dhand-fingerings">Placement of right-hand fingerings</a>    </li>
+    <li class=""><a name="toc-Polyphony-in-tablature" href="fretted-strings.html#fretted-strings-polyphony-in-tablature">Polyphony in tablature</a>    </li>
+    <li class=""><a name="toc-Slides-in-tablature" href="fretted-strings.html#fretted-strings-slides-in-tablature">Slides in tablature</a>    </li>
+    <li class=""><a name="toc-Stem-and-beam-behavior-in-tablature" href="fretted-strings.html#fretted-strings-stem-and-beam-behavior-in-tablature">Stem and beam behavior in tablature</a>    </li>
+    <li class=""><a name="toc-String-number-extender-lines-2" href="fretted-strings.html#fretted-strings-string-number-extender-lines">String number extender lines</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Unfretted-strings-1" href="unfretted-strings.html">Unfretted strings</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Changing-_005cflageolet-mark-size" href="unfretted-strings.html#unfretted-strings-changing-_005cflageolet-mark-size">Changing \flageolet mark size</a>    </li>
+    <li class=""><a name="toc-Creating-slurs-across-voices" href="unfretted-strings.html#unfretted-strings-creating-slurs-across-voices">Creating slurs across voices</a>    </li>
+    <li class=""><a name="toc-Dotted-harmonics" href="unfretted-strings.html#unfretted-strings-dotted-harmonics">Dotted harmonics</a>    </li>
+    <li class=""><a name="toc-Snap_002dpizzicato-or-Bartok-pizzicato-1" href="unfretted-strings.html#unfretted-strings-snap_002dpizzicato-or-bartok-pizzicato">Snap-pizzicato or Bartok pizzicato</a>    </li>
+    <li class=""><a name="toc-String-quartet-template-_0028simple_0029-1" href="unfretted-strings.html#unfretted-strings-string-quartet-template-_0028simple_0029">String quartet template (simple)</a>    </li>
+    <li class=""><a name="toc-String-quartet-template-with-separate-parts-1" href="unfretted-strings.html#unfretted-strings-string-quartet-template-with-separate-parts">String quartet template with separate parts</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Winds-1" href="winds.html">Winds</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Changing-the-size-of-woodwind-diagrams" href="winds.html#winds-changing-the-size-of-woodwind-diagrams">Changing the size of woodwind diagrams</a>    </li>
+    <li class=""><a name="toc-Fingering-symbols-for-wind-instruments" href="winds.html#winds-fingering-symbols-for-wind-instruments">Fingering symbols for wind instruments</a>    </li>
+    <li class=""><a name="toc-Flute-slap-notation" href="winds.html#winds-flute-slap-notation">Flute slap notation</a>    </li>
+    <li class=""><a name="toc-Graphical-and-text-woodwind-diagrams" href="winds.html#winds-graphical-and-text-woodwind-diagrams">Graphical and text woodwind diagrams</a>    </li>
+    <li class=""><a name="toc-Recorder-fingering-chart" href="winds.html#winds-recorder-fingering-chart">Recorder fingering chart</a>    </li>
+    <li class=""><a name="toc-Woodwind-diagrams-key-lists" href="winds.html#winds-woodwind-diagrams-key-lists">Woodwind diagrams key lists</a>    </li>
+    <li class=""><a name="toc-Woodwind-diagrams-listing" href="winds.html#winds-woodwind-diagrams-listing">Woodwind diagrams listing</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Ancient-notation-1" href="ancient-notation.html">Ancient notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-a-figured-bass-above-or-below-the-notes" href="ancient-notation.html#ancient-notation-adding-a-figured-bass-above-or-below-the-notes">Adding a figured bass above or below the notes</a>    </li>
+    <li class=""><a name="toc-Ancient-fonts" href="ancient-notation.html#ancient-notation-ancient-fonts">Ancient fonts</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-template-_002d_002d-modern-transcription-of-gregorian-music" href="ancient-notation.html#ancient-notation-ancient-notation-template-_002d-modern-transcription-of-gregorian-music">Ancient notation template &ndash; modern transcription of gregorian music</a>    </li>
+    <li class=""><a name="toc-Ancient-time-signatures" href="ancient-notation.html#ancient-notation-ancient-time-signatures">Ancient time signatures</a>    </li>
+    <li class=""><a name="toc-Chant-or-psalms-notation" href="ancient-notation.html#ancient-notation-chant-or-psalms-notation">Chant or psalms notation</a>    </li>
+    <li class=""><a name="toc-Custodes-1" href="ancient-notation.html#ancient-notation-custodes">Custodes</a>    </li>
+    <li class=""><a name="toc-Incipit" href="ancient-notation.html#ancient-notation-incipit">Incipit</a>    </li>
+    <li class=""><a name="toc-Mensurstriche-layout-_0028bar-lines-between-the-staves_0029-3" href="ancient-notation.html#ancient-notation-mensurstriche-layout-_0028bar-lines-between-the-staves_0029">Mensurstriche layout (bar lines between the staves)</a>    </li>
+    <li class=""><a name="toc-Rest-styles" href="ancient-notation.html#ancient-notation-rest-styles">Rest styles</a>    </li>
+    <li class=""><a name="toc-Using-tags-to-produce-mensural-and-modern-music-from-the-same-source-1" href="ancient-notation.html#ancient-notation-using-tags-to-produce-mensural-and-modern-music-from-the-same-source">Using tags to produce mensural and modern music from the same source</a>    </li>
+    <li class=""><a name="toc-Vertical-line-as-a-baroque-articulation-mark-1" href="ancient-notation.html#ancient-notation-vertical-line-as-a-baroque-articulation-mark">Vertical line as a baroque articulation mark</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-World-music-1" href="world-music.html">World music</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Arabic-improvisation" href="world-music.html#world-music-arabic-improvisation">Arabic improvisation</a>    </li>
+    <li class=""><a name="toc-Makam-example-1" href="world-music.html#world-music-makam-example">Makam example</a>    </li>
+    <li class=""><a name="toc-Printing-text-from-right-to-left-2" href="world-music.html#world-music-printing-text-from-right-to-left">Printing text from right to left</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.html">Contexts and engravers</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-a-figured-bass-above-or-below-the-notes-1" href="contexts-and-engravers.html#contexts-and-engravers-adding-a-figured-bass-above-or-below-the-notes">Adding a figured bass above or below the notes</a>    </li>
+    <li class=""><a name="toc-Adding-an-extra-staff-at-a-line-break-1" href="contexts-and-engravers.html#contexts-and-engravers-adding-an-extra-staff-at-a-line-break">Adding an extra staff at a line break</a>    </li>
+    <li class=""><a name="toc-Adding-an-extra-staff-1" href="contexts-and-engravers.html#contexts-and-engravers-adding-an-extra-staff">Adding an extra staff</a>    </li>
+    <li class=""><a name="toc-Automatically-changing-the-stem-direction-of-the-middle-note-based-on-the-melody-1" href="contexts-and-engravers.html#contexts-and-engravers-automatically-changing-the-stem-direction-of-the-middle-note-based-on-the-melody">Automatically changing the stem direction of the middle note based on the melody</a>    </li>
+    <li class=""><a name="toc-Centered-measure-numbers-1" href="contexts-and-engravers.html#contexts-and-engravers-centered-measure-numbers">Centered measure numbers</a>    </li>
+    <li class=""><a name="toc-Centering-markup-on-note-heads-automatically-2" href="contexts-and-engravers.html#contexts-and-engravers-centering-markup-on-note-heads-automatically">Centering markup on note heads automatically</a>    </li>
+    <li class=""><a name="toc-Changing-MIDI-output-to-one-channel-per-voice" href="contexts-and-engravers.html#contexts-and-engravers-changing-midi-output-to-one-channel-per-voice">Changing MIDI output to one channel per voice</a>    </li>
+    <li class=""><a name="toc-Changing-time-signatures-inside-a-polymetric-section-using-_005cscaleDurations-1" href="contexts-and-engravers.html#contexts-and-engravers-changing-time-signatures-inside-a-polymetric-section-using-_005cscaledurations">Changing time signatures inside a polymetric section using \scaleDurations</a>    </li>
+    <li class=""><a name="toc-Chant-or-psalms-notation-3" href="contexts-and-engravers.html#contexts-and-engravers-chant-or-psalms-notation">Chant or psalms notation</a>    </li>
+    <li class=""><a name="toc-Creating-blank-staves-2" href="contexts-and-engravers.html#contexts-and-engravers-creating-blank-staves">Creating blank staves</a>    </li>
+    <li class=""><a name="toc-Creating-custom-key-signatures-2" href="contexts-and-engravers.html#contexts-and-engravers-creating-custom-key-signatures">Creating custom key signatures</a>    </li>
+    <li class=""><a name="toc-Cross-staff-stems-1" href="contexts-and-engravers.html#contexts-and-engravers-cross-staff-stems">Cross staff stems</a>    </li>
+    <li class=""><a name="toc-Defining-an-engraver-in-Scheme_003a-ambitus-engraver" href="contexts-and-engravers.html#contexts-and-engravers-defining-an-engraver-in-scheme_003a-ambitus-engraver">Defining an engraver in Scheme: ambitus engraver</a>    </li>
+    <li class=""><a name="toc-Displaying-a-whole-GrandStaff-system-if-only-one-of-its-staves-is-alive" href="contexts-and-engravers.html#contexts-and-engravers-displaying-a-whole-grandstaff-system-if-only-one-of-its-staves-is-alive">Displaying a whole GrandStaff system if only one of its staves is alive</a>    </li>
+    <li class=""><a name="toc-Engravers-one_002dby_002done" href="contexts-and-engravers.html#contexts-and-engravers-engravers-one_002dby_002done">Engravers one-by-one</a>    </li>
+    <li class=""><a name="toc-Mensurstriche-layout-_0028bar-lines-between-the-staves_0029-1" href="contexts-and-engravers.html#contexts-and-engravers-mensurstriche-layout-_0028bar-lines-between-the-staves_0029">Mensurstriche layout (bar lines between the staves)</a>    </li>
+    <li class=""><a name="toc-Nesting-staves-2" href="contexts-and-engravers.html#contexts-and-engravers-nesting-staves">Nesting staves</a>    </li>
+    <li class=""><a name="toc-Numbering-groups-of-measures" href="contexts-and-engravers.html#contexts-and-engravers-numbering-groups-of-measures">Numbering groups of measures</a>    </li>
+    <li class=""><a name="toc-Removing-bar-numbers-from-a-score" href="contexts-and-engravers.html#contexts-and-engravers-removing-bar-numbers-from-a-score">Removing bar numbers from a score</a>    </li>
+    <li class=""><a name="toc-Use-square-bracket-at-the-start-of-a-staff-group-1" href="contexts-and-engravers.html#contexts-and-engravers-use-square-bracket-at-the-start-of-a-staff-group">Use square bracket at the start of a staff group</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves-1" href="contexts-and-engravers.html#contexts-and-engravers-vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves">Vocal ensemble template with lyrics aligned below and above the staves</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-verse-and-refrain-2" href="contexts-and-engravers.html#contexts-and-engravers-vocal-ensemble-template-with-verse-and-refrain">Vocal ensemble template with verse and refrain</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tweaks-and-overrides-1" href="tweaks-and-overrides.html">Tweaks and overrides</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-an-ottava-marking-to-a-single-voice" href="tweaks-and-overrides.html#tweaks-and-overrides-adding-an-ottava-marking-to-a-single-voice">Adding an ottava marking to a single voice</a>    </li>
+    <li class=""><a name="toc-Adding-links-to-objects" href="tweaks-and-overrides.html#tweaks-and-overrides-adding-links-to-objects">Adding links to objects</a>    </li>
+    <li class=""><a name="toc-Adding-markups-in-a-tablature-2" href="tweaks-and-overrides.html#tweaks-and-overrides-adding-markups-in-a-tablature">Adding markups in a tablature</a>    </li>
+    <li class=""><a name="toc-Adding-timing-marks-to-long-glissandi-2" href="tweaks-and-overrides.html#tweaks-and-overrides-adding-timing-marks-to-long-glissandi">Adding timing marks to long glissandi</a>    </li>
+    <li class=""><a name="toc-Adjusting-grace-note-spacing" href="tweaks-and-overrides.html#tweaks-and-overrides-adjusting-grace-note-spacing">Adjusting grace note spacing</a>    </li>
+    <li class=""><a name="toc-Adjusting-lyrics-vertical-spacing" href="tweaks-and-overrides.html#tweaks-and-overrides-adjusting-lyrics-vertical-spacing">Adjusting lyrics vertical spacing</a>    </li>
+    <li class=""><a name="toc-Altering-the-length-of-beamed-stems" href="tweaks-and-overrides.html#tweaks-and-overrides-altering-the-length-of-beamed-stems">Altering the length of beamed stems</a>    </li>
+    <li class=""><a name="toc-Alternative-bar-numbering-1" href="tweaks-and-overrides.html#tweaks-and-overrides-alternative-bar-numbering">Alternative bar numbering</a>    </li>
+    <li class=""><a name="toc-Analysis-brackets-above-the-staff-1" href="tweaks-and-overrides.html#tweaks-and-overrides-analysis-brackets-above-the-staff">Analysis brackets above the staff</a>    </li>
+    <li class=""><a name="toc-Asymmetric-slurs-1" href="tweaks-and-overrides.html#tweaks-and-overrides-asymmetric-slurs">Asymmetric slurs</a>    </li>
+    <li class=""><a name="toc-Avoiding-collisions-with-chord-fingerings-1" href="tweaks-and-overrides.html#tweaks-and-overrides-avoiding-collisions-with-chord-fingerings">Avoiding collisions with chord fingerings</a>    </li>
+    <li class=""><a name="toc-Caesura-_0028_0022railtracks_0022_0029-with-fermata-1" href="tweaks-and-overrides.html#tweaks-and-overrides-caesura-_0028_0022railtracks_0022_0029-with-fermata">Caesura (&quot;railtracks&quot;) with fermata</a>    </li>
+    <li class=""><a name="toc-Centering-markup-on-note-heads-automatically" href="tweaks-and-overrides.html#tweaks-and-overrides-centering-markup-on-note-heads-automatically">Centering markup on note heads automatically</a>    </li>
+    <li class=""><a name="toc-Changing-a-single-note_0027s-size-in-a-chord-2" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-a-single-note_0027s-size-in-a-chord">Changing a single note&rsquo;s size in a chord</a>    </li>
+    <li class=""><a name="toc-Changing-beam-thickness-and-spacing" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-beam-thickness-and-spacing">Changing beam thickness and spacing</a>    </li>
+    <li class=""><a name="toc-Changing-form-of-multi_002dmeasure-rests-1" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-form-of-multi_002dmeasure-rests">Changing form of multi-measure rests</a>    </li>
+    <li class=""><a name="toc-Changing-properties-for-individual-grobs" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-properties-for-individual-grobs">Changing properties for individual grobs</a>    </li>
+    <li class=""><a name="toc-Changing-text-and-spanner-styles-for-text-dynamics" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-text-and-spanner-styles-for-text-dynamics">Changing text and spanner styles for text dynamics</a>    </li>
+    <li class=""><a name="toc-Changing-the-default-text-font-family" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-the-default-text-font-family">Changing the default text font family</a>    </li>
+    <li class=""><a name="toc-Changing-the-staff-size" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-the-staff-size">Changing the staff size</a>    </li>
+    <li class=""><a name="toc-Changing-the-tempo-without-a-metronome-mark-1" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-the-tempo-without-a-metronome-mark">Changing the tempo without a metronome mark</a>    </li>
+    <li class=""><a name="toc-Changing-the-text-for-sustain-markings" href="tweaks-and-overrides.html#tweaks-and-overrides-changing-the-text-for-sustain-markings">Changing the text for sustain markings</a>    </li>
+    <li class=""><a name="toc-Controlling-spanner-visibility-after-a-line-break" href="tweaks-and-overrides.html#tweaks-and-overrides-controlling-spanner-visibility-after-a-line-break">Controlling spanner visibility after a line break</a>    </li>
+    <li class=""><a name="toc-Controlling-the-vertical-ordering-of-scripts" href="tweaks-and-overrides.html#tweaks-and-overrides-controlling-the-vertical-ordering-of-scripts">Controlling the vertical ordering of scripts</a>    </li>
+    <li class=""><a name="toc-Controlling-tuplet-bracket-visibility" href="tweaks-and-overrides.html#tweaks-and-overrides-controlling-tuplet-bracket-visibility">Controlling tuplet bracket visibility</a>    </li>
+    <li class=""><a name="toc-Creating-a-delayed-turn-1" href="tweaks-and-overrides.html#tweaks-and-overrides-creating-a-delayed-turn">Creating a delayed turn</a>    </li>
+    <li class=""><a name="toc-Creating-custom-key-signatures" href="tweaks-and-overrides.html#tweaks-and-overrides-creating-custom-key-signatures">Creating custom key signatures</a>    </li>
+    <li class=""><a name="toc-Creating-double_002ddigit-fingerings-3" href="tweaks-and-overrides.html#tweaks-and-overrides-creating-double_002ddigit-fingerings">Creating double-digit fingerings</a>    </li>
+    <li class=""><a name="toc-Creating-simultaneous-rehearsal-marks-2" href="tweaks-and-overrides.html#tweaks-and-overrides-creating-simultaneous-rehearsal-marks">Creating simultaneous rehearsal marks</a>    </li>
+    <li class=""><a name="toc-Creating-text-spanners-1" href="tweaks-and-overrides.html#tweaks-and-overrides-creating-text-spanners">Creating text spanners</a>    </li>
+    <li class=""><a name="toc-Cross_002dstaff-chords-_002d-beaming-problems-workaround-1" href="tweaks-and-overrides.html#tweaks-and-overrides-cross_002dstaff-chords-_002d-beaming-problems-workaround">Cross-staff chords - beaming problems workaround</a>    </li>
+    <li class=""><a name="toc-Cross-staff-stems-2" href="tweaks-and-overrides.html#tweaks-and-overrides-cross-staff-stems">Cross staff stems</a>    </li>
+    <li class=""><a name="toc-Custodes" href="tweaks-and-overrides.html#tweaks-and-overrides-custodes">Custodes</a>    </li>
+    <li class=""><a name="toc-Customizing-fretboard-fret-diagrams-1" href="tweaks-and-overrides.html#tweaks-and-overrides-customizing-fretboard-fret-diagrams">Customizing fretboard fret diagrams</a>    </li>
+    <li class=""><a name="toc-Customizing-markup-fret-diagrams" href="tweaks-and-overrides.html#tweaks-and-overrides-customizing-markup-fret-diagrams">Customizing markup fret diagrams</a>    </li>
+    <li class=""><a name="toc-Display-bracket-with-only-one-staff-in-a-system" href="tweaks-and-overrides.html#tweaks-and-overrides-display-bracket-with-only-one-staff-in-a-system">Display bracket with only one staff in a system</a>    </li>
+    <li class=""><a name="toc-Displaying-grob-ancestry" href="tweaks-and-overrides.html#tweaks-and-overrides-displaying-grob-ancestry">Displaying grob ancestry</a>    </li>
+    <li class=""><a name="toc-Dotted-harmonics-1" href="tweaks-and-overrides.html#tweaks-and-overrides-dotted-harmonics">Dotted harmonics</a>    </li>
+    <li class=""><a name="toc-Drawing-boxes-around-grobs-1" href="tweaks-and-overrides.html#tweaks-and-overrides-drawing-boxes-around-grobs">Drawing boxes around grobs</a>    </li>
+    <li class=""><a name="toc-Drawing-circles-around-various-objects-1" href="tweaks-and-overrides.html#tweaks-and-overrides-drawing-circles-around-various-objects">Drawing circles around various objects</a>    </li>
+    <li class=""><a name="toc-Dynamics-custom-text-spanner-postfix" href="tweaks-and-overrides.html#tweaks-and-overrides-dynamics-custom-text-spanner-postfix">Dynamics custom text spanner postfix</a>    </li>
+    <li class=""><a name="toc-Dynamics-text-spanner-postfix" href="tweaks-and-overrides.html#tweaks-and-overrides-dynamics-text-spanner-postfix">Dynamics text spanner postfix</a>    </li>
+    <li class=""><a name="toc-Extending-a-TrillSpanner" href="tweaks-and-overrides.html#tweaks-and-overrides-extending-a-trillspanner">Extending a TrillSpanner</a>    </li>
+    <li class=""><a name="toc-Extending-glissandi-across-repeats" href="tweaks-and-overrides.html#tweaks-and-overrides-extending-glissandi-across-repeats">Extending glissandi across repeats</a>    </li>
+    <li class=""><a name="toc-Fine_002dtuning-pedal-brackets" href="tweaks-and-overrides.html#tweaks-and-overrides-fine_002dtuning-pedal-brackets">Fine-tuning pedal brackets</a>    </li>
+    <li class=""><a name="toc-Forcing-horizontal-shift-of-notes" href="tweaks-and-overrides.html#tweaks-and-overrides-forcing-horizontal-shift-of-notes">Forcing horizontal shift of notes</a>    </li>
+    <li class=""><a name="toc-Fret-diagrams-explained-and-developed-1" href="tweaks-and-overrides.html#tweaks-and-overrides-fret-diagrams-explained-and-developed">Fret diagrams explained and developed</a>    </li>
+    <li class=""><a name="toc-Generating-custom-flags-1" href="tweaks-and-overrides.html#tweaks-and-overrides-generating-custom-flags">Generating custom flags</a>    </li>
+    <li class=""><a name="toc-Glissandi-can-skip-grobs-2" href="tweaks-and-overrides.html#tweaks-and-overrides-glissandi-can-skip-grobs">Glissandi can skip grobs</a>    </li>
+    <li class=""><a name="toc-Hairpins-with-different-line-styles" href="tweaks-and-overrides.html#tweaks-and-overrides-hairpins-with-different-line-styles">Hairpins with different line styles</a>    </li>
+    <li class=""><a name="toc-Horizontally-aligning-custom-dynamics-_0028e_002eg_002e-_0022sempre-pp_0022-_0022piu-f_0022-_0022subito-p_0022_0029" href="tweaks-and-overrides.html#tweaks-and-overrides-horizontally-aligning-custom-dynamics-_0028e_002eg_002e-_0022sempre-pp_0022-_0022piu-f_0022-_0022subito-p_0022_0029">Horizontally aligning custom dynamics (e.g. &quot;sempre pp&quot; &quot;piu f&quot; &quot;subito p&quot;)</a>    </li>
+    <li class=""><a name="toc-How-to-change-fret-diagram-position-1" href="tweaks-and-overrides.html#tweaks-and-overrides-how-to-change-fret-diagram-position">How to change fret diagram position</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029-2" href="tweaks-and-overrides.html#tweaks-and-overrides-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-1_0029">How to print two rehearsal marks above and below the same barline (method 1)</a>    </li>
+    <li class=""><a name="toc-How-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029-2" href="tweaks-and-overrides.html#tweaks-and-overrides-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029">How to print two rehearsal marks above and below the same barline (method 2)</a>    </li>
+    <li class=""><a name="toc-Inserting-a-caesura" href="tweaks-and-overrides.html#tweaks-and-overrides-inserting-a-caesura">Inserting a caesura</a>    </li>
+    <li class=""><a name="toc-Keep-change-clefs-full-sized" href="tweaks-and-overrides.html#tweaks-and-overrides-keep-change-clefs-full-sized">Keep change clefs full sized</a>    </li>
+    <li class=""><a name="toc-Line-arrows-1" href="tweaks-and-overrides.html#tweaks-and-overrides-line-arrows">Line arrows</a>    </li>
+    <li class=""><a name="toc-Making-an-object-invisible-with-the-_0027transparent-property" href="tweaks-and-overrides.html#tweaks-and-overrides-making-an-object-invisible-with-the-_0027transparent-property">Making an object invisible with the &rsquo;transparent property</a>    </li>
+    <li class=""><a name="toc-Making-glissandi-breakable" href="tweaks-and-overrides.html#tweaks-and-overrides-making-glissandi-breakable">Making glissandi breakable</a>    </li>
+    <li class=""><a name="toc-Manually-controlling-beam-positions" href="tweaks-and-overrides.html#tweaks-and-overrides-manually-controlling-beam-positions">Manually controlling beam positions</a>    </li>
+    <li class=""><a name="toc-Mensurstriche-layout-_0028bar-lines-between-the-staves_0029-2" href="tweaks-and-overrides.html#tweaks-and-overrides-mensurstriche-layout-_0028bar-lines-between-the-staves_0029">Mensurstriche layout (bar lines between the staves)</a>    </li>
+    <li class=""><a name="toc-Modifying-the-Ottava-spanner-slope-2" href="tweaks-and-overrides.html#tweaks-and-overrides-modifying-the-ottava-spanner-slope">Modifying the Ottava spanner slope</a>    </li>
+    <li class=""><a name="toc-Moving-dotted-notes-in-polyphony-2" href="tweaks-and-overrides.html#tweaks-and-overrides-moving-dotted-notes-in-polyphony">Moving dotted notes in polyphony</a>    </li>
+    <li class=""><a name="toc-Moving-slur-positions-vertically" href="tweaks-and-overrides.html#tweaks-and-overrides-moving-slur-positions-vertically">Moving slur positions vertically</a>    </li>
+    <li class=""><a name="toc-Nesting-staves" href="tweaks-and-overrides.html#tweaks-and-overrides-nesting-staves">Nesting staves</a>    </li>
+    <li class=""><a name="toc-Overriding-articulations-of-destinct-type" href="tweaks-and-overrides.html#tweaks-and-overrides-overriding-articulations-of-destinct-type">Overriding articulations of destinct type</a>    </li>
+    <li class=""><a name="toc-Percent-repeat-count-visibility-1" href="tweaks-and-overrides.html#tweaks-and-overrides-percent-repeat-count-visibility">Percent repeat count visibility</a>    </li>
+    <li class=""><a name="toc-Positioning-arpeggios" href="tweaks-and-overrides.html#tweaks-and-overrides-positioning-arpeggios">Positioning arpeggios</a>    </li>
+    <li class=""><a name="toc-Positioning-multi_002dmeasure-rests" href="tweaks-and-overrides.html#tweaks-and-overrides-positioning-multi_002dmeasure-rests">Positioning multi-measure rests</a>    </li>
+    <li class=""><a name="toc-Positioning-text-markups-inside-slurs" href="tweaks-and-overrides.html#tweaks-and-overrides-positioning-text-markups-inside-slurs">Positioning text markups inside slurs</a>    </li>
+    <li class=""><a name="toc-Printing-bar-numbers-inside-boxes-or-circles-1" href="tweaks-and-overrides.html#tweaks-and-overrides-printing-bar-numbers-inside-boxes-or-circles">Printing bar numbers inside boxes or circles</a>    </li>
+    <li class=""><a name="toc-Printing-metronome-and-rehearsal-marks-below-the-staff-1" href="tweaks-and-overrides.html#tweaks-and-overrides-printing-metronome-and-rehearsal-marks-below-the-staff">Printing metronome and rehearsal marks below the staff</a>    </li>
+    <li class=""><a name="toc-Printing-note-names-with-and-without-an-octave-marker" href="tweaks-and-overrides.html#tweaks-and-overrides-printing-note-names-with-and-without-an-octave-marker">Printing note names with and without an octave marker</a>    </li>
+    <li class=""><a name="toc-Proportional-strict-notespacing" href="tweaks-and-overrides.html#tweaks-and-overrides-proportional-strict-notespacing">Proportional strict notespacing</a>    </li>
+    <li class=""><a name="toc-Removing-brace-on-first-line-of-piano-score-1" href="tweaks-and-overrides.html#tweaks-and-overrides-removing-brace-on-first-line-of-piano-score">Removing brace on first line of piano score</a>    </li>
+    <li class=""><a name="toc-Removing-connecting-bar-lines-on-StaffGroup-PianoStaff-or-GrandStaff" href="tweaks-and-overrides.html#tweaks-and-overrides-removing-connecting-bar-lines-on-staffgroup-pianostaff-or-grandstaff">Removing connecting bar lines on StaffGroup PianoStaff or GrandStaff</a>    </li>
+    <li class=""><a name="toc-Removing-the-first-empty-line" href="tweaks-and-overrides.html#tweaks-and-overrides-removing-the-first-empty-line">Removing the first empty line</a>    </li>
+    <li class=""><a name="toc-Rest-styles-2" href="tweaks-and-overrides.html#tweaks-and-overrides-rest-styles">Rest styles</a>    </li>
+    <li class=""><a name="toc-Rhythmic-slashes" href="tweaks-and-overrides.html#tweaks-and-overrides-rhythmic-slashes">Rhythmic slashes</a>    </li>
+    <li class=""><a name="toc-Separating-key-cancellations-from-key-signature-changes-1" href="tweaks-and-overrides.html#tweaks-and-overrides-separating-key-cancellations-from-key-signature-changes">Separating key cancellations from key signature changes</a>    </li>
+    <li class=""><a name="toc-Setting-hairpin-behavior-at-bar-lines" href="tweaks-and-overrides.html#tweaks-and-overrides-setting-hairpin-behavior-at-bar-lines">Setting hairpin behavior at bar lines</a>    </li>
+    <li class=""><a name="toc-Setting-system-separators" href="tweaks-and-overrides.html#tweaks-and-overrides-setting-system-separators">Setting system separators</a>    </li>
+    <li class=""><a name="toc-Showing-the-same-articulation-above-and-below-a-note-or-chord" href="tweaks-and-overrides.html#tweaks-and-overrides-showing-the-same-articulation-above-and-below-a-note-or-chord">Showing the same articulation above and below a note or chord</a>    </li>
+    <li class=""><a name="toc-String-number-extender-lines" href="tweaks-and-overrides.html#tweaks-and-overrides-string-number-extender-lines">String number extender lines</a>    </li>
+    <li class=""><a name="toc-Suppressing-warnings-for-clashing-note-columns" href="tweaks-and-overrides.html#tweaks-and-overrides-suppressing-warnings-for-clashing-note-columns">Suppressing warnings for clashing note columns</a>    </li>
+    <li class=""><a name="toc-Time-signature-in-parentheses-_002d-method-3-2" href="tweaks-and-overrides.html#tweaks-and-overrides-time-signature-in-parentheses-_002d-method-3">Time signature in parentheses - method 3</a>    </li>
+    <li class=""><a name="toc-Time-signature-in-parentheses-2" href="tweaks-and-overrides.html#tweaks-and-overrides-time-signature-in-parentheses">Time signature in parentheses</a>    </li>
+    <li class=""><a name="toc-Time-signature-printing-only-the-numerator-as-a-number-_0028instead-of-the-fraction_0029" href="tweaks-and-overrides.html#tweaks-and-overrides-time-signature-printing-only-the-numerator-as-a-number-_0028instead-of-the-fraction_0029">Time signature printing only the numerator as a number (instead of the fraction)</a>    </li>
+    <li class=""><a name="toc-Tuplet-bracket-and-change-staff" href="tweaks-and-overrides.html#tweaks-and-overrides-tuplet-bracket-and-change-staff">Tuplet bracket and change staff</a>    </li>
+    <li class=""><a name="toc-Tweaking-clef-properties" href="tweaks-and-overrides.html#tweaks-and-overrides-tweaking-clef-properties">Tweaking clef properties</a>    </li>
+    <li class=""><a name="toc-Tweaking-grace-layout-within-music" href="tweaks-and-overrides.html#tweaks-and-overrides-tweaking-grace-layout-within-music">Tweaking grace layout within music</a>    </li>
+    <li class=""><a name="toc-Using-alternative-flag-styles-1" href="tweaks-and-overrides.html#tweaks-and-overrides-using-alternative-flag-styles">Using alternative flag styles</a>    </li>
+    <li class=""><a name="toc-Using-ly_003agrob_002dobject-to-access-grobs-with-_005ctweak" href="tweaks-and-overrides.html#tweaks-and-overrides-using-ly_003agrob_002dobject-to-access-grobs-with-_005ctweak">Using ly:grob-object to access grobs with \tweak</a>    </li>
+    <li class=""><a name="toc-Using-PostScript-to-generate-special-note-head-shapes-1" href="tweaks-and-overrides.html#tweaks-and-overrides-using-postscript-to-generate-special-note-head-shapes">Using PostScript to generate special note head shapes</a>    </li>
+    <li class=""><a name="toc-Using-the-_005ctweak-command-to-tweak-individual-grobs" href="tweaks-and-overrides.html#tweaks-and-overrides-using-the-_005ctweak-command-to-tweak-individual-grobs">Using the \tweak command to tweak individual grobs</a>    </li>
+    <li class=""><a name="toc-Vertically-aligned-dynamics-and-textscripts" href="tweaks-and-overrides.html#tweaks-and-overrides-vertically-aligned-dynamics-and-textscripts">Vertically aligned dynamics and textscripts</a>    </li>
+    <li class=""><a name="toc-Vertically-aligning-ossias-and-lyrics-2" href="tweaks-and-overrides.html#tweaks-and-overrides-vertically-aligning-ossias-and-lyrics">Vertically aligning ossias and lyrics</a>    </li>
+    <li class=""><a name="toc-Vertically-centering-paired-figured-bass-extenders" href="tweaks-and-overrides.html#tweaks-and-overrides-vertically-centering-paired-figured-bass-extenders">Vertically centering paired figured bass extenders</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Paper-and-layout-1" href="paper-and-layout.html">Paper and layout</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Aligning-and-centering-instrument-names" href="paper-and-layout.html#paper-and-layout-aligning-and-centering-instrument-names">Aligning and centering instrument names</a>    </li>
+    <li class=""><a name="toc-Arranging-separate-lyrics-on-a-single-line" href="paper-and-layout.html#paper-and-layout-arranging-separate-lyrics-on-a-single-line">Arranging separate lyrics on a single line</a>    </li>
+    <li class=""><a name="toc-Book-parts" href="paper-and-layout.html#paper-and-layout-book-parts">Book parts</a>    </li>
+    <li class=""><a name="toc-Changing-the-staff-size-2" href="paper-and-layout.html#paper-and-layout-changing-the-staff-size">Changing the staff size</a>    </li>
+    <li class=""><a name="toc-Clip-systems" href="paper-and-layout.html#paper-and-layout-clip-systems">Clip systems</a>    </li>
+    <li class=""><a name="toc-Creating-blank-staves" href="paper-and-layout.html#paper-and-layout-creating-blank-staves">Creating blank staves</a>    </li>
+    <li class=""><a name="toc-Demonstrating-all-headers-1" href="paper-and-layout.html#paper-and-layout-demonstrating-all-headers">Demonstrating all headers</a>    </li>
+    <li class=""><a name="toc-Setting-system-separators-2" href="paper-and-layout.html#paper-and-layout-setting-system-separators">Setting system separators</a>    </li>
+    <li class=""><a name="toc-Table-of-contents" href="paper-and-layout.html#paper-and-layout-table-of-contents">Table of contents</a>    </li>
+    <li class=""><a name="toc-Vertical-aligned-StaffGroups-without-connecting-SystemStartBar" href="paper-and-layout.html#paper-and-layout-vertical-aligned-staffgroups-without-connecting-systemstartbar">Vertical aligned StaffGroups without connecting SystemStartBar</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Titles-1" href="titles.html">Titles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adding-the-current-date-to-a-score" href="titles.html#titles-adding-the-current-date-to-a-score">Adding the current date to a score</a>    </li>
+    <li class=""><a name="toc-Aligning-and-centering-instrument-names-1" href="titles.html#titles-aligning-and-centering-instrument-names">Aligning and centering instrument names</a>    </li>
+    <li class=""><a name="toc-Demonstrating-all-headers" href="titles.html#titles-demonstrating-all-headers">Demonstrating all headers</a>    </li>
+    <li class=""><a name="toc-Outputting-the-version-number" href="titles.html#titles-outputting-the-version-number">Outputting the version number</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spacing-1" href="spacing.html">Spacing</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Adjusting-lyrics-vertical-spacing-1" href="spacing.html#spacing-adjusting-lyrics-vertical-spacing">Adjusting lyrics vertical spacing</a>    </li>
+    <li class=""><a name="toc-Allowing-fingerings-to-be-printed-inside-the-staff" href="spacing.html#spacing-allowing-fingerings-to-be-printed-inside-the-staff">Allowing fingerings to be printed inside the staff</a>    </li>
+    <li class=""><a name="toc-Page-label" href="spacing.html#spacing-page-label">Page label</a>    </li>
+    <li class=""><a name="toc-Proportional-strict-notespacing-1" href="spacing.html#spacing-proportional-strict-notespacing">Proportional strict notespacing</a>    </li>
+    <li class=""><a name="toc-Vertically-aligned-dynamics-and-textscripts-1" href="spacing.html#spacing-vertically-aligned-dynamics-and-textscripts">Vertically aligned dynamics and textscripts</a>    </li>
+    <li class=""><a name="toc-Vertically-aligning-ossias-and-lyrics-1" href="spacing.html#spacing-vertically-aligning-ossias-and-lyrics">Vertically aligning ossias and lyrics</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-MIDI-1" href="midi.html">MIDI</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Changing-MIDI-output-to-one-channel-per-voice-1" href="midi.html#midi-changing-midi-output-to-one-channel-per-voice">Changing MIDI output to one channel per voice</a>    </li>
+    <li class=""><a name="toc-Changing-the-tempo-without-a-metronome-mark" href="midi.html#midi-changing-the-tempo-without-a-metronome-mark">Changing the tempo without a metronome mark</a>    </li>
+    <li class=""><a name="toc-Creating-custom-dynamics-in-MIDI-output" href="midi.html#midi-creating-custom-dynamics-in-midi-output">Creating custom dynamics in MIDI output</a>    </li>
+    <li class=""><a name="toc-Demo-MidiInstruments" href="midi.html#midi-demo-midiinstruments">Demo MidiInstruments</a>    </li>
+    <li class=""><a name="toc-Replacing-default-MIDI-instrument-equalization" href="midi.html#midi-replacing-default-midi-instrument-equalization">Replacing default MIDI instrument equalization</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.html">Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Ancient-notation-template-_002d_002d-modern-transcription-of-gregorian-music-2" href="templates.html#templates-ancient-notation-template-_002d-modern-transcription-of-gregorian-music">Ancient notation template &ndash; modern transcription of gregorian music</a>    </li>
+    <li class=""><a name="toc-Anglican-psalm-template" href="templates.html#templates-anglican-psalm-template">Anglican psalm template</a>    </li>
+    <li class=""><a name="toc-Hymn-template" href="templates.html#templates-hymn-template">Hymn template</a>    </li>
+    <li class=""><a name="toc-Jazz-combo-template-3" href="templates.html#templates-jazz-combo-template">Jazz combo template</a>    </li>
+    <li class=""><a name="toc-Orchestra-choir-and-piano-template-3" href="templates.html#templates-orchestra-choir-and-piano-template">Orchestra choir and piano template</a>    </li>
+    <li class=""><a name="toc-Piano-template-_0028simple_0029" href="templates.html#templates-piano-template-_0028simple_0029">Piano template (simple)</a>    </li>
+    <li class=""><a name="toc-Piano-template-with-centered-lyrics-1" href="templates.html#templates-piano-template-with-centered-lyrics">Piano template with centered lyrics</a>    </li>
+    <li class=""><a name="toc-Piano-template-with-melody-and-lyrics-1" href="templates.html#templates-piano-template-with-melody-and-lyrics">Piano template with melody and lyrics</a>    </li>
+    <li class=""><a name="toc-SATB-Choir-template-_002d-four-staves" href="templates.html#templates-satb-choir-template-_002d-four-staves">SATB Choir template - four staves</a>    </li>
+    <li class=""><a name="toc-Score-for-diatonic-accordion" href="templates.html#templates-score-for-diatonic-accordion">Score for diatonic accordion</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-lyrics-and-chords-1" href="templates.html#templates-single-staff-template-with-notes-lyrics-and-chords">Single staff template with notes lyrics and chords</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-lyrics-chords-and-frets-1" href="templates.html#templates-single-staff-template-with-notes-lyrics-chords-and-frets">Single staff template with notes lyrics chords and frets</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-and-chords-1" href="templates.html#templates-single-staff-template-with-notes-and-chords">Single staff template with notes and chords</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-notes-and-lyrics" href="templates.html#templates-single-staff-template-with-notes-and-lyrics">Single staff template with notes and lyrics</a>    </li>
+    <li class=""><a name="toc-Single-staff-template-with-only-notes" href="templates.html#templates-single-staff-template-with-only-notes">Single staff template with only notes</a>    </li>
+    <li class=""><a name="toc-String-quartet-template-_0028simple_0029" href="templates.html#templates-string-quartet-template-_0028simple_0029">String quartet template (simple)</a>    </li>
+    <li class=""><a name="toc-String-quartet-template-with-separate-parts" href="templates.html#templates-string-quartet-template-with-separate-parts">String quartet template with separate parts</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-automatic-piano-reduction-2" href="templates.html#templates-vocal-ensemble-template-with-automatic-piano-reduction">Vocal ensemble template with automatic piano reduction</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves" href="templates.html#templates-vocal-ensemble-template-with-lyrics-aligned-below-and-above-the-staves">Vocal ensemble template with lyrics aligned below and above the staves</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-with-verse-and-refrain" href="templates.html#templates-vocal-ensemble-template-with-verse-and-refrain">Vocal ensemble template with verse and refrain</a>    </li>
+    <li class=""><a name="toc-Vocal-ensemble-template-1" href="templates.html#templates-vocal-ensemble-template">Vocal ensemble template</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

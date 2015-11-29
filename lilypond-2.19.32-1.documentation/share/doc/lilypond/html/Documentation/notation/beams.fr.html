@@ -1,0 +1,1532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel de notation: 1.2.4 Barres de ligature</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel de notation: 1.2.4 Barres de ligature">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel de notation: 1.2.4 Barres de ligature">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel de notation">
+<link href="lilypond-command-index.fr.html#lilypond-command-index" rel="index" title="D. Index des commandes LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="rhythms.fr.html#rhythms" rel="up" title="1.2 Rythme">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="E. Index de LilyPond">
+<link href="displaying-rhythms.fr.html#displaying-rhythms" rel="previous" title="1.2.3 Gravure du rythme">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="notation devStatus">
+
+
+<div id="main">
+<a name="Barres-de-ligature"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="displaying-rhythms.fr.html#showing-melody-rhythms" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Gravure de lignes rythmiques&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Rythme&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-beams" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Barres de ligature automatiques &gt; </a>]</td></tr></table>
+<a name="beams"></a>
+<h3 class="subsection">1.2.4 Barres de ligature</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#automatic-beams" accesskey="1">Barres de ligature automatiques</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#setting-automatic-beam-behavior" accesskey="2">Définition des règles de ligature automatique</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#manual-beams" accesskey="3">Barres de ligature manuelles</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#feathered-beams" accesskey="4">Liens de croches en soufflet</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Barres-de-ligature-automatiques"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#beams" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Barres de ligature&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Barres de ligature&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#setting-automatic-beam-behavior" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Définition des règles de ligature automatique &gt; </a>]</td></tr></table>
+<a name="automatic-beams"></a>
+<h4 class="unnumberedsubsubsec">Barres de ligature automatiques</h4>
+
+<p>LilyPond décide automatiquement de la manière de grouper les notes et
+d&rsquo;imprimer les ligatures.
+</p>
+<a name="index-ligatures-manuelles"></a>
+<a name="index-ligatures_002c-definition-de-regles"></a>
+<a name="index-ligatures_002c-personnalisation"></a>
+
+<a name="index-_005cautoBeamOn"></a>
+<a name="index-_005cautoBeamOn-1"></a>
+<a name="index-autoBeamOn"></a>
+<a name="index-autoBeamOn-1"></a>
+<a name="index-_005cautoBeamOff"></a>
+<a name="index-_005cautoBeamOff-1"></a>
+<a name="index-autoBeamOff"></a>
+<a name="index-autoBeamOff-1"></a>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 2/4 c8 c c c
+  \time 6/8 c8 c c c8. c16 c8
+}
+</pre><p>
+ <a href="../3a/lily-2a5aadc4.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-2a5aadc4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Lorsque ce comportement automatisé n&rsquo;est pas satisfaisant, on peut
+définir des groupements manuellement &ndash; voir
+<a href="#manual-beams">Barres de ligature manuelles</a>.  Dans le cas où le groupe de notes
+en question contient un silence, il est <strong>impératif</strong> d&rsquo;indiquer
+explicitement les début et fin de la ligature.
+</p>
+<p>Lorsque les ligatures automatiques ne sont pas nécessaires, il suffit de
+désactiver la fonctionnalité par un <code>\autoBeamOff</code> &ndash; réactivation
+par <code>\autoBeamOn</code> :
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  c4 c8 c8. c16 c8. c16 c8
+  \autoBeamOff
+  c4 c8 c8. c16 c8.
+  \autoBeamOn
+  c16 c8
+}
+</pre><p>
+ <a href="../bc/lily-ec57601e.ly">
+  <img align="middle"
+       border="0"
+       src="../bc/lily-ec57601e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-melisme-et-ligature"></a>
+<a name="index-ligature-et-melisme"></a>
+
+<div class="warning"><p><strong>Note :</strong> Si des ligatures sont utilisées dans les paroles d&rsquo;une chanson
+(pour indiquer des mélismes), les ligatures automatiques doivent être
+désactivées, avec <code>\autoBeamOff</code>, et indiquées manuellement.<br>
+L&rsquo;utilisation conjointe de <code>\partcombine</code> et de
+<code>\autoBeamOff</code> peut produire des résultats quelque peu
+surprenants ; ceci fait l&rsquo;objet d&rsquo;un exemple particulier à la
+rubrique morceaux choisis.
+</p>
+</div>
+<p>Des règles de dérogation au comportement automatique par défaut sont
+possibles ; voir <a href="#setting-automatic-beam-behavior">Définition des règles de ligature automatique</a>.
+</p>
+<a name="Commandes-predefinies-44"></a>
+<h4 class="subsubheading">Commandes prédéfinies</h4>
+<p><code>\autoBeamOff</code>,
+<code>\autoBeamOn</code>.
+</p>
+<a name="index-saut-de-ligne-et-ligature"></a>
+<a name="index-ligature-et-saut-de-ligne"></a>
+<a name="index-ligature-coudee"></a>
+
+<a name="index-breakable"></a>
+<a name="index-breakable-1"></a>
+
+<a name="Morceaux-choisis-60"></a>
+<h4 class="subsubheading">Morceaux choisis</h4>
+
+<p><em> Ligature au moment d&rsquo;un saut de ligne</em>
+</p>
+
+<p>Il est normalement impensable qu&rsquo;un saut de ligne tombe au milieu d&rsquo;une
+ligature.  LilyPond permet néanmoins de l&rsquo;obtenir.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \override Beam.breakable = ##t
+  c8 c[ c] c[ c] c[ c] c[ \break
+  c8] c[ c] c[ c] c[ c] c
+}
+</pre><p>
+ <a href="../b4/lily-b865933b.ly">
+  <img align="middle"
+       border="0"
+       src="../b4/lily-b865933b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Ligature et directions de hampe inversées</em>
+</p>
+
+<p>LilyPond insère automatiquement des ligatures coudées &ndash; certaines
+hampes vers le haut, d&rsquo;autres vers le bas &ndash; lorsqu&rsquo;il détecte un
+intervalle important entre des têtes de notes.  Ce comportement peut
+être changé par l&rsquo;intermédiaire de l&rsquo;objet <code>auto-knee-gap</code> &ndash;
+défini par défaut à 5,5 espaces, plus la largeur et la pente de la
+ligature en question.
+</p>
+
+<blockquote><pre class="verbatim">{
+  f8 f''8 f8 f''8
+  \override Beam.auto-knee-gap = #6
+  f8 f''8 f8 f''8
+}
+</pre><p>
+ <a href="../10/lily-fc9659ae.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-fc9659ae.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-ligature_002c-_005cpartcombine-et-_005cautoBeamOff"></a>
+<a name="index-voix_002c-_005cautoBeamOff-et-_005cpartcombine"></a>
+
+
+<p><em> Partcombine et autoBeamOff</em>
+</p>
+
+<p>La fonction <code>\autoBeamOff</code> dans le cadre d&rsquo;un <code>\partcombine</code>
+agit de façon bien particulière ; c&rsquo;est pourquoi il vaut mieux tout
+d&rsquo;abord recourir à
+</p>
+<blockquote><pre class="example">\set Staff.autobeaming = ##f
+</pre></blockquote>
+
+<p>pour désactiver les ligatures automatiques pour l&rsquo;ensemble de la portée
+concernée.
+</p>
+<p>L&rsquo;instruction <code>\partcombine</code> fonctionne apparemment sur la base de
+trois voix : solo hampes montantes, solo hampes descendantes et ensemble
+hampes montantes.
+</p>
+<p>Lorsque <code>\autoBeamOff</code> apparaît dans le premier argument de la
+combinaison, il s&rsquo;applique à la voix active à ce moment précis, qu&rsquo;il
+s&rsquo;agisse du solo hampes montantes ou du combiné hampes montantes.
+Lorsqu&rsquo;elle est introduite dans le second argument, la commande
+<code>\autoBeamOff</code> s&rsquo;appliquera au solo hampes descendantes.
+</p>
+<p>Vous devrez donc, afin que <code>\autoBeamOff</code> soit pleinement
+opérationnel dans le cadre d&rsquo;un <code>\partcombine</code>, l&rsquo;introduire aux
+<strong>trois</strong> niveaux.
+</p>
+
+<blockquote><pre class="verbatim">{
+  %\set Staff.autoBeaming = ##f % turns off all autobeaming
+  \partcombine
+  {
+    \autoBeamOff % applies to split up stems
+    \repeat unfold 4 a'16
+    %\autoBeamOff % applies to combined up stems
+    \repeat unfold 4 a'8
+    \repeat unfold 4 a'16
+  }
+  {
+    \autoBeamOff % applies to down stems
+    \repeat unfold 4 f'8
+    \repeat unfold 8 f'16 |
+  }
+}
+</pre><p>
+ <a href="../9c/lily-5a372fd7.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-5a372fd7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-81"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a href="#manual-beams">Barres de ligature manuelles</a>,
+<a href="#setting-automatic-beam-behavior">Définition des règles de ligature automatique</a>.
+</p>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>scm/auto-beam.scm</tt>&rsquo;.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+<p>Références des propriétés internes :
+<a name="index-Auto_005fbeam_005fengraver"></a>
+<a href="../internals/auto_005fbeam_005fengraver.fr.html">Auto_beam_engraver</a>,
+<a name="index-Beam_005fengraver"></a>
+<a href="../internals/beam_005fengraver.fr.html">Beam_engraver</a>,
+<a name="index-Beam"></a>
+<a href="../internals/beam.fr.html">Beam</a>.
+<a name="index-BeamEvent"></a>
+<a href="../internals/beamevent.fr.html">BeamEvent</a>,
+<a name="index-BeamForbidEvent"></a>
+<a href="../internals/beamforbidevent.fr.html">BeamForbidEvent</a>,
+<a name="index-beam_002dinterface"></a>
+<a href="../internals/beam_002dinterface.fr.html">beam-interface</a>,
+<a name="index-unbreakable_002dspanner_002dinterface"></a>
+<a href="../internals/unbreakable_002dspanner_002dinterface.fr.html">unbreakable-spanner-interface</a>.
+</p>
+<a name="Problemes-connus-et-avertissements-70"></a>
+<h4 class="subsubheading">Problèmes connus et avertissements</h4>
+<p>Les propriétés d&rsquo;une ligature sont déterminées <strong>dès le début</strong> de
+sa construction ; toute adaptation qui interviendrait avant sa
+terminaison ne sera prise en compte qu&rsquo;à l&rsquo;occasion de la
+<strong>prochaine</strong> ligature.
+</p>
+
+<hr size="6">
+<a name="D_00e9finition-des-r_00e8gles-de-ligature-automatique"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-beams" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Barres de ligature automatiques&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Barres de ligature&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#manual-beams" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Barres de ligature manuelles &gt; </a>]</td></tr></table>
+<a name="setting-automatic-beam-behavior"></a>
+<h4 class="unnumberedsubsubsec">Définition des règles de ligature automatique</h4>
+
+<a name="index-ligatures-et-paroles"></a>
+<a name="index-paroles-et-ligatures"></a>
+
+<a name="index-autoBeaming"></a>
+<a name="index-autoBeaming-1"></a>
+<a name="index-baseMoment"></a>
+<a name="index-baseMoment-1"></a>
+<a name="index-beamExceptions"></a>
+<a name="index-beamExceptions-1"></a>
+<a name="index-beatStructure"></a>
+<a name="index-beatStructure-1"></a>
+<a name="index-measureLength"></a>
+<a name="index-measureLength-1"></a>
+<a name="index-_005ctime-2"></a>
+<a name="index-_005ctime-3"></a>
+<a name="index-time-2"></a>
+<a name="index-time-3"></a>
+<a name="index-_005cset"></a>
+<a name="index-_005cset-1"></a>
+<a name="index-set"></a>
+<a name="index-set-1"></a>
+
+<p>Lorsque la fonction de ligature automatique est active, le
+positionnement des ligatures dépend des trois propriétés
+<code>baseMoment</code>, <code>beatStructure</code> et <code>beamExceptions</code>.
+Les valeurs par défaut de ces variables peuvent s&rsquo;adapter, comme indiqué
+ci-après, ou bien carrément être modifiées &ndash; voir <a href="displaying-rhythms.fr.html#time-signature">Métrique</a>.
+</p>
+<p>Dès lors qu&rsquo;une règle affectant <code>beamExceptions</code> est définie pour
+la métrique en vigueur, c&rsquo;est cette règle qui servira à déterminer le
+placement des ligatures, ignorant les valeurs de <code>baseMoment</code> et
+<code>beatStructure</code>.
+</p>
+<p>En l&rsquo;absence de règle affectant <code>beamExceptions</code> pour la métrique
+en vigueur, les ligatures seront déterminées par les réglages conjoints
+de <code>baseMoment</code> et <code>beatStructure</code>.
+</p>
+
+<a name="-Ligature-basee-sur-baseMoment-et-beatStructure"></a>
+<h4 class="subsubheading"><i> Ligature basée sur <code>baseMoment</code> et <code>beatStructure</code></i></h4>
+
+<p><code>beamExceptions</code> dispose par défaut de règles pour les métriques
+les plus courantes ; il est donc impératif de les invalider pour gérer
+les ligatures automatiques à l&rsquo;aide de <code>baseMoment</code> et
+<code>beatStructure</code>.  Les règles de <code>beamExceptions</code> se
+désactivent par un
+</p>
+<blockquote><pre class="example">\set Timing.beamExceptions = #'()
+</pre></blockquote>
+
+<p>Lorsque <code>beamExceptions</code> est défini à <code>#'()</code>, que ce soit
+explicitement ou en raison de l&rsquo;absence de règles par défaut de
+<code>beamExceptions</code> pour la métrique en vigueur, la terminaison des
+ligatures est directement liée à la pulsation telle que spécifiée par
+les propriétés <code>baseMoment</code> et <code>beatStructure</code>.  La propriété
+<code>beatStructure</code> est constituée d&rsquo;une liste d&rsquo;éléments Scheme qui
+définit la longueur de chaque pulsation, prenant <code>baseMoment</code> comme
+unité.  L&rsquo;unité de base (le <code>baseMoment</code>) correspond par défaut à
+l&rsquo;inverse du dénominateur de la métrique.  D&rsquo;autre part, chaque unité de
+<code>baseMoment</code> constitue par défaut une seule pulsation.
+</p>
+<p>Notez bien la présence de valeurs distinctes de <code>beatStructure</code> et
+<code>baseMoment</code> pour chaque métrique.  Toute modification de ces
+variables ne s&rsquo;applique qu&rsquo;à la métrique alors en vigueur, raison pour
+laquelle elles doivent se placer à la suite de la commande <code>\time</code>
+qui entame un fragment ayant une nouvelle métrique, non au préalable.
+Les nouvelles valeurs affectées à une métrique particulière resteront en
+vigueur et ré-instaurées si cette métrique réapparaît plus tard.
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 5/16
+  c16^&quot;default&quot; c c c c |
+  % beamExceptions are unlikely to be defined for 5/16 time,
+  % but let's disable them anyway to be sure
+  \set Timing.beamExceptions = #'()
+  \set Timing.beatStructure = #'(2 3)
+  c16^&quot;(2+3)&quot; c c c c |
+  \set Timing.beatStructure = #'(3 2)
+  c16^&quot;(3+2)&quot; c c c c |
+}
+</pre><p>
+ <a href="../d1/lily-586d7bd8.ly">
+  <img align="middle"
+       border="0"
+       src="../d1/lily-586d7bd8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<blockquote><pre class="verbatim">\relative {
+  \time 4/4
+  a'8^&quot;default&quot; a a a a a a a
+  % Disable beamExceptions because they are definitely
+  % defined for 4/4 time
+  \set Timing.beamExceptions = #'()
+  \set Timing.baseMoment = #(ly:make-moment 1/4)
+  \set Timing.beatStructure = #'(1 1 1 1)
+  a8^&quot;changed&quot; a a a a a a a
+}
+</pre><p>
+ <a href="../90/lily-b542565a.ly">
+  <img align="middle"
+       border="0"
+       src="../90/lily-b542565a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les effets de règles de ligature peuvent être restreints à un contexte
+particulier.  En l&rsquo;absence de règle particulière déterminée dans un
+contexte de niveau inférieur, les règles définies au niveau directement
+supérieur s&rsquo;appliqueront.
+</p>
+<blockquote><pre class="verbatim">\new Staff {
+  \time 7/8
+  % No need to disable beamExceptions
+  % as they are not defined for 7/8 time
+  \set Staff.beatStructure = #'(2 3 2)
+  &lt;&lt;
+    \new Voice = one {
+      \relative {
+        a'8 a a a a a a
+      }
+    }
+    \new Voice = two {
+      \relative {
+        \voiceTwo
+        \set Voice.beatStructure = #'(1 3 3)
+        f'8 f f f f f f
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../10/lily-dcadbc8d.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-dcadbc8d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Lorsque plusieurs voix cohabitent sur une même portée et que les règles
+de ligature doivent s&rsquo;appliquer sans distinction, il faut spécifier que
+ces règles affectent le contexte <code>Staff</code> :
+</p>
+<blockquote><pre class="verbatim">\time 7/8
+% rhythm 3-1-1-2
+% Change applied to Voice by default --  does not work correctly
+% Because of autogenerated voices, all beating will
+% be at baseMoment (1 . 8)
+\set beatStructure = #'(3 1 1 2)
+&lt;&lt; \relative {a'8 a a a16 a a a a8 a} \\ \relative {f'4. f8 f f f} &gt;&gt;
+
+% Works correctly with context Staff specified
+\set Staff.beatStructure = #'(3 1 1 2)
+&lt;&lt; \relative {a'8 a a a16 a a a a8 a} \\ \relative {f'4. f8 f f f} &gt;&gt;
+</pre><p>
+ <a href="../24/lily-bb64ef92.ly">
+  <img align="middle"
+       border="0"
+       src="../24/lily-bb64ef92.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Vous pouvez ajuster la valeur de <code>baseMoment</code> afin d&rsquo;obtenir des
+ligatures selon vos besoin.  Notez cependant que la valeur de
+<code>beatStructure</code> devra être en corrélation avec cette nouvelle
+valeur de <code>baseMoment</code>.
+</p>
+<blockquote><pre class="verbatim">\time 5/8
+% No need to disable beamExceptions
+% as they are not defined for 5/8 time
+\set Timing.baseMoment = #(ly:make-moment 1/16)
+\set Timing.beatStructure = #'(7 3)
+\repeat unfold 10 { a'16 }
+</pre><p>
+ <a href="../d6/lily-5d29546e.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-5d29546e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>baseMoment</code> constitue un <strong>moment</strong>, autrement dit une unité
+de durée musicale.  La fonction Scheme <code>ly:make-moment</code> est tout
+particulièrement chargée de créer cette quantité de type <i>moment</i> &ndash;
+voir <a href="special-rhythmic-concerns.fr.html#time-administration">Gestion du temps</a> pour plus de précisions.
+</p>
+<p>La pulsation &ndash; <em>baseMoment</em> en anglais &ndash; découle directement de
+la métrique telle que définie par la commande <code>\time</code>.  Elle est
+par défaut égale à un sur le dénominateur de la métrique.  Les
+exceptions à cette règle par défaut sont répertoriées dans le fichier
+&lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.  Pour savoir comment jouer avec
+la valeur de <code>baseMoment</code> selon la métrique, reportez vous au
+chapitre <a href="displaying-rhythms.fr.html#time-signature">Métrique</a>.
+</p>
+<p>Les règles de ligature et de subdivision spécifiques sont enregistrées
+dans la propriété <code>beamExceptions</code>.  Ses valeurs par défaut,
+rangées par métrique et type de règle, sont répertoriées dans le
+fichier &lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.
+</p>
+
+<a name="-Ligature-basee-sur-beamExceptions"></a>
+<h4 class="subsubheading"><i> Ligature basée sur <code>beamExceptions</code></i></h4>
+
+<p>Les règles spécifiques autres que celles concernant la terminaison des
+ligatures sont gérées par la propriété  <code>beamExceptions</code>.
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 3/16
+  \set Timing.beatStructure = #'(2 1)
+  \set Timing.beamExceptions =
+    \beamExceptions { 32[ 32] 32[ 32] 32[ 32] }
+  c16 c c |
+  \repeat unfold 6 { c32 } |
+}
+</pre><p>
+ <a href="../34/lily-ec990937.ly">
+  <img align="middle"
+       border="0"
+       src="../34/lily-ec990937.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><strong>Note :</strong> La propriété <code>beamExceptions</code> doit répertorier absolument
+<strong>toutes</strong> les exceptions.  Il n&rsquo;est en effet pas possible d&rsquo;en
+ajouter, modifier ou supprimer <em>a posteriori</em>.  Cela peut paraître
+fastidieux, mais toutes les règles de ligature devraient être appréciées
+avant de les spécifier.
+</p>
+</div>
+<p>Lorsqu&rsquo;intervient un changement de métrique, les valeurs par défaut de
+<code>Timing.baseMoment</code>, <code>Timing.beatStructure</code> et
+<code>Timing.beamExceptions</code> sont réinitialisées.  Il suffit donc, pour
+revenir aux règles de ligature par défaut d&rsquo;un contexte <code>Timing</code>,
+de spécifier à nouveau la métrique.
+</p>
+<blockquote><pre class="verbatim">\relative a' {
+  \time 6/8
+  \repeat unfold 6 { a8 }
+  % group (4 + 2)
+  \set Timing.beatStructure = #'(4 2)
+  \repeat unfold 6 { a8 }
+  % go back to default behavior
+  \time 6/8
+  \repeat unfold 6 { a8 }
+}
+</pre><p>
+ <a href="../3f/lily-94ecce1c.ly">
+  <img align="middle"
+       border="0"
+       src="../3f/lily-94ecce1c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Les règles de ligature automatique par défaut sont répertoriées, par
+métrique, dans le fichier &lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.  Les
+manières de déroger à ce comportement sont abordées au chapitre
+<a href="displaying-rhythms.fr.html#time-signature">Métrique</a>.
+</p>
+<p>De nombreuses règles de ligature automatique comportent une clé
+<code>beamExceptions</code>.  Par exemple, s&rsquo;il n&rsquo;y a que des croches dans une
+mesure à 4/4, celles-ci seront réparties en deux groupes.  Le fait de ne
+pas réinitialiser <code>beamExceptions</code> lors d&rsquo;un aménagement de la
+pulsation &ndash; l&rsquo;élément <code>beatStructure</code> &ndash; empêchera l&rsquo;application
+de cette dérogation.
+</p>
+<blockquote><pre class="verbatim">\time 4/4
+\set Timing.baseMoment = #(ly:make-moment 1/8)
+\set Timing.beatStructure = #'(3 3 2)
+% This won't beam (3 3 2) because of beamExceptions
+\repeat unfold 8 {c''8} |
+% This will beam (3 3 2) because we clear beamExceptions
+\set Timing.beamExceptions = #'()
+\repeat unfold 8 {c''8}
+</pre><p>
+ <a href="../d4/lily-fbdcee87.ly">
+  <img align="middle"
+       border="0"
+       src="../d4/lily-fbdcee87.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>De la même manière, les croches d&rsquo;une mesure à 3/4 sont ligaturées sur
+la mesure par défaut.  Ligaturer sur le temps requiert un appel à
+<code>beamExceptions</code>.
+</p>
+<blockquote><pre class="verbatim">\time 3/4
+% by default we beam in (6) due to beamExceptions
+\repeat unfold 6 {a'8} |
+% This will beam (1 1 1) due to default baseMoment and beatStructure
+\set Timing.beamExceptions = #'()
+\repeat unfold 6 {a'8}
+</pre><p>
+ <a href="../cf/lily-9e70ad2e.ly">
+  <img align="middle"
+       border="0"
+       src="../cf/lily-9e70ad2e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Certaines partitions des périodes romantique ou classique font
+apparaître des ligatures sur la moitié d&rsquo;une mesure à 3/4 (ou à 3/8),
+ce qui va à l&rsquo;encontre de la règle établie &ndash; comme le fait remarquer
+Gould à la page 153 de son ouvrage &ndash; puisque donne l&rsquo;impression d&rsquo;une
+mesure à 6/8.  Il en va de même pour une mesure à 3/8.  La reproduction
+d&rsquo;un tel comportement se contrôle à l&rsquo;aide de la propriété de contexte
+<code>beamHalfMeasure</code>, qui d&rsquo;ailleurs ne sera effective que lorsque le
+numérateur de la métrique est un 3.
+</p>
+<blockquote><pre class="verbatim">\relative a' {
+  \time 3/4
+  r4. a8 a a |
+  \set Timing.beamHalfMeasure = ##f
+  r4. a8 a a |
+}
+</pre><p>
+ <a href="../db/lily-5b0e58bb.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-5b0e58bb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="-Principes-de-la-ligature-automatique"></a>
+<h4 class="subsubheading"><i> Principes de la ligature automatique</i></h4>
+
+<p>Lorsqu&rsquo;elle est activée, la gestion automatisée des ligatures est
+directement liée aux propriétés <code>baseMoment</code>, <code>beatStructure</code>
+et <code>beamExceptions</code>.
+</p>
+<p>Les règles déterminant le positionnement des ligatures automatiques
+s&rsquo;appliquent dans l&rsquo;ordre suivant de priorité :
+</p>
+<ul>
+<li>
+une ligature explicite &ndash; indiquée par <code>[&hellip;]</code> &ndash; sera toujours
+respectée ; sinon
+
+</li><li>
+si une règle explicite de terminaison a été définie grâce à la propriété
+<code>beamExceptions</code> pour un type de ligature spécifique dans la
+métrique en cours, c&rsquo;est elle qui s&rsquo;appliquera ; sinon
+
+</li><li>
+si une règle explicite de terminaison a été définie grâce à la propriété
+<code>beamExceptions</code> pour un type de ligature plus large, c&rsquo;est elle
+qui s&rsquo;appliquera ; sinon
+
+</li><li>
+utilisation des valeurs de <code>baseMoment</code> et <code>beatStructure</code>
+pour regrouper les notes par des ligatures.
+
+</li></ul>
+
+<p>Le <em>type de ligature</em> correspond à la durée la plus courte dans le
+groupe.
+</p>
+<p>Les règles de ligature par défaut sont répertoriées dans le fichier
+&lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.
+</p>
+<a name="Morceaux-choisis-9"></a>
+<h4 class="subsubheading">Morceaux choisis</h4>
+
+<a name="index-ligatures_002c-subdivision"></a>
+<a name="index-subdivision-de-ligature"></a>
+
+
+<p><em> Subdivision des ligatures</em>
+</p>
+
+<p>Les ligatures d&rsquo;une succession de notes de durée inférieure à la croche
+ne sont pas subdivisées par défaut.  Autrement dit, tous les traits de
+ligature (deux ou plus) seront continus.  Ce comportement peut être
+modifié afin de diviser la ligature en sous-groupes grâce à la propriété
+<code>subdivideBeams</code>.  Lorsqu&rsquo;elle est activée, les ligatures seront
+subdivisées selon un intervalle défini par <code>baseMoment</code> ; il n&rsquo;y
+aura alors plus que le nombre de traits de ligature déterminé entre
+chaque sous-groupe.
+Par défaut, <code>baseMoment</code> fixe la valeur de référence par rapport à
+la métrique en vigueur.  Il faudra donc lui fournir, à l&rsquo;aide de la
+fonction <code>ly:make-moment</code>, une fraction correspondant à la durée du
+sous-groupe désiré comme dans l&rsquo;exemple ci-dessous.  Gardez à l&rsquo;esprit
+que, si vous venez à modifier <code>baseMoment</code>, vous devrez
+probablement adapter <code>beatStrusture</code> afin qu&rsquo;il reste en adéquation
+avec les nouvelles valeurs de <code>baseMoment</code>.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  c32[ c c c c c c c]
+  \set subdivideBeams = ##t
+  c32[ c c c c c c c]
+
+  % Set beam sub-group length to an eighth note
+  \set baseMoment = #(ly:make-moment 1/8)
+  \set beatStructure = #'(2 2 2 2)
+  c32[ c c c c c c c]
+
+  % Set beam sub-group length to a sixteenth note
+  \set baseMoment = #(ly:make-moment 1/16)
+  \set beatStructure = #'(4 4 4 4)
+  c32[ c c c c c c c]
+}
+</pre><p>
+ <a href="../99/lily-fd22a25f.ly">
+  <img align="middle"
+       border="0"
+       src="../99/lily-fd22a25f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-sous_002dligature_002c-orientation"></a>
+
+
+<p><em> Ligature à la pulsation</em>
+</p>
+
+<p>Une sous-ligature tronquée peut pointer en direction de la pulsation à
+laquelle elle se rattache.  Dans l&rsquo;exemple suivant, la première ligature
+évite toute troncature (comportement par défaut), alors que la deuxième
+respecte rigoureusement la pulsation.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 6/8
+  a8. a16 a a
+  \set strictBeatBeaming = ##t
+  a8. a16 a a
+}
+</pre><p>
+ <a href="../9e/lily-0aaaa978.ly">
+  <img align="middle"
+       border="0"
+       src="../9e/lily-0aaaa978.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-groupement-de-mesures"></a>
+<a name="index-groupement-de-pulsations"></a>
+<a name="index-pulsation_002c-regroupement"></a>
+<a name="index-mesure_002c-subdivision"></a>
+
+
+<p><em> Signes de direction, signes de sous-groupe</em>
+</p>
+
+<p>Les règles de ligature par mesure sont gérées par la propriété de
+contexte <code>beatStructure</code>.  Ses valeurs par défaut sont
+répertoriées, par métrique, dans le fichier
+<code>scm/time-signature-settings.scm</code>.  Elles sont modifiables
+grâce à la commande <code>\set</code>.
+</p>
+<p>La fonction Scheme <code>set-time-signature</code> permet quant à elle de
+définir à la fois la métrique et la pulsation.  Celle-ci prend trois
+arguments : le nombre de pulsations, la durée de la pulsation et le
+regroupement des pulsations dans la mesure.   <code>\time</code> et
+<code>set-time-signature</code> s&rsquo;appliquent tous deux au contexte
+<code>Timing</code> ; ils ne redéfiniront donc pas les valeurs de
+<code>beatStructure</code> ou <code>baseMoment</code> lorsqu&rsquo;elles sont
+modifiées dans un contexte de niveau inférieur comme <code>Voice</code> par
+exemple.
+</p>
+<p>Si l&rsquo;on fait appel au <code>Measure_grouping_engraver</code>, la fonction
+<code>set-time-signature</code> créera aussi des symboles
+<code>MeasureGrouping</code>.  Ces symboles aident à la lecture des œuvres
+modernes à la rythmique complexe.  Dans l&rsquo;exemple qui suit, la mesure à
+9/8 est divisée en 2, 2, 2 et 3, alors que la mesure à 5/8 répond aux
+règles par défaut contenues dans le fichier
+<code>scm/time-signature-settings.scm</code>.
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  \new Voice \relative c'' {
+    \time 9/8
+    g8 g d d g g a( bes g) |
+    \set Timing.beatStructure = #'(2 2 2 3)
+    g8 g d d g g a( bes g) |
+    \time #'(4 5) 9/8
+    g8 g d d g g a( bes g) |
+    \time 5/8
+    a4. g4 |
+  }
+  \layout {
+    \context {
+      \Staff
+      \consists &quot;Measure_grouping_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../a1/lily-04d1bee9.ly">
+  <img align="middle"
+       border="0"
+       src="../a1/lily-04d1bee9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-ligature-en-fin-de-partition"></a>
+<a name="index-ligature-en-fin-de-voix-polyphonique"></a>
+
+
+<p><em> Définition de règles de ligature pour la partition</em>
+</p>
+
+<p>Les règles de ligature définies au niveau du contexte <code>Score</code>
+s&rsquo;appliqueront à toutes les portées.  Il est toutefois possible de
+moduler au niveau <code>Staff</code> ou <code>Voice</code> :
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 5/4
+  % Set default beaming for all staves
+  \set Score.baseMoment = #(ly:make-moment 1/8)
+  \set Score.beatStructure = #'(3 4 3)
+  &lt;&lt;
+    \new Staff {
+      c8 c c c c c c c c c
+    }
+    \new Staff {
+      % Modify beaming for just this staff
+      \set Staff.beatStructure = #'(6 4)
+      c8 c c c c c c c c c
+    }
+    \new Staff {
+      % Inherit beaming from Score context
+      &lt;&lt;
+        {
+          \voiceOne
+          c8 c c c c c c c c c
+        }
+        % Modify beaming for this voice only
+        \new Voice {
+          \voiceTwo
+          \set Voice.beatStructure = #'(6 4)
+          a8 a a a a a a a a a
+        }
+      &gt;&gt;
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../bd/lily-af78fd5a.ly">
+  <img align="middle"
+       border="0"
+       src="../bd/lily-af78fd5a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-262"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a href="displaying-rhythms.fr.html#time-signature">Métrique</a>.
+</p>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+<p>Référence des propriétés internes :
+<a name="index-Auto_005fbeam_005fengraver-1"></a>
+<a href="../internals/auto_005fbeam_005fengraver.fr.html">Auto_beam_engraver</a>,
+<a name="index-Beam-1"></a>
+<a href="../internals/beam.fr.html">Beam</a>,
+<a name="index-BeamForbidEvent-1"></a>
+<a href="../internals/beamforbidevent.fr.html">BeamForbidEvent</a>,
+<a name="index-beam_002dinterface-1"></a>
+<a href="../internals/beam_002dinterface.fr.html">beam-interface</a>.
+</p>
+<a name="Problemes-connus-et-avertissements-58"></a>
+<h4 class="subsubheading">Problèmes connus et avertissements</h4>
+<p>Si une partition se termine alors qu&rsquo;une ligature automatique est restée
+inachevée, cette dernière ligature ne sera pas imprimée du tout.  C&rsquo;est
+également valable dans le cas d&rsquo;une musique polyphonique saisie avec la
+syntaxe <code>&lt;&lt; &hellip; \\ &hellip; &gt;&gt;</code>, où une voix se terminerait
+sans que la dernière ligature ne soit achevée.  Le plus simple, en
+pareil cas, est de spécifier manuellement les dernières ligatures.
+</p>
+<p>Le traducteur <code>Timing</code> est par défaut affecté au contexte
+<code>Score</code>.  Définir la métrique dans une portée aura donc des effets
+sur les ligatures de toutes les autres.  Par voie de conséquence, la
+définition de la métrique apparaissant dans une autre portée annulera
+les aménagements précédemment apportés aux règles de ligature.  Il est
+donc préférable, pour éviter tout désagrément, de ne spécifier la
+métrique que dans une seule portée.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff {
+    \time 3/4
+    \set Timing.baseMoment = #(ly:make-moment 1/8)
+    \set Timing.beatStructure = #'(1 5)
+    \set Timing.beamExceptions = #'()
+    \repeat unfold 6 { a'8 }
+  }
+  \new Staff {
+    \repeat unfold 6 { a'8 }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../d8/lily-d426f539.ly">
+  <img align="middle"
+       border="0"
+       src="../d8/lily-d426f539.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Vous pouvez adapter les règles de ligature par défaut pour une métrique
+particulière de telle sorte que ces règles que vous aurez définies
+soient toujours prises en compte.  La modification des règles de
+ligature automatiques est abordée au chapitre <a href="displaying-rhythms.fr.html#time-signature">Métrique</a>.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff {
+    \overrideTimeSignatureSettings
+      3/4               % timeSignatureFraction
+      1/8               % baseMomentFraction
+      #'(1 5)           % beatStructure
+      #'()		% beamExceptions
+    \time 3/4
+    \repeat unfold 6 { a'8 }
+  }
+  \new Staff {
+    \time 3/4
+    \repeat unfold 6 { a'8 }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../38/lily-048a22f6.ly">
+  <img align="middle"
+       border="0"
+       src="../38/lily-048a22f6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Barres-de-ligature-manuelles"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#setting-automatic-beam-behavior" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Définition des règles de ligature automatique&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Barres de ligature&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#feathered-beams" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Liens de croches en soufflet &gt; </a>]</td></tr></table>
+<a name="manual-beams"></a>
+<h4 class="unnumberedsubsubsec">Barres de ligature manuelles</h4>
+
+<a name="index-groupements-de-note-manuels"></a>
+<a name="index-ligatures-manuelles-1"></a>
+
+<a name="index-_005d"></a>
+<a name="index-_005d-1"></a>
+<a name="index-_005b"></a>
+<a name="index-_005b-1"></a>
+
+<p>Dans certaines situations, il peut s&rsquo;avérer nécessaire de supplanter
+l&rsquo;algorithme de regroupement automatique des notes, par exemple pour
+prolonger une ligature par-dessus un silence ou une barre de mesure, ou
+bien pour suivre le rythme des paroles plutôt que celui des notes.  Le
+début et la fin de la ligature sont alors indiqués respectivement par
+<code>[</code> et <code>]</code>.
+</p>
+<blockquote><pre class="verbatim">r4 r8[ g' a r] r8 g[ | a] r
+</pre><p>
+ <a href="../5a/lily-490c500e.ly">
+  <img align="middle"
+       border="0"
+       src="../5a/lily-490c500e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-ligature-manuelle_002c-orientation"></a>
+<a name="index-ligature-manuelle-et-notes-d_0027ornement"></a>
+
+<p>Le positionnement des ligature manuelles se détermine comme pour toute
+indication attachée à une note :
+</p>
+<blockquote><pre class="verbatim">\relative { c''8^[ d e] c,_[ d e f g] }
+</pre><p>
+ <a href="../f5/lily-421f32d7.ly">
+  <img align="middle"
+       border="0"
+       src="../f5/lily-421f32d7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cnoBeam"></a>
+<a name="index-_005cnoBeam-1"></a>
+<a name="index-noBeam"></a>
+<a name="index-noBeam-1"></a>
+
+<p>Le fait d&rsquo;affubler une note particulière d&rsquo;un <code>\noBeam</code> aura pour
+effet de l&rsquo;empêcher d&rsquo;être ligaturée :
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 2/4
+  c''8 c\noBeam c c
+}
+</pre><p>
+ <a href="../c9/lily-b437a5ee.ly">
+  <img align="middle"
+       border="0"
+       src="../c9/lily-b437a5ee.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Notes d&rsquo;ornement et normales font l&rsquo;objet d&rsquo;un traitement distinct.  Il
+est dont possible de ligaturer ou non des notes d&rsquo;ornement sans gêner ce
+qui est en place au niveau de la notation normale.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4 d8[
+  \grace { e32 d c d }
+  e8] e[ e
+  \grace { f16 }
+  e8 e]
+}
+</pre><p>
+ <a href="../88/lily-4e8ac515.ly">
+  <img align="middle"
+       border="0"
+       src="../88/lily-4e8ac515.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-stemLeftBeamCount"></a>
+<a name="index-stemLeftBeamCount-1"></a>
+<a name="index-stemRightBeamCount"></a>
+<a name="index-stemRightBeamCount-1"></a>
+
+<p>LilyPond peut déterminer automatiquement les sous-groupes à l&rsquo;intérieur
+d&rsquo;un groupement de notes, bien que le résultat ne soit pas toujours
+optimal.  Les propriétés <code>stemLeftBeamCount</code> et
+<code>stemRightBeamCount</code> permettent alors d&rsquo;ajuster ce comportement.
+Lorsque l&rsquo;une ou l&rsquo;autre de ces propriétés est définie, elle ne
+s&rsquo;applique qu&rsquo;une seule fois, après quoi sa définition est effacée.
+Dans l&rsquo;exemple qui suit, le dernier <code>fa</code> n&rsquo;a de ligature
+supplémentaire que sur sa gauche ; autrement dit, c&rsquo;est la ligature
+à la croche qui est importante.
+</p>
+<blockquote><pre class="verbatim">\relative a' {
+  a8[ r16 f g a]
+  a8[ r16
+  \set stemLeftBeamCount = #2
+  \set stemRightBeamCount = #1
+  f16
+  \set stemLeftBeamCount = #1
+  g16 a]
+}
+</pre><p>
+ <a href="../97/lily-4a2a8d53.ly">
+  <img align="middle"
+       border="0"
+       src="../97/lily-4a2a8d53.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Commandes-predefinies-26"></a>
+<h4 class="subsubheading">Commandes prédéfinies</h4>
+<p><code>\noBeam</code>.
+</p>
+<a name="Morceaux-choisis-44"></a>
+<h4 class="subsubheading">Morceaux choisis</h4>
+
+<p><em> Crochet rectiligne et débordement de ligature</em>
+</p>
+
+<p>En combinant <code>stemLeftBeamCount</code>, <code>stemRightBeamCount</code> et des
+paires de <code>[]</code>, vous pourrez obtenir des crochets rectilignes et
+des ligatures qui débordent à leurs extrémités.
+</p>
+<p>Pour des crochets rectilignes à droite sur des notes isolées, il suffit
+d&rsquo;ajouter une paire d&rsquo;indicateurs de ligature <code>[]</code> et de déterminer
+<code>stemLeftBeamCount</code> à zéro, comme dans l&rsquo;exemple 1.
+</p>
+<p>Pour des crochets rectiligne à gauche, c&rsquo;est <code>stemRightBeamCount</code>
+qu&rsquo;il faudra déterminer (exemple 2).
+</p>
+<p>Pour que les barres de ligature débordent sur la droite,
+<code>stemRightBeamCount</code> doit avoir une valeur positive ; pour un
+débordement à gauche, c&rsquo;est sur <code>stemLeftBeamCount</code> qu&rsquo;il faut
+jouer.  Tout ceci est illustré par l&rsquo;exemple 3.
+</p>
+<p>Il est parfois judicieux, lorsqu&rsquo;une note est encadrée de silences, de
+l&rsquo;affubler de crochets rectilignes de part et d&rsquo;autre. L&rsquo;exemple&nbsp;4
+montre qu&rsquo;il suffit d&rsquo;adjoindre à cette note un <code>[]</code>.
+</p>
+<p>(Notez bien que <code>\set stemLeftBeamCount</code> sera toujours
+synonyme de <code>\once \set</code>.  Autrement dit, la détermination
+des ligatures n&rsquo;est pas &laquo;&nbsp;permanente&nbsp;&raquo; ; c&rsquo;est la raison pour
+laquelle les crochets du <code>16[]</code> isolé du dernier exemple n&rsquo;ont
+rien à voir avec le <code>\set</code> indiqué deux notes auparavant.)
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    % Example 1
+    \new RhythmicStaff {
+      \set stemLeftBeamCount = #0
+      c16[]
+      r8.
+    }
+    % Example 2
+    \new RhythmicStaff {
+      r8.
+      \set stemRightBeamCount = #0
+      16[]
+    }
+    % Example 3
+    \new RhythmicStaff {
+      16 16
+      \set stemRightBeamCount = #2
+      16 r r
+      \set stemLeftBeamCount = #2
+      16 16 16
+    }
+    % Example 4
+    \new RhythmicStaff {
+      16 16
+      \set stemRightBeamCount = #2
+      16 r16
+      16[]
+      r16
+      \set stemLeftBeamCount = #2
+      16 16
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../3d/lily-4531314a.ly">
+  <img align="middle"
+       border="0"
+       src="../3d/lily-4531314a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-248"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a href="direction-and-placement.fr.html">Direction et positionnement</a>,
+<a href="special-rhythmic-concerns.fr.html#grace-notes">Notes d&rsquo;ornement</a>.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+<p>Référence des propriétés internes :
+<a name="index-Beam-2"></a>
+<a href="../internals/beam.fr.html">Beam</a>,
+<a name="index-BeamEvent-1"></a>
+<a href="../internals/beamevent.fr.html">BeamEvent</a>,
+<a name="index-Beam_005fengraver-1"></a>
+<a href="../internals/beam_005fengraver.fr.html">Beam_engraver</a>,
+<a name="index-beam_002dinterface-2"></a>
+<a href="../internals/beam_002dinterface.fr.html">beam-interface</a>,
+<a name="index-Stem_005fengraver"></a>
+<a href="../internals/stem_005fengraver.fr.html">Stem_engraver</a>.
+</p>
+
+<hr size="6">
+<a name="Liens-de-croches-en-soufflet"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#manual-beams" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Barres de ligature manuelles&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Barres de ligature&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="bars.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Mesures &gt; </a>]</td></tr></table>
+<a name="feathered-beams"></a>
+<h4 class="unnumberedsubsubsec">Liens de croches en soufflet</h4>
+
+<a name="index-soufflet_002c-ligature"></a>
+<a name="index-ligature-en-soufflet"></a>
+
+<a name="index-_005cfeatherDurations"></a>
+<a name="index-_005cfeatherDurations-1"></a>
+<a name="index-featherDurations"></a>
+<a name="index-featherDurations-1"></a>
+<a name="index-grow_002ddirection"></a>
+<a name="index-grow_002ddirection-1"></a>
+
+<p>Les ligatures en soufflet permettent d&rsquo;indiquer qu&rsquo;un petit groupe de
+notes se joue en accélérant ou en ralentissant sans pour autant
+modifier le tempo du morceau.  L&rsquo;étendue du soufflet s&rsquo;indique par
+<code>[</code> et <code>]</code> ; son orientation est déterminée par la propriété
+<code>grow-direction</code> de l&rsquo;objet <code>Beam</code>.
+</p>
+<p>Lorsque la sortie MIDI doit refléter les <em>ritardando</em> ou
+<em>accelerando</em> indiqués par une ligature en soufflet, les notes
+qui la composent doivent être regroupées dans une expression musicale
+délimitée par des accolades, précédée de la commande
+<code>\featherDurations</code>.  Cette commande détermine le ratio entre les
+durées des premières et dernières notes du groupe en question.
+</p>
+<p>Les crochets indiquent l&rsquo;étendue de la ligature et les accolades les
+notes concernées par une modification de leur durée.  Il s&rsquo;agit en
+général du même groupe de notes, mais les deux commandes sont
+indépendantes l&rsquo;une de l&rsquo;autre.
+</p>
+<p>Dans l&rsquo;exemple ci-après, les huit doubles croches occupent exactement le
+même espace qu&rsquo;une blanche, mais la première est moitié moins longue que
+la dernière et celles qui les séparent s&rsquo;allongent peu à peu.  Les
+quatre triples croches qui suivent vont s&rsquo;accélérant, alors que les
+quatre dernières gardent un tempo régulier.
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  \override Beam.grow-direction = #LEFT
+  \featherDurations #(ly:make-moment 2/1)
+  { c16[ c c c c c c c] }
+  \override Beam.grow-direction = #RIGHT
+  \featherDurations #(ly:make-moment 2/3)
+  { c32[ d e f] }
+  % revert to non-feathered beams
+  \override Beam.grow-direction = #'()
+  { g32[ a b c] }
+}
+</pre><p>
+ <a href="../fb/lily-46cb6738.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-46cb6738.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si le résultat imprimable ne reflète les durées que de manière
+approximative, la sortie MIDI sera quant à elle parfaitement
+« ponctuelle ».
+</p>
+<a name="Commandes-predefinies-29"></a>
+<h4 class="subsubheading">Commandes prédéfinies</h4>
+<p><code>\featherDurations</code>.
+</p>
+<a name="Voir-aussi-70"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Morceaux choisis :
+<a href="../snippets/rythme.fr.html">Rythme</a>.
+</p>
+<a name="Problemes-connus-et-avertissements-78"></a>
+<h4 class="subsubheading">Problèmes connus et avertissements</h4>
+<p>La commande <code>\featherDurations</code> ne permet de traiter que de très
+courts extraits, avec une faible amplitude.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Notation musicale générale&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.fr.html" title="Chapitre suivant">&nbsp;Notation spécialisée &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#manual-beams" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Barres de ligature manuelles&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#beams" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Barres de ligature&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="bars.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Mesures &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="beams.html">English</a>, <a href="beams.de.html">deutsch</a>, <a href="beams.es.html">español</a>, <a href="beams.it.html">italiano</a>, <a href="beams.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel de notation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Notation-musicale-generale" href="musical-notation.fr.html">1. Notation musicale générale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hauteurs-1" href="pitches.fr.html">1.1 Hauteurs</a>    </li>
+    <li class=" toc_current"><a name="toc-Rythme-1" href="rhythms.fr.html">1.2 Rythme</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Ecriture-du-rythme" href="writing-rhythms.fr.html">1.2.1 Écriture du rythme</a>      </li>
+      <li class=""><a name="toc-Ecriture-des-silences" href="writing-rests.fr.html">1.2.2 Écriture des silences</a>      </li>
+      <li class=""><a name="toc-Gravure-du-rythme-1" href="displaying-rhythms.fr.html">1.2.3 Gravure du rythme</a>      </li>
+      <li class=" toc_current"><a name="toc-Barres-de-ligature-1" href="beams.fr.html">1.2.4 Barres de ligature</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Barres-de-ligature-automatiques-1" href="beams.fr.html#automatic-beams">Barres de ligature automatiques</a>        </li>
+        <li class=""><a name="toc-Definition-des-regles-de-ligature-automatique" href="beams.fr.html#setting-automatic-beam-behavior">Définition des règles de ligature automatique</a>        </li>
+        <li class=""><a name="toc-Barres-de-ligature-manuelles-1" href="beams.fr.html#manual-beams">Barres de ligature manuelles</a>        </li>
+        <li class=""><a name="toc-Liens-de-croches-en-soufflet-1" href="beams.fr.html#feathered-beams">Liens de croches en soufflet</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Mesures-1" href="bars.fr.html">1.2.5 Mesures</a>      </li>
+      <li class=""><a name="toc-Fonctionnalites-rythmiques-particulieres" href="special-rhythmic-concerns.fr.html">1.2.6 Fonctionnalités rythmiques particulières</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Signes-d_0027interpretation" href="expressive-marks.fr.html">1.3 Signes d&rsquo;interprétation</a>    </li>
+    <li class=""><a name="toc-Repetitions-et-reprises" href="repeats.fr.html">1.4 Répétitions et reprises</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="simultaneous-notes.fr.html">1.5 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Notation-sur-la-portee" href="staff-notation.fr.html">1.6 Notation sur la portée</a>    </li>
+    <li class=""><a name="toc-Annotations-editoriales" href="editorial-annotations.fr.html">1.7 Annotations éditoriales</a>    </li>
+    <li class=""><a name="toc-Texte-1" href="text.fr.html">1.8 Texte</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-specialisee" href="specialist-notation.fr.html">2. Notation spécialisée</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musique-vocale-1" href="vocal-music.fr.html">2.1 Musique vocale</a>    </li>
+    <li class=""><a name="toc-Instruments-utilisant-des-portees-multiples" href="keyboard-and-other-multi_002dstaff-instruments.fr.html">2.2 Instruments utilisant des portées multiples</a>    </li>
+    <li class=""><a name="toc-Cordes-non-frettees" href="unfretted-string-instruments.fr.html">2.3 Cordes non frettées</a>    </li>
+    <li class=""><a name="toc-Instruments-a-cordes-frettees" href="fretted-string-instruments.fr.html">2.4 Instruments à cordes frettées</a>    </li>
+    <li class=""><a name="toc-Percussions-1" href="percussion.fr.html">2.5 Percussions</a>    </li>
+    <li class=""><a name="toc-Instruments-a-vent" href="wind-instruments.fr.html">2.6 Instruments à vent</a>    </li>
+    <li class=""><a name="toc-Notation-des-accords-1" href="chord-notation.fr.html">2.7 Notation des accords</a>    </li>
+    <li class=""><a name="toc-Musique-contemporaine-1" href="contemporary-music.fr.html">2.8 Musique contemporaine</a>    </li>
+    <li class=""><a name="toc-Notations-anciennes-1" href="ancient-notation.fr.html">2.9 Notations anciennes</a>    </li>
+    <li class=""><a name="toc-Musiques-du-monde-1" href="world-music.fr.html">2.10 Musiques du monde</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Generalites-en-matiere-d_0027entree-et-sortie" href="general-input-and-output.fr.html">3. Généralités en matière d&rsquo;entrée et sortie</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Agencement-du-code-1" href="input-structure.fr.html">3.1 Agencement du code</a>    </li>
+    <li class=""><a name="toc-Titres-et-entetes" href="titles-and-headers.fr.html">3.2 Titres et entêtes</a>    </li>
+    <li class=""><a name="toc-Travail-sur-des-fichiers-texte-1" href="working-with-input-files.fr.html">3.3 Travail sur des fichiers texte</a>    </li>
+    <li class=""><a name="toc-Controle-des-sorties" href="controlling-output.fr.html">3.4 Contrôle des sorties</a>    </li>
+    <li class=""><a name="toc-Generation-de-fichiers-MIDI" href="creating-midi-output.fr.html">3.5 Génération de fichiers MIDI</a>    </li>
+    <li class=""><a name="toc-Extraction-d_0027informations-musicales-1" href="extracting-musical-information.fr.html">3.6 Extraction d&rsquo;informations musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Gestion-de-l_0027espace-1" href="spacing-issues.fr.html">4. Gestion de l&rsquo;espace</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Mise-en-forme-de-la-page-1" href="page-layout.fr.html">4.1 Mise en forme de la page</a>    </li>
+    <li class=""><a name="toc-Mise-en-forme-de-la-partition-1" href="score-layout.fr.html">4.2 Mise en forme de la partition</a>    </li>
+    <li class=""><a name="toc-Sauts-1" href="breaks.fr.html">4.3 Sauts</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.4 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Espacement-horizontal-1" href="horizontal-spacing.fr.html">4.5 Espacement horizontal</a>    </li>
+    <li class=""><a name="toc-Reduction-du-nombre-de-pages-de-la-partition" href="fitting-music-onto-fewer-pages.fr.html">4.6 Réduction du nombre de pages de la partition</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modification-des-reglages-predefinis" href="changing-defaults.fr.html">5. Modification des réglages prédéfinis</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextes-d_0027interpretation" href="interpretation-contexts.fr.html">5.1 Contextes d&rsquo;interprétation</a>    </li>
+    <li class=""><a name="toc-En-quoi-consiste-la-reference-des-proprietes-internes" href="explaining-the-internals-reference.fr.html">5.2 En quoi consiste la référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Modification-de-proprietes" href="modifying-properties.fr.html">5.3 Modification de propriétés</a>    </li>
+    <li class=""><a name="toc-Proprietes-et-contextes-utiles" href="useful-concepts-and-properties.fr.html">5.4 Propriétés et contextes utiles</a>    </li>
+    <li class=""><a name="toc-Retouches-avancees" href="advanced-tweaks.fr.html">5.5 Retouches avancées</a>    </li>
+    <li class=""><a name="toc-Utilisation-de-fonctions-musicales-1" href="using-music-functions.fr.html">5.6 Utilisation de fonctions musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tables-du-manuel-de-notation-1" href="notation-manual-tables.fr.html">A. Tables du manuel de notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Table-des-noms-d_0027accord-1" href="chord-name-chart.fr.html">A.1 Table des noms d&rsquo;accord</a>    </li>
+    <li class=""><a name="toc-Modificateurs-d_0027accord-usuels-1" href="common-chord-modifiers.fr.html">A.2 Modificateurs d&rsquo;accord usuels</a>    </li>
+    <li class=""><a name="toc-Accordages-predefinis" href="predefined-string-tunings.fr.html">A.3 Accordages prédéfinis</a>    </li>
+    <li class=""><a name="toc-Diagrammes-d_0027accord-predefinis" href="predefined-fretboard-diagrams.fr.html">A.4 Diagrammes d&rsquo;accord prédéfinis</a>    </li>
+    <li class=""><a name="toc-Formats-de-papier-predefinis" href="predefined-paper-sizes.fr.html">A.5 Formats de papier prédéfinis</a>    </li>
+    <li class=""><a name="toc-Instruments-MIDI-1" href="midi-instruments.fr.html">A.6 Instruments MIDI</a>    </li>
+    <li class=""><a name="toc-Liste-des-couleurs-1" href="list-of-colors.fr.html">A.7 Liste des couleurs</a>    </li>
+    <li class=""><a name="toc-La-fonte-Feta-1" href="the-feta-font.fr.html">A.8 La fonte Feta</a>    </li>
+    <li class=""><a name="toc-Styles-de-tete-de-note" href="note-head-styles.fr.html">A.9 Styles de tête de note</a>    </li>
+    <li class=""><a name="toc-Styles-de-clef-1" href="clef-styles.fr.html">A.10 Styles de clef</a>    </li>
+    <li class=""><a name="toc-Commandes-pour-markup-1" href="text-markup-commands.fr.html">A.11 Commandes pour <em>markup</em></a>    </li>
+    <li class=""><a name="toc-Commandes-pour-liste-de-markups-1" href="text-markup-list-commands.fr.html">A.12 Commandes pour liste de <em>markups</em></a>    </li>
+    <li class=""><a name="toc-Liste-des-caracteres-speciaux" href="list-of-special-characters.fr.html">A.13 Liste des caractères spéciaux</a>    </li>
+    <li class=""><a name="toc-Liste-des-signes-d_0027articulation-1" href="list-of-articulations.fr.html">A.14 Liste des signes d&rsquo;articulation</a>    </li>
+    <li class=""><a name="toc-Notes-utilisees-en-percussion" href="percussion-notes.fr.html">A.15 Notes utilisées en percussion</a>    </li>
+    <li class=""><a name="toc-Glossaire-technique-1" href="technical-glossary.fr.html">A.16 Glossaire technique</a>    </li>
+    <li class=""><a name="toc-Liste-des-proprietes-de-contexte" href="all-context-properties.fr.html">A.17 Liste des propriétés de contexte</a>    </li>
+    <li class=""><a name="toc-Proprietes-de-mise-en-forme" href="layout-properties.fr.html">A.18 Propriétés de mise en forme</a>    </li>
+    <li class=""><a name="toc-Fonctions-musicales-predefinies" href="available-music-functions.fr.html">A.19 Fonctions musicales prédéfinies</a>    </li>
+    <li class=""><a name="toc-Identificateurs-de-modification-de-contexte-1" href="context-modification-identifiers.fr.html">A.20 Identificateurs de modification de contexte</a>    </li>
+    <li class=""><a name="toc-Types-de-predicats-predefinis" href="predefined-type-predicates.fr.html">A.21 Types de prédicats prédéfinis</a>    </li>
+    <li class=""><a name="toc-Fonctions-Scheme-1" href="scheme-functions.fr.html">A.22 Fonctions Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Aide_002dmemoire" href="cheat-sheet.fr.html">B. Aide-mémoire</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-des-commandes-LilyPond-1" href="lilypond-command-index.fr.html">D. Index des commandes LilyPond</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">E. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

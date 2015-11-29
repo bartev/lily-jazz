@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual de aprendizaje de GNU LilyPond: A.4.6 Melodías de himnos</title>
+
+<meta name="description" content="Manual de aprendizaje de GNU LilyPond: A.4.6 Melodías de himnos">
+<meta name="keywords" content="Manual de aprendizaje de GNU LilyPond: A.4.6 Melodías de himnos">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Manual de aprendizaje">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="C. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="vocal-ensembles-templates.es.html#vocal-ensembles-templates" rel="up" title="A.4 Plantillas de conjuntos vocales">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="C. Índice de LilyPond">
+<link href="solo-verse-and-two_002dpart-refrain.es.html#solo-verse-and-two_002dpart-refrain" rel="previous" title="A.4.5 Estrofas a solo y estribillo a dos voces">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="learning devStatus">
+
+
+<div id="main">
+<a name="Melod_00edas-de-himnos"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="templates.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Plantillas&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="gnu-free-documentation-license.es.html" title="Cap&iacute;tulo siguiente">&nbsp;GNU Free Documentation License &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="solo-verse-and-two_002dpart-refrain.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Estrofas a solo y estribillo a dos voces&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vocal-ensembles-templates.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Plantillas de conjuntos vocales&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="psalms.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Salmos &gt; </a>]</td></tr></table>
+<a name="hymn-tunes"></a>
+<h3 class="appendixsubsec">A.4.6 Melodías de himnos</h3>
+
+
+<p>  Este fragmento de código muestra una forma de preparar un himno cuando
+cada línea comienza con un compás parcial.  También muestra cómo
+añadir los versos como texto independiente debajo de la música.
+</p>
+
+<blockquote><pre class="verbatim">Timeline = {
+  \time 4/4
+  \tempo 4=96
+  \partial 2
+  s2 | s1 | s2 \breathe s2 | s1 | s2 \bar &quot;||&quot; \break
+  s2 | s1 | s2 \breathe s2 | s1 | s2 \bar &quot;||&quot;
+}
+
+SopranoMusic = \relative g' {
+  g4 g | g g g g | g g g g | g g g g | g2
+  g4 g | g g g g | g g g g | g g g g | g2
+}
+
+AltoMusic = \relative c' {
+  d4 d | d d d d | d d d d | d d d d | d2
+  d4 d | d d d d | d d d d | d d d d | d2
+}
+
+TenorMusic = \relative a {
+  b4 b | b b b b | b b b b | b b b b | b2
+  b4 b | b b b b | b b b b | b b b b | b2
+}
+
+BassMusic =  \relative g {
+  g4 g | g g g g | g g g g | g g g g | g2
+  g4 g | g g g g | g g g g | g g g g | g2
+}
+
+global = {
+ \key g \major
+}
+
+\score {  % Start score
+  &lt;&lt;
+    \new PianoStaff &lt;&lt;  % Start pianostaff
+      \new Staff &lt;&lt;  % Start Staff = RH
+        \global
+        \clef &quot;treble&quot;
+        \new Voice = &quot;Soprano&quot; &lt;&lt;  % Start Voice = &quot;Soprano&quot;
+          \Timeline
+          \voiceOne
+          \SopranoMusic
+        &gt;&gt;  % End Voice = &quot;Soprano&quot;
+        \new Voice = &quot;Alto&quot; &lt;&lt;  % Start Voice = &quot;Alto&quot;
+          \Timeline
+          \voiceTwo
+          \AltoMusic
+        &gt;&gt;  % End Voice = &quot;Alto&quot;
+      &gt;&gt;  % End Staff = RH
+      \new Staff &lt;&lt;  % Start Staff = LH
+        \global
+        \clef &quot;bass&quot;
+        \new Voice = &quot;Tenor&quot; &lt;&lt;  % Start Voice = &quot;Tenor&quot;
+          \Timeline
+          \voiceOne
+          \TenorMusic
+        &gt;&gt;  % End Voice = &quot;Tenor&quot;
+        \new Voice = &quot;Bass&quot; &lt;&lt;  % Start Voice = &quot;Bass&quot;
+          \Timeline
+          \voiceTwo
+          \BassMusic
+        &gt;&gt;  % End Voice = &quot;Bass&quot;
+      &gt;&gt;  % End Staff = LH
+    &gt;&gt;  % End pianostaff
+  &gt;&gt;
+}  % End score
+
+\markup {
+  \fill-line {
+    &quot;&quot;
+    {
+      \column {
+        \left-align {
+          &quot;This is line one of the first verse&quot;
+          &quot;This is line two of the same&quot;
+          &quot;And here's line three of the first verse&quot;
+          &quot;And the last line of the same&quot;
+        }
+      }
+    }
+    &quot;&quot;
+  }
+}
+
+\paper {  % Start paper block
+  indent = 0     % don't indent first system
+  line-width = 130   % shorten line length to suit music
+}  % End paper block
+</pre><p>
+ <a href="../50/lily-351bc70a.ly">
+  <img align="middle"
+       border="0"
+       src="../50/lily-351bc70a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="templates.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Plantillas&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="gnu-free-documentation-license.es.html" title="Cap&iacute;tulo siguiente">&nbsp;GNU Free Documentation License &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="solo-verse-and-two_002dpart-refrain.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Estrofas a solo y estribillo a dos voces&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vocal-ensembles-templates.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Plantillas de conjuntos vocales&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="psalms.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Salmos &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="hymn-tunes.html">English</a>, <a href="hymn-tunes.ca.html">català</a>, <a href="hymn-tunes.de.html">deutsch</a>, <a href="hymn-tunes.fr.html">français</a>, <a href="hymn-tunes.it.html">italiano</a>, <a href="hymn-tunes.ja.html">日本語</a>, <a href="hymn-tunes.nl.html">nederlands</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Manual de aprendizaje  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.es.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacion-del-archivo" href="compiling-a-file.es.html">1.1 Compilación del archivo</a>    </li>
+    <li class=""><a name="toc-Como-escribir-archivos-de-entrada" href="how-to-write-input-files.es.html">1.2 Cómo escribir archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Tratar-con-los-errores-1" href="dealing-with-errors.es.html">1.3 Tratar con los errores</a>    </li>
+    <li class=""><a name="toc-Como-leer-los-manuales" href="how-to-read-the-manuals.es.html">1.4 Cómo leer los manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-corriente" href="common-notation.es.html">2. Notación corriente</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacion-en-un-solo-pentagrama" href="single-staff-notation.es.html">2.1 Notación en un solo pentagrama</a>    </li>
+    <li class=""><a name="toc-Varias-notas-a-la-vez-1" href="multiple-notes-at-once.es.html">2.2 Varias notas a la vez</a>    </li>
+    <li class=""><a name="toc-Canciones-1" href="songs.es.html">2.3 Canciones</a>    </li>
+    <li class=""><a name="toc-Retoques-finales-1" href="final-touches.es.html">2.4 Retoques finales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptos-fundamentales-1" href="fundamental-concepts.es.html">3. Conceptos fundamentales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Como-funcionan-los-archivos-de-entrada-de-LilyPond" href="how-lilypond-input-files-work.es.html">3.1 Cómo funcionan los archivos de entrada de LilyPond</a>    </li>
+    <li class=""><a name="toc-Las-voces-contienen-musica" href="voices-contain-music.es.html">3.2 Las voces contienen música</a>    </li>
+    <li class=""><a name="toc-Contextos-y-grabadores-1" href="contexts-and-engravers.es.html">3.3 Contextos y grabadores</a>    </li>
+    <li class=""><a name="toc-Extender-las-plantillas-1" href="extending-the-templates.es.html">3.4 Extender las plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Trucar-la-salida-1" href="tweaking-output.es.html">4. Trucar la salida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elementos-de-trucaje-1" href="tweaking-basics.es.html">4.1 Elementos de trucaje</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionamiento-interno-1" href="the-internals-reference-manual.es.html">4.2 Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Apariencia-de-los-objetos-1" href="appearance-of-objects.es.html">4.3 Apariencia de los objetos</a>    </li>
+    <li class=""><a name="toc-Colocacion-de-los-objetos" href="placement-of-objects.es.html">4.4 Colocación de los objetos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.5 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Colisiones-de-objetos-1" href="collisions-of-objects.es.html">4.6 Colisiones de objetos</a>    </li>
+    <li class=""><a name="toc-Trucajes-adicionales-1" href="further-tweaking.es.html">4.7 Trucajes adicionales</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Plantillas-1" href="templates.es.html">A. Plantillas</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantillas-de-pentagrama-unico" href="single-staff-templates.es.html">A.1 Plantillas de pentagrama único</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-piano-1" href="piano-templates.es.html">A.2 Plantillas de piano</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-cuarteto-de-cuerda-1" href="string-quartet-templates.es.html">A.3 Plantillas de cuarteto de cuerda</a>    </li>
+    <li class=" toc_current"><a name="toc-Plantillas-de-conjuntos-vocales-1" href="vocal-ensembles-templates.es.html">A.4 Plantillas de conjuntos vocales</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Partitura-vocal-SATB-1" href="satb-vocal-score.es.html">A.4.1 Partitura vocal SATB</a>      </li>
+      <li class=""><a name="toc-Partitura-vocal-SATB-y-reduccion-para-piano-automatica" href="satb-vocal-score-and-automatic-piano-reduction.es.html">A.4.2 Partitura vocal SATB y reducción para piano automática</a>      </li>
+      <li class=""><a name="toc-SATB-con-contextos-alineados-1" href="satb-with-aligned-contexts.es.html">A.4.3 SATB con contextos alineados</a>      </li>
+      <li class=""><a name="toc-SATB-sobre-cuatro-pentagramas-1" href="satb-on-four-staves.es.html">A.4.4 SATB sobre cuatro pentagramas</a>      </li>
+      <li class=""><a name="toc-Estrofas-a-solo-y-estribillo-a-dos-voces-1" href="solo-verse-and-two_002dpart-refrain.es.html">A.4.5 Estrofas a solo y estribillo a dos voces</a>      </li>
+      <li class=" toc_current"><a name="toc-Melodias-de-himnos" href="hymn-tunes.es.html">A.4.6 Melodías de himnos</a>      </li>
+      <li class=""><a name="toc-Salmos-1" href="psalms.es.html">A.4.7 Salmos</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Plantillas-orquestales-1" href="orchestral-templates.es.html">A.5 Plantillas orquestales</a>    </li>
+    <li class=""><a name="toc-Plantillas-para-notacion-antigua" href="ancient-notation-templates.es.html">A.6 Plantillas para notación antigua</a>    </li>
+    <li class=""><a name="toc-Otras-plantillas-1" href="other-templates.es.html">A.7 Otras plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">C. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

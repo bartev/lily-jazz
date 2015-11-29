@@ -1,0 +1,581 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond 学習マニュアル: 4.1.4 調整手段</title>
+
+<meta name="description" content="GNU LilyPond 学習マニュアル: 4.1.4 調整手段">
+<meta name="keywords" content="GNU LilyPond 学習マニュアル: 4.1.4 調整手段">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 学習マニュアル">
+<link href="lilypond-index.ja.html#lilypond-index" rel="index" title="C. LilyPond インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="tweaking-basics.ja.html#tweaking-basics" rel="up" title="4.1 調整の基本">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="C. LilyPond インデックス">
+<link href="naming-conventions-of-objects-and-properties.ja.html#naming-conventions-of-objects-and-properties" rel="previous" title="4.1.3 オブジェクトとプロパティの命名規則">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="learning devStatus">
+
+
+<div id="main">
+<a name="g_t_8abf_6574_624b_6bb5"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="naming-conventions-of-objects-and-properties.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; オブジェクトとプロパティの命名規則&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="tweaking-basics.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整の基本&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-_005coverride-command" title="次のセクション" accesskey="n" rel="next">&nbsp;\override コマンド &gt; </a>]</td></tr></table>
+<a name="tweaking-methods"></a>
+<h3 class="subsection">4.1.4 調整手段</h3>
+
+<a name="index-tweaking-methods-_0028_8abf_6027_624b_6bb5_0029"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-_005coverride-command" accesskey="1"><code>\override</code> コマンド</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-_005crevert-command" accesskey="2"><code>\revert</code> コマンド</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-_005conce-prefix" accesskey="3">The <code>\once</code> prefix</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-_005coverrideproperty-command" accesskey="4"><code>\overrideProperty</code> コマンド</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-_005ctweak-command" accesskey="5"><code>\tweak</code> コマンド</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_005coverride-_30b3_30de_30f3_30c9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#tweaking-methods" title="前のセクション" accesskey="p" rel="previous"> &lt; 調整手段&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整手段&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-_005crevert-command" title="次のセクション" accesskey="n" rel="next">&nbsp;\revert コマンド &gt; </a>]</td></tr></table>
+<a name="the-_005coverride-command"></a>
+<h4 class="unnumberedsubsubsec"><code>\override</code> コマンド</h4>
+
+<a name="index-override-command-_0028override-_30b3_30de_30f3_30c9_0029"></a>
+<a name="index-override-syntax-_0028override-_69cb_6587_0029"></a>
+
+<a name="index-_005coverride"></a>
+<a name="index-_005coverride-1"></a>
+<a name="index-override"></a>
+<a name="index-override-1"></a>
+
+<p>我々はすでに <a href="modifying-context-properties.ja.html">コンテキスト プロパティを変更する</a> と
+<a href="adding-and-removing-engravers.ja.html">エングラーバを追加 / 削除する</a> で <strong>コンテキスト</strong> のプロパティを変更したり、<strong>エングラーバ</strong> を追加/削除したりするために使用するコマンド
+<code>\set</code> と <code>\with</code> を見てきました。ここでは更に重要ないくつかのコマンドについて見ていきます。
+</p>
+<p><strong>レイアウト オブジェクト</strong> のプロパティを変更するためのコマンドは
+<code>\override</code> です。このコマンドは LilyPond の奥深くにある内部プロパティを変更しなければならないため、これまで見てきたコマンドのように単純な構文ではありません。どのコンテキストの中にあるどのオブジェクトのどのプロパティを変更しなければならないのか、そこにセットする新しい値を何にするのかを正確に知っている必要があります。どのようにこれを行うのかを見ていきましょう。
+</p>
+<p>このコマンドの一般的な構文は以下のようなものです:
+</p>
+<blockquote><pre class="example">\override <var>Context</var>.<var>LayoutObject</var>.<var>layout-property</var> = #<var>value</var>
+</pre></blockquote>
+
+<p>これは <var>Context</var> コンテキストのメンバである
+<var>LayoutObject</var> という名前のレイアウトの
+<var>layout-property</var> という名前のプロパティに値 <var>value</var> をセットします。
+</p>
+<p>必要とされているコンテキストが明白であり、それが最下位レベルのコンテキストである
+&ndash; つまり、<code>Voice</code>, <code>ChordNames</code> や <code>Lyrics</code> である
+&ndash; 場合、その <var>Context</var> は省略可能であり (そして通常は省略されます)、この後の例の多くでも省略します。後ほど、コンテキストを指定しなければならない場合について見ていきます。
+</p>
+<p>これから後のセクションでは広範囲に亘るプロパティとそれらの値を扱います
+&ndash; <a href="types-of-properties.ja.html">プロパティのタイプ</a> を参照してください。しかしながら、このセクションではそれらのフォーマットとコマンドの使い方を示すために、容易に理解できる簡単なプロパティと値をいくつか使用してみるだけです。
+</p>
+<p>LilyPond の基本的な表記は音符、演奏時間、それにマークアップなどの音楽要素です。数字、文字列、それにリストなどのもっと基本的な表記は &lsquo;Scheme モード&rsquo;
+で処理されます &ndash; 表記の先頭に &lsquo;<samp>#</samp>&rsquo; を記述することでこのモードが呼び出されます。これらの表記は LilyPond の音楽モードでも有効な表現である場合もありますが、このマニュアルでは一貫性を保つために常に &lsquo;<samp>#</samp>&rsquo; を付けて記述します。Scheme モードについての更なる情報は <a name="index-LilyPond-Scheme-syntax"></a>
+<a href="../extending/lilypond-scheme-syntax.ja.html">LilyPond Scheme syntax</a>
+を参照してください。
+</p>
+<p><code>\override</code> は調整で用いられる最も一般的なコマンドであり、本章の残りの大半を使ってこのコマンドの使用例を示します。まずは符頭の色を変更する簡単な例を挙げます:
+</p>
+<a name="index-color-property_002c-example-_0028color-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+<a name="index-NoteHead_002c-example-of-overriding-_0028NoteHead-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  \override NoteHead.color = #red
+  e4 f |
+  \override NoteHead.color = #green
+  g4 a b c |
+}
+</pre><p>
+ <a href="../ea/lily-4140a13e.ly">
+  <img align="middle"
+       border="0"
+       src="../ea/lily-4140a13e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="g_t_005crevert-_30b3_30de_30f3_30c9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-_005coverride-command" title="前のセクション" accesskey="p" rel="previous"> &lt; \override コマンド&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整手段&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-_005conce-prefix" title="次のセクション" accesskey="n" rel="next">&nbsp;\once 接頭辞 &gt; </a>]</td></tr></table>
+<a name="the-_005crevert-command"></a>
+<h4 class="unnumberedsubsubsec"><code>\revert</code> コマンド</h4>
+
+<a name="index-revert-command-_0028revert-_30b3_30de_30f3_30c9_0029"></a>
+
+<a name="index-_005crevert"></a>
+<a name="index-_005crevert-1"></a>
+<a name="index-revert"></a>
+<a name="index-revert-1"></a>
+
+<p>一旦オーバライドされると、そのプロパティは再度オーバライドされるか
+<code>\revert</code> コマンドに遭遇するまで新しい値のままでいます。<code>\revert</code> コマンドは以下の構文を持ち、プロパティの値をオリジナルのデフォルト値に戻します。何度か <code>\override</code> コマンドが発行されている場合は、前の値に戻すわけではないということに注意してください。
+</p>
+
+<blockquote><pre class="example">\revert <var>Context</var>.<var>LayoutObject</var>.<var>layout-property</var>
+</pre></blockquote>
+
+<p>繰り返しますが、<code>\override</code> コマンドでの <var>Context</var> と同様に、多くの場合で <var>Context</var> を記述する必要はありません。以下の例の多くで、<var>Context</var> は省略されます。ここでは、最後の 2 つの音符の符頭の色をデフォルトに戻します:
+</p>
+<a name="index-color-property_002c-example-_0028color-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-1"></a>
+<a name="index-NoteHead_002c-example-of-overriding-_0028NoteHead-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  \override NoteHead.color = #red
+  e4 f |
+  \override NoteHead.color = #green
+  g4 a
+  \revert NoteHead.color
+  b4 c |
+}
+</pre><p>
+ <a href="../72/lily-c0a251ac.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-c0a251ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="g_t_005conce-_63a5_982d_8f9e"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-_005crevert-command" title="前のセクション" accesskey="p" rel="previous"> &lt; \revert コマンド&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整手段&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-_005coverrideproperty-command" title="次のセクション" accesskey="n" rel="next">&nbsp;\overrideProperty コマンド &gt; </a>]</td></tr></table>
+<a name="the-_005conce-prefix"></a>
+<h4 class="unnumberedsubsubsec">The <code>\once</code> prefix</h4>
+
+<a name="index-_005conce"></a>
+<a name="index-_005conce-1"></a>
+<a name="index-once"></a>
+<a name="index-once-1"></a>
+
+<p><code>\override</code> コマンドと <code>\set</code> コマンドには両方とも接頭辞 <code>\once</code> が付く可能性があります。これはその後に続く <code>\override</code> や <code>\set</code> コマンドをその場一回限り有効にし、その後にそのプロパティの値をデフォルト値に戻します。上と同じ例を使って、以下のように 1 つだけの音符の色を変更することができます:
+</p>
+<a name="index-color-property_002c-example-_0028color-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-2"></a>
+<a name="index-NoteHead_002c-example-of-overriding-_0028NoteHead-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  \override NoteHead.color = #red
+  e4 f |
+  \once \override NoteHead.color = #green
+  g4 a
+  \revert NoteHead.color
+  b c |
+}
+</pre><p>
+ <a href="../3a/lily-2a313f2b.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-2a313f2b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\once</code> 接頭辞をさまざまな定義済みコマンドの前に置くことで、コマンドの効果を次の音楽タイミングに限定することもできます:
+</p>
+<blockquote><pre class="verbatim">c4 d
+\once \stemDown
+e4 f |
+g4 a
+\once \hideNotes
+b c |
+</pre><p>
+ <a href="../a9/lily-fc08dec6.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-fc08dec6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>しかしながら、<code>\...Neutral</code>, <code>\...Off</code>, それに <code>\un...</code>
+の形式の定義済みコマンドの前に <code>\once</code> を置いても効果はありません。なぜなら、それらのコマンドは内部的に <code>\override</code> ではなく、<code>\revert</code>
+を用いるためです。
+</p>
+
+<hr size="6">
+<a name="g_t_005coverrideProperty-_30b3_30de_30f3_30c9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-_005conce-prefix" title="前のセクション" accesskey="p" rel="previous"> &lt; \once 接頭辞&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整手段&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-_005ctweak-command" title="次のセクション" accesskey="n" rel="next">&nbsp;\tweak コマンド &gt; </a>]</td></tr></table>
+<a name="the-_005coverrideproperty-command"></a>
+<h4 class="unnumberedsubsubsec"><code>\overrideProperty</code> コマンド</h4>
+
+<a name="index-overrideProperty-command-_0028overrideProperty-_30b3_30de_30f3_30c9_0029"></a>
+
+<a name="index-_005coverrideProperty"></a>
+<a name="index-_005coverrideProperty-1"></a>
+<a name="index-overrideProperty"></a>
+<a name="index-overrideProperty-1"></a>
+
+<p>オーバライド コマンドには <code>\overrideProperty</code> というもう 1 つのフォーマットがあり、時々必要となります。完璧を期すためにここでこれに言及しましたが、詳細は <a name="index-Difficult-tweaks"></a>
+<a href="../extending/difficult-tweaks.ja.html">Difficult tweaks</a> を参照してください。
+</p>
+<hr size="6">
+<a name="g_t_005ctweak-_30b3_30de_30f3_30c9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-_005coverrideproperty-command" title="前のセクション" accesskey="p" rel="previous"> &lt; \overrideProperty コマンド&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整手段&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="the-internals-reference-manual.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;内部リファレンス マニュアル &gt; </a>]</td></tr></table>
+<a name="the-_005ctweak-command"></a>
+<h4 class="unnumberedsubsubsec"><code>\tweak</code> コマンド</h4>
+
+<a name="index-tweak-command-_0028tweak-_30b3_30de_30f3_30c9_0029"></a>
+
+<a name="index-_005ctweak"></a>
+<a name="index-_005ctweak-1"></a>
+<a name="index-tweak"></a>
+<a name="index-tweak-1"></a>
+
+<p>利用可能な最後の調整コマンドは <code>\tweak</code> です。これは同じ音楽タイミングで発生するいくつかのオブジェクトのうち、1 つのオブジェクトだけを選択してプロパティを変更したい場合に使用します
+&ndash; 例えば、和音の中にある 1 つの音符のプロパティを変更する場合です。<code>\override</code> コマンドを使用すると和音の中にあるすべての音符に影響を与えます。一方、<code>\tweak</code> は入力ストリームの中でその <code>\tweak</code> のすぐ後にある要素 1 つだけに影響を与えます。
+</p>
+<p>ここで例を挙げます。C メジャー コードの中にある真ん中の音符 (ミドル E) の符頭のサイズを変更したいとします。まず最初に、<code>\once \override</code> だとどうなるか見てみましょう:
+</p>
+<a name="index-font_002dsize-property_002c-example-_0028font_002dsize-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+<a name="index-NoteHead_002c-example-of-overriding-_0028NoteHead-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029-3"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c' e g&gt;4
+  \once \override NoteHead.font-size = #-3
+  &lt;c e g&gt;4
+  &lt;c e g&gt;4
+}
+</pre><p>
+ <a href="../72/lily-560524c7.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-560524c7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>このオーバライドは和音の中にある<em>すべて</em>の符頭に影響を与えています。これは和音の中にあるすべての音符が同じ <em>タイミング</em> で起こるためであり、<code>\once</code> のアクションは <code>\override</code> と同様に同じタイミングで起こる、指定されたタイプすべてのレイアウト オブジェクトへのオーバライドに適用されます。
+</p>
+<p><code>\tweak</code> コマンドはこれとは異なるやり方で処理されます。これは入力ストリームの中ですぐ後に続く要素にだけ作用します。最もシンプルな形式の <code>\tweak</code> コマンドは、コマンドの直後にある要素から直接作成されるオブジェクト
+&ndash; 本質的に符頭とアーティキュレーション &ndash; にだけ効果を持ちます。</p>
+<p>それでは例に戻り、この方法で和音の真ん中の音符のサイズを変更します:
+</p>
+<a name="index-font_002dsize-property_002c-example-_0028font_002dsize-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-1"></a>
+<a name="index-_005ctweak_002c-example-_0028_005ctweak-_306e_4f8b_0029"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c' e g&gt;4
+  &lt;c \tweak font-size #-3 e g&gt;4
+}
+</pre><p>
+ <a href="../e1/lily-8c8b0e94.ly">
+  <img align="middle"
+       border="0"
+       src="../e1/lily-8c8b0e94.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\tweak</code> の構文は <code>\override</code> コマンドの構文とは異なるということに注意してください。コンテキストを指定しません &ndash; 実際、指定するとエラーになります。コンテキストとレイアウト オブジェクトはどちらも入力ストリームの中で後に続く要素によって示されます。さらに、イコール記号を使うべきではないということに注意してください。そのため、簡単な形式の <code>\tweak</code> コマンドは以下のようになります:
+</p>
+<blockquote><pre class="example">\tweak <var>layout-property</var> #<var>value</var>
+</pre></blockquote>
+
+<p>さらに、<code>\tweak</code> コマンドは一連のアーティキュレーションの中にあるただ 1 つのアーティキュレーションを変更されるためにも使用できます。ここに例を挙げます:
+</p>
+<a name="index-color-property_002c-example-_0028color-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-3"></a>
+<a name="index-_005ctweak_002c-example-_0028_005ctweak-_306e_4f8b_0029-1"></a>
+
+<blockquote><pre class="verbatim">a'4^&quot;Black&quot;
+  -\tweak color #red ^&quot;Red&quot;
+  -\tweak color #green _&quot;Green&quot;
+</pre><p>
+ <a href="../61/lily-75fd589f.ly">
+  <img align="middle"
+       border="0"
+       src="../61/lily-75fd589f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\tweak</code> コマンドはアーティキュレーション マークの前に配置する必要があることに注意してください。なぜなら、調整された表記がアーティキュレーションとして適用される必要があるためです。複数の向き記号 (<code>^</code> または <code>_</code>) で上書きした場合、最後に適用される左端の記号が勝ち残ります。
+</p>
+<a name="index-_005ctweak_002c-Accidental-_0028_81e8_6642_8a18_53f7_306b-_005ctweak-_3092_7528_3044_308b_0029"></a>
+<a name="index-_005ctweak_002c-specific-layout-object-_0028_30ec_30a4_30a2_30a6_30c8-_30aa_30d6_30b8_30a7_30af_30c8_3092_6307_5b9a_3057_3066-_005ctweak-_3092_7528_3044_308b_0029"></a>
+
+<p>符幹や臨時記号などのオブジェクトは後になってから作成されるもので、<code>\tweak</code> コマンドの後に続くイベントから直接作成されません。そのような直接作成されないオブジェクトの場合、明示的にレイアウト
+オブジェクト名を指定して LilyPond がそれらのオブジェクトの起源を追跡できるようにすることで、<code>\tweak</code> で調整することができます:
+</p>
+<blockquote><pre class="verbatim">&lt;\tweak Accidental.color #red   cis''4
+ \tweak Accidental.color #green es''
+ g''&gt;
+</pre><p>
+ <a href="../e2/lily-9377b62a.ly">
+  <img align="middle"
+       border="0"
+       src="../e2/lily-9377b62a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>この長い形式の <code>\tweak</code> コマンドは以下のように記述することができます:
+</p>
+<blockquote><pre class="example">\tweak <var>layout-object</var>.<var>layout-property</var> <var>value</var>
+</pre></blockquote>
+
+<a name="index-tuplets_002c-nested-_0028_30cd_30b9_30c8_3055_308c_305f_9023_7b26_0029"></a>
+<a name="index-triplets_002c-nested-_0028_30cd_30b9_30c8_3055_308c_305f-3-_9023_7b26_0029"></a>
+<a name="index-bracket_002c-tuplet-_0028_9023_7b26_306e_56f2_307f_0029"></a>
+<a name="index-bracket_002c-triplet-_00283-_9023_7b26_306e_56f2_307f_0029"></a>
+<a name="index-tuplet-bracket-_0028_9023_7b26_306e_56f2_307f_0029"></a>
+<a name="index-triplet-bracket-_00283-_9023_7b26_306e_56f2_307f_0029"></a>
+
+<a name="index-TupletBracket"></a>
+<a name="index-TupletBracket-1"></a>
+
+<p>さらに、<code>\tweak</code> コマンドは、同時に起こるネストされた連符記号のセットのうちの 1 つの見た目を変更するためにも使用されます。以下の例では、長い連符記号と 3 つの短い連符記号のうちの最初の連符記号が同時に起こります。そのため、<code>\override</code> コマンドだと両方の連符記号に適用されてしまいます。この例では、<code>\tweak</code> は 2 つの連符記号を区別するために使用されています。最初の <code>\tweak</code> コマンドは長い連符記号を音符の上に置くことを指定していて、2 番目の <code>\tweak</code> コマンドは最初の短い連符記号の数字を赤で描くことを指定しています。
+</p>
+<a name="index-_005ctweak_002c-example-_0028_005ctweak-_306e_4f8b_0029-2"></a>
+<a name="index-direction-property_002c-example-_0028direction-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+<a name="index-color-property_002c-example-_0028color-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029-4"></a>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \tweak direction #up
+  \tuplet 3/4 {
+    \tweak color #red
+    \tuplet 3/2 { c8[ c c] }
+    \tuplet 3/2 { c8[ c c] }
+    \tuplet 3/2 { c8[ c c] }
+  }
+}
+</pre><p>
+ <a href="../49/lily-9016a4d6.ly">
+  <img align="middle"
+       border="0"
+       src="../49/lily-9016a4d6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>ネストされた連符が同時に起こらない場合、それらの見た目は <code>\override</code>
+コマンドを用いた通常通りの方法で変更されるかもしれません:
+</p>
+<a name="index-text-property_002c-example-_0028text-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+<a name="index-tuplet_002dnumber-function_002c-example-_0028tuplet_002dnumber-_95a2_6570_306e_4f8b_0029"></a>
+<a name="index-transparent-property_002c-example-_0028transparent-_30d7_30ed_30d1_30c6_30a3_306e_4f8b_0029"></a>
+<a name="index-TupletNumber_002c-example-of-overriding-_0028TupletNumber-_3092_30aa_30fc_30d0_30e9_30a4_30c9_3059_308b_4f8b_0029"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \tuplet 3/2 { c'8[ c c] }
+  \once \override TupletNumber.text = #tuplet-number::calc-fraction-text
+  \tuplet 3/2 {
+    c8[ c]
+    c8[ c]
+    \once \override TupletNumber.transparent = ##t
+    \tuplet 3/2 { c8[ c c] }
+    \tuplet 3/2 { c8[ c c] }
+  }
+}
+</pre><p>
+ <a href="../c8/lily-8193d8bf.ly">
+  <img align="middle"
+       border="0"
+       src="../c8/lily-8193d8bf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="g_t_53c2_7167-27"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a name="index-The-tweak-command"></a>
+<a href="../notation/the-tweak-command.ja.html">The tweak command</a>
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 出力を調整する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ja.html" title="次の章">&nbsp;テンプレート &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-_005coverrideproperty-command" title="前のセクション" accesskey="p" rel="previous"> &lt; \overrideProperty コマンド&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;調整手段&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="the-internals-reference-manual.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;内部リファレンス マニュアル &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="tweaking-methods.html">English</a>, <a href="tweaking-methods.ca.html">català</a>, <a href="tweaking-methods.cs.html">česky</a>, <a href="tweaking-methods.de.html">deutsch</a>, <a href="tweaking-methods.es.html">español</a>, <a href="tweaking-methods.fr.html">français</a>, <a href="tweaking-methods.it.html">italiano</a>, <a href="tweaking-methods.nl.html">nederlands</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 学習マニュアル  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_30c1_30e5_30fc_30c8_30ea_30a2_30eb-1" href="tutorial.ja.html">1. チュートリアル</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d5_30a1_30a4_30eb_3092_30b3_30f3_30d1_30a4_30eb_3059_308b-1" href="compiling-a-file.ja.html">1.1 ファイルをコンパイルする</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306e_66f8_304d_65b9-1" href="how-to-write-input-files.ja.html">1.2 入力ファイルの書き方</a>    </li>
+    <li class=""><a name="toc-_30a8_30e9_30fc_306b_5bfe_51e6_3059_308b-1" href="dealing-with-errors.ja.html">1.3 エラーに対処する</a>    </li>
+    <li class=""><a name="toc-_3053_306e_30de_30cb_30e5_30a2_30eb_306e_8aad_307f_65b9-1" href="how-to-read-the-manuals.ja.html">1.4 このマニュアルの読み方</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_4e00_822c_7684_306a_8a18_8b5c_6cd5-1" href="common-notation.ja.html">2. 一般的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_8868_8868_8a18-1" href="single-staff-notation.ja.html">2.1 単一譜表表記</a>    </li>
+    <li class=""><a name="toc-_540c_6642_306b_6f14_594f_3059_308b_8907_6570_306e_97f3_7b26-1" href="multiple-notes-at-once.ja.html">2.2 同時に演奏する複数の音符</a>    </li>
+    <li class=""><a name="toc-_6b4c_66f2-1" href="songs.ja.html">2.3 歌曲</a>    </li>
+    <li class=""><a name="toc-_4ed5_4e0a_3052-1" href="final-touches.ja.html">2.4 仕上げ</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_57fa_790e_3068_306a_308b_30b3_30f3_30bb_30d7_30c8-1" href="fundamental-concepts.ja.html">3. 基礎となるコンセプト</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-_5165_529b_30d5_30a1_30a4_30eb_306e_4ed5_7d44_307f-1" href="how-lilypond-input-files-work.ja.html">3.1 LilyPond 入力ファイルの仕組み</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_4fdd_6301_3059_308b_30dc_30a4_30b9-1" href="voices-contain-music.ja.html">3.2 音楽を保持するボイス</a>    </li>
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3068_30a8_30f3_30b0_30e9_30fc_30d0-1" href="contexts-and-engravers.ja.html">3.3 コンテキストとエングラーバ</a>    </li>
+    <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8_3092_62e1_5f35_3059_308b-1" href="extending-the-templates.ja.html">3.4 テンプレートを拡張する</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_51fa_529b_3092_8abf_6574_3059_308b-1" href="tweaking-output.ja.html">4. 出力を調整する</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-_8abf_6574_306e_57fa_672c-1" href="tweaking-basics.ja.html">4.1 調整の基本</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_8abf_6574_306e_7d39_4ecb-1" href="introduction-to-tweaks.ja.html">4.1.1 調整の紹介</a>      </li>
+      <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_3068_30a4_30f3_30bf_30d5_30a7_30a4_30b9-1" href="objects-and-interfaces.ja.html">4.1.2 オブジェクトとインタフェイス</a>      </li>
+      <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_3068_30d7_30ed_30d1_30c6_30a3_306e_547d_540d_898f_5247-1" href="naming-conventions-of-objects-and-properties.ja.html">4.1.3 オブジェクトとプロパティの命名規則</a>      </li>
+      <li class=" toc_current"><a name="toc-_8abf_6574_624b_6bb5-1" href="tweaking-methods.ja.html">4.1.4 調整手段</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_005coverride-_30b3_30de_30f3_30c9-1" href="tweaking-methods.ja.html#the-_005coverride-command"><code>\override</code> コマンド</a>        </li>
+        <li class=""><a name="toc-_005crevert-_30b3_30de_30f3_30c9-1" href="tweaking-methods.ja.html#the-_005crevert-command"><code>\revert</code> コマンド</a>        </li>
+        <li class=""><a name="toc-The-_005conce-prefix" href="tweaking-methods.ja.html#the-_005conce-prefix">The <code>\once</code> prefix</a>        </li>
+        <li class=""><a name="toc-_005coverrideProperty-_30b3_30de_30f3_30c9-1" href="tweaking-methods.ja.html#the-_005coverrideproperty-command"><code>\overrideProperty</code> コマンド</a>        </li>
+        <li class=""><a name="toc-_005ctweak-_30b3_30de_30f3_30c9-1" href="tweaking-methods.ja.html#the-_005ctweak-command"><code>\tweak</code> コマンド</a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9-_30de_30cb_30e5_30a2_30eb-1" href="the-internals-reference-manual.ja.html">4.2 内部リファレンス マニュアル</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_898b_305f_76ee-1" href="appearance-of-objects.ja.html">4.3 オブジェクトの見た目</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_914d_7f6e-1" href="placement-of-objects.ja.html">4.4 オブジェクトの配置</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_885d_7a81-1" href="collisions-of-objects.ja.html">4.5 オブジェクトの衝突</a>    </li>
+    <li class=""><a name="toc-_66f4_306a_308b_8abf_6574-1" href="further-tweaking.ja.html">4.6 更なる調整</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="templates.ja.html">A. テンプレート</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_30c6_30f3_30d7_30ec_30fc_30c8-1" href="single-staff-templates.ja.html">A.1 単一譜テンプレート</a>    </li>
+    <li class=""><a name="toc-_30d4_30a2_30ce-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="piano-templates.ja.html">A.2 ピアノ テンプレート</a>    </li>
+    <li class=""><a name="toc-_5f26_697d_56db_91cd_594f_30c6_30f3_30d7_30ec_30fc_30c8-1" href="string-quartet-templates.ja.html">A.3 弦楽四重奏テンプレート</a>    </li>
+    <li class=""><a name="toc-_5408_5531_30c6_30f3_30d7_30ec_30fc_30c8-1" href="vocal-ensembles-templates.ja.html">A.4 合唱テンプレート</a>    </li>
+    <li class=""><a name="toc-_30aa_30fc_30b1_30b9_30c8_30e9-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="orchestral-templates.ja.html">A.5 オーケストラ テンプレート</a>    </li>
+    <li class=""><a name="toc-_53e4_4ee3_306e_8a18_8b5c_6cd5_30c6_30f3_30d7_30ec_30fc_30c8-1" href="ancient-notation-templates.ja.html">A.6 古代の記譜法テンプレート</a>    </li>
+    <li class=""><a name="toc-_305d_306e_4ed6_306e_30c6_30f3_30d7_30ec_30fc_30c8-1" href="other-templates.ja.html">A.7 その他のテンプレート</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">C. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

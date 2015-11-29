@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2004-2015 by par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Extension des fonctionnalités: 2.6.1 Évaluation d'un contexte</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Extension des fonctionnalités: 2.6.1 Évaluation d'un contexte">
+<meta name="keywords" content="GNU LilyPond &ndash; Extension des fonctionnalités: 2.6.1 Évaluation d'un contexte">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Extension des fonctionnalités">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="B. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="contexts-for-programmers.fr.html#contexts-for-programmers" rel="up" title="2.6 Contextes pour programmeurs">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="B. Index de LilyPond">
+<link href="contexts-for-programmers.fr.html#contexts-for-programmers" rel="previous" title="2.6 Contextes pour programmeurs">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="extending devStatus">
+
+
+<div id="main">
+<a name="g_t_00c9valuation-d_0027un-contexte"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="contexts-for-programmers.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Contextes pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-for-programmers.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Contextes pour programmeurs&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="running-a-function-on-all-layout-objects.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Application d'une fonction à tous les objets de mise en forme &gt; </a>]</td></tr></table>
+<a name="context-evaluation"></a>
+<h3 class="subsection">2.6.1 Évaluation d&rsquo;un contexte</h3>
+
+<a name="index-appel-de-code-durant-l_0027interpretation"></a>
+<a name="index-_005capplyContext"></a>
+<a name="index-_005capplyContext-1"></a>
+<a name="index-make_002dapply_002dcontext"></a>
+<a name="index-make_002dapply_002dcontext-1"></a>
+<a name="index-ly_003acontext_002dproperty"></a>
+<a name="index-ly_003acontext_002dproperty-1"></a>
+<a name="index-ly_003acontext_002dset_002dproperty_0021"></a>
+<a name="index-ly_003acontext_002dset_002dproperty_0021-1"></a>
+<a name="index-ly_003acontext_002dgrob_002ddefinition"></a>
+<a name="index-ly_003acontext_002dgrob_002ddefinition-1"></a>
+<a name="index-ly_003aassoc_002dget"></a>
+<a name="index-ly_003aassoc_002dget-1"></a>
+<a name="index-ly_003acontext_002dpushpop_002dproperty"></a>
+<a name="index-ly_003acontext_002dpushpop_002dproperty-1"></a>
+
+<p>Un contexte peut être modifié, au moment même de son interprétation, par
+du code Scheme.  La syntaxe consacrée au sein d&rsquo;un bloc LilyPond est
+</p>
+<blockquote><pre class="example">\applyContext <var>fonction</var>
+</pre></blockquote>
+
+<p>et, dans le cadre d&rsquo;un code Scheme :
+</p>
+<blockquote><pre class="example">(make-apply-context <var>fonction</var>)
+</pre></blockquote>
+
+<p><code><var>fonction</var></code> est constitué d&rsquo;une fonction Scheme comportant un
+unique argument : le contexte au sein duquel la commande
+<code>\applyContext</code> est appelée.  Cette fonction peut accéder aussi
+bien aux propriétés de <em>grob</em> (y compris modifiées par
+<code>\override</code> ou <code>\set</code>) qu&rsquo;aux propriétés de contexte.  Toute
+action entreprise par la fonction et qui dépendrait de l&rsquo;état du
+contexte sera limitée à l&rsquo;état de ce contexte <b>au moment de l&rsquo;appel à
+la fonction</b>.  Par ailleurs, les adaptations résultant d&rsquo;un appel à
+<code>\applyContext</code> seront effectives jusqu&rsquo;à ce qu&rsquo;elles soient à
+nouveau directement modifiées ou bien annulées, quand bien même les
+conditions initiales dont elles dépendent auraient changé.
+</p>
+<p>Voici quelques fonctions Scheme utiles avec <code>\applyContext</code> :
+</p>
+<dl compact="compact">
+<dt> <code>ly:context-property</code></dt>
+<dd><p>recherche la valeur d&rsquo;une propriété de contexte,
+</p>
+</dd>
+<dt> <code>ly:context-set-property!</code></dt>
+<dd><p>détermine une propriété de contexte,
+</p>
+</dd>
+<dt> <code>ly:context-grob-definition</code></dt>
+<dt> <code>ly:assoc-get</code></dt>
+<dd><p>recherche la valeur d&rsquo;une propriété de <em>grob</em>,
+</p>
+</dd>
+<dt> <code>ly:context-pushpop-property</code></dt>
+<dd><p>réalise un <code>\temporary \override</code> ou un <code>\revert</code> sur une
+propriété de <em>grob</em>.
+</p></dd>
+</dl>
+
+<p>L&rsquo;exemple suivant recherche la valeur en cours de <code>fontSize</code> puis
+la double :
+</p>
+<blockquote><pre class="verbatim">doubleFontSize =
+\applyContext
+  #(lambda (context)
+     (let ((fontSize (ly:context-property context 'fontSize)))
+       (ly:context-set-property! context 'fontSize (+ fontSize 6))))
+
+{
+  \set fontSize = -3
+  b'4
+  \doubleFontSize
+  b'
+}
+</pre><p>
+ <a href="../d4/lily-b353ab4a.ly">
+  <img align="middle"
+       border="0"
+       src="../d4/lily-b353ab4a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>L&rsquo;exemple suivant recherche la couleur des objets <code>NoteHead</code>,
+<code>Stem</code> et <code>Beam</code>, puis diminue pour chacun d&rsquo;eux le degré de
+saturation.
+</p>
+<blockquote><pre class="verbatim">desaturate =
+\applyContext
+  #(lambda (context)
+     (define (desaturate-grob grob)
+       (let* ((grob-def (ly:context-grob-definition context grob))
+              (color (ly:assoc-get 'color grob-def black))
+              (new-color (map (lambda (x) (min 1 (/ (1+ x) 2))) color)))
+         (ly:context-pushpop-property context grob 'color new-color)))
+     (for-each desaturate-grob '(NoteHead Stem Beam)))
+
+\relative {
+  \time 3/4
+  g'8[ g] \desaturate g[ g] \desaturate g[ g]
+ \override NoteHead.color = #darkred
+  \override Stem.color = #darkred
+  \override Beam.color = #darkred
+  g[ g] \desaturate g[ g] \desaturate g[ g]
+}
+</pre><p>
+ <a href="../e3/lily-07b01cdf.ly">
+  <img align="middle"
+       border="0"
+       src="../e3/lily-07b01cdf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ceci pourrait tout à fait s&rsquo;implémenter sous la forme d&rsquo;une fonction
+musicale, afin d&rsquo;en réduire les effets à un seul bloc de musique.  Notez
+comment <code>ly:context-pushpop-property</code> est utilisé à la fois pour un
+<code>\temporary \override</code> et pour un <code>\revert</code> :
+</p>
+<blockquote><pre class="verbatim">desaturate =
+#(define-music-function
+   (music) (ly:music?)
+   #{
+     \applyContext
+     #(lambda (context)
+        (define (desaturate-grob grob)
+          (let* ((grob-def (ly:context-grob-definition context grob))
+                 (color (ly:assoc-get 'color grob-def black))
+                 (new-color (map (lambda (x) (min 1 (/ (1+ x) 2))) color)))
+            (ly:context-pushpop-property context grob 'color new-color)))
+        (for-each desaturate-grob '(NoteHead Stem Beam)))
+     #music
+     \applyContext
+     #(lambda (context)
+        (define (revert-color grob)
+          (ly:context-pushpop-property context grob 'color))
+        (for-each revert-color '(NoteHead Stem Beam)))
+   #})
+
+\relative {
+  \override NoteHead.color = #darkblue
+  \override Stem.color = #darkblue
+  \override Beam.color = #darkblue
+  g'8 a b c
+  \desaturate { d c b a }
+  g b d b g2
+}
+</pre><p>
+ <a href="../03/lily-454b4424.ly">
+  <img align="middle"
+       border="0"
+       src="../03/lily-454b4424.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Interfaces pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.fr.html" title="Chapitre suivant">&nbsp;Interfaces LilyPond Scheme &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="contexts-for-programmers.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Contextes pour programmeurs&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-for-programmers.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Contextes pour programmeurs&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="running-a-function-on-all-layout-objects.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Application d'une fonction à tous les objets de mise en forme &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="context-evaluation.html">English</a>, <a href="context-evaluation.de.html">deutsch</a>, <a href="context-evaluation.es.html">español</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Extension des fonctionnalités  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-Scheme-1" href="tutoriel-scheme.fr.html">1. Tutoriel Scheme</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-a-Scheme" href="introduction-to-scheme.fr.html">1.1 Introduction à Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-et-LilyPond-1" href="scheme-in-lilypond.fr.html">1.2 Scheme et LilyPond</a>    </li>
+    <li class=""><a name="toc-Construction-de-fonctions-complexes-1" href="building-complicated-functions.fr.html">1.3 Construction de fonctions complexes</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Interfaces-pour-programmeurs-1" href="interfaces-for-programmers.fr.html">2. Interfaces pour programmeurs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Blocs-de-code-LilyPond-1" href="lilypond-code-blocks.fr.html">2.1 Blocs de code LilyPond</a>    </li>
+    <li class=""><a name="toc-Fonctions-Scheme-1" href="scheme-functions.fr.html">2.2 Fonctions Scheme</a>    </li>
+    <li class=""><a name="toc-Fonctions-musicales-1" href="music-functions.fr.html">2.3 Fonctions musicales</a>    </li>
+    <li class=""><a name="toc-Fonctions-evenementielles" href="event-functions.fr.html">2.4 Fonctions événementielles</a>    </li>
+    <li class=""><a name="toc-Fonctions-pour-markups-1" href="markup-functions.fr.html">2.5 Fonctions pour <em>markups</em></a>    </li>
+    <li class=" toc_current"><a name="toc-Contextes-pour-programmeurs-1" href="contexts-for-programmers.fr.html">2.6 Contextes pour programmeurs</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Evaluation-d_0027un-contexte" href="context-evaluation.fr.html">2.6.1 Évaluation d&rsquo;un contexte</a>      </li>
+      <li class=""><a name="toc-Application-d_0027une-fonction-a-tous-les-objets-de-mise-en-forme" href="running-a-function-on-all-layout-objects.fr.html">2.6.2 Application d&rsquo;une fonction à tous les objets de mise en forme</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Fonctions-de-rappel-1" href="callback-functions.fr.html">2.7 Fonctions de rappel</a>    </li>
+    <li class=""><a name="toc-Retouches-complexes-1" href="difficult-tweaks.fr.html">2.8 Retouches complexes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-LilyPond-Scheme-1" href="lilypond-scheme-interfaces.fr.html">3. Interfaces LilyPond Scheme</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">B. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

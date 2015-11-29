@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 4.5.1 Überblick über horizontale Abstände</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 4.5.1 Überblick über horizontale Abstände">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 4.5.1 Überblick über horizontale Abstände">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="horizontal-spacing.de.html#horizontal-spacing" rel="up" title="4.5 Horizontale Abstände">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="horizontal-spacing.de.html#horizontal-spacing" rel="previous" title="4.5 Horizontale Abstände">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_00dcberblick-_00fcber-horizontale-Abst_00e4nde"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Abstände&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.de.html" title="N&auml;chstes Kapitel">&nbsp;Standardeinstellungen verändern &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="horizontal-spacing.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Horizontale Abstände&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="horizontal-spacing.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Horizontale Abstände&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new-spacing-area.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Eine neuer Bereich mit anderen Abständen &gt; </a>]</td></tr></table>
+<a name="horizontal-spacing-overview"></a>
+<h3 class="subsection">4.5.1 Überblick über horizontale Abstände</h3>
+
+<p>Die Setzmaschine interpretiert unterschiedliche Notendauern als
+dehnbare Abstände (engl. spring) unterschiedlicher Länge.  Längere
+Dauern erhalten mehr Platz, kürzere weniger.  Die kürzeste Dauer
+erhält eine feste Breite (die mit <code>shortest-duration-space</code>
+im <code>SpacingSpanner</code>-Objekt kontrolliert werden kann).  Je
+länger die Dauer, umso mehr Platz erhält die Note: wenn ihre
+Dauer verdoppelt wird, wird ein bestimmter Platz hinzugefügt
+(dessen Breite durch <code>spacing-increment</code> bestimmt werden
+kann).
+</p>
+<p>Das folgende Stück beispielsweise enthält Halbe, Viertel und Achtel.
+Die Achtelnote wird gefolgt von einem Notenkopfabstand (NKA).  Die
+Viertel wird von 2 NKA gefolgt, die Halbe von 3 NKA usw.
+</p>
+<blockquote><pre class="verbatim">c2 c4. c8 c4. c8 c4. c8 c8
+c8 c4 c4 c4
+</pre><p>
+ <a href="../a7/lily-a704cf7c.ly">
+  <img align="middle"
+       border="0"
+       src="../a7/lily-a704cf7c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Normalerweise ist <code>spacing-increment</code> definiert als 1.2 mal
+der Abstand zwischen zwei Notenlinien, was in etwa die Breite eines
+Notenkopfes ist.  <code>shortest-duration-space</code> ist definiert als
+2.0, was bedeutet, dass die kürzeste Note 2.4 Notenlinienabstände
+2.0 mal der Wert von <code>spacing-increment</code>) horizontalen
+Abstand erhält.  Der Abstand wird von der linken Kante des Symbols
+errechnet, so dass die kürzeste Note üblicherweise von 1 NKA
+Abstand gefolgt wird.
+</p>
+<p>Wenn diese Herangehensweise konsequent angewandt würde, würde eine
+einzige Zweiunddreißigstel eine Partitur, in der vor allem Achtel und
+Sechzehntel vorkommen, sehr weit auseinanderdehnen.  Die kürzeste
+Note wäre nun keine Sechzehntel mehr, sondern eine Zweiunddreißigstel,
+wodurch an jede Note der Wert von 1 NKA hinzugefügt würde.  Um das
+zu vermeiden, ist die kürzeste Dauer für die Platzverteilung nicht die
+kürzeste Note einer Partitur, sondern die, die am häufigsten vorkommt.
+</p>
+<p>Die Notendauer, die am häufigsten vorkommt, wird auf folgende
+Weise bestimmt: in jedem Takt wird die kürzeste Note bestimmt.  Die
+häufigste kürzeste Note wird dann als Grundlage für die Platzverteilung
+der Noten herangezogen, mit der Bedingung, dass diese kürzeste
+Note immer ein Achtel oder kürzer sein soll.  Die kürzeste Dauer
+wird ausgegeben, wenn <code>lilypond</code> mit der Option &lsquo;<samp>--verbose</samp>&rsquo;
+aufgerufen wird.
+</p>
+<p>Diese Dauern können aber auch angepasst werden.  Wenn Sie die Eigenschaft
+<code>common-shortest-duration</code> in dem <code>SpacingSpanner</code> setzen,
+dann wird hiermit die Grunddauer für die Platzverteilung eingestellt.
+Die maximale Dauer für diesen Grundwert (normalerweise eine Achtel)
+wird definiert mit <code>base-shortest-duration</code>.
+</p>
+<a name="index-common_002dshortest_002dduration"></a>
+<a name="index-common_002dshortest_002dduration-1"></a>
+<a name="index-base_002dshortest_002dduration"></a>
+<a name="index-base_002dshortest_002dduration-1"></a>
+<a name="index-stem_002dspacing_002dcorrection"></a>
+<a name="index-stem_002dspacing_002dcorrection-1"></a>
+<a name="index-spacing"></a>
+<a name="index-spacing-1"></a>
+
+<p>Noten, die noch kürzer sind als die häufigste kürzeste Note, werden
+durch einen Platz voneinander getrennt, der proportional zu ihrer
+Dauer in Beziehung zur häufigsten kürzesten Note ist.  Wenn also
+nur ein paar Sechzehntel zu dem obigen Beispiel hinzugefügt werden,
+würden sie von 1/2 NKA gefolgt werden:
+</p>
+<blockquote><pre class="verbatim">c2 c4. c8 c4. c16[ c] c4. c8 c8 c8 c4 c4 c4
+</pre><p>
+ <a href="../03/lily-87b4a3d1.ly">
+  <img align="middle"
+       border="0"
+       src="../03/lily-87b4a3d1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In dem <em>Aufsatz zum automatisierten Notensatz</em> wurde erklärt, dass die
+Richtung der Notenhälse die Platzverteilung beeinflusst (siehe
+<a name="index-Optischer-Ausgleich"></a>
+<a href="../essay-big-page/optical-spacing.de.html">Optischer Ausgleich</a>).  Das wird
+kontrolliert durch die <code>stem-spacing-correction</code>-Eigenschaft
+in dem <code>NoteSpacing</code>-Objekt.  Dieses Objekt wird für jeden
+<code>Voice</code>-Kontext erstellt.  Das <code>StaffSpacing</code>-Objekt (in
+einem <code>Staff</code>-Kontext erstellt) enthält die gleiche Eigenschaft,
+um die Verteilung von Hälsen neben Taktlinien zu kontrollieren.  In
+dem folgenden Beispiel werden diese Einstellungen gezeigt, einmal
+mit den Standardwerten und dann mit größeren Werten, damit man sie
+besser sieht:
+</p>
+<blockquote><p>
+ <a href="../d9/lily-47cfc451.ly">
+  <img align="middle"
+       border="0"
+       src="../d9/lily-47cfc451.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Proportionale Notation ist unterstützt, siehe <a href="proportional-notation.de.html">Proportionale Notation</a>.
+</p>
+<a name="Siehe-auch-80"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Aufsatz über den automatischen Notensatz:
+<a name="index-Optischer-Ausgleich-1"></a>
+<a href="../essay-big-page/optical-spacing.de.html">Optischer Ausgleich</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/spacing.de.html">Spacing</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-SpacingSpanner"></a>
+<a href="../internals/spacingspanner.de.html">SpacingSpanner</a>,
+<a name="index-NoteSpacing-1"></a>
+<a href="../internals/notespacing.de.html">NoteSpacing</a>,
+<a name="index-StaffSpacing"></a>
+<a href="../internals/staffspacing.de.html">StaffSpacing</a>,
+<a name="index-NonMusicalPaperColumn"></a>
+<a href="../internals/nonmusicalpapercolumn.de.html">NonMusicalPaperColumn</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-20"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+
+<p>Es gibt keine sinnvolle Möglichkeit, die horizontale Verteilung der
+Noten zu unterdrücken.  Die folgende Problemumgehung, mit der
+dehnbare Abstände (padding) eingesetzt werden, kann benutzt
+werden, um zusätzlichen Platz in eine Partitur einzufügen.
+</p>
+<blockquote><pre class="example"> \override Score.NonMusicalPaperColumn.padding = #10
+</pre></blockquote>
+
+<p>Es gibt derzeit keine Möglichkeit, den Platz zu verringern.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Abstände&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.de.html" title="N&auml;chstes Kapitel">&nbsp;Standardeinstellungen verändern &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="horizontal-spacing.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Horizontale Abstände&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="horizontal-spacing.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Horizontale Abstände&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new-spacing-area.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Eine neuer Bereich mit anderen Abständen &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="horizontal-spacing-overview.html">English</a>, <a href="horizontal-spacing-overview.es.html">español</a>, <a href="horizontal-spacing-overview.fr.html">français</a>, <a href="horizontal-spacing-overview.it.html">italiano</a>, <a href="horizontal-spacing-overview.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=" toc_current"><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Uberblick-uber-horizontale-Abstande" href="horizontal-spacing-overview.de.html">4.5.1 Überblick über horizontale Abstände</a>      </li>
+      <li class=""><a name="toc-Eine-neuer-Bereich-mit-anderen-Abstanden" href="new-spacing-area.de.html">4.5.2 Eine neuer Bereich mit anderen Abständen</a>      </li>
+      <li class=""><a name="toc-Horizontale-Abstande-verandern" href="changing-horizontal-spacing.de.html">4.5.3 Horizontale Abstände verändern</a>      </li>
+      <li class=""><a name="toc-Zeilenlange" href="line-length.de.html">4.5.4 Zeilenlänge</a>      </li>
+      <li class=""><a name="toc-Proportionale-Notation-1" href="proportional-notation.de.html">4.5.5 Proportionale Notation</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

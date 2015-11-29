@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2002-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Aufsatz über den automatischen Musiksatz: 1.3 Automatisierter Notensatz</title>
+
+<meta name="description" content="Aufsatz über den automatischen Musiksatz: 1.3 Automatisierter Notensatz">
+<meta name="keywords" content="Aufsatz über den automatischen Musiksatz: 1.3 Automatisierter Notensatz">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Aufsatz über den automatischen Musiksatz">
+<link href="lilypond-index.de.html#lilypond-index" rel="index" title="B. LilyPond-Index">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="music-engraving.de.html#music-engraving" rel="up" title="1. Notensatz">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="B. LilyPond-Index">
+<link href="engraving-details.de.html#engraving-details" rel="previous" title="1.2 Details des Notensetzens">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="essay devStatus">
+
+
+<div id="main">
+<a name="Automatisierter-Notensatz"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="music-engraving.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Notensatz&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="literature-list.de.html" title="N&auml;chstes Kapitel">&nbsp;Literatur &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engraving-details.de.html#why-work-so-hard_003f" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Warum der große Aufwand?&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="music-engraving.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Notensatz&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#beauty-contests" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Schönheitswettbewerb &gt; </a>]</td></tr></table>
+<a name="automated-engraving"></a>
+<h2 class="section">1.3 Automatisierter Notensatz</h2>
+
+<a name="index-Notensatz_002c-automatisch"></a>
+<a name="index-automatischer-Notensatz"></a>
+
+<p>Dieser Abschnitt beschreibt, was benötigt wird um ein Programm zu
+schreiben, welches das Layout von gestochenen Noten nachahmen kann:
+eine Methode, dem Computer gute Layouts zu erklären und detailliertes
+Vergleichen mit echten Notendrucken.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#beauty-contests" accesskey="1">Schönheitswettbewerb</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#improvement-by-benchmarking" accesskey="2">Verbessern durch Benchmarking</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#getting-things-right" accesskey="3">Alles richtig machen</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Sch_00f6nheitswettbewerb"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="music-engraving.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Notensatz&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="literature-list.de.html" title="N&auml;chstes Kapitel">&nbsp;Literatur &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automated-engraving" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatisierter Notensatz&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#automated-engraving" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Automatisierter Notensatz&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#improvement-by-benchmarking" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Verbessern durch Benchmarking &gt; </a>]</td></tr></table>
+<a name="beauty-contests"></a>
+<h3 class="unnumberedsubsec">Schönheitswettbewerb</h3>
+
+<p>Wie sollen wir also jetzt die Typographie anwenden?
+Anders gesagt: welcher von den drei Konfigurationen sollte für
+den folgenden Bogen ausgewählt werden?
+</p>
+<p>
+ <a href="../b8/lily-0179c477.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-0179c477.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Es gibt wenige Bücher über die Kunst des Notensatzes.  Leider
+haben sie nur Daumenregeln und einige Beispiele zu bieten.  Solche
+Regeln können sehr informativ sein, aber sie sind weit entfernt
+von einem Algorithmus, den wir in unser Programm einbauen könnten.
+Indem man die Anweisungen der Literatur anwendet, kommt man zu
+Algorithmen mit sehr vielen manuellen Ausnahmen.  Alle die möglichen
+Fälle zu analysieren stellt sehr viel Arbeit dar und meistens
+werden dennoch nicht alle Fälle vollständig abgedeckt:
+</p>
+<blockquote><img src="../pictures/ross-beam-scan.jpg" alt=".jpg">
+</blockquote>
+
+<p>(Bildquelle: Ted Ross, <em>The Art of Music Engraving</em>)
+</p>
+<p>Anstatt zu versuchen, für jedes mögliche Szenario eine passende
+Layoutregel zu definieren, müssen wir nur die Regeln genau genug
+beschreiben, sodass LilyPond die Gefälligkeit von mehreren
+Alternativen selber einschätzen kann.  Dann errechnen wir für jede
+mögliche Konfiguration eine Hässlichkeits-Rangliste und wir wählen
+die Konfiguration aus, die am wenigsten hässlich ist.
+</p>
+<p>Zum Beispiel hier drei mögliche Konfiguration eines Legatobogens,
+und LilyPond hat jeder Konfiguration &bdquo;Hässlichkeitspunkte&ldquo;
+verliehen.  Das erste Beispiel erhält 15.39 Punkte, weil einer der
+Notenköpfe angeschnitten wird:
+</p>
+<p>
+ <a href="../5d/lily-afb29edc.ly">
+  <img align="middle"
+       border="0"
+       src="../5d/lily-afb29edc.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Das zweite Beispiel ist schöner, aber der Bogen beginnt weder noch
+endet er an den Notenköpfen.  Hier werden 1.71 Punkte auf der linken
+und 9.37 Punkte auf der rechten Seite verliehen, plus weiteren
+2 Punkten, weil der Bogen aufsteigt, während die Melodie absteigt.
+Insgesamt also 13.08 Punkte:
+</p>
+<p>
+ <a href="../8a/lily-1a506dd8.ly">
+  <img align="middle"
+       border="0"
+       src="../8a/lily-1a506dd8.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Der letzte Bogen erhält 10.04 Punkte für die Lücke rechts und
+2 Punkte für die Neigung nach oben, aber er ist die schönste
+der drei Varianten, sodass LilyPond ihn auswählt:
+</p>
+<p>
+ <a href="../83/lily-7d0e74a1.ly">
+  <img align="middle"
+       border="0"
+       src="../83/lily-7d0e74a1.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Diese Technik ist sehr allgemein und wird benutzt, um optimale
+Entscheidungen für Bögenkonfigurationen, Bindebögen und Punkten
+in Akkorden, Zeilenumbrüche und Seitenumbrüche zu erhalten.  Die
+Ergebnisse dieser Entscheidungen können durch einen Vergleich mit
+handgestochenen Noten eingeschätzt werden.
+</p>
+
+<hr size="6">
+<a name="Verbessern-durch-Benchmarking"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="music-engraving.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Notensatz&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="literature-list.de.html" title="N&auml;chstes Kapitel">&nbsp;Literatur &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#beauty-contests" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Schönheitswettbewerb&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#automated-engraving" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Automatisierter Notensatz&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#getting-things-right" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Alles richtig machen &gt; </a>]</td></tr></table>
+<a name="improvement-by-benchmarking"></a>
+<h3 class="unnumberedsubsec">Verbessern durch Benchmarking</h3>
+
+<p>Die Ausgabe von LilyPond hat sich schrittweise mit der Zeit
+verbessert, und sie verbessert sich weiter, indem sie immer wieder
+mit handgestochenen Noten verglichen wird.
+</p>
+<p>Hier als Beispiel eine Zeile eines Benchmark-Stückes aus einer
+handgestochenen Notenedition (Bärenreiter BA320):
+</p>
+<img src="../pictures/baer-sarabande.png" alt="png">
+
+<p>und die gleiche Zeile als Satz einer sehr alten LilyPond-Version
+(Version 1.4, Mai 2001):
+</p>
+<img src="../pictures/lily14-sarabande.png" alt="png">
+
+<p>Die Ausgabe von LilyPond 1.4 ist auf jeden Fall leserlich, aber
+ein ausführlicher Vergleich mit der Vorlage zeigt viele Fehler in
+den Formatierungsdetails:
+</p>
+<img src="../pictures/lily14-sarabande-annotated.png" alt="png">
+
+<ul>
+<li> vor der Taktangabe ist nicht genug Platz
+</li><li> die Hälse der bebalkten Noten sind zu lang
+</li><li> der zweite und vierte Takt sind zu schmal
+</li><li> der Bogen sieht ungeschickt aus
+</li><li> das Triller-Symbol ist zu groß
+</li><li> die Hälse sind zu dünn
+</li></ul>
+
+<p>(Es gibt auch zwei fehlende Notenköpfe, verschiedene editorische
+Anweisungen, die Fehler und eine falsche Tonhöhe!)
+</p>
+<p>Indem die Layoutregeln und das Design der Schriftarten angepasst
+wurde, hat sich die Ausgabe sehr stark verbessert.  Vergleichen
+Sie das gleiche Referenzbeispiel und die Ausgabe der aktuellen
+LilyPond-Version (2.19.32):
+</p>
+<img src="../pictures/baer-sarabande.png" alt="png">
+
+<p>
+ <a href="../64/lily-9356cf70.ly">
+  <img align="middle"
+       border="0"
+       src="../64/lily-9356cf70.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Die jetzige Ausgabe ist kein Klon der Referenzedition, aber sie ist
+sehr viel näher an einer Publikationsqualität.
+</p>
+
+<hr size="6">
+<a name="Alles-richtig-machen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="music-engraving.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Notensatz&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="literature-list.de.html" title="N&auml;chstes Kapitel">&nbsp;Literatur &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#improvement-by-benchmarking" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Verbessern durch Benchmarking&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#automated-engraving" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Automatisierter Notensatz&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="building-software.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Ein Programm bauen &gt; </a>]</td></tr></table>
+<a name="getting-things-right"></a>
+<h3 class="unnumberedsubsec">Alles richtig machen</h3>
+
+<p>Wir können auch die Fähigkeiten von LilyPond, Notensatzentscheidungen
+alleine zu fällen, messen, indem wir die Ausgabe von LilyPond mit
+der Ausgabe eines kommerziellen Notensatzprogramms vergleichen.
+In diesem Fall haben wir Finale 2008 genommen, eines der beliebtesten
+Notensatzprogramme, insbesondere in Nordamerika.  Sibelius ist
+Finales hauptsächlicher Gegenspieler, offensichtlich vor allem in
+Europa verbreitet.
+</p>
+<p>Für unseren Vergleich haben wir uns für die Fuge in G-Moll aus
+dem Wohltemperierten Clavier 1, BWV 861 von J. S. Bach entschieden,
+mit dem Hauptthema:
+</p>
+<p>
+ <a href="../0e/lily-96550f49.ly">
+  <img align="middle"
+       border="0"
+       src="../0e/lily-96550f49.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>In unserem Vergleich setzten wir die letzten sieben Takte des
+Stückes (28&ndash;34) in Finale und LilyPond.  Das ist der Punkt, an
+der das Thema als dreistimmige Engführung in den Schlussabschnitt
+überleitet.  In der Finale-Version haben wir der Versuchung
+widerstanden, jedwede Anpassungen abweichend vom Standard vorzunehmen,
+weil wir zeigen wollen, welche Dinge von den beiden Programmen
+ohne Hilfeleistung richtig gemacht werden.  Die einzigen größeren
+Änderungen, die wir vorgenommen haben, war die Anpassung der
+Seitengröße an die Seitengröße dieses Aufsatzes und die Begrenzung
+der Noten auf zwei Systeme, um den Vergleich einfacher zu machen.
+In der Standardeinstellung Finale hätte zwei Zeilen mit je drei
+Takten und schließlich eine letzte Zeile gesetzt, die nur einen einzigen
+Takt enthält.
+</p>
+<p>Viele der Unterschiede zwischen den beiden Sätzen finden sich
+in den Takten 28&ndash;29, hier zuerst in Finales Version, dann in der
+Version von LilyPond:
+</p>
+<img src="../pictures/bwv861mm28-29.png" alt="png">
+
+<p>
+ <a href="../65/lily-59918950.ly">
+  <img align="middle"
+       border="0"
+       src="../65/lily-59918950.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Einige der Mängel des nicht editierten Finale-Satzes beinhalten:
+</p>
+<ul>
+<li> Die meisten Balken sind zu weit vom Notensystem entfernt.
+Ein Balken, der zum Zentrum des Systems zeigt, sollte etwa die
+Länge einer Oktave haben, aber Notensetzer verkürzen die Länge,
+wenn der Balken in polyphonen Situationen aus dem System
+herauszeigt.  Die Bebalkung von Finale kann einfach mit ihrem
+Patterson Beams-Plugin verbessert werden, aber wir haben diesen
+Schritt für dieses Beispiel ausgelassen.
+
+</li><li> Finale passt die Position von ineinander greifenden Notenköpfen
+nicht an, sodass die Noten sehr schwer lesbar werden, wenn
+die untere und obere Stimme zeitweise ausgetauscht werden:
+
+<p>
+ <a href="../7e/lily-f39b518d.ly">
+  <img align="middle"
+       border="0"
+       src="../7e/lily-f39b518d.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+</li><li> Finale positioniert alle Pausen an einer festen Position auf
+dem System.  Der Benutzer kann sie anpassen, wie er es richtig
+findet, aber das Programm unternimmt keinen Versuch, den Inhalt
+der anderen Stimme mit einzubeziehen.  Durch einen Glücksfall
+kommen keine wirklichen Kollisionen zwischen Noten und Pausen
+in diesem Beispiel vor, aber das liegt mehr an der Position der
+Noten als an der der Pausen.  Anders gesagt: Bach verdient mehr
+Aufmerksamkeit um vollständige Kollisionen zu vermeiden als
+Finale ihm gönnt.
+
+</li></ul>
+
+<p>Dieses Beispiel soll nicht suggerieren, dass man mit Finale nicht
+Notensatz in Publikationsqualität erstellen könnte.  Das Programm ist
+durchaus dazu fähig, wenn ein erfahrener Benutzer genug Zeit und Fähigkeit mitbringt.
+Einer der fundamentalen Unterschiede zwischen LilyPond und kommerziellen
+Notensatzprogrammen ist, dass LilyPond versucht, den Aufwand an
+menschlicher Intervention auf ein absolutes Minimum zu reduzieren,
+während andere Programme versuchen, ein attraktives Programmfenster
+zu bieten, in dem die Anpassungen vorgenommen werden können.
+</p>
+<p>Einen besonders hervorstechenden Mangel von Finale
+ist ein fehlendes b-Vorzeichen in Takt 33:
+</p>
+<blockquote><img src="../pictures/bwv861mm33-34-annotate.png" alt="png">
+</blockquote>
+
+<p>Das b-Symbol wird benötigt, um das Auflösungzeichen im selben
+Takt rückgängig zu machen, aber Finale lässt es aus, weil es in
+einer anderen Stimme vorkommt.  Der Benutzer muss nicht nur daran
+denken, ein Balken-Plugin zu starten und die Notenköpfe und Pausen
+neu anzuordnen, er muss auch jeden Takt prüfen, ob Versetzungszeichen
+aus anderen Stimmen korrigiert werden müssen, damit nicht ein
+Notensatzfehler die Probe unnötig unterbricht.
+</p>
+<p>Wenn Sie diese Beispiel noch detaillierter betrachten wollen,
+können Sie den vollen siebentaktigen Ausschnitt am Ende dieses
+Aufsatzes als Notensatz in vier unterschiedlichen
+publizierten Editionen finden.  Nähere Betrachtung zeigt, dass
+es einige akzeptable Variationen zwischen den handgestochenen
+Beispielen gibt, dass LilyPond aber ziemlich guten Notensatz
+im Rahmen dieser Variationen produziert.  Auch die LilyPond-Ausgabe
+hat noch ihre Fehler: sie ist beispielsweise etwas zu aggressiv
+bei der Verkürzung einiger Hälse &ndash; hier ist also noch Raum für
+weitere Entwicklung und Feineinstellung.
+</p>
+<p>Natürlich hängt Typographie vom menschlichen Urteil der Erscheinung
+ab, sodass Menschen nicht vollständig ersetzt werden können.  Viel
+der eintönigen Arbeit kann jedoch automatisiert werden.  Wenn
+LilyPond die meisten üblichen Situationen richtig löst, ist das
+schon eine große Verbesserung gegenüber existierender Software.
+Im Laufe der Jahre wir das Programm immer besser und macht mehr
+und mehr Sachen automatisch, sodass manuelles Eingreifen immer
+seltener wird.  Wo manuelle Anpassungen benötigt werden,
+wurde die Struktur von LilyPond mit Flexibilität im Hinterkopf
+geplant.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="music-engraving.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Notensatz&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="literature-list.de.html" title="N&auml;chstes Kapitel">&nbsp;Literatur &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#improvement-by-benchmarking" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Verbessern durch Benchmarking&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#automated-engraving" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Automatisierter Notensatz&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="building-software.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Ein Programm bauen &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="automated-engraving.html">English</a>, <a href="automated-engraving.es.html">español</a>, <a href="automated-engraving.fr.html">français</a>, <a href="automated-engraving.hu.html">magyar</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Aufsatz über den automatischen Musiksatz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Notensatz-1" href="music-engraving.de.html">1. Notensatz</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Die-Geschichte-von-LilyPond-1" href="the-lilypond-story.de.html">1.1 Die Geschichte von LilyPond</a>    </li>
+    <li class=""><a name="toc-Details-des-Notensetzens-1" href="engraving-details.de.html">1.2 Details des Notensetzens</a>    </li>
+    <li class=" toc_current"><a name="toc-Automatisierter-Notensatz-1" href="automated-engraving.de.html">1.3 Automatisierter Notensatz</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Schonheitswettbewerb" href="automated-engraving.de.html#beauty-contests">Schönheitswettbewerb</a>      </li>
+      <li class=""><a name="toc-Verbessern-durch-Benchmarking-1" href="automated-engraving.de.html#improvement-by-benchmarking">Verbessern durch Benchmarking</a>      </li>
+      <li class=""><a name="toc-Alles-richtig-machen-1" href="automated-engraving.de.html#getting-things-right">Alles richtig machen</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Ein-Programm-bauen-1" href="building-software.de.html">1.4 Ein Programm bauen</a>    </li>
+    <li class=""><a name="toc-LilyPond-die-Arbeit-uberlassen" href="putting-lilypond-to-work.de.html">1.5 LilyPond die Arbeit überlassen</a>    </li>
+    <li class=""><a name="toc-Notensatzbeispiele-_0028BWV-861_0029-1" href="engraved-examples-_0028bwv-861_0029.de.html">1.6 Notensatzbeispiele (BWV 861)</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Literatur-1" href="literature-list.de.html">2. Literatur</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Kurze-Literaturliste-1" href="short-literature-list.de.html">2.1 Kurze Literaturliste</a>    </li>
+    <li class=""><a name="toc-Lange-Literaturliste-1" href="long-literature-list.de.html">2.2 Lange Literaturliste</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">B. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

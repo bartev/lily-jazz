@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond 学習マニュアル: 3.3.4 コンテキスト プロパティを変更する</title>
+
+<meta name="description" content="GNU LilyPond 学習マニュアル: 3.3.4 コンテキスト プロパティを変更する">
+<meta name="keywords" content="GNU LilyPond 学習マニュアル: 3.3.4 コンテキスト プロパティを変更する">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 学習マニュアル">
+<link href="lilypond-index.ja.html#lilypond-index" rel="index" title="C. LilyPond インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="contexts-and-engravers.ja.html#contexts-and-engravers" rel="up" title="3.3 コンテキストとエングラーバ">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="C. LilyPond インデックス">
+<link href="engravers-explained.ja.html#engravers-explained" rel="previous" title="3.3.3 エングラーバの説明">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="learning devStatus">
+
+
+<div id="main">
+<a name="g_t_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 基礎となるコンセプト&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ja.html" title="次の章">&nbsp;出力を調整する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; エングラーバの説明&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;コンテキストとエングラーバ&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;エングラーバを追加 / 削除する &gt; </a>]</td></tr></table>
+<a name="modifying-context-properties"></a>
+<h3 class="subsection">3.3.4 コンテキスト プロパティを変更する</h3>
+
+<a name="index-context-properties-_0028_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_0029"></a>
+<a name="index-context-properties_002c-modifying-_0028_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b_0029"></a>
+<a name="index-modifying-context-properties-_0028_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b_0029"></a>
+<a name="index-_005cset"></a>
+<a name="index-_005cset-1"></a>
+<a name="index-set"></a>
+<a name="index-set-1"></a>
+<a name="index-_005cunset"></a>
+<a name="index-_005cunset-1"></a>
+<a name="index-unset"></a>
+<a name="index-unset-1"></a>
+
+<p>コンテキストにはいくつかのコンテキスト プロパティを保持する責任があります。それらプロパティの多くは変更可能であり、変更することで入力の構文解釈に影響を与えて出力の見た目を変化させます。それらプロパティは \set コマンドによって変更されます。これは以下のような形で行います:
+</p>
+<blockquote><pre class="example">\set <em>ContextName</em>.<em>propertyName</em> = #<em>value</em>
+</pre></blockquote>
+
+<p><em>ontextName</em> には通常、<code>Score</code>, <code>Staff</code> or <code>Voice</code> が入ります。これを省略する場合もあり、そのような場合は <code>Voice</code> であると見なされます。
+</p>
+<p>コンテキスト プロパティの名前はハイフンやアンダスコアを使わずに連結された単語によって形成され、最初の単語を除いて単語の最初の文字は大文字になります。ここで、一般的に使用されるコンテキスト プロパティの例をいくつか挙げます。実際には、コンテキスト プロパティはもっとたくさんあります。
+</p>
+<table>
+<thead><tr><th width="25%">プロパティ名</th><th width="15%">タイプ</th><th width="45%">機能</th><th width="15%">実際の値の例</th></tr></thead>
+<tr><td width="25%">extraNatural</td><td width="15%">ブール値</td><td width="45%">真の場合、追加のナチュラル記号を臨時記号の前にセットします</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">currentBarNumber</td><td width="15%">整数</td><td width="45%">小節番号をセットします</td><td width="15%"><code>50</code></td></tr>
+<tr><td width="25%">doubleSlurs</td><td width="15%">ブール値</td><td width="45%">真の場合、音符の上と下の両方にスラーを譜刻します</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">instrumentName</td><td width="15%">テキスト</td><td width="45%">譜表の先頭に表示される名前をセットします</td><td width="15%"><code>&quot;Cello I&quot;</code></td></tr>
+<tr><td width="25%">fontSize</td><td width="15%">実数</td><td width="45%">フォント サイズを増減させます</td><td width="15%"><code>2.4</code></td></tr>
+<tr><td width="25%">stanza</td><td width="15%">テキスト</td><td width="45%">歌詞の先頭に譜刻されるテキストをセットします</td><td width="15%"><code>&quot;2&quot;</code></td></tr>
+</table>
+
+<p>ここでのブール値とは真 (<code>#t</code>) または偽 (<code>#f</code>) のどちらかであり、整数とは正の整数であり、実数とは正または負の小数点付きの数であり、テキストはダブル アポストロフィで囲まれます。ハッシュ記号 (<code>#</code>) が 2 つの異なる箇所で出現することに注意してください &ndash; ブール値での <code>t</code> や <code>f</code> の前と、<code>\set</code> での<em>値</em>の前です。そのため、<code>\set</code> の値にブール値を挿入する場合、ハッシュ記号が 2 つ必要になります &ndash; つまり <code>##t</code> です。
+</p>
+<a name="index-properties-operating-in-contexts-_0028_30b3_30f3_30c6_30ad_30b9_30c8_5185_3067_306e_30d7_30ed_30d1_30c6_30a3_306e_64cd_4f5c_0029"></a>
+<a name="index-setting-properties-within-contexts-_0028_30b3_30f3_30c6_30ad_30b9_30c8_5185_90e8_306e_30d7_30ed_30d1_30c6_30a3_3092_8a2d_5b9a_3059_308b_0029"></a>
+
+<p>これらのプロパティのいずれかをセットする前に、それらが操作するコンテキストはどれなのかを知る必要があります。これは明らかな場合もありますが、ややこしい場合もあります。間違ったコンテキストが指定された場合、エラー メッセージは表示されませんが、予期したアクションが起こりません。例えば、<code>instrumentName</code> は間違いなく <code>Staff</code> コンテキストの中にきます。なぜなら、このプロパティが名前を付けるのは譜表だからです。以下の例では、最初の譜表には名前が付けられていますが、2 番目の譜表には付けられていません。なぜなら、コンテキスト名を省略しているからです。
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    \set Staff.instrumentName = #&quot;Soprano&quot;
+    c''2 c
+  }
+  \new Staff \relative {
+    \set instrumentName = #&quot;Alto&quot;  % Wrong!
+    d'2 d
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../89/lily-982bbb4e.ly">
+  <img align="middle"
+       border="0"
+       src="../89/lily-982bbb4e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>デフォルトのコンテキスト名は <code>Voice</code> であることを思い出してください。このため、2 番目の <code>\set</code> コマンドは <code>Voice</code> コンテキストのプロパティ <code>instrumentName</code> を &ldquo;Alto&rdquo; にセットしています。しかしながら、LilyPond は <code>Voice</code> コンテキストでそのようなプロパティを見つけ出さないため、何のアクションも起こしません。これはエラーではなく、ログ ファイルにエラー メッセージは残りません。
+</p>
+<p>同様に、プロパティ名の綴りを間違えた場合もエラー メッセージは表示されず、予期したアクションが起こりません。実際のところ、<code>\set</code> コマンドを使って、存在するいかなるコンテキストにでも、いかなる (架空の) &lsquo;プロパティ&rsquo; をセットすることができます。しかしながら、そのプロパティ名を LilyPond が知らない場合、何のアクションも起こしません。LilyPond 入力ファイルに対する特別なサポートを持ついくつかのテキスト エディタは、あなたがプロパティ名の上にマウスを持ってくるとバレット (テキストの先頭に付く小丸) 付きのプロパティ名を表示してそのプロパティの裏づけを行い (LilyPondTool を持つ JEdit)、あるいは未知のプロパティ名をハイライトします (ConTEXT)。そのような機能を持つエディタを使用していないのなら、内部リファレンスでプロパティ名をチェックすることを推奨します:
+<a name="index-Tunable-context-properties"></a>
+<a href="../internals/tunable-context-properties.ja.html">Tunable context properties</a> や <a name="index-Contexts"></a>
+<a href="../internals/contexts.ja.html">Contexts</a>
+を参照してください。
+</p>
+<p><code>instrumentName</code> プロパティは <code>Staff</code> コンテキストの中にセットされた場合にのみ効果を持ちますが、いくつかのプロパティは複数のコンテキストの中にセットすることができます。例えば、プロパティ <code>extraNatural</code> はすべての譜に対してデフォルトで
+<code>##t</code> (真) にセットされています。ある特定の <code>Staff</code> コンテキストでこれを <code>##f</code> (偽) にセットした場合、その譜表の臨時記号にのみ適用されます。これを <code>Score</code> コンテキストにセットした場合、すべての譜に適用されます。
+</p>
+<p>それでは、ある譜表の追加ナチュラル記号を消してみます:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    aeses'2 aes
+  }
+  \new Staff \relative {
+    \set Staff.extraNatural = ##f
+    aeses'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../2f/lily-b68f5016.ly">
+  <img align="middle"
+       border="0"
+       src="../2f/lily-b68f5016.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>さらに、すべての譜の追加ナチュラル記号を消します:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    aeses'2 aes
+  }
+  \new Staff \relative {
+    \set Score.extraNatural = ##f
+    aeses'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../3f/lily-957110f3.ly">
+  <img align="middle"
+       border="0"
+       src="../3f/lily-957110f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>他の例としては、<code>clefTransposition</code> が <code>Score</code> コンテキストにセットされた場合、直ちにすべての譜でのオクターブの値を変更し、すべての譜に適用される新しいデフォルト値をセットします。
+</p>
+<p>逆のことを行うコマンド <code>\unset</code> はコンテキストからプロパティを削除し、それによりたいていのプロパティはデフォルト値に戻ります。通常、望みのことを達成するために新たな <code>\set</code> コマンドを用いる場合、<code>\unset</code> は必要ありません。
+</p>
+<p><code>\set</code> と <code>\unset</code> コマンドは入力ファイルのどこにでも現れる可能性があり、そのコマンドが出現した時点から、楽譜の終わりまたはそのプロパティが再度 <code>\set</code> や <code>\unset</code> されるまで効果を持ちます。フォント サイズを変更してみましょう。それにより (他のものに加えて) 符頭のサイズが何段階か変更されます。変更は直前にセットされた値から行われるのではなく、デフォルト値から行われます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  % 符頭を小さくします
+  \set fontSize = #-4
+  e4 f |
+  % 符頭を大きくします
+  \set fontSize = #2.5
+  g4 a
+  % デフォルトのサイズに戻します
+  \unset fontSize
+  b4 c |
+}
+</pre><p>
+ <a href="../3d/lily-e15045c1.ly">
+  <img align="middle"
+       border="0"
+       src="../3d/lily-e15045c1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これまでにいくつかのタイプのプロパティ値をセットする方法を見てきました。整数と番号の前には常にハッシュ記号 <code>#</code> が付き、真と偽の値は
+2 つのハッシュ記号を付けて <code>##t</code> と <code>##f</code>
+によって指定されてるということに注意してください。テキスト プロパティは上で示したようにダブル クォーテーションによって囲まれます。しかしながら、後ほど、テキストは実際には非常に強力な <code>\markup</code> コマンドを用いたもっと一般的な方法で指定できるということを見ていきます。
+</p>
+
+<a name="g_t_005cwith-_3092_4f7f_3063_305f_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_306e_8a2d_5b9a"></a>
+<h4 class="subsubheading"><code>\with</code> を使ったコンテキスト プロパティの設定</h4>
+
+<a name="index-_005cwith"></a>
+<a name="index-_005cwith-1"></a>
+<a name="index-with"></a>
+<a name="index-with-1"></a>
+<a name="index-context-properties_002c-setting-with-_005cwith-_0028_005cwith-_3067_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_3092_8a2d_5b9a_3059_308b_0029"></a>
+
+<p>コンテキスト プロパティはコンテキストが作成されるときにセットされることもあるかもしれません。この設定がコンテキスト全体で保持される場合、この方法でプロパティ値を指定すると明瞭になります。コンテキストが <code>\new</code> コマンドで作成されるとき、その直後に
+<code>\with { .. }</code> ブロックが続き、その中でプロパティ値がセットされるかもしれません。例えば、ある譜表全体で追加のナチュラルの表示を抑制しようとする場合、以下のように書きます:
+</p>
+<blockquote><pre class="example">\new Staff \with { extraNatural = ##f }
+</pre></blockquote>
+
+<p>like this:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff {
+    \relative {
+      gisis'4 gis aeses aes
+    }
+  }
+  \new Staff \with { extraNatural = ##f } {
+    \relative {
+      gisis'4 gis aeses aes
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../98/lily-b28fa1ef.ly">
+  <img align="middle"
+       border="0"
+       src="../98/lily-b28fa1ef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>この方法でプロパティをセットした場合でも、<code>\set</code>
+を使って動的に変更されたり、<code>\unset</code> を使ってデフォルト値に戻されたりするかもしれません。
+</p>
+<a name="index-fontSize_002c-default-and-setting-_0028fontSize-_306e_30c7_30d5_30a9_30eb_30c8_3068_8a2d_5b9a_0029"></a>
+
+<p><code>fontSize</code> プロパティの扱いは異なります。これが <code>\with</code> の中でセットされた場合、フォント サイズのデフォルト値をセットし直します。そのあとでフォント サイズが <code>\set</code> によって変更された場合、<code>\with</code> でセットされた新しいデフォルト値は
+<code>\unset fontSize</code> コマンドによって元に戻されるかもしれません。
+</p>
+
+<a name="g_t_005ccontext-_3092_4f7f_3063_305f_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_306e_8a2d_5b9a"></a>
+<h4 class="subsubheading"><code>\context</code> を使ったコンテキスト プロパティの設定</h4>
+
+<a name="index-context-properties_002c-setting-with-_005ccontext-_0028_005ccontext-_3067_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_3092_8a2d_5b9a_3059_308b_0029"></a>
+<a name="index-_005ccontext"></a>
+<a name="index-_005ccontext-1"></a>
+<a name="index-context"></a>
+<a name="index-context-1"></a>
+
+<p>コンテキスト プロパティの値は単一のコマンドによってある特定のタイプのコンテキスト<em>すべて</em> &ndash; すべての <code>Staff</code> コンテキストなどのように
+&ndash; にセットされるかもしれません。プロパティをセットするコンテキストのタイプは、<code>Staff</code> のようなそのコンテキストのタイプ名に接頭辞としてバック スラッシュを付けたもの
+&ndash; <code>\Staff</code> のように &ndash; によって指定されます。プロパティ値をセットするための記述は上で紹介した <code>\with</code> ブロックの中の記述と同じです。この記述は <code>\layout</code> ブロック内部の <code>\context</code> ブロックの中に置かれます。各 <code>\context</code> ブロックは、その <code>\layout</code> ブロックが置かれている <code>\score</code> または <code>\book</code> ブロック全体を通じて、指定されたタイプのコンテキストすべてに対して効果を持ちます。ここで、記述方法を示すための例を挙げます:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative {
+      cisis''4 e d cis
+    }
+  }
+  \layout {
+    \context {
+      \Staff
+      extraNatural = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../10/lily-62bd3fa9.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-62bd3fa9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>プロパティのオーバライドが score の中にあるどの譜にも適用されない場合:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        gisis'4 gis aeses aes
+      }
+    }
+    \new Staff {
+      \relative {
+        gisis'4 gis aeses aes
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score extraNatural = ##f
+    }
+  }
+}
+</pre><p>
+ <a href="../fb/lily-32f40d90.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-32f40d90.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>この方法でセットされたコンテキスト プロパティは、<code>\with</code> ブロックの中の記述によって、さらには、音楽表記の中に埋め込まれた
+<code>\set</code> コマンドによって、ある特定のコンテキスト インスタンスでは上書きされるかもしれません。
+</p>
+
+<a name="g_t_53c2_7167-25"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a name="index-Changing-context-default-settings"></a>
+<a href="../notation/changing-context-default-settings.ja.html">Changing context default settings</a>,
+<a name="index-The-set-command"></a>
+<a href="../notation/the-set-command.ja.html">The set command</a>
+</p>
+<p>内部リファレンス:
+<a name="index-Contexts-1"></a>
+<a href="../internals/contexts.ja.html">Contexts</a>,
+<a name="index-Tunable-context-properties-1"></a>
+<a href="../internals/tunable-context-properties.ja.html">Tunable context properties</a>
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 基礎となるコンセプト&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ja.html" title="次の章">&nbsp;出力を調整する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; エングラーバの説明&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;コンテキストとエングラーバ&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;エングラーバを追加 / 削除する &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="modifying-context-properties.html">English</a>, <a href="modifying-context-properties.ca.html">català</a>, <a href="modifying-context-properties.cs.html">česky</a>, <a href="modifying-context-properties.de.html">deutsch</a>, <a href="modifying-context-properties.es.html">español</a>, <a href="modifying-context-properties.fr.html">français</a>, <a href="modifying-context-properties.hu.html">magyar</a>, <a href="modifying-context-properties.it.html">italiano</a>, <a href="modifying-context-properties.nl.html">nederlands</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 学習マニュアル  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_30c1_30e5_30fc_30c8_30ea_30a2_30eb-1" href="tutorial.ja.html">1. チュートリアル</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d5_30a1_30a4_30eb_3092_30b3_30f3_30d1_30a4_30eb_3059_308b-1" href="compiling-a-file.ja.html">1.1 ファイルをコンパイルする</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306e_66f8_304d_65b9-1" href="how-to-write-input-files.ja.html">1.2 入力ファイルの書き方</a>    </li>
+    <li class=""><a name="toc-_30a8_30e9_30fc_306b_5bfe_51e6_3059_308b-1" href="dealing-with-errors.ja.html">1.3 エラーに対処する</a>    </li>
+    <li class=""><a name="toc-_3053_306e_30de_30cb_30e5_30a2_30eb_306e_8aad_307f_65b9-1" href="how-to-read-the-manuals.ja.html">1.4 このマニュアルの読み方</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_4e00_822c_7684_306a_8a18_8b5c_6cd5-1" href="common-notation.ja.html">2. 一般的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_8868_8868_8a18-1" href="single-staff-notation.ja.html">2.1 単一譜表表記</a>    </li>
+    <li class=""><a name="toc-_540c_6642_306b_6f14_594f_3059_308b_8907_6570_306e_97f3_7b26-1" href="multiple-notes-at-once.ja.html">2.2 同時に演奏する複数の音符</a>    </li>
+    <li class=""><a name="toc-_6b4c_66f2-1" href="songs.ja.html">2.3 歌曲</a>    </li>
+    <li class=""><a name="toc-_4ed5_4e0a_3052-1" href="final-touches.ja.html">2.4 仕上げ</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_57fa_790e_3068_306a_308b_30b3_30f3_30bb_30d7_30c8-1" href="fundamental-concepts.ja.html">3. 基礎となるコンセプト</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-_5165_529b_30d5_30a1_30a4_30eb_306e_4ed5_7d44_307f-1" href="how-lilypond-input-files-work.ja.html">3.1 LilyPond 入力ファイルの仕組み</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_4fdd_6301_3059_308b_30dc_30a4_30b9-1" href="voices-contain-music.ja.html">3.2 音楽を保持するボイス</a>    </li>
+    <li class=" toc_current"><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3068_30a8_30f3_30b0_30e9_30fc_30d0-1" href="contexts-and-engravers.ja.html">3.3 コンテキストとエングラーバ</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_306e_8aac_660e-1" href="contexts-explained.ja.html">3.3.1 コンテキストの説明</a>      </li>
+      <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_4f5c_6210_3059_308b-1" href="creating-contexts.ja.html">3.3.2 コンテキストを作成する</a>      </li>
+      <li class=""><a name="toc-_30a8_30f3_30b0_30e9_30fc_30d0_306e_8aac_660e-1" href="engravers-explained.ja.html">3.3.3 エングラーバの説明</a>      </li>
+      <li class=" toc_current"><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-context-properties.ja.html">3.3.4 コンテキスト プロパティを変更する</a>      </li>
+      <li class=""><a name="toc-_30a8_30f3_30b0_30e9_30fc_30d0_3092_8ffd_52a0-_002f-_524a_9664_3059_308b-1" href="adding-and-removing-engravers.ja.html">3.3.5 エングラーバを追加 / 削除する</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8_3092_62e1_5f35_3059_308b-1" href="extending-the-templates.ja.html">3.4 テンプレートを拡張する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_51fa_529b_3092_8abf_6574_3059_308b-1" href="tweaking-output.ja.html">4. 出力を調整する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_8abf_6574_306e_57fa_672c-1" href="tweaking-basics.ja.html">4.1 調整の基本</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9-_30de_30cb_30e5_30a2_30eb-1" href="the-internals-reference-manual.ja.html">4.2 内部リファレンス マニュアル</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_898b_305f_76ee-1" href="appearance-of-objects.ja.html">4.3 オブジェクトの見た目</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_914d_7f6e-1" href="placement-of-objects.ja.html">4.4 オブジェクトの配置</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_885d_7a81-1" href="collisions-of-objects.ja.html">4.5 オブジェクトの衝突</a>    </li>
+    <li class=""><a name="toc-_66f4_306a_308b_8abf_6574-1" href="further-tweaking.ja.html">4.6 更なる調整</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="templates.ja.html">A. テンプレート</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_30c6_30f3_30d7_30ec_30fc_30c8-1" href="single-staff-templates.ja.html">A.1 単一譜テンプレート</a>    </li>
+    <li class=""><a name="toc-_30d4_30a2_30ce-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="piano-templates.ja.html">A.2 ピアノ テンプレート</a>    </li>
+    <li class=""><a name="toc-_5f26_697d_56db_91cd_594f_30c6_30f3_30d7_30ec_30fc_30c8-1" href="string-quartet-templates.ja.html">A.3 弦楽四重奏テンプレート</a>    </li>
+    <li class=""><a name="toc-_5408_5531_30c6_30f3_30d7_30ec_30fc_30c8-1" href="vocal-ensembles-templates.ja.html">A.4 合唱テンプレート</a>    </li>
+    <li class=""><a name="toc-_30aa_30fc_30b1_30b9_30c8_30e9-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="orchestral-templates.ja.html">A.5 オーケストラ テンプレート</a>    </li>
+    <li class=""><a name="toc-_53e4_4ee3_306e_8a18_8b5c_6cd5_30c6_30f3_30d7_30ec_30fc_30c8-1" href="ancient-notation-templates.ja.html">A.6 古代の記譜法テンプレート</a>    </li>
+    <li class=""><a name="toc-_305d_306e_4ed6_306e_30c6_30f3_30d7_30ec_30fc_30c8-1" href="other-templates.ja.html">A.7 その他のテンプレート</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">C. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1622 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 1.2.3 リズムを表示する</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 1.2.3 リズムを表示する">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 1.2.3 リズムを表示する">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="rhythms.ja.html#rhythms" rel="up" title="1.2 リズム">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="writing-rests.ja.html#writing-rests" rel="previous" title="1.2.2 休符を記述する">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_30ea_30ba_30e0_3092_8868_793a_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="writing-rests.ja.html#full-measure-rests" title="前のセクション" accesskey="p" rel="previous"> &lt; 小節単位の休符&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズム&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#time-signature" title="次のセクション" accesskey="n" rel="next">&nbsp;拍子 &gt; </a>]</td></tr></table>
+<a name="displaying-rhythms"></a>
+<h3 class="subsection">1.2.3 リズムを表示する</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#time-signature" accesskey="1">拍子</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#metronome-marks" accesskey="2">メトロノーム記号</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#upbeats" accesskey="3">上拍</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#unmetered-music" accesskey="4">無韻律の音楽</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#polymetric-notation" accesskey="5">多拍子記譜法</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#automatic-note-splitting" accesskey="6">自動音符分割</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#showing-melody-rhythms" accesskey="7">旋律のリズムを示す</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_62cd_5b50"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#displaying-rhythms" title="前のセクション" accesskey="p" rel="previous"> &lt; リズムを表示する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#metronome-marks" title="次のセクション" accesskey="n" rel="next">&nbsp;メトロノーム記号 &gt; </a>]</td></tr></table>
+<a name="time-signature"></a>
+<h4 class="unnumberedsubsubsec">拍子</h4>
+
+<a name="index-time-signature-_0028_62cd_5b50_0029"></a>
+<a name="index-meter-_0028_62cd_0029"></a>
+
+<a name="index-_005ctime"></a>
+<a name="index-_005ctime-1"></a>
+<a name="index-time"></a>
+<a name="index-time-1"></a>
+
+<p>拍子は以下のようにセットします:
+</p>
+<blockquote><pre class="verbatim">\time 2/4 c''2
+\time 3/4 c''2.
+</pre><p>
+ <a href="../ab/lily-b1f341f5.ly">
+  <img align="middle"
+       border="0"
+       src="../ab/lily-b1f341f5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-time-signature_002c-visibility-of-_0028_62cd_5b50_306e_53ef_8996_6027_0029"></a>
+
+<p>拍子は楽曲の始まりと拍子が変更されたときに譜刻されます。行の終わりで変更が起こる場合、警告の拍子が行の終わりに譜刻されます。デフォルトの振る舞いを変更することができます。<a href="visibility-of-objects.ja.html">オブジェクトの可視性</a> を参照してください。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 2/4
+  c2 c
+  \break
+  c c
+  \break
+  \time 4/4
+  c c c c
+}
+</pre><p>
+ <a href="../66/lily-9a070c70.ly">
+  <img align="middle"
+       border="0"
+       src="../66/lily-9a070c70.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-time-signature-style-_0028_62cd_5b50_30b9_30bf_30a4_30eb_0029"></a>
+<a name="index-meter-style-_0028_62cd_30b9_30bf_30a4_30eb_0029"></a>
+
+<a name="index-_005cnumericTimeSignature"></a>
+<a name="index-_005cnumericTimeSignature-1"></a>
+<a name="index-numericTimeSignature"></a>
+<a name="index-numericTimeSignature-1"></a>
+<a name="index-_005cdefaultTimeSignature"></a>
+<a name="index-_005cdefaultTimeSignature-1"></a>
+<a name="index-defaultTimeSignature"></a>
+<a name="index-defaultTimeSignature-1"></a>
+
+<p>2/2 や 4/4 で使用される拍子は数字を使用するスタイルに変更することができます:
+</p>
+<blockquote><pre class="verbatim">% デフォルトのスタイル
+\time 4/4 c1
+\time 2/2 c1
+% 数字を使うスタイルに変更します
+\numericTimeSignature
+\time 4/4 c1
+\time 2/2 c1
+% デフォルトのスタイルに戻します
+\defaultTimeSignature
+\time 4/4 c1
+\time 2/2 c1
+</pre><p>
+ <a href="../8a/lily-5a5b5d77.ly">
+  <img align="middle"
+       border="0"
+       src="../8a/lily-5a5b5d77.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p>定量拍子については <a href="typesetting-mensural-music.ja.html#mensural-time-signatures">Mensural time signatures</a> でカバーされています。
+</p>
+<a name="index-time-signature-default-settings-_0028_62cd_5b50_306e_30c7_30d5_30a9_30eb_30c8_8a2d_5b9a_0029"></a>
+<a name="index-autobeaming-properties-for-time-signatures-_0028_62cd_5b50_306e_305f_3081_306e_81ea_52d5_9023_6841_30d7_30ed_30d1_30c6_30a3_0029"></a>
+<a name="index-beaming_002c-time-signature-default-properties-_0028_9023_6841_3068_62cd_5b50_306e_30c7_30d5_30a9_30eb_30c8-_30d7_30ed_30d1_30c6_30a3_0029"></a>
+<a name="index-_005coverrideTimeSignatureSettings"></a>
+<a name="index-_005coverrideTimeSignatureSettings-1"></a>
+
+
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-6"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\numericTimeSignature</code>,
+<code>\defaultTimeSignature</code>
+</p>
+<p>譜刻される拍子を設定することに加えて、<code>\time</code> コマンドは拍子に基づくプロパティ
+<code>baseMoment</code>, <code>beatStructure</code>, それに <code>beamExceptions</code>
+のデフォルト値も設定します。これらのプロパティにあらかじめ定義されているデフォルト値は
+&lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo; で見つかります。既存のデフォルト値を変更したり、新しいデフォルト値を変更したりすることができます:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative c' {
+      \overrideTimeSignatureSettings
+        4/4        % timeSignatureFraction
+        1/4        % baseMomentFraction
+        #'(3 1)    % beatStructure
+        #'()       % beamExceptions
+      \time 4/4
+      \repeat unfold 8 { c8 } |
+    }
+  }
+}
+</pre><p>
+ <a href="../28/lily-079d8fef.ly">
+  <img align="middle"
+       border="0"
+       src="../28/lily-079d8fef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\overrideTimeSignatureSettings</code> は 4 つの引数をとります:
+</p>
+<ol>
+<li>
+<code><var>timeSignatureFraction</var></code>, 拍子を示す分数。
+
+</li><li>
+<code><var>baseMomentFraction</var></code>, 拍子の基本タイミングの単位となる分子と分母を保持する分数。
+
+</li><li>
+<code><var>beatStructure</var></code>, 小節の拍構造を示す Scheme リスト。基本タイミングを単位とします。
+
+</li><li>
+<code><var>beamExceptions</var></code>, 指定された拍子でそれぞれの拍で終了しない連桁の規則を保持する配列リスト。<a href="beams.ja.html#setting-automatic-beam-behavior">自動連桁の振る舞いを設定する</a> に説明があります。
+</li></ol>
+
+<p><code>\overrideTimeSignatureSettings</code> を保持するコンテキストは、その <code>\overrideTimeSignatureSettings</code> 呼び出しが実行される前にインスタンス化されている必要があります。このことは、そのようなコンテキストは明示的にインスタンス化するか、そのコンテキスト内で <code>\overrideTimeSignatureSettings</code> の前に音楽を置いておく必要があるということを意味します:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \relative c' {
+    % コンテキストがまだインスタンス化されていないため、この呼び出しは失敗します
+    \overrideTimeSignatureSettings
+      4/4        % timeSignatureFraction
+      1/4        % baseMomentFraction
+      #'(3 1)    % beatStructure
+      #'()       % beamExceptions
+    \time 4/4
+    c8^\markup {&quot;Beamed (2 2)&quot;}
+    \repeat unfold 7 { c8 } |
+    % この呼び出しは成功します
+    \overrideTimeSignatureSettings
+      4/4        % timeSignatureFraction
+      1/4        % baseMomentFraction
+      #'(3 1)    % beatStructure
+      #'()       % beamExceptions
+    \time 4/4
+    c8^\markup {&quot;Beamed (3 1)&quot;}
+    \repeat unfold 7 { c8 } |
+  }
+}
+</pre><p>
+ <a href="../bb/lily-7670fb48.ly">
+  <img align="middle"
+       border="0"
+       src="../bb/lily-7670fb48.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-time-signature-properties_002c-restoring-default-values-_0028_62cd_5b50_30d7_30ed_30d1_30c6_30a3_3092_30c7_30d5_30a9_30eb_30c8_5024_306b_623b_3059_0029"></a>
+<a name="index-restoring-default-properties-for-time-signatures-_0028_62cd_5b50_3092_30c7_30d5_30a9_30eb_30c8-_30d7_30ed_30d1_30c6_30a3_306b_623b_3059_0029"></a>
+<a name="index-_005crevertTimeSignatureSettings"></a>
+<a name="index-_005crevertTimeSignatureSettings-1"></a>
+
+<p>デフォルトの拍子プロパティ値の変更を元の値に戻すことができます:
+</p>
+<blockquote><pre class="verbatim">\score{
+  \relative {
+    \repeat unfold 8 { c'8 } |
+    \overrideTimeSignatureSettings
+      4/4        % timeSignatureFraction
+      1/4        % baseMomentFraction
+      #'(3 1)    % beatStructure
+      #'()       % beamExceptions
+    \time 4/4
+    \repeat unfold 8 { c8 } |
+    \revertTimeSignatureSettings 4/4
+    \time 4/4
+    \repeat unfold 8 { c8 } |
+  }
+}
+</pre><p>
+ <a href="../74/lily-1761e8b9.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-1761e8b9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>Timing_translator</code> と <code>Default_bar_line_engraver</code> を<code>Score</code> コンテキストから <code>Staff</code> コンテキストに移動させることにより、異なる譜に対して異なる値のデフォルト拍子プロパティを割り当てることができます。
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new StaffGroup &lt;&lt;
+     \new Staff {
+        \overrideTimeSignatureSettings
+          4/4        % timeSignatureFraction
+          1/4        % baseMomentFraction
+          #'(3 1)    % beatStructure
+          #'()       % beamExceptions
+        \time 4/4
+        \repeat unfold 8 {c''8}
+     }
+     \new Staff {
+        \overrideTimeSignatureSettings
+          4/4        % timeSignatureFraction
+          1/4        % baseMomentFraction
+          #'(1 3)    % beatStructure
+          #'()       % beamExceptions
+        \time 4/4
+        \repeat unfold 8 {c''8}
+     }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      \remove &quot;Timing_translator&quot;
+      \remove &quot;Default_bar_line_engraver&quot;
+    }
+    \context {
+      \Staff
+      \consists &quot;Timing_translator&quot;
+      \consists &quot;Default_bar_line_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../7b/lily-58674bca.ly">
+  <img align="middle"
+       border="0"
+       src="../7b/lily-58674bca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-3"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\numericTimeSignature</code>,
+<code>\defaultTimeSignature</code>
+</p>
+
+<a name="Selected-Snippets-60"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+<p><em> Time signature printing only the numerator as a number (instead of the fraction)</em>
+</p>
+
+<p>Sometimes, a time signature should not print the whole fraction (e.g.
+7/4), but only the numerator (7 in this case). This can be easily done
+by using <code>\override Staff.TimeSignature.style = #'single-digit</code>
+to change the style permanently. By using <code>\revert
+Staff.TimeSignature.style</code>, this setting can be reversed. To apply the
+single-digit style to only one time signature, use the
+<code>\override</code> command and prefix it with a <code>\once</code>.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 3/4
+  c4 c c
+  % Change the style permanently
+  \override Staff.TimeSignature.style = #'single-digit
+  \time 2/4
+  c4 c
+  \time 3/4
+  c4 c c
+  % Revert to default style:
+  \revert Staff.TimeSignature.style
+  \time 2/4
+  c4 c
+  % single-digit style only for the next time signature
+  \once \override Staff.TimeSignature.style = #'single-digit
+  \time 5/4
+  c4 c c c c
+  \time 2/4
+  c4 c
+}
+</pre><p>
+ <a href="../8d/lily-3e9374f8.ly">
+  <img align="middle"
+       border="0"
+       src="../8d/lily-3e9374f8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-59"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-time-signature"></a>
+<a href="../music-glossary/time-signature.ja.html">time signature</a>
+</p>
+<p>記譜法リファレンス:
+<a href="typesetting-mensural-music.ja.html#mensural-time-signatures">Mensural time signatures</a>,
+<a href="special-rhythmic-concerns.ja.html#time-administration">時間管理</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-TimeSignature"></a>
+<a href="../internals/timesignature.ja.html">TimeSignature</a>,
+<a name="index-Timing_005ftranslator"></a>
+<a href="../internals/timing_005ftranslator.ja.html">Timing_translator</a>
+</p>
+
+<hr size="6">
+<a name="g_t_30e1_30c8_30ed_30ce_30fc_30e0_8a18_53f7"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#time-signature" title="前のセクション" accesskey="p" rel="previous"> &lt; 拍子&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#upbeats" title="次のセクション" accesskey="n" rel="next">&nbsp;上拍 &gt; </a>]</td></tr></table>
+<a name="metronome-marks"></a>
+<h4 class="unnumberedsubsubsec">メトロノーム記号</h4>
+
+<a name="index-tempo-_0028_30c6_30f3_30dd_0029"></a>
+<a name="index-beats-per-minute-_00281-_5206_6bce_306e_62cd_6570_0029"></a>
+<a name="index-metronome-mark-_0028_30e1_30c8_30ed_30ce_30fc_30e0_8a18_53f7_0029"></a>
+<a name="index-metronome-marking-with-text-_0028_30c6_30ad_30b9_30c8_3092_6301_3064_30e1_30c8_30ed_30ce_30fc_30e0_8a18_53f7_0029"></a>
+
+<a name="index-_005ctempo"></a>
+<a name="index-_005ctempo-1"></a>
+<a name="index-tempo"></a>
+<a name="index-tempo-1"></a>
+
+<p>基本的なメトロノーム記号は単純に以下のように記述します:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo 4 = 120
+  c'2 d
+  e4. d8 c2
+}
+</pre><p>
+ <a href="../39/lily-94f5ff20.ly">
+  <img align="middle"
+       border="0"
+       src="../39/lily-94f5ff20.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>メトロノーム記号を 2 つの数の範囲として譜刻することもできます:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo 4 = 40 - 46
+  c'4. e8 a4 g
+  b,2 d4 r
+}
+</pre><p>
+ <a href="../ee/lily-ccc67549.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-ccc67549.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>テキストを持つテンポ指示にすこともできます:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo &quot;Allegretto&quot;
+    c''4 e d c
+    b4. a16 b c4 r4
+}
+</pre><p>
+ <a href="../01/lily-fd6ec5e8.ly">
+  <img align="middle"
+       border="0"
+       src="../01/lily-fd6ec5e8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>メトロノーム記号とテキストを組み合わせると、メトロノーム記号は自動的に括弧で囲まれます:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo &quot;Allegro&quot; 4 = 160
+  g'4 c d e
+  d4 b g2
+}
+</pre><p>
+ <a href="../0e/lily-0b3afb0a.ly">
+  <img align="middle"
+       border="0"
+       src="../0e/lily-0b3afb0a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>一般に、テキストを任意のマークアップ オブジェクトにすることができます:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo \markup { \italic Faster } 4 = 132
+  a'8-. r8 b-. r gis-. r a-. r
+}
+</pre><p>
+ <a href="../8b/lily-b29bff01.ly">
+  <img align="middle"
+       border="0"
+       src="../8b/lily-b29bff01.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>テキストを伴わないメトロノーム記号を括弧で囲むには、空の文字列を含めて記述します:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo &quot;&quot; 8 = 96
+  d''4 g e c
+}
+</pre><p>
+ <a href="../48/lily-b9aa1a53.ly">
+  <img align="middle"
+       border="0"
+       src="../48/lily-b9aa1a53.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Selected-Snippets-53"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+
+<p><em> Printing metronome and rehearsal marks below the staff</em>
+</p>
+
+<p>By default, metronome and rehearsal marks are printed above the staff.
+To place them below the staff simply set the <code>direction</code> property
+of <code>MetronomeMark</code> or <code>RehearsalMark</code> appropriately.
+</p>
+
+<blockquote><pre class="verbatim">\layout {
+  indent = 0
+  ragged-right = ##f
+}
+
+{
+  % Metronome marks below the staff
+  \override Score.MetronomeMark.direction = #DOWN
+  \tempo 8. = 120
+  c''1
+
+  % Rehearsal marks below the staff
+  \override Score.RehearsalMark.direction = #DOWN
+  \mark \default
+  c''1
+}
+</pre><p>
+ <a href="../8a/lily-8e3d050c.ly">
+  <img align="middle"
+       border="0"
+       src="../8a/lily-8e3d050c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+
+<p><em> Changing the tempo without a metronome mark</em>
+</p>
+
+<p>To change the tempo in MIDI output without printing anything, make the
+metronome mark invisible.
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  \new Staff \relative c' {
+    \tempo 4 = 160
+    c4 e g b
+    c4 b d c
+    \set Score.tempoHideNote = ##t
+    \tempo 4 = 96
+    d,4 fis a cis
+    d4 cis e d
+  }
+  \layout { }
+  \midi { }
+}
+</pre><p>
+ <a href="../ee/lily-e002ecec.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-e002ecec.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Creating metronome marks in markup mode</em>
+</p>
+
+<p>New metronome marks can be created in markup mode, but they will not
+change the tempo in MIDI output.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \tempo \markup {
+    \concat {
+      (
+      \smaller \general-align #Y #DOWN \note #&quot;16.&quot; #1
+      &quot; = &quot;
+      \smaller \general-align #Y #DOWN \note #&quot;8&quot; #1
+      )
+    }
+  }
+  c1
+  c4 c' c,2
+}
+</pre><p>
+ <a href="../57/lily-c1791043.ly">
+  <img align="middle"
+       border="0"
+       src="../57/lily-c1791043.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>詳細は <a href="formatting-text.ja.html">テキストをフォーマットする</a> を参照してください。
+</p>
+<a name="g_t_53c2_7167-250"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-metronome"></a>
+<a href="../music-glossary/metronome.ja.html">metronome</a>,
+<a name="index-metronomic-indication"></a>
+<a href="../music-glossary/metronomic-indication.ja.html">metronomic indication</a>,
+<a name="index-tempo-indication"></a>
+<a href="../music-glossary/tempo-indication.ja.html">tempo indication</a>,
+<a name="index-metronome-mark"></a>
+<a href="../music-glossary/metronome-mark.ja.html">metronome mark</a>
+</p>
+<p>記譜法リファレンス:
+<a href="formatting-text.ja.html">テキストをフォーマットする</a>,
+<a href="midi-output.ja.html">MIDI 出力</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_8b5c_306e_8a18_8b5c_6cd5.ja.html#g_t_8b5c_306e_8a18_8b5c_6cd5">Staff notation</a>
+</p>
+<p>内部リファレンス:
+<a name="index-MetronomeMark"></a>
+<a href="../internals/metronomemark.ja.html">MetronomeMark</a>
+</p>
+
+<hr size="6">
+<a name="g_t_4e0a_62cd"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#metronome-marks" title="前のセクション" accesskey="p" rel="previous"> &lt; メトロノーム記号&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#unmetered-music" title="次のセクション" accesskey="n" rel="next">&nbsp;無韻律の音楽 &gt; </a>]</td></tr></table>
+<a name="upbeats"></a>
+<h4 class="unnumberedsubsubsec">上拍</h4>
+
+<a name="index-anacrusis-_0028_5f31_62cd_0029"></a>
+<a name="index-upbeat-_0028_4e0a_62cd_0029"></a>
+<a name="index-partial-measure-_0028_90e8_5206_5c0f_7bc0_0029"></a>
+<a name="index-measure_002c-partial-_0028_90e8_5206_5c0f_7bc0_0029"></a>
+<a name="index-measure_002c-pickup-_0028_30d4_30c3_30af_30a2_30c3_30d7_5c0f_7bc0_0029"></a>
+<a name="index-pickup-measure-_0028_30d4_30c3_30af_30a2_30c3_30d7_5c0f_7bc0_0029"></a>
+
+<a name="index-measurePosition"></a>
+<a name="index-measurePosition-1"></a>
+<a name="index-_005cpartial"></a>
+<a name="index-_005cpartial-1"></a>
+<a name="index-partial"></a>
+<a name="index-partial-1"></a>
+
+<p><em>弱拍</em> や <em>上拍</em> などのような部分小節またはピックアップ小節は、<code>\partial</code> コマンドを使って入力します:</p>
+<blockquote><pre class="example">\partial <var>duration</var>
+</pre></blockquote>
+
+<p><code>duration</code> は、最初の完全な長さを持つ小節の前に置かれる小節の長さです:
+</p>
+<blockquote><pre class="verbatim">\time 3/4
+\partial 8
+e8 | a4 c8 b c4 |
+</pre><p>
+ <a href="../1f/lily-332eb01d.ly">
+  <img align="middle"
+       border="0"
+       src="../1f/lily-332eb01d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><var>duration</var> は、完全な長さを持つ小節より短い演奏時間であれば、任意の値を取ることができます:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 3/4
+  \partial 4.
+  r4 e'8 | a4 c8 b c4 |
+}
+</pre><p>
+ <a href="../4f/lily-5ce015ac.ly">
+  <img align="middle"
+       border="0"
+       src="../4f/lily-5ce015ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\partial <var>duration</var></code> を以下のように記述することもできます:
+</p>
+<blockquote><pre class="example">\set Timing.measurePosition -<var>duration</var>
+</pre></blockquote>
+
+<p>この場合、<code>\partial 8</code> は以下のようになります:
+</p>
+<blockquote><pre class="verbatim">\time 3/4
+\set Timing.measurePosition = #(ly:make-moment -1/8)
+e8 | a4 c8 b c4 |
+</pre><p>
+ <a href="../af/lily-6c66c555.ly">
+  <img align="middle"
+       border="0"
+       src="../af/lily-6c66c555.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>プロパティ <code>measurePosition</code> は、ある時点でその小節はどれくらい演奏済みになっているかを示す有理数を保持します。このプロパティは <code>\partial</code> によって負の数にセットされるということに注意してください:
+すなわち、<code>\partial 4</code> は内部的に <code>-4</code> に翻訳され、&ldquo;その小節には 4 分音符が残っている&rdquo; という意味になります。
+</p>
+<a name="g_t_53c2_7167-158"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-anacrusis"></a>
+<a href="../music-glossary/anacrusis.ja.html">anacrusis</a>
+</p>
+<p>記譜法リファレンス:
+<a href="special-rhythmic-concerns.ja.html#grace-notes">装飾小音符</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-Timing_005ftranslator-1"></a>
+<a href="../internals/timing_005ftranslator.ja.html">Timing_translator</a>
+</p>
+
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-60"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p><code>\partial</code> コマンドは楽曲の開始時でのみ使用すべきです。楽曲の途中でこのコマンドを使用した場合、警告や問題が発生する可能性があります。曲の途中では <code>\partial</code> の代わりに
+<code>\set Timing.measurePosition</code> を使用してください。
+</p>
+<blockquote><pre class="verbatim">\time 6/8
+\partial 8
+e8 | a4 c8 b[ c b] |
+\set Timing.measurePosition = #(ly:make-moment -1/4)
+r8 e,8 | a4 c8 b[ c b] |
+</pre><p>
+ <a href="../74/lily-94dcf58a.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-94dcf58a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="g_t_7121_97fb_5f8b_306e_97f3_697d"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#upbeats" title="前のセクション" accesskey="p" rel="previous"> &lt; 上拍&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#polymetric-notation" title="次のセクション" accesskey="n" rel="next">&nbsp;多拍子記譜法 &gt; </a>]</td></tr></table>
+<a name="unmetered-music"></a>
+<h4 class="unnumberedsubsubsec">無韻律の音楽</h4>
+
+<a name="index-cadenza-_0028_30ab_30c7_30f3_30c4_30a1_0029"></a>
+<a name="index-cadenza_002c-beams-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_9023_6841_0029"></a>
+<a name="index-cadenza_002c-accidentals-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_81e8_6642_8a18_53f7_0029"></a>
+<a name="index-cadenza_002c-bar-lines-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-cadenza_002c-bar-numbers-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_0029"></a>
+<a name="index-unmetered-music_002c-beams-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_9023_6841_0029"></a>
+<a name="index-unmetered-music_002c-accidentals-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_81e8_6642_8a18_53f7_0029"></a>
+<a name="index-unmetered-music_002c-bar-lines-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-unmetered-music_002c-bar-numbers-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-accidentals_002c-cadenzas-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_81e8_6642_8a18_53f7_0029"></a>
+<a name="index-accidentals_002c-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_81e8_6642_8a18_53f7_0029"></a>
+<a name="index-bar-lines_002c-cadenzas-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-bar-lines_002c-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-bar-numbers_002c-cadenzas-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-bar-numbers_002c-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-beams_002c-cadenzas-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_9023_6841_0029"></a>
+<a name="index-beams_002c-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_9023_6841_0029"></a>
+
+<a name="index-_005ccadenzaOn"></a>
+<a name="index-_005ccadenzaOn-1"></a>
+<a name="index-cadenzaOn"></a>
+<a name="index-cadenzaOn-1"></a>
+<a name="index-_005ccadenzaOff"></a>
+<a name="index-_005ccadenzaOff-1"></a>
+<a name="index-cadenzaOff"></a>
+<a name="index-cadenzaOff-1"></a>
+
+<p>韻律のある音楽では、自動的に小節線が挿入され、小節番号が算出されます。無韻律の音楽 (例えばカデンツァ) では、これは望ましくなく、コマンド
+<code>\cadenzaOn</code> を用いて &lsquo;スイッチ off&rsquo; することができます。&lsquo;スイッチ on&rsquo; に戻すには、適切な場所で <code>\cadenzaOff</code> を用います。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4 d e d
+  \cadenzaOn
+  c4 c d8[ d d] f4 g4.
+  \cadenzaOff
+  \bar &quot;|&quot;
+  d4 e d c
+}
+</pre><p>
+ <a href="../16/lily-47f774eb.ly">
+  <img align="middle"
+       border="0"
+       src="../16/lily-47f774eb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>カデンツァが終わると、小節番号が再開されます。
+</p>
+<blockquote><pre class="verbatim">% すべての小節番号を表示します
+\override Score.BarNumber.break-visibility = #all-visible
+c4 d e d
+\cadenzaOn
+c4 c d8[ d d] f4 g4.
+\cadenzaOff
+\bar &quot;|&quot;
+d4 e d c
+</pre><p>
+ <a href="../33/lily-39624e7a.ly">
+  <img align="middle"
+       border="0"
+       src="../33/lily-39624e7a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>カデンツァの中に <code>\bar</code> コマンドを挿入したとしても、新しい小節が始まることはありません。そのため、注意喚起のための臨時記号は手動で挿入する必要があります。<a href="writing-pitches.ja.html#accidentals">臨時記号</a> を参照してください。
+</p>
+<p>自動連桁は <code>\cadenzaOn</code> で off になり、<code>\cadenzaOff</code> で on になります。このため、カデンツァ内の連桁はすべて手動で入力する必要があります
+(<a href="beams.ja.html#manual-beams">手動連桁</a>)。
+</p>
+<blockquote><pre class="verbatim">c4 d e d
+\cadenzaOn
+cis4 d cis d
+\bar &quot;|&quot;
+cis4 d cis! d
+\cadenzaOff
+\bar &quot;|&quot;
+</pre><p>
+ <a href="../d6/lily-8a9db55d.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-8a9db55d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>自動連桁は <code>\cadenzaOn</code> によって off になります。そのため、カデンツァの中に連桁を挿入するには手動で行う必要があります。<a href="beams.ja.html#manual-beams">手動連桁</a> を参照してください。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \repeat unfold 8 { c''8 }
+  \cadenzaOn
+  cis8 c c c c
+  \bar&quot;|&quot;
+  c8 c c
+  \cadenzaOff
+  \repeat unfold 8 { c8 }
+}
+</pre><p>
+ <a href="../fb/lily-c46ff666.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-c46ff666.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>+These predefined commands affect all staves in the score, even when
++placed in just one <code>Voice</code> context.  To change this, move the
++<code>Timing_translator</code> from the <code>Score</code> context to the
++<code>Staff</code> context.  See <a href="#polymetric-notation">多拍子記譜法</a>.
+これらの定義済みコマンドは、たとえ <code>Voice</code> コンテキストの 1 つの中に配置したとしても、楽譜の中にあるすべての譜に影響を与えます。これを変更するには、<code>Timing_translator</code> を <code>Score</code> コンテキストから <code>Staff</code> コンテキストに移動させます。<a href="#polymetric-notation">多拍子記譜法</a> を参照してください。
+</p>
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-17"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\cadenzaOn</code>,
+<code>\cadenzaOff</code>
+</p>
+<a name="g_t_53c2_7167-253"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-cadenza"></a>
+<a href="../music-glossary/cadenza.ja.html">cadenza</a>
+</p>
+<p>記譜法リファレンス:
+<a href="visibility-of-objects.ja.html">オブジェクトの可視性</a>,
+<a href="#polymetric-notation">多拍子記譜法</a>,
+<a href="beams.ja.html#manual-beams">手動連桁</a>,
+<a href="writing-pitches.ja.html#accidentals">臨時記号</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<a name="index-cadenza_002c-line-breaks-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_6539_884c_0029"></a>
+<a name="index-cadenza_002c-page-breaks-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_6539_30da_30fc_30b8_0029"></a>
+<a name="index-unmetered-music_002c-line-breaks-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_6539_884c_0029"></a>
+<a name="index-unmetered-music_002c-page-breaks-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_6539_30da_30fc_30b8_0029"></a>
+<a name="index-breaks-in-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_6539_884c_3001_6539_30da_30fc_30b8_0029"></a>
+<a name="index-line-breaks_002c-cadenzas-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_6539_884c_0029"></a>
+<a name="index-page-breaks_002c-cadenzas-_0028_30ab_30c7_30f3_30c4_30a1_3067_306e_6539_30da_30fc_30b8_0029"></a>
+<a name="index-line-breaks_002c-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_6539_884c_0029"></a>
+<a name="index-page-breaks_002c-unmetered-music-_0028_7121_97fb_5f8b_306e_97f3_697d_3067_306e_6539_30da_30fc_30b8_0029"></a>
+
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-2"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>自動の改行と改ページが挿入されるのは小節線のある場所だけです。そのため、長い無韻律の音楽で改行や改ページを行うには手動で &lsquo;不可視の&rsquo;
+小節線を挿入する必要があります:
+</p>
+<blockquote><pre class="example">\bar &quot;&quot;
+</pre></blockquote>
+
+<p><code>\cadenzaOn</code> で楽曲を始める場合、<code>Voice</code> コンテキストを明示的に作成すべきです。さもないと、予期しないエラーが発生する可能性があります。
+</p>
+<blockquote><pre class="example">\new Voice {
+  \relative c' {
+    \cadenzaOn
+    c16[^&quot;Solo Free Time&quot; d e f] g2.
+    \bar &quot;||&quot;
+    \cadenzaOff
+  }
+}
+</pre></blockquote>
+
+
+<hr size="6">
+<a name="g_t_591a_62cd_5b50_8a18_8b5c_6cd5"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#unmetered-music" title="前のセクション" accesskey="p" rel="previous"> &lt; 無韻律の音楽&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-note-splitting" title="次のセクション" accesskey="n" rel="next">&nbsp;自動音符分割 &gt; </a>]</td></tr></table>
+<a name="polymetric-notation"></a>
+<h4 class="unnumberedsubsubsec">多拍子記譜法</h4>
+
+
+<a name="index-double-time-signatures-_00282-_91cd_62cd_5b50_0029"></a>
+<a name="index-signatures_002c-polymetric-_0028_591a_62cd_5b50_0029"></a>
+<a name="index-time-signatures_002c-polymetric-_0028_591a_62cd_5b50_0029"></a>
+<a name="index-time-signatures_002c-double-_00282-_91cd_62cd_5b50_0029"></a>
+<a name="index-polymetric-signatures-_0028_591a_62cd_5b50_0029"></a>
+<a name="index-meter_002c-polymetric-_0028_591a_62cd_5b50_0029"></a>
+
+<a name="index-timeSignatureFraction"></a>
+<a name="index-timeSignatureFraction-1"></a>
+<a name="index-_005cscaleDurations-2"></a>
+<a name="index-_005cscaleDurations-3"></a>
+<a name="index-scaleDurations-2"></a>
+<a name="index-scaleDurations-3"></a>
+<a name="index-_005ctimes-2"></a>
+<a name="index-_005ctimes-3"></a>
+<a name="index-times-2"></a>
+<a name="index-times-3"></a>
+
+<p>多拍子記譜法がサポートされます。
+複合拍子記譜法がサポートされます。明示的な複合拍子と、拍子指定を変更して音符の演奏時間を伸縮することによる複合拍子のどちらもです。
+</p>
+
+<a name="g_t_305d_308c_305e_308c_306e_8b5c_306f_7570_306a_308b_62cd_5b50_3092_6301_3061_3001_5c0f_7bc0_306e_9577_3055_306f_7b49_4fa1_3067_3042_308b_5834_5408"></a>
+<h4 class="subsubheading">それぞれの譜は異なる拍子を持ち、小節の長さは等価である場合</h4>
+
+<p>各譜共通の拍子記号をセットして、<code>timeSignatureFraction</code> にお望みの分数をセットします。それから、<code>\scaleDurations</code> 関数を用いて共通の拍子記号に対する
+各譜の音符の演奏時間を伸縮させます。
+</p>
+<a name="index-beams_002c-with-polymetric-meters-_0028_591a_62cd_5b50_3067_306e_9023_6841_0029"></a>
+<a name="index-polymetric-meters_002c-with-beams-_0028_591a_62cd_5b50_3067_306e_9023_6841_0029"></a>
+
+<p>以下の例では、拍子記号 3/4, 9/8, それに 10/8 の音楽が並列しています。2 番目の譜では示された演奏時間に 2/3 が掛けられ
+(なぜなら、2/3 * 9/8 = 3/4 だからです)、3 番目の譜では示された演奏時間に 3/5 が掛けられます
+(なぜなら、3/5 * 10/8 = 3/4 だからです)。演奏時間の伸縮は自動連桁の規則に影響を与えるため、手動で連桁を付ける必要があるかもしれません。
+</p>
+<blockquote><pre class="verbatim">\relative &lt;&lt;
+  \new Staff {
+    \time 3/4
+    c'4 c c |
+    c4 c c |
+  }
+  \new Staff {
+    \time 3/4
+    \set Staff.timeSignatureFraction = 9/8
+    \scaleDurations 2/3
+      \repeat unfold 6 { c8[ c c] }
+  }
+  \new Staff {
+    \time 3/4
+    \set Staff.timeSignatureFraction = 10/8
+    \scaleDurations 3/5 {
+      \repeat unfold 2 { c8[ c c] }
+      \repeat unfold 2 { c8[ c] } |
+      c4. c \tuplet 3/2 { c8[ c c] } c4
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../36/lily-edfa20c1.ly">
+  <img align="middle"
+       border="0"
+       src="../36/lily-edfa20c1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="g_t_305d_308c_305e_308c_306e_8b5c_306f_7570_306a_308b_62cd_5b50_3092_6301_3061_3001_5c0f_7bc0_306e_9577_3055_306f_7b49_4fa1_3067_306f_306a_3044_5834_5408"></a>
+<h4 class="subsubheading">それぞれの譜は異なる拍子を持ち、小節の長さは等価ではない場合</h4>
+
+<p><code>Timing_translator</code> と <code>Default_bar_line_engraver</code> を
+<code>Staff</code> コンテキストに移すことによって、それぞれの譜に独立した拍子を与えることができます。
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Score
+    \remove &quot;Timing_translator&quot;
+    \remove &quot;Default_bar_line_engraver&quot;
+  }
+  \context {
+    \Staff
+    \consists &quot;Timing_translator&quot;
+    \consists &quot;Default_bar_line_engraver&quot;
+  }
+}
+
+% 以上で、各譜はそれぞれに拍子を持つようになります
+
+\relative &lt;&lt;
+  \new Staff {
+    \time 3/4
+    c'4 c c |
+    c4 c c |
+  }
+  \new Staff {
+    \time 2/4
+    c4 c |
+    c4 c |
+    c4 c |
+  }
+  \new Staff {
+    \time 3/8
+    c4. |
+    c8 c c |
+    c4. |
+    c8 c c |
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../54/lily-e8be535f.ly">
+  <img align="middle"
+       border="0"
+       src="../54/lily-e8be535f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005ccompoundMeter"></a>
+<a name="index-_005ccompoundMeter-1"></a>
+<a name="index-compound-time-signatures-_0028_8907_5408_62cd_5b50_8a18_53f7_0029"></a>
+<a name="index-time-signature_002c-compound"></a>
+
+<a name="g_t_8907_5408_62cd_5b50_8a18_53f7"></a>
+<h4 class="subsubheading">複合拍子記号</h4>
+
+<p>複合拍子記号は <code>\compoundMeter</code> を用いて作成します。構文は以下の通りです:
+</p>
+<blockquote><pre class="example">\compoundMeter #'<code>(list of lists)</code>
+</pre></blockquote>
+
+<p>最も簡単な構成は単一のリストであり、リストの <em>最後の</em> 数字が拍子記号の分母になります。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \compoundMeter #'((2 2 2 8))
+  \repeat unfold 6 c'8 \repeat unfold 12 c16
+}
+</pre><p>
+ <a href="../df/lily-d5ab0ead.ly">
+  <img align="middle"
+       border="0"
+       src="../df/lily-d5ab0ead.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>リストを追加することでより複雑な拍子を構築することができます。また、この関数で指定された値に基づいて自動連桁の設定は調節されます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \compoundMeter #'((1 4) (3 8))
+  \repeat unfold 5 c'8 \repeat unfold 10 c16
+}
+
+\relative {
+  \compoundMeter #'((1 2 3 8) (3 4))
+  \repeat unfold 12 c'8
+}
+</pre><p>
+ <a href="../5a/lily-df3af9da.ly">
+  <img align="middle"
+       border="0"
+       src="../5a/lily-df3af9da.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-257"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-polymetric-1"></a>
+<a href="../music-glossary/polymetric.ja.html">polymetric</a>,
+<a name="index-polymetric-time-signature"></a>
+<a href="../music-glossary/polymetric-time-signature.ja.html">polymetric time signature</a>,
+<a name="index-meter"></a>
+<a href="../music-glossary/meter.ja.html">meter</a>
+</p>
+<p>記譜法リファレンス:
+<a href="beams.ja.html#automatic-beams">自動連桁</a>,
+<a href="beams.ja.html#manual-beams">手動連桁</a>,
+<a href="#time-signature">拍子</a>,
+<a href="writing-rhythms.ja.html#scaling-durations">演奏時間を変更する</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-TimeSignature-1"></a>
+<a href="../internals/timesignature.ja.html">TimeSignature</a>,
+<a name="index-Timing_005ftranslator-2"></a>
+<a href="../internals/timing_005ftranslator.ja.html">Timing_translator</a>,
+<a name="index-Default_005fbar_005fline_005fengraver"></a>
+<a href="../internals/default_005fbar_005fline_005fengraver.ja.html">Default_bar_line_engraver</a>,
+<a name="index-Staff-2"></a>
+<a href="../internals/staff.ja.html">Staff</a>
+</p>
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-6"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>異なる拍子を持つ譜が並列に並べられている場合、同時に起こる音符の水平方向の位置は同じになります。しかしながら、それぞれの譜の小節線により、音符の間隔は通常の異なる拍子が無い場合よりも不規則になります。
+</p>
+
+<hr size="6">
+<a name="g_t_81ea_52d5_97f3_7b26_5206_5272"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#polymetric-notation" title="前のセクション" accesskey="p" rel="previous"> &lt; 多拍子記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#showing-melody-rhythms" title="次のセクション" accesskey="n" rel="next">&nbsp;旋律のリズムを示す &gt; </a>]</td></tr></table>
+<a name="automatic-note-splitting"></a>
+<h4 class="unnumberedsubsubsec">自動音符分割</h4>
+
+<a name="index-notes_002c-splitting-_0028_97f3_7b26_3092_5206_5272_3059_308b_0029"></a>
+<a name="index-splitting-notes-_0028_97f3_7b26_3092_5206_5272_3059_308b_0029"></a>
+<a name="index-rests_002c-splitting-_0028_4f11_7b26_3092_5206_5272_3059_308b_0029"></a>
+<a name="index-splitting-rests-_0028_4f11_7b26_3092_5206_5272_3059_308b_0029"></a>
+
+<a name="index-Note_005fheads_005fengraver-3"></a>
+<a name="index-Note_005fheads_005fengraver-4"></a>
+<a name="index-Completion_005fheads_005fengraver"></a>
+<a name="index-Completion_005fheads_005fengraver-1"></a>
+<a name="index-Completion_005frest_005fengraver"></a>
+<a name="index-Completion_005frest_005fengraver-1"></a>
+
+<p>小節線をまたがる長い音符を自動的にタイで結ばれた音符に変換することができます。これを行うには、<code>Note_heads_engraver</code> を <code>Completion_heads_engraver</code>
+で置き換えます。同様に、小節線をまたがる長い休符を自動的に分割することができます。
+これを行うには、<code>Rest_engraver</code> を <code>Completion_rest_engraver</code>
+で置き換えます。以下の例では、小節線をまたがる音符と休符は分割され、音符はされにタイで結ばれています。
+</p>
+<blockquote><pre class="verbatim">\new Voice \with {
+  \remove &quot;Note_heads_engraver&quot;
+  \consists &quot;Completion_heads_engraver&quot;
+  \remove &quot;Rest_engraver&quot;
+  \consists &quot;Completion_rest_engraver&quot;
+}
+\relative {
+  c'2. c8 d4 e f g a b c8 c2 b4 a g16 f4 e d c8. c2 r1*2
+}
+</pre><p>
+ <a href="../07/lily-cec347f6.ly">
+  <img align="middle"
+       border="0"
+       src="../07/lily-cec347f6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これらのエングラーバは進行中の音符と休符をすべて小節線のところで分割して、音符に対してはタイを挿入します。これらのエングラーバの用途の 1 つに複雑な楽譜のデバッグがあります:
+何小節かで音符がきちんと満たされていない場合、このエングラーバで挿入されたタイが、それぞれの小節の狂いを示します。
+</p>
+
+<a name="g_t_53c2_7167-56"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集: <a name="index-tie-1"></a>
+<a href="../music-glossary/tie.ja.html">tie</a>
+</p>
+<p>学習マニュアル:
+<a name="index-Engravers-explained"></a>
+<a href="../learning/engravers-explained.ja.html">Engravers explained</a>,
+<a name="index-Adding-and-removing-engravers"></a>
+<a href="../learning/adding-and-removing-engravers.ja.html">Adding and removing engravers</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-Note_005fheads_005fengraver-5"></a>
+<a href="../internals/note_005fheads_005fengraver.ja.html">Note_heads_engraver</a>,
+<a name="index-Completion_005fheads_005fengraver-2"></a>
+<a href="../internals/completion_005fheads_005fengraver.ja.html">Completion_heads_engraver</a>,
+<a name="index-Rest_005fengraver"></a>
+<a href="../internals/rest_005fengraver.ja.html">Rest_engraver</a>,
+<a name="index-Completion_005frest_005fengraver-2"></a>
+<a href="../internals/completion_005frest_005fengraver.ja.html">Completion_rest_engraver</a>,
+<a name="index-Forbid_005fline_005fbreak_005fengraver"></a>
+<a href="../internals/forbid_005fline_005fbreak_005fengraver.ja.html">Forbid_line_break_engraver</a>
+</p>
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-23"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>すべての演奏時間を通常の音符と付点で正確に表すことはできません
+(特に、連符を含んでいる場合) が、<code>Completion_heads_engraver</code> が連符を挿入することはありません。
+</p>
+<p><code>Completion_heads_engraver</code> は音符にだけ作用します。休符を分割することはありません。
+</p>
+
+<hr size="6">
+<a name="g_t_65cb_5f8b_306e_30ea_30ba_30e0_3092_793a_3059"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-note-splitting" title="前のセクション" accesskey="p" rel="previous"> &lt; 自動音符分割&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="beams.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;連桁 &gt; </a>]</td></tr></table>
+<a name="showing-melody-rhythms"></a>
+<h4 class="unnumberedsubsubsec">旋律のリズムを示す</h4>
+
+<a name="index-melody-rhythms_002c-showing-_0028_65cb_5f8b_306e_30ea_30ba_30e0_3092_793a_3059_0029"></a>
+<a name="index-rhythms_002c-showing-melody-_0028_65cb_5f8b_306e_30ea_30ba_30e0_3092_793a_3059_0029"></a>
+
+<p>しばしば旋律のリズムだけを示したいことがあります。これはリズム譜を使うことで達成できます。そのような譜上にある音符のピッチはすべて破棄され、その譜自体は 1 本の線を持ちます:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new RhythmicStaff {
+    \new Voice = &quot;myRhythm&quot; \relative {
+      \time 4/4
+      c'4 e8 f g2
+      r4 g g f
+      g1
+    }
+  }
+  \new Lyrics {
+    \lyricsto &quot;myRhythm&quot; {
+      This is my song
+      I like to sing
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../d6/lily-a762d8ca.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-a762d8ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-guitar-chord-charts-_0028_30ae_30bf_30fc-_30b3_30fc_30c9_8868_0029"></a>
+<a name="index-strumming-rhythms_002c-showing-_0028_3064_307e_5f3e_304d-_0028_30b9_30c8_30e9_30e0_0029-_306e_30ea_30ba_30e0_3092_793a_3059_0029"></a>
+<a name="index-guitar-strumming-rhythms_002c-showing-_0028_30ae_30bf_30fc_306e_3064_307e_5f3e_304d-_0028_30b9_30c8_30e9_30e0_0029-_306e_30ea_30ba_30e0_3092_793a_3059_0029"></a>
+
+<a name="index-Pitch_005fsquash_005fengraver-1"></a>
+<a name="index-Pitch_005fsquash_005fengraver-2"></a>
+<a name="index-_005cimprovisationOn-2"></a>
+<a name="index-_005cimprovisationOn-3"></a>
+<a name="index-improvisationOn-2"></a>
+<a name="index-improvisationOn-3"></a>
+<a name="index-_005cimprovisationOff-2"></a>
+<a name="index-_005cimprovisationOff-3"></a>
+<a name="index-improvisationOff-2"></a>
+<a name="index-improvisationOff-3"></a>
+
+<p>ギター コード表はしばしばつま弾き (ストラム) のリズムを示します。これは <code>Pitch_squash_engraver</code> と <code>\improvisationOn</code> を使うことで達成できます。
+</p>
+
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new ChordNames {
+    \chordmode {
+      c1 f g c
+    }
+  }
+  \new Voice \with {
+    \consists &quot;Pitch_squash_engraver&quot;
+  } \relative c'' {
+    \improvisationOn
+    c4 c8 c c4 c8 c
+    f4 f8 f f4 f8 f
+    g4 g8 g g4 g8 g
+    c4 c8 c c4 c8 c
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../e7/lily-c86893e6.ly">
+  <img align="middle"
+       border="0"
+       src="../e7/lily-c86893e6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-20"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\improvisationOn</code>,
+<code>\improvisationOff</code>
+</p>
+
+<a name="Selected-Snippets-61"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+
+<p><em> Guitar strum rhythms</em>
+</p>
+
+<p>For guitar music, it is possible to show strum rhythms, along with
+melody notes, chord names and fret diagrams.
+</p>
+
+<blockquote><pre class="verbatim">\include &quot;predefined-guitar-fretboards.ly&quot;
+&lt;&lt;
+  \new ChordNames {
+    \chordmode {
+      c1 | f | g | c
+    }
+  }
+  \new FretBoards {
+    \chordmode {
+      c1 | f | g | c
+    }
+  }
+  \new Voice \with {
+    \consists &quot;Pitch_squash_engraver&quot;
+  } {
+    \relative c'' {
+      \improvisationOn
+      c4 c8 c c4 c8 c
+      f4 f8 f f4 f8 f
+      g4 g8 g g4 g8 g
+      c4 c8 c c4 c8 c
+    }
+  }
+  \new Voice = &quot;melody&quot; {
+    \relative c'' {
+      c2 e4 e4
+      f2. r4
+      g2. a4
+      e4 c2.
+    }
+  }
+  \new Lyrics {
+    \lyricsto &quot;melody&quot; {
+      This is my song.
+      I like to sing.
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../9c/lily-12a6d3c6.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-12a6d3c6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-217"></a>
+<h4 class="subsubheading">参照</h4>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-RhythmicStaff-1"></a>
+<a href="../internals/rhythmicstaff.ja.html">RhythmicStaff</a>,
+<a name="index-Pitch_005fsquash_005fengraver-3"></a>
+<a href="../internals/pitch_005fsquash_005fengraver.ja.html">Pitch_squash_engraver</a>
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-note-splitting" title="前のセクション" accesskey="p" rel="previous"> &lt; 自動音符分割&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズムを表示する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="beams.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;連桁 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="displaying-rhythms.html">English</a>, <a href="displaying-rhythms.de.html">deutsch</a>, <a href="displaying-rhythms.es.html">español</a>, <a href="displaying-rhythms.fr.html">français</a>, <a href="displaying-rhythms.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=" toc_current"><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_30ea_30ba_30e0_3092_8a18_8ff0_3059_308b-1" href="writing-rhythms.ja.html">1.2.1 リズムを記述する</a>      </li>
+      <li class=""><a name="toc-_4f11_7b26_3092_8a18_8ff0_3059_308b-1" href="writing-rests.ja.html">1.2.2 休符を記述する</a>      </li>
+      <li class=" toc_current"><a name="toc-_30ea_30ba_30e0_3092_8868_793a_3059_308b-1" href="displaying-rhythms.ja.html">1.2.3 リズムを表示する</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_62cd_5b50-1" href="displaying-rhythms.ja.html#time-signature">拍子</a>        </li>
+        <li class=""><a name="toc-_30e1_30c8_30ed_30ce_30fc_30e0_8a18_53f7-1" href="displaying-rhythms.ja.html#metronome-marks">メトロノーム記号</a>        </li>
+        <li class=""><a name="toc-_4e0a_62cd-1" href="displaying-rhythms.ja.html#upbeats">上拍</a>        </li>
+        <li class=""><a name="toc-_7121_97fb_5f8b_306e_97f3_697d-1" href="displaying-rhythms.ja.html#unmetered-music">無韻律の音楽</a>        </li>
+        <li class=""><a name="toc-_591a_62cd_5b50_8a18_8b5c_6cd5-1" href="displaying-rhythms.ja.html#polymetric-notation">多拍子記譜法</a>        </li>
+        <li class=""><a name="toc-_81ea_52d5_97f3_7b26_5206_5272-1" href="displaying-rhythms.ja.html#automatic-note-splitting">自動音符分割</a>        </li>
+        <li class=""><a name="toc-_65cb_5f8b_306e_30ea_30ba_30e0_3092_793a_3059-1" href="displaying-rhythms.ja.html#showing-melody-rhythms">旋律のリズムを示す</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-_9023_6841-1" href="beams.ja.html">1.2.4 連桁</a>      </li>
+      <li class=""><a name="toc-_5c0f_7bc0-1" href="bars.ja.html">1.2.5 小節</a>      </li>
+      <li class=""><a name="toc-_7279_6b8a_306a_30ea_30ba_30e0_95a2_9023_4e8b_9805-1" href="special-rhythmic-concerns.ja.html">1.2.6 特殊なリズム関連事項</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=""><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=""><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

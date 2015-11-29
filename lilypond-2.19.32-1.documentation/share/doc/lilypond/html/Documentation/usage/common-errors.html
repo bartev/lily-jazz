@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Application Usage: 1.4 Common errors</title>
+
+<meta name="description" content="LilyPond Application Usage: 1.4 Common errors">
+<meta name="keywords" content="LilyPond Application Usage: 1.4 Common errors">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Usage">
+<link href="lilypond-index.html#lilypond-index" rel="index" title="B. LilyPond index">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="running-lilypond.html#running-lilypond" rel="up" title="1. Running lilypond">
+<link href="lilypond-index.html#lilypond-index" rel="next" title="B. LilyPond index">
+<link href="error-messages.html#error-messages" rel="previous" title="1.3 Error messages">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="usage devStatus">
+
+
+<div id="main">
+<a name="Common-errors"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="error-messages.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Error messages&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Running lilypond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#music-runs-off-the-page" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Music runs off the page &gt; </a>]</td></tr></table>
+<a name="common-errors"></a>
+<h2 class="section">1.4 Common errors</h2>
+
+<p>The error conditions described below occur often, yet the cause
+is not obvious or easily found.  Once seen and understood, they
+are easily handled.
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#music-runs-off-the-page" accesskey="1">Music runs off the page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#an-extra-staff-appears" accesskey="2">An extra staff appears</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unbound-variable-_0025" accesskey="3">Error message Unbound variable %</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-ft_005fget_005fglyph_005fname" accesskey="4">Error message FT_Get_Glyph_Name</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#warning-staff-affinities-should-only-decrease" accesskey="5">Warning staff affinities should only decrease</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unexpected-new" accesskey="6">Error message unexpected <code>\new</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#warning-this-voice-needs-a-voicexx-or-shiftxx-setting" accesskey="7">Warning this voice needs a <code>\voiceXx</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Music-runs-off-the-page"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#common-errors" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Common errors&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#an-extra-staff-appears" title="Next section in reading order" accesskey="n" rel="next">&nbsp;An extra staff appears &gt; </a>]</td></tr></table>
+<a name="music-runs-off-the-page"></a>
+<h3 class="unnumberedsubsec">Music runs off the page</h3>
+
+<p>Music running off the page over the right margin or appearing
+unduly compressed is almost always due to entering an incorrect
+duration on a note, causing the final note in a measure to extend
+over the bar line.  It is not invalid if the final note in a
+measure does not end on the automatically entered bar line, as the
+note is simply assumed to carry over into the next measure.  But
+if a long sequence of such carry-over measures occurs the music
+can appear compressed or may flow off the page because automatic
+line breaks can be inserted only at the end of complete measures,
+i.e., where all notes end before or at the end of the measure.
+</p>
+<div class="warning"><p><strong>Note:</strong> An incorrect duration can cause line breaks to be
+inhibited, leading to a line of highly compressed music or
+music which flows off the page.
+</p>
+</div>
+<p>The incorrect duration can be found easily if bar checks are used,
+see <a name="index-Bar-and-bar-number-checks"></a>
+<a href="../notation/bars.html#bar-and-bar-number-checks">Bar and bar number checks</a>.
+</p>
+<p>If you actually intend to have a series of such carry-over measures
+you will need to insert an invisible bar line where you want the
+line to break.  For details, see <a name="index-Bar-lines"></a>
+<a href="../notation/bars.html#bar-lines">Bar lines</a>.
+</p>
+
+<hr size="6">
+<a name="An-extra-staff-appears"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#music-runs-off-the-page" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Music runs off the page&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Error message Unbound variable % &gt; </a>]</td></tr></table>
+<a name="an-extra-staff-appears"></a>
+<h3 class="unnumberedsubsec">An extra staff appears</h3>
+
+<p>If contexts are not created explicitly with <code>\new</code> or
+<code>\context</code>, they will be silently created as soon as a
+command is encountered which cannot be applied to an existing
+context.  In simple scores the automatic creation of contexts is
+useful, and most of the examples in the LilyPond manuals take
+advantage of this simplification.  But occasionally the silent
+creation of contexts can give rise to unexpected new staves or
+scores.  For example, it might be expected that the following code
+would cause all note heads within the following staff to be
+colored red, but in fact it results in two staves with the note
+heads remaining the default black in the lower staff.
+</p>
+<blockquote><pre class="verbatim">\override Staff.NoteHead.color = #red
+\new Staff { a' }
+</pre><p>
+ <a href="../a3/lily-8a95f028.ly">
+  <img align="middle"
+       border="0"
+       src="../a3/lily-8a95f028.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>This is because a <code>Staff</code> context does not exist when the
+override is processed, so one is implicitly created and the override
+is applied to it, but then the <code>\new Staff</code> command creates
+another, separate, staff into which the notes are placed.  The
+correct code to color all note heads red is
+</p>
+<blockquote><pre class="verbatim">\new Staff {
+  \override Staff.NoteHead.color = #red
+  a'
+}
+</pre><p>
+ <a href="../1a/lily-c0a863c0.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-c0a863c0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Error-message-Unbound-variable-_0025"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#an-extra-staff-appears" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; An extra staff appears&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Error message FT_Get_Glyph_Name &gt; </a>]</td></tr></table>
+<a name="error-message-unbound-variable-_0025"></a>
+<h3 class="unnumberedsubsec">Error message Unbound variable %</h3>
+
+<p>This error message will appear at the bottom of the console
+output or log file together with a &ldquo;GUILE signalled an error &hellip;&rdquo;
+message every time a Scheme routine is called which (invalidly)
+contains a <em>LilyPond</em> rather than a <em>Scheme</em> comment.
+</p>
+<p>LilyPond comments begin with a percent sign, (<code>%</code>), and must
+not be used within Scheme routines.  Scheme comments begin with a
+semi-colon, (<code>;</code>).
+</p>
+<hr size="6">
+<a name="Error-message-FT_005fGet_005fGlyph_005fName"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Error message Unbound variable %&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Warning staff affinities should only decrease &gt; </a>]</td></tr></table>
+<a name="error-message-ft_005fget_005fglyph_005fname"></a>
+<h3 class="unnumberedsubsec">Error message FT_Get_Glyph_Name</h3>
+
+<p>This error messages appears in the console output or log file if
+an input file contains a non-ASCII character and was not saved in
+UTF-8 encoding.  For details, see <a name="index-Text-encoding"></a>
+<a href="../notation/special-characters.html#text-encoding">Text encoding</a>.
+</p>
+
+<hr size="6">
+<a name="Warning-staff-affinities-should-only-decrease"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Error message FT_Get_Glyph_Name&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unexpected-new" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Error message unexpected new &gt; </a>]</td></tr></table>
+<a name="warning-staff-affinities-should-only-decrease"></a>
+<h3 class="unnumberedsubsec">Warning staff affinities should only decrease</h3>
+
+<p>This warning can appear if there are no staves in the printed
+output, for example if there are just a <code>ChordName</code> context
+and a <code>Lyrics</code> context as in a lead sheet.  The warning
+messages can be avoided by making one of the contexts behave as a
+staff by inserting
+</p>
+<blockquote><pre class="example">\override VerticalAxisGroup.staff-affinity = ##f
+</pre></blockquote>
+
+<p>at its start.  For details, see &ldquo;Spacing of non-staff lines&rdquo; in
+<a name="index-Flexible-vertical-spacing-within-systems"></a>
+<a href="../notation/flexible-vertical-spacing-within-systems.html">Flexible vertical spacing within systems</a>.
+</p>
+
+<hr size="6">
+<a name="Error-message-unexpected-new"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Warning staff affinities should only decrease&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#warning-this-voice-needs-a-voicexx-or-shiftxx-setting" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Warning this voice needs a voiceXx or shiftXx setting &gt; </a>]</td></tr></table>
+<a name="error-message-unexpected-new"></a>
+<h3 class="unnumberedsubsec">Error message unexpected <code>\new</code></h3>
+
+<p>A <code>\score</code> block must contain a <em>single</em> music expression.
+If instead it contains several <code>\new Staff</code>,
+<code>\new StaffGroup</code> or similar contexts introduced with <code>\new</code>
+without them being enclosed in either curly brackets,
+<code>{ &hellip; }</code>, or double angle brackets, <code>&lt;&lt; &hellip; &gt;&gt;</code>,
+like this:
+</p>
+<blockquote><pre class="example">\score {
+  % Invalid! Generates error: syntax error, unexpected \new
+  \new Staff { &hellip; }
+  \new Staff { &hellip; }
+}
+</pre></blockquote>
+
+<p>the error message will be produced.
+</p>
+<p>To avoid the error, enclose all the <code>\new</code> statements in
+curly or double angle brackets.
+</p>
+<p>Using curly brackets will introduce the <code>\new</code> statements
+sequentially:
+</p>
+<blockquote><pre class="verbatim">\score {
+  {
+    \new Staff { a' a' a' a' }
+    \new Staff { g' g' g' g' }
+  }
+}
+</pre><p>
+ <a href="../2e/lily-9b22173f.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-9b22173f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>but more likely you should be using double angle brackets so the new
+staves are introduced in parallel, i.e. simultaneously:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff { a' a' a' a' }
+    \new Staff { g' g' g' g' }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../06/lily-77b293ac.ly">
+  <img align="middle"
+       border="0"
+       src="../06/lily-77b293ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Warning-this-voice-needs-a-voiceXx-or-shiftXx-setting"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unexpected-new" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Error message unexpected new&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Updating files with convert-ly &gt; </a>]</td></tr></table>
+<a name="warning-this-voice-needs-a-voicexx-or-shiftxx-setting"></a>
+<h3 class="unnumberedsubsec">Warning this voice needs a <code>\voiceXx</code></h3>
+<p> or <code>\shiftXx</code> setting
+</p>
+<p>If notes from two different voices with stems in the same direction
+occur at the same musical moment, but the voices have no
+voice-specific shifts specified, the warning message
+&lsquo;<samp>warning: this voice needs a \voiceXx or \shiftXx setting</samp>&rsquo; will appear
+when compiling the LilyPond file.  This warning will appear even when
+the notes have no visible stems, e.g. whole notes, if the stems for
+shorter notes at the same pitch would be in the same direction.
+</p>
+<p>Remember that the stem direction depends on the position of the
+note on the staff unless the stem direction is specified, for example
+by using <code>\voiceOne</code>, etc.  In this case the warning will appear
+only when the stems happen to be in the same direction, i.e. when the
+notes are in the same half of the staff.
+</p>
+<p>By placing the notes in voices with stem directions and shifts
+specified, for example by using <code>\voiceOne</code>, etc., these warnings
+may be avoided.
+</p>
+<p>Notes in higher numbered voices, <code>\voiceThree</code> etc., are
+automatically shifted to avoid clashing note columns.  This causes a
+visible shift for notes with stems, but whole notes are not visibly
+shifted unless an actual clash of the note heads occurs, or when the
+voices cross over from their natural order (when <code>\voiceThree</code>
+is higher than <code>\voiceOne</code>, etc.)
+</p>
+<a name="See-also-1"></a>
+<h4 class="subsubheading">See also</h4>
+<a name="index-Explicitly-instantiating-voices"></a>
+<p><a href="../learning/explicitly-instantiating-voices.html">Explicitly instantiating voices</a>,
+<a name="index-Real-music-example"></a>
+<a href="../learning/real-music-example.html">Real music example</a>,
+<a name="index-Single_002dstaff-polyphony"></a>
+<a href="../notation/multiple-voices.html#single_002dstaff-polyphony">Single-staff polyphony</a>,
+<a name="index-Collision-resolution"></a>
+<a href="../notation/multiple-voices.html#collision-resolution">Collision resolution</a>.
+</p>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Running lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.html" title="Next chapter">&nbsp;Updating files with convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unexpected-new" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Error message unexpected new&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Common errors&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Updating files with convert-ly &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Other languages: <a href="common-errors.ca.html">català</a>, <a href="common-errors.de.html">deutsch</a>, <a href="common-errors.es.html">español</a>, <a href="common-errors.fr.html">français</a>, <a href="common-errors.hu.html">magyar</a>, <a href="common-errors.it.html">italiano</a>, <a href="common-errors.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Usage  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Running-lilypond-1" href="running-lilypond.html">1. Running <code>lilypond</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Normal-usage-1" href="normal-usage.html">1.1 Normal usage</a>    </li>
+    <li class=""><a name="toc-Command_002dline-usage-1" href="command_002dline-usage.html">1.2 Command-line usage</a>    </li>
+    <li class=""><a name="toc-Error-messages-1" href="error-messages.html">1.3 Error messages</a>    </li>
+    <li class=" toc_current"><a name="toc-Common-errors-1" href="common-errors.html">1.4 Common errors</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Music-runs-off-the-page-1" href="common-errors.html#music-runs-off-the-page">Music runs off the page</a>      </li>
+      <li class=""><a name="toc-An-extra-staff-appears-1" href="common-errors.html#an-extra-staff-appears">An extra staff appears</a>      </li>
+      <li class=""><a name="toc-Error-message-Unbound-variable-_0025-1" href="common-errors.html#error-message-unbound-variable-_0025">Error message Unbound variable %</a>      </li>
+      <li class=""><a name="toc-Error-message-FT_005fGet_005fGlyph_005fName-1" href="common-errors.html#error-message-ft_005fget_005fglyph_005fname">Error message FT_Get_Glyph_Name</a>      </li>
+      <li class=""><a name="toc-Warning-staff-affinities-should-only-decrease-1" href="common-errors.html#warning-staff-affinities-should-only-decrease">Warning staff affinities should only decrease</a>      </li>
+      <li class=""><a name="toc-Error-message-unexpected-_005cnew" href="common-errors.html#error-message-unexpected-new">Error message unexpected <code>\new</code></a>      </li>
+      <li class=""><a name="toc-Warning-this-voice-needs-a-_005cvoiceXx" href="common-errors.html#warning-this-voice-needs-a-voicexx-or-shiftxx-setting">Warning this voice needs a <code>\voiceXx</code></a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Updating-files-with-convert_002dly-1" href="updating-files-with-convert_002dly.html">2. Updating files with <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Why-does-the-syntax-change_003f-1" href="why-does-the-syntax-change_003f.html">2.1 Why does the syntax change?</a>    </li>
+    <li class=""><a name="toc-Invoking-convert_002dly-1" href="invoking-convert_002dly.html">2.2 Invoking <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Command-line-options-for-convert_002dly-1" href="command-line-options-for-convert_002dly.html">2.3 Command line options for <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problems-running-convert_002dly-1" href="problems-running-convert_002dly.html">2.4 Problems running <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Manual-conversions-1" href="manual-conversions.html">2.5 Manual conversions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Running-lilypond_002dbook" href="lilypond_002dbook.html">3. Running <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-An-example-of-a-musicological-document-1" href="an-example-of-a-musicological-document.html">3.1 An example of a musicological document</a>    </li>
+    <li class=""><a name="toc-Integrating-music-and-text-1" href="integrating-music-and-text.html">3.2 Integrating music and text</a>    </li>
+    <li class=""><a name="toc-Music-fragment-options-1" href="music-fragment-options.html">3.3 Music fragment options</a>    </li>
+    <li class=""><a name="toc-Invoking-lilypond_002dbook-1" href="invoking-lilypond_002dbook.html">3.4 Invoking <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Filename-extensions-1" href="filename-extensions.html">3.5 Filename extensions</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-templates-1" href="lilypond_002dbook-templates.html">3.6 lilypond-book templates</a>    </li>
+    <li class=""><a name="toc-Sharing-the-table-of-contents-1" href="sharing-the-table-of-contents.html">3.7 Sharing the table of contents</a>    </li>
+    <li class=""><a name="toc-Alternative-methods-of-mixing-text-and-music" href="alternate-methods-of-mixing-text-and-music.html">3.8 Alternative methods of mixing text and music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-External-programs-1" href="external-programs.html">4. External programs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Point-and-click-1" href="point-and-click.html">4.1 Point and click</a>    </li>
+    <li class=""><a name="toc-Text-editor-support-1" href="text-editor-support.html">4.2 Text editor support</a>    </li>
+    <li class=""><a name="toc-Converting-from-other-formats-1" href="converting-from-other-formats.html">4.3 Converting from other formats</a>    </li>
+    <li class=""><a name="toc-LilyPond-output-in-other-programs-1" href="lilypond-output-in-other-programs.html">4.4 LilyPond output in other programs</a>    </li>
+    <li class=""><a name="toc-Independent-includes-1" href="independent-includes.html">4.5 Independent <code>include</code>s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggestions-for-writing-files-1" href="suggestions-for-writing-files.html">5. Suggestions for writing files</a>
+  <ul class="toc">
+    <li class=""><a name="toc-General-suggestions-1" href="general-suggestions.html">5.1 General suggestions</a>    </li>
+    <li class=""><a name="toc-Typesetting-existing-music-1" href="typesetting-existing-music.html">5.2 Typesetting existing music</a>    </li>
+    <li class=""><a name="toc-Large-projects-1" href="large-projects.html">5.3 Large projects</a>    </li>
+    <li class=""><a name="toc-Troubleshooting-1" href="troubleshooting.html">5.4 Troubleshooting</a>    </li>
+    <li class=""><a name="toc-Make-and-Makefiles-1" href="make-and-makefiles.html">5.5 Make and Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.html">B. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

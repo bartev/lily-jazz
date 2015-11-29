@@ -1,0 +1,1239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Notation Reference: A.19 Available music functions</title>
+
+<meta name="description" content="LilyPond Notation Reference: A.19 Available music functions">
+<meta name="keywords" content="LilyPond Notation Reference: A.19 Available music functions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Notation Reference">
+<link href="lilypond-command-index.html#lilypond-command-index" rel="index" title="D. LilyPond command index">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="notation-manual-tables.html#notation-manual-tables" rel="up" title="A. Notation manual tables">
+<link href="lilypond-index.html#lilypond-index" rel="next" title="E. LilyPond index">
+<link href="layout-properties.html#layout-properties" rel="previous" title="A.18 Layout properties">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="notation devStatus">
+
+
+<div id="main">
+<a name="Available-music-functions"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="notation-manual-tables.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Notation manual tables&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="cheat-sheet.html" title="Next chapter">&nbsp;Cheat sheet &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="layout-properties.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Layout properties&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="notation-manual-tables.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Notation manual tables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="context-modification-identifiers.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Context modification identifiers &gt; </a>]</td></tr></table>
+<a name="available-music-functions"></a>
+<h2 class="appendixsec">A.19 Available music functions</h2>
+
+<dl compact="compact">
+<dt> <code>absolute</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-absolute-1"></a>
+<a name="index-absolute-2"></a>
+<p>Make <var>music</var> absolute.  This does not actually change the
+music itself but rather hides it from surrounding <code>\relative</code>
+and <code>\fixed</code> commands.
+ </p></dd>
+<dt> <code>acciaccatura</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-acciaccatura-2"></a>
+<a name="index-acciaccatura-3"></a>
+<p>Create an acciaccatura from the following music expression
+ </p></dd>
+<dt> <code>accidentalStyle</code> [music]  - <var>style</var> (symbol list)</dt>
+<dd><a name="index-accidentalStyle"></a>
+<a name="index-accidentalStyle-1"></a>
+<p>Set accidental style to symbol list <var>style</var> in the form
+&lsquo;<samp>piano-cautionary</samp>&rsquo;.  If <var>style</var> has a form like
+&lsquo;<samp>Staff.piano-cautionary</samp>&rsquo;, the settings are applied to that
+context.  Otherwise, the context defaults to &lsquo;<samp>Staff</samp>&rsquo;, except for
+piano styles, which use &lsquo;<samp>GrandStaff</samp>&rsquo; as a context.
+ </p></dd>
+<dt> <code>addChordShape</code> [void]  - <var>key-symbol</var> (symbol) <var>tuning</var> (pair) <var>shape-definition</var> (string or pair)</dt>
+<dd><a name="index-addChordShape-2"></a>
+<a name="index-addChordShape-3"></a>
+<p>Add chord shape <var>shape-definition</var> to the <var>chord-shape-table</var>
+hash with the key <code>(cons <var>key-symbol</var> <var>tuning</var>)</code>.
+ </p></dd>
+<dt> <code>addInstrumentDefinition</code> [void]  - <var>name</var> (string) <var>lst</var> (list)</dt>
+<dd><a name="index-addInstrumentDefinition"></a>
+<a name="index-addInstrumentDefinition-1"></a>
+<p>Create instrument <var>name</var> with properties <var>list</var>.
+ </p></dd>
+<dt> <code>addQuote</code> [void]  - <var>name</var> (string) <var>music</var> (music)</dt>
+<dd><a name="index-addQuote-2"></a>
+<a name="index-addQuote-3"></a>
+<p>Define <var>music</var> as a quotable music expression named
+<var>name</var>
+ </p></dd>
+<dt> <code>afterGrace</code> [music]  - <var>main</var> (music) <var>grace</var> (music)</dt>
+<dd><a name="index-afterGrace-2"></a>
+<a name="index-afterGrace-3"></a>
+<p>Create <var>grace</var> note(s) after a <var>main</var> music expression.
+ </p></dd>
+<dt> <code>allowPageTurn</code> [music] </dt>
+<dd><a name="index-allowPageTurn"></a>
+<a name="index-allowPageTurn-1"></a>
+<p>Allow a page turn. May be used at toplevel (ie between scores or
+markups), or inside a score.
+ </p></dd>
+<dt> <code>allowVoltaHook</code> [void]  - <var>bar</var> (string)</dt>
+<dd><a name="index-allowVoltaHook"></a>
+<a name="index-allowVoltaHook-1"></a>
+<p>(undocumented; fixme)
+ </p></dd>
+<dt> <code>alterBroken</code> [music]  - <var>property</var> (symbol list or symbol) <var>arg</var> (list) <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-alterBroken"></a>
+<a name="index-alterBroken-1"></a>
+<p>Override <var>property</var> for pieces of broken spanner <var>item</var>
+with values <var>arg</var>.  <var>item</var> may either be music in the form of
+a starting spanner event, or a symbol list in the form
+&lsquo;<samp>Context.Grob</samp>&rsquo; or just &lsquo;<samp>Grob</samp>&rsquo;.  Iff <var>item</var> is in the
+form of a spanner event, <var>property</var> may also have the form
+&lsquo;<samp>Grob.property</samp>&rsquo; for specifying a directed tweak.
+ </p></dd>
+<dt> <code>appendToTag</code> [music]  - <var>tag</var> (symbol) <var>more</var> (music) <var>music</var> (music)</dt>
+<dd><a name="index-appendToTag"></a>
+<a name="index-appendToTag-1"></a>
+<p>Append <var>more</var> to the <code>elements</code> of all music
+expressions in <var>music</var> that are tagged with <var>tag</var>.
+ </p></dd>
+<dt> <code>applyContext</code> [music]  - <var>proc</var> (procedure)</dt>
+<dd><a name="index-applyContext"></a>
+<a name="index-applyContext-1"></a>
+<p>Modify context properties with Scheme procedure <var>proc</var>.
+ </p></dd>
+<dt> <code>applyMusic</code> [music]  - <var>func</var> (procedure) <var>music</var> (music)</dt>
+<dd><a name="index-applyMusic"></a>
+<a name="index-applyMusic-1"></a>
+<p>Apply procedure <var>func</var> to <var>music</var>.
+ </p></dd>
+<dt> <code>applyOutput</code> [music]  - <var>target</var> (symbol list or symbol) <var>proc</var> (procedure)</dt>
+<dd><a name="index-applyOutput"></a>
+<a name="index-applyOutput-1"></a>
+<p>Apply function <code>proc</code> to every layout object matched by
+<var>target</var> which takes the form <code>Context</code> or <code>Context.Grob</code>.
+ </p></dd>
+<dt> <code>appoggiatura</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-appoggiatura-2"></a>
+<a name="index-appoggiatura-3"></a>
+<p>Create an appoggiatura from <var>music</var>
+ </p></dd>
+<dt> <code>assertBeamQuant</code> [music]  - <var>l</var> (pair) <var>r</var> (pair)</dt>
+<dd><a name="index-assertBeamQuant"></a>
+<a name="index-assertBeamQuant-1"></a>
+<p>Testing function: check whether the beam quants <var>l</var> and <var>r</var> are correct
+ </p></dd>
+<dt> <code>assertBeamSlope</code> [music]  - <var>comp</var> (procedure)</dt>
+<dd><a name="index-assertBeamSlope"></a>
+<a name="index-assertBeamSlope-1"></a>
+<p>Testing function: check whether the slope of the beam is the same as <code>comp</code>
+ </p></dd>
+<dt> <code>autochange</code> [music]  - <var>pitch</var> [pitch] <var>clef-1</var> [context modification] <var>clef-2</var> [context modification] <var>music</var> (music)</dt>
+<dd><a name="index-autochange-2"></a>
+<a name="index-autochange-3"></a>
+<p>Make voices that switch between staves automatically.  As an option the
+pitch where to switch staves may be specified.  The clefs for the staves are
+optional as well.  Setting clefs  works only for implicitly instantiated
+staves.
+ </p></dd>
+<dt> <code>balloonGrobText</code> [music]  - <var>grob-name</var> (symbol) <var>offset</var> (pair of numbers) <var>text</var> (markup)</dt>
+<dd><a name="index-balloonGrobText-2"></a>
+<a name="index-balloonGrobText-3"></a>
+<p>Attach <var>text</var> to <var>grob-name</var> at offset <var>offset</var>
+ (use like <code>\once</code>)
+ </p></dd>
+<dt> <code>balloonText</code> [post event]  - <var>offset</var> (pair of numbers) <var>text</var> (markup)</dt>
+<dd><a name="index-balloonText-2"></a>
+<a name="index-balloonText-3"></a>
+<p>Attach <var>text</var> at <var>offset</var> (use like <code>\tweak</code>)
+ </p></dd>
+<dt> <code>bar</code> [music]  - <var>type</var> (string)</dt>
+<dd><a name="index-bar-4"></a>
+<a name="index-bar-5"></a>
+<p>Insert a bar line of type <var>type</var>
+ </p></dd>
+<dt> <code>barNumberCheck</code> [music]  - <var>n</var> (integer)</dt>
+<dd><a name="index-barNumberCheck-2"></a>
+<a name="index-barNumberCheck-3"></a>
+<p>Print a warning if the current bar number is not <var>n</var>.
+ </p></dd>
+<dt> <code>beamExceptions</code> (any type)  - <var>music</var> (music)</dt>
+<dd><a name="index-beamExceptions-2"></a>
+<a name="index-beamExceptions-3"></a>
+<p>Extract a value suitable for setting
+<code>Timing.beamExceptions</code> from the given pattern with explicit
+beams in <var>music</var>.  A bar check <code>|</code> has to be used between
+bars of patterns in order to reset the timing.
+ </p></dd>
+<dt> <code>bendAfter</code> [post event]  - <var>delta</var> (real number)</dt>
+<dd><a name="index-bendAfter-2"></a>
+<a name="index-bendAfter-3"></a>
+<p>Create a fall or doit of pitch interval <var>delta</var>.
+ </p></dd>
+<dt> <code>bookOutputName</code> [void]  - <var>newfilename</var> (string)</dt>
+<dd><a name="index-bookOutputName"></a>
+<a name="index-bookOutputName-1"></a>
+<p>Direct output for the current book block to <var>newfilename</var>.
+ </p></dd>
+<dt> <code>bookOutputSuffix</code> [void]  - <var>newsuffix</var> (string)</dt>
+<dd><a name="index-bookOutputSuffix"></a>
+<a name="index-bookOutputSuffix-1"></a>
+<p>Set the output filename suffix for the current book block to
+<var>newsuffix</var>.
+ </p></dd>
+<dt> <code>breathe</code> [music] </dt>
+<dd><a name="index-breathe-2"></a>
+<a name="index-breathe-3"></a>
+<p>Insert a breath mark.
+ </p></dd>
+<dt> <code>chordRepeats</code> [music]  - <var>event-types</var> [list] <var>music</var> (music)</dt>
+<dd><a name="index-chordRepeats"></a>
+<a name="index-chordRepeats-1"></a>
+<p>Walk through <var>music</var> putting the notes of the previous chord
+into repeat chords, as well as an optional list of <var>event-types</var>
+such as <code>#'(string-number-event)</code>.
+ </p></dd>
+<dt> <code>clef</code> [music]  - <var>type</var> (string)</dt>
+<dd><a name="index-clef-7"></a>
+<a name="index-clef-8"></a>
+<p>Set the current clef to <var>type</var>.
+ </p></dd>
+<dt> <code>compoundMeter</code> [music]  - <var>args</var> (pair)</dt>
+<dd><a name="index-compoundMeter"></a>
+<a name="index-compoundMeter-1"></a>
+<p>Create compound time signatures. The argument is a Scheme list of
+lists. Each list describes one fraction, with the last entry being the
+denominator, while the first entries describe the summands in the
+enumerator. If the time signature consists of just one fraction,
+the list can be given directly, i.e. not as a list containing a single list.
+For example, a time signature of (3+1)/8 + 2/4 would be created as
+<code>\compoundMeter #'((3 1 8) (2 4))</code>, and a time signature of (3+2)/8
+as <code>\compoundMeter #'((3 2 8))</code> or shorter
+<code>\compoundMeter #'(3 2 8)</code>.
+ </p></dd>
+<dt> <code>compressMMRests</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-compressMMRests-4"></a>
+<a name="index-compressMMRests-5"></a>
+<p>Remove the empty bars created by multi-measure rests,
+leaving just the first bar containing the MM rest itself.
+ </p></dd>
+<dt> <code>crossStaff</code> [music]  - <var>notes</var> (music)</dt>
+<dd><a name="index-crossStaff"></a>
+<a name="index-crossStaff-1"></a>
+<p>Create cross-staff stems
+ </p></dd>
+<dt> <code>cueClef</code> [music]  - <var>type</var> (string)</dt>
+<dd><a name="index-cueClef-2"></a>
+<a name="index-cueClef-3"></a>
+<p>Set the current cue clef to <var>type</var>.
+ </p></dd>
+<dt> <code>cueClefUnset</code> [music] </dt>
+<dd><a name="index-cueClefUnset"></a>
+<a name="index-cueClefUnset-1"></a>
+<p>Unset the current cue clef.
+ </p></dd>
+<dt> <code>cueDuring</code> [music]  - <var>what</var> (string) <var>dir</var> (direction) <var>main-music</var> (music)</dt>
+<dd><a name="index-cueDuring-2"></a>
+<a name="index-cueDuring-3"></a>
+<p>Insert contents of quote <var>what</var> corresponding to <var>main-music</var>,
+in a CueVoice oriented by <var>dir</var>.
+ </p></dd>
+<dt> <code>cueDuringWithClef</code> [music]  - <var>what</var> (string) <var>dir</var> (direction) <var>clef</var> (string) <var>main-music</var> (music)</dt>
+<dd><a name="index-cueDuringWithClef-2"></a>
+<a name="index-cueDuringWithClef-3"></a>
+<p>Insert contents of quote <var>what</var> corresponding to <var>main-music</var>,
+in a CueVoice oriented by <var>dir</var>.
+ </p></dd>
+<dt> <code>deadNote</code> [music]  - <var>note</var> (music)</dt>
+<dd><a name="index-deadNote"></a>
+<a name="index-deadNote-1"></a>
+<p>Print <var>note</var> with a cross-shaped note head.
+ </p></dd>
+<dt> <code>defaultNoteHeads</code> [music] </dt>
+<dd><a name="index-defaultNoteHeads"></a>
+<a name="index-defaultNoteHeads-1"></a>
+<p>Revert to the default note head style.
+ </p></dd>
+<dt> <code>defineBarLine</code> [void]  - <var>bar</var> (string) <var>glyph-list</var> (list)</dt>
+<dd><a name="index-defineBarLine-2"></a>
+<a name="index-defineBarLine-3"></a>
+<p>Define bar line settings for bar line <var>bar</var>.
+     The list <var>glyph-list</var> must have three entries which define
+     the appearance at the end of line, at the beginning of the next line,
+     and the span bar, respectively.
+ </p></dd>
+<dt> <code>displayLilyMusic</code> [music]  - <var>port</var> [output port] <var>music</var> (music)</dt>
+<dd><a name="index-displayLilyMusic"></a>
+<a name="index-displayLilyMusic-1"></a>
+<p>Display the LilyPond input representation of <var>music</var>
+to <var>port</var>, defaulting to the console.
+ </p></dd>
+<dt> <code>displayMusic</code> [music]  - <var>port</var> [output port] <var>music</var> (music)</dt>
+<dd><a name="index-displayMusic"></a>
+<a name="index-displayMusic-1"></a>
+<p>Display the internal representation of <var>music</var> to
+<var>port</var>, default to the console.
+ </p></dd>
+<dt> <code>displayScheme</code> (any type)  - <var>port</var> [output port] <var>expr</var> (any type)</dt>
+<dd><a name="index-displayScheme"></a>
+<a name="index-displayScheme-1"></a>
+<p>Display the internal representation of <var>expr</var> to
+<var>port</var>, default to the console.
+ </p></dd>
+<dt> <code>endSpanners</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-endSpanners"></a>
+<a name="index-endSpanners-1"></a>
+<p>Terminate the next spanner prematurely after exactly one note
+without the need of a specific end spanner.
+ </p></dd>
+<dt> <code>eventChords</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-eventChords"></a>
+<a name="index-eventChords-1"></a>
+<p>Compatibility function wrapping <code>EventChord</code> around
+isolated rhythmic events occuring since version 2.15.28, after
+expanding repeat chords &lsquo;<samp>q</samp>&rsquo;.
+ </p></dd>
+<dt> <code>featherDurations</code> [music]  - <var>factor</var> (moment) <var>argument</var> (music)</dt>
+<dd><a name="index-featherDurations-2"></a>
+<a name="index-featherDurations-3"></a>
+<p>Adjust durations of music in <var>argument</var> by rational <var>factor</var>.
+ </p></dd>
+<dt> <code>finger</code> [post event]  - <var>finger</var> (number or markup)</dt>
+<dd><a name="index-finger-2"></a>
+<a name="index-finger-3"></a>
+<p>Apply <var>finger</var> as a fingering indication.
+ </p></dd>
+<dt> <code>fixed</code> [music]  - <var>pitch</var> (pitch) <var>music</var> (music)</dt>
+<dd><a name="index-fixed-2"></a>
+<a name="index-fixed-3"></a>
+<p>Use the octave of <var>pitch</var> as the default octave for <var>music</var>.
+ </p></dd>
+<dt> <code>footnote</code> [music]  - <var>mark</var> [markup] <var>offset</var> (pair of numbers) <var>footnote</var> (markup) <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-footnote"></a>
+<a name="index-footnote-1"></a>
+<p>Make the markup <var>footnote</var> a footnote on <var>item</var>.  The
+footnote is marked with a markup <var>mark</var> moved by <var>offset</var> with
+respect to the marked music.
+</p>
+<p>If <var>mark</var> is not given or specified as <var>\default</var>, it is
+replaced by an automatically generated sequence number.  If <var>item</var>
+is a symbol list of form &lsquo;<samp>Grob</samp>&rsquo; or &lsquo;<samp>Context.Grob</samp>&rsquo;, then
+grobs of that type will be marked at the current time step in the
+given context (default <code>Bottom</code>).
+</p>
+<p>If <var>item</var> is music, the music will get a footnote attached to a
+grob immediately attached to the event, like <var>\tweak</var> does.  For
+attaching a footnote to an <em>indirectly</em> caused grob, write
+<code>\single\footnote</code>, use <var>item</var> to specify the grob, and
+follow it with the music to annotate.
+</p>
+<p>Like with <code>\tweak</code>, if you use a footnote on a following
+post-event, the <code>\footnote</code> command itself needs to be attached
+to the preceding note or rest as a post-event with <code>-</code>.
+ </p></dd>
+<dt> <code>grace</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-grace"></a>
+<a name="index-grace-1"></a>
+<p>Insert <var>music</var> as grace notes.
+ </p></dd>
+<dt> <code>grobdescriptions</code> (any type)  - <var>descriptions</var> (list)</dt>
+<dd><a name="index-grobdescriptions"></a>
+<a name="index-grobdescriptions-1"></a>
+<p>Create a context modification from <var>descriptions</var>, a list
+in the format of <code>all-grob-descriptions</code>.
+ </p></dd>
+<dt> <code>harmonicByFret</code> [music]  - <var>fret</var> (number) <var>music</var> (music)</dt>
+<dd><a name="index-harmonicByFret"></a>
+<a name="index-harmonicByFret-1"></a>
+<p>Convert <var>music</var> into mixed harmonics; the resulting notes resemble
+harmonics played on a fretted instrument by touching the strings at <var>fret</var>.
+ </p></dd>
+<dt> <code>harmonicByRatio</code> [music]  - <var>ratio</var> (number) <var>music</var> (music)</dt>
+<dd><a name="index-harmonicByRatio"></a>
+<a name="index-harmonicByRatio-1"></a>
+<p>Convert <var>music</var> into mixed harmonics; the resulting notes resemble
+harmonics played on a fretted instrument by touching the strings at the point
+given through <var>ratio</var>.
+ </p></dd>
+<dt> <code>harmonicNote</code> [music]  - <var>note</var> (music)</dt>
+<dd><a name="index-harmonicNote"></a>
+<a name="index-harmonicNote-1"></a>
+<p>Print <var>note</var> with a diamond-shaped note head.
+ </p></dd>
+<dt> <code>harmonicsOn</code> [music] </dt>
+<dd><a name="index-harmonicsOn"></a>
+<a name="index-harmonicsOn-1"></a>
+<p>Set the default note head style to a diamond-shaped style.
+ </p></dd>
+<dt> <code>hide</code> [music]  - <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-hide"></a>
+<a name="index-hide-1"></a>
+<p>Set <var>item</var>&rsquo;s &lsquo;<samp>transparent</samp>&rsquo; property to <code>#t</code>,
+making it invisible while still retaining its dimensions.
+</p>
+<p>If <var>item</var> is a symbol list of form <code>GrobName</code> or
+<code>Context.GrobName</code>, the result is an override for the grob name
+specified by it.  If <var>item</var> is a music expression, the result is
+the same music expression with an appropriate tweak applied to it.
+ </p></dd>
+<dt> <code>incipit</code> [music]  - <var>incipit-music</var> (music)</dt>
+<dd><a name="index-incipit-2"></a>
+<a name="index-incipit-3"></a>
+<p>Output <var>incipit-music</var> before the main staff as an indication of
+    its appearance in the original music.
+ </p></dd>
+<dt> <code>inherit-acceptability</code> [void]  - <var>to</var> (symbol) <var>from</var> (symbol)</dt>
+<dd><a name="index-inherit_002dacceptability"></a>
+<a name="index-inherit_002dacceptability-1"></a>
+<p>When used in an output definition, will modify all context
+definitions such that context <var>to</var> is accepted as a child by all
+contexts that also accept <var>from</var>.
+ </p></dd>
+<dt> <code>inStaffSegno</code> [music] </dt>
+<dd><a name="index-inStaffSegno"></a>
+<a name="index-inStaffSegno-1"></a>
+<p>Put the segno variant &rsquo;varsegno&rsquo; at this position into the staff,
+compatible with the repeat command.
+ </p></dd>
+<dt> <code>instrumentSwitch</code> [music]  - <var>name</var> (string)</dt>
+<dd><a name="index-instrumentSwitch"></a>
+<a name="index-instrumentSwitch-1"></a>
+<p>Switch instrument to <var>name</var>, which must be predefined with
+<code>\addInstrumentDefinition</code>.
+ </p></dd>
+<dt> <code>inversion</code> [music]  - <var>around</var> (pitch) <var>to</var> (pitch) <var>music</var> (music)</dt>
+<dd><a name="index-inversion-1"></a>
+<a name="index-inversion-2"></a>
+<p>Invert <var>music</var> about <var>around</var> and
+transpose from <var>around</var> to <var>to</var>.
+ </p></dd>
+<dt> <code>keepWithTag</code> [music]  - <var>tags</var> (symbol list or symbol) <var>music</var> (music)</dt>
+<dd><a name="index-keepWithTag"></a>
+<a name="index-keepWithTag-1"></a>
+<p>Include only elements of <var>music</var> that are tagged with one
+of the tags in <var>tags</var>.  <var>tags</var> may be either a single symbol
+or a list of symbols.
+</p>
+<p>Each tag may be declared as a member of at most one tag group (defined
+with <code>\tagGroup</code>).  If none of a <var>music</var> element&rsquo;s tags
+share a tag group with one of the specified <var>tags</var>, the element is
+retained.
+ </p></dd>
+<dt> <code>key</code> [music]  - <var>tonic</var> [pitch] <var>pitch-alist</var> [list]</dt>
+<dd><a name="index-key-4"></a>
+<a name="index-key-5"></a>
+<p>Set key to <var>tonic</var> and scale <var>pitch-alist</var>.
+If both are null, just generate <code>KeyChangeEvent</code>.
+ </p></dd>
+<dt> <code>killCues</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-killCues-2"></a>
+<a name="index-killCues-3"></a>
+<p>Remove cue notes from <var>music</var>.
+ </p></dd>
+<dt> <code>label</code> [music]  - <var>label</var> (symbol)</dt>
+<dd><a name="index-label"></a>
+<a name="index-label-1"></a>
+<p>Create <var>label</var> as a bookmarking label.
+ </p></dd>
+<dt> <code>language</code> [void]  - <var>language</var> (string)</dt>
+<dd><a name="index-language"></a>
+<a name="index-language-1"></a>
+<p>Set note names for language <var>language</var>.
+ </p></dd>
+<dt> <code>languageRestore</code> [void] </dt>
+<dd><a name="index-languageRestore"></a>
+<a name="index-languageRestore-1"></a>
+<p>Restore a previously-saved pitchnames alist.
+ </p></dd>
+<dt> <code>languageSaveAndChange</code> [void]  - <var>language</var> (string)</dt>
+<dd><a name="index-languageSaveAndChange"></a>
+<a name="index-languageSaveAndChange-1"></a>
+<p>Store the previous pitchnames alist, and set a new one.
+ </p></dd>
+<dt> <code>magnifyMusic</code> [music]  - <var>mag</var> (positive number) <var>music</var> (music)</dt>
+<dd><a name="index-magnifyMusic-2"></a>
+<a name="index-magnifyMusic-3"></a>
+<p>Magnify the notation of <var>music</var> without changing the
+staff-size, using <var>mag</var> as a size factor.  Stems, beams,
+slurs, ties, and horizontal spacing are adjusted automatically.
+ </p></dd>
+<dt> <code>magnifyStaff</code> [music]  - <var>mag</var> (positive number)</dt>
+<dd><a name="index-magnifyStaff"></a>
+<a name="index-magnifyStaff-1"></a>
+<p>Change the size of the staff, adjusting notation size and
+horizontal spacing automatically, using <var>mag</var> as a size factor.
+ </p></dd>
+<dt> <code>makeClusters</code> [music]  - <var>arg</var> (music)</dt>
+<dd><a name="index-makeClusters-2"></a>
+<a name="index-makeClusters-3"></a>
+<p>Display chords in <var>arg</var> as clusters.
+ </p></dd>
+<dt> <code>makeDefaultStringTuning</code> [void]  - <var>symbol</var> (symbol) <var>pitches</var> (list)</dt>
+<dd><a name="index-makeDefaultStringTuning"></a>
+<a name="index-makeDefaultStringTuning-1"></a>
+<p>This defines a string tuning <var>symbol</var> via a list of <var>pitches</var>.
+The <var>symbol</var> also gets registered in <code>defaultStringTunings</code>
+for documentation purposes.
+ </p></dd>
+<dt> <code>mark</code> [music]  - <var>label</var> [number or markup]</dt>
+<dd><a name="index-mark-4"></a>
+<a name="index-mark-5"></a>
+<p>Make the music for the \mark command.
+ </p></dd>
+<dt> <code>markupMap</code> [music]  - <var>path</var> (symbol list or symbol) <var>markupfun</var> (markup-function) <var>music</var> (music)</dt>
+<dd><a name="index-markupMap"></a>
+<a name="index-markupMap-1"></a>
+<p>This applies the given markup function <var>markupfun</var> to all markup
+music properties matching <var>path</var> in <var>music</var>.
+</p>
+<p>For example,
+</p><blockquote><pre class="example">\new Voice { g'2 c'' }
+\addlyrics {
+  \markupMap LyricEvent.text
+             \markup \with-color #red \etc
+             { Oh yes! }
+}
+</pre></blockquote>
+
+ </dd>
+<dt> <code>modalInversion</code> [music]  - <var>around</var> (pitch) <var>to</var> (pitch) <var>scale</var> (music) <var>music</var> (music)</dt>
+<dd><a name="index-modalInversion-2"></a>
+<a name="index-modalInversion-3"></a>
+<p>Invert <var>music</var> about <var>around</var> using <var>scale</var> and
+transpose from <var>around</var> to <var>to</var>.
+ </p></dd>
+<dt> <code>modalTranspose</code> [music]  - <var>from</var> (pitch) <var>to</var> (pitch) <var>scale</var> (music) <var>music</var> (music)</dt>
+<dd><a name="index-modalTranspose-2"></a>
+<a name="index-modalTranspose-3"></a>
+<p>Transpose <var>music</var> from pitch <var>from</var> to pitch <var>to</var>
+using <var>scale</var>.
+ </p></dd>
+<dt> <code>musicMap</code> [music]  - <var>proc</var> (procedure) <var>mus</var> (music)</dt>
+<dd><a name="index-musicMap"></a>
+<a name="index-musicMap-1"></a>
+<p>Apply <var>proc</var> to <var>mus</var> and all of the music it contains.
+ </p></dd>
+<dt> <code>noPageBreak</code> [music] </dt>
+<dd><a name="index-noPageBreak"></a>
+<a name="index-noPageBreak-1"></a>
+<p>Forbid a page break.  May be used at toplevel (i.e., between scores or
+markups), or inside a score.
+ </p></dd>
+<dt> <code>noPageTurn</code> [music] </dt>
+<dd><a name="index-noPageTurn"></a>
+<a name="index-noPageTurn-1"></a>
+<p>Forbid a page turn.  May be used at toplevel (i.e., between scores or
+markups), or inside a score.
+ </p></dd>
+<dt> <code>octaveCheck</code> [music]  - <var>pitch</var> (pitch)</dt>
+<dd><a name="index-octaveCheck-2"></a>
+<a name="index-octaveCheck-3"></a>
+<p>Octave check.
+ </p></dd>
+<dt> <code>offset</code> [music]  - <var>property</var> (symbol list or symbol) <var>offsets</var> (any type) <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-offset"></a>
+<a name="index-offset-1"></a>
+<p>Offset the default value of <var>property</var> of <var>item</var> by
+<var>offsets</var>.  If <var>item</var> is a string, the result is
+<code>\override</code> for the specified grob type.  If <var>item</var> is
+a music expression, the result is the same music expression with an
+appropriate tweak applied.
+ </p></dd>
+<dt> <code>omit</code> [music]  - <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-omit"></a>
+<a name="index-omit-1"></a>
+<p>Set <var>item</var>&rsquo;s &lsquo;<samp>stencil</samp>&rsquo; property to <code>#f</code>,
+effectively omitting it without taking up space.
+</p>
+<p>If <var>item</var> is a symbol list of form <code>GrobName</code> or
+<code>Context.GrobName</code>, the result is an override for the grob name
+specified by it.  If <var>item</var> is a music expression, the result is
+the same music expression with an appropriate tweak applied to it.
+ </p></dd>
+<dt> <code>once</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-once"></a>
+<a name="index-once-1"></a>
+<p>Set <code>once</code> to <code>#t</code> on all layout instruction events
+in <var>music</var>.  This will complain about music with an actual
+duration.  As a special exception, if <var>music</var> contains
+&lsquo;<samp>tweaks</samp>&rsquo; it will be silently ignored in order to allow for
+<code>\once \propertyTweak</code> to work as both one-time override and proper
+tweak.
+ </p></dd>
+<dt> <code>ottava</code> [music]  - <var>octave</var> (integer)</dt>
+<dd><a name="index-ottava-3"></a>
+<a name="index-ottava-4"></a>
+<p>Set the octavation.
+ </p></dd>
+<dt> <code>overrideProperty</code> [music]  - <var>grob-property-path</var> (symbol list) <var>value</var> (any type)</dt>
+<dd><a name="index-overrideProperty"></a>
+<a name="index-overrideProperty-1"></a>
+<p>Set the grob property specified by <var>grob-property-path</var> to
+<var>value</var>.  <var>grob-property-path</var> is a symbol list of the form
+<code>Context.GrobName.property</code> or <code>GrobName.property</code>, possibly
+with subproperties given as well.
+</p>
+<p>As opposed to <code>\override</code> which overrides the context-dependent
+defaults with which a grob is created, this command uses
+<code>Output_property_engraver</code> at the grob acknowledge stage.  This
+may be necessary for overriding values set after the initial grob
+creation.
+ </p></dd>
+<dt> <code>overrideTimeSignatureSettings</code> [music]  - <var>time-signature</var> (fraction, as pair) <var>base-moment</var> (fraction, as pair) <var>beat-structure</var> (list) <var>beam-exceptions</var> (list)</dt>
+<dd><a name="index-overrideTimeSignatureSettings"></a>
+<a name="index-overrideTimeSignatureSettings-1"></a>
+<p>Override <code>timeSignatureSettings</code>
+for time signatures of <var>time-signature</var> to have settings
+of <var>base-moment</var>, <var>beat-structure</var>, and <var>beam-exceptions</var>.
+ </p></dd>
+<dt> <code>pageBreak</code> [music] </dt>
+<dd><a name="index-pageBreak"></a>
+<a name="index-pageBreak-1"></a>
+<p>Force a page break.  May be used at toplevel (i.e., between scores or
+markups), or inside a score.
+ </p></dd>
+<dt> <code>pageTurn</code> [music] </dt>
+<dd><a name="index-pageTurn"></a>
+<a name="index-pageTurn-1"></a>
+<p>Force a page turn between two scores or top-level markups.
+ </p></dd>
+<dt> <code>palmMute</code> [music]  - <var>note</var> (music)</dt>
+<dd><a name="index-palmMute"></a>
+<a name="index-palmMute-1"></a>
+<p>Print <var>note</var> with a triangle-shaped note head.
+ </p></dd>
+<dt> <code>palmMuteOn</code> [music] </dt>
+<dd><a name="index-palmMuteOn"></a>
+<a name="index-palmMuteOn-1"></a>
+<p>Set the default note head style to a triangle-shaped style.
+ </p></dd>
+<dt> <code>parallelMusic</code> [void]  - <var>voice-ids</var> (list) <var>music</var> (music)</dt>
+<dd><a name="index-parallelMusic-2"></a>
+<a name="index-parallelMusic-3"></a>
+<p>Define parallel music sequences, separated by &rsquo;|&rsquo; (bar check signs),
+and assign them to the identifiers provided in <var>voice-ids</var>.
+</p>
+<p><var>voice-ids</var>: a list of music identifiers (symbols containing only letters)
+</p>
+<p><var>music</var>: a music sequence, containing BarChecks as limiting expressions.
+</p>
+<p>Example:
+</p>
+<pre class="verbatim">  \parallelMusic #'(A B C) {
+    c c | d d | e e |
+    d d | e e | f f |
+  }
+&lt;==&gt;
+  A = { c c | d d }
+  B = { d d | e e }
+  C = { e e | f f }
+</pre>
+<p>The last bar checks in a sequence are not copied to the result in
+order to facilitate ending the last entry at non-bar boundaries.
+</p>
+ </dd>
+<dt> <code>parenthesize</code> [music]  - <var>arg</var> (music)</dt>
+<dd><a name="index-parenthesize-2"></a>
+<a name="index-parenthesize-3"></a>
+<p>Tag <var>arg</var> to be parenthesized.
+ </p></dd>
+<dt> <code>partcombine</code> [music]  - <var>chord-range</var> [pair of numbers] <var>part1</var> (music) <var>part2</var> (music)</dt>
+<dd><a name="index-partcombine-2"></a>
+<a name="index-partcombine-3"></a>
+<p>Take the music in <var>part1</var> and <var>part2</var> and return
+a music expression containing simultaneous voices, where <var>part1</var>
+and <var>part2</var> are combined into one voice where appropriate.
+Optional <var>chord-range</var> sets the distance in steps between notes
+that may be combined into a chord or unison.
+ </p></dd>
+<dt> <code>partcombineDown</code> [music]  - <var>chord-range</var> [pair of numbers] <var>part1</var> (music) <var>part2</var> (music)</dt>
+<dd><a name="index-partcombineDown"></a>
+<a name="index-partcombineDown-1"></a>
+<p>Take the music in <var>part1</var> and <var>part2</var> and typeset so
+that they share a staff with stems directed downward.
+ </p></dd>
+<dt> <code>partcombineForce</code> [music]  - <var>type</var> [symbol]</dt>
+<dd><a name="index-partcombineForce"></a>
+<a name="index-partcombineForce-1"></a>
+<p>Override the part-combiner.
+ </p></dd>
+<dt> <code>partcombineUp</code> [music]  - <var>chord-range</var> [pair of numbers] <var>part1</var> (music) <var>part2</var> (music)</dt>
+<dd><a name="index-partcombineUp"></a>
+<a name="index-partcombineUp-1"></a>
+<p>Take the music in <var>part1</var> and <var>part2</var> and typeset so
+that they share a staff with stems directed upward.
+ </p></dd>
+<dt> <code>partial</code> [music]  - <var>dur</var> (duration)</dt>
+<dd><a name="index-partial-2"></a>
+<a name="index-partial-3"></a>
+<p>Make a partial measure.
+ </p></dd>
+<dt> <code>phrasingSlurDashPattern</code> [music]  - <var>dash-fraction</var> (number) <var>dash-period</var> (number)</dt>
+<dd><a name="index-phrasingSlurDashPattern-2"></a>
+<a name="index-phrasingSlurDashPattern-3"></a>
+<p>Set up a custom style of dash pattern for <var>dash-fraction</var> ratio of
+line to space repeated at <var>dash-period</var> interval for phrasing slurs.
+ </p></dd>
+<dt> <code>pitchedTrill</code> [music]  - <var>main-note</var> (music) <var>secondary-note</var> (music)</dt>
+<dd><a name="index-pitchedTrill-2"></a>
+<a name="index-pitchedTrill-3"></a>
+<p>Print a trill with <var>main-note</var> as the main note of the trill and
+print <var>secondary-note</var> as a stemless note head in parentheses.
+ </p></dd>
+<dt> <code>pointAndClickOff</code> [void] </dt>
+<dd><a name="index-pointAndClickOff"></a>
+<a name="index-pointAndClickOff-1"></a>
+<p>Suppress generating extra code in final-format (e.g. pdf) files to point
+back to the lilypond source statement.
+ </p></dd>
+<dt> <code>pointAndClickOn</code> [void] </dt>
+<dd><a name="index-pointAndClickOn"></a>
+<a name="index-pointAndClickOn-1"></a>
+<p>Enable generation of code in final-format (e.g. pdf) files to reference the
+originating lilypond source statement;
+this is helpful when developing a score but generates bigger final-format files.
+ </p></dd>
+<dt> <code>pointAndClickTypes</code> [void]  - <var>types</var> (symbol list or symbol)</dt>
+<dd><a name="index-pointAndClickTypes"></a>
+<a name="index-pointAndClickTypes-1"></a>
+<p>Set a type or list of types (such as <code>#'note-event</code>) for which point-and-click info is generated.
+ </p></dd>
+<dt> <code>propertyOverride</code> [music]  - <var>grob-property-path</var> (symbol list) <var>value</var> (any type)</dt>
+<dd><a name="index-propertyOverride"></a>
+<a name="index-propertyOverride-1"></a>
+<p>Set the grob property specified by <var>grob-property-path</var> to
+<var>value</var>.  <var>grob-property-path</var> is a symbol list of the form
+<code>Context.GrobName.property</code> or <code>GrobName.property</code>, possibly
+with subproperties given as well.  This music function is mostly intended
+for use from Scheme as a substitute for the built-in <code>\override</code>
+command.
+ </p></dd>
+<dt> <code>propertyRevert</code> [music]  - <var>grob-property-path</var> (symbol list)</dt>
+<dd><a name="index-propertyRevert"></a>
+<a name="index-propertyRevert-1"></a>
+<p>Revert the grob property specified by <var>grob-property-path</var> to
+its previous value.  <var>grob-property-path</var> is a symbol list of the form
+<code>Context.GrobName.property</code> or <code>GrobName.property</code>, possibly
+with subproperties given as well.  This music function is mostly intended
+for use from Scheme as a substitute for the built-in <code>\revert</code>
+command.
+ </p></dd>
+<dt> <code>propertySet</code> [music]  - <var>property-path</var> (symbol list or symbol) <var>value</var> (any type)</dt>
+<dd><a name="index-propertySet"></a>
+<a name="index-propertySet-1"></a>
+<p>Set the context property specified by <var>property-path</var> to
+<var>value</var>.  This music function is mostly intended for use from
+Scheme as a substitute for the built-in <code>\set</code> command.
+ </p></dd>
+<dt> <code>propertyTweak</code> [music]  - <var>prop</var> (symbol list or symbol) <var>value</var> (any type) <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-propertyTweak"></a>
+<a name="index-propertyTweak-1"></a>
+<p>Add a tweak to the following <var>item</var>, usually music.
+This generally behaves like <code>\tweak</code> but will turn into an
+<code>\override</code> when <var>item</var> is a symbol list.
+</p>
+<p>In that case, <var>item</var> specifies the grob path to override.  This is
+mainly useful when using <code>\propertyTweak</code> as as a component for
+building other functions like <code>\omit</code>.  It is not the default
+behavior for <code>\tweak</code> since many input strings in
+<code>\lyricmode</code> can serve equally as music or as symbols which
+causes surprising behavior when tweaking lyrics using the less
+specific semantics of <code>\propertyTweak</code>.
+</p>
+<p><var>prop</var> can contain additional elements in which case a nested
+property (inside of an alist) is tweaked.
+ </p></dd>
+<dt> <code>propertyUnset</code> [music]  - <var>property-path</var> (symbol list or symbol)</dt>
+<dd><a name="index-propertyUnset"></a>
+<a name="index-propertyUnset-1"></a>
+<p>Unset the context property specified by <var>property-path</var>.
+This music function is mostly intended for use from Scheme as a
+substitute for the built-in <code>\unset</code> command.
+ </p></dd>
+<dt> <code>pushToTag</code> [music]  - <var>tag</var> (symbol) <var>more</var> (music) <var>music</var> (music)</dt>
+<dd><a name="index-pushToTag"></a>
+<a name="index-pushToTag-1"></a>
+<p>Add <var>more</var> to the front of <code>elements</code> of all music
+expressions in <var>music</var> that are tagged with <var>tag</var>.
+ </p></dd>
+<dt> <code>quoteDuring</code> [music]  - <var>what</var> (string) <var>main-music</var> (music)</dt>
+<dd><a name="index-quoteDuring-4"></a>
+<a name="index-quoteDuring-5"></a>
+<p>Indicate a section of music to be quoted.  <var>what</var> indicates the name
+of the quoted voice, as specified in an <code>\addQuote</code> command.
+<var>main-music</var> is used to indicate the length of music to be quoted;
+usually contains spacers or multi-measure rests.
+ </p></dd>
+<dt> <code>relative</code> [music]  - <var>pitch</var> [pitch] <var>music</var> (music)</dt>
+<dd><a name="index-relative-9"></a>
+<a name="index-relative-10"></a>
+<p>Make <var>music</var> relative to <var>pitch</var>.  If <var>pitch</var> is
+omitted, the first note in <var>music</var> is given in absolute pitch.
+ </p></dd>
+<dt> <code>removeWithTag</code> [music]  - <var>tags</var> (symbol list or symbol) <var>music</var> (music)</dt>
+<dd><a name="index-removeWithTag"></a>
+<a name="index-removeWithTag-1"></a>
+<p>Remove elements of <var>music</var> that are tagged with one of the
+tags in <var>tags</var>.  <var>tags</var> may be either a single symbol or a list
+of symbols.
+ </p></dd>
+<dt> <code>resetRelativeOctave</code> [music]  - <var>pitch</var> (pitch)</dt>
+<dd><a name="index-resetRelativeOctave"></a>
+<a name="index-resetRelativeOctave-1"></a>
+<p>Set the octave inside a \relative section.
+ </p></dd>
+<dt> <code>retrograde</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-retrograde-2"></a>
+<a name="index-retrograde-3"></a>
+<p>Return <var>music</var> in reverse order.
+ </p></dd>
+<dt> <code>revertTimeSignatureSettings</code> [music]  - <var>time-signature</var> (pair)</dt>
+<dd><a name="index-revertTimeSignatureSettings"></a>
+<a name="index-revertTimeSignatureSettings-1"></a>
+<p>Revert <code>timeSignatureSettings</code>
+for time signatures of <var>time-signature</var>.
+ </p></dd>
+<dt> <code>rightHandFinger</code> [post event]  - <var>finger</var> (number or markup)</dt>
+<dd><a name="index-rightHandFinger-2"></a>
+<a name="index-rightHandFinger-3"></a>
+<p>Apply <var>finger</var> as a fingering indication.
+ </p></dd>
+<dt> <code>scaleDurations</code> [music]  - <var>fraction</var> (fraction, as pair) <var>music</var> (music)</dt>
+<dd><a name="index-scaleDurations-4"></a>
+<a name="index-scaleDurations-5"></a>
+<p>Multiply the duration of events in <var>music</var> by <var>fraction</var>.
+ </p></dd>
+<dt> <code>settingsFrom</code> (any type)  - <var>ctx</var> [symbol] <var>music</var> (music)</dt>
+<dd><a name="index-settingsFrom"></a>
+<a name="index-settingsFrom-1"></a>
+<p>Take the layout instruction events from <var>music</var>, optionally
+restricted to those applying to context type <var>ctx</var>, and return
+a context modification duplicating their effect.
+ </p></dd>
+<dt> <code>shape</code> [music]  - <var>offsets</var> (list) <var>item</var> (symbol list or music)</dt>
+<dd><a name="index-shape"></a>
+<a name="index-shape-1"></a>
+<p>Offset control-points of <var>item</var> by <var>offsets</var>.  The
+argument is a list of number pairs or list of such lists.  Each
+element of a pair represents an offset to one of the coordinates of a
+control-point.  If <var>item</var> is a string, the result is
+<code>\once\override</code> for the specified grob type.  If <var>item</var> is
+a music expression, the result is the same music expression with an
+appropriate tweak applied.
+ </p></dd>
+<dt> <code>shiftDurations</code> [music]  - <var>dur</var> (integer) <var>dots</var> (integer) <var>arg</var> (music)</dt>
+<dd><a name="index-shiftDurations"></a>
+<a name="index-shiftDurations-1"></a>
+<p>Change the duration of <var>arg</var> by adding <var>dur</var> to the
+<code>durlog</code> of <var>arg</var> and <var>dots</var> to the <code>dots</code> of <var>arg</var>.
+ </p></dd>
+<dt> <code>single</code> [music]  - <var>overrides</var> (music) <var>music</var> (music)</dt>
+<dd><a name="index-single"></a>
+<a name="index-single-1"></a>
+<p>Convert <var>overrides</var> to tweaks and apply them to <var>music</var>.
+This does not convert <code>\revert</code>, <code>\set</code> or <code>\unset</code>.
+ </p></dd>
+<dt> <code>skip</code> [music]  - <var>dur</var> (duration)</dt>
+<dd><a name="index-skip-3"></a>
+<a name="index-skip-4"></a>
+<p>Skip forward by <var>dur</var>.
+ </p></dd>
+<dt> <code>slashedGrace</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-slashedGrace"></a>
+<a name="index-slashedGrace-1"></a>
+<p>Create slashed graces (slashes through stems, but no slur) from
+the following music expression
+ </p></dd>
+<dt> <code>slurDashPattern</code> [music]  - <var>dash-fraction</var> (number) <var>dash-period</var> (number)</dt>
+<dd><a name="index-slurDashPattern-2"></a>
+<a name="index-slurDashPattern-3"></a>
+<p>Set up a custom style of dash pattern for <var>dash-fraction</var>
+ratio of line to space repeated at <var>dash-period</var> interval for slurs.
+ </p></dd>
+<dt> <code>spacingTweaks</code> [music]  - <var>parameters</var> (list)</dt>
+<dd><a name="index-spacingTweaks"></a>
+<a name="index-spacingTweaks-1"></a>
+<p>Set the system stretch, by reading the &rsquo;system-stretch property of
+the &lsquo;parameters&rsquo; assoc list.
+ </p></dd>
+<dt> <code>storePredefinedDiagram</code> [void]  - <var>fretboard-table</var> (hash table) <var>chord</var> (music) <var>tuning</var> (pair) <var>diagram-definition</var> (string or pair)</dt>
+<dd><a name="index-storePredefinedDiagram-2"></a>
+<a name="index-storePredefinedDiagram-3"></a>
+<p>Add predefined fret diagram defined by <var>diagram-definition</var>
+  for the chord pitches <var>chord</var> and the stringTuning <var>tuning</var>.
+ </p></dd>
+<dt> <code>stringTuning</code> (any type)  - <var>chord</var> (music)</dt>
+<dd><a name="index-stringTuning-2"></a>
+<a name="index-stringTuning-3"></a>
+<p>Convert <var>chord</var> to a string tuning.
+<var>chord</var> must be in absolute pitches and should have the highest
+string number (generally the lowest pitch) first.
+ </p></dd>
+<dt> <code>styledNoteHeads</code> [music]  - <var>style</var> (symbol) <var>heads</var> (symbol list or symbol) <var>music</var> (music)</dt>
+<dd><a name="index-styledNoteHeads"></a>
+<a name="index-styledNoteHeads-1"></a>
+<p>Set <var>heads</var> in <var>music</var> to <var>style</var>.
+ </p></dd>
+<dt> <code>tabChordRepeats</code> [music]  - <var>event-types</var> [list] <var>music</var> (music)</dt>
+<dd><a name="index-tabChordRepeats"></a>
+<a name="index-tabChordRepeats-1"></a>
+<p>Walk through <var>music</var> putting the notes, fingerings and string
+numbers of the previous chord into repeat chords, as well as an
+optional list of <var>event-types</var> such as <code>#'(articulation-event)</code>.
+ </p></dd>
+<dt> <code>tabChordRepetition</code> [void] </dt>
+<dd><a name="index-tabChordRepetition"></a>
+<a name="index-tabChordRepetition-1"></a>
+<p>Include the string and fingering information in a chord repetition.
+This function is deprecated; try using <code>\tabChordRepeats</code> instead.
+ </p></dd>
+<dt> <code>tag</code> [music]  - <var>tags</var> (symbol list or symbol) <var>music</var> (music)</dt>
+<dd><a name="index-tag-1"></a>
+<a name="index-tag-2"></a>
+<p>Tag the following <var>music</var> with <var>tags</var> and return the
+result, by adding the single symbol or symbol list <var>tags</var> to the
+<code>tags</code> property of <var>music</var>.
+ </p></dd>
+<dt> <code>tagGroup</code> [void]  - <var>tags</var> (symbol list)</dt>
+<dd><a name="index-tagGroup"></a>
+<a name="index-tagGroup-1"></a>
+<p>Define a tag group comprising the symbols in the symbol list
+<var>tags</var>.  Tag groups must not overlap.
+ </p></dd>
+<dt> <code>temporary</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-temporary"></a>
+<a name="index-temporary-1"></a>
+<p>Make any <code>\override</code> in <var>music</var> replace an existing
+grob property value only temporarily, restoring the old value when a
+corresponding <code>\revert</code> is executed.  This is achieved by
+clearing the &lsquo;<samp>pop-first</samp>&rsquo; property normally set on
+<code>\override</code>s.
+</p>
+<p>An <code>\override</code>/<code>\revert</code> sequence created by using
+<code>\temporary</code> and <code>\undo</code> on the same music containing
+overrides will cancel out perfectly or cause a&nbsp;warning.
+</p>
+<p>Non-property-related music is ignored, warnings are generated for any
+property-changing music that isn&rsquo;t an <code>\override</code>.
+ </p></dd>
+<dt> <code>tieDashPattern</code> [music]  - <var>dash-fraction</var> (number) <var>dash-period</var> (number)</dt>
+<dd><a name="index-tieDashPattern"></a>
+<a name="index-tieDashPattern-1"></a>
+<p>Set up a custom style of dash pattern for <var>dash-fraction</var>
+ratio of line to space repeated at <var>dash-period</var> interval for ties.
+ </p></dd>
+<dt> <code>time</code> [music]  - <var>beat-structure</var> [number list] <var>fraction</var> (fraction, as pair)</dt>
+<dd><a name="index-time-4"></a>
+<a name="index-time-5"></a>
+<p>Set <var>fraction</var> as time signature, with optional
+number list <var>beat-structure</var> before it.
+ </p></dd>
+<dt> <code>times</code> [music]  - <var>fraction</var> (fraction, as pair) <var>music</var> (music)</dt>
+<dd><a name="index-times"></a>
+<a name="index-times-1"></a>
+<p>Scale <var>music</var> in time by <var>fraction</var>.
+ </p></dd>
+<dt> <code>tocItem</code> [music]  - <var>text</var> (markup)</dt>
+<dd><a name="index-tocItem"></a>
+<a name="index-tocItem-1"></a>
+<p>Add a line to the table of content, using the <code>tocItemMarkup</code> paper
+variable markup
+ </p></dd>
+<dt> <code>transpose</code> [music]  - <var>from</var> (pitch) <var>to</var> (pitch) <var>music</var> (music)</dt>
+<dd><a name="index-transpose-7"></a>
+<a name="index-transpose-8"></a>
+<p>Transpose <var>music</var> from pitch <var>from</var> to pitch <var>to</var>.
+ </p></dd>
+<dt> <code>transposedCueDuring</code> [music]  - <var>what</var> (string) <var>dir</var> (direction) <var>pitch</var> (pitch) <var>main-music</var> (music)</dt>
+<dd><a name="index-transposedCueDuring-2"></a>
+<a name="index-transposedCueDuring-3"></a>
+<p>Insert notes from the part <var>what</var> into a voice called <code>cue</code>,
+using the transposition defined by <var>pitch</var>.  This happens
+simultaneously with <var>main-music</var>, which is usually a rest.  The
+argument <var>dir</var> determines whether the cue notes should be notated
+as a first or second voice.
+ </p></dd>
+<dt> <code>transposition</code> [music]  - <var>pitch</var> (pitch)</dt>
+<dd><a name="index-transposition-5"></a>
+<a name="index-transposition-6"></a>
+<p>Set instrument transposition
+ </p></dd>
+<dt> <code>tuplet</code> [music]  - <var>ratio</var> (fraction, as pair) <var>tuplet-span</var> [duration] <var>music</var> (music)</dt>
+<dd><a name="index-tuplet-5"></a>
+<a name="index-tuplet-6"></a>
+<p>Scale the given <var>music</var> to tuplets.  <var>ratio</var> is a
+fraction that specifies how many notes are played in place of the
+nominal value: it will be &lsquo;<samp>3/2</samp>&rsquo; for triplets, namely three notes
+being played in place of two.  If the optional duration
+<var>tuplet-span</var> is specified, it is used instead of
+<code>tupletSpannerDuration</code> for grouping the tuplets.
+For example,
+</p><blockquote><pre class="example">\tuplet 3/2 4 { c8 c c c c c }
+</pre></blockquote>
+<p>will result in two groups of three tuplets, each group lasting for a
+quarter note.
+ </p></dd>
+<dt> <code>tupletSpan</code> [music]  - <var>tuplet-span</var> [duration]</dt>
+<dd><a name="index-tupletSpan"></a>
+<a name="index-tupletSpan-1"></a>
+<p>Set <code>tupletSpannerDuration</code>, the length into which
+<code>\tuplet</code> without an explicit &lsquo;<samp>tuplet-span</samp>&rsquo; argument of its
+own will group its tuplets, to the duration <var>tuplet-span</var>.  To
+revert to the default of not subdividing the contents of a <code>\tuplet</code>
+command without explicit &lsquo;<samp>tuplet-span</samp>&rsquo;, use
+</p><blockquote><pre class="example">\tupletSpan \default
+</pre></blockquote>
+
+ </dd>
+<dt> <code>tweak</code> [music]  - <var>prop</var> (symbol list or symbol) <var>value</var> (any type) <var>music</var> (music)</dt>
+<dd><a name="index-tweak"></a>
+<a name="index-tweak-1"></a>
+<p>Add a tweak to the following <var>music</var>.
+Layout objects created by <var>music</var> get their property <var>prop</var>
+set to <var>value</var>.  If <var>prop</var> has the form &lsquo;<samp>Grob.property</samp>&rsquo;, like with
+</p><blockquote><pre class="example">\tweak Accidental.color #red cis'
+</pre></blockquote>
+<p>an indirectly created grob (&lsquo;<samp>Accidental</samp>&rsquo; is caused by
+&lsquo;<samp>NoteHead</samp>&rsquo;) can be tweaked; otherwise only directly created grobs
+are affected.
+</p>
+<p><var>prop</var> can contain additional elements in which case a nested
+property (inside of an alist) is tweaked.
+ </p></dd>
+<dt> <code>undo</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-undo"></a>
+<a name="index-undo-1"></a>
+<p>Convert <code>\override</code> and <code>\set</code> in <var>music</var> to
+<code>\revert</code> and <code>\unset</code>, respectively.  Any reverts and
+unsets already in <var>music</var> cause a warning.  Non-property-related music is ignored.
+ </p></dd>
+<dt> <code>unfoldRepeats</code> [music]  - <var>music</var> (music)</dt>
+<dd><a name="index-unfoldRepeats"></a>
+<a name="index-unfoldRepeats-1"></a>
+<p>Force any <code>\repeat volta</code>, <code>\repeat tremolo</code> or
+<code>\repeat percent</code> commands in <var>music</var> to be interpreted
+as <code>\repeat unfold</code>.
+ </p></dd>
+<dt> <code>void</code> [void]  - <var>arg</var> (any type)</dt>
+<dd><a name="index-void"></a>
+<a name="index-void-1"></a>
+<p>Accept a scheme argument, return a void expression.
+Use this if you want to have a scheme expression evaluated
+because of its side-effects, but its value ignored.
+ </p></dd>
+<dt> <code>withMusicProperty</code> [music]  - <var>sym</var> (symbol) <var>val</var> (any type) <var>music</var> (music)</dt>
+<dd><a name="index-withMusicProperty"></a>
+<a name="index-withMusicProperty-1"></a>
+<p>Set <var>sym</var> to <var>val</var> in <var>music</var>.
+ </p></dd>
+<dt> <code>xNote</code> [music]  - <var>note</var> (music)</dt>
+<dd><a name="index-xNote"></a>
+<a name="index-xNote-1"></a>
+<p>Print <var>note</var> with a cross-shaped note head.
+ </p></dd>
+<dt> <code>xNotesOn</code> [music] </dt>
+<dd><a name="index-xNotesOn"></a>
+<a name="index-xNotesOn-1"></a>
+<p>Set the default note head style to a cross-shaped style.
+ </p></dd>
+<dt> <code>\=</code> [post event]  - <var>id</var> (number or string) <var>event</var> (post event)</dt>
+<dd><a name="index-_005c_003d-2"></a>
+<a name="index-_005c_003d-3"></a>
+<p>This sets the <code>spanner-id</code> property of the following
+<var>event</var> to the given <var>id</var> (numbers will be converted to a
+string).  This can be used to tell LilyPond how to connect overlapping
+or parallel slurs or phrasing slurs within a single <code>Voice</code>.
+</p><blockquote><pre class="verbatim">\fixed c' { c\=1( d\=2( e\=1) f\=2) }
+</pre><p>
+ <a href="../a5/lily-4a81126a.ly">
+  <img align="middle"
+       border="0"
+       src="../a5/lily-4a81126a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+</dd>
+</dl>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="notation-manual-tables.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Notation manual tables&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="cheat-sheet.html" title="Next chapter">&nbsp;Cheat sheet &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="layout-properties.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Layout properties&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="notation-manual-tables.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Notation manual tables&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="context-modification-identifiers.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Context modification identifiers &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Other languages: <a href="available-music-functions.de.html">deutsch</a>, <a href="available-music-functions.es.html">español</a>, <a href="available-music-functions.fr.html">français</a>, <a href="available-music-functions.it.html">italiano</a>, <a href="available-music-functions.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Notation Reference  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musical-notation-1" href="musical-notation.html">1. Musical notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Pitches-1" href="pitches.html">1.1 Pitches</a>    </li>
+    <li class=""><a name="toc-Rhythms-1" href="rhythms.html">1.2 Rhythms</a>    </li>
+    <li class=""><a name="toc-Expressive-marks-1" href="expressive-marks.html">1.3 Expressive marks</a>    </li>
+    <li class=""><a name="toc-Repeats-1" href="repeats.html">1.4 Repeats</a>    </li>
+    <li class=""><a name="toc-Simultaneous-notes-1" href="simultaneous-notes.html">1.5 Simultaneous notes</a>    </li>
+    <li class=""><a name="toc-Staff-notation-1" href="staff-notation.html">1.6 Staff notation</a>    </li>
+    <li class=""><a name="toc-Editorial-annotations-1" href="editorial-annotations.html">1.7 Editorial annotations</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Specialist-notation-1" href="specialist-notation.html">2. Specialist notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Vocal-music-1" href="vocal-music.html">2.1 Vocal music</a>    </li>
+    <li class=""><a name="toc-Keyboard-and-other-multi_002dstaff-instruments-1" href="keyboard-and-other-multi_002dstaff-instruments.html">2.2 Keyboard and other multi-staff instruments</a>    </li>
+    <li class=""><a name="toc-Unfretted-string-instruments-1" href="unfretted-string-instruments.html">2.3 Unfretted string instruments</a>    </li>
+    <li class=""><a name="toc-Fretted-string-instruments-1" href="fretted-string-instruments.html">2.4 Fretted string instruments</a>    </li>
+    <li class=""><a name="toc-Percussion-1" href="percussion.html">2.5 Percussion</a>    </li>
+    <li class=""><a name="toc-Wind-instruments-1" href="wind-instruments.html">2.6 Wind instruments</a>    </li>
+    <li class=""><a name="toc-Chord-notation-1" href="chord-notation.html">2.7 Chord notation</a>    </li>
+    <li class=""><a name="toc-Contemporary-music-1" href="contemporary-music.html">2.8 Contemporary music</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-World-music-1" href="world-music.html">2.10 World music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-General-input-and-output-1" href="general-input-and-output.html">3. General input and output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Input-structure-1" href="input-structure.html">3.1 Input structure</a>    </li>
+    <li class=""><a name="toc-Titles-and-headers-1" href="titles-and-headers.html">3.2 Titles and headers</a>    </li>
+    <li class=""><a name="toc-Working-with-input-files-1" href="working-with-input-files.html">3.3 Working with input files</a>    </li>
+    <li class=""><a name="toc-Controlling-output-1" href="controlling-output.html">3.4 Controlling output</a>    </li>
+    <li class=""><a name="toc-Creating-MIDI-output-1" href="creating-midi-output.html">3.5 Creating MIDI output</a>    </li>
+    <li class=""><a name="toc-Extracting-musical-information-1" href="extracting-musical-information.html">3.6 Extracting musical information</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spacing-issues-1" href="spacing-issues.html">4. Spacing issues</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Page-layout-1" href="page-layout.html">4.1 Page layout</a>    </li>
+    <li class=""><a name="toc-Score-layout-1" href="score-layout.html">4.2 Score layout</a>    </li>
+    <li class=""><a name="toc-Breaks-1" href="breaks.html">4.3 Breaks</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.html">4.4 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Horizontal-spacing-1" href="horizontal-spacing.html">4.5 Horizontal spacing</a>    </li>
+    <li class=""><a name="toc-Fitting-music-onto-fewer-pages-1" href="fitting-music-onto-fewer-pages.html">4.6 Fitting music onto fewer pages</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Changing-defaults-1" href="changing-defaults.html">5. Changing defaults</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretation-contexts-1" href="interpretation-contexts.html">5.1 Interpretation contexts</a>    </li>
+    <li class=""><a name="toc-Explaining-the-Internals-Reference-1" href="explaining-the-internals-reference.html">5.2 Explaining the Internals Reference</a>    </li>
+    <li class=""><a name="toc-Modifying-properties-1" href="modifying-properties.html">5.3 Modifying properties</a>    </li>
+    <li class=""><a name="toc-Useful-concepts-and-properties-1" href="useful-concepts-and-properties.html">5.4 Useful concepts and properties</a>    </li>
+    <li class=""><a name="toc-Advanced-tweaks-1" href="advanced-tweaks.html">5.5 Advanced tweaks</a>    </li>
+    <li class=""><a name="toc-Using-music-functions-1" href="using-music-functions.html">5.6 Using music functions</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.html">A.18 Layout properties</a>    </li>
+    <li class=" toc_current"><a name="toc-Available-music-functions-1" href="available-music-functions.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cheat-sheet-1" href="cheat-sheet.html">B. Cheat sheet</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-command-index-1" href="lilypond-command-index.html">D. LilyPond command index</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.html">E. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

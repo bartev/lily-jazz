@@ -1,0 +1,1736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 1.2.3 Rhythmen anzeigen lassen</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 1.2.3 Rhythmen anzeigen lassen">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 1.2.3 Rhythmen anzeigen lassen">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="rhythms.de.html#rhythms" rel="up" title="1.2 Rhythmus">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="writing-rests.de.html#writing-rests" rel="previous" title="1.2.2 Pausen eingeben">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Rhythmen-anzeigen-lassen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="writing-rests.de.html#full-measure-rests" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Ganztaktpausen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmus&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#time-signature" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Taktangabe &gt; </a>]</td></tr></table>
+<a name="displaying-rhythms"></a>
+<h3 class="subsection">1.2.3 Rhythmen anzeigen lassen</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#time-signature" accesskey="1">Taktangabe</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#metronome-marks" accesskey="2">Metronomangabe</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#upbeats" accesskey="3">Auftakte</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#unmetered-music" accesskey="4">Musik ohne Metrum</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#polymetric-notation" accesskey="5">Polymetrische Notation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#automatic-note-splitting" accesskey="6">Automatische Aufteilung von Noten</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#showing-melody-rhythms" accesskey="7">Melodierhythmus anzeigen</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Taktangabe"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#displaying-rhythms" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#metronome-marks" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Metronomangabe &gt; </a>]</td></tr></table>
+<a name="time-signature"></a>
+<h4 class="unnumberedsubsubsec">Taktangabe</h4>
+
+<a name="index-Taktangabe"></a>
+<a name="index-Metrum"></a>
+
+<a name="index-time"></a>
+<a name="index-time-1"></a>
+<a name="index-_005ctime"></a>
+<a name="index-_005ctime-1"></a>
+
+<p>Taktangaben werden wie folgt erstellt.
+</p>
+<blockquote><pre class="verbatim">\time 2/4 c'2
+\time 3/4 c'2.
+</pre><p>
+ <a href="../3b/lily-75b53829.ly">
+  <img align="middle"
+       border="0"
+       src="../3b/lily-75b53829.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Taktangabe_002c-Sichtbarkeit"></a>
+
+<p>Taktangaben werden zu Beginn eines Stückes gesetzt und immer dann,
+wenn sich die Taktart ändert.  Wenn eine Änderung am Ende einer
+Zeile geschieht, wird eine warnende Taktangabe am Ende der Zeile
+ausgegeben.  Dieses Verhalten kann verändert werden, siehe
+<a href="visibility-of-objects.de.html">Sichtbarkeit von Objekten</a>.
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 2/4
+  c2 c
+  \break
+  c c
+  \break
+  \time 4/4
+  c c c c
+}
+</pre><p>
+ <a href="../66/lily-9a070c70.ly">
+  <img align="middle"
+       border="0"
+       src="../66/lily-9a070c70.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cnumericTimeSignature"></a>
+<a name="index-_005cnumericTimeSignature-1"></a>
+<a name="index-_005cdefaultTimeSignature"></a>
+<a name="index-_005cdefaultTimeSignature-1"></a>
+<a name="index-numericTimeSignature"></a>
+<a name="index-numericTimeSignature-1"></a>
+<a name="index-defaultTimeSignature"></a>
+<a name="index-defaultTimeSignature-1"></a>
+
+<a name="index-Stil-von-Taktangaben"></a>
+<a name="index-Taktangaben_002dStile"></a>
+
+<p>Das Symbol für die Taktarten 2/2 und 4/4 kann in ein Zahlensymbol
+umgewandelt werden:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  % Default style
+  \time 4/4 c1
+  \time 2/2 c1
+  % Change to numeric style
+  \numericTimeSignature
+  \time 4/4 c1
+  \time 2/2 c1
+  % Revert to default style
+  \defaultTimeSignature
+  \time 4/4 c1
+  \time 2/2 c1
+}
+</pre><p>
+ <a href="../6f/lily-e256a06f.ly">
+  <img align="middle"
+       border="0"
+       src="../6f/lily-e256a06f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Symbole für Modus und Proprietas der mensuralen Notation
+werden behandelt unter <a href="typesetting-mensural-music.de.html#mensural-time-signatures">Mensurale Taktartenbezeichnungen</a>.
+</p>
+<a name="index-Taktart_002c-Standardeinstellung"></a>
+<a name="index-Standardtakteinstellungen"></a>
+<a name="index-Bebalkung_002c-Taktartstandard"></a>
+<a name="index-Balken_002c-Taktartstandard"></a>
+
+<a name="index-_005coverrideTimeSignatureSettings"></a>
+<a name="index-_005coverrideTimeSignatureSettings-1"></a>
+<a name="index-overrideTimeSignatureSettings"></a>
+<a name="index-overrideTimeSignatureSettings-1"></a>
+
+<p>Zusätzlich zu der gedruckten Taktart werden mit der Definition des
+Befehls <code>\time</code> auch die Standardwerte fürt die Eigenschaften
+<code>baseMoment</code>, <code>beatStructure</code> und <code>beamExtensions</code>
+gesetzt.  Die vordefinierten Standardwerte für diese Eigenschaften
+finden sich in &lsquo;<tt>scm/time-signature-settings.scm</tt>&rsquo;.  Die existierenden
+Standardwerte können verändert oder neue Standardwerte hinzugefügt
+werden.
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative c' {
+      \overrideTimeSignatureSettings
+        4/4        % timeSignatureFraction
+        1/4        % baseMomentFraction
+        #'(3 1)    % beatStructure
+        #'()       % beamExceptions
+      \time 4/4
+      \repeat unfold 8 { c8 } |
+    }
+  }
+}
+</pre><p>
+ <a href="../28/lily-079d8fef.ly">
+  <img align="middle"
+       border="0"
+       src="../28/lily-079d8fef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\overrideTimeSignatureSettings</code> braucht fünf Argumente:
+</p>
+<ol>
+<li>
+<code><var>timeSignatureFraction</var></code> (Taktart-Bruch), ein Bruch,
+der den Takt beschreibt.
+
+</li><li>
+<code><var>baseMomentFraction</var></code> (Grundmoment-Bruch), ein Bruch, der
+den Zähler und Nenner der Grundschlageinheit der Taktart enhält.
+
+</li><li>
+<code><var>beatStructure</var></code> (Taktzeit-Struktur), eine Scheme-Liste, die
+die Struktur der Taktschläge anzeigt, in Einheiten des Grundmoments.
+
+</li><li>
+<code><var>beamExceptions</var></code> (Balken-Ausnahmen), eine Aliste, die alle
+Bebalkungsregeln für die Taktart enthält, außer dem Balken, der zum Taktende
+endet, wie beschrieben in <a href="beams.de.html#setting-automatic-beam-behavior">Einstellung von automatischen Balken</a>.
+</li></ol>
+
+<p>Der Kontext, der <code>\overrideTimeSignatureSettings</code> enthält, muss
+begonnen sein, bevor <code>\overrideTimeSignatureSettings</code> aufgerufen
+wird.  Das heißt, dass er entweder explizit begonnen wird oder sich
+Noten in dem Kontext befinen müssen, bevor
+<code>\overrideTimeSignatureSettings</code> aufgerufen wird:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \relative c' {
+    % This call will fail because the context isn't yet instantiated
+    \overrideTimeSignatureSettings
+      4/4        % timeSignatureFraction
+      1/4        % baseMomentFraction
+      #'(3 1)    % beatStructure
+      #'()       % beamExceptions
+    \time 4/4
+    c8^\markup {&quot;Beamed (2 2)&quot;}
+    \repeat unfold 7 { c8 } |
+    % This call will succeed
+    \overrideTimeSignatureSettings
+      4/4        % timeSignatureFraction
+      1/4        % baseMomentFraction
+      #'(3 1)    % beatStructure
+      #'()       % beamExceptions
+    \time 4/4
+    c8^\markup {&quot;Beamed (3 1)&quot;}
+    \repeat unfold 7 { c8 } |
+  }
+}
+</pre><p>
+ <a href="../60/lily-491c73e8.ly">
+  <img align="middle"
+       border="0"
+       src="../60/lily-491c73e8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Taktart_002c-Standardeigenschaften-wiederherstellen"></a>
+<a name="index-Wiederherstellen-von-Taktart_002dStandardeigenschaften"></a>
+<a name="index-Zurucksetzen-von-Taktart_002dStandardeigenschaften"></a>
+
+<a name="index-_005crevertTimeSignatureSettings"></a>
+<a name="index-_005crevertTimeSignatureSettings-1"></a>
+<a name="index-revertTimeSignatureSettings"></a>
+<a name="index-revertTimeSignatureSettings-1"></a>
+
+<p>Veränderte Werte der Taktart-Eigenschaften können wieder auf den
+Standard zurückgesetzt werden:
+</p>
+<blockquote><pre class="verbatim">\score{
+  \relative {
+    \repeat unfold 8 { c'8 } |
+    \overrideTimeSignatureSettings
+      4/4        % timeSignatureFraction
+      1/4        % baseMomentFraction
+      #'(3 1)    % beatStructure
+      #'()       % beamExceptions
+    \time 4/4
+    \repeat unfold 8 { c8 } |
+    \revertTimeSignatureSettings 4/4
+    \time 4/4
+    \repeat unfold 8 { c8 } |
+  }
+}
+</pre><p>
+ <a href="../74/lily-1761e8b9.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-1761e8b9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Unterschiedliche Werte der Standard-Taktarteigenschaften für unterschiedliche
+Notensysteme können eingerichtet werden, indem man den
+<code>Timing_translator</code> und den <code>Default_bar_line_engraver</code> aus dem
+<code>Score</code>-Kontext in den <code>Staff</code>-Kontext verschiebt.
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new StaffGroup &lt;&lt;
+     \new Staff {
+        \overrideTimeSignatureSettings
+          4/4        % timeSignatureFraction
+          1/4        % baseMomentFraction
+          #'(3 1)    % beatStructure
+          #'()       % beamExceptions
+        \time 4/4
+        \repeat unfold 8 {c''8}
+     }
+     \new Staff {
+        \overrideTimeSignatureSettings
+          4/4        % timeSignatureFraction
+          1/4        % baseMomentFraction
+          #'(1 3)    % beatStructure
+          #'()       % beamExceptions
+        \time 4/4
+        \repeat unfold 8 {c''8}
+     }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      \remove &quot;Timing_translator&quot;
+      \remove &quot;Default_bar_line_engraver&quot;
+    }
+    \context {
+      \Staff
+      \consists &quot;Timing_translator&quot;
+      \consists &quot;Default_bar_line_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../7b/lily-58674bca.ly">
+  <img align="middle"
+       border="0"
+       src="../7b/lily-58674bca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vordefinierte-Befehle-28"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\numericTimeSignature</code>,
+<code>\defaultTimeSignature</code>.
+</p>
+<a name="Ausgewahlte-Schnipsel-21"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+
+<p><em> Time signature printing only the numerator as a number (instead of the fraction)</em>
+</p>
+
+<p>Sometimes, a time signature should not print the whole fraction (e.g.
+7/4), but only the numerator (7 in this case). This can be easily done
+by using <code>\override Staff.TimeSignature.style = #'single-digit</code>
+to change the style permanently. By using <code>\revert
+Staff.TimeSignature.style</code>, this setting can be reversed. To apply the
+single-digit style to only one time signature, use the
+<code>\override</code> command and prefix it with a <code>\once</code>.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \time 3/4
+  c4 c c
+  % Change the style permanently
+  \override Staff.TimeSignature.style = #'single-digit
+  \time 2/4
+  c4 c
+  \time 3/4
+  c4 c c
+  % Revert to default style:
+  \revert Staff.TimeSignature.style
+  \time 2/4
+  c4 c
+  % single-digit style only for the next time signature
+  \once \override Staff.TimeSignature.style = #'single-digit
+  \time 5/4
+  c4 c c c c
+  \time 2/4
+  c4 c
+}
+</pre><p>
+ <a href="../8d/lily-3e9374f8.ly">
+  <img align="middle"
+       border="0"
+       src="../8d/lily-3e9374f8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Siehe-auch-35"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Glossar:
+<a name="index-time-signature"></a>
+<a href="../music-glossary/time-signature.de.html">time signature</a>
+</p>
+<p>Notationsreferenz:
+<a href="typesetting-mensural-music.de.html#mensural-time-signatures">Mensurale Taktartenbezeichnungen</a>,
+<a href="special-rhythmic-concerns.de.html#time-administration">Verwaltung der Zeiteinheiten</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-TimeSignature"></a>
+<a href="../internals/timesignature.de.html">TimeSignature</a>,
+<a name="index-Timing_005ftranslator"></a>
+<a href="../internals/timing_005ftranslator.de.html">Timing_translator</a>.
+</p>
+
+<hr size="6">
+<a name="Metronomangabe"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#time-signature" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Taktangabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#upbeats" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Auftakte &gt; </a>]</td></tr></table>
+<a name="metronome-marks"></a>
+<h4 class="unnumberedsubsubsec">Metronomangabe</h4>
+
+<a name="index-Tempo"></a>
+<a name="index-Metronombezeichnung"></a>
+<a name="index-Tempobezeichnung"></a>
+<a name="index-Auffuhrungsanweisung_003a-Tempo"></a>
+
+<a name="index-tempo"></a>
+<a name="index-tempo-1"></a>
+<a name="index-_005ctempo"></a>
+<a name="index-_005ctempo-1"></a>
+
+<p>Eine Metronomanweisung wird wie folgt erstellt:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo 4 = 120
+  c'2 d
+  e4. d8 c2
+}
+</pre><p>
+ <a href="../39/lily-94f5ff20.ly">
+  <img align="middle"
+       border="0"
+       src="../39/lily-94f5ff20.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Metronombezeichnungen können auch für einen Zahlenbereich notiert werden:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo 4 = 40 - 46
+  c'4. e8 a4 g
+  b,2 d4 r
+}
+</pre><p>
+ <a href="../ee/lily-ccc67549.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-ccc67549.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Anstelle dessen kann auch Text als Argument angegeben werden:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo &quot;Allegretto&quot;
+    c''4 e d c
+    b4. a16 b c4 r4
+}
+</pre><p>
+ <a href="../01/lily-fd6ec5e8.ly">
+  <img align="middle"
+       border="0"
+       src="../01/lily-fd6ec5e8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn eine Metronombezeichnung und Text kombiniert wird, wird
+die Metronombezeichnung automatisch in Klammern gesetzt:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo &quot;Allegro&quot; 4 = 160
+  g'4 c d e
+  d4 b g2
+}
+</pre><p>
+ <a href="../0e/lily-0b3afb0a.ly">
+  <img align="middle"
+       border="0"
+       src="../0e/lily-0b3afb0a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Der Text kann ein beliebiges Textbeschriftungsobjekt sein:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo \markup { \italic Faster } 4 = 132
+  a'8-. r8 b-. r gis-. r a-. r
+}
+</pre><p>
+ <a href="../8b/lily-b29bff01.ly">
+  <img align="middle"
+       border="0"
+       src="../8b/lily-b29bff01.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Eine Metronombezeichnung in Klammern ohne Text kann erstellt
+werden, indem eine leere Zeichenkette hinzugefügt wird:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \tempo &quot;&quot; 8 = 96
+  d''4 g e c
+}
+</pre><p>
+ <a href="../48/lily-b9aa1a53.ly">
+  <img align="middle"
+       border="0"
+       src="../48/lily-b9aa1a53.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Ausgewahlte-Schnipsel-54"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+
+<p><em> Metronom- und Übungszeichen unter das System setzen</em>
+</p>
+
+<p>Normalerweise werden Metronom- und Übungszeichen über dem Notensystem ausgegeben.
+Um sie unter das System zu setzen, muss die <code>direction</code>-Eigenschaft
+von <code>MetronomeMark</code> oder <code>RehearsalMark</code> entsprechend verändert werden.
+</p>
+
+<blockquote><pre class="verbatim">\layout {
+  indent = 0
+  ragged-right = ##f
+}
+
+{
+  % Metronome marks below the staff
+  \override Score.MetronomeMark.direction = #DOWN
+  \tempo 8. = 120
+  c''1
+
+  % Rehearsal marks below the staff
+  \override Score.RehearsalMark.direction = #DOWN
+  \mark \default
+  c''1
+}
+</pre><p>
+ <a href="../8a/lily-8e3d050c.ly">
+  <img align="middle"
+       border="0"
+       src="../8a/lily-8e3d050c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+
+<p><em> Das Tempo ohne Metronom-Angabe verändern</em>
+</p>
+
+<p>Um das Tempo für die MIDI-Ausgabe zu ändern, ohne eine Tempoangabe in den
+Noten auszugeben, kann die Metronombezeichnung unsichtbar gemacht werden:
+</p>
+
+<blockquote><pre class="verbatim">\score {
+  \new Staff \relative c' {
+    \tempo 4 = 160
+    c4 e g b
+    c4 b d c
+    \set Score.tempoHideNote = ##t
+    \tempo 4 = 96
+    d,4 fis a cis
+    d4 cis e d
+  }
+  \layout { }
+  \midi { }
+}
+</pre><p>
+ <a href="../ee/lily-e002ecec.ly">
+  <img align="middle"
+       border="0"
+       src="../ee/lily-e002ecec.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Eine Metronombezeichnung als Textbeschriftung erstellen</em>
+</p>
+
+<p>Neue Metronombezeichnungen können als Textbeschriftung erstellt werden,
+aber sie ändern nicht das Tempo für die MIDI-Ausgabe.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \tempo \markup {
+    \concat {
+      (
+      \smaller \general-align #Y #DOWN \note #&quot;16.&quot; #1
+      &quot; = &quot;
+      \smaller \general-align #Y #DOWN \note #&quot;8&quot; #1
+      )
+    }
+  }
+  c1
+  c4 c' c,2
+}
+</pre><p>
+ <a href="../57/lily-c1791043.ly">
+  <img align="middle"
+       border="0"
+       src="../57/lily-c1791043.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Zu Einzelheiten siehe <a href="formatting-text.de.html">Text formatieren</a>.
+</p>
+<a name="Siehe-auch-94"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Glossar:
+<a name="index-metronome"></a>
+<a href="../music-glossary/metronome.de.html">metronome</a>,
+<a name="index-metronomic-indication"></a>
+<a href="../music-glossary/metronomic-indication.de.html">metronomic indication</a>,
+<a name="index-tempo-indication"></a>
+<a href="../music-glossary/tempo-indication.de.html">tempo indication</a>,
+<a name="index-metronome-mark"></a>
+<a href="../music-glossary/metronome-mark.de.html">metronome mark</a>.
+</p>
+<p>Notationsreferenz:
+<a href="formatting-text.de.html">Text formatieren</a>,
+<a href="midi-output.de.html">MIDI-Ausgabe</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/notation-auf-systemen.de.html">Staff notation</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-MetronomeMark"></a>
+<a href="../internals/metronomemark.de.html">MetronomeMark</a>.
+</p>
+
+<hr size="6">
+<a name="Auftakte"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#metronome-marks" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Metronomangabe&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#unmetered-music" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Musik ohne Metrum &gt; </a>]</td></tr></table>
+<a name="upbeats"></a>
+<h4 class="unnumberedsubsubsec">Auftakte</h4>
+
+<a name="index-Auftakt"></a>
+<a name="index-Takte-verkurzen"></a>
+<a name="index-partieller-Takt"></a>
+<a name="index-halber-Takt"></a>
+<a name="index-Teiltakt"></a>
+
+<a name="index-measurePosition"></a>
+<a name="index-measurePosition-1"></a>
+<a name="index-_005cpartial"></a>
+<a name="index-_005cpartial-1"></a>
+<a name="index-partial"></a>
+<a name="index-partial-1"></a>
+
+<p>Verkleinerte Takte, wie etwa ein Auftakt, werden mit dem
+Befehl <code>\partial</code> notiert, dessen Syntax lautet:
+</p>
+<blockquote><pre class="example">\partial <var>Dauer</var>
+</pre></blockquote>
+
+<p>wobei <code><var>Dauer</var></code> die Länger der Noten darstellt,
+bevor der nächste vollständige Takt beginnt:
+</p>
+<blockquote><pre class="verbatim">\time 3/4
+\partial 8
+e8 | a4 c8 b c4 |
+</pre><p>
+ <a href="../1f/lily-332eb01d.ly">
+  <img align="middle"
+       border="0"
+       src="../1f/lily-332eb01d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die <var>Dauer</var> kan ein beliebiger Wert kleiner als der vollständige
+Takt sein.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 3/4
+  \partial 4.
+  r4 e'8 | a4 c8 b c4 |
+}
+</pre><p>
+ <a href="../4f/lily-5ce015ac.ly">
+  <img align="middle"
+       border="0"
+       src="../4f/lily-5ce015ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\partial <var>Dauer</var></code> kann auch folgendermaßen geschrieben werden:
+</p>
+<blockquote><pre class="example">\set Timing.measurePosition -<var>Länge der Dauer</var>
+</pre></blockquote>
+
+<p>So wird etwa aus <code>\partial 8</code>:
+</p>
+<blockquote><pre class="verbatim">\time 3/4
+\set Timing.measurePosition = #(ly:make-moment -1/8)
+e8 | a4 c8 b c4 |
+</pre><p>
+ <a href="../af/lily-6c66c555.ly">
+  <img align="middle"
+       border="0"
+       src="../af/lily-6c66c555.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die Eigenschaft <code>measurePosition</code> (Takt-Position) enthält
+eine rationale Zahl,
+die anzeigt, wie groß der Abstand zum Taktanfang ist. Deshalb ist
+sie eine negative Zahl; <code>\partial 4</code> wird also intern übersetzt
+zu <code>-4</code> was soviel bedeutet wie:
+&bdquo;Eine Viertel bleibt übrig vom ganzen Takt.&ldquo;
+</p>
+<a name="Siehe-auch-160"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Glossar:
+<a name="index-anacrusis"></a>
+<a href="../music-glossary/anacrusis.de.html">anacrusis</a>.
+</p>
+<p>Notationsreferenz:
+<a href="special-rhythmic-concerns.de.html#grace-notes">Verzierungen</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-Timing_005ftranslator-1"></a>
+<a href="../internals/timing_005ftranslator.de.html">Timing_translator</a>.
+</p>
+<a name="index-Kadenz-und-Zeilenumbruch"></a>
+<a name="index-Kadenz-und-Seitenumbruch"></a>
+<a name="index-Musik-ohne-Metrum_002c-Umbruche"></a>
+<a name="index-nicht-metrische-Musik_002c-Umbruche"></a>
+<a name="index-Umbruche-in-nicht-metrischer-Musik"></a>
+<a name="index-Umbruche-in-Kadenzen"></a>
+<a name="index-Zeilenumbruche-in-Kadenzen"></a>
+<a name="index-Seitenumbruche-in-Kadenzen"></a>
+<a name="index-Zeilenumbruche-in-nicht-metrischer-Musik"></a>
+<a name="index-Seitenumbruche-in-nicht-metrischer-Musik"></a>
+
+<a name="Bekannte-Probleme-und-Warnungen-71"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+<p><code>\partial</code> ist nur für den Anfang eines Stückes vorgesehen. Wenn der
+Befehl nach dem Anfang verwendet wird, können Warnungen oder Probleme
+auftreten.  In solchem Fall sollten Sie <code>\set Timing.measurePosition</code>
+benutzen.
+</p>
+<blockquote><pre class="verbatim">\time 6/8
+\partial 8
+e8 | a4 c8 b[ c b] |
+\set Timing.measurePosition = #(ly:make-moment -1/4)
+r8 e,8 | a4 c8 b[ c b] |
+</pre><p>
+ <a href="../74/lily-94dcf58a.ly">
+  <img align="middle"
+       border="0"
+       src="../74/lily-94dcf58a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Musik-ohne-Metrum"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#upbeats" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Auftakte&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#polymetric-notation" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Polymetrische Notation &gt; </a>]</td></tr></table>
+<a name="unmetered-music"></a>
+<h4 class="unnumberedsubsubsec">Musik ohne Metrum</h4>
+
+<a name="index-Kadenz"></a>
+<a name="index-Bebalkung-in-Kadenzen"></a>
+<a name="index-Bebalken-in-taktloser-Musik"></a>
+<a name="index-Kadenzen_002c-Bebalkung"></a>
+<a name="index-Balken-in-Kadenzen"></a>
+<a name="index-Taktlose-Musik_002c-Bebalkung"></a>
+<a name="index-Noten-ohne-Takt"></a>
+<a name="index-Taktart_002c-Noten-ohne"></a>
+<a name="index-Metrum_002c-Noten-ohne"></a>
+
+<a name="index-_005ccadenzaOn"></a>
+<a name="index-_005ccadenzaOn-1"></a>
+<a name="index-_005ccadenzaOff"></a>
+<a name="index-_005ccadenzaOff-1"></a>
+<a name="index-cadenzaOn"></a>
+<a name="index-cadenzaOn-1"></a>
+<a name="index-cadenzaOff"></a>
+<a name="index-cadenzaOff-1"></a>
+
+<p>In Musik mit Metrum werden Taktstriche automatisch eingefügt und Taktzahlen
+automatisch berechnet.  In Musik ohne Metrum hingegen (etwa Kadenzen) ist
+das nicht gewollt und kann &bdquo;ausgeschaltet&ldquo; werden mit dem Befehl
+<code>\cadenzaOn</code>, um dann wieder zum normalen Verhalten mit
+<code>\cadenzaOff</code> zurückzukehren.
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4 d e d
+  \cadenzaOn
+  c4 c d8[ d d] f4 g4.
+  \cadenzaOff
+  \bar &quot;|&quot;
+  d4 e d c
+}
+</pre><p>
+ <a href="../16/lily-47f774eb.ly">
+  <img align="middle"
+       border="0"
+       src="../16/lily-47f774eb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Taktnummerierung wird am Ende der Kadenz wieder aufgenommen:
+</p>
+<pre class="verbatim">% Show all bar numbers
+\override Score.BarNumber.break-visibility = #all-visible
+c4 d e d
+\cadenzaOn
+c4 c d8[ d d] f4 g4.
+\cadenzaOff
+\bar &quot;|&quot;
+d4 e d c
+</pre><p>
+ <a href="../49/lily-ea4bb622.ly">
+  <img align="middle"
+       border="0"
+       src="../49/lily-ea4bb622.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Ein neuer Takt wird nie innerhalb der Kadenz begonnen, auch wenn einer
+oder mehrere <code>\bar</code>-Befehle eingefügt ewrden.  Darum müssen auch
+Erinnerungsversetzungszeichen manuell eingefügt werden.  Siehe
+<a href="writing-pitches.de.html#accidentals">Versetzungszeichen</a>.
+</p>
+<blockquote><pre class="verbatim">c4 d e d
+\cadenzaOn
+cis4 d cis d
+\bar &quot;|&quot;
+cis4 d cis! d
+\cadenzaOff
+\bar &quot;|&quot;
+</pre><p>
+ <a href="../d6/lily-8a9db55d.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-8a9db55d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Automatische Bebalkung wird durch <code>\cadenzeOn</code> ausgestellt.  Darum müssen
+alle Balken in Kadenzen manuell eingegeben werden (siehe <a href="beams.de.html#manual-beams">Manuelle Balken</a>).
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \repeat unfold 8 { c''8 }
+  \cadenzaOn
+  cis8 c c c c
+  \bar&quot;|&quot;
+  c8 c c
+  \cadenzaOff
+  \repeat unfold 8 { c8 }
+}
+</pre><p>
+ <a href="../fb/lily-c46ff666.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-c46ff666.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese vordefinierten Befehle wirken sich auf alle Systeme in der
+Partitur aus, auch wenn sie nur in einer einzigen Stimme notiert werden.
+Um dieses Verhalten zu ändern, müsen Sie <code>Timing_translator</code>
+aus dem <code>Score</code>-Kontext in den <code>Staff</code>-Kontext verschieben,
+wie gezeigt in <a href="#polymetric-notation">Polymetrische Notation</a>.
+</p>
+<a name="Vordefinierte-Befehle-5"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\cadenzaOn</code>,
+<code>\cadenzaOff</code>.
+</p>
+<a name="Siehe-auch-106"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Glossar:
+<a name="index-cadenza"></a>
+<a href="../music-glossary/cadenza.de.html">cadenza</a>.
+</p>
+<p>Notationsreferenz:
+<a href="visibility-of-objects.de.html">Sichtbarkeit von Objekten</a>,
+<a href="#polymetric-notation">Polymetrische Notation</a>,
+<a href="beams.de.html#manual-beams">Manuelle Balken</a>,
+<a href="writing-pitches.de.html#accidentals">Versetzungszeichen</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<a name="index-Kadenz-und-Zeilenumbruche"></a>
+<a name="index-Musik-ohne-Metrum_002c-Zeilenumbruche"></a>
+<a name="index-Zeilenumbruche-in-Musik-ohne-Metrum"></a>
+<a name="index-Zeilenumbruche-in-Kadenzen-1"></a>
+<a name="index-Seitenumbruche-in-Musik-ohne-Metrum"></a>
+<a name="index-Seitenumbruche-in-Kadenzen-1"></a>
+<a name="index-Kadenz-und-Seitenumbruche"></a>
+<a name="index-Musik-ohne-Metrum_002c-Seitenumbruche"></a>
+
+<a name="Bekannte-Probleme-und-Warnungen-60"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+
+<p>Automatische Zeilen- und Seitenumbrüche werden nur an Taktstrichen
+vorgenommen, sodass &bdquo;unsichtbare&ldquo; Taktstriche manuell eingefügt
+werden müssen, damit Umbrüche erlaubt werden:
+</p>
+<blockquote><pre class="example">\bar &quot;&quot;
+</pre></blockquote>
+
+<p>Man muss explizit einen <code>Voice</code>-Kontext erstellen, wenn
+man ein Stück mit <code>cadenzaOn</code> beginnen will, weil sonst
+ein seltsamer Fehler auftreten kann.
+</p>
+<blockquote><pre class="example">\new Voice {
+  \relative c' {
+    \cadenzaOn
+    c16[^&quot;Solo Free Time&quot; d e f] g2.
+    \bar &quot;||&quot;
+    \cadenzaOff
+  }
+}
+</pre></blockquote>
+
+
+<hr size="6">
+<a name="Polymetrische-Notation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#unmetered-music" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Musik ohne Metrum&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-note-splitting" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Automatische Aufteilung von Noten &gt; </a>]</td></tr></table>
+<a name="polymetric-notation"></a>
+<h4 class="unnumberedsubsubsec">Polymetrische Notation</h4>
+
+<a name="index-doppelte-Taktartensymbole"></a>
+<a name="index-Taktartensymbole_002c-doppelt"></a>
+<a name="index-Taktartensymbole_002c-unterteilt"></a>
+<a name="index-Taktarten_002c-polymetrisch"></a>
+<a name="index-polymetrische-Taktarten"></a>
+<a name="index-Metrum_002c-polymetrisch"></a>
+<a name="index-unterteilte-Taktarten"></a>
+
+<a name="index-timeSignatureFraction"></a>
+<a name="index-timeSignatureFraction-1"></a>
+<a name="index-_005cscaleDurations-2"></a>
+<a name="index-_005cscaleDurations-3"></a>
+<a name="index-scaleDurations-2"></a>
+<a name="index-scaleDurations-3"></a>
+<a name="index-_005ctimes-2"></a>
+<a name="index-_005ctimes-3"></a>
+<a name="index-times-2"></a>
+<a name="index-times-3"></a>
+
+<p>Polymetrische Notation ist direkt unterstützt, oder
+indem man das sichtbare Taktart-Symbol verändert und zusätzlich
+die Notendauern skaliert.
+</p>
+<a name="Unterschiedliche-Taktarten-mit-gleicher-Taktlange"></a>
+<h4 class="subsubheading">Unterschiedliche Taktarten mit gleicher Taktlänge</h4>
+
+<p>Für jedes System wird eine gemeinsame Taktart gesetzt und dann
+die Einstellung von <code>timeSignatureFraction</code> auf den gewünschten
+Bruch geändert.  Mit dem Befehl <code>\scaleDurations</code> werden
+die Dauern der Noten auf jedem System dann auf die gemeinsame
+Taktart skaliert.  Siehe auch <a href="writing-rhythms.de.html#scaling-durations">Tondauern skalieren</a>.
+</p>
+<a name="index-Bebalkung-in-polymetrischer-Notation"></a>
+<a name="index-Polymetrische-Notation-und-Balken"></a>
+<a name="index-Balken-in-polymetrischer-Notation"></a>
+
+<p>In folgendem Beispiel werden Noten mit den Taktarten 3/4, 9/8 und
+10/8 parallel notiert.  Im zweiten System werden die gezeigten
+Dauern mit 2/3 multipliziert, da 2/3 x 9/8 = 3/4, und im dritten
+System werden die gezeigten Dauern mit 3/5 multipliziert, da
+3/5 x 10/8 = 3/4.  Oft wird es nötig sein, Balken manuell zu setzen,
+weil die Skalierung sich auch auf die automatische Bebalkung
+auswirkt.
+</p>
+<blockquote><pre class="verbatim">\relative &lt;&lt;
+  \new Staff {
+    \time 3/4
+    c'4 c c |
+    c4 c c |
+  }
+  \new Staff {
+    \time 3/4
+    \set Staff.timeSignatureFraction = 9/8
+    \scaleDurations 2/3
+      \repeat unfold 6 { c8[ c c] }
+  }
+  \new Staff {
+    \time 3/4
+    \set Staff.timeSignatureFraction = 10/8
+    \scaleDurations 3/5 {
+      \repeat unfold 2 { c8[ c c] }
+      \repeat unfold 2 { c8[ c] } |
+      c4. c4. \tuplet 3/2 { c8[ c c] } c4
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../ef/lily-e2f9cf50.ly">
+  <img align="middle"
+       border="0"
+       src="../ef/lily-e2f9cf50.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Unterschiedlichen-Taktarten-mit-unterschiedlicher"></a>
+<h4 class="subsubheading">Unterschiedlichen Taktarten mit unterschiedlicher</h4>
+<p>Taktlänge
+</p>
+<p>Jedes System kann auch eine eigene unabhängige Taktart erhalten.
+Dazu muss der <code>Timing_translator</code> und der
+<code>Default_bar_line_engraver</code> in den <code>Staff</code>-Kontext
+verschoben werden.
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Score
+    \remove &quot;Timing_translator&quot;
+    \remove &quot;Default_bar_line_engraver&quot;
+  }
+  \context {
+    \Staff
+    \consists &quot;Timing_translator&quot;
+    \consists &quot;Default_bar_line_engraver&quot;
+  }
+}
+
+% Now each staff has its own time signature.
+
+\relative &lt;&lt;
+  \new Staff {
+    \time 3/4
+    c'4 c c |
+    c4 c c |
+  }
+  \new Staff {
+    \time 2/4
+    c4 c |
+    c4 c |
+    c4 c |
+  }
+  \new Staff {
+    \time 3/8
+    c4. |
+    c8 c c |
+    c4. |
+    c8 c c |
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../08/lily-d86a1e51.ly">
+  <img align="middle"
+       border="0"
+       src="../08/lily-d86a1e51.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005ccompoundMeter"></a>
+<a name="index-_005ccompoundMeter-1"></a>
+<a name="index-Zusammengesetzte-Taktarten"></a>
+<a name="index-Taktarten_002c-zusammengesetzt"></a>
+
+<a name="Zusammengesetzte-Taktarten"></a>
+<h4 class="subsubheading">Zusammengesetzte Taktarten</h4>
+
+<p>Taktarten aus mehreren Teilen werden mit der Funktion 
+<code>\compoundMeter</code> erstellt.  Die Syntax ist folgende:
+</p>
+<blockquote><pre class="example">\compoundMeter #'<code>(Liste aus Listen)</code>
+</pre></blockquote>
+
+<p>Die einfachste Konstruktion ist eine einzige Liste, wobei die letzte
+Zahl den Nenner des Bruches darstellt, während die vorherkommenden
+Zahlen die Zähler sind.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \compoundMeter #'((2 2 2 8))
+  \repeat unfold 6 c'8 \repeat unfold 12 c16
+}
+</pre><p>
+ <a href="../df/lily-d5ab0ead.ly">
+  <img align="middle"
+       border="0"
+       src="../df/lily-d5ab0ead.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Kompliziertere Taktarten können durch zusätzliche Listen erstellt
+werden (von Klammern abgegrenzt).  Automatische Balken werden
+entsprechend der Werte angepasst.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \compoundMeter #'((1 4) (3 8))
+  \repeat unfold 5 c'8 \repeat unfold 10 c16
+}
+
+\relative {
+  \compoundMeter #'((1 2 3 8) (3 4))
+  \repeat unfold 12 c'8
+}
+</pre><p>
+ <a href="../5a/lily-df3af9da.ly">
+  <img align="middle"
+       border="0"
+       src="../5a/lily-df3af9da.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-33"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Glossar:
+<a name="index-polymetric-1"></a>
+<a href="../music-glossary/polymetric.de.html">polymetric</a>,
+<a name="index-polymetric-time-signature"></a>
+<a href="../music-glossary/polymetric-time-signature.de.html">polymetric time signature</a>,
+<a name="index-meter"></a>
+<a href="../music-glossary/meter.de.html">meter</a>.
+</p>
+<p>Notationsreferenz:
+<a href="#time-signature">Taktangabe</a>,
+<a href="beams.de.html#automatic-beams">Automatische Balken</a>,
+<a href="beams.de.html#manual-beams">Manuelle Balken</a>,
+<a href="writing-rhythms.de.html#scaling-durations">Tondauern skalieren</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-TimeSignature-1"></a>
+<a href="../internals/timesignature.de.html">TimeSignature</a>,
+<a name="index-Timing_005ftranslator-2"></a>
+<a href="../internals/timing_005ftranslator.de.html">Timing_translator</a>,
+<a name="index-Default_005fbar_005fline_005fengraver"></a>
+<a href="../internals/default_005fbar_005fline_005fengraver.de.html">Default_bar_line_engraver</a>,
+<a name="index-Staff-2"></a>
+<a href="../internals/staff.de.html">Staff</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-25"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+
+<p>Wenn unterschiedliche Taktarten parallel benutzt werden, werden
+Noten auf demselben musikalischen Moment horizontal auf die
+gleiche Position gesetzt.  Die unterschiedlichen Taktlinien
+führen allerdings dazu, dass die Noten nicht ganz so regelmäßig
+gesetzt werden, wie es ohne unterschiedliche Taktarten der
+Fall wäre.
+</p>
+
+<hr size="6">
+<a name="Automatische-Aufteilung-von-Noten"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#polymetric-notation" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Polymetrische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#showing-melody-rhythms" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Melodierhythmus anzeigen &gt; </a>]</td></tr></table>
+<a name="automatic-note-splitting"></a>
+<h4 class="unnumberedsubsubsec">Automatische Aufteilung von Noten</h4>
+
+<a name="index-Noten_002c-Aufteilen"></a>
+<a name="index-Aufteilen-von-Noten"></a>
+<a name="index-automatisches-Aufteilen-von-Noten"></a>
+<a name="index-Pausen_002c-Aufteilen"></a>
+<a name="index-Aufteilen-von-Pausen"></a>
+
+<a name="index-Note_005fheads_005fengraver-3"></a>
+<a name="index-Note_005fheads_005fengraver-4"></a>
+<a name="index-Completion_005fheads_005fengraver"></a>
+<a name="index-Completion_005fheads_005fengraver-1"></a>
+<a name="index-Completion_005frest_005fengraver"></a>
+<a name="index-Completion_005frest_005fengraver-1"></a>
+
+<p>Lange Noten, die über Taktlinien hinüberreichen, können
+automatisch in übergebundene Noten aufgeteilt werden.
+Dieses Verhalten erreicht man, indem der <a name="index-Note_005fheads_005fengraver-5"></a>
+<a href="../internals/note_005fheads_005fengraver.de.html">Note_heads_engraver</a>
+mit dem <a name="index-Completion_005fheads_005fengraver-2"></a>
+<a href="../internals/completion_005fheads_005fengraver.de.html">Completion_heads_engraver</a> ausgetauscht wird.  Auf
+gleiche Art können lange Pausen, die über Taktgrenzen reichen, automatisch
+aufgeteilt werden, indem man den <code>Rest_engraver</code>mit dem
+<code>Completion_rest_engraver</code> ersetzt.  Im nächsten Beispiel werden
+Noten und Pausen, die über die Taktlinie dauern, aufgeteilt; Noten
+werden auch übergebunden.
+</p>
+<blockquote><pre class="verbatim">\new Voice \with {
+  \remove &quot;Note_heads_engraver&quot;
+  \consists &quot;Completion_heads_engraver&quot;
+  \remove &quot;Rest_engraver&quot;
+  \consists &quot;Completion_rest_engraver&quot;
+}
+\relative {
+  c'2. c8 d4 e f g a b c8 c2 b4 a g16 f4 e d c8. c2 r1*2
+}
+</pre><p>
+ <a href="../07/lily-cec347f6.ly">
+  <img align="middle"
+       border="0"
+       src="../07/lily-cec347f6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Dieser Engraver teilt alle Noten und Pausen
+auf, die über eine Taktlinie dauern und fügt für Noten Bindebögen hinzu.
+Er kann unter Anderem dann nützlich sein, wenn man komplexe
+Partituren auf Fehler überprüfen möchte: Wenn die Takte nicht
+vollständig gefüllt sind, zeigt die Überbindung genau an, wie viele
+Notenwerte noch in dem jeweiligen Takt fehlen.
+</p>
+<a name="Siehe-auch-241"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Glossar:
+<a name="index-tie-1"></a>
+<a href="../music-glossary/tie.de.html">tie</a>
+</p>
+<p>Handbuch zum Lernen:
+<a name="index-Was-sind-Engraver_003f"></a>
+<a href="../learning/engravers-explained.de.html">Was sind Engraver?</a>,
+<a name="index-Engraver-hinzufugen-und-entfernen"></a>
+<a href="../learning/adding-and-removing-engravers.de.html">Engraver hinzufügen und entfernen</a>.
+</p>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-Note_005fheads_005fengraver-6"></a>
+<a href="../internals/note_005fheads_005fengraver.de.html">Note_heads_engraver</a>,
+<a name="index-Completion_005fheads_005fengraver-3"></a>
+<a href="../internals/completion_005fheads_005fengraver.de.html">Completion_heads_engraver</a>,
+<a name="index-Rest_005fengraver"></a>
+<a href="../internals/rest_005fengraver.de.html">Rest_engraver</a>,
+<a name="index-Completion_005frest_005fengraver-2"></a>
+<a href="../internals/completion_005frest_005fengraver.de.html">Completion_rest_engraver</a>.
+<a name="index-Forbid_005fline_005fbreak_005fengraver"></a>
+<a href="../internals/forbid_005fline_005fbreak_005fengraver.de.html">Forbid_line_break_engraver</a>.
+</p>
+<a name="Bekannte-Probleme-und-Warnungen-7"></a>
+<h4 class="subsubheading">Bekannte Probleme und Warnungen</h4>
+
+<p>Nicht alle Notenwerte (besonders wenn sie andere rhythmische
+Aufteilungen beinhalten) können exakt durch normale Noten und
+Punktierungen wiedergegeben werden. Der Engraver setzt aber
+trotzdem keine Triolen etc.
+</p>
+<p><code>Completion_heads_engraver</code> wirkt sich nur auf Noten aus;
+Pausen werden nicht aufgeteilt.
+</p>
+
+<hr size="6">
+<a name="Melodierhythmus-anzeigen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-note-splitting" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatische Aufteilung von Noten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="beams.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Balken &gt; </a>]</td></tr></table>
+<a name="showing-melody-rhythms"></a>
+<h4 class="unnumberedsubsubsec">Melodierhythmus anzeigen</h4>
+
+<a name="index-Melodierhythmus_003a-Anzeige"></a>
+<a name="index-Rhythmus-der-Melodie-anzeigen"></a>
+
+<p>Manchmal soll nur der Rhythmus einer Melodie dargestellt werden. Das
+erreicht man mit einem Rhythmus-Notensystem. Alle Tonhöhen werden
+auf eine Linie reduziert und das System hat auch nur eine einzige
+Linie.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new RhythmicStaff {
+    \new Voice = &quot;myRhythm&quot; \relative {
+      \time 4/4
+      c'4 e8 f g2
+      r4 g g f
+      g1
+    }
+  }
+  \new Lyrics {
+    \lyricsto &quot;myRhythm&quot; {
+      This is my song
+      I like to sing
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../d6/lily-a762d8ca.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-a762d8ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Gitarren_002dAkkordnotation"></a>
+<a name="index-Schlagrhythmus_002c-Gitarre"></a>
+<a name="index-Gitarrenschlagrhythmus_002c-Notation"></a>
+
+<a name="index-Pitch_005fsquash_005fengraver-1"></a>
+<a name="index-Pitch_005fsquash_005fengraver-2"></a>
+<a name="index-_005cimprovisationOn-2"></a>
+<a name="index-_005cimprovisationOn-3"></a>
+<a name="index-improvisationOn-2"></a>
+<a name="index-improvisationOn-3"></a>
+<a name="index-_005cimprovisationOff-2"></a>
+<a name="index-_005cimprovisationOff-3"></a>
+<a name="index-improvisationOff-2"></a>
+<a name="index-improvisationOff-3"></a>
+
+<p>Akkordnotation für Gitarren bezeichnet auch oft zusätzlich den
+geschlagenen Rhythmus.  Das kann notiert werden unter Verwendung
+des <code>Pitch_squash_engraver</code> und indem  Tonhöhenimprovisation
+eingeschaltet wird mit <code>\improvisationOn</code>.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new ChordNames {
+    \chordmode {
+      c1 f g c
+    }
+  }
+
+  \new Voice \with {
+    \consists &quot;Pitch_squash_engraver&quot;
+  } \relative c'' {
+    \improvisationOn
+    c4 c8 c c4 c8 c
+    f4 f8 f f4 f8 f
+    g4 g8 g g4 g8 g
+    c4 c8 c c4 c8 c
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../a1/lily-6f4c1e18.ly">
+  <img align="middle"
+       border="0"
+       src="../a1/lily-6f4c1e18.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vordefinierte-Befehle-18"></a>
+<h4 class="subsubheading">Vordefinierte Befehle</h4>
+<p><code>\improvisationOn</code>,
+<code>\improvisationOff</code>.
+</p>
+<a name="Ausgewahlte-Schnipsel-40"></a>
+<h4 class="subsubheading">Ausgewählte Schnipsel</h4>
+
+
+<p><em> Schlagrhythmus für Gitarren</em>
+</p>
+
+<p>In Gitarrennotation kann neben Melodie, Akkordbezeichnungen und
+Bunddiagrammen auch der Schlagrhythmus angegeben werden.
+</p>
+
+<blockquote><pre class="verbatim">\include &quot;predefined-guitar-fretboards.ly&quot;
+&lt;&lt;
+  \new ChordNames {
+    \chordmode {
+      c1 | f | g | c
+    }
+  }
+  \new FretBoards {
+    \chordmode {
+      c1 | f | g | c
+    }
+  }
+  \new Voice \with {
+    \consists &quot;Pitch_squash_engraver&quot;
+  } {
+    \relative c'' {
+      \improvisationOn
+      c4 c8 c c4 c8 c
+      f4 f8 f f4 f8 f
+      g4 g8 g g4 g8 g
+      c4 c8 c c4 c8 c
+    }
+  }
+  \new Voice = &quot;melody&quot; {
+    \relative c'' {
+      c2 e4 e4
+      f2. r4
+      g2. a4
+      e4 c2.
+    }
+  }
+  \new Lyrics {
+    \lyricsto &quot;melody&quot; {
+      This is my song.
+      I like to sing.
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../9c/lily-12a6d3c6.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-12a6d3c6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Siehe-auch-183"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Schnipsel:
+<a href="../snippets/rhythmus.de.html">Rhythms</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-RhythmicStaff-1"></a>
+<a href="../internals/rhythmicstaff.de.html">RhythmicStaff</a>,
+<a name="index-Pitch_005fsquash_005fengraver-3"></a>
+<a href="../internals/pitch_005fsquash_005fengraver.de.html">Pitch_squash_engraver</a>.
+</p>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Musikalische Notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.de.html" title="N&auml;chstes Kapitel">&nbsp;Spezielle Notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-note-splitting" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Automatische Aufteilung von Noten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#displaying-rhythms" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Rhythmen anzeigen lassen&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="beams.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Balken &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="displaying-rhythms.html">English</a>, <a href="displaying-rhythms.es.html">español</a>, <a href="displaying-rhythms.fr.html">français</a>, <a href="displaying-rhythms.it.html">italiano</a>, <a href="displaying-rhythms.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=" toc_current"><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Rhythmen-eingeben-1" href="writing-rhythms.de.html">1.2.1 Rhythmen eingeben</a>      </li>
+      <li class=""><a name="toc-Pausen-eingeben-1" href="writing-rests.de.html">1.2.2 Pausen eingeben</a>      </li>
+      <li class=" toc_current"><a name="toc-Rhythmen-anzeigen-lassen-1" href="displaying-rhythms.de.html">1.2.3 Rhythmen anzeigen lassen</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Taktangabe-1" href="displaying-rhythms.de.html#time-signature">Taktangabe</a>        </li>
+        <li class=""><a name="toc-Metronomangabe-1" href="displaying-rhythms.de.html#metronome-marks">Metronomangabe</a>        </li>
+        <li class=""><a name="toc-Auftakte-1" href="displaying-rhythms.de.html#upbeats">Auftakte</a>        </li>
+        <li class=""><a name="toc-Musik-ohne-Metrum-1" href="displaying-rhythms.de.html#unmetered-music">Musik ohne Metrum</a>        </li>
+        <li class=""><a name="toc-Polymetrische-Notation-1" href="displaying-rhythms.de.html#polymetric-notation">Polymetrische Notation</a>        </li>
+        <li class=""><a name="toc-Automatische-Aufteilung-von-Noten-1" href="displaying-rhythms.de.html#automatic-note-splitting">Automatische Aufteilung von Noten</a>        </li>
+        <li class=""><a name="toc-Melodierhythmus-anzeigen-1" href="displaying-rhythms.de.html#showing-melody-rhythms">Melodierhythmus anzeigen</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Balken-1" href="beams.de.html">1.2.4 Balken</a>      </li>
+      <li class=""><a name="toc-Takte-1" href="bars.de.html">1.2.5 Takte</a>      </li>
+      <li class=""><a name="toc-Besondere-rhythmische-Fragen-1" href="special-rhythmic-concerns.de.html">1.2.6 Besondere rhythmische Fragen</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=""><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

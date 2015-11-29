@@ -1,0 +1,977 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 2.9.3 Tipografiar música mensural</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 2.9.3 Tipografiar música mensural">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 2.9.3 Tipografiar música mensural">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="ancient-notation.es.html#ancient-notation" rel="up" title="2.9 Notación antigua">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="ancient-notation_002d_002dcommon-features.es.html#ancient-notation_002d_002dcommon-features" rel="previous" title="2.9.2 Notación antigua - funcionalidades comunes">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Tipografiar-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="ancient-notation_002d_002dcommon-features.es.html#custodes" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Custos&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="ancient-notation.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Notación antigua&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-contexts" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Contextos de la música mensural &gt; </a>]</td></tr></table>
+<a name="typesetting-mensural-music"></a>
+<h3 class="subsection">2.9.3 Tipografiar música mensural</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#mensural-contexts" accesskey="1">Contextos de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#mensural-clefs" accesskey="2">Claves de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#mensural-time-signatures" accesskey="3">Indicaciones de compás de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#mensural-note-heads" accesskey="4">Cabezas de nota de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#mensural-flags" accesskey="5">Corchetes de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#mensural-rests" accesskey="6">Silencios de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#mensural-accidentals-and-key-signatures" accesskey="7">Alteraciones y armaduras de la música mensural</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#annotational-accidentals-_0028musica-ficta_0029" accesskey="8">Alteraciones de anotación (<em>musica ficta</em>)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#white-mensural-ligatures" accesskey="9">Ligaduras mensurales blancas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Contextos-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#typesetting-mensural-music" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-clefs" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Claves de la música mensural &gt; </a>]</td></tr></table>
+<a name="mensural-contexts"></a>
+<h4 class="unnumberedsubsubsec">Contextos de la música mensural</h4>
+
+<a name="index-MensuralVoice"></a>
+<a name="index-MensuralStaff-3"></a>
+
+<p>Los contextos predefinidos de voz <code>MensuralVoice</code> y de pauta
+<code>MensuralStaff</code> se pueden usar para grabar una pieza en estilo
+mensural.  Estos contextos establecen a unos valores iniciales
+adecuados todas las propiedades relevantes de los contextos y de los
+objetos gráficos, de manera que pueda comenzar inmediatamente a
+escribir el canto, como lo demuestra el siguiente fragmento:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new MensuralVoice = &quot;discantus&quot; \relative {
+      \hide Score.BarNumber {
+        c''1\melisma bes a g\melismaEnd
+        f\breve
+        \[ f1\melisma a c\breve d\melismaEnd \]
+        c\longa
+        c\breve\melisma a1 g1\melismaEnd
+        fis\longa^\signumcongruentiae
+      }
+    }
+    \new Lyrics \lyricsto &quot;discantus&quot; {
+      San -- ctus, San -- ctus, San -- ctus
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../f1/lily-5fe50cc6.ly">
+  <img align="middle"
+       border="0"
+       src="../f1/lily-5fe50cc6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-107"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-3"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>.
+</p>
+
+<hr size="6">
+<a name="Claves-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-contexts" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Contextos de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-time-signatures" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Indicaciones de compás de la música mensural &gt; </a>]</td></tr></table>
+<a name="mensural-clefs"></a>
+<h4 class="unnumberedsubsubsec">Claves de la música mensural</h4>
+
+<a name="index-clefs"></a>
+
+<p>La siguiente tabla presenta todas las claves antiguas que están
+contempladas a través de la instrucción <code>\clef</code>.  Algunas de las
+claves usan el mismo glifo, pero se diferencian sólo en la línea en
+que se imprimen.  En tales casos, se usa un número añadido al nombre
+para enumerar dichas claves, numerado desde la línea inferior hasta la
+superior.  Puede forzar manualmente que se escriba un glifo
+de clave sobre una línea arbitraria, como se encuentra descrito en
+<a href="displaying-pitches.es.html#clef">Clave</a>.  La nota impresa a la derecha de cada clave en la columna
+de los ejemplos denota la situación del Do central (<code>c'</code>) con
+respecto a dicha clave.
+</p>
+<p>Petrucci usaba claves de Do que tenían barras verticales en el lado
+izquierdo en un equilibrio variable, dependiendo de la línea de la
+pauta en que se imprimían.
+</p>
+<table>
+<tr><td width="40%"><b>Descripción</b></td><td width="40%"><b>Claves posibles</b></td><td width="20%"><b>Ejemplo</b></td></tr>
+<tr><td width="40%">clave de Do, mensural</td><td width="40%"><code>mensural-c1</code>, <code>mensural-c2</code>,<br>
+<code>mensural-c3</code>, <code>mensural-c4</code>,<br>
+<code>mensural-c5</code></td><td width="20%"><p>
+ <a href="../d6/lily-96b7ad83.ly">
+  <img align="middle"
+       border="0"
+       src="../d6/lily-96b7ad83.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">clave de Fa, mensural</td><td width="40%"><code>mensural-f</code></td><td width="20%"><p>
+ <a href="../e3/lily-c250ff5a.ly">
+  <img align="middle"
+       border="0"
+       src="../e3/lily-c250ff5a.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">clave de Sol, mensural</td><td width="40%"><code>mensural-g</code></td><td width="20%"><p>
+ <a href="../82/lily-7dca3643.ly">
+  <img align="middle"
+       border="0"
+       src="../82/lily-7dca3643.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">clave de Do, mensural negra</td><td width="40%"><code>blackmensural-c1</code>, <code>blackmensural-c2</code>,<br>
+<code>blackmensural-c3</code>, <code>blackmensural-c4</code>,<br>
+<code>blackmensural-c5</code></td><td width="20%"><p>
+ <a href="../87/lily-39ddae92.ly">
+  <img align="middle"
+       border="0"
+       src="../87/lily-39ddae92.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">clave de Do, neomensural</td><td width="40%"><code>neomensural-c1</code>, <code>neomensural-c2</code>,<br>
+<code>neomensural-c3</code>, <code>neomensural-c4</code></td><td width="20%"><p>
+ <a href="../5d/lily-0c97416b.ly">
+  <img align="middle"
+       border="0"
+       src="../5d/lily-0c97416b.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">claves de Do en el estilo de Petrucci, para su uso en distintas líneas
+de la pauta (el ejemplo muestra la clave de Do en segunda)</td><td width="40%"><code>petrucci-c1</code>, <code>petrucci-c2</code>,<br>
+<code>petrucci-c3</code>, <code>petrucci-c4</code>,<br>
+<code>petrucci-c5</code></td><td width="20%"><p>
+ <a href="../8e/lily-383f6b93.ly">
+  <img align="middle"
+       border="0"
+       src="../8e/lily-383f6b93.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">claves de Fa en el estilo de Petrucci, para su uso en
+distintas líneas de la pauta
+(el ejemplo muestra la lclave de Fa en tercera línea)</td><td width="40%"><code>petrucci-f3</code>, <code>petrucci-f4</code>,<br>
+<code>petrucci-f5</code></td><td width="20%"><p>
+ <a href="../ae/lily-60b8e2d5.ly">
+  <img align="middle"
+       border="0"
+       src="../ae/lily-60b8e2d5.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+<tr><td width="40%">clave de Sol en el estilo de Petrucci</td><td width="40%"><code>petrucci-g</code></td><td width="20%"><p>
+ <a href="../df/lily-3f479ff9.ly">
+  <img align="middle"
+       border="0"
+       src="../df/lily-3f479ff9.png"
+       alt="[image of music]">
+ </a>
+</p></td></tr>
+</table>
+
+<a name="Vease-tambien-117"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-4"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>,
+<a name="index-clef-3"></a>
+<a href="../music-glossary/clef.es.html">clef</a>.
+</p>
+<p>Referencia de la notación:
+<a href="displaying-pitches.es.html#clef">Clave</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-44"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>La clave de Sol mensural está asignada a la clave de Sol de Petrucci.
+</p>
+
+<hr size="6">
+<a name="Indicaciones-de-comp_00e1s-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-clefs" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Claves de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-note-heads" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Cabezas de nota de la música mensural &gt; </a>]</td></tr></table>
+<a name="mensural-time-signatures"></a>
+<h4 class="unnumberedsubsubsec">Indicaciones de compás de la música mensural</h4>
+
+<a name="index-mensuracion_002c-simbolo-de"></a>
+<a name="index-compas_002c-indicacion-de"></a>
+
+<p>Los símbolos de mensuración (que son algo similar, pero no exactamente
+igual que las indicaciones de compás) están contemplados de forma
+limitada.  Los glifos están configurados de forma fija para
+determinadas fracciones de tiempo.  En otras palabras, para obtener un
+símbolo de mensuración determinado con la instrucción
+<code>\time n/m</code>, se tienen que escoger <code>n</code> y <code>m</code> según la
+siguiente tabla
+</p>
+<blockquote><p>
+ <a href="../c4/lily-39e90536.ly">
+  <img align="middle"
+       border="0"
+       src="../c4/lily-39e90536.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Utilice la propiedad <code>style</code> del elemento gráfico
+<code>TimeSignature</code> para seleccionar las indicaciones de compás
+de la música antigua.  Los estilos contemplados son <code>neomensural</code>
+y <code>mensural</code>.  La tabla anterior utiliza el estilo
+<code>neomensural</code>.  Los ejemplos siguientes muestran las diferencias
+que existen entre los estilos:
+</p>
+<blockquote><p>
+ <a href="../69/lily-c441899b.ly">
+  <img align="middle"
+       border="0"
+       src="../69/lily-c441899b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><a href="displaying-rhythms.es.html#time-signature">Indicación de compás</a>
+ofrece una introducción general al uso de las indicaciones de compás.
+</p>
+<a name="Vease-tambien-206"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-5"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>.
+</p>
+<p>Referencia de la notación:
+<a href="displaying-rhythms.es.html#time-signature">Indicación de compás</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-60"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>Las relaciones de duración de las notas no pueden cambiar con la
+indicación de compás, porque no son constantes.  Por ejemplo,
+la razón de 1&nbsp;breve = 3&nbsp;semibreves
+(<em>tempus perfectum</em>) se puede hacer a mano mediante el
+establecimiento de
+</p>
+<blockquote><pre class="example">breveTP = #(ly:make-duration -1 0 3/2)
+&hellip;
+{ c\breveTP f1 }
+</pre></blockquote>
+
+<p>Esto fija un valor para <code>breveTP</code> de 3/2 multiplicado por 2 = 3
+veces una redonda.
+</p>
+<p>Los símbolos <code>mensural68alt</code> y <code>neomensural68alt</code>
+(alternativos al símbolo de 6/8) no se puede seleccionar directamente
+con <code>\time</code>.  En su lugar, utilice
+<code>\markup {\musicglyph #&quot;timesig.mensural68alt&quot; }</code>.
+</p>
+
+<hr size="6">
+<a name="Cabezas-de-nota-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-time-signatures" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Indicaciones de compás de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-flags" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Corchetes de la música mensural &gt; </a>]</td></tr></table>
+<a name="mensural-note-heads"></a>
+<h4 class="unnumberedsubsubsec">Cabezas de nota de la música mensural</h4>
+
+<a name="index-cabezas-de-nota-antiguas"></a>
+
+<p>Para la notación antigua, se puede elegir un estilo de cabezas de
+notas distinto al <code>default</code> (estilo predeterminado).  Esto se
+consigue estableciendo la propiedad <code>style</code> del objeto
+<code>NoteHead</code> a los valores <code>baroque</code>,
+<code>neomensural</code>, <code>mensural</code>, <code>petrucci</code>,
+<code>blackpetrucci</code> o <code>semipetrucci</code>.
+</p>
+<p>El estilo <code>baroque</code> se diferencia del estilo predeterminado
+<code>default</code> en que:
+</p>
+<ul>
+<li> Proporciona una cabeza de nota para la <code>maxima</code>, y
+</li><li> Usa una forma cuadrada para las cabezas de <code>\breve</code>.
+</li></ul>
+
+<p>Los estilos <code>neomensural</code>, <code>mensural</code> y <code>petrucci</code> se
+diferencian del estilo <code>baroque</code> en que:
+</p>
+<ul>
+<li> Usan cabezas romboidales para las semibreves y todas las notas más cortas, y
+</li><li> Centran las plicas sobre las cabezas.
+</li></ul>
+
+<p>El estilo <code>blackpetrucci</code> produce notas con una cabeza que puede
+usarse en notación mensural negra o en secciones de coloratio dentro
+de la notación mensural blanca.  A causa de que el estilo de la cabeza
+de las notas no influye en el número de corchetes, en este estilo la
+notación de la semimínima debe hacer como <code>a8*2</code>, no como
+<code>a4</code>, pues de lo contrario tendrá el aspecto de una mínima.  El
+multiplicador puede ser distinto si se usa la coloratio, es decir,
+para la notación de tresillos.
+</p>
+<p>Utilice el estilo <code>semipetrucci</code> para dibujar notas con cabeza
+semi-rellena (breves, longas y máximas).
+</p>
+<p>El ejemplo siguiente muestra el estilo <code>petrucci</code>:
+</p>
+
+<blockquote><pre class="verbatim">\set Score.skipBars = ##t
+\autoBeamOff
+\override NoteHead.style = #'petrucci
+a'\maxima a'\longa a'\breve a'1 a'2 a'4 a'8 a'16 a'
+\override NoteHead.style = #'semipetrucci
+a'\breve*5/6
+\override NoteHead.style = #'blackpetrucci
+a'8*4/3 a'
+\override NoteHead.style = #'petrucci
+a'\longa
+</pre><p>
+ <a href="../aa/lily-c2be21b1.ly">
+  <img align="middle"
+       border="0"
+       src="../aa/lily-c2be21b1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><a href="note-head-styles.es.html">Estilos de cabezas de nota</a> ofrece una visión de conjunto sobre la
+totalidad de los estilos de cabeza disponibles.
+</p>
+<a name="Vease-tambien-27"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-6"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>,
+<a name="index-note-head"></a>
+<a href="../music-glossary/note-head.es.html">note head</a>.
+</p>
+<p>Referencia de la notación:
+<a href="note-head-styles.es.html">Estilos de cabezas de nota</a>.
+</p>
+
+<hr size="6">
+<a name="Corchetes-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-note-heads" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Cabezas de nota de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-rests" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Silencios de la música mensural &gt; </a>]</td></tr></table>
+<a name="mensural-flags"></a>
+<h4 class="unnumberedsubsubsec">Corchetes de la música mensural</h4>
+
+<a name="index-flags"></a>
+
+<p>Utilice la propiedad <code>flag-style</code> del elemento gráfico
+<code>Stem</code> para seleccionar los corchetes de estilo antiguo.
+Aparte del estilo de corchete por defecto <code>default</code>, sólo está
+contemplado el estilo <code>mensural</code>
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  \override Flag.style = #'mensural
+  \override Stem.thickness = #1.0
+  \override NoteHead.style = #'mensural
+  \autoBeamOff
+  c8 d e f c16 d e f c32 d e f s8
+  c'8 d e f c16 d e f c32 d e f
+}
+</pre><p>
+ <a href="../cd/lily-e1dd7d20.ly">
+  <img align="middle"
+       border="0"
+       src="../cd/lily-e1dd7d20.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe que la bandera más interna de cada uno de los corchetes
+mensurales se alinea verticalmente con una línea de la pauta.
+</p>
+<p>No existe un estilo particular de corchete para la notación neo-mensural ni Petrucci.
+No existen corchetes en la notación del canto gregoriano.
+</p>
+<a name="Vease-tambien-256"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-7"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>,
+<a name="index-flag-1"></a>
+<a href="../music-glossary/flag.es.html">flag</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-23"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>La alineación vertical de cada uno de los corchetes con una línea de
+la pauta da por supuesto que las plicas siempre terminan exactamente
+encima o bien exactamente en el medio de dos líneas de la pauta.  Esto
+puede no ser siempre cierto cuando se utilizan las posibilidades de
+disposición avanzadas de la notación clásica (que, de todas formas,
+por lo común se encuentra fuera del ámbito de la notación mensural).
+</p>
+
+<hr size="6">
+<a name="Silencios-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-flags" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Corchetes de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#mensural-accidentals-and-key-signatures" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Alteraciones y armaduras de la música mensural &gt; </a>]</td></tr></table>
+<a name="mensural-rests"></a>
+<h4 class="unnumberedsubsubsec">Silencios de la música mensural</h4>
+
+<a name="index-rests_002c-ancient"></a>
+
+<p>Utilice la propiedad <code>style</code> del elemento gráfico
+<code>Rest</code> para seleccionar silencios antiguos.  Los estilos
+contemplados son <code>classical</code>, <code>neomensural</code> y
+<code>mensural</code>.  <code>classical</code> se diferencia del estilo por
+defecto <code>default</code> solamente en que el silencio de negra parece un
+silencio de corchea invertido horizontalmente.  Los estilos
+<code>mensural</code> y <code>neomensural</code> reproducen el aspecto de los
+silencios de los manuscritos y ediciones impresas de hasta el s.XVI.
+</p>
+<p>El ejemplo siguiente muestra los estilos <code>mensural</code> y
+<code>neomensural</code>:
+</p>
+<blockquote><pre class="verbatim">\set Score.skipBars = ##t
+\override Rest.style = #'classical
+r\longa^&quot;classical&quot; r\breve r1 r2 r4 r8 r16 s \break
+\override Rest.style = #'mensural
+r\longa^&quot;mensural&quot; r\breve r1 r2 r4 r8 r16 s \break
+\override Rest.style = #'neomensural
+r\longa^&quot;neomensural&quot; r\breve r1 r2 r4 r8 r16
+</pre><p>
+ <a href="../d2/lily-7db35302.ly">
+  <img align="middle"
+       border="0"
+       src="../d2/lily-7db35302.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>No existen silencios de fusa y semifusa específicos para los estilos
+mensural ni neo-mensural.  En su lugar se tomarán los silencios del
+estilo predeterminado.
+</p>
+<a name="Vease-tambien-30"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-8"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>.
+</p>
+<p>Referencia de la notación:
+<a href="writing-rests.es.html#rests">Silencios</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/notacion-antigua.es.html#notaci_00f3n-antigua">Ancient notation</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-40"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>El glifo para el silencio de máxima en el estilo mensural es en
+realidad un silencio de longa perfecta; use dos (o tres) silencios de
+longa para imprimir un silencio de máxima.  Los sliencions de longa no
+se agrupan automáticamente, por lo que debe hacerse manualmente
+utilizando silencios con altura determinada.
+</p>
+
+<hr size="6">
+<a name="Alteraciones-y-armaduras-de-la-m_00fasica-mensural"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-rests" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Silencios de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#annotational-accidentals-_0028musica-ficta_0029" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Alteraciones de anotación (musica ficta) &gt; </a>]</td></tr></table>
+<a name="mensural-accidentals-and-key-signatures"></a>
+<h4 class="unnumberedsubsubsec">Alteraciones y armaduras de la música mensural</h4>
+
+<a name="index-alteraciones"></a>
+<a name="index-armadura"></a>
+
+<p>El estilo <code>mensural</code> ofrece unos símbolos de sostenido y bemol
+distintos de los del estilo predeterminado.  Si se solicita, el
+símbolo de becuadro se extrae del estilo <code>vaticana</code>.
+</p>
+<blockquote><p>
+ <a href="../00/lily-bd3d4124.ly">
+  <img align="middle"
+       border="0"
+       src="../00/lily-bd3d4124.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>El estilo de las alteraciones y de la armadura de la tonalidad se
+controlan a través de la propiedad <code>glyph-name-alist</code> de los
+elementos gráficos <code>Accidental</code> y
+<code>KeySignature</code>, respectivamente; p.ej.:
+</p>
+<blockquote><pre class="example">\override Staff.Accidental.glyph-name-alist =
+  #alteration-mensural-glyph-name-alist
+</pre></blockquote>
+
+<a name="Vease-tambien-101"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-mensural-notation-9"></a>
+<a href="../music-glossary/mensural-notation.es.html">mensural notation</a>,
+<a name="index-Pitch-names-4"></a>
+<a href="../music-glossary/pitch-names.es.html">Pitch names</a>,
+<a name="index-accidental-1"></a>
+<a href="../music-glossary/accidental.es.html">accidental</a>,
+<a name="index-key-signature-1"></a>
+<a href="../music-glossary/key-signature.es.html">key signature</a>.
+</p>
+<p>Referencia de la notación:
+<a href="pitches.es.html">Alturas</a>,
+<a href="writing-pitches.es.html#accidentals">Alteraciones accidentales</a>,
+<a href="displaying-pitches.es.html#automatic-accidentals">Alteraciones accidentales automáticas</a>,
+<a href="displaying-pitches.es.html#key-signature">Armadura de la tonalidad</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-KeySignature-1"></a>
+<a href="../internals/keysignature.es.html">KeySignature</a>.
+</p>
+
+<a name="index-alteraciones-accidentales-1"></a>
+
+
+<hr size="6">
+<a name="Alteraciones-de-anotaci_00f3n-_0028musica-ficta_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#mensural-accidentals-and-key-signatures" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Alteraciones y armaduras de la música mensural&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#white-mensural-ligatures" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Ligaduras mensurales blancas &gt; </a>]</td></tr></table>
+<a name="annotational-accidentals-_0028musica-ficta_0029"></a>
+<h4 class="unnumberedsubsubsec">Alteraciones de anotación (<em>musica ficta</em>)</h4>
+
+<p>En la música europea de hasta aprox. 1600, se esperaba de los
+cantantes que alterasen cromáticamente ciertas notas según su propia
+iniciativa y de acuerdo a ciertas reglas.  Esto recibe el nombre de
+<var>musica ficta</var>.  En las transcripciones modernas, estas
+alteraciones accidentales se imprimen normalmente encima de la nota.
+</p>
+<a name="index-alteraciones-de-la-musica-ficta"></a>
+<a name="index-musica-ficta_002c-alteraciones"></a>
+
+<p>Están contempladas estas alteraciones sugeridas, y se pueden activar
+estableciendo <code>suggestAccidentals</code> al valor verdadero.
+</p>
+<a name="index-suggestAccidentals"></a>
+<a name="index-suggestAccidentals-1"></a>
+
+<pre class="verbatim">\relative {
+  fis' gis
+  \set suggestAccidentals = ##t
+  ais bis
+}
+</pre><p>
+ <a href="../9d/lily-80989b26.ly">
+  <img align="middle"
+       border="0"
+       src="../9d/lily-80989b26.png"
+       alt="[image of music]">
+ </a>
+</p>
+
+
+
+<p>Esto hará que se traten <em>todas</em> las alteraciones siguientes como
+<em>musica ficta</em> hasta que se desactive con
+<code>\set suggestAccidentals = ##f</code>.  Una forma más práctica es usar
+<code>\once \set suggestAccidentals = ##t</code>, que puede incluso
+definirse como una forma breve muy conveniente:
+</p>
+<blockquote><pre class="verbatim">ficta = { \once \set suggestAccidentals = ##t }
+\score { \relative
+  \new MensuralVoice  {
+	\once \set suggestAccidentals = ##t
+  bes'4 a2 g2 \ficta fis8 \ficta e! fis2 g1
+  }
+}
+</pre><p>
+ <a href="../df/lily-60d40284.ly">
+  <img align="middle"
+       border="0"
+       src="../df/lily-60d40284.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-57"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Referencia de funcionamiento interno:
+<a name="index-Accidental_005fengraver-2"></a>
+<a href="../internals/accidental_005fengraver.es.html">Accidental_engraver</a>,
+<a name="index-AccidentalSuggestion-1"></a>
+<a href="../internals/accidentalsuggestion.es.html">AccidentalSuggestion</a>.
+</p>
+
+<hr size="6">
+<a name="Ligaduras-mensurales-blancas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#annotational-accidentals-_0028musica-ficta_0029" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Alteraciones de anotación (musica ficta)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="typesetting-gregorian-chant.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Tipografiado del canto gregoriano &gt; </a>]</td></tr></table>
+<a name="white-mensural-ligatures"></a>
+<h4 class="unnumberedsubsubsec">Ligaduras mensurales blancas</h4>
+
+<a name="index-Mensural-ligatures"></a>
+<a name="index-White-mensural-ligatures"></a>
+
+<p>Las ligaduras mensurales blancas están contempladas de forma limitada.
+</p>
+<p>Para grabar ligaduras mensurales blancas, en el bloque layout o de
+diseño de página reemplace el grabador
+<code>Ligature_bracket_engraver</code> por el grabador
+<code>Mensural_ligature_engraver</code> en el contexto
+<code>Voice</code>:
+</p>
+<blockquote><pre class="example">\layout {
+  \context {
+    \Voice
+    \remove &quot;Ligature_bracket_engraver&quot;
+    \consists &quot;Mensural_ligature_engraver&quot;
+  }
+}
+</pre></blockquote>
+
+<p>No existe ningún lenguaje de entrada adicional para describir la forma
+de una ligadura mensural blanca.  Más bien la forma se determina
+exclusivamente a partir de la altura y duración de las notas
+comprendidas.  Si bien este enfoque podría hacer que un usuario con
+poca experiencia tardase un tiempo en acostumbrarse a él, tiene la
+gran ventaja de que toda la información musical de la ligadura se
+conoce internamente.  Esto no se requiere solamente para una salida
+MIDI correcta, sino que también permite la transcripción automática de
+las ligaduras.
+</p>
+<p>En algunos lugares, dos notas consecutivas se pueden representar bien
+como dos cuadrados, bien como un paralelogramo oblicuo (forma de
+flexa).  En tales casos la forma por omisión es dos cuadrados, pero
+puede requerirse una flexa fijando la propiedad <code>ligature-flexa</code>
+de la <em>segunda</em> cabeza.  La longitud de una flexa se puede fijar
+mediante la propiedad <code>flexa-width</code> de la cabeza.
+</p>
+<p>Por ejemplo:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    \set Score.timing = ##f
+    \set Score.defaultBarType = &quot;-&quot;
+    \override NoteHead.style = #'petrucci
+    \override Staff.TimeSignature.style = #'mensural
+    \clef &quot;petrucci-g&quot;
+    \[ c''\maxima g \]
+    \[ d\longa
+       \override NoteHead.ligature-flexa = ##t
+       \once \override NoteHead.flexa-width = #3.2
+       c\breve f e d \]
+    \[ c'\maxima d\longa \]
+    \[ e1 a, g\breve \]
+  }
+  \layout {
+    \context {
+      \Voice
+      \remove &quot;Ligature_bracket_engraver&quot;
+      \consists &quot;Mensural_ligature_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../67/lily-072d6500.ly">
+  <img align="middle"
+       border="0"
+       src="../67/lily-072d6500.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si no se sustituye el grabador <code>Ligature_bracket_engraver</code>
+por el <code>Mensural_ligature_engraver</code>, la misma música se
+transcribe de la siguiente manera:
+</p>
+<blockquote><p>
+ <a href="../65/lily-2c292b31.ly">
+  <img align="middle"
+       border="0"
+       src="../65/lily-2c292b31.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-225"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-ligature-2"></a>
+<a href="../music-glossary/ligature.es.html">ligature</a>.
+</p>
+<p>Referencia de la notación:
+<a href="typesetting-gregorian-chant.es.html#gregorian-square-neume-ligatures">Ligaduras de neumas cuadrados gregorianos</a>,
+<a href="ancient-notation_002d_002dcommon-features.es.html#ligatures">Ligaduras</a>.
+</p>
+<a name="Advertencias-y-problemas-conocidos-29"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>El espaciado horizontal de las ligaduras es pobre.
+Las alteraciones accidentales pueden colisionar con las notas previas.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#annotational-accidentals-_0028musica-ficta_0029" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Alteraciones de anotación (musica ficta)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#typesetting-mensural-music" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Tipografiar música mensural&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="typesetting-gregorian-chant.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Tipografiado del canto gregoriano &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="typesetting-mensural-music.html">English</a>, <a href="typesetting-mensural-music.de.html">deutsch</a>, <a href="typesetting-mensural-music.fr.html">français</a>, <a href="typesetting-mensural-music.it.html">italiano</a>, <a href="typesetting-mensural-music.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=" toc_current"><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Panoramica-de-los-estilos-contemplados" href="overview-of-the-supported-styles.es.html">2.9.1 Panorámica de los estilos contemplados</a>      </li>
+      <li class=""><a name="toc-Notacion-antigua-_002d-funcionalidades-comunes" href="ancient-notation_002d_002dcommon-features.es.html">2.9.2 Notación antigua - funcionalidades comunes</a>      </li>
+      <li class=" toc_current"><a name="toc-Tipografiar-musica-mensural" href="typesetting-mensural-music.es.html">2.9.3 Tipografiar música mensural</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Contextos-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-contexts">Contextos de la música mensural</a>        </li>
+        <li class=""><a name="toc-Claves-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-clefs">Claves de la música mensural</a>        </li>
+        <li class=""><a name="toc-Indicaciones-de-compas-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-time-signatures">Indicaciones de compás de la música mensural</a>        </li>
+        <li class=""><a name="toc-Cabezas-de-nota-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-note-heads">Cabezas de nota de la música mensural</a>        </li>
+        <li class=""><a name="toc-Corchetes-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-flags">Corchetes de la música mensural</a>        </li>
+        <li class=""><a name="toc-Silencios-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-rests">Silencios de la música mensural</a>        </li>
+        <li class=""><a name="toc-Alteraciones-y-armaduras-de-la-musica-mensural" href="typesetting-mensural-music.es.html#mensural-accidentals-and-key-signatures">Alteraciones y armaduras de la música mensural</a>        </li>
+        <li class=""><a name="toc-Alteraciones-de-anotacion-_0028musica-ficta_0029" href="typesetting-mensural-music.es.html#annotational-accidentals-_0028musica-ficta_0029">Alteraciones de anotación (<em>musica ficta</em>)</a>        </li>
+        <li class=""><a name="toc-Ligaduras-mensurales-blancas-1" href="typesetting-mensural-music.es.html#white-mensural-ligatures">Ligaduras mensurales blancas</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Tipografiado-del-canto-gregoriano-1" href="typesetting-gregorian-chant.es.html">2.9.4 Tipografiado del canto gregoriano</a>      </li>
+      <li class=""><a name="toc-Tipografiado-del-canto-kievano-en-notacion-cuadrada" href="typesetting-kievan-square-notation.es.html">2.9.5 Tipografiado del canto kievano en notación cuadrada</a>      </li>
+      <li class=""><a name="toc-Trabajar-con-musica-antigua-_002d-escenarios-y-soluciones" href="working-with-ancient-music_002d_002dscenarios-and-solutions.es.html">2.9.6 Trabajar con música antigua - escenarios y soluciones</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

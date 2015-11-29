@@ -1,0 +1,724 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 4.6.2 Fixing overlapping notation</title>
+
+<meta name="description" content="LilyPond Learning Manual: 4.6.2 Fixing overlapping notation">
+<meta name="keywords" content="LilyPond Learning Manual: 4.6.2 Fixing overlapping notation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.zh.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.zh.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.zh.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.zh.html#SEC_About" rel="help" title="About This Document">
+<link href="collisions-of-objects.zh.html#collisions-of-objects" rel="up" title="4.6 Collisions of objects">
+<link href="lilypond-index.zh.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="moving-objects.zh.html#moving-objects" rel="previous" title="4.6.1 Moving objects">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Fixing-overlapping-notation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="moving-objects.zh.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Moving objects&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.zh.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Collisions of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-padding-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The padding property &gt; </a>]</td></tr></table>
+<a name="fixing-overlapping-notation"></a>
+<h3 class="subsection">4.6.2 Fixing overlapping notation</h3>
+
+<p>Let&rsquo;s now see how the properties in the previous section can
+help to resolve overlapping notation.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-padding-property" accesskey="1">The <code>padding</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-right_002dpadding-property" accesskey="2">The <code>right-padding</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-staff_002dpadding-property" accesskey="3">The <code>staff-padding</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-self_002dalignment_002dx-property" accesskey="4">The <code>self-alignment-X</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-staff_002dposition-property" accesskey="5">The <code>staff-position</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-extra_002doffset-property" accesskey="6">The <code>extra-offset</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-positions-property" accesskey="7">The <code>positions</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-force_002dhshift-property" accesskey="8">The <code>force-hshift</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="The-padding-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#fixing-overlapping-notation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-right_002dpadding-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The right-padding property &gt; </a>]</td></tr></table>
+<a name="the-padding-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>padding</code> property</h4>
+
+<a name="index-padding-1"></a>
+<a name="index-fixing-overlapping-notation"></a>
+<a name="index-overlapping-notation"></a>
+
+<p>The <code>padding</code> property can be set to increase
+(or decrease) the distance between symbols that are printed
+above or below notes.
+</p>
+<a name="index-Script_002c-example-of-overriding"></a>
+<a name="index-padding-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">c'2\fermata
+\override Script.padding = #3
+b2\fermata
+</pre><p>
+ <a href="../40/lily-159f1ece.ly">
+  <img align="middle"
+       border="0"
+       src="../40/lily-159f1ece.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-MetronomeMark_002c-example-of-overriding"></a>
+<a name="index-padding-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">% This will not work, see below
+\override MetronomeMark.padding = #3
+\tempo 4 = 120
+c'1 |
+% This works
+\override Score.MetronomeMark.padding = #3
+\tempo 4 = 80
+d'1 |
+</pre><p>
+ <a href="../4e/lily-ebfc03a7.ly">
+  <img align="middle"
+       border="0"
+       src="../4e/lily-ebfc03a7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Note in the second example how important it is to figure out what
+context handles a certain object.  Since the <code>MetronomeMark</code>
+object is handled in the <code>Score</code> context, property changes in the
+<code>Voice</code> context will not be noticed.  For more details, see
+<a name="index-Modifying-properties"></a>
+<a href="../notation/modifying-properties.zh.html">Modifying properties</a>.
+</p>
+<p>If the <code>padding</code> property of an object is increased when that
+object is in a stack of objects being positioned according to
+their <code>outside-staff-priority</code>, then that object and all
+objects outside it are moved.
+</p>
+
+<hr size="6">
+<a name="The-right_002dpadding-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-padding-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The padding property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-staff_002dpadding-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The staff-padding property &gt; </a>]</td></tr></table>
+<a name="the-right_002dpadding-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>right-padding</code> property</h4>
+
+<a name="index-right_002dpadding-property-1"></a>
+
+<p>The <code>right-padding</code> property affects the spacing between the
+accidental and the note to which it applies.  It is not often
+required, but the default spacing may be wrong for certain special
+accidental glyphs or combination of glyphs used in some microtonal
+music.  These have to be entered by overriding the accidental
+stencil with a markup containing the desired symbol(s), like this:
+</p>
+<a name="index-Accidental_002c-example-of-overriding"></a>
+<a name="index-text-property_002c-example-1"></a>
+<a name="index-stencil-property_002c-example-4"></a>
+<a name="index-AccidentalPlacement_002c-example-of-overriding"></a>
+<a name="index-right_002dpadding-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">sesquisharp = \markup { \sesquisharp }
+\relative {
+  c''4
+  % This prints a sesquisharp but the spacing is too small
+  \once \override Accidental.stencil = #ly:text-interface::print
+  \once \override Accidental.text = #sesquisharp
+  cis4 c
+  % This improves the spacing
+  \once \override Score.AccidentalPlacement.right-padding = #0.6
+  \once \override Accidental.stencil = #ly:text-interface::print
+  \once \override Accidental.text = #sesquisharp
+  cis4 |
+}
+</pre><p>
+ <a href="../17/lily-daa0dee0.ly">
+  <img align="middle"
+       border="0"
+       src="../17/lily-daa0dee0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>This necessarily uses an override for the accidental stencil which
+will not be covered until later.  The stencil type must be a
+procedure, here changed to print the contents of the <code>text</code>
+property of <code>Accidental</code>, which itself is set to be a
+sesquisharp sign.  This sign is then moved further away from the
+note head by overriding <code>right-padding</code>.
+</p>
+
+<hr size="6">
+<a name="The-staff_002dpadding-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-right_002dpadding-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The right-padding property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-self_002dalignment_002dx-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The self-alignment-X property &gt; </a>]</td></tr></table>
+<a name="the-staff_002dpadding-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>staff-padding</code> property</h4>
+
+<a name="index-aligning-objects-on-a-baseline"></a>
+<a name="index-objects_002c-aligning-on-a-baseline"></a>
+
+<p><code>staff-padding</code> can be used to align objects such as dynamics
+along a baseline at a fixed distance from the staff, when no other
+notation forces them further from the staff.
+It is not a property of <code>DynamicText</code> but of
+<code>DynamicLineSpanner</code>.  This is because the baseline should apply
+equally to <strong>all</strong> dynamics, including those created as extended
+spanners.  So this is the way to align the dynamic marks in the
+example taken from the previous section:
+</p>
+<a name="index-DynamicText_002c-example-of-overriding-1"></a>
+<a name="index-extra_002dspacing_002dwidth-property_002c-example-1"></a>
+<a name="index-DynamicLineSpanner_002c-example-of-overriding"></a>
+<a name="index-staff_002dpadding-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">\override DynamicLineSpanner.staff-padding = #3
+\relative { a'4\f b\mf a\p b\mp }
+</pre><p>
+ <a href="../0d/lily-8d21ce5d.ly">
+  <img align="middle"
+       border="0"
+       src="../0d/lily-8d21ce5d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="The-self_002dalignment_002dX-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-staff_002dpadding-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The staff-padding property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-staff_002dposition-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The staff-position property &gt; </a>]</td></tr></table>
+<a name="the-self_002dalignment_002dx-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>self-alignment-X</code> property</h4>
+
+<p>The following example shows how to adjust the position
+of a string fingering object relative to a note&rsquo;s stem by aligning the
+right edge with the reference point of the parent note:
+</p>
+<a name="index-StringNumber_002c-example-of-overriding"></a>
+<a name="index-self_002dalignment_002dX-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">\voiceOne
+&lt;a''\2&gt;
+\once \override StringNumber.self-alignment-X = #RIGHT
+&lt;a''\2&gt;
+</pre><p>
+ <a href="../73/lily-46037d19.ly">
+  <img align="middle"
+       border="0"
+       src="../73/lily-46037d19.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="The-staff_002dposition-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-self_002dalignment_002dx-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The self-alignment-X property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-extra_002doffset-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The extra-offset property &gt; </a>]</td></tr></table>
+<a name="the-staff_002dposition-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>staff-position</code> property</h4>
+
+<a name="index-object-collision-within-a-staff"></a>
+
+<p>Multimeasure rests in one voice can collide with notes in another.
+Since these rests are typeset centered between the bar lines, it
+would require significant effort for LilyPond to figure out which
+other notes might collide with it, since all the current collision
+handling between notes and between notes and rests is done only
+for notes and rests that occur at the same time.  Here&rsquo;s an
+example of a collision of this type:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt; \relative { c'4 c c c } \\ { R1 } &gt;&gt;
+</pre><p>
+ <a href="../25/lily-a05e161f.ly">
+  <img align="middle"
+       border="0"
+       src="../25/lily-a05e161f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The best solution here is to move the multimeasure rest down, since the
+rest is in voice two. The default in <code>\voiceTwo</code> (i.e. in the
+second voice of a <code>&lt;&lt;{&hellip;} \\ {&hellip;}&gt;&gt;</code> construct) is
+that <code>staff-position</code> is set to -4 for MultiMeasureRest, so we need
+to move it, say, four half-staff spaces down to <code>-8</code>.
+</p>
+<a name="index-MultiMeasureRest_002c-example-of-overriding"></a>
+<a name="index-staff_002dposition-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative { c'4 c c c }
+  \\
+  \override MultiMeasureRest.staff-position = #-8
+  { R1 }
+&gt;&gt;
+</pre><p>
+ <a href="../84/lily-818c8065.ly">
+  <img align="middle"
+       border="0"
+       src="../84/lily-818c8065.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>This is better than using, for example, <code>extra-offset</code>,
+because the ledger line above the rest is inserted automatically.
+</p>
+<hr size="6">
+<a name="The-extra_002doffset-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-staff_002dposition-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The staff-position property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-positions-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The positions property &gt; </a>]</td></tr></table>
+<a name="the-extra_002doffset-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>extra-offset</code> property</h4>
+
+<a name="index-positioning-objects"></a>
+<a name="index-positioning-grobs"></a>
+<a name="index-objects_002c-positioning"></a>
+<a name="index-grobs_002c-positioning"></a>
+
+<p>The <code>extra-offset</code> property provides complete control over the
+positioning of an object both horizontally and vertically.
+</p>
+<p>In the following example, the second fingering is moved a little to
+the left, and 1.8 staff space downwards:
+</p>
+<a name="index-Fingering_002c-example-of-overriding-1"></a>
+<a name="index-extra_002doffset-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">f'4-5
+\once \override Fingering.extra-offset = #'(-0.3 . -1.8)
+f'4-5
+</pre><p>
+ <a href="../72/lily-ff3be885.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-ff3be885.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="The-positions-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-extra_002doffset-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The extra-offset property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-force_002dhshift-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The force-hshift property &gt; </a>]</td></tr></table>
+<a name="the-positions-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>positions</code> property</h4>
+
+<a name="index-controlling-tuplets_002c-slurs_002c-phrasing-slurs_002c-and-beams-manually"></a>
+<a name="index-manually-controlling-tuplets_002c-slurs_002c-phrasing-slurs_002c-and-beams"></a>
+<a name="index-tuplet-beams_002c-controlling-manually"></a>
+<a name="index-slurs_002c-controlling-manually"></a>
+<a name="index-phrasing-slurs_002c-controlling-manually"></a>
+<a name="index-beams_002c-controlling-manually"></a>
+
+<p>The <code>positions</code> property allows the vertical position and hence
+the slope of tuplets, slurs, phrasing slurs and beams to be controlled
+manually.
+</p>
+<p>Here&rsquo;s an example in which the phrasing slur and slur collide:
+</p>
+<blockquote><pre class="verbatim">\relative { a'8 \( ( a'16 ) a \) }
+</pre><p>
+ <a href="../ba/lily-fa8a96ef.ly">
+  <img align="middle"
+       border="0"
+       src="../ba/lily-fa8a96ef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-PhrasingSlur_002c-example-of-overriding"></a>
+<a name="index-positions-property_002c-example"></a>
+
+<p>One possibility would be to move the two ends of the phrasing slur
+higher.  We can try setting the left end to 2.5 staff-spaces above the
+centre line and the right end to 4.5 above, and LilyPond will
+select the phrasing slur from the candidates it has found with its
+end points closest to these:
+</p>
+<blockquote><pre class="verbatim">\once \override PhrasingSlur.positions = #'(2.5 . 4.5)
+a'8 \( ( a''16 ) a'' \)
+</pre><p>
+ <a href="../0d/lily-03b52edc.ly">
+  <img align="middle"
+       border="0"
+       src="../0d/lily-03b52edc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>This is an improvement, but why not lower the right end of the slur
+a little?  If you try it you&rsquo;ll find it can&rsquo;t be done in this way.
+That&rsquo;s because there are no candidate slurs lower than the one
+already selected, and in this case the <code>positions</code> property has
+no effect.  However, ties, slurs and phrasing slurs <em>can</em> be
+positioned and shaped very precisely when necessary.  To learn how to
+do this, see <a name="index-Modifying-ties-and-slurs"></a>
+<a href="../notation/modifying-shapes.zh.html#modifying-ties-and-slurs">Modifying ties and slurs</a>.
+</p>
+<p>Here&rsquo;s a further example.  We see that the beams
+collide with the ties:
+</p>
+<blockquote><pre class="verbatim">{
+  \time 4/2
+  &lt;&lt;
+    \relative { c'1~ 2. e8 f }
+    \\
+    \relative {
+      e''8 e e e
+      e e e e
+      f2 g
+    }
+  &gt;&gt;
+  &lt;&lt;
+    \relative { c'1~ 2. e8 f }
+    \\
+    \relative {
+      e''8 e e e
+      e e e e
+      f2 g
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../a9/lily-b10064dd.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-b10064dd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>This can be resolved by manually moving both ends of the beam
+up from their position at 1.81 staff-spaces below the center line to,
+say, 1:
+</p>
+<a name="index-Beam_002c-example-of-overriding"></a>
+<a name="index-positions-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">{
+  \time 4/2
+  &lt;&lt;
+    \relative { c'1~ 2. e8 f }
+    \\
+    \relative {
+      \override Beam.positions = #'(-1 . -1)
+      e''8 e e e
+      e e e e
+      f2 g
+    }
+  &gt;&gt;
+  &lt;&lt;
+    \relative { c'1~ 2. e8 f }
+    \\
+    \relative {
+      e''8 e e e
+      e e e e
+      f2 g
+      \revert Beam.positions
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../8c/lily-2792b870.ly">
+  <img align="middle"
+       border="0"
+       src="../8c/lily-2792b870.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Note that the override continues to apply in the second voice of
+the second measure of eighth notes, but not to any of the beams in the
+first voice, even those in the later second measure.  As soon as the
+override should no longer apply it should be reverted, as shown.
+</p>
+<hr size="6">
+<a name="The-force_002dhshift-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-positions-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The positions property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="real-music-example.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Real music example &gt; </a>]</td></tr></table>
+<a name="the-force_002dhshift-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>force-hshift</code> property</h4>
+
+<p>We can now see how to apply the final corrections to the Chopin
+example introduced at the end of <a href="i_0027m-hearing-voices.zh.html">I&rsquo;m hearing Voices</a>, which
+was left looking like this:
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;
+    { c''2 aes4. bes8 }
+    \\
+    { &lt;ees, c&gt;2 des }
+    \\
+    \\
+    { aes'2 f4 fes }
+  &gt;&gt; |
+  &lt;c ees aes c&gt;1 |
+}
+</pre><p>
+ <a href="../0b/lily-9084e280.ly">
+  <img align="middle"
+       border="0"
+       src="../0b/lily-9084e280.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The inner note of the first chord (i.e. the A-flat in the fourth
+Voice) need not be shifted away from the note column of the higher
+note, so we use <code>\shiftOff</code>.
+</p>
+<p>In the second chord we prefer the F to line up with the A-flat and
+the lowest note to be positioned slightly right to avoid a collision
+of stems.  We achieve this by setting <code>force-hshift</code> in the
+<code>NoteColumn</code> of the low D-flat to move it to the right by half
+a staff-space, and setting <code>force-hshift</code> for the F to zero.
+Note that we use <code>\once</code> to avoid the settings propagating
+beyond the immediate musical moment, although in this small example
+the <code>\once</code> and the second <code>\override</code> in Voice four could
+be omitted.  This would not be good practice.
+</p>
+<p>Here&rsquo;s the final result:
+</p>
+<a name="index-NoteColumn_002c-example-of-overriding"></a>
+<a name="index-force_002dhshift-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;
+    { c''2 aes4. bes8 }
+    \\
+    { &lt;ees, c&gt;2 \once \override NoteColumn.force-hshift = 0.5 des }
+    \\
+    \\
+    { \once \shiftOff aes'2 \once \shiftOff f4 fes }
+  &gt;&gt; |
+  &lt;c ees aes c&gt;1 |
+}
+</pre><p>
+ <a href="../f0/lily-cdd8337d.ly">
+  <img align="middle"
+       border="0"
+       src="../f0/lily-cdd8337d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.zh.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.zh.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.zh.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.zh.html" title="Index" rel="index">Index</a>][<a href="index_abt.zh.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.zh.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-positions-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The positions property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Fixing overlapping notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="real-music-example.zh.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Real music example &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (开发分支).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 其他语言：<a href="fixing-overlapping-notation.ca.html">català</a>, <a href="fixing-overlapping-notation.cs.html">česky</a>, <a href="fixing-overlapping-notation.de.html">deutsch</a>, <a href="fixing-overlapping-notation.es.html">español</a>, <a href="fixing-overlapping-notation.fr.html">français</a>, <a href="fixing-overlapping-notation.it.html">italiano</a>, <a href="fixing-overlapping-notation.ja.html">日本語</a>, <a href="fixing-overlapping-notation.nl.html">nederlands</a>。
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.zh.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (开发分支). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.zh.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.zh.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.zh.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.zh.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.zh.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.zh.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.zh.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.zh.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.zh.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.zh.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.zh.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.zh.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.zh.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.zh.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.zh.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Tweaking-output-1" href="tweaking-output.zh.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.zh.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.zh.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.zh.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.zh.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.zh.html">4.5 Vertical spacing</a>    </li>
+    <li class=" toc_current"><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.zh.html">4.6 Collisions of objects</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Moving-objects-1" href="moving-objects.zh.html">4.6.1 Moving objects</a>      </li>
+      <li class=" toc_current"><a name="toc-Fixing-overlapping-notation-1" href="fixing-overlapping-notation.zh.html">4.6.2 Fixing overlapping notation</a>
+      <ul class="toc">
+        <li class=""><a name="toc-The-padding-property-1" href="fixing-overlapping-notation.zh.html#the-padding-property">The <code>padding</code> property</a>        </li>
+        <li class=""><a name="toc-The-right_002dpadding-property-1" href="fixing-overlapping-notation.zh.html#the-right_002dpadding-property">The <code>right-padding</code> property</a>        </li>
+        <li class=""><a name="toc-The-staff_002dpadding-property-1" href="fixing-overlapping-notation.zh.html#the-staff_002dpadding-property">The <code>staff-padding</code> property</a>        </li>
+        <li class=""><a name="toc-The-self_002dalignment_002dX-property-1" href="fixing-overlapping-notation.zh.html#the-self_002dalignment_002dx-property">The <code>self-alignment-X</code> property</a>        </li>
+        <li class=""><a name="toc-The-staff_002dposition-property-1" href="fixing-overlapping-notation.zh.html#the-staff_002dposition-property">The <code>staff-position</code> property</a>        </li>
+        <li class=""><a name="toc-The-extra_002doffset-property-1" href="fixing-overlapping-notation.zh.html#the-extra_002doffset-property">The <code>extra-offset</code> property</a>        </li>
+        <li class=""><a name="toc-The-positions-property-1" href="fixing-overlapping-notation.zh.html#the-positions-property">The <code>positions</code> property</a>        </li>
+        <li class=""><a name="toc-The-force_002dhshift-property-1" href="fixing-overlapping-notation.zh.html#the-force_002dhshift-property">The <code>force-hshift</code> property</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Real-music-example-1" href="real-music-example.zh.html">4.6.3 Real music example</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.zh.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.zh.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.zh.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.zh.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.zh.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.zh.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.zh.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.zh.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.zh.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.zh.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.zh.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.zh.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

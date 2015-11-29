@@ -1,0 +1,939 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2014 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond: manual d'utilització del programa: 1.2 Utilització des de la línia d'ordres</title>
+
+<meta name="description" content="LilyPond: manual d'utilització del programa: 1.2 Utilització des de la línia d'ordres">
+<meta name="keywords" content="LilyPond: manual d'utilització del programa: 1.2 Utilització des de la línia d'ordres">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Utilització">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="B. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="running-lilypond.ca.html#running-lilypond" rel="up" title="1. Execució del LilyPond">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="B. Índex del LilyPond">
+<link href="normal-usage.ca.html#normal-usage" rel="previous" title="1.1 Utilització normal">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="usage devStatus">
+
+
+<div id="main">
+<a name="Utilitzaci_00f3-des-de-la-l_00ednia-d_0027ordres"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="normal-usage.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Utilització normal&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#invoking-lilypond" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Invocació del LilyPond &gt; </a>]</td></tr></table>
+<a name="command_002dline-usage"></a>
+<h2 class="section">1.2 Utilització des de la línia d&rsquo;ordres</h2>
+
+<p>Aquesta secció conté informació addicional sobre l&rsquo;ús del
+LilyPond a la línia d&rsquo;ordres.  Aquesta forma pot ser preferible
+per passar-li al programa algunes opcions addicionals.  A més a
+més, existeixen alguns programes complementaris &lsquo;de suport&rsquo; (com
+ara <code>midi2ly</code>) que sols estan disponibles a la línia d&rsquo;ordres.
+</p>
+<p>En parlar de la &lsquo;línia d&rsquo;ordres&rsquo;, ens referim a la consola del
+sistema operatiu.  Els usuaris del Windows possiblement estiguin
+més familiaritzats amb els termes &lsquo;finestra del MS-DOS&rsquo; o
+&lsquo;línia de comandes&rsquo;; Els usuaris del MacOS&nbsp;X potser que
+estiguin més familiaritzats amb els termes &lsquo;terminal&rsquo; o
+&lsquo;consola&rsquo;.  Aquests podrien requerir algunes configuracions
+addicionals i haurien de consultar també l&rsquo;apartat <a name="index-MacOS-X"></a>
+<a href="../web/macos-x.ca.html">MacOS X</a>.
+</p>
+<p>La descripció de l&rsquo;ús d&rsquo;aquesta part dels sistemes operatius
+excedeix l&rsquo;àmbit d&rsquo;aquest manual; us preguem que consulteu altres
+documents sobre aquest tema si no us resulta familiar la línia
+d&rsquo;ordres.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#invoking-lilypond" accesskey="1">Invocació del <code>lilypond</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#basic-command-line-options-for-lilypond" accesskey="2">Opcions bàsiques de la línia d&rsquo;ordres per al LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#advanced-command-line-options-for-lilypond" accesskey="3">Opcions avançades de la línia d&rsquo;ordres per al LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#environment-variables" accesskey="4">Variables d&rsquo;entorn</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#lilypond-in-chroot-jail" accesskey="5">El LilyPond a una gàbia de chroot</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Invocaci_00f3-del-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#command_002dline-usage" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#invoking-lilypond" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<a name="invoking-lilypond"></a>
+<h3 class="unnumberedsubsec">Invocació del <code>lilypond</code></h3>
+
+<p>L&rsquo;executable <code>lilypond</code> es pot cridar des d&rsquo;una línia
+d&rsquo;ordres de la manera següent:
+</p>
+<blockquote><pre class="example">lilypond [<var>opció</var>]&hellip; <var>fitxer</var>&hellip;
+</pre></blockquote>
+
+<p>Quan s&rsquo;invoca amb un nom de fitxer sense extensió, es prova en
+primer lloc amb la extensió &lsquo;<tt>.ly</tt>&rsquo;.  Per llegir l&rsquo;entrada des
+de stdin, utilitzeu un guió (<code>-</code>) en substitució de <var>fitxer</var>.
+</p>
+<p>Quan es processa &lsquo;<tt>archivo.ly</tt>&rsquo;, la sortida resultant són els
+fitxers &lsquo;<tt>fitxer.ps</tt>&rsquo; i &lsquo;<tt>fitxer.pdf</tt>&rsquo;.  Es poden
+especificar diversos fitxers; cadascú d&rsquo;ells es processarà de
+forma independent<sup><a name="DOCF1" href="#FOOT1">1</a></sup>.
+</p>
+<p>Si &lsquo;<tt>fitxer.ly</tt>&rsquo; conté més d&rsquo;un bloc <code>\score</code>, la resta de
+les partitures s&rsquo;obtindran com a sortida en fitxers numerats,
+començant per &lsquo;<tt>fitxer-1.pdf</tt>&rsquo;.  A més, el valor de
+<code>output-suffix</code> (sufix de sortida) s&rsquo;inserirà entre el nom
+base i el número.  Un fitxer de sortida que contingui
+</p>
+<blockquote><pre class="example">#(define output-suffix &quot;violí&quot;)
+\score { &hellip; }
+#(define output-suffix &quot;violoncel&quot;)
+\score { &hellip; }
+</pre></blockquote>
+
+<p>produirà com a sortida <var>base</var>&lsquo;<tt>-violí.pdf</tt>&rsquo; i
+<var>base</var>&lsquo;<tt>-violoncel-1.pdf</tt>&rsquo;.
+</p>
+
+<hr size="6">
+<a name="invoking-lilypond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#invoking-lilypond" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Invocació del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#invoking-lilypond" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Invocació del LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#basic-command-line-options-for-lilypond" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Opcions bàsiques de la línia d'ordres per al LilyPond &gt; </a>]</td></tr></table>
+<h4 class="unnumberedsubsubsec">Instruccions estàndard de la línia d&rsquo;ordres</h4>
+
+<p>Si la vostra terminal (o finestra d&rsquo;ordres) contempla les
+redireccions normals, potser us siguin d&rsquo;utilitat les següents
+instruccions per redirigir la sortida de la consola d&rsquo;un fitxer:
+</p>
+<ul>
+<li>
+<code>lilypond fitxer.ly 1&gt;sortidaestandard.log</code> per redirigir la sortida normal
+
+</li><li>
+<code>lilypond fitxer.ly 2&gt;sortidaderror.log</code> per redirigir els missatges d&rsquo;error
+
+</li><li>
+<code>lilypond fitxer.ly &amp;&gt;tot.log</code> per redirigir tota la sortida
+
+</li></ul>
+
+<p>Consulteu la documentació del vostre intèrpret d&rsquo;ordres per veure
+si contempla aquestes opcions, o si la sintaxi és diferent.
+Observeu que són instruccions de l&rsquo;intèrpret d&rsquo;ordres i que no
+tenen res a veure amb el LilyPond.
+</p>
+<hr size="6">
+<a name="Opcions-b_00e0siques-de-la-l_00ednia-d_0027ordres-per-al-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#invoking-lilypond" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#advanced-command-line-options-for-lilypond" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Opcions avançades de la línia d'ordres per al LilyPond &gt; </a>]</td></tr></table>
+<a name="basic-command-line-options-for-lilypond"></a>
+<h3 class="unnumberedsubsec">Opcions bàsiques de la línia d&rsquo;ordres per al LilyPond</h3>
+
+<a name="index-invocacio-de-lilypond"></a>
+<a name="index-opcions-de-la-linia-d_0027ordres-per-a-lilypond"></a>
+<a name="index-linia-d_0027ordres_002c-opcions-de"></a>
+<a name="index-modificadors"></a>
+
+<p>Estan contemplades les opcions següents:
+</p>
+<dl compact="compact">
+<dt> <code>-d, --define-default=<var>variable</var>=<var>valor</var></code></dt>
+<dd><p>Vegeu <a href="#advanced-command-line-options-for-lilypond">Opcions avançades de la línia d&rsquo;ordres per al LilyPond</a>.
+</p>
+<a name="index-Scheme_002c-avaluacio-d_0027expressions"></a>
+<a name="index-expressions-del-Scheme_002c-avaluacio"></a>
+
+</dd>
+<dt> <code>-e, --evaluate=<var>expressió</var></code></dt>
+<dd><p>Avalua l&rsquo;<var>expressió</var> del Scheme abans d&rsquo;analitzar els fitxers
+&lsquo;<tt>.ly</tt>&rsquo;.  Es poden passar diverses opcions &lsquo;<samp>-e</samp>&rsquo;, que
+s&rsquo;avaluaran en seqüència.
+</p>
+<p>L&rsquo;expressió s&rsquo;avaluarà al mòdul <code>guile-user</code>, de manera que
+si voleu usar definicions dins d&rsquo;<var>expressió</var>, heu d&rsquo;utilitzar
+</p>
+<blockquote><pre class="example">lilypond -e '(define-public a 42)'
+</pre></blockquote>
+
+<p>a la línia d&rsquo;ordres, i incloure
+</p>
+<blockquote><pre class="example">#(use-modules (guile-user))
+</pre></blockquote>
+
+<p>al principi del fitxer &lsquo;<tt>.ly</tt>&rsquo;.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Els usuaris de Windows han d&rsquo;utilitzar cometes dobles en
+comptes de cometes simples.
+</p>
+</div>
+<a name="index-sortida_002c-format"></a>
+<a name="index-format_002c-sortida"></a>
+
+</dd>
+<dt> <code>-f, --format=<var>format</var></code></dt>
+<dd><p>quins formats s&rsquo;han d&rsquo;escriure.  Les opcions per a <code>format</code> són
+<code>ps</code>, <code>pdf</code>, i <code>png</code>.
+</p>
+<p>Exemple: <code>lilypond -fpng <var>fitxer</var>.ly</code>
+</p>
+</dd>
+<dt> <code>-h, --help</code></dt>
+<dd><p>Mostra un resum de les formes de utilització.
+</p>
+</dd>
+<dt> <code>-H, --header=<var>CAMP</var></code></dt>
+<dd><p>Bolca un camp de capçalera al fitxer &lsquo;<tt>NOMBASE.<var>CAMP</var></tt>&rsquo;
+</p>
+</dd>
+<dt> <code>-i, --init=<var>archivo</var></code></dt>
+<dd><p>Establir el fitxer d&rsquo;inici a <var>fitxer</var> (predeterminat:
+&lsquo;<tt>init.ly</tt>&rsquo;).
+</p>
+<a name="index-fitxers_002c-cerca-de"></a>
+<a name="index-cerca_002c-ruta-de"></a>
+
+</dd>
+<dt> <code>-I, --include=<var>directori</var></code></dt>
+<dd><p>Afegir el <var>directori</var> a la ruta de cerca de fitxers
+d&rsquo;entrada.
+</p>
+<p>Es poden escriure diverses opcions -I.  La cerca s&rsquo;inicia al
+primer directori definit, i si el fitxer que s&rsquo;ha d&rsquo;incloure no es
+troba, la cerca continua als directoris següents.
+</p>
+<a name="index-chroot_002c-executar-dins-d_0027una-gabia"></a>
+
+</dd>
+<dt> <code>-j, --jail=<var>usuari</var>,<var>grup</var>,<var>gàbia</var>,<var>directori</var></code></dt>
+<dd><p>Executar <code>lilypond</code> a una gàbia de chroot.
+</p>
+<p>L&rsquo;opció &lsquo;<samp>--jail</samp>&rsquo; (gàbia) proporciona una alternativa més
+flexible a l&rsquo;opció &lsquo;<samp>-dsafe</samp>&rsquo; quan el procés de tipografia
+del LilyPond està disponible a un servidor web o quan el LilyPond
+executa instruccions enviades per fonts externes
+(vegeu <a href="#advanced-command-line-options-for-lilypond">Opcions avançades de la línia d&rsquo;ordres per al LilyPond</a>).
+</p>
+<p>L&rsquo;opció &lsquo;<samp>--jail</samp>&rsquo; funciona canviant l&rsquo;arrel de
+<code>lilypond</code> a <var>gàbia</var> just o abans de començar el
+procés de compilació en sí.  Si es fa això es canvien l&rsquo;usuari i
+el grup als que s&rsquo;han donat a l&rsquo;opció, i el directori actual es
+canvia a <var>directori</var>.  Aquesta instal·lació garanteix que no
+és possible, al menys en teoria, escapar a la gàbia.  Observeu que
+perquè funcioni &lsquo;<samp>--jail</samp>&rsquo;, s&rsquo;ha d&rsquo;executar
+<code>lilypond</code> com root, cosa que normalment es pot fer d&rsquo;una
+forma segura utilitzant <code>sudo</code>.
+</p>
+<p>La instal·lació d&rsquo;una gàbia pot ser un assumpte relativament
+complex, atès que hem d&rsquo;assegurar-nos que el LilyPond pot trobar
+<em>dins</em> de la pròpia gàbia tot el que necessita per poder
+compilar la font.  Una típica configuració de gàbia de chroot
+consta dels següents elements:
+</p>
+<dl compact="compact">
+<dt> Preparació d&rsquo;un sistema de fitxers separat</dt>
+<dd><p>S&rsquo;ha de crear un sistema de fitxers separat per al LilyPond, de
+forma que es pugui muntar amb opcions segures com <code>noexec</code>,
+<code>nodev</code> i <code>nosuid</code>.  D&rsquo;aquesta forma, és impossible
+executar programes o escriure directament a un dispositiu des del
+LilyPond.  Si no voleu crear una partició separada, tan sols té
+que crear un fitxer d&rsquo;una mida raonable i usar-lo per muntar un
+dispositiu loop.  El sistema de fitxers separat garanteix també
+que el LilyPond mai no pugui escriure en un espai major del què se
+li permeti.
+</p>
+</dd>
+<dt> Preparar un usuari separat</dt>
+<dd><p>Es pot usar un usuari i grup separats (diguem-ne
+<code>lily</code>/<code>lily</code>) amb pocs privilegis per executar el
+LilyPond dins d&rsquo;una gàbia.  Hauria d&rsquo;existir un sols directori amb
+permisos d&rsquo;escriptura per a aquest usuari, i s&rsquo;ha de passar el valor
+<var>directori</var>.
+</p>
+</dd>
+<dt> Preparació de la gàbia</dt>
+<dd><p>El LilyPond necessita llegir alguns fitxers mentre s&rsquo;executa,
+Tots aquests fitxers s&rsquo;han de copiar  dins de la gàbia, sota la
+mateixa ruta en la qual apareixen al sistema de fitxers real de
+root.  Tot el contingut de la instal·lació del LilyPond (per exemple
+&lsquo;<tt>/usr/share/lilypond</tt>&rsquo;) s&rsquo;ha de copiar.
+</p>
+<p>Si sorgeixen problemes, la forma més senzilla de rastrejar-los és
+executar el LilyPond usant <code>strace</code>, cosa que li permetrà
+determinar quins fitxers falten.
+</p>
+</dd>
+<dt> Execució del LilyPond</dt>
+<dd><p>Dins d&rsquo;una gàbia muntada amb <code>noexec</code> és impossible executar
+cap programa extern.  Per tant, el LilyPond s&rsquo;ha d&rsquo;executar amb un
+backend que no necessiti un programa extern.  Com ja hem
+mencionat, s&rsquo;ha d&rsquo;executar amb privilegis del superusuari (que per
+suposat perdrà immediatament), possiblement usant <code>sudo</code>.
+També de CPU que el LilyPond pot usar (per exemple usant
+<code>ulimit&nbsp;-t</code>), i, si el vostre sistema operatiu ho
+contempla, la mida de la memòria que es pot reservar.  Vegeu també
+<a href="#lilypond-in-chroot-jail">El LilyPond a una gàbia de chroot</a>.
+</p>
+</dd>
+</dl>
+
+<a name="index-loglevel"></a>
+<a name="index-registre_002c-nivell-de"></a>
+<a name="index-sortida-neta_002c-fixar-el-nivell"></a>
+
+</dd>
+<dt> <code>-l, --loglevel=<var>NIVELL</var></code></dt>
+<dd><p>Fixa el grau en el qual la sortida de consola és neta al nivell
+<var>NIVELL</var>. Els valors possibles són:
+</p>
+<dl compact="compact">
+<dt> <code>NONE</code></dt>
+<dd><p>Cap sortida en absolut, ni tan sols missatges d&rsquo;error.
+</p>
+</dd>
+<dt> <code>ERROR</code></dt>
+<dd><p>Sols missatges d&rsquo;error, cap advertiment o indicacions de progrés.
+</p>
+</dd>
+<dt> <code>WARN</code></dt>
+<dd><p>Advertiments i missatges d&rsquo;error, no de progrés.
+</p>
+</dd>
+<dt> <code>BASIC_PROGRESS</code></dt>
+<dd><p>Missatges de progrés bàsics (èxit), advertiment i errors.
+</p>
+</dd>
+<dt> <code>PROGRESS</code></dt>
+<dd><p>Tots els missatges de progrés, advertiments i errors.
+</p>
+</dd>
+<dt> <code>INFO (predeterminat)</code></dt>
+<dd><p>Missatges de progrés, advertiments, errors i informació d&rsquo;execució
+addicional.
+</p>
+</dd>
+<dt> <code>DEBUG</code></dt>
+<dd><p>Tots els missatges possibles, fins i tot la informació detallada de
+depuració.
+</p></dd>
+</dl>
+
+<a name="index-carpeta_002c-dirigir-la-sortida-cap-a"></a>
+<a name="index-sortida_002c-establir-el-nom-del-fitxer-de"></a>
+
+</dd>
+<dt> <code>-o, --output=<var>FITXER</var> o <var>CARPETA</var></code></dt>
+<dd><p>Estableix el nom del fitxer de sortida predeterminat a
+<var>FITXER</var> o, si hi ha una carpeta amb aquest nom, dirigeix la
+sortida cap a <var>CARPETA</var>, agafant el nom de fitxer del
+document d&rsquo;entrada.  S&rsquo;afegeix el sufix corresponent (per exemple,
+<code>.pdf</code> per a PDF) als dos casos.
+</p>
+<a name="index-PS-_0028Postscript_0029_002c-sortida"></a>
+<a name="index-Postscript-_0028PS_0029_002c-sortida"></a>
+<a name="index-sortida_002c-PS-_0028Postscript_0029"></a>
+
+</dd>
+<dt> <code>--ps</code></dt>
+<dd><p>Generar PostScript.
+</p>
+<a name="index-PNG-_0028Portable-Network-Graphics_0029_002c-sortida"></a>
+<a name="index-sortida_002c-PNG-_0028Portable-Network-Graphics_0029"></a>
+
+</dd>
+<dt> <code>--png</code></dt>
+<dd><p>Genera imatges de les pàgines en format PNG.  Això implica
+&lsquo;<samp>--ps</samp>&rsquo;.  La resolució en PPP de la imatge es pot establir
+amb
+</p><blockquote><pre class="example">-dresolution=110
+</pre></blockquote>
+
+<a name="index-PDF-_0028format-de-document-portatil_0029_002c-sortida-de"></a>
+<a name="index-sortida_002c-PDF-_0028format-de-document-portatil_0029"></a>
+
+</dd>
+<dt> <code>--pdf</code></dt>
+<dd><p>Genera PDF.  Implica &lsquo;<samp>--ps</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>-v, --version</code></dt>
+<dd><p>Mostra la informació de la versió.
+</p>
+</dd>
+<dt> <code>-V, --verbose</code></dt>
+<dd><p>Sigues detallat: mostra les rutes completes de tots els fitxers
+que se llegeixen, i dóna informació cronomètrica.
+</p>
+</dd>
+<dt> <code>-w, --warranty</code></dt>
+<dd><p>Mostra la garantia del GNU LilyPond (no ve amb
+<strong>CAP GARANTIA</strong>!).
+</p>
+</dd>
+</dl>
+
+
+<hr size="6">
+<a name="Opcions-avan_00e7ades-de-la-l_00ednia-d_0027ordres-per-al-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#basic-command-line-options-for-lilypond" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Opcions bàsiques de la línia d'ordres per al LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#environment-variables" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Variables d'entorn &gt; </a>]</td></tr></table>
+<a name="advanced-command-line-options-for-lilypond"></a>
+<h3 class="unnumberedsubsec">Opcions avançades de la línia d&rsquo;ordres per al LilyPond</h3>
+
+<dl compact="compact">
+<dt> <code>-d<var>[nom-de-opció]</var>=<var>[valor]</var>, --define-default=<var>[nom-de-opció]</var>=<var>[valor]</var></code></dt>
+<dd><p>Estableix la funció del Scheme interna equivalent a <var>valor</var>.
+</p>
+<blockquote><pre class="example">-dbackend=svg
+</pre></blockquote>
+
+<p>Si no es proporciona cap <var>valor</var>, s&rsquo;usa el valor predeterminat
+Per desactivar una opció es pot anteposar <code>no-</code> a la
+<var>variable</var>, per exemple:
+</p>
+<a name="index-apuntar-i-clicar_002c-linia-d_0027ordres"></a>
+
+<blockquote><pre class="example">-dno-point-and-click
+</pre></blockquote>
+
+<p>és el mateix que
+</p><blockquote><pre class="example">-dpoint-and-click=#f
+</pre></blockquote>
+</dd>
+</dl>
+
+<p>Estan contemplades les següents opcions junt als seus
+respectius valors  predeterminats:
+</p>
+<table>
+<tr><td width="33%"><strong>Símbol</strong></td><td width="16%"><strong>Valor</strong></td><td width="51%"><strong>Explicació/Opcions</strong></td></tr>
+<tr><td width="33%"><code>anti-alias-factor</code> (factor d&rsquo;antiàlies)</td><td width="16%"><code>1</code></td><td width="51%">Renderitza a una major resolució (utilitzant el factor
+donat) i redueix l&rsquo;escala del resultat per així evitar
+&lsquo;escales&rsquo; a les imatges <code>PNG</code>.</td></tr>
+<tr><td width="33%"><code>aux-files</code> (fitxers auxiliars)</td><td width="16%"><code>#t</code></td><td width="51%">Crea fitxeres  <code>.tex</code>, <code>.texi</code>, <code>.count</code> al
+&lsquo;back-end&rsquo; <code>EPS</code>.</td></tr>
+<tr><td width="33%"><code>backend</code></td><td width="16%"><code>ps</code></td><td width="51%">Selecciona un &lsquo;rerefons&rsquo;.  Els fitxers (l&rsquo;opció
+predeterminada) inclouen els tipus tipogràfics de lletra <code>TTF</code>,
+<code>Type1</code> i <code>OTF</code>.  No es fa cap subconjunt d&rsquo;aquests tipus
+de lletra.  L&rsquo;ús de conjunts de  caràcters &lsquo;orientals&rsquo; pot
+produir fitxers molts grans.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>eps</code></td><td width="51%">PostScript encapsulat.  Bolca cada pàgina o sistema com un
+fitxer &lsquo;<tt>EPS</tt>&rsquo; diferent, sense tipus tipogràfics de lletra, i
+com un fitxer &lsquo;<tt>EPS</tt>&rsquo; enquadernat amb totes les pàgines o
+sistemes que inclouen els tipus de lletra.  Utilitzat com a opció
+predeterminada per part de <code>lilypond-book</code>.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>null</code></td><td width="51%">No produeixes cap partitura impresa a la sortida; té el
+mateix efecte que <code>-dno-print-pages</code>.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>svg</code></td><td width="51%">Gràfics vectorials escalables.  Crea un únic fitxer
+<code>SVG</code>, sense tipus tipogràfics de lletra incrustats, per a
+cada pàgina de sortida.  Es recomana instal·lar el tipus de lletra
+Century Schoolbook, que està inclòs a la instal·lació del
+LilyPond, per a un renderitzat òptim.  Sota l&rsquo;UNIX, bastarà amb
+que copieu aquests fitxers de tipus de lletra del directori del
+Lilypond (normalment &lsquo;<tt>/usr/share/lilypond/VERSION/fonts/otf/</tt>&rsquo;)
+al directori &lsquo;<tt>~/.fonts/</tt>&rsquo;.  La sortida <code>SVG</code> hauria de
+ser compatible amb qualsevol editor o client de SVG.  També hi ha
+una opció <code>svg-woff</code> (vegeu més avall) per usar els fitxers
+de tipus de lletra woff al &lsquo;rerefons&rsquo; SVG.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>scm</code></td><td width="51%">Bolcat de les instruccions de dibuix internes basades en
+Scheme, en brut.</td></tr>
+<tr><td width="33%"><code>check-internal-types</code>
+n</td><td width="16%"><code>#f</code></td><td width="51%">Comprova el tipus de cada assignació de propietats.</td></tr>
+<tr><td width="33%"><code>clip-systems</code> (retalla els sistemes de pentagrames)</td><td width="16%"><code>#f</code></td><td width="51%">Genera framents d&rsquo;imatge retallats d&rsquo;una partitura.</td></tr>
+<tr><td width="33%"><code>datadir</code> (directori de dades)</td><td width="16%"></td><td width="51%">Prefix dels fitxers de dades (sols lectura).</td></tr>
+<tr><td width="33%"><code>debug-gc</code></td><td width="16%"><code>#f</code></td><td width="51%">Bolca estadístiques de depuració de memòria.</td></tr>
+<tr><td width="33%"><code>debug-gc-assert-parsed-dead</code></td><td width="16%"><code>#f</code></td><td width="51%">Per a la depuració de memòria: assegura&rsquo;t que totes les
+referències a objectes analitzats estiguin mortes.  És una opció
+interna, i s&rsquo;activa automàticament per a <code>`-ddebug-gc'</code>.</td></tr>
+<tr><td width="33%"><code>debug-lexer</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuració de l&rsquo;analitzador lèxic flex.</td></tr>
+<tr><td width="33%"><code>debug-page-breaking-scoring</code></td><td width="16%"><code>#f</code></td><td width="51%">Bolca les partitures per a moltes configuracions de salts de
+pàgina diferents.</td></tr>
+<tr><td width="33%"><code>debug-parser</code></td><td width="16%"><code>#f</code>
+f</td><td width="51%">Depuració de l&rsquo;analitzador sintàctic bison.</td></tr>
+<tr><td width="33%"><code>debug-property-callbacks</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuració de les cadenes cícliues de funcions de callback.</td></tr>
+<tr><td width="33%"><code>debug-skylines</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuració de les línies de horitzó.</td></tr>
+<tr><td width="33%"><code>delete-intermediate-files</code></td><td width="16%"><code>#t</code></td><td width="51%">Elimina els fitxers intermedis <code>.ps</code> inútils que es
+creen durant la compilació.</td></tr>
+<tr><td width="33%"><code>dump-cpu-profile</code></td><td width="16%"><code>#f</code></td><td width="51%">Bolcar informació de comptabilització del temps (dependent
+del sistema).</td></tr>
+<tr><td width="33%"><code>dump-profile</code></td><td width="16%"><code>#f</code></td><td width="51%">Bolca la informació de memòria i de temps de cada fitxer.</td></tr>
+<tr><td width="33%"><code>dump-signatures</code></td><td width="16%"><code>#f</code></td><td width="51%">Bolca les signatures de sortida de cada sistema.  Usat per a
+les proves de regressió.</td></tr>
+<tr><td width="33%"><code>eps-box-padding</code></td><td width="16%"><code>#f</code></td><td width="51%">Omple la vora esquerra de la capsa contenidora de l&rsquo;EPS de
+sortida en la quantitat donada (en mm).</td></tr>
+<tr><td width="33%"><code>gs-load-fonts</code></td><td width="16%"><code>#f</code></td><td width="51%">Carrega els tipus tipogràfics de lletra a través del Ghostscript.</td></tr>
+<tr><td width="33%"><code>gs-load-lily-fonts</code></td><td width="16%"><code>#f</code></td><td width="51%">Carrega sols els tipus de lletra del LilyPond per mitjà del
+Ghostscript.</td></tr>
+<tr><td width="33%"><code>gui</code></td><td width="16%"><code>#f</code></td><td width="51%">S&rsquo;executa silenciosament i es redirigeix tota la sortida a un
+fitxer de registre.</td></tr>
+</table>
+
+<p><strong>Nota per als usuaris del Windows:</strong> De manera predeterminada,
+<code>lilypond.exe</code> dirigeix tota la sortida de la informació
+d&rsquo;avenç cap a la finestra de consola, <code>lilypond-windows.exe</code>
+no ho fa i retorna un indicador del sistema, sense cap indicació
+d&rsquo;avenç, immediatament en la línia d&rsquo;ordres.  L&rsquo;opció
+&lsquo;<samp>-dgui</samp>&rsquo; es pot usar en aquest cas per redirigir la sortida
+a un fitxer de registre.
+</p>
+<table>
+<tr><td width="33%"><code>help</code></td><td width="16%"><code>#f</code></td><td width="51%">Mostra aquesta ajuda</td></tr>
+<tr><td width="33%"><code>include-book-title-preview</code></td><td width="16%"><code>#t</code></td><td width="51%">Inclou els títols de llibre a les imatges de vista prèvia.</td></tr>
+<tr><td width="33%"><code>include-eps-fonts</code></td><td width="16%"><code>#t</code></td><td width="51%">Incloure els tipus tipogràfics de fonts als fitxers EPS de
+cadascú dels sistemes.</td></tr>
+<tr><td width="33%"><code>include-settings</code></td><td width="16%"><code>#f</code></td><td width="51%">Inclou el fitxer dels ajustos globals, s&rsquo;inclou abans que la
+partitura es processi.</td></tr>
+<tr><td width="33%"><code>job-count</code></td><td width="16%"><code>#f</code></td><td width="51%">Processa en paral·lel, usant el nombre de tasques donat.</td></tr>
+<tr><td width="33%"><code>log-file</code></td><td width="16%"><code>#f [fitxer]</code></td><td width="51%">Si es dóna a una cadena <code>fitxer</code> como a segon argument,
+redirigeix la sortida al fitxer de registre <code>fitxer.log</code>.</td></tr>
+<tr><td width="33%"><code>max-markup-depth</code></td><td width="16%"><code>1024</code></td><td width="51%">Profunditat màxima de l&rsquo;arbre de l&rsquo;etiquetatge.  Si un
+etiquetatge té més nivells, suposa que no acabarà per sí mateix,
+imprimint un advertiment i retornant en el seu lloc un element
+d&rsquo;etiquetatge nul.</td></tr>
+<tr><td width="33%"><code>midi-extension</code></td><td width="16%"><code>&quot;midi&quot;</code></td><td width="51%">Fixa l&rsquo;extensió de fitxer predeterminat per al fitxer de
+sortida MIDI a la cadena donada.</td></tr>
+<tr><td width="33%"><code>music-strings-to-paths</code></td><td width="16%"><code>#f</code></td><td width="51%">Converteix les cadenes de text a rutes quan els glifs
+pertanyen a un tipus de lletra de tipografia musical.</td></tr>
+<tr><td width="33%"><code>paper-size</code></td><td width="16%"><code>\&quot;a4\&quot;</code></td><td width="51%">Estableix la mida predeterminada del paper.  Observeu que la
+cadena ha d&rsquo;anar tancada entre cometes dobles.</td></tr>
+<tr><td width="33%"><code>pixmap-format</code></td><td width="16%"><code>png16m</code></td><td width="51%">Fixa el format de sortida del Ghostsript per a les imatges de píxels.</td></tr>
+<tr><td width="33%"><code>point-and-click</code></td><td width="16%"><code>#f</code></td><td width="51%">Afegeix enllaços d&rsquo;&lsquo;apuntar i
+clicar&rsquo; a la sortida <code>PDF</code>. Vegeu
+<a href="point-and-click.ca.html">Point and click</a>.</td></tr>
+<tr><td width="33%"><code>preview</code></td><td width="16%"><code>#f</code></td><td width="51%">Crea imatges de vista prèvia a més de la sortida normal.</td></tr>
+</table>
+
+<p>Aquesta opció està contemplada per tots els &lsquo;rerefons&rsquo;: <code>pdf</code>,
+<code>png</code>, <code>ps</code>, <code>eps</code> i <code>svg</code>, però no per
+<code>scm</code>.  Genera un fitxer de sortida, en la forma
+<code>elmeuFitxer.preview.extensió</code>, que conté els títols i el
+primer sistema de la música.  Si s&rsquo;estan utilitzant blocs
+<code>\book</code> o <code>\bookpart</code>, apareixen a la sortida els títols de
+<code>\book</code>, <code>\bookpart</code> o <code>\score</code>, inclòs el primer
+sistema de cada bloc <code>\score</code> si la variable de <code>\paper</code>
+<code>print-all-headers</code> està fixada al valor <code>#t</code>.
+</p>
+<p>Per suprimir la sortida actual, utilitzeu les opcions
+&lsquo;<samp>-dprint-pages</samp>&rsquo; o &lsquo;<samp>-dno-print-pages</samp>&rsquo; segons les
+vostres necessitats.
+</p>
+<table>
+<tr><td width="33%"><code>print-pages</code></td><td width="16%"><code>#t</code></td><td width="51%">Genera pàgines completes (és l&rsquo;opció predeterminada).  És útil
+&lsquo;<samp>-dno-print-pages</samp>&rsquo; en combinació amb &lsquo;<samp>-dpreview</samp>&rsquo;.</td></tr>
+<tr><td width="33%"><code>profile-property-accesses</code></td><td width="16%"><code>#f</code></td><td width="51%">Conserva les estadístiques de les crides de funció
+<code>get_property()</code>.</td></tr>
+<tr><td width="33%"><code>protected-scheme-parsing</code></td><td width="16%"><code>#t</code></td><td width="51%">Continua quan es capten a l&rsquo;analitzador sintàctic errors del
+Scheme encastat.  Si es fixa a <code>#f</code>, detenir-se quan hi hagi
+errors i imprimir un registre de traça de pila.</td></tr>
+<tr><td width="33%"><code>read-file-list</code></td><td width="16%"><code>#f [fitxer]</code></td><td width="51%">Especifica el nom d&rsquo;un fitxer que conté una llista de fitxers
+d&rsquo;entrada per processar.</td></tr>
+<tr><td width="33%"><code>relative-includes</code></td><td width="16%"><code>#f</code></td><td width="51%">Quan es processa una instrucció <code>\include</code>, cerca el
+fitxer inclòs de forma relativa al fitxer actual (enlloc del
+fitxer principal).</td></tr>
+<tr><td width="33%"><code>resolution</code></td><td width="16%"><code>101</code></td><td width="51%">Fixa la resolució per generar imatges de píxels <code>PNG</code> al
+valor donat (en ppp).</td></tr>
+<tr><td width="33%"><code>safe</code></td><td width="16%"><code>#f</code></td><td width="51%">No confiïs en l&rsquo;entrada <code>.ly</code>.</td></tr>
+</table>
+
+<p>Quan el servei de tipografia està disponible a través d&rsquo;un
+servidor web, <b>S&rsquo;HAN DE</b> passar les opcions &lsquo;<samp>--safe</samp>&rsquo; o
+&lsquo;<samp>--jail</samp>&rsquo;.  L&rsquo;opció &lsquo;<samp>--safe</samp>&rsquo; evita que el codi del
+Scheme faci un desastre, per exemple:
+</p>
+<blockquote><pre class="verbatim">#(system &quot;rm -rf /&quot;)
+{
+  c4^$(ly:gulp-file &quot;/etc/passwd&quot;)
+}
+</pre></blockquote>
+
+<p>L&rsquo;opció &lsquo;<samp>-dsafe</samp>&rsquo; funciona avaluant les expressions del
+Scheme en línia dins d&rsquo;un mòdul segur especial.  Deriva del mòdul
+&lsquo;<tt>safe-r5rs</tt>&rsquo; del GUILE, però a més afegeix unes quantes
+funcions de l&rsquo;API del LilyPond que estan relacionades en
+&lsquo;<tt>scm/safe-lily.scm</tt>&rsquo;.
+</p>
+<p>A més, el mode segur prohibeix les directives <code>\include</code> i
+desactiva la utilització de barres invertides a les cadene de
+TeX.  A més, no és possible importar variables del LilyPond
+dins del Scheme quan s&rsquo;està em mode segur.
+</p>
+<p>&lsquo;<samp>-dsafe</samp>&rsquo; <em>no</em> detecta la sobreutilitizació de
+recursos, per la qual cosa encara és possible fer que el programa
+es pengi indefinidament, per exemple subministrant estructures de
+dades cícliques en el rerefons.  Per això, si esteu usant el
+LilyPond en un servidor web accessible públicament, el procés s&rsquo;ha
+de limitar tant en l&rsquo;ús de memòria com de CPU.
+</p>
+<p>El mode segur evita que es puguin compilar molts fragments de codi
+útils.
+</p>
+<p>L&rsquo;opció &lsquo;<samp>--jail</samp>&rsquo; és una alternativa encara més segura, però
+requereix més feina per a la seva configuració.  Vegeu
+<a href="#basic-command-line-options-for-lilypond">Opcions bàsiques de la línia d&rsquo;ordres per al LilyPond</a>.
+</p>
+<table>
+<tr><td width="33%"><code>separate-log-files</code></td><td width="16%"><code>#f</code></td><td width="51%">Per als fitxers d&rsquo;entrada <code>FITXER1.ly</code>,
+<code>FITXER2.ly</code>, etc., treu les dades de registre cap als
+fitxers <code>FITXER1.log</code>, <code>FITXER2.log</code>&hellip;</td></tr>
+<tr><td width="33%"><code>show-available-fonts</code></td><td width="16%"><code>#f</code></td><td width="51%">Llista tots els noms dels tipus tipogràfics de lletra
+disponibles.</td></tr>
+<tr><td width="33%"><code>strict-infinity-checking</code></td><td width="16%"><code>#f</code></td><td width="51%">Força una terminació abrupta si es troben les excepcions de
+punt flotant <code>Inf</code> i <code>NaN</code>.</td></tr>
+<tr><td width="33%"><code>strip-output-dir</code></td><td width="16%"><code>#t</code></td><td width="51%">No usis els directoris dels fitxers d&rsquo;entrada en construir
+els noms dels fitxers de sortida.</td></tr>
+<tr><td width="33%"><code>strokeadjust</code></td><td width="16%"><code>#f</code></td><td width="51%">Força l&rsquo;ajust dels traços de PostScript.  Aquesta opció és
+rellevant principalment quan es genera un <code>PDF</code> a partir de
+la sortida de PostScript (l&rsquo;ajust del traç està en general activat
+automàticament per a dispositius de mapa de punts de baixa
+resolució).  Sense aquesta opció, els visors de <code>PDF</code>
+tendeixen a produir amplades de plica molt poc consistents a les
+resolucions típiques de les pantalles d&rsquo;ordinador.  L&rsquo;opció no
+afecta de forma molt significativa a la qualitat de la impressió i
+causa grans increments a la mida del fitxer <code>PDF</code>.</td></tr>
+<tr><td width="33%"><code>svg-woff</code></td><td width="16%"><code>#f</code></td><td width="51%">Usar fitxers de tipus tipogràfic de lletra de woff al
+rerefons SVG.</td></tr>
+<tr><td width="33%"><code>trace-memory-frequency</code></td><td width="16%"><code>#f</code></td><td width="51%">Registra l&rsquo;ús de cèl·lules del Scheme aquesta quantitat de
+vegades per segon.  Bolca els resultats en <code>FITXER.stacks</code> i
+en <code>FITXER.graph</code>.</td></tr>
+<tr><td width="33%"><code>trace-scheme-coverage</code></td><td width="16%"><code>#f</code></td><td width="51%">Registra la cobertura dels fitxers del Scheme a <code>FITXER.cov</code>.</td></tr>
+<tr><td width="33%"><code>verbose</code></td><td width="16%"><code>#f</code></td><td width="51%">Sortida detallada, és a dir el nivell de registre en DEBUT
+(sols lectura).</td></tr>
+<tr><td width="33%"><code>warning-as-error</code></td><td width="16%"><code>#f</code></td><td width="51%">Canvia tots els missatges d&rsquo;advertiment i de &lsquo;error de
+programació&rsquo; a errors.</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Variables-d_0027entorn"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#advanced-command-line-options-for-lilypond" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Opcions avançades de la línia d'ordres per al LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#lilypond-in-chroot-jail" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;El LilyPond a una gàbia de chroot &gt; </a>]</td></tr></table>
+<a name="environment-variables"></a>
+<h3 class="unnumberedsubsec">Variables d&rsquo;entorn</h3>
+
+<a name="index-LANG"></a>
+<a name="index-LILYPOND_005fDATADIR"></a>
+
+<p><code>lilypond</code> reconeix les següents variables d&rsquo;entorn:
+</p><dl compact="compact">
+<dt> <code>LILYPOND_DATADIR</code></dt>
+<dd><p>Especifica un directori en el qual els missatges de localització i
+de dades es buscaran de forma predeterminada.  El directori ha de
+contenir subdirectoris anomenats &lsquo;<tt>ly/</tt>&rsquo;, &lsquo;<tt>ps/</tt>&rsquo;,
+&lsquo;<tt>tex/</tt>&rsquo;, etc.
+</p>
+</dd>
+<dt> <code>LANG</code></dt>
+<dd><p>Selecciona l&rsquo;idioma dels missatges d&rsquo;advertiment.
+</p>
+</dd>
+<dt> <code>LILYPOND_LOGLEVEL</code></dt>
+<dd><p>Nivell de registre predeterminat.  Si el LilyPond es crida sense
+cap nivell de registre explícit (és a dir, sense opció de línia d&rsquo;ordres
+&lsquo;<samp>--loglevel</samp>&rsquo;), s&rsquo;usa aquest valor.
+</p>
+</dd>
+<dt> <code>LILYPOND_GC_YIELD</code></dt>
+<dd><p>Una variable, com a percentatge, que ajusta el comportament de
+l&rsquo;administració de memòria.  Amb valors més alts, el programa usa
+més memòria; amb valors més baixos, usa més temps de CPU.  El
+valor predeterminat és <code>70</code>.
+</p>
+</dd>
+</dl>
+
+
+<hr size="6">
+<a name="El-LilyPond-a-una-g_00e0bia-de-chroot"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#environment-variables" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Variables d'entorn&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="error-messages.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Missatges d'error &gt; </a>]</td></tr></table>
+<a name="lilypond-in-chroot-jail"></a>
+<h3 class="unnumberedsubsec">El LilyPond a una gàbia de chroot</h3>
+
+<p>La preparació del servidor perquè executi el LilyPond a una gàbia
+de chroot és una tasca molt complicada.  Els passos estan
+relacionats més avall.  Els exemples que apareixen en cadascú dels
+passos son vàlids per a Ubuntu GNU/Linux, i poden requerir l&rsquo;ús de
+<code>sudo</code> segons correspongui.
+</p>
+<ul>
+<li> Instal·leu els paquets necessaris: el LilyPond, el Ghostscript i l&rsquo;ImageMagick.
+
+</li><li> Creeu un usuari nou amb el nom de <code>lily</code>:
+
+<blockquote><pre class="example">adduser lily
+</pre></blockquote>
+
+<p>Això també crearà un nou grup per a l&rsquo;usuari <code>lily</code>, i una
+carpeta personal, <code>/home/lily</code>
+</p>
+</li><li> A la carpeta personal de l&rsquo;usuari <code>lily</code>, creeu un fitxer per usar-lo com a sistema de fitxers separat:
+
+<blockquote><pre class="example">dd if=/dev/zero of=/home/lily/loopfile bs=1k count= 200000
+</pre></blockquote>
+
+<p>Aquest exemple crea un fitxer de 200MB per al seu ús com el
+sistema de fitxers de la gàbia.
+</p>
+</li><li> Creeu un dispositiu loop, feu un sistema de fitxers i munteu-lo,
+després creeu una carpeta que es pugui escriure per l&rsquo;usuari
+<code>lily</code>:
+
+<blockquote><pre class="example">mkdir /mnt/lilyloop
+losetup /dev/loop0 /home/lily/loopfile
+mkfs -t ext3 /dev/loop0 200000
+mount -t ext3 /dev/loop0 /mnt/lilyloop
+mkdir /mnt/lilyloop/lilyhome
+chown lily /mnt/lilyloop/lilyhome
+</pre></blockquote>
+
+</li><li> En la configuració dels servidors, JAIL serà <code>/mnt/lilyloop</code>
+i DIR serà <code>/lilyhome</code>.
+
+</li><li> Creeu un gran arbre de directoris dins de la gàbia copiant els
+fitxers necessaris, com es mostra en el guió d&rsquo;exemple que apareix
+més avall.
+
+<p>Podeu usar <code>sed</code> per crear els fitxeres de còpia necessaris per a
+un executable donat:
+</p>
+<blockquote><pre class="example">for i in &quot;/usr/local/lilypond/usr/bin/lilypond&quot; &quot;/bin/sh&quot; &quot;/usr/bin/;  \
+  do ldd $i | sed 's/.*=&gt; \/\(.*\/\)\([^(]*\).*/mkdir -p \1 \&amp;\&amp;  \
+    cp -L \/\1\2 \1\2/' | sed 's/\t\/\(.*\/\)\(.*\) (.*)$/mkdir -p  \
+      \1 \&amp;\&amp; cp -L \/\1\2 \1\2/' | sed '/.*=&gt;.*/d'; done
+</pre></blockquote>
+
+</li></ul>
+
+<a name="Guio-d_0027exemple-per-a-l_0027Ubuntu-8_002e04-de-32-bits"></a>
+<h3 class="subheading">Guió d&rsquo;exemple per a l&rsquo;Ubuntu 8.04 de 32 bits</h3>
+
+<blockquote><pre class="example">#!/bin/sh
+## aquí es fixen els valors predeterminats
+
+username=lily
+home=/home
+loopdevice=/dev/loop0
+jaildir=/mnt/lilyloop
+# prefix (sense la barra inicial!)
+lilyprefix=usr/local
+# el directori en el qual el LilyPond es troba instal·lat en el sistema
+lilydir=/$lilyprefix/lilypond/
+
+userhome=$home/$username
+loopfile=$userhome/loopfile
+adduser $username
+dd if=/dev/zero of=$loopfile bs=1k count=200000
+mkdir $jaildir
+losetup $loopdevice $loopfile
+mkfs -t ext3 $loopdevice 200000
+mount -t ext3 $loopdevice $jaildir
+mkdir $jaildir/lilyhome
+chown $username $jaildir/lilyhome
+cd $jaildir
+
+mkdir -p bin usr/bin usr/share usr/lib usr/share/fonts $lilyprefix tmp
+chmod a+w tmp
+
+cp -r -L $lilydir $lilyprefix
+cp -L /bin/sh /bin/rm bin
+cp -L /usr/bin/convert /usr/bin/gs usr/bin
+cp -L /usr/share/fonts/truetype usr/share/fonts
+
+# Ara la màgia de copiar les biblioteques
+for i in &quot;$lilydir/usr/bin/lilypond&quot; &quot;$lilydir/usr/bin/guile&quot; &quot;/bin/sh&quot;  \
+  &quot;/bin/rm&quot; &quot;/usr/bin/gs&quot; &quot;/usr/bin/convert&quot;; do ldd $i | sed 's/.*=&gt;  \
+    \/\(.*\/\)\([^(]*\).*/mkdir -p \1 \&amp;\&amp; cp -L \/\1\2 \1\2/' | sed  \
+      's/\t\/\(.*\/\)\(.*\) (.*)$/mkdir -p \1 \&amp;\&amp; cp -L \/\1\2 \1\2/'  \
+        | sed '/.*=&gt;.*/d'; done | sh -s
+
+# Els fitxers compartits per al ghostcript...
+      cp -L -r /usr/share/ghostscript usr/share
+# Els fitxers compartits per a l'ImageMagick
+      cp -L -r /usr/lib/ImageMagick* usr/lib
+
+### Ara, suposant que tenim test.ly a /mnt/lilyloop/lilyhome,
+### hauríem de poder executar:
+### Observeu que /$lilyprefix/bin/lilypond és un guió, que estableix
+### un valor per a LD_LIBRARY_PATH : això és crucial
+      /$lilyprefix/bin/lilypond -jlily,lily,/mnt/lilyloop,/lilyhome test.ly
+</pre></blockquote>
+
+
+<div class="footnote">
+<hr>
+<h3>Notes a peu de pàgina</h3>
+<p class="footnote"><small>[<a name="FOOT1" href="#DOCF1">1</a>]</small> L&rsquo;estat del GUILE no es restableix
+després de processar un fitxer <code>.ly</code>, per la qual cosa heu de
+tenir cura de no modificar cap valor predeterminat des de dins del
+Scheme.
+</p></div>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Execució del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ca.html" title="Capítol següent">&nbsp;Actualització de fitxers amb convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#environment-variables" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Variables d'entorn&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Utilització des de la línia d'ordres&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="error-messages.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Missatges d'error &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="command_002dline-usage.html">English</a>, <a href="command_002dline-usage.de.html">deutsch</a>, <a href="command_002dline-usage.es.html">español</a>, <a href="command_002dline-usage.fr.html">français</a>, <a href="command_002dline-usage.hu.html">magyar</a>, <a href="command_002dline-usage.it.html">italiano</a>, <a href="command_002dline-usage.ja.html">日本語</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Utilització  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Execucio-del-LilyPond" href="running-lilypond.ca.html">1. Execució del LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilitzacio-normal" href="normal-usage.ca.html">1.1 Utilització normal</a>    </li>
+    <li class=" toc_current"><a name="toc-Utilitzacio-des-de-la-linia-d_0027ordres" href="command_002dline-usage.ca.html">1.2 Utilització des de la línia d&rsquo;ordres</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Invocacio-del-lilypond" href="command_002dline-usage.ca.html#invoking-lilypond">Invocació del <code>lilypond</code></a>      </li>
+      <li class=""><a name="toc-Opcions-basiques-de-la-linia-d_0027ordres-per-al-LilyPond" href="command_002dline-usage.ca.html#basic-command-line-options-for-lilypond">Opcions bàsiques de la línia d&rsquo;ordres per al LilyPond</a>      </li>
+      <li class=""><a name="toc-Opcions-avancades-de-la-linia-d_0027ordres-per-al-LilyPond" href="command_002dline-usage.ca.html#advanced-command-line-options-for-lilypond">Opcions avançades de la línia d&rsquo;ordres per al LilyPond</a>      </li>
+      <li class=""><a name="toc-Variables-d_0027entorn-1" href="command_002dline-usage.ca.html#environment-variables">Variables d&rsquo;entorn</a>      </li>
+      <li class=""><a name="toc-El-LilyPond-a-una-gabia-de-chroot" href="command_002dline-usage.ca.html#lilypond-in-chroot-jail">El LilyPond a una gàbia de chroot</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Missatges-d_0027error-1" href="error-messages.ca.html">1.3 Missatges d&rsquo;error</a>    </li>
+    <li class=""><a name="toc-Errors-comuns-1" href="common-errors.ca.html">1.4 Errors comuns</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Actualitzacio-de-fitxers-amb-convert_002dly" href="updating-files-with-convert_002dly.ca.html">2. Actualització de fitxers amb <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Perque-canvia-la-sintaxi_003f" href="why-does-the-syntax-change_003f.ca.html">2.1 Perquè canvia la sintaxi?</a>    </li>
+    <li class=""><a name="toc-Invocacio-de-convert_002dly" href="invoking-convert_002dly.ca.html">2.2 Invocació de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Opcions-de-la-linia-d_0027ordres-per-a-convert_002dly" href="command-line-options-for-convert_002dly.ca.html">2.3 Opcions de la línia d&rsquo;ordres per a <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemes-amb-convert_002dly-1" href="problems-running-convert_002dly.ca.html">2.4 Problemes amb <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversions-manuals-1" href="manual-conversions.ca.html">2.5 Conversions manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Running-lilypond_002dbook" href="lilypond_002dbook.ca.html">3. Running <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-An-example-of-a-musicological-document-1" href="an-example-of-a-musicological-document.ca.html">3.1 An example of a musicological document</a>    </li>
+    <li class=""><a name="toc-Integrating-music-and-text-1" href="integrating-music-and-text.ca.html">3.2 Integrating music and text</a>    </li>
+    <li class=""><a name="toc-Music-fragment-options-1" href="music-fragment-options.ca.html">3.3 Music fragment options</a>    </li>
+    <li class=""><a name="toc-Invoking-lilypond_002dbook-1" href="invoking-lilypond_002dbook.ca.html">3.4 Invoking <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Filename-extensions-1" href="filename-extensions.ca.html">3.5 Filename extensions</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-templates-1" href="lilypond_002dbook-templates.ca.html">3.6 lilypond-book templates</a>    </li>
+    <li class=""><a name="toc-Sharing-the-table-of-contents-1" href="sharing-the-table-of-contents.ca.html">3.7 Sharing the table of contents</a>    </li>
+    <li class=""><a name="toc-Alternative-methods-of-mixing-text-and-music" href="alternate-methods-of-mixing-text-and-music.ca.html">3.8 Alternative methods of mixing text and music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-External-programs-1" href="external-programs.ca.html">4. External programs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Point-and-click-1" href="point-and-click.ca.html">4.1 Point and click</a>    </li>
+    <li class=""><a name="toc-Text-editor-support-1" href="text-editor-support.ca.html">4.2 Text editor support</a>    </li>
+    <li class=""><a name="toc-Converting-from-other-formats-1" href="converting-from-other-formats.ca.html">4.3 Converting from other formats</a>    </li>
+    <li class=""><a name="toc-LilyPond-output-in-other-programs-1" href="lilypond-output-in-other-programs.ca.html">4.4 LilyPond output in other programs</a>    </li>
+    <li class=""><a name="toc-Independent-includes-1" href="independent-includes.ca.html">4.5 Independent <code>include</code>s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggeriments-per-escriure-fitxers-d_0027entrada-1" href="suggestions-for-writing-files.ca.html">5. Suggeriments per escriure fitxers d&rsquo;entrada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Suggeriments-de-tipus-general-1" href="general-suggestions.ca.html">5.1 Suggeriments de tipus general</a>    </li>
+    <li class=""><a name="toc-Gravacio-de-musica-existent" href="typesetting-existing-music.ca.html">5.2 Gravació de música existent</a>    </li>
+    <li class=""><a name="toc-Projectes-grans-1" href="large-projects.ca.html">5.3 Projectes grans</a>    </li>
+    <li class=""><a name="toc-Solucio-de-problemes" href="troubleshooting.ca.html">5.4 Solució de problemes</a>    </li>
+    <li class=""><a name="toc-Make-i-els-Makefiles-1" href="make-and-makefiles.ca.html">5.5 Make i els Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">B. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

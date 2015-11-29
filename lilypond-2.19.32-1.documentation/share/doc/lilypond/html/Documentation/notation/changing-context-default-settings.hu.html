@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Notation Reference: 5.1.5 Changing context default settings</title>
+
+<meta name="description" content="LilyPond Notation Reference: 5.1.5 Changing context default settings">
+<meta name="keywords" content="LilyPond Notation Reference: 5.1.5 Changing context default settings">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Notation Reference">
+<link href="lilypond-command-index.hu.html#lilypond-command-index" rel="index" title="D. LilyPond command index">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="About This Document">
+<link href="interpretation-contexts.hu.html#interpretation-contexts" rel="up" title="5.1 Interpretation contexts">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="E. LilyPond index">
+<link href="modifying-context-plug_002dins.hu.html#modifying-context-plug_002dins" rel="previous" title="5.1.4 Modifying context plug-ins">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="notation devStatus">
+
+
+<div id="main">
+<a name="Changing-context-default-settings"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Changing defaults&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.hu.html" title="Next chapter">&nbsp;Notation manual tables &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="modifying-context-plug_002dins.hu.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Modifying context plug-ins&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="interpretation-contexts.hu.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Interpretation contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#changing-all-contexts-of-the-same-type" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Changing all contexts of the same type &gt; </a>]</td></tr></table>
+<a name="changing-context-default-settings"></a>
+<h3 class="subsection">5.1.5 Changing context default settings</h3>
+
+<a name="index-default-context-properties_002c-changing"></a>
+<a name="index-context-properties_002c-changing-defaults"></a>
+
+<p>Context and grob properties can be changed with <code>\set</code>
+and <code>\override</code> commands, as described in
+<a href="modifying-properties.hu.html">Modifying properties</a>.  These commands create music events,
+making the changes take effect at the point in time the music
+is being processed.
+</p>
+<p>In contrast, this section explains how to change the <em>default</em>
+values of context and grob properties at the time the context is
+created.  There are two ways of doing this.  One modifies the default
+values in all contexts of a particular type, the other modifies the
+default values in just one particular instance of a context.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#changing-all-contexts-of-the-same-type" accesskey="1">Changing all contexts of the same type</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#changing-just-one-specific-context" accesskey="2">Changing just one specific context</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#order-of-precedence" accesskey="3">Order of precedence</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Changing-all-contexts-of-the-same-type"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Changing defaults&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.hu.html" title="Next chapter">&nbsp;Notation manual tables &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-context-default-settings" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Changing context default settings&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Changing context default settings&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#changing-just-one-specific-context" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Changing just one specific context &gt; </a>]</td></tr></table>
+<a name="changing-all-contexts-of-the-same-type"></a>
+<h4 class="unnumberedsubsubsec">Changing all contexts of the same type</h4>
+
+<a name="index-_005ccontext-in-_005clayout-block"></a>
+<a name="index-_005ccontext-2"></a>
+<a name="index-_005ccontext-3"></a>
+<a name="index-_005clayout-6"></a>
+<a name="index-_005clayout-7"></a>
+
+<p>The default context settings which are to be used for typesetting in
+<code>Score</code>, <code>Staff</code>, <code>Voice</code> and other contexts may be
+specified in a <code>\context</code> block within any <code>\layout</code>
+block.
+</p>
+<p>Settings for Midi output as opposed to typesetting will have to be
+separately specified in <code>\midi</code> blocks (see <a href="contexts-explained.hu.html#output-definitions-_002d-blueprints-for-contexts">Output definitions - blueprints for contexts</a>).
+</p>
+<p>The <code>\layout</code> block should be placed within the <code>\score</code>
+block to which it is to apply, after the music.
+</p>
+<blockquote><pre class="example">\layout {
+  \context {
+    \Voice
+    [context settings for all Voice contexts]
+  }
+  \context {
+    \Staff
+    [context settings for all Staff contexts]
+  }
+}
+</pre></blockquote>
+
+<p>The following types of settings may be specified:
+</p>
+<ul>
+<li>
+An <code>\override</code> command, but with the context name omitted
+
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    a'4^&quot;Thicker stems&quot; a a a
+    a4 a a\ff a
+  }
+  \layout {
+    \context {
+      \Staff
+      \override Stem.thickness = #4.0
+    }
+  }
+}
+</pre><p>
+ <a href="../68/lily-7c3277b0.ly">
+  <img align="middle"
+       border="0"
+       src="../68/lily-7c3277b0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Directly setting a context property
+
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    a'4^&quot;Smaller font&quot; a a a
+    a4 a a\ff a
+  }
+  \layout {
+    \context {
+      \Staff
+      fontSize = #-4
+    }
+  }
+}
+</pre><p>
+ <a href="../d8/lily-42efcbd2.ly">
+  <img align="middle"
+       border="0"
+       src="../d8/lily-42efcbd2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+A predefined command such as <code>\dynamicUp</code> or a music
+expression like <code>\accidentalStyle dodecaphonic</code>
+
+<blockquote><pre class="verbatim">\score {
+  \relative {
+    a'4^&quot;Dynamics above&quot; a a a
+    a4 a a\ff a
+  }
+  \layout {
+    \context {
+      \Voice
+      \dynamicUp
+    }
+    \context {
+      \Staff
+      \accidentalStyle dodecaphonic
+    }
+  }
+}
+</pre><p>
+ <a href="../2c/lily-afcc0add.ly">
+  <img align="middle"
+       border="0"
+       src="../2c/lily-afcc0add.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+A user-defined variable containing a <code>\with</code> block; for details
+of the <code>\with</code> block see
+<a href="#changing-just-one-specific-context">Changing just one specific context</a>.
+
+<blockquote><pre class="verbatim">StaffDefaults = \with {
+  fontSize = #-4
+}
+
+\score {
+  \new Staff {
+    \relative {
+      a'4^&quot;Smaller font&quot; a a a
+      a4 a a a
+    }
+  }
+  \layout {
+    \context {
+      \Staff
+      \StaffDefaults
+    }
+  }
+}
+</pre><p>
+ <a href="../9b/lily-f422a76f.ly">
+  <img align="middle"
+       border="0"
+       src="../9b/lily-f422a76f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li></ul>
+
+<p>Property-setting commands can be placed in a <code>\layout</code> block
+without being enclosed in a <code>\context</code> block.  Such settings
+are equivalent to including the same property-setting commands at
+the start of every context of the type specified.  If no context
+is specified <em>every</em> bottom-level context is affected, see
+<a href="contexts-explained.hu.html#bottom_002dlevel-contexts-_002d-voices">Bottom-level contexts - voices</a>.  The syntax of a
+property-setting command in a <code>\layout</code> block is the same as
+the same command written in the music stream.
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative {
+      a'4^&quot;Smaller font&quot; a a a
+      a4 a a a
+    }
+  }
+  \layout {
+    \accidentalStyle dodecaphonic
+    \set fontSize = #-4
+    \override Voice.Stem.thickness = #4.0
+  }
+}
+</pre><p>
+ <a href="../39/lily-ca177414.ly">
+  <img align="middle"
+       border="0"
+       src="../39/lily-ca177414.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Changing-just-one-specific-context"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Changing defaults&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.hu.html" title="Next chapter">&nbsp;Notation manual tables &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-all-contexts-of-the-same-type" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Changing all contexts of the same type&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Changing context default settings&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#order-of-precedence" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Order of precedence &gt; </a>]</td></tr></table>
+<a name="changing-just-one-specific-context"></a>
+<h4 class="unnumberedsubsubsec">Changing just one specific context</h4>
+
+<a name="index-_005cwith-2"></a>
+<a name="index-_005cwith-3"></a>
+<a name="index-_005cwith-4"></a>
+
+<p>The context properties of just one specific context instance can be
+changed in a <code>\with</code> block.  All other context instances of the
+same type retain the default settings built into LilyPond and modified
+by any <code>\layout</code> block within scope.  The <code>\with</code> block
+must be placed immediately after the <code>\new</code> <var>context-type</var>
+command:
+</p>
+<blockquote><pre class="example">\new Staff \with { [context settings for this context instance only] }
+{
+  &hellip;
+}
+</pre></blockquote>
+
+<p>Since such a &lsquo;context modification&rsquo; is specified inside of
+music, it will affect <em>all</em> outputs (typesetting <em>and</em>
+Midi) as opposed to changes within an output definition.
+</p>
+<p>The following types of settings may be specified:
+</p>
+<ul>
+<li>
+An <code>\override</code> command, but with the context name omitted
+
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \new Voice \with { \override Stem.thickness = #4.0 }
+    {
+      \relative {
+        a'4^&quot;Thick stems&quot; a a a
+        a4 a a a
+      }
+    }
+  }
+}
+</pre><p>
+ <a href="../08/lily-468fa93b.ly">
+  <img align="middle"
+       border="0"
+       src="../08/lily-468fa93b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+Directly setting a context property
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        a'4^&quot;Default font&quot; a a a
+        a4 a a a
+      }
+    }
+    \new Staff \with { fontSize = #-4 }
+    {
+      \relative {
+        a'4^&quot;Smaller font&quot; a a a
+        a4 a a a
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../c2/lily-f77dc574.ly">
+  <img align="middle"
+       border="0"
+       src="../c2/lily-f77dc574.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li><li>
+A predefined command such as <code>\dynamicUp</code>
+
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice {
+        \relative {
+          a'4^&quot;Dynamics below&quot; a a a
+          a4 a a\ff a
+        }
+      }
+    }
+    \new Staff \with { \accidentalStyle dodecaphonic }
+    {
+      \new Voice \with { \dynamicUp }
+      {
+        \relative {
+          a'4^&quot;Dynamics above&quot; a a a
+          a4 a a\ff a
+        }
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../db/lily-4af98673.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-4af98673.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</li></ul>
+
+<hr size="6">
+<a name="Order-of-precedence"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Changing defaults&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.hu.html" title="Next chapter">&nbsp;Notation manual tables &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-just-one-specific-context" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Changing just one specific context&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Changing context default settings&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="defining-new-contexts.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Defining new contexts &gt; </a>]</td></tr></table>
+<a name="order-of-precedence"></a>
+<h4 class="unnumberedsubsubsec">Order of precedence</h4>
+
+<p>The value of a property which applies at a particular time is
+determined as follows:
+</p>
+<ul>
+<li>
+if an <code>\override</code> or <code>\set</code> command in the input stream is
+in effect that value is used,
+
+</li><li>
+otherwise the default value taken from a <code>\with</code> statement
+on the context initiation statement is used,
+
+</li><li>
+otherwise the default value taken from the most recent appropriate
+<code>\context</code> block in the <code>\layout</code> or <code>\midi</code> blocks
+is used,
+
+</li><li>
+otherwise the LilyPond built-in default is used.
+</li></ul>
+
+<a name="See-also-186"></a>
+<h4 class="subsubheading">See also</h4>
+<p>Learning Manual:
+<a name="index-Modifying-context-properties"></a>
+<a href="../learning/modifying-context-properties.hu.html">Modifying context properties</a>.
+</p>
+<p>Notation Reference:
+<a href="contexts-explained.hu.html">Contexts explained</a>,
+<a href="contexts-explained.hu.html#bottom_002dlevel-contexts-_002d-voices">Bottom-level contexts - voices</a>,
+<a href="the-set-command.hu.html">The <code>\set</code> command</a>,
+<a href="the-override-command.hu.html">The <code>\override</code> command</a>,
+<a href="the-layout-block.hu.html">The <code>\layout</code> block</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Changing defaults&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.hu.html" title="Next chapter">&nbsp;Notation manual tables &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#changing-just-one-specific-context" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Changing just one specific context&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#changing-context-default-settings" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Changing context default settings&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="defining-new-contexts.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Defining new contexts &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="changing-context-default-settings.de.html">deutsch</a>, <a href="changing-context-default-settings.es.html">español</a>, <a href="changing-context-default-settings.fr.html">français</a>, <a href="changing-context-default-settings.it.html">italiano</a>, <a href="changing-context-default-settings.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Notation Reference  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musical-notation-1" href="musical-notation.hu.html">1. Musical notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Pitches-1" href="pitches.hu.html">1.1 Pitches</a>    </li>
+    <li class=""><a name="toc-Rhythms-1" href="rhythms.hu.html">1.2 Rhythms</a>    </li>
+    <li class=""><a name="toc-Expressive-marks-1" href="expressive-marks.hu.html">1.3 Expressive marks</a>    </li>
+    <li class=""><a name="toc-Repeats-1" href="repeats.hu.html">1.4 Repeats</a>    </li>
+    <li class=""><a name="toc-Simultaneous-notes-1" href="simultaneous-notes.hu.html">1.5 Simultaneous notes</a>    </li>
+    <li class=""><a name="toc-Staff-notation-1" href="staff-notation.hu.html">1.6 Staff notation</a>    </li>
+    <li class=""><a name="toc-Editorial-annotations-1" href="editorial-annotations.hu.html">1.7 Editorial annotations</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.hu.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Specialist-notation-1" href="specialist-notation.hu.html">2. Specialist notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Vocal-music-1" href="vocal-music.hu.html">2.1 Vocal music</a>    </li>
+    <li class=""><a name="toc-Keyboard-and-other-multi_002dstaff-instruments-1" href="keyboard-and-other-multi_002dstaff-instruments.hu.html">2.2 Keyboard and other multi-staff instruments</a>    </li>
+    <li class=""><a name="toc-Unfretted-string-instruments-1" href="unfretted-string-instruments.hu.html">2.3 Unfretted string instruments</a>    </li>
+    <li class=""><a name="toc-Fretted-string-instruments-1" href="fretted-string-instruments.hu.html">2.4 Fretted string instruments</a>    </li>
+    <li class=""><a name="toc-Percussion-1" href="percussion.hu.html">2.5 Percussion</a>    </li>
+    <li class=""><a name="toc-Wind-instruments-1" href="wind-instruments.hu.html">2.6 Wind instruments</a>    </li>
+    <li class=""><a name="toc-Chord-notation-1" href="chord-notation.hu.html">2.7 Chord notation</a>    </li>
+    <li class=""><a name="toc-Contemporary-music-1" href="contemporary-music.hu.html">2.8 Contemporary music</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.hu.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-World-music-1" href="world-music.hu.html">2.10 World music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-General-input-and-output-1" href="general-input-and-output.hu.html">3. General input and output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Input-structure-1" href="input-structure.hu.html">3.1 Input structure</a>    </li>
+    <li class=""><a name="toc-Titles-and-headers-1" href="titles-and-headers.hu.html">3.2 Titles and headers</a>    </li>
+    <li class=""><a name="toc-Working-with-input-files-1" href="working-with-input-files.hu.html">3.3 Working with input files</a>    </li>
+    <li class=""><a name="toc-Controlling-output-1" href="controlling-output.hu.html">3.4 Controlling output</a>    </li>
+    <li class=""><a name="toc-Creating-MIDI-output-1" href="creating-midi-output.hu.html">3.5 Creating MIDI output</a>    </li>
+    <li class=""><a name="toc-Extracting-musical-information-1" href="extracting-musical-information.hu.html">3.6 Extracting musical information</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spacing-issues-1" href="spacing-issues.hu.html">4. Spacing issues</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Page-layout-1" href="page-layout.hu.html">4.1 Page layout</a>    </li>
+    <li class=""><a name="toc-Score-layout-1" href="score-layout.hu.html">4.2 Score layout</a>    </li>
+    <li class=""><a name="toc-Breaks-1" href="breaks.hu.html">4.3 Breaks</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.hu.html">4.4 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Horizontal-spacing-1" href="horizontal-spacing.hu.html">4.5 Horizontal spacing</a>    </li>
+    <li class=""><a name="toc-Fitting-music-onto-fewer-pages-1" href="fitting-music-onto-fewer-pages.hu.html">4.6 Fitting music onto fewer pages</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Changing-defaults-1" href="changing-defaults.hu.html">5. Changing defaults</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Interpretation-contexts-1" href="interpretation-contexts.hu.html">5.1 Interpretation contexts</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Contexts-explained-1" href="contexts-explained.hu.html">5.1.1 Contexts explained</a>      </li>
+      <li class=""><a name="toc-Creating-and-referencing-contexts-1" href="creating-and-referencing-contexts.hu.html">5.1.2 Creating and referencing contexts</a>      </li>
+      <li class=""><a name="toc-Keeping-contexts-alive-1" href="keeping-contexts-alive.hu.html">5.1.3 Keeping contexts alive</a>      </li>
+      <li class=""><a name="toc-Modifying-context-plug_002dins-1" href="modifying-context-plug_002dins.hu.html">5.1.4 Modifying context plug-ins</a>      </li>
+      <li class=" toc_current"><a name="toc-Changing-context-default-settings-1" href="changing-context-default-settings.hu.html">5.1.5 Changing context default settings</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Changing-all-contexts-of-the-same-type-1" href="changing-context-default-settings.hu.html#changing-all-contexts-of-the-same-type">Changing all contexts of the same type</a>        </li>
+        <li class=""><a name="toc-Changing-just-one-specific-context-1" href="changing-context-default-settings.hu.html#changing-just-one-specific-context">Changing just one specific context</a>        </li>
+        <li class=""><a name="toc-Order-of-precedence-1" href="changing-context-default-settings.hu.html#order-of-precedence">Order of precedence</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Defining-new-contexts-1" href="defining-new-contexts.hu.html">5.1.6 Defining new contexts</a>      </li>
+      <li class=""><a name="toc-Context-layout-order-1" href="context-layout-order.hu.html">5.1.7 Context layout order</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Explaining-the-Internals-Reference-1" href="explaining-the-internals-reference.hu.html">5.2 Explaining the Internals Reference</a>    </li>
+    <li class=""><a name="toc-Modifying-properties-1" href="modifying-properties.hu.html">5.3 Modifying properties</a>    </li>
+    <li class=""><a name="toc-Useful-concepts-and-properties-1" href="useful-concepts-and-properties.hu.html">5.4 Useful concepts and properties</a>    </li>
+    <li class=""><a name="toc-Advanced-tweaks-1" href="advanced-tweaks.hu.html">5.5 Advanced tweaks</a>    </li>
+    <li class=""><a name="toc-Using-music-functions-1" href="using-music-functions.hu.html">5.6 Using music functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.hu.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.hu.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.hu.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.hu.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.hu.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.hu.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.hu.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.hu.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.hu.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.hu.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.hu.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.hu.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.hu.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.hu.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.hu.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.hu.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.hu.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.hu.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.hu.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.hu.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.hu.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.hu.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.hu.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cheat-sheet-1" href="cheat-sheet.hu.html">B. Cheat sheet</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-command-index-1" href="lilypond-command-index.hu.html">D. LilyPond command index</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.hu.html">E. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

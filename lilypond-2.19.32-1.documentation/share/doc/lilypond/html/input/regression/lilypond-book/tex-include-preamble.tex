@@ -1,0 +1,29 @@
+\documentclass{article}
+
+\input{include/def.tex}
+
+\usepackage{graphics}
+\begin{document}
+
+If the include file in the preamble is not available,
+the automatic line width detection would fail and the
+snippet below would have only one bar per line.
+
+{%
+\parindent 0pt
+\noindent
+\ifx\preLilyPondExample \undefined
+\else
+  \expandafter\preLilyPondExample
+\fi
+\def\lilypondbook{}%
+\input{91/lily-2b21d285-systems.tex}
+\ifx\postLilyPondExample \undefined
+\else
+  \expandafter\postLilyPondExample
+\fi
+}
+
+Brought to you by \signature.
+
+\end{document}

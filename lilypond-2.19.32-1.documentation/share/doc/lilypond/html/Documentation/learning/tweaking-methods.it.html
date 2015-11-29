@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manuale di apprendimento di LilyPond: 4.1.4 Metodi di modifica</title>
+
+<meta name="description" content="Manuale di apprendimento di LilyPond: 4.1.4 Metodi di modifica">
+<meta name="keywords" content="Manuale di apprendimento di LilyPond: 4.1.4 Metodi di modifica">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Manuale di apprendimento">
+<link href="lilypond-index.it.html#lilypond-index" rel="index" title="C. Indice di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="tweaking-basics.it.html#tweaking-basics" rel="up" title="4.1 Modifiche di base">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="C. Indice di LilyPond">
+<link href="naming-conventions-of-objects-and-properties.it.html#naming-conventions-of-objects-and-properties" rel="previous" title="4.1.3 Convenzioni per i nomi di oggetti e proprietà">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="learning devStatus">
+
+
+<div id="main">
+<a name="Metodi-di-modifica"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="naming-conventions-of-objects-and-properties.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Convenzioni per i nomi di oggetti e proprietà&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="tweaking-basics.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Modifiche di base&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-override-command" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il comando override &gt; </a>]</td></tr></table>
+<a name="tweaking-methods"></a>
+<h3 class="subsection">4.1.4 Metodi di modifica</h3>
+
+<a name="index-metodi-di-modifica"></a>
+<a name="index-modifica_002c-metodi"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-override-command" accesskey="1">Il comando <code>\override</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-revert-command" accesskey="2">Il comando <code>\revert</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-once-prefix" accesskey="3">Il prefisso <code>\once</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-overrideproperty-command" accesskey="4">Il comando <code>\overrideProperty</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-tweak-command" accesskey="5">Il comando <code>\tweak</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-single-prefix" accesskey="6">Il prefisso <code>\single</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Il-comando-override"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#tweaking-methods" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-revert-command" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il comando revert &gt; </a>]</td></tr></table>
+<a name="the-override-command"></a>
+<h4 class="unnumberedsubsubsec">Il comando <code>\override</code></h4>
+
+<a name="index-override_002c-comando"></a>
+<a name="index-override_002c-sintassi"></a>
+
+<a name="index-_005coverride"></a>
+<a name="index-_005coverride-1"></a>
+<a name="index-override"></a>
+<a name="index-override-1"></a>
+
+<p>Abbiamo già incontrato i comandi <code>\set</code> e <code>\with</code>, che servono
+a modificare le proprietà dei <strong>contesti</strong> e a togliere o aggiungere
+gli <strong>incisori</strong>, nei paragrafi <a href="modifying-context-properties.it.html">Modificare le proprietà di contesto</a> e
+<a href="adding-and-removing-engravers.it.html">Aggiungere e togliere gli incisori</a>.  Ora dobbiamo introdurre alcuni
+comandi più importanti.
+</p>
+<p>Il comando che cambia le proprietà degli <strong>oggetti di formattazione</strong> è
+<code>\override</code>.  Dato che questo comando ha il compito di modificare
+le caratteristiche interne fondamentali di LilyPond, la sua sintassi non è
+semplice come quella dei comandi presentati finora.  Deve sapere esattamente
+quale proprietà di quale oggetto in quale contesto deve essere
+modificata e quale deve essere il suo nuovo valore.  Vediamo come
+funziona.
+</p>
+<p>La sintassi generale di questo comando è:
+</p>
+<blockquote><pre class="example">\override <var>Contesto</var>.<var>OggettoDiFormattazione</var>.<var>proprietà-formattazione</var> = #<var>valore</var>
+</pre></blockquote>
+
+<p>Questo comando assegnerà alla proprietà chiamata <var>proprietà-formattazione</var>
+dell&rsquo;oggetto di formattazione chiamato <var>OggettoDiFormattazione</var>, che fa
+parte del contesto <var>Contesto</var>, il valore <var>valore</var>.
+</p>
+<p>Il <var>Contesto</var> può essere omesso (e di solito lo è) quando il
+contesto richiesto è implicito e si trova a uno dei livelli più
+bassi dei contesti, come ad esempio <code>Voice</code>, <code>ChordNames</code> o
+<code>Lyrics</code>.  Lo ometteremo in molti degli esempi seguenti; vedremo
+poi quando deve essere specificato.
+</p>
+<p>Le sezioni successive tratteranno in modo dettagliato le proprietà e
+i loro valori, si veda <a href="types-of-properties.it.html">Tipi di proprietà</a>; in questa sezione, invece,
+useremo soltanto alcune proprietà e valori di facile comprensione,
+in modo da spiegare il formato e l&rsquo;uso di questo comando.
+</p>
+<p>Le espressioni fondamentali di LilyPond sono gli elementi musicali come le note,
+le durate e le annotazioni.  Le espressioni basilari come numeri,
+stringhe di testo e liste sono elaborate nella &lsquo;modalità Scheme&rsquo;, che viene
+invocata inserendo &lsquo;<samp>#</samp>&rsquo; prima del valore.  Sebbene i valori possano
+avere talvolta una valida rappresentazione nella modalità musicale di LilyPond,
+per coerenza questo manuale li farà sempre precedere da &lsquo;<samp>#</samp>&rsquo;.  Per maggiori
+informazioni sulla modalità Scheme, si veda <a name="index-LilyPond-Scheme-syntax"></a>
+<a href="../extending/lilypond-scheme-syntax.it.html">LilyPond Scheme syntax</a>.
+</p>
+<p><code>\override</code> è il comando più usato nelle modifiche e quasi tutto
+il resto del capitolo ha lo scopo di mostrare alcuni esempi
+di utilizzo.  Ecco un semplice esempio che mostra come cambiare
+il colore della testa di nota:
+</p>
+<a name="index-proprieta-del-colore_002c-esempio"></a>
+<a name="index-colore_002c-proprieta-del"></a>
+<a name="index-NoteHead_002c-esempio-di-sovrascrittura"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  \override NoteHead.color = #red
+  e4 f |
+  \override NoteHead.color = #green
+  g4 a b c |
+}
+</pre><p>
+ <a href="../ea/lily-4140a13e.ly">
+  <img align="middle"
+       border="0"
+       src="../ea/lily-4140a13e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Il-comando-revert"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-override-command" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il comando override&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-once-prefix" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il prefisso once &gt; </a>]</td></tr></table>
+<a name="the-revert-command"></a>
+<h4 class="unnumberedsubsubsec">Il comando <code>\revert</code></h4>
+
+<a name="index-revert_002c-comando"></a>
+<a name="index-ripristino_002c-comando-_005crevert"></a>
+
+<a name="index-_005crevert"></a>
+<a name="index-_005crevert-1"></a>
+<a name="index-revert"></a>
+<a name="index-revert-1"></a>
+
+<p>Quando viene sovrascritta, la proprietà mantiene il suo nuovo valore finché
+non viene sovrascritta di nuovo o non si incontra un comando <code>\revert</code>.
+Il comando <code>\revert</code> fa sì che il valore della proprietà sia ripristinato
+al suo valore predefinito.  Attenzione: non al suo valore precedente (nel caso
+siano stati inseriti vari comandi <code>\override</code>).  Impiega la seguente sintassi:
+</p>
+<blockquote><pre class="example">\revert <var>Contesto</var>.<var>OggettoDiFormmattazione</var>.<var>proprietà-formattazione</var>
+</pre></blockquote>
+
+<p>Anche in questo caso, come per il comando <code>\override</code>, <var>Contesto</var> di
+solito non è necessario e verrà omesso in molti degli esempi seguenti.
+In questo esempio ripristiniamo il colore della testa delle ultime due
+note al valore predefinito:
+</p>
+<a name="index-proprieta-del-colore_002c-esempio-1"></a>
+<a name="index-colore_002c-proprieta-del-1"></a>
+<a name="index-NoteHead_002c-esempio-di-sovrascrittura-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  \override NoteHead.color = #red
+  e4 f |
+  \override NoteHead.color = #green
+  g4 a
+  \revert NoteHead.color
+  b4 c |
+}
+</pre><p>
+ <a href="../72/lily-c0a251ac.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-c0a251ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Il-prefisso-once"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-revert-command" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il comando revert&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-overrideproperty-command" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il comando overrideProperty &gt; </a>]</td></tr></table>
+<a name="the-once-prefix"></a>
+<h4 class="unnumberedsubsubsec">Il prefisso <code>\once</code></h4>
+
+<a name="index-_005conce"></a>
+<a name="index-_005conce-1"></a>
+<a name="index-once"></a>
+<a name="index-once-1"></a>
+
+<p>I comandi <code>\override</code>, <code>revert</code>, <code>\set</code> e <code>\unset</code> possono
+essere preceduti da <code>\once</code>.  Questo fa sì che tale comando sia operativo
+solo in quel determinato momento musicale, prima che la proprietà sia
+ripristinata al suo valore precedente (che può essere diverso da quello
+predefinito se un altro <code>\override</code> è ancora attivo).  Usando lo stesso
+esempio, possiamo cambiare il colore di una singola nota in questo modo:
+</p>
+<a name="index-proprieta-del-colore_002c-esempio-2"></a>
+<a name="index-colore_002c-proprieta-del-2"></a>
+<a name="index-NoteHead_002c-esempio-di-sovrascrittura-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  \override NoteHead.color = #red
+  e4 f |
+  \once \override NoteHead.color = #green
+  g4 a
+  \revert NoteHead.color
+  b c |
+}
+</pre><p>
+ <a href="../3a/lily-2a313f2b.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-2a313f2b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Il prefisso <code>\once</code> può essere usato anche di fronte a molti
+comandi predefiniti per limitare il loro effetto a un momento musicale:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c'4( d)
+  \once \slurDashed
+  e4( f) |
+  g4( a)
+  \once \hideNotes
+  b( c) |
+}
+</pre><p>
+ <a href="../b8/lily-b269ed6f.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-b269ed6f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Il-comando-overrideProperty"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-once-prefix" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il prefisso once&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-tweak-command" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il comando tweak &gt; </a>]</td></tr></table>
+<a name="the-overrideproperty-command"></a>
+<h4 class="unnumberedsubsubsec">Il comando <code>\overrideProperty</code></h4>
+
+<a name="index-overrideProperty_002c-comando"></a>
+
+<a name="index-_005coverrideProperty"></a>
+<a name="index-_005coverrideProperty-1"></a>
+<a name="index-overrideProperty"></a>
+<a name="index-overrideProperty-1"></a>
+
+<p>Esiste un&rsquo;altra forma di comando di sovrascrittura,
+<code>\overrideProperty</code>, che si rende necessario raramente.
+Lo menzioniamo qui per completezza, ma per approfondire l&rsquo;argomento
+si veda <a name="index-Difficult-tweaks"></a>
+<a href="../extending/difficult-tweaks.it.html">Difficult tweaks</a>.
+</p>
+<hr size="6">
+<a name="Il-comando-tweak"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-overrideproperty-command" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il comando overrideProperty&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-single-prefix" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il prefisso single &gt; </a>]</td></tr></table>
+<a name="the-tweak-command"></a>
+<h4 class="unnumberedsubsubsec">Il comando <code>\tweak</code></h4>
+
+<a name="index-tweak_002c-comando"></a>
+
+<a name="index-_005ctweak"></a>
+<a name="index-_005ctweak-1"></a>
+<a name="index-tweak"></a>
+<a name="index-tweak-1"></a>
+
+<p>L&rsquo;ultimo comando di modifica a disposizione è <code>\tweak</code>.  Si usa
+quando vari oggetti compaiono nello stesso momento musicale,
+ma si vogliono modificare soltanto le proprietà di alcuni oggetti, come
+ad esempio una singola nota all&rsquo;interno di un accordo.  Se si usa <code>\override</code>
+la modifica ha effetto su tutte le note di un accordo, mentre <code>\tweak</code> ha
+effetto solo sul singolo elemento che segue.
+</p>
+<p>Per esempio, supponiamo di voler modificare la dimensione della
+testa della nota centrale (il Mi) in un accordo di Do maggiore.  Vediamo prima
+cosa succede se si usa <code>\once \override</code>:
+</p>
+<a name="index-proprieta-font_002dsize_002c-esempio"></a>
+<a name="index-font_002dsize_002c-esempio"></a>
+<a name="index-NoteHead_002c-esempio-di-sovrascrittura-3"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c' e g&gt;4
+  \once \override NoteHead.font-size = #-3
+  &lt;c e g&gt;4
+  &lt;c e g&gt;4
+}
+</pre><p>
+ <a href="../72/lily-560524c7.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-560524c7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Come si vede, la sovrascrittura riguarda <em>tutte</em> le teste di nota
+dell&rsquo;accordo.  Ciò è dovuto al fatto che tutte le note di un accordo
+si trovano nello stesso <em>momento musicale</em> e l&rsquo;azione di <code>\once</code>
+consiste nell&rsquo;applicare la sovrascrittura a tutti gli oggetti di formattazione
+del tipo specificato che si trovano nello stesso momento musicale del comando
+<code>\override</code> stesso.
+</p>
+<p>Il comando <code>\tweak</code> funziona in modo diverso.  Agisce sull&rsquo;elemento
+immediatamente successivo nel flusso di codice.  Nella sua forma più
+semplice funziona solo sugli oggetti creati direttamente dall&rsquo;elemento
+seguente, in particolare teste di nota e articolazioni.
+</p>
+<p>Tornando al nostro esempio, la dimensione della nota centrale
+di un accordo si cambia in questo modo:
+</p>
+<a name="index-proprieta-font_002dsize_002c-esempio-1"></a>
+<a name="index-font_002dsize_002c-esempio-1"></a>
+<a name="index-_005ctweak_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c' e g&gt;4
+  &lt;c \tweak font-size #-3 e g&gt;4
+}
+</pre><p>
+ <a href="../e1/lily-8c8b0e94.ly">
+  <img align="middle"
+       border="0"
+       src="../e1/lily-8c8b0e94.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si noti che la sintassi di <code>\tweak</code> è diversa da quella di
+<code>\override</code>.  Il contesto non deve essere specificato; anzi,
+se lo fosse verrebbe generato un errore.  Sia il contesto che l&rsquo;oggetto
+di formattazione sono sottintesi dall&rsquo;elemento che segue nel flusso di
+input.  Nota anche che non ci devono essere segni di uguale (<code>=</code>).  Dunque la
+forma semplice del comando <code>\tweak</code> è
+</p>
+<blockquote><pre class="example">\tweak <var>proprietà-formattazione</var> #<var>valore</var>
+</pre></blockquote>
+
+<p>Il comando <code>\tweak</code> serve anche a modificare soltanto una di una serie
+di articolazioni:
+</p>
+<a name="index-proprieta-del-colore_002c-esempio-3"></a>
+<a name="index-colore_002c-proprieta-del-3"></a>
+<a name="index-_005ctweak_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">a'4^&quot;Black&quot;
+  -\tweak color #red ^&quot;Red&quot;
+  -\tweak color #green _&quot;Green&quot;
+</pre><p>
+ <a href="../61/lily-75fd589f.ly">
+  <img align="middle"
+       border="0"
+       src="../61/lily-75fd589f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nota che il comando <code>\tweak</code> deve essere preceduto da un segno di
+articolazione, perché la stessa espressione modificata deve essere applicata come articolazione.  In caso di più sovrascritture della
+direzione (<code>^</code> o <code>_</code>), prevale la sovrascrittura posizionata più a sinistra,
+perché viene applicata per ultima.
+</p>
+<a name="index-_005ctweak_002c-alterazione"></a>
+<a name="index-_005ctweak_002c-oggetto-di-formattazione-specifico"></a>
+
+<p>Alcuni oggetti, come gambi e alterazioni, vengono creati dopo, non
+direttamente dall&rsquo;evento che segue.  È comunque possibile usare
+<code>\tweak</code> con questi oggetti creati indirettamente se si indica
+esplicitamente l&rsquo;oggetto di formattazione, purché LilyPond riesca a
+seguire la sua origine fino all&rsquo;evento originale:
+</p>
+<blockquote><pre class="verbatim">&lt;\tweak Accidental.color #red   cis''4
+ \tweak Accidental.color #green es''
+ g''&gt;
+</pre><p>
+ <a href="../e2/lily-9377b62a.ly">
+  <img align="middle"
+       border="0"
+       src="../e2/lily-9377b62a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Questa forma estesa del comando <code>\tweak</code> può essere descritta così
+</p><blockquote><pre class="example">\tweak <var>OggettoFormattazione</var>.<var>proprietà-formattazione</var> #<var>valore</var>
+</pre></blockquote>
+
+<a name="index-gruppi-irregolari_002c-annidati"></a>
+<a name="index-terzine_002c-annidate"></a>
+<a name="index-parentesi_002c-gruppo-irregolare"></a>
+<a name="index-parentesi_002c-terzina"></a>
+<a name="index-parentesi-del-gruppo-irregolare"></a>
+<a name="index-parentesi-della-terzina"></a>
+
+<a name="index-TupletBracket"></a>
+<a name="index-TupletBracket-1"></a>
+
+<p>Il comando <code>\tweak</code> è necessario anche quando si vuole cambiare
+l&rsquo;aspetto di uno di una serie di gruppi irregolari annidati che iniziano
+nello stesso momento musicale.  Nell&rsquo;esempio seguente, la prima lunga
+parentesi del gruppo irregolare e la prima delle tre brevi parentesi
+iniziano nello stesso momento musicale, quindi qualsiasi comando
+<code>\override</code> produrrebbe degli effetti su entrambi.  In questo esempio,
+si usa <code>\tweak</code> per distinguerli.  Il primo comando <code>\tweak</code>
+indica che la lunga parentesi del gruppo irregolare deve essere posizionata
+sopra le note e il secondo indica che il numero del primo gruppo irregolare
+deve essere in rosso.
+</p>
+<a name="index-_005ctweak_002c-esempio-2"></a>
+<a name="index-proprieta-della-direzione_002c-esempio"></a>
+<a name="index-direzione_002c-esempio"></a>
+<a name="index-proprieta-del-colore_002c-esempio-4"></a>
+<a name="index-colore_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \tweak direction #up
+  \tuplet 3/4 {
+    \tweak color #red
+    \tuplet 3/2 { c8[ c c] }
+    \tuplet 3/2 { c8[ c c] }
+    \tuplet 3/2 { c8[ c c] }
+  }
+}
+</pre><p>
+ <a href="../49/lily-9016a4d6.ly">
+  <img align="middle"
+       border="0"
+       src="../49/lily-9016a4d6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se i gruppi irregolari annidati non iniziano nello stesso momento, il loro
+aspetto può essere modificato come di consueto con i comandi <code>\override</code>:
+</p>
+<a name="index-proprieta-text_002c-esempio"></a>
+<a name="index-text_002c-esempio"></a>
+<a name="index-funzione-tuplet_002dnumber_002c-esempio"></a>
+<a name="index-proprieta-transparent_002c-esempio"></a>
+<a name="index-transparent_002c-esempio"></a>
+<a name="index-TupletNumber_002c-esempio-di-sovrascrittura"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \tuplet 3/2 { c'8[ c c] }
+  \once \override TupletNumber.text = #tuplet-number::calc-fraction-text
+  \tuplet 3/2 {
+    c8[ c]
+    c8[ c]
+    \once \override TupletNumber.transparent = ##t
+    \tuplet 3/2 { c8[ c c] }
+    \tuplet 3/2 { c8[ c c] }
+  }
+}
+</pre><p>
+ <a href="../c8/lily-8193d8bf.ly">
+  <img align="middle"
+       border="0"
+       src="../c8/lily-8193d8bf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vedi-anche-30"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Guida alla Notazione:
+<a name="index-The-tweak-command_002c_002cThe-tweak-command"></a>
+The tweak command.
+</p>
+
+<hr size="6">
+<a name="Il-prefisso-single"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-tweak-command" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il comando tweak&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="the-internals-reference-manual.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Manuale del Funzionamento interno &gt; </a>]</td></tr></table>
+<a name="the-single-prefix"></a>
+<h4 class="unnumberedsubsubsec">Il prefisso <code>\single</code></h4>
+
+<a name="index-_005csingle"></a>
+<a name="index-_005csingle-1"></a>
+<a name="index-tweak_002c-generato-da-override"></a>
+
+<p>Immaginiamo di voler enfatizzare alcune teste di nota in particolare
+colorandole di rosso e aumentandone la dimensione; e immaginiamo anche
+che per comodità abbiamo definito una funzione per fare ciò:
+</p>
+<blockquote><pre class="verbatim">emphNoteHead = {
+  \override NoteHead.color = #red
+  \override NoteHead.font-size = 2
+}
+\relative {
+  c''4 a \once \emphNoteHead f d |
+}
+</pre><p>
+ <a href="../9c/lily-fc696b93.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-fc696b93.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Il prefisso <code>\once</code> funziona bene se si desidera enfatizzare note
+singole o interi accordi, ma non permette di enfatizzare una singola
+nota <em>dentro</em> un accordo.  Prima abbiamo visto come si possa usare
+<code>\tweak</code> per fare ciò, vedi <a href="#the-tweak-command">Il comando <code>\tweak</code></a>.
+Ma non è possibile usare <code>\tweak</code> in una funzione; è in questo caso che
+torna utile il comando <code>\single</code>:
+</p>
+<blockquote><pre class="verbatim">emphNoteHead = {
+  \override NoteHead.color = #red
+  \override NoteHead.font-size = 2
+}
+\relative {
+   &lt;c'' a \single \emphNoteHead f d&gt;4
+}
+</pre><p>
+ <a href="../a6/lily-39694921.ly">
+  <img align="middle"
+       border="0"
+       src="../a6/lily-39694921.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In sintesi, <code>\single</code> converte le modifiche introdotte dal comando
+<code>\override</code> in modifiche eseguite dal comando <code>\tweak</code>.
+Ciò significa che quando ci sono vari oggetti che si trovano nello stesso
+momento musicale (come le teste di nota in un accordo), <code>\single</code> avrà
+effetto su uno solo, quello generato dall&rsquo;espressione musicale immediatamente
+seguente; a differenza di <code>\once</code>, che ha effetto su tutti questi oggetti.
+</p>
+<p>Usando <code>\single</code> in questo modo qualsiasi funzione usata come
+scorciatoia che contiene soltanto <code>\override</code> può essere applicata
+a note individuali in un accordo.  Tuttavia, <code>\single</code> non converte
+<code>\revert</code>, <code>\set</code> e <code>\unset</code> in modifiche che hanno le
+proprietà di <code>\tweak</code>.
+</p>
+<a name="Vedi-anche-22"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Manuale di apprendimento:
+<a href="#the-tweak-command">Il comando <code>\tweak</code></a>,
+<a href="using-variables-for-layout-adjustments.it.html">Uso delle variabili per modificare la formattazione</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-tweak-command" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il comando tweak&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#tweaking-methods" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Metodi di modifica&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="the-internals-reference-manual.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Manuale del Funzionamento interno &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="tweaking-methods.html">English</a>, <a href="tweaking-methods.ca.html">català</a>, <a href="tweaking-methods.cs.html">česky</a>, <a href="tweaking-methods.de.html">deutsch</a>, <a href="tweaking-methods.es.html">español</a>, <a href="tweaking-methods.fr.html">français</a>, <a href="tweaking-methods.ja.html">日本語</a>, <a href="tweaking-methods.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Manuale di apprendimento  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.it.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilare-un-file-1" href="compiling-a-file.it.html">1.1 Compilare un file</a>    </li>
+    <li class=""><a name="toc-Come-scrivere-i-file-di-input-1" href="how-to-write-input-files.it.html">1.2 Come scrivere i file di input</a>    </li>
+    <li class=""><a name="toc-Gestire-gli-errori-1" href="dealing-with-errors.it.html">1.3 Gestire gli errori</a>    </li>
+    <li class=""><a name="toc-Come-leggere-i-manuali-1" href="how-to-read-the-manuals.it.html">1.4 Come leggere i manuali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notazione-comunemente-utilizzata-1" href="common-notation.it.html">2. Notazione comunemente utilizzata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notazione-su-un-solo-pentagramma-1" href="single-staff-notation.it.html">2.1 Notazione su un solo pentagramma</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="multiple-notes-at-once.it.html">2.2 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.3 Canzoni</a>    </li>
+    <li class=""><a name="toc-Ritocchi-finali-1" href="final-touches.it.html">2.4 Ritocchi finali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concetti-fondamentali-1" href="fundamental-concepts.it.html">3. Concetti fondamentali</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Come-funzionano-i-file-di-input-di-LilyPond-1" href="how-lilypond-input-files-work.it.html">3.1 Come funzionano i file di input di LilyPond</a>    </li>
+    <li class=""><a name="toc-Le-voci-contengono-la-musica-1" href="voices-contain-music.it.html">3.2 Le voci contengono la musica</a>    </li>
+    <li class=""><a name="toc-Contesti-e-incisori-1" href="contexts-and-engravers.it.html">3.3 Contesti e incisori</a>    </li>
+    <li class=""><a name="toc-Estendere-i-modelli-1" href="extending-the-templates.it.html">3.4 Estendere i modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Modifica-dell_0027output-1" href="tweaking-output.it.html">4. Modifica dell&rsquo;output</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Modifiche-di-base-1" href="tweaking-basics.it.html">4.1 Modifiche di base</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Introduzione-alle-modifiche-1" href="introduction-to-tweaks.it.html">4.1.1 Introduzione alle modifiche</a>      </li>
+      <li class=""><a name="toc-Oggetti-e-interfacce-1" href="objects-and-interfaces.it.html">4.1.2 Oggetti e interfacce</a>      </li>
+      <li class=""><a name="toc-Convenzioni-per-i-nomi-di-oggetti-e-proprieta" href="naming-conventions-of-objects-and-properties.it.html">4.1.3 Convenzioni per i nomi di oggetti e proprietà</a>      </li>
+      <li class=" toc_current"><a name="toc-Metodi-di-modifica-1" href="tweaking-methods.it.html">4.1.4 Metodi di modifica</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Il-comando-_005coverride" href="tweaking-methods.it.html#the-override-command">Il comando <code>\override</code></a>        </li>
+        <li class=""><a name="toc-Il-comando-_005crevert" href="tweaking-methods.it.html#the-revert-command">Il comando <code>\revert</code></a>        </li>
+        <li class=""><a name="toc-Il-prefisso-_005conce" href="tweaking-methods.it.html#the-once-prefix">Il prefisso <code>\once</code></a>        </li>
+        <li class=""><a name="toc-Il-comando-_005coverrideProperty" href="tweaking-methods.it.html#the-overrideproperty-command">Il comando <code>\overrideProperty</code></a>        </li>
+        <li class=""><a name="toc-Il-comando-_005ctweak" href="tweaking-methods.it.html#the-tweak-command">Il comando <code>\tweak</code></a>        </li>
+        <li class=""><a name="toc-Il-prefisso-_005csingle" href="tweaking-methods.it.html#the-single-prefix">Il prefisso <code>\single</code></a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Manuale-del-Funzionamento-interno-1" href="the-internals-reference-manual.it.html">4.2 Manuale del Funzionamento interno</a>    </li>
+    <li class=""><a name="toc-Aspetto-degli-oggetti-1" href="appearance-of-objects.it.html">4.3 Aspetto degli oggetti</a>    </li>
+    <li class=""><a name="toc-Posizionamento-degli-oggetti-1" href="placement-of-objects.it.html">4.4 Posizionamento degli oggetti</a>    </li>
+    <li class=""><a name="toc-Spaziatura-verticale-1" href="vertical-spacing.it.html">4.5 Spaziatura verticale</a>    </li>
+    <li class=""><a name="toc-Collisioni-tra-oggetti-1" href="collisions-of-objects.it.html">4.6 Collisioni tra oggetti</a>    </li>
+    <li class=""><a name="toc-Altre-modifiche-1" href="further-tweaking.it.html">4.7 Altre modifiche</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modelli-1" href="templates.it.html">A. Modelli</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modelli-integrati-1" href="built_002din-templates.it.html">A.1 Modelli integrati</a>    </li>
+    <li class=""><a name="toc-Modelli-per-rigo-singolo-1" href="single-staff-templates.it.html">A.2 Modelli per rigo singolo</a>    </li>
+    <li class=""><a name="toc-Modelli-per-pianoforte-1" href="piano-templates.it.html">A.3 Modelli per pianoforte</a>    </li>
+    <li class=""><a name="toc-Modelli-per-quartetto-d_0027archi-1" href="string-quartet-templates.it.html">A.4 Modelli per quartetto d&rsquo;archi</a>    </li>
+    <li class=""><a name="toc-Modelli-per-gruppi-vocali-1" href="vocal-ensembles-templates.it.html">A.5 Modelli per gruppi vocali</a>    </li>
+    <li class=""><a name="toc-Modelli-per-orchestra-1" href="orchestral-templates.it.html">A.6 Modelli per orchestra</a>    </li>
+    <li class=""><a name="toc-Modelli-per-notazione-antica-1" href="ancient-notation-templates.it.html">A.7 Modelli per notazione antica</a>    </li>
+    <li class=""><a name="toc-Altri-modelli-1" href="other-templates.it.html">A.8 Altri modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">C. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

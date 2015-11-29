@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Autorské právo C 1999-2015 autoři.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Překlad následující poznámky k autorskému právu je pro čtenáře,
+který neumí anglicky, k obeznámení se. V právním smyslu je ale platná
+pouze anglická verze.
+
+Tento dokument je dovoleno rozšiřovat, kopírovat, a/nebo
+upravovat za podmínek licence GNU Free Documentation, verze 1.1 nebo jakékoli pozdější, 
+ve verzi zveřejněné Free Software Foundation; s žádnými neměnnými částmi.
+Kopie licence je zahrnuta v oddíle nazvaném GNU
+Free Documentation License.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Příručka k učení se: 3.3.4 Změna vlastností prostředí</title>
+
+<meta name="description" content="Příručka k učení se: 3.3.4 Změna vlastností prostředí">
+<meta name="keywords" content="Příručka k učení se: 3.3.4 Změna vlastností prostředí">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.cs.html#index" rel="start" title="LilyPond &ndash; Learning Manual">
+<link href="lilypond-index.cs.html#lilypond-index" rel="index" title="C. Rejstřík k LilyPondu">
+<link href="index_toc.cs.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.cs.html#SEC_About" rel="help" title="About This Document">
+<link href="contexts-and-engravers.cs.html#contexts-and-engravers" rel="up" title="3.3 Prostředí a rytci">
+<link href="lilypond-index.cs.html#lilypond-index" rel="next" title="C. Rejstřík k LilyPondu">
+<link href="engravers-explained.cs.html#engravers-explained" rel="previous" title="3.3.3 Vysvětlení rytců">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="cs" class="learning devStatus">
+
+
+<div id="main">
+<a name="Zm_011bna-vlastnost_00ed-prost_0159ed_00ed"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.cs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Základní pojmy&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.cs.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.cs.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.cs.html" title="Index" rel="index">Index</a>][<a href="index_abt.cs.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.cs.html" title="Next chapter">&nbsp;Ladění výstupu &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.cs.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Vysvětlení rytců&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.cs.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Prostředí a rytci&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.cs.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Přidání a odstranění rytců &gt; </a>]</td></tr></table>
+<a name="modifying-context-properties"></a>
+<h3 class="subsection">3.3.4 Změna vlastností prostředí</h3>
+
+<a name="index-Kontext_002dEigenschaften_002c-Verandern"></a>
+<a name="index-Eigenschaften-von-Kontexten"></a>
+<a name="index-Verandern-von-Kontext_002dEigenschaften"></a>
+<a name="index-_005cset"></a>
+<a name="index-_005cset-1"></a>
+<a name="index-_005cunset"></a>
+<a name="index-_005cunset-1"></a>
+<a name="index-set"></a>
+<a name="index-set-1"></a>
+<a name="index-unset"></a>
+<a name="index-unset-1"></a>
+
+<p>Kontexte sind dafür verantwortlich, die Werte bestimmter
+Kontext-<em>Eigenschaften</em> zu speichern.  Viele davon
+können verändert werden, um die Interpretation der
+Eingabe zu beeinflussen und die Ausgabe zu verändern.
+Kontexte werden mit dem <code>\set</code>-Befehl geändert.
+Er wird in Form
+</p>
+<blockquote><pre class="example">\set <var>KontextBezeichnung</var>.<var>eigenschaftsBezeichnung</var> = #<var>Wert</var>
+</pre></blockquote>
+
+<p>verwendet, wobei <var>KontextBezeichnung</var> üblicherweise
+<code>Score</code>,
+<code>Staff</code> oder <code>Voice</code> ist.  Der erste Teil kann auch
+ausgelassen werden; in diesem Fall wird der aktuelle
+Kontext (üblicherweise <code>Voice</code>) eingesetzt.
+</p>
+<p>Die Bezeichnung von Kontexten-Eigenschaften besteht
+aus zwei Wörtern, die ohne Unterstrich oder Bindestrich
+verbunden sind.  Alle außer dem ersten werden am Anfang
+groß geschrieben.  Hier einige Beispiele der gebräuchlichsten
+Kontext-Eigenschaften.  Es gibt sehr viel mehr.
+</p>
+<table>
+<thead><tr><th width="25%">eigenschaftsBezeichnung</th><th width="15%">Typ</th><th width="45%">Funktion</th><th width="15%">Beispiel-Wert</th></tr></thead>
+<tr><td width="25%">extraNatural</td><td width="15%">boolescher Wert</td><td width="45%">Wenn wahr, werden zusätzliche Auflösungszeichen vor Versetzungszeichen gesetzt.</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">currentBarNumber</td><td width="15%">Integer</td><td width="45%">Setzt die aktuelle Taktnummer.</td><td width="15%"><code>50</code></td></tr>
+<tr><td width="25%">doubleSlurs</td><td width="15%">boolescher Wert</td><td width="45%">Wenn wahr, werden Legatobögen über und unter die Noten gesetzt.</td><td width="15%"><code>#t</code>, <code>#f</code></td></tr>
+<tr><td width="25%">instrumentName</td><td width="15%">Text</td><td width="45%">Setzt die Instrumentenbezeichnung am Anfang eines Systems.</td><td width="15%"><code>&quot;Cello I&quot;</code></td></tr>
+<tr><td width="25%">fontSize</td><td width="15%">reale Zahl</td><td width="45%">Vergrößert oder verkleinert die Schriftgröße.</td><td width="15%"><code>2.4</code></td></tr>
+<tr><td width="25%">stanza</td><td width="15%">Text</td><td width="45%">Setzt den Text zu Beginn einer Strophe.</td><td width="15%"><code>&quot;2&quot;</code></td></tr>
+</table>
+
+<p>Ein boolescher Wert ist entweder wahr  (<code>#t</code>)
+oder falsch (<code>#f</code>),
+ein Integer eine positive ganze Zahl, ein Real (reelle Zahl) eine positive
+oder negative Dezimalzahl, und Text wird in doppelte
+Anführungszeichen (Shift+2) eingeschlossen.  Beachten Sie
+das Vorkommen des Rautenzeichens
+(<code>#</code>) an unterschiedlichen Stellen: als Teil eines
+booleschen Wertes vor dem <code>t</code> oder <code>f</code>, aber
+auch vor einem <em>Wert</em> in der
+<code>\set</code>-Befehlskette.  Wenn ein boolescher Wert
+eingegeben werden soll, braucht man also zwei
+Rautenzeichen, z. B. <code>##t</code>.
+</p>
+<a name="index-Eigenschaften-in-Kontexten"></a>
+<a name="index-Veranderung-von-Eigenschaften-in-Kontexten"></a>
+
+<p>Bevor eine Eigenschaft geändert werden kann, muss man wissen,
+in welchem Kontext sie sich befindet.  Manchmal versteht das
+sich von selbst, aber in einigen Fällen kann es zunächst
+unverständlich erscheinen.  Wenn der falsche Kontext angegeben
+wird, wird keine Fehlermeldung produziert, aber die
+Veränderung wird einfach nicht ausgeführt.
+<code>instrumentName</code> befindet sich offensichtlich innerhalb
+von einem <code>Staff</code>-Kontext, denn das Notensystem soll
+benannt werden.  In dem folgenden Beispiel erhält das erste
+System korrekt die Instrumentenbezeichnung, das zweite aber
+nicht, weil der Kontext ausgelassen wurde.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    \set Staff.instrumentName = #&quot;Soprano&quot;
+    c''2 c
+ }
+  \new Staff \relative {
+    \set instrumentName = #&quot;Alto&quot;  % Wrong!
+    d'2 d
+ }
+&gt;&gt;
+</pre><p>
+ <a href="../4e/lily-41183ba2.ly">
+  <img align="middle"
+       border="0"
+       src="../4e/lily-41183ba2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Denken Sie daran, dass der Standardkontext <code>Voice</code> ist; in dem
+zweiten <code>\set</code>-Befehl wird also die Eigenschaft <code>instrumentName</code>
+im <code>Voice</code>-Kontext auf &bdquo;Alto&ldquo;, gesetzt, aber weil LilyPond diese
+Eigenschaft nicht im <code>Voice</code>-Kontext vermutet, passiert einfach
+gar nichts.  Das ist kein Fehler, und darum wird auch keine Fehlermeldung
+produziert.
+</p>
+<p>Ebenso gibt es keine Fehlermeldung, wenn die Kontext-Bezeichnung
+falsch geschrieben wird und die Änderung also nicht ausgeführt werden
+kann.  Tatsächlich kann eine beliebige (ausgedachte) Kontextbezeichnung
+mit dem <code>\set</code>-Befehl eingesetzt werden, genauso wie die, die
+wirklich existieren.  Aber wenn LilyPond diese Bezeichnung nicht
+zuordnen kann, bewirkt der Befehl einfach gar nichts.  Manche Editoren,
+die Unterstützung für LilyPond-Befehle mitbringen, markieren existierende
+Kontextbezeichnungen mit einem Punkt, wenn man mit der Maus darüber
+fährt (wie etwa JEdit mit dem LilyPondTool), oder markieren
+unbekannte Bezeichnungen anders (wie ConTEXT).  Wenn Sie keinen
+Editor mit LilyPond-Unterstützung einsetzen, wird empfohlen, die
+Bezeichnungen in der Interna-Referenz zu überprüfen: siehe
+<a name="index-Tunable-context-properties"></a>
+<a href="../internals/tunable-context-properties.cs.html">Tunable context properties</a>, oder
+<a name="index-Contexts"></a>
+<a href="../internals/contexts.cs.html">Contexts</a>.
+</p>
+<p>Die Eigenschaft <code>instrumentName</code> wird erst aktiv, wenn sie
+in einem <code>Staff</code>-Kontext gesetzt wird, aber manche Eigenschaften
+können in mehr als einem Kontext benutzt werden.  Als Beispiel mag die
+<code>extraNatural</code>-Eigenschaft dienen, die zusätzliche Erniedrigungszeichen
+setzt.  Die Standardeinstellung ist ##t (wahr) in allen Systemen.
+Wenn sie nur in einem <code>Staff</code> (Notensystem) auf ##f (falsch)
+gesetzt wird, wirkt sie sich auf alle Noten in diesem System aus.  Wird
+sie dagegen in der <code>Score</code>-Umgebung gesetzt, wirkt sich das
+auf alle darin enthaltenen Systeme aus.
+</p>
+<p>Das also bewirkt, dass die zusätzlichen Erniedrigungszeichen in einem System
+ausgeschaltet sind:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    ais'2 aes
+  }
+  \new Staff \relative {
+    \set Staff.extraNatural = ##f
+    ais'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../28/lily-49e9620d.ly">
+  <img align="middle"
+       border="0"
+       src="../28/lily-49e9620d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>während das dazu dient, sie in allen Systemen auszuschalten:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff \relative {
+    ais'2 aes
+  }
+  \new Staff \relative {
+    \set Score.extraNatural = ##f
+    ais'2 aes
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../f5/lily-d7793986.ly">
+  <img align="middle"
+       border="0"
+       src="../f5/lily-d7793986.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ein anderes Beispiel ist die Eigenschaft <code>clefTransposition</code>:
+wenn sie im <code>Score</code>-Kontext gesetzt wird, ändert sich sofort
+der Wert der Oktavierung in allen aktuellen Systemen und wird
+auf einen neuen Wert gesetzt, der sich auf alle Systeme auswirkt.
+</p>
+<p>Der gegenteilige Befehl, <code>\unset</code>, entfernt die Eigenschaft
+effektiv wieder von dem Kontext: in den meisten Fällen wird der
+Kontext auf ihre Standardeinstellungen zurückgesetzt.
+Normalerweise wird aber <code>\unset</code> nicht benötigt,
+denn ein neues <code>\set</code> erledigt alles, was man braucht.
+</p>
+<p>Die <code>\set</code>- und <code>\unset</code>-Befehle könne überall im
+Eingabequelltext erscheinen und werden aktiv von dem Moment, an
+dem sie auftreten bis zum Ende der Partitur oder bis die Eigenschaft
+mit <code>\set</code> oder <code>\unset</code> neu gesetzt wird.  Versuchen
+wir als Beispiel, die Schriftgröße mehrmals zu ändern, was sich unter anderem
+auf die Notenköpfe auswirkt.  Die Änderung bezieht sich immer auf den Standard,
+nicht vom letzten gesetzten Wert.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c'4 d
+  % make note heads smaller
+  \set fontSize = #-4
+  e4 f |
+  % make note heads larger
+  \set fontSize = #2.5
+  g4 a
+  % return to default size
+  \unset fontSize
+  b4 c |
+}
+</pre><p>
+ <a href="../3d/lily-111cc624.ly">
+  <img align="middle"
+       border="0"
+       src="../3d/lily-111cc624.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wir haben jetzt gesehen, wie sich die Werte von unterschiedlichen
+Eigenschaften ändern lassen.  Beachten Sie, dass Integer und
+Zahlen immer mit einem Rautenzeichen beginnen, während
+die Werte wahr und falsch (mit <code>##t</code> und <code>##f</code>
+notiert) immer mit zwei Rauten beginnen.  Eine Eigenschaft, die
+aus Text besteht, muss in doppelte Anführungsstriche gesetzt werden,
+auch wenn wir später sehen werden, dass Text auf eine sehr viel
+allgemeinere und mächtigere Art mit dem <code>\markup</code>-Befehl
+eingegeben werden kann.
+</p>
+<a name="Kontexteigenschaften-mit-_005cwith-setzen"></a>
+<h4 class="subsubheading">Kontexteigenschaften mit <code>\with</code> setzen</h4>
+
+<a name="index-_005cwith"></a>
+<a name="index-_005cwith-1"></a>
+<a name="index-with"></a>
+<a name="index-with-1"></a>
+<a name="index-Kontexteigenschaft_002c-setzen-mit-_005cwith"></a>
+
+<p>Die Standardwerte von Kontexteigenschaften können zu dem Zeitpunkt
+definiert werden, an welchem der Kontext erstellt wird. Manchmal
+ist das eine saubere Weise, eine Eigenschaft zu bestimmen, die für
+die gesamte Partitur erhalten bleichen soll.  Wenn ein Kontext mit
+einem <code>\new</code>-Befehl erstellt wird, können in einer
+direkt folgenden <code>\with { .. }</code>-Umgebung die Eigenschaften
+bestimmt werden.  Wenn also die zusätzlichen
+Auflösungszeichen für eine ganze Partitur gelten sollen, könnte
+man schreiben:
+</p>
+<blockquote><pre class="example">\new Staff \with { extraNatural = ##f }
+</pre></blockquote>
+
+<p>etwa so:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Staff
+    \relative {
+      gis'4 ges aes ais
+    }
+  \new Staff \with { extraNatural = ##f } {
+    \relative {
+      gis' ges aes ais
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../28/lily-18a6a4ca.ly">
+  <img align="middle"
+       border="0"
+       src="../28/lily-18a6a4ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Eigenschaften, die auf diese Arte gesetzt werden, können immer noch
+dynamisch mit dem <code>\set</code>-Befehl geändert werden und mit
+<code>\unset</code> auf ihre Standardeinstellungen zurückgesetzt werden,
+wie sie vorher in der <code>\with</code>-Umgebung definiert wurden.
+</p>
+<a name="index-Schriftgrosse_002c-Standardeinstellung"></a>
+<a name="index-fontSize-_0028Schriftgrosse_0029_002c-Standardeinstellung"></a>
+
+<p>Wenn also die <code>fontSize</code>-Eigenschaft in einer <code>\with</code>-Umgebung
+definiert wird, wird der Standardwert für die Schriftgröße
+festgelegt.  Wenn dieser Wert später mit <code>\set</code> verändert
+wird, kann dieser neue Standardwert mit dem Befehl
+<code>\unset fontSize</code> wieder erreicht werden.
+</p>
+<a name="Kontexteigenschaften-mit-_005ccontext-setzen"></a>
+<h4 class="subsubheading">Kontexteigenschaften mit <code>\context</code> setzen</h4>
+
+<a name="index-Kontexteigenschaften_002c-mit-_005ccontext-setzen"></a>
+<a name="index-Eigenschaften-von-Kontexten_002c-mit-_005ccontext-setzen"></a>
+<a name="index-_005ccontext"></a>
+<a name="index-_005ccontext-1"></a>
+<a name="index-context"></a>
+<a name="index-context-1"></a>
+
+<p>Die Werte von Kontext-Eigenschaften können in <em>allen</em> Kontexten
+eines bestimmten Typs (etwa alle <code>Staff</code>-Kontexte)
+gleichzeitig mit einem Befehl gesetzt werden.  Der Kontext wird
+spezifiziert, indem seine Bezeichnung benutzt wird, also etwa
+<code>Staff</code>, mit einem Backslash davor: <code>\Staff</code>.  Der Befehl
+für die Eigenschaft ist der gleiche, wie er auch in der
+<code>\with</code>-Konstruktion benutzt wird, wie oben gezeigt.  Er wird in
+eine <code>\context</code>-Umgebung eingebettet, welche wiederum innerhalb
+von einer <code>\layout</code>-Umgebung steht.  Jede <code>\context</code>-Umgebung
+wirkt sich auf alle Kontexte dieses Types aus, welche sich in der
+aktuellen Partitur befinden (d. h. innerhalb einer <code>\score</code>-
+oder <code>\book</code>-Umgebung).  Hier ist ein Beispiel, wie man diese
+Funktion anwendet:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new Staff {
+    \relative {
+      cis''4 e d ces
+    }
+  }
+  \layout {
+    \context {
+      \Staff
+      extraNatural = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../6e/lily-f5c0cd78.ly">
+  <img align="middle"
+       border="0"
+       src="../6e/lily-f5c0cd78.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn die Veränderung der Eigenschaft sich auf alle Systeme einer
+<code>score</code>-Umgebung beziehen soll:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        gis'4 ges aes ais
+      }
+    }
+    \new Staff {
+      \relative {
+        gis'4 ges aes ais
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score extraNatural = ##f
+    }
+  }
+}
+</pre><p>
+ <a href="../70/lily-2b8212cd.ly">
+  <img align="middle"
+       border="0"
+       src="../70/lily-2b8212cd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Kontext-Eigenschaften, die auf diese Weise gesetzt werden, können für
+bestimmten Kontexte überschrieben werden, indem die
+<code>\with</code>-Konstruktion eingesetzt wird, oder mit <code>\set</code>-Befehlen
+innerhalb der aktuellen Noten.
+</p>
+
+<a name="Podivejte-se-take-na-5"></a>
+<h4 class="subsubheading">Podívejte se také na</h4>
+<p>Notationsreferenz:
+<a name="index-Die-Standardeinstellungen-von-Kontexten-andern"></a>
+<a href="../notation/die-standardeinstellungen-von-kontexten-andern.cs.html#die-standardeinstellungen-von-kontexten-_00e4ndern">Die Standardeinstellungen von Kontexten ändern</a>,
+<a name="index-Der-set_002dBefehl"></a>
+<a href="../notation/der-set_002dbefehl.cs.html">Der set-Befehl</a>.
+</p>
+<p>Referenz der Interna:
+<a name="index-Contexts-1"></a>
+<a href="../internals/contexts.cs.html">Contexts</a>,
+<a name="index-Tunable-context-properties-1"></a>
+<a href="../internals/tunable-context-properties.cs.html">Tunable context properties</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.cs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Základní pojmy&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.cs.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.cs.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.cs.html" title="Index" rel="index">Index</a>][<a href="index_abt.cs.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.cs.html" title="Next chapter">&nbsp;Ladění výstupu &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="engravers-explained.cs.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Vysvětlení rytců&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.cs.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Prostředí a rytci&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="adding-and-removing-engravers.cs.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Přidání a odstranění rytců &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Tato stránka je pro LilyPond-2.19.32 (Vývojářská větev).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Jiné jazyky: <a href="modifying-context-properties.html">English</a>, <a href="modifying-context-properties.ca.html">català</a>, <a href="modifying-context-properties.de.html">deutsch</a>, <a href="modifying-context-properties.es.html">español</a>, <a href="modifying-context-properties.fr.html">français</a>, <a href="modifying-context-properties.hu.html">magyar</a>, <a href="modifying-context-properties.it.html">italiano</a>, <a href="modifying-context-properties.ja.html">日本語</a>, <a href="modifying-context-properties.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.cs.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.cs.html" title="Start of the manual">LilyPond &ndash; Learning Manual  v2.19.32 (Vývojářská větev). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Cviceni" href="tutorial.cs.html">1. Cvičení</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Prelozeni-zdrojoveho-souboru" href="compiling-a-file.cs.html">1.1 Přeložení zdrojového souboru</a>    </li>
+    <li class=""><a name="toc-Jak-se-pisi-vstupni-soubory" href="how-to-write-input-files.cs.html">1.2 Jak se píší vstupní soubory</a>    </li>
+    <li class=""><a name="toc-Vyporadani-se-s-chybami" href="dealing-with-errors.cs.html">1.3 Vypořádání se s chybami</a>    </li>
+    <li class=""><a name="toc-Jak-cist-prirucky" href="how-to-read-the-manuals.cs.html">1.4 Jak číst příručky</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bezny-notovy-zapis" href="common-notation.cs.html">2. Běžný notový zápis</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notovy-zapis-v-jedne-notove-osnove" href="single-staff-notation.cs.html">2.1 Notový zápis v jedné notové osnově</a>    </li>
+    <li class=""><a name="toc-Vice-not-najednou" href="multiple-notes-at-once.cs.html">2.2 Více not najednou</a>    </li>
+    <li class=""><a name="toc-Pisnicky" href="songs.cs.html">2.3 Písničky</a>    </li>
+    <li class=""><a name="toc-Posledni-upravy" href="final-touches.cs.html">2.4 Poslední úpravy</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Zakladni-pojmy" href="fundamental-concepts.cs.html">3. Základní pojmy</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Jak-pracuji-vstupni-soubory-LilyPondu" href="how-lilypond-input-files-work.cs.html">3.1 Jak pracují vstupní soubory LilyPondu</a>    </li>
+    <li class=""><a name="toc-Hlasy-obsahuji-noty" href="voices-contain-music.cs.html">3.2 Hlasy obsahují noty</a>    </li>
+    <li class=" toc_current"><a name="toc-Prostredi-a-rytci" href="contexts-and-engravers.cs.html">3.3 Prostředí a rytci</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Vysvetleni-prostredi" href="contexts-explained.cs.html">3.3.1 Vysvětlení prostředí</a>      </li>
+      <li class=""><a name="toc-Vytvoreni-prostredi" href="creating-contexts.cs.html">3.3.2 Vytvoření prostředí</a>      </li>
+      <li class=""><a name="toc-Vysvetleni-rytcu" href="engravers-explained.cs.html">3.3.3 Vysvětlení rytců</a>      </li>
+      <li class=" toc_current"><a name="toc-Zmena-vlastnosti-prostredi" href="modifying-context-properties.cs.html">3.3.4 Změna vlastností prostředí</a>      </li>
+      <li class=""><a name="toc-Pridani-a-odstraneni-rytcu" href="adding-and-removing-engravers.cs.html">3.3.5 Přidání a odstranění rytců</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Rozsireni-prikladu" href="extending-the-templates.cs.html">3.4 Rozšíření příkladů</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ladeni-vystupu" href="tweaking-output.cs.html">4. Ladění výstupu</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Zaklady-pro-ladeni" href="tweaking-basics.cs.html">4.1 Základy pro ladění</a>    </li>
+    <li class=""><a name="toc-Vnitrni-referencni-prirucka" href="the-internals-reference-manual.cs.html">4.2 Vnitřní referenční příručka</a>    </li>
+    <li class=""><a name="toc-Vzhled-predmetu" href="appearance-of-objects.cs.html">4.3 Vzhled předmětů</a>    </li>
+    <li class=""><a name="toc-Umisteni-predmetu" href="placement-of-objects.cs.html">4.4 Umístění předmětů</a>    </li>
+    <li class=""><a name="toc-Strety-predmetu" href="collisions-of-objects.cs.html">4.5 Střety předmětů</a>    </li>
+    <li class=""><a name="toc-Dalsi-ladeni" href="further-tweaking.cs.html">4.6 Další ladění</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Predlohy" href="templates.cs.html">A. Předlohy</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Jednotliva-notova-osnova" href="single-staff.cs.html">A.1 Jednotlivá notová osnova</a>    </li>
+    <li class=""><a name="toc-Klavirni-predlohy" href="piano-templates.cs.html">A.2 Klavírní předlohy</a>    </li>
+    <li class=""><a name="toc-Smyccovy-kvartet" href="string-quartet.cs.html">A.3 Smyčcový kvartet</a>    </li>
+    <li class=""><a name="toc-Vokalni-soubor" href="vocal-ensembles.cs.html">A.4 Vokální soubor</a>    </li>
+    <li class=""><a name="toc-Orchestralni-predloha" href="orchestral-templates.cs.html">A.5 Orchestrální předloha</a>    </li>
+    <li class=""><a name="toc-Predlohy-pro-stary-notovy-zapis" href="ancient-notation-templates.cs.html">A.6 Předlohy pro starý notový zápis</a>    </li>
+    <li class=""><a name="toc-Jine-predlohy" href="other-templates.cs.html">A.7 Jiné předlohy</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.cs.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Rejstrik-k-LilyPondu" href="lilypond-index.cs.html">C. Rejstřík k LilyPondu</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

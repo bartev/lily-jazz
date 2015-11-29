@@ -1,0 +1,590 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2003-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Extender LilyPond: B.5.3 Definición de una instrucción de marcado nueva</title>
+
+<meta name="description" content="Extender LilyPond: B.5.3 Definición de una instrucción de marcado nueva">
+<meta name="keywords" content="Extender LilyPond: B.5.3 Definición de una instrucción de marcado nueva">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Extender">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="E. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="markup-functions.es.html#markup-functions" rel="up" title="B.5 Funciones de marcado">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="how-markups-work-internally.es.html#how-markups-work-internally" rel="previous" title="B.5.2 Cómo funcionan internamente los elementos de marcado">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="extending devStatus">
+
+
+<div id="main">
+<a name="Definici_00f3n-de-una-instrucci_00f3n-de-marcado-nueva"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="how-markups-work-internally.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Cómo funcionan internamente los elementos de marcado&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="markup-functions.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Funciones de marcado&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#markup-command-definition-syntax" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Sintaxis de la definición de instrucciones de marcado &gt; </a>]</td></tr></table>
+<a name="new-markup-command-definition"></a>
+<h3 class="subsection">B.5.3 Definición de una instrucción de marcado nueva</h3>
+
+<p>Esta sección trata sobre la definición de nuevas instrucciones de
+marcado.
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#markup-command-definition-syntax" accesskey="1">Sintaxis de la definición de instrucciones de marcado</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#on-properties" accesskey="2">Acerca de las propiedades</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#a-complete-example" accesskey="3">Un ejemplo completo</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#adapting-builtin-commands" accesskey="4">Adaptación de instrucciones incorporadas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Sintaxis-de-la-definici_00f3n-de-instrucciones-de-marcado"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#new-markup-command-definition" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Definición de una instrucción de marcado nueva&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Definición de una instrucción de marcado nueva&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#on-properties" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Acerca de las propiedades &gt; </a>]</td></tr></table>
+<a name="markup-command-definition-syntax"></a>
+<h4 class="unnumberedsubsubsec">Sintaxis de la definición de instrucciones de marcado</h4>
+
+<p>Se pueden definir instrucciones de marcado nuevas usando el macro de
+Scheme <code>define-markup-command</code>, en el nivel sintáctico superior.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (<var>nombre-de-la-instruccion</var> <var>layout</var> <var>props</var> <var>arg1</var> <var>arg2</var> &hellip;)
+    (<var>tipo-de-arg1?</var> <var>tipo-de-arg2?</var> &hellip;)
+    [ #:properties ((<var>propiedad1</var> <var>valor-predeterminado1</var>)
+                    &hellip;) ]
+  &hellip;command body&hellip;)
+</pre></td></tr></table>
+
+<p>Los argumentos son
+</p>
+<dl compact="compact">
+<dt> <code><var>nombre-de-la-instruccion</var></code></dt>
+<dd><p>nombre de la instrucción de marcado
+</p></dd>
+<dt> <code>layout</code></dt>
+<dd><p>la definición de &lsquo;layout&rsquo; (disposición).
+</p></dd>
+<dt> <code>props</code></dt>
+<dd><p>una lista de listas asociativas, que contienen todas las propiedades
+activas.
+</p></dd>
+<dt> <code><var>argi</var></code></dt>
+<dd><p>argumento <var>i</var>-ésimo de la instrucción
+</p></dd>
+<dt> <code><var>tipo-de-argi?</var></code></dt>
+<dd><p>predicado de tipo para el argumento <var>i</var>-ésimo
+</p></dd>
+</dl>
+
+<p>Si la instrucción utiliza propiedades de los argumentos <code>props</code>,
+se puede usar la palabra clave <code>#:properties</code> para especificar
+qué propiedades se usan, así como sus valores predeterminados.
+</p>
+<p>Los argumentos se distinguen según su tipo:
+</p><ul>
+<li> un marcado, que corresponde al predicado de tipo <code>markup?</code>;
+</li><li> una lista de marcados, que corresponde al predicado de tipo
+<code>markup-list?</code>;
+</li><li> cualquier otro objeto de Scheme, que corresponde a predicados de tipo como
+<code>list?</code>, <code>number?</code>, <code>boolean?</code>, etc.
+</li></ul>
+
+<p>No existe ninguna limitación en el orden de los argumentos (después de
+los argumentos estándar <code>layout</code> y <code>props</code>).  Sin embargo, las
+funciones de marcado que toman un elemento de marcado como su último
+argumento son un poco especiales porque podemos aplicarlas a una lista
+de marcados y el resultado es una lista de marcados donde la función
+de marcado (con los argumentos antecedentes especificados) se ha
+aplicado a todos los elementos de la lista de marcados original.
+</p>
+<p>Dado que la replicación de los argumentos precedentes para aplicar una
+función de marcado a una lista de marcados es poco costosa
+principalmente por los argumentos de Scheme, se evitan las caídas de
+rendimiento simplemente mediante la utilización de argumentos de
+Scheme para los argumentos antecedentes de las funciones de marcado
+que toman un marcado como su último argumento.
+</p>
+<a name="index-_005cmarkup"></a>
+<a name="index-_005cmarkup-1"></a>
+<a name="index-markup-macro"></a>
+<a name="index-interpret_002dmarkup"></a>
+<a name="index-interpret_002dmarkup-1"></a>
+<p>Las instrucciones de marcado tienen un ciclo de vida más bien
+complejo.  El cuerpo de la definición de una instrucción de marcado es
+responsable de la conversión de los argumentos de la instrucción de
+marcado en una expresión de sello que se devuelve.  Muy a menudo esto
+se lleva a cabo llamando a la función <code>interpret-markup</code> sobre
+una expresión de marcado, pasándole los argumentos <var>layout</var> y
+<var>props</var>.  Por lo general, estos argumentos se conocen solamente en
+una fase muy tardía de la composición tipográfica.  Las expresiones de
+marcado ya tienen sus componentes ensamblados dentro de expresiones de
+marcado cuando se expanden las instrucciones <code>\markup</code> (dentro de
+una expresión de LilyPond) o la macro <code>markup</code> (dentro de
+Scheme).  La evaluación y la comprobación de tipos de los argumentos
+de la instrucción de marcado tiene lugar en el momento en que se
+interpretan <code>\markup</code> o <code>markup</code>.
+</p>
+<p>Pero la conversión real de expresiones de marcado en expresiones de
+sello mediante la ejecución de los cuerpos de función de marcado solo
+tienen lugar cuando se llama a <code>interpret-markup</code> sobre una
+expresión de marcado.
+</p>
+<hr size="6">
+<a name="Acerca-de-las-propiedades"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#markup-command-definition-syntax" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Sintaxis de la definición de instrucciones de marcado&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Definición de una instrucción de marcado nueva&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#a-complete-example" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Un ejemplo completo &gt; </a>]</td></tr></table>
+<a name="on-properties"></a>
+<h4 class="unnumberedsubsubsec">Acerca de las propiedades</h4>
+
+<p>Los argumentos <code>layout</code> y <code>props</code> de las instrucciones de
+marcado traen a escena un contexto para la interpretación del marcado:
+tamaño de la tipografía, grueso de línea, etc.
+</p>
+<p>El argumento <code>layout</code> permite el acceso a las propiedades
+definidas en los bloques <code>paper</code>, usando la función
+<code>ly:output-def-lookup</code>.  Por ejemplo, el grueso de línea (el
+mismo que el que se usa en las partituras) se lee usando:
+</p>
+<blockquote><pre class="example">(ly:output-def-lookup layout 'line-width)
+</pre></blockquote>
+
+<p>El argumento <code>props</code> hace accesibles algunas propiedades a las
+instrucciones de marcado.  Por ejemplo, cuando se interpreta el
+marcado del título de un libro, todas las variables definidas dentro
+del bloque <code>\header</code> se añaden automáticamente a <code>props</code>, de
+manera que el marcado del título del libro puede acceder al título del
+libro, el autor, etc.  También es una forma de configurar el
+comportamiento de una instrucción de marcado: por ejemplo, cuando una
+instrucción utiliza tamaños de tipografía durante el procesado, el
+tamaño se lee de <code>props</code> en vez de tener un argumento
+<code>font-size</code>.  El que llama a una instrucción de marcado puede
+cambiar el valor de la propiedad del tamaño de la tipografía con el
+objeto de modificar el comportamiento.  Utilice la palabra clave
+<code>#:properties</code> de <code>define-markup-command</code> para especificar
+qué propiedades se deben leer a partir de los argumentos de
+<code>props</code>.
+</p>
+<p>El ejemplo de la sección siguiente ilustra cómo acceder y
+sobreescribir las propiedades de una instrucción de marcado.
+</p>
+
+<hr size="6">
+<a name="Un-ejemplo-completo"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#on-properties" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Acerca de las propiedades&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Definición de una instrucción de marcado nueva&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#adapting-builtin-commands" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Adaptación de instrucciones incorporadas &gt; </a>]</td></tr></table>
+<a name="a-complete-example"></a>
+<h4 class="unnumberedsubsubsec">Un ejemplo completo</h4>
+
+<p>El ejemplo siguiente define una instrucción de marcado para trazar un
+rectángulo doble alrededor de un fragmento de texto.
+</p>
+<p>En primer lugar, necesitamos construir un resultado aproximado
+utilizando marcados.  Una consulta a <a name="index-Instrucciones-de-marcado"></a>
+de texto
+<a href="../notation/text-markup-commands.es.html">Instrucciones de marcado de texto</a> nos muestra que es útil la instrucción <code>\box</code>:
+</p>
+<blockquote><pre class="verbatim">\markup \box \box HELLO
+</pre><p>
+ <a href="../75/lily-43f5cbce.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-43f5cbce.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ahora, consideramos que es preferible tener más separación entre el
+texto y los rectángulos.  Según la documentación de <code>\box</code>, esta
+instrucción usa una propiedad <code>box-padding</code>, cuyo valor
+predeterminado es 0.2.  La documentación también menciona cómo
+sobreescribir este valor:
+</p>
+<blockquote><pre class="verbatim">\markup \box \override #'(box-padding . 0.6) \box A
+</pre><p>
+ <a href="../81/lily-7d9eea09.ly">
+  <img align="middle"
+       border="0"
+       src="../81/lily-7d9eea09.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Después, el relleno o separación entre los dos rectángulos nos parece
+muy pequeño, así que lo vamos a sobreescribir también:
+</p>
+<blockquote><pre class="verbatim">\markup \override #'(box-padding . 0.4) \box
+     \override #'(box-padding . 0.6) \box A
+</pre><p>
+ <a href="../b5/lily-8a9d114e.ly">
+  <img align="middle"
+       border="0"
+       src="../b5/lily-8a9d114e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Repetir esta extensa instrucción de marcado una y otra vez sería un
+quebradero de cabeza.  Aquí es donde se necesita una instrucción de
+marcado.  Así pues, escribimos una instrucción de marcado
+<code>double-box</code>, que toma un argumento (el texto).  Dibuja los dos
+rectángulos y añade una separación.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  &quot;Trazar un rectángulo doble rodeando el texto.&quot;
+  (interpret-markup layout props
+    #{\markup \override #'(box-padding . 0.4) \box
+            \override #'(box-padding . 0.6) \box { #text }#}))
+</pre></td></tr></table>
+
+<p>o, de forma equivalente,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  &quot;Trazar un rectángulo doble rodeando el texto.&quot;
+  (interpret-markup layout props
+    (markup #:override '(box-padding . 0.4) #:box
+            #:override '(box-padding . 0.6) #:box text)))
+</pre></td></tr></table>
+
+<p><code>text</code> es el nombre del argumento de la instrucción, y
+<code>markup?</code> es el tipo: lo identifica como un elemento de marcado.
+La función <code>interpret-markup</code> se usa en casi todas las
+instrucciones de marcado: construye un sello, usando <code>layout</code>,
+<code>props</code>, y un elemento de marcado.  En el segundo caso, la marca
+se construye usando el macro de Scheme <code>markup</code>, véase
+<a href="markup-construction-in-scheme.es.html">Construcción de elementos de marcado en Scheme</a>.  La
+transformación de una expresión <code>\markup</code> en una expresión de
+marcado de Scheme es directa.
+</p>
+<p>La instrucción nueva se puede usar como sigue:
+</p>
+<blockquote><pre class="example">\markup \double-box A
+</pre></blockquote>
+
+<p>Sería buen hacer que la instrucción <code>double-box</code> fuera
+personalizable: aquí, los valores de relleno <code>box-padding</code> son
+fijos, y no se pueden cambiar por parte del usuario.  Además, sería
+mejor distinguir la separación entre los dos rectángulos, del relleno
+entre el rectángulo interno y el texto.  Así pues, introducimos una
+nueva propiedad, <code>inter-box-padding</code>, para el relleno entre los
+rectángulos.  El <code>box-padding</code> se usará para el relleno interno.
+Ahora el código nuevo es como se ve a continuación:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  #:properties ((inter-box-padding 0.4)
+                (box-padding 0.6))
+  &quot;Trazar un rectángulo doble rodeando el texto.&quot;
+  (interpret-markup layout props
+    #{\markup \override #`(box-padding . ,inter-box-padding) \box
+               \override #`(box-padding . ,box-padding) \box
+               { #text } #}))
+</pre></td></tr></table>
+
+<p>De nuevo, la versión equivalente que utiliza la macro de marcado sería:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">#(define-markup-command (double-box layout props text) (markup?)
+  #:properties ((inter-box-padding 0.4)
+                (box-padding 0.6))
+  &quot;Trazar un rectángulo doble rodeando el texto.&quot;
+  (interpret-markup layout props
+    (markup #:override `(box-padding . ,inter-box-padding) #:box
+            #:override `(box-padding . ,box-padding) #:box text)))
+</pre></td></tr></table>
+
+<p>Aquí, la palabra clave <code>#:properties</code> se usa de manera que las
+propiedades <code>inter-box-padding</code> y <code>box-padding</code> se leen a
+partir del argumento <code>props</code>, y se les proporcionan unos valores
+predeterminados si las propiedades no están definidas.
+</p>
+<p>Después estos valores se usan para sobreescribir las propiedades
+<code>box-padding</code> usadas por las dos instrucciones <code>\box</code>.
+Observe el apóstrofo invertido y la coma en el argumento de
+<code>\override</code>: nos permiten introducir un valor de variable dentro
+de una expresión literal.
+</p>
+<p>Ahora, la instrucción se puede usar dentro de un elemento de marcado,
+y el relleno de los rectángulos se puede personalizar:
+</p>
+<blockquote><pre class="verbatim">#(define-markup-command (double-box layout props text) (markup?)
+  #:properties ((inter-box-padding 0.4)
+                (box-padding 0.6))
+  &quot;Draw a double box around text.&quot;
+  (interpret-markup layout props
+    #{\markup \override #`(box-padding . ,inter-box-padding) \box
+              \override #`(box-padding . ,box-padding) \box
+              { #text } #}))
+
+\markup \double-box A
+\markup \override #'(inter-box-padding . 0.8) \double-box A
+\markup \override #'(box-padding . 1.0) \double-box A
+</pre><p>
+ <a href="../94/lily-b1443df4.ly">
+  <img align="middle"
+       border="0"
+       src="../94/lily-b1443df4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Adaptaci_00f3n-de-instrucciones-incorporadas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#a-complete-example" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Un ejemplo completo&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Definición de una instrucción de marcado nueva&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new-markup-list-command-definition.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Definición de nuevas instrucciones de lista de marcado &gt; </a>]</td></tr></table>
+<a name="adapting-builtin-commands"></a>
+<h4 class="unnumberedsubsubsec">Adaptación de instrucciones incorporadas</h4>
+
+<p>Una buena manera de comenzar a escribir una instrucción de marcado
+nueva, es seguir el ejemplo de otra instrucción ya incorporada.  Casi
+todas las instrucciones de marcado que están incorporadas en LilyPond
+se pueden encontrar en el archivo
+&lsquo;<tt>scm/define-markup-commands.scm</tt>&rsquo;.
+</p>
+<p>Por ejemplo, querríamos adaptar la instrucción <code>\draw-line</code>, para
+que trace una línea doble.  La instrucción <code>\draw-line</code> está
+definida como sigue (se han suprimido los comentarios de
+documentación):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (draw-line layout props dest)
+  (number-pair?)
+  #:category graphic
+  #:properties ((thickness 1))
+  &quot;&hellip;documentación&hellip;&quot;
+  (let ((th (* (ly:output-def-lookup layout 'line-thickness)
+               thickness))
+        (x (car dest))
+        (y (cdr dest)))
+    (make-line-stencil th 0 0 x y)))
+</pre></td></tr></table>
+
+<p>Para definir una instrucción nueva basada en otra existente, copie la
+definición y cámbiele el nombre.  La palabra clave <code>#:category</code>
+se puede eliminar sin miedo, pues sólo se utiliza para generar
+documentación de LilyPond, y no tiene ninguna utilidad para las
+instrucciones de marcado definidas por el usuario.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (draw-double-line layout props dest)
+  (number-pair?)
+  #:properties ((thickness 1))
+  &quot;&hellip;documentación&hellip;&quot;
+  (let ((th (* (ly:output-def-lookup layout 'line-thickness)
+               thickness))
+        (x (car dest))
+        (y (cdr dest)))
+    (make-line-stencil th 0 0 x y)))
+</pre></td></tr></table>
+
+<p>A continuación se añade una propiedad para establecer la separación
+entre las dos líneas, llamada <code>line-gap</code>, con un valor
+predeterminado de p.ej. 0.6:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="lisp">(define-markup-command (draw-double-line layout props dest)
+  (number-pair?)
+  #:properties ((thickness 1)
+                (line-gap 0.6))
+  &quot;&hellip;documentación&hellip;&quot;
+  &hellip;
+</pre></td></tr></table>
+
+<p>Finalmente, se añade el código para trazar las dos líneas.  Se usan
+dos llamadas a <code>make-line-stencil</code> para trazar las líneas, y los
+sellos resultantes se combinan usando <code>ly:stencil-add</code>:
+</p>
+<blockquote><pre class="verbatim">#(define-markup-command (my-draw-line layout props dest)
+  (number-pair?)
+  #:properties ((thickness 1)
+                (line-gap 0.6))
+  &quot;..documentation..&quot;
+  (let* ((th (* (ly:output-def-lookup layout 'line-thickness)
+                thickness))
+         (dx (car dest))
+         (dy (cdr dest))
+         (w (/ line-gap 2.0))
+         (x (cond ((= dx 0) w)
+                  ((= dy 0) 0)
+                  (else (/ w (sqrt (+ 1 (* (/ dx dy) (/ dx dy))))))))
+         (y (* (if (&lt; (* dx dy) 0) 1 -1)
+               (cond ((= dy 0) w)
+                     ((= dx 0) 0)
+                     (else (/ w (sqrt (+ 1 (* (/ dy dx) (/ dy dx))))))))))
+     (ly:stencil-add (make-line-stencil th x y (+ dx x) (+ dy y))
+                     (make-line-stencil th (- x) (- y) (- dx x) (- dy y)))))
+
+\markup \my-draw-line #'(4 . 3)
+\markup \override #'(line-gap . 1.2) \my-draw-line #'(4 . 3)
+</pre><p>
+ <a href="../f2/lily-ee1c28e4.ly">
+  <img align="middle"
+       border="0"
+       src="../f2/lily-ee1c28e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Interfaces para programadores&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Interfaces de Scheme de LilyPond &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#a-complete-example" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Un ejemplo completo&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#new-markup-command-definition" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Definición de una instrucción de marcado nueva&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new-markup-list-command-definition.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Definición de nuevas instrucciones de lista de marcado &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="new-markup-command-definition.html">English</a>, <a href="new-markup-command-definition.de.html">deutsch</a>, <a href="new-markup-command-definition.fr.html">français</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Extender  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-de-Scheme-1" href="scheme-tutorial.es.html">A. Tutorial de Scheme</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduccion-a-Scheme" href="introduction-to-scheme.es.html">A.1 Introducción a Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-dentro-de-LilyPond-1" href="scheme-in-lilypond.es.html">A.2 Scheme dentro de LilyPond</a>    </li>
+    <li class=""><a name="toc-Construir-funciones-complicadas-1" href="building-complicated-functions.es.html">A.3 Construir funciones complicadas</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Interfaces-para-programadores-1" href="interfaces-for-programmers.es.html">B. Interfaces para programadores</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Bloques-de-codigo-de-LilyPond" href="lilypond-code-blocks.es.html">B.1 Bloques de código de LilyPond</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">B.2 Funciones de Scheme</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-1" href="music-functions.es.html">B.3 Funciones musicales</a>    </li>
+    <li class=""><a name="toc-Funciones-de-eventos-1" href="event-functions.es.html">B.4 Funciones de eventos</a>    </li>
+    <li class=" toc_current"><a name="toc-Funciones-de-marcado-1" href="markup-functions.es.html">B.5 Funciones de marcado</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Construccion-de-elementos-de-marcado-en-Scheme" href="markup-construction-in-scheme.es.html">B.5.1 Construcción de elementos de marcado en Scheme</a>      </li>
+      <li class=""><a name="toc-Como-funcionan-internamente-los-elementos-de-marcado" href="how-markups-work-internally.es.html">B.5.2 Cómo funcionan internamente los elementos de marcado</a>      </li>
+      <li class=" toc_current"><a name="toc-Definicion-de-una-instruccion-de-marcado-nueva" href="new-markup-command-definition.es.html">B.5.3 Definición de una instrucción de marcado nueva</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Sintaxis-de-la-definicion-de-instrucciones-de-marcado" href="new-markup-command-definition.es.html#markup-command-definition-syntax">Sintaxis de la definición de instrucciones de marcado</a>        </li>
+        <li class=""><a name="toc-Acerca-de-las-propiedades-1" href="new-markup-command-definition.es.html#on-properties">Acerca de las propiedades</a>        </li>
+        <li class=""><a name="toc-Un-ejemplo-completo-1" href="new-markup-command-definition.es.html#a-complete-example">Un ejemplo completo</a>        </li>
+        <li class=""><a name="toc-Adaptacion-de-instrucciones-incorporadas" href="new-markup-command-definition.es.html#adapting-builtin-commands">Adaptación de instrucciones incorporadas</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Definicion-de-nuevas-instrucciones-de-lista-de-marcado" href="new-markup-list-command-definition.es.html">B.5.4 Definición de nuevas instrucciones de lista de marcado</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Contextos-para-programadores-1" href="contexts-for-programmers.es.html">B.6 Contextos para programadores</a>    </li>
+    <li class=""><a name="toc-Funciones-de-callback-1" href="callback-functions.es.html">B.7 Funciones de callback</a>    </li>
+    <li class=""><a name="toc-Codigo-de-Scheme-en-linea" href="inline-scheme-code.es.html">B.8 Código de Scheme en línea</a>    </li>
+    <li class=""><a name="toc-Trucos-dificiles" href="difficult-tweaks.es.html">B.9 Trucos difíciles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Interfaces-de-Scheme-de-LilyPond-1" href="lilypond-scheme-interfaces.es.html">C. Interfaces de Scheme de LilyPond</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">D. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

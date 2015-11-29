@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual d'aprenentatge del GNU LilyPond: 3.1.2 La partitura és una (única) expressió musical composta</title>
+
+<meta name="description" content="Manual d'aprenentatge del GNU LilyPond: 3.1.2 La partitura és una (única) expressió musical composta">
+<meta name="keywords" content="Manual d'aprenentatge del GNU LilyPond: 3.1.2 La partitura és una (única) expressió musical composta">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Manual d'aprenentatge">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="C. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="how-lilypond-input-files-work.ca.html#how-lilypond-input-files-work" rel="up" title="3.1 Com funcionen els fitxers d'entrada del LilyPond">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="C. Índex del LilyPond">
+<link href="introduction-to-the-lilypond-file-structure.ca.html#introduction-to-the-lilypond-file-structure" rel="previous" title="3.1.1 Introducció a l'estructura dels fitxers del LilyPond">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="learning devStatus">
+
+
+<div id="main">
+<a name="La-partitura-_00e9s-una-_0028_00fanica_0029-expressi_00f3-musical-composta"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Conceptes fonamentals&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ca.html" title="Capítol següent">&nbsp;Ajustament de la sortida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="introduction-to-the-lilypond-file-structure.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Introducció a l'estructura dels fitxers del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-lilypond-input-files-work.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Com funcionen els fitxers d'entrada del LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="nesting-music-expressions.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Niuat d'expressions musicals &gt; </a>]</td></tr></table>
+<a name="score-is-a-_0028single_0029-compound-musical-expression"></a>
+<h3 class="subsection">3.1.2 La partitura és una (única) expressió musical composta</h3>
+
+<a name="index-score-2"></a>
+<a name="index-partitura-1"></a>
+<a name="index-contingut-del-bloc-score"></a>
+<a name="index-score_002c-contingut-del-bloc"></a>
+<a name="index-composta_002c-expressio-musical-1"></a>
+<a name="index-musical_002c-expressio_002c-composta-1"></a>
+<a name="index-expressio-musical-composta"></a>
+<a name="index-_005cscore-2"></a>
+<a name="index-_005cscore-3"></a>
+<a name="index-score-3"></a>
+<a name="index-score-4"></a>
+
+<p>En la secció anterior, <a href="introduction-to-the-lilypond-file-structure.ca.html">Introducció a l&rsquo;estructura dels fitxers del LilyPond</a>, hem pogut veure l&rsquo;organització general dels
+fitxers d&rsquo;entrada del LilyPond.  Però sembla que ens hem salta la
+part més important: com esbrinem què escriure després de
+<code>\score</code>?
+</p>
+<p>No ens hem salta res de res.  El gran misteri és, senzillament,
+que no hi ha <em>cap</em> misteri.  La línia següent ho explica tot:
+</p>
+<blockquote><p><em>Un bloc <code>\score</code> ha de començar amb una expressió
+musical composta.</em>
+</p></blockquote>
+
+<p>Per comprendre el que s&rsquo;entén per expressió musical i expressió
+musical composta, potser trobeu útil fer un repàs al tutorial,
+<a href="music-expressions-explained.ca.html">Explicació de les expressions musicals</a>.  En aquesta secció
+vam veure com elaborar grans expressions musicals a partir de
+petites peces (començàvem amb notes, després acords, etc.).  Ara
+partirem d&rsquo;una gran expressió musical i recorrerem el camí invers
+cap avall.  Per simplicitat, farem sols un cantant i un piano.
+No necessitem un <code>StaffGroup</code> (que simplement agrupa un cert
+nombre de pautes amb un claudàtor a l&rsquo;esquerra) per a aquest
+conjunt, i aleshores el retirem. Tot i així, <em>sí</em> necessitem
+pentagrames per a un cantant i un piano.
+</p>
+<blockquote><pre class="example">\score {
+  &lt;&lt;
+    \new Staff = &quot;cantant&quot; &lt;&lt;
+    &gt;&gt;
+    \new PianoStaff = &quot;piano&quot; &lt;&lt;
+    &gt;&gt;
+  &gt;&gt;
+  \layout { }
+}
+</pre></blockquote>
+
+<p>Aquí hem assignat noms als pentagrames: &ldquo;cantant&rdquo; i
+&ldquo;piano&rdquo;.  Això no és essencial en aquest moment, però és un
+hàbit que resulta útil cultivar de manera que podem saber d&rsquo;una
+ullada per a què és cada pentagrama.
+</p>
+<p>Recordeu que utilitzem <code>&lt;&lt; &hellip; &gt;&gt;</code> en comptes de <code> &hellip; }</code>
+per presentar la música simultània.  Això fa que les parts vocals
+i del piano apareguin una sobre l&rsquo;altra a la partitura.  La
+construcció <code>&lt;&lt; &hellip; &gt;&gt;</code> no seria necessària per al
+pentagrama del cantant a l&rsquo;exemple de dalt si conté solament una
+expressió musical seqüencial, però es necessitarien els <code>&lt;&lt;
+&hellip; &gt;&gt;</code> en comptes de les claus si la música d&rsquo;aquest
+pentagrama anés a contenir dues o més expressions simultànies, per
+exemple dues veus simultànies, o una veu amb lletra.  Tindrem una
+veu amb lletra, per la qual cosa es requereixen els angles
+dobles.  Després afegirem quelcom de música real; per ara
+limitem-nos a posar unes quantes notes i text de farciment.  Si
+heu oblidat com afegir la lletra, podeu rellegir la secció
+<code>\addlyrics</code> de <a href="setting-simple-songs.ca.html">Elaborar cançons senzilles</a>.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff = &quot;singer&quot; &lt;&lt;
+      \new Voice = &quot;vocal&quot; { c'1 }
+      \addlyrics { And }
+    &gt;&gt;
+    \new PianoStaff = &quot;piano&quot; &lt;&lt;
+      \new Staff = &quot;upper&quot; { c'1 }
+      \new Staff = &quot;lower&quot; { c'1 }
+    &gt;&gt;
+  &gt;&gt;
+  \layout { }
+}
+</pre><p>
+ <a href="../d0/lily-69c5a689.ly">
+  <img align="middle"
+       border="0"
+       src="../d0/lily-69c5a689.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ara tenim molts més detalls.  Tenim la pauta del cantant: conté
+una <code>Voice</code> o veu (al LilyPond, aquest terme fa referència a
+un conjunt de notes, no necessàriament notes vocals &ndash; per
+exemple, un violí generalment toca una veu &ndash;) i el text de la
+cançó.  També tenim una pauta de piano: conté un pentagrama
+superior (mà dreta) i un pentagrama inferior (mà esquerra), tot i
+que el pentagrama inferior encara no té la clau de Fa.
+</p>
+<p>En aquest moment podríem començar a ficar les notes.  Dins dels
+claudàtors que segueixen a <code>\new Voice = &quot;vocal&quot;</code>, podríem
+començar escrivint
+</p>
+<blockquote><pre class="example">\relative {
+  r4 d''8\noBeam g, c4 r
+}
+</pre></blockquote>
+
+<p>Però si ho féssim, la secció <code>\score</code> es faria força llarga i
+seria més difícil comprendre el que passa.  En comptes d&rsquo;això
+utilitzarem identificadors o variables.  Recordareu que les vam
+veure per primer cop a la secció anterior.
+</p>
+<p>Per assegurar-nos que el contingut de la variable <code>text</code>
+s&rsquo;interpreta com a lletra, el precedim amb <code>\lyricmode</code>.
+Igual que <code>\addlyrics</code>, això activa el mode d&rsquo;entrada de
+lletra.  Sense això, el LilyPond intentaria interpretar el
+contingut com a notes, cosa que generaria errors (Hi ha d&rsquo;altres
+modes, vegeu <a name="index-Input-modes"></a>
+<a href="../notation/input-modes.ca.html">Input modes</a>).
+</p>
+<p>Així doncs, tot escrivint algunes notes, i una clau de Fa per a la
+mà esquerra, ara tenim un fragment musical de debò:
+</p>
+<blockquote><pre class="verbatim">melody = \relative { r4 d''8\noBeam g, c4 r }
+text   = \lyricmode { And God said, }
+upper  = \relative { &lt;g' d g,&gt;2~ &lt;g d g,&gt; }
+lower  = \relative { b,2 e }
+
+\score {
+  &lt;&lt;
+    \new Staff = &quot;singer&quot; &lt;&lt;
+      \new Voice = &quot;vocal&quot; { \melody }
+      \addlyrics { \text }
+    &gt;&gt;
+    \new PianoStaff = &quot;piano&quot; &lt;&lt;
+      \new Staff = &quot;upper&quot; { \upper }
+      \new Staff = &quot;lower&quot; {
+        \clef &quot;bass&quot;
+        \lower
+      }
+    &gt;&gt;
+  &gt;&gt;
+  \layout { }
+}
+</pre><p>
+ <a href="../64/lily-3bffeecc.ly">
+  <img align="middle"
+       border="0"
+       src="../64/lily-3bffeecc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Quan escriviu una secció <code>\score</code> o quan l&rsquo;esteu llegint,
+feu-lo a poc a poc i amb cura.  Comenceu pel nivell exterior i
+després treballeu sobre cadascú dels nivells interiors.  També és
+d&rsquo;una gran ajuda ser molt estricte amb els marges (assegureu-vos
+que al seu editor de text cada element del mateix nivell comença a
+la mateixa posició horitzontal).
+</p>
+<a name="Vegeu-tambe-3"></a>
+<h4 class="subsubheading">Vegeu també</h4>
+<p>Referència de la notació:
+<a name="index-Estructura-d_0027una-partitura"></a>
+<a href="../notation/estructura-d_0027una-partitura.ca.html">Estructura d'una partitura</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Conceptes fonamentals&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ca.html" title="Capítol següent">&nbsp;Ajustament de la sortida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="introduction-to-the-lilypond-file-structure.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Introducció a l'estructura dels fitxers del LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-lilypond-input-files-work.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Com funcionen els fitxers d'entrada del LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="nesting-music-expressions.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Niuat d'expressions musicals &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="score-is-a-_0028single_0029-compound-musical-expression.html">English</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.cs.html">česky</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.de.html">deutsch</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.es.html">español</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.fr.html">français</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.hu.html">magyar</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.it.html">italiano</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.ja.html">日本語</a>, <a href="score-is-a-_0028single_0029-compound-musical-expression.nl.html">nederlands</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Manual d&rsquo;aprenentatge  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.ca.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacio-d_0027un-fitxer" href="compiling-a-file.ca.html">1.1 Compilació d&rsquo;un fitxer</a>    </li>
+    <li class=""><a name="toc-Com-escriure-fitxers-d_0027entrada-1" href="how-to-write-input-files.ca.html">1.2 Com escriure fitxers d&rsquo;entrada</a>    </li>
+    <li class=""><a name="toc-Gestio-dels-errors" href="dealing-with-errors.ca.html">1.3 Gestió dels errors</a>    </li>
+    <li class=""><a name="toc-Com-llegir-els-manuals-1" href="how-to-read-the-manuals.ca.html">1.4 Com llegir els manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacio-corrent" href="common-notation.ca.html">2. Notació corrent</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacio-en-un-sol-pentagrama" href="single-staff-notation.ca.html">2.1 Notació en un sol pentagrama</a>    </li>
+    <li class=""><a name="toc-Diverses-notes-a-la-vegada-1" href="multiple-notes-at-once.ca.html">2.2 Diverses notes a la vegada</a>    </li>
+    <li class=""><a name="toc-Cancons" href="songs.ca.html">2.3 Cançons</a>    </li>
+    <li class=""><a name="toc-Retocs-finals-1" href="final-touches.ca.html">2.4 Retocs finals</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Conceptes-fonamentals-1" href="fundamental-concepts.ca.html">3. Conceptes fonamentals</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Com-funcionen-els-fitxers-d_0027entrada-del-LilyPond-1" href="how-lilypond-input-files-work.ca.html">3.1 Com funcionen els fitxers d&rsquo;entrada del LilyPond</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Introduccio-a-l_0027estructura-dels-fitxers-del-LilyPond" href="introduction-to-the-lilypond-file-structure.ca.html">3.1.1 Introducció a l&rsquo;estructura dels fitxers del LilyPond</a>      </li>
+      <li class=" toc_current"><a name="toc-La-partitura-es-una-_0028unica_0029-expressio-musical-composta" href="score-is-a-_0028single_0029-compound-musical-expression.ca.html">3.1.2 La partitura és una (única) expressió musical composta</a>      </li>
+      <li class=""><a name="toc-Niuat-d_0027expressions-musicals-1" href="nesting-music-expressions.ca.html">3.1.3 Niuat d&rsquo;expressions musicals</a>      </li>
+      <li class=""><a name="toc-Quant-a-la-impossibilitat-de-niuar-claudators-i-lligadures" href="on-the-un_002dnestedness-of-brackets-and-ties.ca.html">3.1.4 Quant a la impossibilitat de niuar claudàtors i lligadures</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Les-veus-contenen-musica" href="voices-contain-music.ca.html">3.2 Les veus contenen música</a>    </li>
+    <li class=""><a name="toc-Contextos-i-gravadors-1" href="contexts-and-engravers.ca.html">3.3 Contextos i gravadors</a>    </li>
+    <li class=""><a name="toc-Extensio-de-les-plantilles" href="extending-the-templates.ca.html">3.4 Extensió de les plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ajustament-de-la-sortida-1" href="tweaking-output.ca.html">4. Ajustament de la sortida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elements-de-l_0027ajustament-1" href="tweaking-basics.ca.html">4.1 Elements de l&rsquo;ajustament</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionament-intern" href="the-internals-reference-manual.ca.html">4.2 Manual de referència de funcionament intern</a>    </li>
+    <li class=""><a name="toc-Aparenca-dels-objectes" href="appearance-of-objects.ca.html">4.3 Aparença dels objectes</a>    </li>
+    <li class=""><a name="toc-Col_00b7locacio-dels-objectes" href="placement-of-objects.ca.html">4.4 Col·locació dels objectes</a>    </li>
+    <li class=""><a name="toc-Espaiat-vertical-1" href="vertical-spacing.ca.html">4.5 Espaiat vertical</a>    </li>
+    <li class=""><a name="toc-Col_00b7lisions-d_0027objectes-1" href="collisions-of-objects.ca.html">4.6 Col·lisions d&rsquo;objectes</a>    </li>
+    <li class=""><a name="toc-Ajustaments-addicionals-1" href="further-tweaking.ca.html">4.7 Ajustaments addicionals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantilles-1" href="templates.ca.html">A. Plantilles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantilles-de-pentagrama-unic" href="single-staff-templates.ca.html">A.1 Plantilles de pentagrama únic</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-piano-1" href="piano-templates.ca.html">A.2 Plantilles de piano</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-quartet-de-corda-1" href="string-quartet-templates.ca.html">A.3 Plantilles de quartet de corda</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-conjunts-vocals-1" href="vocal-ensembles-templates.ca.html">A.4 Plantilles de conjunts vocals</a>    </li>
+    <li class=""><a name="toc-Plantilles-orquestrals-1" href="orchestral-templates.ca.html">A.5 Plantilles orquestrals</a>    </li>
+    <li class=""><a name="toc-Plantilles-per-a-notacio-antiga" href="ancient-notation-templates.ca.html">A.6 Plantilles per a notació antiga</a>    </li>
+    <li class=""><a name="toc-Altres-plantilles-1" href="other-templates.ca.html">A.7 Altres plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">C. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 3.2.3 脚注を作成する</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 3.2.3 脚注を作成する">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 3.2.3 脚注を作成する">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="titles-and-headers.ja.html#titles-and-headers" rel="up" title="3.2 タイトルとヘッダ">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="custom-headers-footers-and-titles.ja.html#custom-headers-footers-and-titles" rel="previous" title="3.2.2 カスタム ヘッダ、フッタ、タイトル">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_811a_6ce8_3092_4f5c_6210_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="custom-headers-footers-and-titles.ja.html#custom-layout-for-headers-and-footers" title="前のセクション" accesskey="p" rel="previous"> &lt; ヘッダとフッタのカスタム レイアウト&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="titles-and-headers.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;タイトルとヘッダ&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#footnotes-overview" title="次のセクション" accesskey="n" rel="next">&nbsp;脚注の概要 &gt; </a>]</td></tr></table>
+<a name="creating-footnotes"></a>
+<h3 class="subsection">3.2.3 脚注を作成する</h3>
+
+<p><code>作成できる脚注には 2 つのタイプがあります。自動脚注と手動脚注です。
+</code></p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#footnotes-overview" accesskey="1">脚注の概要</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#automatic-footnotes" accesskey="2">自動脚注</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#manual-footnotes" accesskey="3">手動脚注</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_811a_6ce8_306e_6982_8981"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#creating-footnotes" title="前のセクション" accesskey="p" rel="previous"> &lt; 脚注を作成する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;脚注を作成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#automatic-footnotes" title="次のセクション" accesskey="n" rel="next">&nbsp;自動脚注 &gt; </a>]</td></tr></table>
+<a name="footnotes-overview"></a>
+<h4 class="unnumberedsubsubsec">脚注の概要</h4>
+
+<p><code>自動脚注は繰り上がっていくページ番号を作り出し、手動脚注はページ番号をカスタマイズすることができます。通常、脚注は <code>\tweak</code> のように適用されるので、多くの音楽要素やポスト-イベントによって作成されるグラフィカル オブジェクト上に直接配置することができます。これがうまくいかない場合 (小節線や拍の変更のように、プロパティの変更の結果として作り出されるグラフィカル オブジェクトの場合)、脚注を独立した音楽イベントとして入力することである特定のタイミングにある指定したタイプのすべてのグラフィカルに影響を与えることもできます。
+</code></p>
+<p><code>脚注コマンドの完全な形式は以下のようなものです:
+</code></p>
+<blockquote><pre class="example"><code>\footnote <var>mark</var> <var>offset</var> <var>grob-name</var> <var>footnote</var>
+<var>music</var>
+</code></pre></blockquote>
+
+<p><code>要素は以下の通りです:
+</code></p>
+<dl compact="compact">
+<dt> <var>mark</var></dt>
+<dd><p><code>これは脚注を指定するマークアップや文字列で、参照ポイントとページ下の脚注自体を指すマークになります。これは省略することができ (<code>\default</code> で置き換えられます)、省略した場合は連続した数字が生成されます。
+</code></p></dd>
+<dt> <var>offset</var></dt>
+<dd><p><code>脚注マークを配置する参照ポイントからの X と Y オフセットを指定する
+&lsquo;<samp>#(2 . 1)</samp>&rsquo; のような数字のペアです。
+</code></p></dd>
+<dt> <var>grob-name</var></dt>
+<dd><p><code>脚注マークを付けるグラフィカル オブジェクトのタイプを指定します (例えば
+&lsquo;<samp>#'Flag</samp>&rsquo; です)。これが指定された場合、対応するグラフィカル オブジェクトが参照される
+<var>music</var> 自体にあるものでなくても、そこから作成されたものであれば参照ポイントになります。これは省略するができ (<code>\default</code> で置き換えられます)、その場合は直接作成されたグラフィカル オブジェクトだけに脚注が付けられます。
+</code></p></dd>
+<dt> <var>footnote</var></dt>
+<dd><p><code>このマークアップあるいは文字列はページ下の脚注テキストになります。
+</code></p></dd>
+<dt> <var>music</var></dt>
+<dd><p><code>これは脚注を付ける要素 -- 音楽イベント、和音構成要素、あるいはポスト-イベントです。これを省略することはできませんが、<code>\default</code> で置き換えることで脚注をある特定の音楽表記ではなく音楽タイミングに付けることができます。<code>\default</code> を用いた場合、影響を与えるグラフィカル オブジェクトのタイプを指定する <var>grob-name</var> 引数を指定する必要があります。
+</code></p></dd>
+</dl>
+
+<p><code><code>\tweak</code> と同様に、<code>\footnote</code> をポスト-イベントやアーティキュレーションに適用する場合、それ自体の前に <code>-</code> を配置して、構文解析の結果を前にある音符や休符にくっつけさせる必要があります。
+</code></p>
+
+<hr size="6">
+<a name="g_t_81ea_52d5_811a_6ce8"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#footnotes-overview" title="前のセクション" accesskey="p" rel="previous"> &lt; 脚注の概要&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;脚注を作成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#manual-footnotes" title="次のセクション" accesskey="n" rel="next">&nbsp;手動脚注 &gt; </a>]</td></tr></table>
+<a name="automatic-footnotes"></a>
+<h4 class="unnumberedsubsubsec">自動脚注</h4>
+
+<p><code>自動脚注は 4 つの引数を取ります: 脚注マークの位置 &lsquo;<samp>(x . y)</samp>&rsquo;、脚注を付ける <var>レイアウト オブジェクト</var> を指定するオプションの
+<var>grob-name</var>、ページ下の脚注に表示される <var>footnote</var> マークアップ、それに脚注を付ける <var>music</var> です。
+</code></p>
+
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    \footnote #'(0.5 . -2)
+      \markup { The first note }
+    a'4 b8
+    \single\footnote #'(0.5 . 1)
+      \markup { The third note } Flag
+    e\noBeam c4 d4
+  }
+}
+</pre><p>
+ <a href="../fb/lily-d410750b.ly">
+  <img align="middle"
+       border="0"
+       src="../fb/lily-d410750b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>和音の音符でも難しいことはありません:
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    &lt;
+    \footnote #'(1 . -1.25) &quot;これは C です&quot; c
+    \footnote #'(2 . -0.25) \markup { \italic &quot;E-flat です&quot; } es
+    \footnote #'(2 . 3) \markup { \bold &quot;これは G です&quot; } g
+    &gt;1
+  }
+}
+</pre><p>
+ <a href="../bf/lily-75ffa06c.ly">
+  <img align="middle"
+       border="0"
+       src="../bf/lily-75ffa06c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><code><strong>Note:</strong> 脚注の垂直方向の位置が同じになる場合、下方向に並べられます。高い位置にある脚注は、リストでも上に来ます。
+</code></p>
+
+</div>
+<p><code>ここで、グラフィカル オブジェクト動脚注を付ける例をいくつか挙げ、さらに脚注とタグラインやコピーライトとの位置関係を示します。
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { copyright = \markup { &quot;Copyright 1970&quot; } }
+  \relative {
+    a'4-\footnote #'(-3 . 0) \markup { \bold Forte } \f
+    -\footnote #'(0 . 1.5) \markup { スラー } (
+    b8)-\footnote #'(0 . -2) \markup { 連桁 } [ e]
+    \single\footnote #'(1 . -1)
+      \markup  { \teeny { これは符幹です } } Stem
+    c4
+    \single\footnote #'(0 . 0.5)
+      \markup \italic { 忠告の臨時記号 } AccidentalCautionary
+    \footnote #'(1 . 1) &quot;音符自体&quot;
+    dis?4-\footnote #'(0.5 . -0.5) \markup \italic { スロー ダウン }
+         _&quot;rit.&quot;
+  }
+}
+</pre><p>
+ <a href="../8b/lily-125a1544.ly">
+  <img align="middle"
+       border="0"
+       src="../8b/lily-125a1544.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>最上位の <code>\markup</code> に脚注を付ける場合、<code>\auto-footnote</code> コマンドを使う必要があります:
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \markup { \auto-footnote &quot;A simple tune&quot; \italic &quot;By me&quot; }
+  \relative {
+    a'4 b8 e c4 d
+  }
+}
+</pre><p>
+ <a href="../07/lily-3b87c9f3.ly">
+  <img align="middle"
+       border="0"
+       src="../07/lily-3b87c9f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="g_t_624b_52d5_811a_6ce8"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-footnotes" title="前のセクション" accesskey="p" rel="previous"> &lt; 自動脚注&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;脚注を作成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="reference-to-page-numbers.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;ページ番号の参照 &gt; </a>]</td></tr></table>
+<a name="manual-footnotes"></a>
+<h4 class="unnumberedsubsubsec">手動脚注</h4>
+
+<a name="index-footnotes_002c-manual-_0028_624b_52d5_306e_811a_6ce8"></a>
+
+<p><code>手動で付ける脚注は追加で最初の引数として参照マークとなる <var>mark</var> を取ります。自動的に生成される脚注マークとは対照的に、ページ下の <var>footnote</var>
+マークアップの前には表示されません: 見た目のつながりはユーザ自身で作成する必要があります。LilyPond は対応するマークアップを同じページの下に表示するだけです。
+</code></p>
+<p><code>上記のことを除けば、手動脚注は自動的に付番される脚注と同じです。
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    \footnote
+          &quot;1&quot; #'(0.5 . -2)
+          \markup { \italic &quot;1. 最初の音符&quot; }
+    a'4
+    b8
+    \footnote
+          \markup { \bold &quot;2&quot; } #'(0.5 . 1)
+          &quot;2. 2 番目の音符&quot;
+    e
+    c4
+    d-\footnote &quot;3&quot; #'(0.5 . -1) &quot;3. ピアノ&quot; \p
+  }
+}
+</pre><p>
+ <a href="../9a/lily-6d7109cc.ly">
+  <img align="middle"
+       border="0"
+       src="../9a/lily-6d7109cc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>和音に手動脚注を付ける場合、以下のようにします:
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative c' {
+    &lt;
+    \footnote &quot;1&quot; #'(1 . -1.25) &quot;1. C&quot; c
+    \footnote
+       \markup { \bold &quot;b&quot; } #'(2 . -0.25) &quot;b. E-フラット&quot; es
+    \footnote &quot;3&quot; #'(2 . 3) \markup { \italic &quot;iii. G&quot; } g
+    &gt;1
+  }
+}
+</pre><p>
+ <a href="../b8/lily-61fecd18.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-61fecd18.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<div class="warning"><p><code><strong>Note:</strong> 脚注の垂直方向の位置が同じになる場合、下方向に並べられます。高い位置にある脚注は、リストでも上に来ます。
+</code></p>
+
+</div>
+<p><code>ここで、グラフィカル オブジェクトに手動脚注を付ける例をいくつか挙げ、脚注とタグラインやコピーライトとの位置関係を示します。
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \relative {
+    a'4-\footnote
+      \markup { \teeny 1 } #'(-3 . 0)
+      \markup { 1. \bold フォルテ } \f
+    -\footnote
+      \markup { \teeny b } #'(0 . 1.5)
+      \markup { b. スラー } (
+    b8)-\footnote
+      \markup { \teeny 3 } #'(0 . -2)
+      \markup { 3. 連桁 } [
+    e]
+    \single\footnote
+      \markup { 4 } #'(1 . -1)
+      \markup  { \bold 4. { これは符幹です } } Stem
+    c4
+    \single\footnote
+      \markup \concat \teeny { &quot;sharp (v)&quot; }
+          #'(0 . 0.5)
+      \markup \italic { v. 忠告の臨時記号 } AccidentalCautionary
+    dis?4-\footnote
+      \markup \concat \teeny { &quot;a&quot; } #'(0.5 . -0.5)
+      \markup \italic { a. スローダウン } _&quot;rit.&quot;
+    \footnote
+      \markup { \teeny \musicglyph #&quot;rests.4&quot; }
+          #'(1.5 . -0.25)
+      \markup { \null } \breathe
+  }
+}
+</pre><p>
+ <a href="../37/lily-3c90dda4.ly">
+  <img align="middle"
+       border="0"
+       src="../37/lily-3c90dda4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>最上位の <code>\markup</code> に脚注を付ける場合、下記のようにします:
+</code></p>
+<blockquote><pre class="verbatim">\book {
+  \header { tagline = ##f }
+  \markup { &quot;A simple tune&quot; \footnote &quot;*&quot; \italic &quot;* By me&quot; }
+  \relative {
+    a'4 b8 e c4 d4
+  }
+}
+</pre><p>
+ <a href="../91/lily-17a327c6.ly">
+  <img align="middle"
+       border="0"
+       src="../91/lily-17a327c6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-204"></a>
+<h4 class="subsubheading">参照</h4>
+<p><code>学習マニュアル:
+<a name="index-Objects-and-interfaces"></a>
+<a href="../learning/objects-and-interfaces.ja.html">Objects and interfaces</a>
+</code></p>
+<p><code>記譜法リファレンス:
+<a href="outside-the-staff.ja.html#balloon-help">バルーン ヘルプ</a>,
+<a href="page-layout.ja.html">ページ レイアウト</a>,
+<a href="writing-text.ja.html#text-marks">テキスト マーク</a>,
+<a href="writing-text.ja.html#text-scripts">テキスト スクリプト</a>,
+<a href="titles-and-headers.ja.html">タイトルとヘッダ</a>
+</code></p>
+<p><code>内部リファレンス:
+<a name="index-FootnoteEvent"></a>
+<a href="../internals/footnoteevent.ja.html">FootnoteEvent</a>,
+<a name="index-FootnoteItem"></a>
+<a href="../internals/footnoteitem.ja.html">FootnoteItem</a>,
+<a name="index-FootnoteSpanner"></a>
+<a href="../internals/footnotespanner.ja.html">FootnoteSpanner</a>,
+<a name="index-Footnote_005fengraver"></a>
+<a href="../internals/footnote_005fengraver.ja.html">Footnote_engraver</a>
+</code></p>
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-82"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p><code>同じページにある複数の脚注は上下にしか配置できません。ある脚注が他の脚注の上に配置され、同じ行に配置することはできません。<code>MultiMeasureRests</code> に脚注を付けることはできず、<code>Staff</code>、<code>\markup</code> オブジェクト、それに他の <code>footnote</code> と衝突する可能性があります。手動の <code>footnote</code> コマンドを使う場合、containing <code>footnote-auto-number = ##f</code> を保持している
+<code>\paper</code> ブロックが必要です。
+</code></p>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="general-input-and-output.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 入出力全般&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="spacing-issues.ja.html" title="次の章">&nbsp;スペースの問題 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#automatic-footnotes" title="前のセクション" accesskey="p" rel="previous"> &lt; 自動脚注&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#creating-footnotes" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;脚注を作成する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="reference-to-page-numbers.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;ページ番号の参照 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="creating-footnotes.html">English</a>, <a href="creating-footnotes.de.html">deutsch</a>, <a href="creating-footnotes.es.html">español</a>, <a href="creating-footnotes.fr.html">français</a>, <a href="creating-footnotes.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=""><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=""><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=""><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=" toc_current"><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3001_30d8_30c3_30c0_3001_30d5_30c3_30bf_3092_4f5c_6210_3059_308b-1" href="creating-titles-headers-and-footers.ja.html">3.2.1 タイトル、ヘッダ、フッタを作成する</a>      </li>
+      <li class=""><a name="toc-_30ab_30b9_30bf_30e0-_30d8_30c3_30c0_3001_30d5_30c3_30bf_3001_30bf_30a4_30c8_30eb-1" href="custom-headers-footers-and-titles.ja.html">3.2.2 カスタム ヘッダ、フッタ、タイトル</a>      </li>
+      <li class=" toc_current"><a name="toc-_811a_6ce8_3092_4f5c_6210_3059_308b-1" href="creating-footnotes.ja.html">3.2.3 脚注を作成する</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_811a_6ce8_306e_6982_8981-1" href="creating-footnotes.ja.html#footnotes-overview">脚注の概要</a>        </li>
+        <li class=""><a name="toc-_81ea_52d5_811a_6ce8-1" href="creating-footnotes.ja.html#automatic-footnotes">自動脚注</a>        </li>
+        <li class=""><a name="toc-_624b_52d5_811a_6ce8-1" href="creating-footnotes.ja.html#manual-footnotes">手動脚注</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-_30da_30fc_30b8_756a_53f7_306e_53c2_7167-1" href="reference-to-page-numbers.ja.html">3.2.4 ページ番号の参照</a>      </li>
+      <li class=""><a name="toc-_76ee_6b21-1" href="table-of-contents.ja.html">3.2.5 目次</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

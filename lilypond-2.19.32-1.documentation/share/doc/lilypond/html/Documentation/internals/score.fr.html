@@ -1,0 +1,1602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Internals Reference: 2.1.26 Score</title>
+
+<meta name="description" content="LilyPond Internals Reference: 2.1.26 Score">
+<meta name="keywords" content="LilyPond Internals Reference: 2.1.26 Score">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="GNU LilyPond &ndash; Internals Reference">
+<link href="indices.fr.html#indices" rel="index" title="A. Indices">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="About This Document">
+<link href="contexts.fr.html#contexts" rel="up" title="2.1 Contexts">
+<link href="indices.fr.html#indices" rel="next" title="A.2 Function index">
+<link href="rhythmicstaff.fr.html#rhythmicstaff" rel="previous" title="2.1.25 RhythmicStaff">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="internals devStatus">
+
+
+<div id="main">
+<a name="Score"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.fr.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.fr.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="rhythmicstaff.fr.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; RhythmicStaff&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts.fr.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="staff.fr.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Staff &gt; </a>]</td></tr></table>
+<a name="score"></a>
+<h3 class="subsection">2.1.26 Score</h3>
+
+<p>This is the top level notation context.  No
+other context can contain a <code>Score</code> context.  This context
+handles the administration of time signatures.  It also makes sure
+that items such as clefs, time signatures, and key-signatures are
+aligned across staves.
+</p>
+<p>You cannot explicitly instantiate a <code>Score</code> context (since it
+is not contained in any other context).  It is instantiated
+automatically when an output definition (a <code>\score</code> or
+<code>\layout</code> block) is processed.
+</p>
+<p>This context also accepts commands for the following context(s):
+</p>
+<p>Timing.
+</p>
+<p>This context creates the following layout object(s):
+</p>
+<p><a href="barnumber.fr.html">BarNumber</a>, <a href="breakaligngroup.fr.html">BreakAlignGroup</a>, <a href="breakalignment.fr.html">BreakAlignment</a>, <a href="footnoteitem.fr.html">FootnoteItem</a>, <a href="footnotespanner.fr.html">FootnoteSpanner</a>, <a href="gracespacing.fr.html">GraceSpacing</a>, <a href="leftedge.fr.html">LeftEdge</a>, <a href="metronomemark.fr.html">MetronomeMark</a>, <a href="nonmusicalpapercolumn.fr.html">NonMusicalPaperColumn</a>, <a href="papercolumn.fr.html">PaperColumn</a>, <a href="parenthesesitem.fr.html">ParenthesesItem</a>, <a href="rehearsalmark.fr.html">RehearsalMark</a>, <a href="spacingspanner.fr.html">SpacingSpanner</a>, <a href="systemstartbar.fr.html">SystemStartBar</a>, <a href="systemstartbrace.fr.html">SystemStartBrace</a>, <a href="systemstartbracket.fr.html">SystemStartBracket</a>, <a href="systemstartsquare.fr.html">SystemStartSquare</a>, <a href="verticalalignment.fr.html">VerticalAlignment</a>, <a href="voltabracket.fr.html">VoltaBracket</a> and <a href="voltabracketspanner.fr.html">VoltaBracketSpanner</a>.
+</p>
+<p>This context sets the following properties:
+</p>
+<ul>
+<li> Set translator property <code>additionalPitchPrefix</code> to 
+<code>&quot;&quot;</code>.
+</li><li> Set translator property <code>aDueText</code> to 
+<code>&quot;a2&quot;</code>.
+</li><li> Set translator property <code>alternativeRestores</code> to:
+<pre class="verbatim">'(measurePosition measureLength lastChord)
+</pre></li><li> Set translator property <code>associatedVoiceType</code> to 
+<code>'Voice</code>.
+</li><li> Set translator property <code>autoAccidentals</code> to:
+<pre class="verbatim">'(Staff #&lt;procedure #f (context pitch barnum measurepos)&gt;)
+</pre></li><li> Set translator property <code>autoBeamCheck</code> to 
+<code>default-auto-beam-check</code>.
+</li><li> Set translator property <code>autoBeaming</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>autoCautionaries</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>automaticBars</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>barCheckSynchronize</code> to 
+<code>#f</code>.
+</li><li> Set translator property <code>barNumberFormatter</code> to 
+<code>robust-bar-number-function</code>.
+</li><li> Set translator property <code>barNumberVisibility</code> to 
+<code>first-bar-number-invisible-and-no-parenthesized-bar-numbers</code>.
+</li><li> Set translator property <code>beamHalfMeasure</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>chordNameExceptionsFull</code> to:
+<pre class="verbatim">'(((#&lt;Pitch c' &gt; #&lt;Pitch e' &gt; #&lt;Pitch gis' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    (&quot;+&quot;)))
+  ((#&lt;Pitch c' &gt; #&lt;Pitch ees' &gt; #&lt;Pitch ges' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure super-markup (layout props arg)&gt;
+      &quot;o&quot;))))
+  ((#&lt;Pitch c' &gt;
+    #&lt;Pitch ees' &gt;
+    #&lt;Pitch ges' &gt;
+    #&lt;Pitch bes' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+      &quot;ø&quot;))))
+  ((#&lt;Pitch c' &gt;
+    #&lt;Pitch ees' &gt;
+    #&lt;Pitch ges' &gt;
+    #&lt;Pitch beses' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure super-markup (layout props arg)&gt;
+      &quot;o7&quot;))))
+  ((#&lt;Pitch c' &gt;
+    #&lt;Pitch e' &gt;
+    #&lt;Pitch g' &gt;
+    #&lt;Pitch b' &gt;
+    #&lt;Pitch fis'' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure super-markup (layout props arg)&gt;
+      &quot;lyd&quot;))))
+  ((#&lt;Pitch c' &gt;
+    #&lt;Pitch e' &gt;
+    #&lt;Pitch g' &gt;
+    #&lt;Pitch bes' &gt;
+    #&lt;Pitch des'' &gt;
+    #&lt;Pitch ees'' &gt;
+    #&lt;Pitch fis'' &gt;
+    #&lt;Pitch aes'' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure super-markup (layout props arg)&gt;
+      &quot;alt&quot;)))))
+</pre></li><li> Set translator property <code>chordNameExceptionsPartial</code> to:
+<pre class="verbatim">'(((#&lt;Pitch c' &gt; #&lt;Pitch d' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+      &quot;2&quot;))))
+  ((#&lt;Pitch c' &gt; #&lt;Pitch ees' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    (&quot;m&quot;)))
+  ((#&lt;Pitch c' &gt; #&lt;Pitch f' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+      &quot;sus4&quot;))))
+  ((#&lt;Pitch c' &gt; #&lt;Pitch g' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+      &quot;5&quot;))))
+  ((#&lt;Pitch c' &gt; #&lt;Pitch ees' &gt; #&lt;Pitch f' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    (&quot;m&quot;))
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+      &quot;sus4&quot;))))
+  ((#&lt;Pitch c' &gt; #&lt;Pitch d' &gt; #&lt;Pitch ees' &gt;)
+   (#&lt;procedure line-markup (layout props args)&gt;
+    (&quot;m&quot;))
+   (#&lt;procedure line-markup (layout props args)&gt;
+    ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+      &quot;sus2&quot;)))))
+</pre></li><li> Set translator property <code>chordNameExceptions</code> to:
+<pre class="verbatim">'(((#&lt;Pitch e' &gt; #&lt;Pitch gis' &gt;)
+   #&lt;procedure line-markup (layout props args)&gt;
+   (&quot;+&quot;))
+  ((#&lt;Pitch ees' &gt; #&lt;Pitch ges' &gt;)
+   #&lt;procedure line-markup (layout props args)&gt;
+   ((#&lt;procedure super-markup (layout props arg)&gt;
+     &quot;o&quot;)))
+  ((#&lt;Pitch ees' &gt; #&lt;Pitch ges' &gt; #&lt;Pitch bes' &gt;)
+   #&lt;procedure line-markup (layout props args)&gt;
+   ((#&lt;procedure normal-size-super-markup (layout props arg)&gt;
+     &quot;ø&quot;)))
+  ((#&lt;Pitch ees' &gt; #&lt;Pitch ges' &gt; #&lt;Pitch beses' &gt;)
+   #&lt;procedure line-markup (layout props args)&gt;
+   ((#&lt;procedure super-markup (layout props arg)&gt;
+     &quot;o7&quot;)))
+  ((#&lt;Pitch e' &gt;
+    #&lt;Pitch g' &gt;
+    #&lt;Pitch b' &gt;
+    #&lt;Pitch fis'' &gt;)
+   #&lt;procedure line-markup (layout props args)&gt;
+   ((#&lt;procedure super-markup (layout props arg)&gt;
+     &quot;lyd&quot;)))
+  ((#&lt;Pitch e' &gt;
+    #&lt;Pitch g' &gt;
+    #&lt;Pitch bes' &gt;
+    #&lt;Pitch des'' &gt;
+    #&lt;Pitch ees'' &gt;
+    #&lt;Pitch fis'' &gt;
+    #&lt;Pitch aes'' &gt;)
+   #&lt;procedure line-markup (layout props args)&gt;
+   ((#&lt;procedure super-markup (layout props arg)&gt;
+     &quot;alt&quot;))))
+</pre></li><li> Set translator property <code>chordNameFunction</code> to 
+<code>ignatzek-chord-names</code>.
+</li><li> Set translator property <code>chordNameLowercaseMinor</code> to 
+<code>#f</code>.
+</li><li> Set translator property <code>chordNameSeparator</code> to:
+<pre class="verbatim">'(#&lt;procedure hspace-markup (layout props amount)&gt;
+  0.5)
+</pre></li><li> Set translator property <code>chordNoteNamer</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>chordPrefixSpacer</code> to 
+<code>0</code>.
+</li><li> Set translator property <code>chordRootNamer</code> to 
+<code>note-name-&gt;markup</code>.
+</li><li> Set translator property <code>clefGlyph</code> to 
+<code>&quot;clefs.G&quot;</code>.
+</li><li> Set translator property <code>clefPosition</code> to 
+<code>-2</code>.
+</li><li> Set translator property <code>clefTranspositionFormatter</code> to 
+<code>clef-transposition-markup</code>.
+</li><li> Set translator property <code>completionFactor</code> to 
+<code>unity-if-multimeasure</code>.
+</li><li> Set translator property <code>crescendoSpanner</code> to 
+<code>'hairpin</code>.
+</li><li> Set translator property <code>cueClefTranspositionFormatter</code> to 
+<code>clef-transposition-markup</code>.
+</li><li> Set translator property <code>decrescendoSpanner</code> to 
+<code>'hairpin</code>.
+</li><li> Set translator property <code>defaultBarType</code> to 
+<code>&quot;|&quot;</code>.
+</li><li> Set translator property <code>doubleRepeatType</code> to 
+<code>&quot;:..:&quot;</code>.
+</li><li> Set translator property <code>drumStyleTable</code> to 
+<code>#&lt;hash-table 29/61&gt;</code>.
+</li><li> Set translator property <code>endRepeatType</code> to 
+<code>&quot;:|.&quot;</code>.
+</li><li> Set translator property <code>explicitClefVisibility</code> to:
+<pre class="verbatim">#(#t #t #t)
+</pre></li><li> Set translator property <code>explicitCueClefVisibility</code> to:
+<pre class="verbatim">#(#f #t #t)
+</pre></li><li> Set translator property <code>explicitKeySignatureVisibility</code> to:
+<pre class="verbatim">#(#t #t #t)
+</pre></li><li> Set translator property <code>extraNatural</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>figuredBassFormatter</code> to 
+<code>format-bass-figure</code>.
+</li><li> Set translator property <code>fingeringOrientations</code> to:
+<pre class="verbatim">'(up down)
+</pre></li><li> Set translator property <code>firstClef</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>graceSettings</code> to:
+<pre class="verbatim">'((Voice Stem direction 1)
+  (Voice Slur direction -1)
+  (Voice Stem font-size -3)
+  (Voice Flag font-size -3)
+  (Voice NoteHead font-size -3)
+  (Voice TabNoteHead font-size -4)
+  (Voice Dots font-size -3)
+  (Voice Stem length-fraction 0.8)
+  (Voice Stem no-stem-extend #t)
+  (Voice Beam beam-thickness 0.384)
+  (Voice Beam length-fraction 0.8)
+  (Voice Accidental font-size -4)
+  (Voice AccidentalCautionary font-size -4)
+  (Voice Script font-size -3)
+  (Voice Fingering font-size -8)
+  (Voice StringNumber font-size -8))
+</pre></li><li> Set translator property <code>harmonicAccidentals</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>highStringOne</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>initialTimeSignatureVisibility</code> to:
+<pre class="verbatim">#(#f #t #t)
+</pre></li><li> Set translator property <code>instrumentTransposition</code> to 
+<code>#&lt;Pitch c' &gt;</code>.
+</li><li> Set translator property <code>keepAliveInterfaces</code> to:
+<pre class="verbatim">'(bass-figure-interface
+   chord-name-interface
+   cluster-beacon-interface
+   fret-diagram-interface
+   lyric-syllable-interface
+   note-head-interface
+   tab-note-head-interface
+   lyric-interface
+   percent-repeat-item-interface
+   percent-repeat-interface
+   stanza-number-interface)
+</pre></li><li> Set translator property <code>keyAlterationOrder</code> to:
+<pre class="verbatim">'((6 . -1/2)
+  (2 . -1/2)
+  (5 . -1/2)
+  (1 . -1/2)
+  (4 . -1/2)
+  (0 . -1/2)
+  (3 . -1/2)
+  (3 . 1/2)
+  (0 . 1/2)
+  (4 . 1/2)
+  (1 . 1/2)
+  (5 . 1/2)
+  (2 . 1/2)
+  (6 . 1/2)
+  (6 . -1)
+  (2 . -1)
+  (5 . -1)
+  (1 . -1)
+  (4 . -1)
+  (0 . -1)
+  (3 . -1)
+  (3 . 1)
+  (0 . 1)
+  (4 . 1)
+  (1 . 1)
+  (5 . 1)
+  (2 . 1)
+  (6 . 1))
+</pre></li><li> Set translator property <code>lyricMelismaAlignment</code> to 
+<code>-1</code>.
+</li><li> Set translator property <code>majorSevenSymbol</code> to:
+<pre class="verbatim">'(#&lt;procedure line-markup (layout props args)&gt;
+  ((#&lt;procedure triangle-markup (layout props filled)&gt;
+    #f)))
+</pre></li><li> Set translator property <code>markFormatter</code> to 
+<code>format-mark-letters</code>.
+</li><li> Set translator property <code>melismaBusyProperties</code> to:
+<pre class="verbatim">'(melismaBusy
+   slurMelismaBusy
+   tieMelismaBusy
+   beamMelismaBusy
+   completionBusy)
+</pre></li><li> Set translator property <code>metronomeMarkFormatter</code> to 
+<code>format-metronome-markup</code>.
+</li><li> Set translator property <code>middleCClefPosition</code> to 
+<code>-6</code>.
+</li><li> Set translator property <code>middleCPosition</code> to 
+<code>-6</code>.
+</li><li> Set translator property <code>minorChordModifier</code> to:
+<pre class="verbatim">'(#&lt;procedure simple-markup (layout props str)&gt;
+  &quot;m&quot;)
+</pre></li><li> Set translator property <code>noChordSymbol</code> to:
+<pre class="verbatim">'(#&lt;procedure simple-markup (layout props str)&gt;
+  &quot;N.C.&quot;)
+</pre></li><li> Set translator property <code>noteToFretFunction</code> to 
+<code>determine-frets</code>.
+</li><li> Set translator property <code>partCombineTextsOnNote</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>pedalSostenutoStrings</code> to:
+<pre class="verbatim">'(&quot;Sost. Ped.&quot; &quot;*Sost. Ped.&quot; &quot;*&quot;)
+</pre></li><li> Set translator property <code>pedalSostenutoStyle</code> to 
+<code>'mixed</code>.
+</li><li> Set translator property <code>pedalSustainStrings</code> to:
+<pre class="verbatim">'(&quot;Ped.&quot; &quot;*Ped.&quot; &quot;*&quot;)
+</pre></li><li> Set translator property <code>pedalSustainStyle</code> to 
+<code>'text</code>.
+</li><li> Set translator property <code>pedalUnaCordaStrings</code> to:
+<pre class="verbatim">'(&quot;una corda&quot; &quot;&quot; &quot;tre corde&quot;)
+</pre></li><li> Set translator property <code>pedalUnaCordaStyle</code> to 
+<code>'text</code>.
+</li><li> Set translator property <code>predefinedDiagramTable</code> to 
+<code>#f</code>.
+</li><li> Set translator property <code>printKeyCancellation</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>printPartCombineTexts</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>quotedCueEventTypes</code> to:
+<pre class="verbatim">'(note-event
+   rest-event
+   tie-event
+   beam-event
+   tuplet-span-event)
+</pre></li><li> Set translator property <code>quotedEventTypes</code> to:
+<pre class="verbatim">'(StreamEvent)
+</pre></li><li> Set translator property <code>rehearsalMark</code> to 
+<code>1</code>.
+</li><li> Set translator property <code>repeatCountVisibility</code> to 
+<code>all-repeat-counts-visible</code>.
+</li><li> Set translator property <code>scriptDefinitions</code> to:
+<pre class="verbatim">'((&quot;accent&quot;
+   (avoid-slur . around)
+   (padding . 0.2)
+   (script-stencil feta &quot;sforzato&quot; . &quot;sforzato&quot;)
+   (side-relative-direction . -1))
+  (&quot;accentus&quot;
+   (script-stencil feta &quot;uaccentus&quot; . &quot;uaccentus&quot;)
+   (side-relative-direction . -1)
+   (avoid-slur . ignore)
+   (padding . 0.2)
+   (quantize-position . #t)
+   (script-priority . -100)
+   (direction . 1))
+  (&quot;circulus&quot;
+   (script-stencil feta &quot;circulus&quot; . &quot;circulus&quot;)
+   (side-relative-direction . -1)
+   (avoid-slur . ignore)
+   (padding . 0.2)
+   (quantize-position . #t)
+   (script-priority . -100)
+   (direction . 1))
+  (&quot;coda&quot;
+   (script-stencil feta &quot;coda&quot; . &quot;coda&quot;)
+   (padding . 0.2)
+   (avoid-slur . outside)
+   (direction . 1))
+  (&quot;comma&quot;
+   (script-stencil feta &quot;lcomma&quot; . &quot;rcomma&quot;)
+   (quantize-position . #t)
+   (padding . 0.2)
+   (avoid-slur . ignore)
+   (direction . 1))
+  (&quot;downbow&quot;
+   (script-stencil feta &quot;downbow&quot; . &quot;downbow&quot;)
+   (padding . 0.2)
+   (skyline-horizontal-padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1)
+   (script-priority . 150))
+  (&quot;downmordent&quot;
+   (script-stencil
+     feta
+     &quot;downmordent&quot;
+     .
+     &quot;downmordent&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;downprall&quot;
+   (script-stencil feta &quot;downprall&quot; . &quot;downprall&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;espressivo&quot;
+   (avoid-slur . around)
+   (padding . 0.2)
+   (script-stencil feta &quot;espr&quot; . &quot;espr&quot;)
+   (side-relative-direction . -1))
+  (&quot;fermata&quot;
+   (script-stencil feta &quot;dfermata&quot; . &quot;ufermata&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (script-priority . 4000)
+   (direction . 1))
+  (&quot;flageolet&quot;
+   (script-stencil feta &quot;flageolet&quot; . &quot;flageolet&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;halfopen&quot;
+   (avoid-slur . outside)
+   (padding . 0.2)
+   (script-stencil feta &quot;halfopen&quot; . &quot;halfopen&quot;)
+   (direction . 1))
+  (&quot;ictus&quot;
+   (script-stencil feta &quot;ictus&quot; . &quot;ictus&quot;)
+   (side-relative-direction . -1)
+   (quantize-position . #t)
+   (avoid-slur . ignore)
+   (padding . 0.2)
+   (script-priority . -100)
+   (direction . -1))
+  (&quot;lheel&quot;
+   (script-stencil feta &quot;upedalheel&quot; . &quot;upedalheel&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . -1))
+  (&quot;lineprall&quot;
+   (script-stencil feta &quot;lineprall&quot; . &quot;lineprall&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;longfermata&quot;
+   (script-stencil
+     feta
+     &quot;dlongfermata&quot;
+     .
+     &quot;ulongfermata&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;ltoe&quot;
+   (script-stencil feta &quot;upedaltoe&quot; . &quot;upedaltoe&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . -1))
+  (&quot;marcato&quot;
+   (script-stencil feta &quot;dmarcato&quot; . &quot;umarcato&quot;)
+   (padding . 0.2)
+   (avoid-slur . inside)
+   (quantize-position . #t)
+   (side-relative-direction . -1))
+  (&quot;mordent&quot;
+   (script-stencil feta &quot;mordent&quot; . &quot;mordent&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;open&quot;
+   (avoid-slur . outside)
+   (padding . 0.2)
+   (script-stencil feta &quot;open&quot; . &quot;open&quot;)
+   (direction . 1))
+  (&quot;portato&quot;
+   (script-stencil feta &quot;uportato&quot; . &quot;dportato&quot;)
+   (avoid-slur . around)
+   (padding . 0.45)
+   (side-relative-direction . -1))
+  (&quot;prall&quot;
+   (script-stencil feta &quot;prall&quot; . &quot;prall&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;pralldown&quot;
+   (script-stencil feta &quot;pralldown&quot; . &quot;pralldown&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;prallmordent&quot;
+   (script-stencil
+     feta
+     &quot;prallmordent&quot;
+     .
+     &quot;prallmordent&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;prallprall&quot;
+   (script-stencil feta &quot;prallprall&quot; . &quot;prallprall&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;prallup&quot;
+   (script-stencil feta &quot;prallup&quot; . &quot;prallup&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;reverseturn&quot;
+   (script-stencil
+     feta
+     &quot;reverseturn&quot;
+     .
+     &quot;reverseturn&quot;)
+   (padding . 0.2)
+   (avoid-slur . inside)
+   (direction . 1))
+  (&quot;rheel&quot;
+   (script-stencil feta &quot;dpedalheel&quot; . &quot;dpedalheel&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;rtoe&quot;
+   (script-stencil feta &quot;dpedaltoe&quot; . &quot;dpedaltoe&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;segno&quot;
+   (script-stencil feta &quot;segno&quot; . &quot;segno&quot;)
+   (padding . 0.2)
+   (avoid-slur . outside)
+   (direction . 1))
+  (&quot;semicirculus&quot;
+   (script-stencil
+     feta
+     &quot;dsemicirculus&quot;
+     .
+     &quot;dsemicirculus&quot;)
+   (side-relative-direction . -1)
+   (quantize-position . #t)
+   (avoid-slur . ignore)
+   (padding . 0.2)
+   (script-priority . -100)
+   (direction . 1))
+  (&quot;shortfermata&quot;
+   (script-stencil
+     feta
+     &quot;dshortfermata&quot;
+     .
+     &quot;ushortfermata&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;signumcongruentiae&quot;
+   (script-stencil
+     feta
+     &quot;dsignumcongruentiae&quot;
+     .
+     &quot;usignumcongruentiae&quot;)
+   (padding . 0.2)
+   (avoid-slur . outside)
+   (direction . 1))
+  (&quot;snappizzicato&quot;
+   (script-stencil
+     feta
+     &quot;snappizzicato&quot;
+     .
+     &quot;snappizzicato&quot;)
+   (padding . 0.2)
+   (avoid-slur . outside)
+   (direction . 1))
+  (&quot;staccatissimo&quot;
+   (avoid-slur . inside)
+   (quantize-position . #t)
+   (script-stencil
+     feta
+     &quot;dstaccatissimo&quot;
+     .
+     &quot;ustaccatissimo&quot;)
+   (padding . 0.2)
+   (skyline-horizontal-padding . 0.1)
+   (side-relative-direction . -1)
+   (toward-stem-shift . 1.0)
+   (toward-stem-shift-in-column . 0.0))
+  (&quot;staccato&quot;
+   (script-stencil feta &quot;staccato&quot; . &quot;staccato&quot;)
+   (side-relative-direction . -1)
+   (quantize-position . #t)
+   (avoid-slur . inside)
+   (toward-stem-shift . 1.0)
+   (toward-stem-shift-in-column . 0.0)
+   (padding . 0.2)
+   (skyline-horizontal-padding . 0.1)
+   (script-priority . -100))
+  (&quot;stopped&quot;
+   (script-stencil feta &quot;stopped&quot; . &quot;stopped&quot;)
+   (avoid-slur . inside)
+   (padding . 0.2)
+   (direction . 1))
+  (&quot;tenuto&quot;
+   (script-stencil feta &quot;tenuto&quot; . &quot;tenuto&quot;)
+   (quantize-position . #t)
+   (avoid-slur . inside)
+   (padding . 0.2)
+   (side-relative-direction . -1))
+  (&quot;trill&quot;
+   (script-stencil feta &quot;trill&quot; . &quot;trill&quot;)
+   (direction . 1)
+   (padding . 0.2)
+   (avoid-slur . outside)
+   (script-priority . 2000))
+  (&quot;turn&quot;
+   (script-stencil feta &quot;turn&quot; . &quot;turn&quot;)
+   (avoid-slur . inside)
+   (padding . 0.2)
+   (direction . 1))
+  (&quot;upbow&quot;
+   (script-stencil feta &quot;upbow&quot; . &quot;upbow&quot;)
+   (avoid-slur . around)
+   (padding . 0.2)
+   (direction . 1)
+   (script-priority . 150))
+  (&quot;upmordent&quot;
+   (script-stencil feta &quot;upmordent&quot; . &quot;upmordent&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;upprall&quot;
+   (script-stencil feta &quot;upprall&quot; . &quot;upprall&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1))
+  (&quot;varcoda&quot;
+   (script-stencil feta &quot;varcoda&quot; . &quot;varcoda&quot;)
+   (padding . 0.2)
+   (avoid-slur . outside)
+   (direction . 1))
+  (&quot;varcomma&quot;
+   (script-stencil feta &quot;lvarcomma&quot; . &quot;rvarcomma&quot;)
+   (quantize-position . #t)
+   (padding . 0.2)
+   (avoid-slur . ignore)
+   (direction . 1))
+  (&quot;verylongfermata&quot;
+   (script-stencil
+     feta
+     &quot;dverylongfermata&quot;
+     .
+     &quot;uverylongfermata&quot;)
+   (padding . 0.2)
+   (avoid-slur . around)
+   (direction . 1)))
+</pre></li><li> Set translator property <code>slashChordSeparator</code> to:
+<pre class="verbatim">'(#&lt;procedure simple-markup (layout props str)&gt;
+  &quot;/&quot;)
+</pre></li><li> Set translator property <code>soloIIText</code> to 
+<code>&quot;Solo II&quot;</code>.
+</li><li> Set translator property <code>soloText</code> to 
+<code>&quot;Solo&quot;</code>.
+</li><li> Set translator property <code>startRepeatType</code> to 
+<code>&quot;.|:&quot;</code>.
+</li><li> Set translator property <code>stringNumberOrientations</code> to:
+<pre class="verbatim">'(up down)
+</pre></li><li> Set translator property <code>stringOneTopmost</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>stringTunings</code> to:
+<pre class="verbatim">'(#&lt;Pitch e' &gt;
+  #&lt;Pitch b &gt;
+  #&lt;Pitch g &gt;
+  #&lt;Pitch d &gt;
+  #&lt;Pitch a, &gt;
+  #&lt;Pitch e, &gt;)
+</pre></li><li> Set translator property <code>strokeFingerOrientations</code> to:
+<pre class="verbatim">'(right)
+</pre></li><li> Set translator property <code>subdivideBeams</code> to 
+<code>#f</code>.
+</li><li> Set translator property <code>systemStartDelimiter</code> to 
+<code>'SystemStartBar</code>.
+</li><li> Set translator property <code>tablatureFormat</code> to 
+<code>fret-number-tablature-format</code>.
+</li><li> Set translator property <code>tabStaffLineLayoutFunction</code> to 
+<code>tablature-position-on-lines</code>.
+</li><li> Set translator property <code>tieWaitForNote</code> to 
+<code>#f</code>.
+</li><li> Set translator property <code>timeSignatureFraction</code> to:
+<pre class="verbatim">'(4 . 4)
+</pre></li><li> Set translator property <code>timeSignatureSettings</code> to:
+<pre class="verbatim">'(((2 . 2) (beamExceptions (end (1/32 8 8 8 8))))
+  ((3 . 2)
+   (beamExceptions (end (1/32 8 8 8 8 8 8))))
+  ((3 . 4)
+   (beamExceptions (end (1/8 6) (1/12 3 3 3))))
+  ((3 . 8) (beamExceptions (end (1/8 3))))
+  ((4 . 2)
+   (beamExceptions (end (1/16 4 4 4 4 4 4 4 4))))
+  ((4 . 4)
+   (beamExceptions (end (1/8 4 4) (1/12 3 3 3 3))))
+  ((4 . 8) (beatStructure 2 2))
+  ((6 . 4)
+   (beamExceptions (end (1/16 4 4 4 4 4 4))))
+  ((9 . 4)
+   (beamExceptions (end (1/32 8 8 8 8 8 8 8 8))))
+  ((12 . 4)
+   (beamExceptions
+     (end (1/32 8 8 8 8 8 8 8 8 8 8 8 8))))
+  ((5 . 8) (beatStructure 3 2))
+  ((8 . 8) (beatStructure 3 3 2)))
+</pre></li><li> Set translator property <code>timing</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>topLevelAlignment</code> to 
+<code>#t</code>.
+</li></ul>
+
+
+<p>This is not a &lsquo;Bottom&rsquo; context; search for such a one will commence after creating an implicit context of type <a href="staff.fr.html">Staff</a>.
+</p>
+<p>Context Score can contain
+<a href="choirstaff.fr.html">ChoirStaff</a>, <a href="chordnames.fr.html">ChordNames</a>, <a href="devnull.fr.html">Devnull</a>, <a href="drumstaff.fr.html">DrumStaff</a>, <a href="dynamics.fr.html">Dynamics</a>, <a href="figuredbass.fr.html">FiguredBass</a>, <a href="fretboards.fr.html">FretBoards</a>, <a href="grandstaff.fr.html">GrandStaff</a>, <a href="gregoriantranscriptionstaff.fr.html">GregorianTranscriptionStaff</a>, <a href="kievanstaff.fr.html">KievanStaff</a>, <a href="lyrics.fr.html">Lyrics</a>, <a href="mensuralstaff.fr.html">MensuralStaff</a>, <a href="notenames.fr.html">NoteNames</a>, <a href="onestaff.fr.html">OneStaff</a>, <a href="petruccistaff.fr.html">PetrucciStaff</a>, <a href="pianostaff.fr.html">PianoStaff</a>, <a href="rhythmicstaff.fr.html">RhythmicStaff</a>, <a href="staff.fr.html">Staff</a>, <a href="staffgroup.fr.html">StaffGroup</a>, <a href="tabstaff.fr.html">TabStaff</a> and <a href="vaticanastaff.fr.html">VaticanaStaff</a>.
+</p>
+<p>This context is built from the following engraver(s):
+</p><blockquote><dl compact="compact">
+<dt> <code><a href="bar_005fnumber_005fengraver.fr.html">Bar_number_engraver</a></code></dt>
+<dd><p>A bar number is created whenever <code>measurePosition</code> is zero and when there is a bar line (i.e., when <code>whichBar</code> is set).  It is put on top of all staves, and appears only at the left side of the staff.  The staves are taken from <code>stavesFound</code>, which is maintained by <a href="staff_005fcollecting_005fengraver.fr.html">Staff_collecting_engraver</a>.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="alternative_002devent.fr.html">alternative-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>alternativeNumberingStyle</code> (symbol)</dt>
+<dd><p>The style of an alternative&rsquo;s bar
+numbers.  Can be <code>numbers</code> for going back to the same number or
+<code>numbers-with-letters</code> for going back to the same number with letter
+suffixes.  No setting will not go back in measure-number time.
+</p>
+</dd>
+<dt> <code>barNumberFormatter</code> (procedure)</dt>
+<dd><p>A procedure that takes a bar
+number, measure position, and alternative number and returns a markup
+of the bar number to print.
+</p>
+</dd>
+<dt> <code>barNumberVisibility</code> (procedure)</dt>
+<dd><p>A procedure that takes a bar
+number and a measure position and returns whether the corresponding
+bar number should be printed.  Note that the actual print-out of
+bar numbers is controlled with the <code>break-visibility</code> property.
+</p>
+<p>The following procedures are predefined:
+</p>
+<dl compact="compact">
+<dt> <code>all-bar-numbers-visible</code></dt>
+<dd><p>Enable bar numbers for all bars, including the first one and broken
+bars (which get bar numbers in parentheses).
+</p>
+</dd>
+<dt> <code>first-bar-number-invisible</code></dt>
+<dd><p>Enable bar numbers for all bars (including broken bars) except the
+first one.  If the first bar is broken, it doesn&rsquo;t get a bar number
+either.
+</p>
+</dd>
+<dt> <code>first-bar-number-invisible-save-broken-bars</code></dt>
+<dd><p>Enable bar numbers for all bars (including broken bars) except the
+first one.  A broken first bar gets a bar number.
+</p>
+</dd>
+<dt> <code>first-bar-number-invisible-and-no-parenthesized-bar-numbers</code></dt>
+<dd><p>Enable bar numbers for all bars except the first bar and broken bars.
+This is the default.
+</p>
+</dd>
+<dt> <code>(every-nth-bar-number-visible <var>n</var>)</code></dt>
+<dd><p>Assuming <var>n</var> is value&nbsp;2, for example, this enables bar numbers
+for bars 2, 4, 6, etc.
+</p>
+</dd>
+<dt> <code>(modulo-bar-number-visible <var>n</var> <var>m</var>)</code></dt>
+<dd><p>If bar numbers 1, 4, 7, etc., should be enabled, <var>n</var>&nbsp;(the modulo)
+must be set to&nbsp;3 and <var>m</var>&nbsp;(the division remainder) to&nbsp;1.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>currentBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is incremented at every bar line.
+</p>
+</dd>
+<dt> <code>stavesFound</code> (list of grobs)</dt>
+<dd><p>A list of all staff-symbols found.
+</p>
+</dd>
+<dt> <code>whichBar</code> (string)</dt>
+<dd><p>This property is read to determine what type
+of bar line to create.
+</p>
+<p>Example:
+</p>
+<blockquote><pre class="example">\set Staff.whichBar = &quot;.|:&quot;
+</pre></blockquote>
+
+<p>This will create a start-repeat bar in this staff only.  Valid values
+are described in &lsquo;<tt>scm/bar-line.scm</tt>&rsquo;.
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is incremented at every bar line.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="barnumber.fr.html">BarNumber</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="beam_005fcollision_005fengraver.fr.html">Beam_collision_engraver</a></code></dt>
+<dd><p>Help beams avoid colliding with notes and clefs in other voices.
+</p>
+
+
+
+
+
+
+</dd>
+<dt> <code><a href="break_005falign_005fengraver.fr.html">Break_align_engraver</a></code></dt>
+<dd><p>Align grobs with corresponding <code>break-align-symbols</code> into groups, and order the groups according to <code>breakAlignOrder</code>.  The left edge of the alignment gets a separate group, with a symbol <code>left-edge</code>.
+</p>
+
+
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="breakaligngroup.fr.html">BreakAlignGroup</a>, <a href="breakalignment.fr.html">BreakAlignment</a> and <a href="leftedge.fr.html">LeftEdge</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="concurrent_005fhairpin_005fengraver.fr.html">Concurrent_hairpin_engraver</a></code></dt>
+<dd><p>Collect concurrent hairpins.
+</p>
+
+
+
+
+
+
+</dd>
+<dt> <code><a href="default_005fbar_005fline_005fengraver.fr.html">Default_bar_line_engraver</a></code></dt>
+<dd><p>This engraver determines what kind of automatic bar lines should be produced, and sets <code>whichBar</code> accordingly.  It should be at the same level as <a href="timing_005ftranslator.fr.html">Timing_translator</a>.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>automaticBars</code> (boolean)</dt>
+<dd><p>If set to false then bar lines will not
+be printed automatically; they must be explicitly created with a
+<code>\bar</code> command.  Unlike the <code>\cadenzaOn</code> keyword, measures
+are still counted.  Bar line generation will resume according to that
+count if this property is unset.
+</p>
+</dd>
+<dt> <code>barAlways</code> (boolean)</dt>
+<dd><p>If set to true a bar line is drawn after
+each note.
+</p>
+</dd>
+<dt> <code>defaultBarType</code> (string)</dt>
+<dd><p>Set the default type of bar line.  See
+<code>whichBar</code> for information on available bar types.
+</p>
+<p>This variable is read by <a name="index-Timing_005ftranslator"></a>
+<a href="../internals/timing_005ftranslator.fr.html">Timing_translator</a> at
+<a name="index-Score-4"></a>
+<a href="../internals/score.fr.html">Score</a> level.
+</p>
+</dd>
+<dt> <code>measureLength</code> (moment)</dt>
+<dd><p>Length of one measure in the current
+time signature.
+</p>
+</dd>
+<dt> <code>measurePosition</code> (moment)</dt>
+<dd><p>How much of the current measure have
+we had.  This can be set manually to create incomplete measures.
+</p>
+</dd>
+<dt> <code>timing</code> (boolean)</dt>
+<dd><p>Keep administration of measure length,
+position, bar number, etc.?  Switch off for cadenzas.
+</p>
+</dd>
+<dt> <code>whichBar</code> (string)</dt>
+<dd><p>This property is read to determine what type
+of bar line to create.
+</p>
+<p>Example:
+</p>
+<blockquote><pre class="example">\set Staff.whichBar = &quot;.|:&quot;
+</pre></blockquote>
+
+<p>This will create a start-repeat bar in this staff only.  Valid values
+are described in &lsquo;<tt>scm/bar-line.scm</tt>&rsquo;.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+
+
+</dd>
+<dt> <code><a href="footnote_005fengraver.fr.html">Footnote_engraver</a></code></dt>
+<dd><p>Create footnote texts.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentMusicalColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+non-breakable items (note heads, lyrics, etc.).
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="footnoteitem.fr.html">FootnoteItem</a> and <a href="footnotespanner.fr.html">FootnoteSpanner</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="grace_005fspacing_005fengraver.fr.html">Grace_spacing_engraver</a></code></dt>
+<dd><p>Bookkeeping of shortest starting and playing notes in grace note runs.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentMusicalColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+non-breakable items (note heads, lyrics, etc.).
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="gracespacing.fr.html">GraceSpacing</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="mark_005fengraver.fr.html">Mark_engraver</a></code></dt>
+<dd><p>Create <code>RehearsalMark</code> objects.  It puts them on top of all staves (which is taken from the property <code>stavesFound</code>).  If moving this engraver to a different context, <a href="staff_005fcollecting_005fengraver.fr.html">Staff_collecting_engraver</a> must move along, otherwise all marks end up on the same Y&nbsp;location.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="mark_002devent.fr.html">mark-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>markFormatter</code> (procedure)</dt>
+<dd><p>A procedure taking as arguments the
+context and the rehearsal mark.  It should return the formatted mark as
+a markup object.
+</p>
+</dd>
+<dt> <code>rehearsalMark</code> (integer)</dt>
+<dd><p>The last rehearsal mark printed.
+</p>
+</dd>
+<dt> <code>stavesFound</code> (list of grobs)</dt>
+<dd><p>A list of all staff-symbols found.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="rehearsalmark.fr.html">RehearsalMark</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="metronome_005fmark_005fengraver.fr.html">Metronome_mark_engraver</a></code></dt>
+<dd><p>Engrave metronome marking.  This delegates the formatting work to the function in the <code>metronomeMarkFormatter</code> property.  The mark is put over all staves.  The staves are taken from the <code>stavesFound</code> property, which is maintained by <a href="staff_005fcollecting_005fengraver.fr.html">Staff_collecting_engraver</a>.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="tempo_002dchange_002devent.fr.html">tempo-change-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>currentMusicalColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+non-breakable items (note heads, lyrics, etc.).
+</p>
+</dd>
+<dt> <code>metronomeMarkFormatter</code> (procedure)</dt>
+<dd><p>How to produce a metronome
+markup.  Called with two arguments: a <code>TempoChangeEvent</code> and context.
+</p>
+</dd>
+<dt> <code>stavesFound</code> (list of grobs)</dt>
+<dd><p>A list of all staff-symbols found.
+</p>
+</dd>
+<dt> <code>tempoHideNote</code> (boolean)</dt>
+<dd><p>Hide the note = count in tempo marks.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="metronomemark.fr.html">MetronomeMark</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="output_005fproperty_005fengraver.fr.html">Output_property_engraver</a></code></dt>
+<dd><p>Apply a procedure to any grob acknowledged.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="apply_002doutput_002devent.fr.html">apply-output-event</a>
+</p>
+
+
+
+
+</dd>
+<dt> <code><a href="paper_005fcolumn_005fengraver.fr.html">Paper_column_engraver</a></code></dt>
+<dd><p>Take care of generating columns.
+</p>
+<p>This engraver decides whether a column is breakable.  The default is that a column is always breakable.  However, every <code>Bar_engraver</code> that does not have a barline at a certain point will set <code>forbidBreaks</code> in the score context to stop line breaks.  In practice, this means that you can make a break point by creating a bar line (assuming that there are no beams or notes that prevent a break point).
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="break_002devent.fr.html">break-event</a> and <a href="label_002devent.fr.html">label-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>forbidBreak</code> (boolean)</dt>
+<dd><p>If set to <code>#t</code>, prevent a line break
+at this point.
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>currentMusicalColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+non-breakable items (note heads, lyrics, etc.).
+</p>
+</dd>
+<dt> <code>forbidBreak</code> (boolean)</dt>
+<dd><p>If set to <code>#t</code>, prevent a line break
+at this point.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="nonmusicalpapercolumn.fr.html">NonMusicalPaperColumn</a> and <a href="papercolumn.fr.html">PaperColumn</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="parenthesis_005fengraver.fr.html">Parenthesis_engraver</a></code></dt>
+<dd><p>Parenthesize objects whose music cause has the <code>parenthesize</code> property.
+</p>
+
+
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="parenthesesitem.fr.html">ParenthesesItem</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="repeat_005facknowledge_005fengraver.fr.html">Repeat_acknowledge_engraver</a></code></dt>
+<dd><p>Acknowledge repeated music, and convert the contents of <code>repeatCommands</code> into an appropriate setting for <code>whichBar</code>.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>doubleRepeatSegnoType</code> (string)</dt>
+<dd><p>Set the default bar line for
+the combinations double repeat with segno. Default is &lsquo;<samp>:|.S.|:</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>doubleRepeatType</code> (string)</dt>
+<dd><p>Set the default bar line for double
+repeats.
+</p>
+</dd>
+<dt> <code>endRepeatSegnoType</code> (string)</dt>
+<dd><p>Set the default bar line for the
+combinations ending of repeat with segno. Default is &lsquo;<samp>:|.S</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>endRepeatType</code> (string)</dt>
+<dd><p>Set the default bar line for the ending
+of repeats.
+</p>
+</dd>
+<dt> <code>repeatCommands</code> (list)</dt>
+<dd><p>This property is a list of commands
+of the form <code>(list 'volta <var>x</var>)</code>, where <var>x</var> is a string or
+<code>#f</code>.  <code>'end-repeat</code> is also accepted as a command.
+</p>
+</dd>
+<dt> <code>segnoType</code> (string)</dt>
+<dd><p>Set the default bar line for a requested segno.
+Default is &lsquo;<samp>S</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>startRepeatSegnoType</code> (string)</dt>
+<dd><p>Set the default bar line for the
+combinations beginning of repeat with segno. Default is &lsquo;<samp>S.|:</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>startRepeatType</code> (string)</dt>
+<dd><p>Set the default bar line for the beginning
+of repeats.
+</p>
+</dd>
+<dt> <code>whichBar</code> (string)</dt>
+<dd><p>This property is read to determine what type
+of bar line to create.
+</p>
+<p>Example:
+</p>
+<blockquote><pre class="example">\set Staff.whichBar = &quot;.|:&quot;
+</pre></blockquote>
+
+<p>This will create a start-repeat bar in this staff only.  Valid values
+are described in &lsquo;<tt>scm/bar-line.scm</tt>&rsquo;.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+
+
+</dd>
+<dt> <code><a href="spacing_005fengraver.fr.html">Spacing_engraver</a></code></dt>
+<dd><p>Make a <code>SpacingSpanner</code> and do bookkeeping of shortest starting and playing notes.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="spacing_002dsection_002devent.fr.html">spacing-section-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>currentMusicalColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+non-breakable items (note heads, lyrics, etc.).
+</p>
+</dd>
+<dt> <code>proportionalNotationDuration</code> (moment)</dt>
+<dd><p>Global override for
+shortest-playing duration.  This is used for switching on proportional
+notation.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="spacingspanner.fr.html">SpacingSpanner</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="staff_005fcollecting_005fengraver.fr.html">Staff_collecting_engraver</a></code></dt>
+<dd><p>Maintain the <code>stavesFound</code> variable.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>stavesFound</code> (list of grobs)</dt>
+<dd><p>A list of all staff-symbols found.
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>stavesFound</code> (list of grobs)</dt>
+<dd><p>A list of all staff-symbols found.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+
+
+</dd>
+<dt> <code><a href="stanza_005fnumber_005falign_005fengraver.fr.html">Stanza_number_align_engraver</a></code></dt>
+<dd><p>This engraver ensures that stanza numbers are neatly aligned.
+</p>
+
+
+
+
+
+
+</dd>
+<dt> <code><a href="system_005fstart_005fdelimiter_005fengraver.fr.html">System_start_delimiter_engraver</a></code></dt>
+<dd><p>Create a system start delimiter (i.e., a <code>SystemStartBar</code>, <code>SystemStartBrace</code>, <code>SystemStartBracket</code> or <code>SystemStartSquare</code> spanner).
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>systemStartDelimiter</code> (symbol)</dt>
+<dd><p>Which grob to make for the start
+of the system/staff?  Set to <code>SystemStartBrace</code>,
+<code>SystemStartBracket</code> or <code>SystemStartBar</code>.
+</p>
+</dd>
+<dt> <code>systemStartDelimiterHierarchy</code> (pair)</dt>
+<dd><p>A nested list, indicating
+the nesting of a start delimiters.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="systemstartbar.fr.html">SystemStartBar</a>, <a href="systemstartbrace.fr.html">SystemStartBrace</a>, <a href="systemstartbracket.fr.html">SystemStartBracket</a> and <a href="systemstartsquare.fr.html">SystemStartSquare</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="timing_005ftranslator.fr.html">Timing_translator</a></code></dt>
+<dd><p>This engraver adds the alias <code>Timing</code> to its containing context.  Responsible for synchronizing timing information from staves.  Normally in <code>Score</code>.  In order to create polyrhythmic music, this engraver should be removed from <code>Score</code> and placed in <code>Staff</code>.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>baseMoment</code> (moment)</dt>
+<dd><p>Smallest unit of time that will stand on its
+own as a subdivided section.
+</p>
+</dd>
+<dt> <code>currentBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is incremented at every bar line.
+</p>
+</dd>
+<dt> <code>internalBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is used for internal timekeeping, among others by the
+<code>Accidental_engraver</code>.
+</p>
+</dd>
+<dt> <code>measureLength</code> (moment)</dt>
+<dd><p>Length of one measure in the current
+time signature.
+</p>
+</dd>
+<dt> <code>measurePosition</code> (moment)</dt>
+<dd><p>How much of the current measure have
+we had.  This can be set manually to create incomplete measures.
+</p>
+</dd>
+<dt> <code>timeSignatureFraction</code> (fraction, as pair)</dt>
+<dd><p>A pair of numbers,
+signifying the time signature.  For example, <code>'(4 . 4)</code> is a
+4/4 time signature.
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>baseMoment</code> (moment)</dt>
+<dd><p>Smallest unit of time that will stand on its
+own as a subdivided section.
+</p>
+</dd>
+<dt> <code>currentBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is incremented at every bar line.
+</p>
+</dd>
+<dt> <code>internalBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is used for internal timekeeping, among others by the
+<code>Accidental_engraver</code>.
+</p>
+</dd>
+<dt> <code>measureLength</code> (moment)</dt>
+<dd><p>Length of one measure in the current
+time signature.
+</p>
+</dd>
+<dt> <code>measurePosition</code> (moment)</dt>
+<dd><p>How much of the current measure have
+we had.  This can be set manually to create incomplete measures.
+</p>
+</dd>
+<dt> <code>timeSignatureFraction</code> (fraction, as pair)</dt>
+<dd><p>A pair of numbers,
+signifying the time signature.  For example, <code>'(4 . 4)</code> is a
+4/4 time signature.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+
+
+</dd>
+<dt> <code><a href="tweak_005fengraver.fr.html">Tweak_engraver</a></code></dt>
+<dd><p>Read the <code>tweaks</code> property from the originating event, and set properties.
+</p>
+
+
+
+
+
+
+</dd>
+<dt> <code><a href="vertical_005falign_005fengraver.fr.html">Vertical_align_engraver</a></code></dt>
+<dd><p>Catch groups (staves, lyrics lines, etc.) and stack them vertically.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>alignAboveContext</code> (string)</dt>
+<dd><p>Where to insert newly created context in
+vertical alignment.
+</p>
+</dd>
+<dt> <code>alignBelowContext</code> (string)</dt>
+<dd><p>Where to insert newly created context in
+vertical alignment.
+</p>
+</dd>
+<dt> <code>hasAxisGroup</code> (boolean)</dt>
+<dd><p>True if the current context is contained
+in an axis group.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="verticalalignment.fr.html">VerticalAlignment</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="volta_005fengraver.fr.html">Volta_engraver</a></code></dt>
+<dd><p>Make volta brackets.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>repeatCommands</code> (list)</dt>
+<dd><p>This property is a list of commands
+of the form <code>(list 'volta <var>x</var>)</code>, where <var>x</var> is a string or
+<code>#f</code>.  <code>'end-repeat</code> is also accepted as a command.
+</p>
+</dd>
+<dt> <code>stavesFound</code> (list of grobs)</dt>
+<dd><p>A list of all staff-symbols found.
+</p>
+</dd>
+<dt> <code>voltaSpannerDuration</code> (moment)</dt>
+<dd><p>This specifies the maximum
+duration to use for the brackets printed for <code>\alternative</code>.
+This can be used to shrink the length of brackets in the situation
+where one alternative is very large.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="voltabracket.fr.html">VoltaBracket</a> and <a href="voltabracketspanner.fr.html">VoltaBracketSpanner</a>.
+</p>
+
+
+</dd>
+</dl>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.fr.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.fr.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="rhythmicstaff.fr.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; RhythmicStaff&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts.fr.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="staff.fr.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Staff &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">Internals Reference  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Music-definitions-1" href="music-definitions.fr.html">1. Music definitions</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Music-expressions-1" href="music-expressions.fr.html">1.1 Music expressions</a>    </li>
+    <li class=""><a name="toc-Music-classes-1" href="music-classes.fr.html">1.2 Music classes</a>    </li>
+    <li class=""><a name="toc-Music-properties-1" href="music-properties.fr.html">1.3 Music properties</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Translation-1" href="translation.fr.html">2. Translation</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Contexts-1" href="contexts.fr.html">2.1 Contexts</a>
+    <ul class="toc">
+      <li class=""><a name="toc-ChoirStaff-1" href="choirstaff.fr.html">2.1.1 ChoirStaff</a>      </li>
+      <li class=""><a name="toc-ChordNames-1" href="chordnames.fr.html">2.1.2 ChordNames</a>      </li>
+      <li class=""><a name="toc-CueVoice-1" href="cuevoice.fr.html">2.1.3 CueVoice</a>      </li>
+      <li class=""><a name="toc-Devnull-1" href="devnull.fr.html">2.1.4 Devnull</a>      </li>
+      <li class=""><a name="toc-DrumStaff-1" href="drumstaff.fr.html">2.1.5 DrumStaff</a>      </li>
+      <li class=""><a name="toc-DrumVoice-1" href="drumvoice.fr.html">2.1.6 DrumVoice</a>      </li>
+      <li class=""><a name="toc-Dynamics-1" href="dynamics.fr.html">2.1.7 Dynamics</a>      </li>
+      <li class=""><a name="toc-FiguredBass-1" href="figuredbass.fr.html">2.1.8 FiguredBass</a>      </li>
+      <li class=""><a name="toc-FretBoards-1" href="fretboards.fr.html">2.1.9 FretBoards</a>      </li>
+      <li class=""><a name="toc-Global-1" href="global.fr.html">2.1.10 Global</a>      </li>
+      <li class=""><a name="toc-GrandStaff-1" href="grandstaff.fr.html">2.1.11 GrandStaff</a>      </li>
+      <li class=""><a name="toc-GregorianTranscriptionStaff-1" href="gregoriantranscriptionstaff.fr.html">2.1.12 GregorianTranscriptionStaff</a>      </li>
+      <li class=""><a name="toc-GregorianTranscriptionVoice-1" href="gregoriantranscriptionvoice.fr.html">2.1.13 GregorianTranscriptionVoice</a>      </li>
+      <li class=""><a name="toc-KievanStaff-1" href="kievanstaff.fr.html">2.1.14 KievanStaff</a>      </li>
+      <li class=""><a name="toc-KievanVoice-1" href="kievanvoice.fr.html">2.1.15 KievanVoice</a>      </li>
+      <li class=""><a name="toc-Lyrics-1" href="lyrics.fr.html">2.1.16 Lyrics</a>      </li>
+      <li class=""><a name="toc-MensuralStaff-1" href="mensuralstaff.fr.html">2.1.17 MensuralStaff</a>      </li>
+      <li class=""><a name="toc-MensuralVoice-1" href="mensuralvoice.fr.html">2.1.18 MensuralVoice</a>      </li>
+      <li class=""><a name="toc-NoteNames-1" href="notenames.fr.html">2.1.19 NoteNames</a>      </li>
+      <li class=""><a name="toc-NullVoice-1" href="nullvoice.fr.html">2.1.20 NullVoice</a>      </li>
+      <li class=""><a name="toc-OneStaff-1" href="onestaff.fr.html">2.1.21 OneStaff</a>      </li>
+      <li class=""><a name="toc-PetrucciStaff-1" href="petruccistaff.fr.html">2.1.22 PetrucciStaff</a>      </li>
+      <li class=""><a name="toc-PetrucciVoice-1" href="petruccivoice.fr.html">2.1.23 PetrucciVoice</a>      </li>
+      <li class=""><a name="toc-PianoStaff-1" href="pianostaff.fr.html">2.1.24 PianoStaff</a>      </li>
+      <li class=""><a name="toc-RhythmicStaff-1" href="rhythmicstaff.fr.html">2.1.25 RhythmicStaff</a>      </li>
+      <li class=" toc_current"><a name="toc-Score-1" href="score.fr.html">2.1.26 Score</a>      </li>
+      <li class=""><a name="toc-Staff-1" href="staff.fr.html">2.1.27 Staff</a>      </li>
+      <li class=""><a name="toc-StaffGroup-1" href="staffgroup.fr.html">2.1.28 StaffGroup</a>      </li>
+      <li class=""><a name="toc-TabStaff-1" href="tabstaff.fr.html">2.1.29 TabStaff</a>      </li>
+      <li class=""><a name="toc-TabVoice-1" href="tabvoice.fr.html">2.1.30 TabVoice</a>      </li>
+      <li class=""><a name="toc-VaticanaStaff-1" href="vaticanastaff.fr.html">2.1.31 VaticanaStaff</a>      </li>
+      <li class=""><a name="toc-VaticanaVoice-1" href="vaticanavoice.fr.html">2.1.32 VaticanaVoice</a>      </li>
+      <li class=""><a name="toc-Voice-1" href="voice.fr.html">2.1.33 Voice</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Engravers-and-Performers-1" href="engravers-and-performers.fr.html">2.2 Engravers and Performers</a>    </li>
+    <li class=""><a name="toc-Tunable-context-properties-1" href="tunable-context-properties.fr.html">2.3 Tunable context properties</a>    </li>
+    <li class=""><a name="toc-Internal-context-properties-1" href="internal-context-properties.fr.html">2.4 Internal context properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Backend-1" href="backend.fr.html">3. Backend</a>
+  <ul class="toc">
+    <li class=""><a name="toc-All-layout-objects-1" href="all-layout-objects.fr.html">3.1 All layout objects</a>    </li>
+    <li class=""><a name="toc-Graphical-Object-Interfaces-1" href="graphical-object-interfaces.fr.html">3.2 Graphical Object Interfaces</a>    </li>
+    <li class=""><a name="toc-User-backend-properties-1" href="user-backend-properties.fr.html">3.3 User backend properties</a>    </li>
+    <li class=""><a name="toc-Internal-backend-properties-1" href="internal-backend-properties.fr.html">3.4 Internal backend properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.fr.html">4. Scheme functions</a>  </li>
+  <li class=""><a name="toc-Indices-1" href="indices.fr.html">A. Indices</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Concept-index" href="indices.fr.html">A.1 Concept index</a>    </li>
+    <li class=""><a name="toc-Function-index" href="indices.fr.html">A.2 Function index</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 4.4.2 Within-staff objects</title>
+
+<meta name="description" content="LilyPond Learning Manual: 4.4.2 Within-staff objects">
+<meta name="keywords" content="LilyPond Learning Manual: 4.4.2 Within-staff objects">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.hu.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="About This Document">
+<link href="placement-of-objects.hu.html#placement-of-objects" rel="up" title="4.4 Placement of objects">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="automatic-behavior.hu.html#automatic-behavior" rel="previous" title="4.4.1 Automatic behavior">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Within_002dstaff-objects"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="automatic-behavior.hu.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Automatic behavior&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="placement-of-objects.hu.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Placement of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-direction-property" title="Next section in reading order" accesskey="n" rel="next">&nbsp;The direction property &gt; </a>]</td></tr></table>
+<a name="within_002dstaff-objects"></a>
+<h3 class="subsection">4.4.2 Within-staff objects</h3>
+
+<p>We have already seen how the commands <code>\voiceXXX</code> affect the
+direction of slurs, ties, fingering and everything else which depends on
+the direction of the stems &ndash; see <a href="explicitly-instantiating-voices.hu.html">Explicitly instantiating voices</a>.
+These commands are essential when writing polyphonic music to permit
+interweaving melodic lines to be distinguished.  But occasionally it may
+be necessary to override this automatic behavior.  This can be done for
+whole sections of music or even for an individual note.  The property
+which controls this behavior is the <code>direction</code> property of each
+layout object.  We first explain what this does, and then introduce a
+number of ready-made commands which avoid your having to code explicit
+overrides for the more common modifications.
+</p>
+<p>Some layout objects like slurs and ties curve, bend or point
+either up or down; others like stems and flags also move to
+right or left when they point up or down.  This is controlled
+automatically when <code>direction</code> is set.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-direction-property" accesskey="1">The <code>direction</code> property</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#fingering" accesskey="2">Fingering</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="The-direction-property"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#within_002dstaff-objects" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Within-staff objects&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Within-staff objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#fingering" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Fingering &gt; </a>]</td></tr></table>
+<a name="the-direction-property"></a>
+<h4 class="unnumberedsubsubsec">The <code>direction</code> property</h4>
+
+<a name="index-down"></a>
+<a name="index-up"></a>
+<a name="index-center"></a>
+<a name="index-neutral"></a>
+
+<p>The following example shows the default positioning of slurs in the
+first bar, with slurs starting on high notes positioned above the notes
+and those starting on low notes positioned below, followed by a bar
+with both slurs forced down, a bar with both slurs forced up, and
+finally a bar with both slurs reverted back to the default behavior.
+</p>
+<a name="index-Slur_002c-example-of-overriding-3"></a>
+<a name="index-direction-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">a'4( g') c''( a') |
+\override Slur.direction = #DOWN
+a'4( g') c''( a') |
+\override Slur.direction = #UP
+a'4( g') c''( a') |
+\revert Slur.direction
+a'4( g') c''( a') |
+</pre><p>
+ <a href="../eb/lily-b31fb814.ly">
+  <img align="middle"
+       border="0"
+       src="../eb/lily-b31fb814.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Here we have used the constants <code>DOWN</code> and <code>UP</code>.
+These have the values <code>-1</code> and <code>+1</code> respectively, and
+these numerical values may be used instead.  The value <code>0</code>
+may also be used in some cases.  It is simply treated as meaning
+<code>UP</code> for slurs, but for some objects it means &lsquo;center&rsquo;.
+There is a constant, <code>CENTER</code> which has the value <code>0</code>.
+</p>
+<p>However, these explicit overrides are not usually used, as there are
+simpler equivalent predefined commands available.  Here is a table of
+the commonest.  The meaning of each is stated where it is not obvious.
+</p>
+<table>
+<thead><tr><th width="20%">Down/Left</th><th width="20%">Up/Right</th><th width="25%">Revert</th><th width="35%">Effect</th></tr></thead>
+<tr><td width="20%"><code>\arpeggioArrowDown</code></td><td width="20%"><code>\arpeggioArrowUp</code></td><td width="25%"><code>\arpeggioNormal</code></td><td width="35%">Arrow is at bottom, at top, or no arrow</td></tr>
+<tr><td width="20%"><code>\dotsDown</code></td><td width="20%"><code>\dotsUp</code></td><td width="25%"><code>\dotsNeutral</code></td><td width="35%">Direction of movement to avoid staff lines</td></tr>
+<tr><td width="20%"><code>\dynamicDown</code></td><td width="20%"><code>\dynamicUp</code></td><td width="25%"><code>\dynamicNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\phrasingSlurDown</code></td><td width="20%"><code>\phrasingSlurUp</code></td><td width="25%"><code>\phrasingSlurNeutral</code></td><td width="35%">Note: distinct from slur commands</td></tr>
+<tr><td width="20%"><code>\slurDown</code></td><td width="20%"><code>\slurUp</code></td><td width="25%"><code>\slurNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\stemDown</code></td><td width="20%"><code>\stemUp</code></td><td width="25%"><code>\stemNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\textSpannerDown</code></td><td width="20%"><code>\textSpannerUp</code></td><td width="25%"><code>\textSpannerNeutral</code></td><td width="35%">Text entered as spanner is below/above staff</td></tr>
+<tr><td width="20%"><code>\tieDown</code></td><td width="20%"><code>\tieUp</code></td><td width="25%"><code>\tieNeutral</code></td><td width="35%"></td></tr>
+<tr><td width="20%"><code>\tupletDown</code></td><td width="20%"><code>\tupletUp</code></td><td width="25%"><code>\tupletNeutral</code></td><td width="35%">Tuplets are below/above notes</td></tr>
+</table>
+
+<p>The neutral/normal variants of these commands are implemented
+using <code>\revert</code> and these may <strong>not</strong> be
+preceded by <code>\once</code>.  If you wish to limit the
+effect of the other commands (which are implemented using
+<code>\override</code>) to a single timestep, you can precede them with
+<code>\once</code> like you would do with explicit overrides.
+</p>
+<p>Or, if just a single layout object needs to be forced up or down, the
+direction indicators, <code>^</code> or <code>_</code>, may be used:
+</p>
+<blockquote><pre class="verbatim">a'4( g') c''( a') |
+a'4^( g') c''_( a') |
+</pre><p>
+ <a href="../ea/lily-76950ae3.ly">
+  <img align="middle"
+       border="0"
+       src="../ea/lily-76950ae3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Fingering"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-direction-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The direction property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Within-staff objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside_002dstaff-objects.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Outside-staff objects &gt; </a>]</td></tr></table>
+<a name="fingering"></a>
+<h4 class="unnumberedsubsubsec">Fingering</h4>
+
+<a name="index-fingering_002c-placement"></a>
+<a name="index-fingering_002c-chords"></a>
+
+<p>The placement of fingering on single notes can also be controlled
+by the <code>direction</code> property, but changing <code>direction</code>
+has no effect on chords.  As we shall see, there are special
+commands which allow the fingering of individual notes
+of chords to be controlled, with the fingering being placed
+above, below, to the left or to the right of each note.
+</p>
+<p>First, here&rsquo;s the effect of <code>direction</code> on the fingering
+attached to single notes.  The first bar shows the default
+behaviour, and the following two bars shows the effect of
+specifying <code>DOWN</code> and <code>UP</code>:
+</p>
+<a name="index-Fingering_002c-example-of-overriding"></a>
+<a name="index-direction-property_002c-example-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4-5 a-3 f-1 c'-5 |
+  \override Fingering.direction = #DOWN
+  c4-5 a-3 f-1 c'-5 |
+  \override Fingering.direction = #UP
+  c4-5 a-3 f-1 c'-5 |
+}
+</pre><p>
+ <a href="../85/lily-70324033.ly">
+  <img align="middle"
+       border="0"
+       src="../85/lily-70324033.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>However, overriding the <code>direction</code> property is not the
+easiest way of manually setting the fingering above or below
+the notes; using <code>_</code> or <code>^</code> instead of <code>-</code> before
+the fingering number is usually preferable.  Here is the previous
+example using this method:
+</p>
+<a name="index-fingering-example"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  c''4-5 a-3 f-1 c'-5 |
+  c4_5 a_3 f_1 c'_5 |
+  c4^5 a^3 f^1 c'^5 |
+}
+</pre><p>
+ <a href="../4e/lily-1b648776.ly">
+  <img align="middle"
+       border="0"
+       src="../4e/lily-1b648776.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The <code>direction</code> property is ignored for chords, but the
+directional prefixes, <code>_</code> and <code>^</code> do work.  By default,
+the fingering is automatically placed both above and below the
+notes of a chord, as shown:
+</p>
+<a name="index-fingering-example-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-5 g-3&gt;4
+  &lt;c-5 g-3 e-2&gt;4
+  &lt;c-5 g-3 e-2 c-1&gt;4
+}
+</pre><p>
+ <a href="../dc/lily-1efbbd59.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-1efbbd59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>but this may be overridden to manually force all or any of the
+individual fingering numbers above or below:
+</p>
+<a name="index-fingering-example-2"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-5 g-3 e-2 c-1&gt;4
+  &lt;c^5 g_3 e_2 c_1&gt;4
+  &lt;c^5 g^3 e^2 c_1&gt;4
+}
+</pre><p>
+ <a href="../b8/lily-153895ca.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-153895ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Even greater control over the placement of fingering of the
+individual notes in a chord is possible by using the
+<code>\set fingeringOrientations</code> command.  The format of this
+command is:
+</p>
+<blockquote><pre class="example"><code>\set fingeringOrientations = #'([up] [left/right] [down])</code>
+</pre></blockquote>
+
+<p><code>\set</code> is used because <code>fingeringOrientations</code> is a
+property of the <code>Voice</code> context, created and used by the
+<code>New_fingering_engraver</code>.
+</p>
+<p>The property may be set to a list of one to three values.
+It controls whether fingerings may be placed above (if
+<code>up</code> appears in the list), below (if <code>down</code> appears),
+to the left (if <code>left</code> appears, or to the right
+(if <code>right</code> appears).  Conversely, if a location is not
+listed, no fingering is placed there.  LilyPond takes these
+constraints and works out the best placement for the fingering
+of the notes of the following chords.  Note that <code>left</code> and
+<code>right</code> are mutually exclusive &ndash; fingering may be placed
+only on one side or the other, not both.
+</p>
+<div class="warning"><p><strong>Note:</strong> To control the placement of the fingering of a single
+note using this command it is necessary to write it as a single
+note chord by placing angle brackets round it.
+</p>
+</div>
+<p>Here are a few examples:
+</p>
+<a name="index-fingering-example-3"></a>
+<a name="index-_005cset_002c-example-of-using"></a>
+<a name="index-fingeringOrientations-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  \set fingeringOrientations = #'(left)
+  &lt;f'-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(up left down)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(up left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(right)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+}
+</pre><p>
+ <a href="../b7/lily-13a8f6df.ly">
+  <img align="middle"
+       border="0"
+       src="../b7/lily-13a8f6df.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>If the fingering seems a little crowded the <code>font-size</code>
+could be reduced.  The default value can be seen from the
+<code>Fingering</code> object in the IR to be <code>-5</code>, so let&rsquo;s
+try <code>-7</code>:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \override Fingering.font-size = #-7
+  \set fingeringOrientations = #'(left)
+  &lt;f'-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(up left down)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+  \set fingeringOrientations = #'(up left)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4 |
+  \set fingeringOrientations = #'(right)
+  &lt;f-2&gt;4
+  &lt;c-1 e-2 g-3 b-5&gt;4
+}
+</pre><p>
+ <a href="../b1/lily-f768b697.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-f768b697.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-direction-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The direction property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#within_002dstaff-objects" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Within-staff objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside_002dstaff-objects.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Outside-staff objects &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="within_002dstaff-objects.ca.html">català</a>, <a href="within_002dstaff-objects.cs.html">česky</a>, <a href="within_002dstaff-objects.de.html">deutsch</a>, <a href="within_002dstaff-objects.es.html">español</a>, <a href="within_002dstaff-objects.fr.html">français</a>, <a href="within_002dstaff-objects.it.html">italiano</a>, <a href="within_002dstaff-objects.ja.html">日本語</a>, <a href="within_002dstaff-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.hu.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.hu.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.hu.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.hu.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.hu.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.hu.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.hu.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.hu.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.hu.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.hu.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.hu.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.hu.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.hu.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.hu.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.hu.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Tweaking-output-1" href="tweaking-output.hu.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.hu.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.hu.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.hu.html">4.3 Appearance of objects</a>    </li>
+    <li class=" toc_current"><a name="toc-Placement-of-objects-1" href="placement-of-objects.hu.html">4.4 Placement of objects</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Automatic-behavior-1" href="automatic-behavior.hu.html">4.4.1 Automatic behavior</a>      </li>
+      <li class=" toc_current"><a name="toc-Within_002dstaff-objects-1" href="within_002dstaff-objects.hu.html">4.4.2 Within-staff objects</a>
+      <ul class="toc">
+        <li class=""><a name="toc-The-direction-property-1" href="within_002dstaff-objects.hu.html#the-direction-property">The <code>direction</code> property</a>        </li>
+        <li class=""><a name="toc-Fingering-1" href="within_002dstaff-objects.hu.html#fingering">Fingering</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Outside_002dstaff-objects-1" href="outside_002dstaff-objects.hu.html">4.4.3 Outside-staff objects</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.hu.html">4.5 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.hu.html">4.6 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.hu.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.hu.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.hu.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.hu.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.hu.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.hu.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.hu.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.hu.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.hu.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.hu.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.hu.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 4.5.5 Notación proporcional</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 4.5.5 Notación proporcional">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 4.5.5 Notación proporcional">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="horizontal-spacing.es.html#horizontal-spacing" rel="up" title="4.5 Espaciado horizontal">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="line-length.es.html#line-length" rel="previous" title="4.5.4 Longitud de la línea">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Notaci_00f3n-proporcional"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="line-length.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Longitud de la línea&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="horizontal-spacing.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado horizontal&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fitting-music-onto-fewer-pages.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Encajar la música en menos páginas &gt; </a>]</td></tr></table>
+<a name="proportional-notation"></a>
+<h3 class="subsection">4.5.5 Notación proporcional</h3>
+
+<p>LilyPond contempla la notación proporcional, un tipo de espaciado
+horizontal en el que cada nota consume una medida horizontal que
+equivale exactamente a su duración rítmica.  Este tipo de espaciado
+proporcional es comparable al espaciado horizontal hecho sobre un
+papel milimetrado.  Ciertas partituras del finales del s.XX y
+principios del s.XXI utilizan notación proporcional para clarificar
+relaciones rítmicas complejas o para facilitar la colocación de líneas
+cronométricas u otros gráficos directamente en la partitura.
+</p>
+<p>LilyPond contempla cinco ajustes distintos para la notación
+proporcional, que se pueden usar solos o combinados:
+</p>
+<ul>
+<li> <code>proportionalNotationDuration</code>
+</li><li> <code>uniform-stretching</code>
+</li><li> <code>strict-note-spacing</code>
+</li><li> <code>\remove &quot;Separating_line_group_engraver&quot;</code>
+</li><li> <code>\override PaperColumn.used = ##t</code>
+</li></ul>
+
+<p>En los ejemplos que siguen, exploramos el uso de estos cinco ajustes
+de la notación proporcional y examinamos la forma en que interactúan.
+</p>
+<p>Comenzamos con el siguiente ejemplo de un solo compás, que usa un
+espaciado clásico sin justificación por la derecha.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../30/lily-6b070ee7.ly">
+  <img align="middle"
+       border="0"
+       src="../30/lily-6b070ee7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe que la blanca que inicia el compás ocupa mucho menos de la
+mitad de todo el espacio horizontal del compás.  De forma similar, las
+semicorcheas y el cinquillo de semicorcheas con que finaliza el compás
+ocupan en conjunto mucho más de la mitad de todo el espacio horizontal
+del compás.
+</p>
+<p>En el grabado clásico, este espaciado puede ser exactamente el que
+deseamos porque podemos tomar prestado el espacio horizontal de la
+blanca y conservar el espacio horizontal a lo largo del compás como un
+todo.
+</p>
+<p>Por otro lado, si queremos insertar una línea de tiempo graduada o
+algún otro gráfico encima o debajo de la partitura, necesitamos la
+notación proporcional.  Se activa la notación proporcional con el
+ajuste <code>proportionalNotationDuration</code>.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+  &gt;&gt;
+ \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/20)
+    }
+  }
+}
+</pre><p>
+ <a href="../f4/lily-7c73e27d.ly">
+  <img align="middle"
+       border="0"
+       src="../f4/lily-7c73e27d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La blanca al principio del compás y las notas rápidas de la segunda
+mitad del compás ocupan ahora cantidades iguales de espacio
+horizontal.  Podríamos colocar una línea de tiempo graduada o un
+gráfico encima o debajo de este ejemplo.
+</p>
+<p>El ajuste <code>proportionalNotationDuration</code> es un ajuste de contexto
+que reside en <code>Score</code>.  Recordemos que los ajustes de contexto
+aparecen en uno de tres posibles lugares del archivo de entrada: en un
+bloque <code>\with</code>, en un bloque <code>\context</code>, o directamente
+entre la música precedido por la instrucción <code>\set</code>.  Como con
+todos los ajustes de contexto, el usuario puede elegir en cuál de los
+tres lugares diferentes prefiere establecer el valor de
+<code>proportionalNotationDuration</code>.
+</p>
+<p>El ajuste <code>proportionalNotationDuration</code> acepta un solo
+argumento, que es la duración de referencia contra el que se aplica el
+espaciado de toda la música.  La función Scheme de LilyPond
+<code>make-moment</code> acepta dos argumentos: un numerador y un
+denominador que, juntos, expresan una cierta fracción de redonda.  La
+llamada <code>(ly:make-moment 1/20)</code>, por tanto, produce una duración
+de referencia de una nota de un veinteavo de redonda (semicorcheas de
+cinquillo).  Son también posibles valores como
+<code>(ly:make-moment 1/16)</code>,
+<code>(ly:make-moment 1/8)</code> y <code>(ly:make-moment 3/97)</code>.
+</p>
+<p>¿Cómo seleccionamos la duración correcta de referencia para pasarla a
+<code>proportionalNotationDuration</code>?  Normalmente mediante un proceso
+de ensayo y error, comenzando con una duración cercana a la más rápida
+(o más breve) duración de la pieza.  Las duraciones de referencia más
+pequeñas aplican un espaciado más suelto; las duraciones de referencia
+más largas aplican un espaciado más apretado.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/8)
+    }
+  }
+}
+
+\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/16)
+    }
+  }
+}
+
+\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/32)
+    }
+  }
+}
+</pre><p>
+ <a href="../ae/lily-0a7ed8dd.ly">
+  <img align="middle"
+       border="0"
+       src="../ae/lily-0a7ed8dd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe que una duración de referencia demasiado grande (como la
+corchea, en el ejemplo de arriba) produce un espaciado excesivamente
+apretado y puede ser causa de colisiones entre las cabezas de nota.
+Observe también que la notación proporcional en general ocupa más
+espacio horizontal que el espaciado clásico.  El espaciado
+proporcional aporta claridad rítmica a expensas del espacio
+horizontal.
+</p>
+<p>Ahora veremos cómo espaciar de forma óptima grupos de valoración
+especial que se superponen.
+</p>
+<p>Empezamos por examinar qué le ocurre a nuestro ejemplo original, con
+espaciado clásico, cuando añadimos un segundo pentagrama con un tipo
+diferente de grupo especial.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+    \new RhythmicStaff {
+      \tuplet 9/8 { c'8 c' c' c' c' c' c' c' c' }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../01/lily-007ab064.ly">
+  <img align="middle"
+       border="0"
+       src="../01/lily-007ab064.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>El espaciado es defectuoso porque las notas regularmente espaciadas
+del pentagrama inferior no se amplían de manera uniforme.  Los grabados
+clásicos incluyen muy pocos tresillos complejos y así las reglas del
+grabado clásico pueden generar este tipo de resultado.  El
+establecimiento de <code>proportionalNotationDuration</code> lo
+soluciona.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+    \new RhythmicStaff {
+      \tuplet 9/8 { c'8 c' c' c' c' c' c' c' c' }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/20)
+    }
+  }
+}
+</pre><p>
+ <a href="../88/lily-b8054a43.ly">
+  <img align="middle"
+       border="0"
+       src="../88/lily-b8054a43.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Pero si observamos con mucho cuidado podremos ver que las notas de la
+segunda mitad del 9-illo están espaciadas de forma ligeramente más
+ancha que las de la primera mitad del 9-illo.  Para asegurar una
+ampliación uniforme, activamos <code>uniform-stretching</code>, que es una
+propiedad de <code>SpacingSpanner</code>.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2 c'16 c' c' c' \tuplet 5/4 { c'16 c' c' c' c' }
+    }
+    \new RhythmicStaff {
+      \tuplet 9/8 { c'8 c' c' c' c' c' c' c' c' }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/20)
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../00/lily-c6718a50.ly">
+  <img align="middle"
+       border="0"
+       src="../00/lily-c6718a50.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nuestro ejemplo de dos pentagramas ahora está espaciado exactamente,
+nuestras relaciones rítmicas son visualmente claras, y podemos incluir
+una línea de tiempo graduada o un gráfico, si queremos.
+</p>
+<p>Observe que el paquete de notación proporcional de LilyPond espera que
+todas las partituras proporcionales establezcan el atributo
+<code>uniform-stretching</code> de <code>SpacingSpanner</code> al valor ##t.  El
+establecimiento de <code>proportionalNotationDuration</code> sin ajustar
+también el atributo <code>uniform-stretching</code> de <code>SpacingSpanner</code>
+al valor ##t causará, por ejemplo, que los desplazamientos
+(<code>skips</code>) consuman una cantidad de espacio horizontal incorrecta.
+</p>
+<p>El <code>SpacingSpanner</code> es un grob abstracto que reside en el
+contexto de <code>Score</code>. Como con nuestros ajustes de
+<code>proportionalNotationDuration</code>, las sobreescrituras al
+<code>SpacingSpanner</code> sólo pueden ocurrir en uno de estos tres lugares
+dentro del archivo de entrada: en el bloque <code>\with</code>, en el bloque
+<code>\context</code> o directamente dentro de la escritura de notas.
+</p>
+<p>De manera predeterminada, sólo hay un <code>SpacingSpanner</code> por
+<code>Score</code>.  Esto supone que, por omisión, <code>uniform-stretching</code>
+está activado para la partitura completa o desactivado para la
+partitura completa.  Sin embargo, podemos sobreescribir este
+comportamiento y activar distintas posibilidades de espaciado en
+distintos lugares de la partitura.  Lo hacemos con la instrucción
+<code>\newSpacingSection</code>.  Consulte <a href="new-spacing-area.es.html">Área de espaciado nueva</a>
+para más información.
+</p>
+<p>A continuación examinamos los efectos del grabador
+<code>Separating_line_group_engraver</code> y veremos por qué las partituras
+proporcionales con frecuencia eliminan este grabador.  El ejemplo
+siguiente muestra que hay una pequeña cantidad de espacio
+&ldquo;preliminar&rdquo; justo antes de la primera nota de cada sistema.
+</p>
+<blockquote><pre class="verbatim">\paper {
+  indent = #0
+}
+
+\new Staff {
+  c'1
+  \break
+  c'1
+}
+</pre><p>
+ <a href="../b1/lily-bf557bf5.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-bf557bf5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esta cantidad de espacio preliminar es la misma ya sea después de
+una indicación de compás, una armadura o una clave.  El grabador
+<code>Separating_line_group_engraver</code> es responsable de este espacio.
+La eliminación de <code>Separating_line_group_engraver</code> reduce este
+espacio a cero.
+</p>
+<blockquote><pre class="verbatim">\paper {
+  indent = #0
+}
+
+\new Staff \with {
+  \remove &quot;Separating_line_group_engraver&quot;
+} {
+  c'1
+  \break
+  c'1
+}
+</pre><p>
+ <a href="../6a/lily-0e5e9f2a.ly">
+  <img align="middle"
+       border="0"
+       src="../6a/lily-0e5e9f2a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Los elementos no musicales como la indicación de compás, la armadura,
+la clave y las alteraciones son problemáticos en notación
+proporcional.  Ninguno de estos elementos tiene duración rítmica.
+Pero todos ellos consumen espacio horizontal.  Las distintas
+partituras proporcionales abordan este problema de distinta manera.
+</p>
+<p>Sería posible evitar los problemas de espaciado con las armaduras,
+simplemente evitando tenerlas.  Esta es una opción válida pues casi
+todas las partituras proporcionales son música contemporánea.  Lo
+mismo puede valer para las indicaciones de compás, especialmente para
+las partituras que incluyen una línea de tiempo graduada u otro
+gráfico.  Pero estas partituras son excepcionales y casi todas las
+partituras proporcionales incluyen al menos unas pocas indicaciones de
+compás.  Las claves y las alteraciones son aún más esenciales.
+</p>
+<p>Así pues ¿qué estrategias existen para el espaciado de los elementos
+no musicales en un contexto proporcional?  Una buena opción es la
+propiedad <code>strict-note-spacing</code> de <code>SpacingSpanner</code>.
+Compare las dos partituras siguientes:
+</p>
+<blockquote><pre class="verbatim">\new Staff {
+  \set Score.proportionalNotationDuration = #(ly:make-moment 1/16)
+  c''8 c'' c'' \clef alto d' d'2
+}
+
+\new Staff {
+  \set Score.proportionalNotationDuration = #(ly:make-moment 1/16)
+  \override Score.SpacingSpanner.strict-note-spacing = ##t
+  c''8 c'' c'' \clef alto d' d'2
+}
+</pre><p>
+ <a href="../1c/lily-44b93674.ly">
+  <img align="middle"
+       border="0"
+       src="../1c/lily-44b93674.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Las dos partituras son proporcionales, pero el espaciado de la
+primera es muy suelto a causa del cambio de clave. Sin embargo, el
+espaciado de la segunda partitura se mantiene estricto, porque
+<code>strict-note-spacing</code> está activado.  La activación de
+<code>strict-note-spacing</code> hace que el ancho de las indicaciones de
+compás, armaduras, cambios de clave y alteraciones no tomen parte en
+el algoritmo de espaciado.
+</p>
+<p>Además de los ajustes dados aquí, hay otros que aparecen con
+frecuencia en las partituras proporcionales.  Entre ellos están:
+</p>
+<ul>
+<li> <code>\override SpacingSpanner.strict-grace-spacing = ##t</code>
+</li><li> <code>\set tupletFullLength = ##t</code>
+</li><li> <code>\override Beam.breakable = ##t</code>
+</li><li> <code>\override Glissando.breakable = ##t</code>
+</li><li> <code>\override TextSpanner.breakable = ##t</code>
+</li><li> <code>\remove &quot;Forbid_line_break_engraver&quot; in the Voice context</code>
+</li></ul>
+
+<p>Estos ajustes dan a las notas de adorno un espaciado estricto,
+extienden los corchetes de grupo especial para que marquen tanto los
+puntos de comienzo como de final, y permiten que los elementos de
+extensión se dividan entre los sistemas y las páginas.  Consulte las
+partes respectivas del manual para ver estos ajustes relacionados.
+</p>
+<a name="Vease-tambien-169"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Referencia de la notación:
+<a href="new-spacing-area.es.html">Área de espaciado nueva</a>.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/spacing.es.html">Spacing</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="line-length.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Longitud de la línea&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="horizontal-spacing.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado horizontal&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fitting-music-onto-fewer-pages.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Encajar la música en menos páginas &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="proportional-notation.html">English</a>, <a href="proportional-notation.de.html">deutsch</a>, <a href="proportional-notation.fr.html">français</a>, <a href="proportional-notation.it.html">italiano</a>, <a href="proportional-notation.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=" toc_current"><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Panoramica-del-espaciado-horizontal" href="horizontal-spacing-overview.es.html">4.5.1 Panorámica del espaciado horizontal</a>      </li>
+      <li class=""><a name="toc-Area-de-espaciado-nueva" href="new-spacing-area.es.html">4.5.2 Área de espaciado nueva</a>      </li>
+      <li class=""><a name="toc-Cambiar-el-espaciado-horizontal-1" href="changing-horizontal-spacing.es.html">4.5.3 Cambiar el espaciado horizontal</a>      </li>
+      <li class=""><a name="toc-Longitud-de-la-linea" href="line-length.es.html">4.5.4 Longitud de la línea</a>      </li>
+      <li class=" toc_current"><a name="toc-Notacion-proporcional" href="proportional-notation.es.html">4.5.5 Notación proporcional</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

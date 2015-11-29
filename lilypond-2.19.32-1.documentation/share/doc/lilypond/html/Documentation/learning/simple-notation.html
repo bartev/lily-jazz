@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 1.2.1 Simple notation</title>
+
+<meta name="description" content="LilyPond Learning Manual: 1.2.1 Simple notation">
+<meta name="keywords" content="LilyPond Learning Manual: 1.2.1 Simple notation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="how-to-write-input-files.html#how-to-write-input-files" rel="up" title="1.2 How to write input files">
+<link href="lilypond-index.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="how-to-write-input-files.html#how-to-write-input-files" rel="previous" title="1.2 How to write input files">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Simple-notation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="how-to-write-input-files.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; How to write input files&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-to-write-input-files.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;How to write input files&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#pitches" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Pitches &gt; </a>]</td></tr></table>
+<a name="simple-notation"></a>
+<h3 class="subsection">1.2.1 Simple notation</h3>
+
+<a name="index-simple-notation"></a>
+<a name="index-notation_002c-simple"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#pitches" accesskey="1">Pitches</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#durations-_0028rhythms_0029" accesskey="2">Durations (rhythms)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#rests" accesskey="3">Rests</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#time-signature" accesskey="4">Time signature</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#tempo-marks" accesskey="5">Tempo marks</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#clef" accesskey="6">Clef</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#all-together" accesskey="7">All together</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<p>LilyPond will add some notation elements automatically.  In the
+next example, we have only specified four pitches, but LilyPond
+has added a clef, time signature, and rhythms.
+</p>
+<blockquote><pre class="verbatim">{
+  c' e' g' e'
+}
+</pre><p>
+ <a href="../5f/lily-9dc23fce.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-9dc23fce.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>This behavior may be altered, but in most cases these automatic
+values are useful.
+</p>
+
+<hr size="6">
+<a name="Pitches"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#simple-notation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Simple notation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#durations-_0028rhythms_0029" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Durations (rhythms) &gt; </a>]</td></tr></table>
+<a name="pitches"></a>
+<h4 class="unnumberedsubsubsec">Pitches</h4>
+
+<a name="index-pitches"></a>
+<a name="index-relative-mode"></a>
+<a name="index-quote_002c-single"></a>
+<a name="index-comma"></a>
+<a name="index-accidentals-and-relative-mode"></a>
+<a name="index-relative-mode_002c-and-accidentals"></a>
+
+<a name="index-_005crelative"></a>
+<a name="index-_005crelative-1"></a>
+<a name="index-relative"></a>
+<a name="index-relative-1"></a>
+<a name="index-_0027"></a>
+<a name="index-_0027-1"></a>
+<a name="index-_002c"></a>
+<a name="index-_002c-1"></a>
+
+<p>Music Glossary: <a name="index-pitch"></a>
+<a href="../music-glossary/pitch.html">pitch</a>, <a name="index-interval"></a>
+<a href="../music-glossary/interval.html">interval</a>,
+<a name="index-scale"></a>
+<a href="../music-glossary/scale.html">scale</a>, <a name="index-middle-C"></a>
+<a href="../music-glossary/middle-c.html">middle C</a>, <a name="index-octave"></a>
+<a href="../music-glossary/octave.html">octave</a>,
+<a name="index-accidental"></a>
+<a href="../music-glossary/accidental.html">accidental</a>.
+</p>
+<p>LilyPond uses lower-case letters for pitches.  The letters
+<code>c</code> through&nbsp;<code>b</code> denote pitches in the
+&lsquo;small octave&rsquo; below <var>middle C</var>.  Added <code>'</code>
+or&nbsp;<code>,</code> suffixes indicate higher or lower octaves.
+Here is a scale starting on <var>middle C</var>, and an arpeggio:
+</p>
+<blockquote><pre class="verbatim">{ c' d' e' f' g' a' b' c'' g c' e' g' c'' e'' g'' c''' }
+</pre><p>
+ <a href="../0a/lily-f21e674c.ly">
+  <img align="middle"
+       border="0"
+       src="../0a/lily-f21e674c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The easiest way to enter notes is by using <code>\relative</code> mode.
+In this mode, the octave is chosen automatically by assuming the
+following note is always to be placed closest to the previous
+note, i.e., it is to be placed in the octave which is within three
+staff spaces of the previous note.  We begin by entering the most
+elementary piece of music, a <var>scale</var>, in which every note
+is within just one staff space of the previous note.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c' d e f
+  g a b c
+}
+</pre><p>
+ <a href="../e0/lily-e05485e5.ly">
+  <img align="middle"
+       border="0"
+       src="../e0/lily-e05485e5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The initial note is <var>middle C</var>, denoted by <code>c'</code>.
+Each successive note is
+placed closest to the previous note &ndash; in other words, the first
+<code>c</code> is the closest C to middle C.  This is followed by the
+closest D to the previous note.  We can create melodies which have
+larger intervals, still using only <code>\relative</code> mode:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  d' f a g
+  c b f d
+}
+</pre><p>
+ <a href="../fd/lily-445d38df.ly">
+  <img align="middle"
+       border="0"
+       src="../fd/lily-445d38df.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In the previous example, the first note &ndash; the <code>d'</code> with one
+<code>'</code>-mark &ndash; is the D in the octave starting from middle C
+and going up to B.
+</p>
+<p>By adding (or removing) quotes <code>'</code> or commas <code>,</code> from
+the first note, we can change the starting octave:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  e'' c a c
+}
+</pre><p>
+ <a href="../64/lily-0ff293f7.ly">
+  <img align="middle"
+       border="0"
+       src="../64/lily-0ff293f7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Relative mode can be confusing initially, but is the easiest way
+to enter most melodies.  Let us see how this relative calculation
+works in practice.  Starting from a B, which is on the middle line
+in a treble clef, you can reach a C, D and E within 3 staff spaces
+going up, and an A, G and F within 3 staff spaces going down.  So
+if the note following a B is a C, D or E it will be assumed to be
+above the B, and an A, G or F will be assumed to be below.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  b' c % c is 1 staff space up, so is the c above
+  b d  % d is 2 up or 5 down, so is the d above
+  b e  % e is 3 up or 4 down, so is the e above
+  b a  % a is 6 up or 1 down, so is the a below
+  b g  % g is 5 up or 2 down, so is the g below
+  b f  % f is 4 up or 3 down, so is the f below
+}
+</pre><p>
+ <a href="../c7/lily-e942cef4.ly">
+  <img align="middle"
+       border="0"
+       src="../c7/lily-e942cef4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Exactly the same happens even when any of these notes are
+sharpened or flattened.  <var>Accidentals</var> are
+<strong>totally ignored</strong> in the calculation of relative position.
+Precisely the same staff space counting is done from a note at any
+other position on the staff.
+</p>
+<p>To add intervals that are larger than three staff spaces, we can
+raise the <var>octave</var> by adding a single quote <code>'</code> (or
+apostrophe) to the note name.  We can lower the octave by adding a
+comma <code>,</code> to the note name.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a' a, c' f,
+  g g'' a,, f'
+}
+</pre><p>
+ <a href="../b8/lily-03f1289a.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-03f1289a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>To change a note by two (or more!) octaves, we use multiple
+<code>''</code> or <code>,,</code> &ndash; but be careful that you use two single
+quotes <code>''</code> and not one double quote <code>&quot;</code>&nbsp;!
+</p>
+<hr size="6">
+<a name="Durations-_0028rhythms_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#pitches" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Pitches&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#rests" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Rests &gt; </a>]</td></tr></table>
+<a name="durations-_0028rhythms_0029"></a>
+<h4 class="unnumberedsubsubsec">Durations (rhythms)</h4>
+
+<a name="index-note-durations"></a>
+<a name="index-durations"></a>
+<a name="index-rhythms"></a>
+<a name="index-whole-note"></a>
+<a name="index-half-note"></a>
+<a name="index-quarter-note"></a>
+<a name="index-dotted-note"></a>
+<a name="index-notating-durations"></a>
+
+<p>Music Glossary: <a name="index-beam"></a>
+<a href="../music-glossary/beam.html">beam</a>, <a name="index-duration"></a>
+<a href="../music-glossary/duration.html">duration</a>,
+<a name="index-whole-note-1"></a>
+<a href="../music-glossary/whole-note.html">whole note</a>, <a name="index-half-note-1"></a>
+<a href="../music-glossary/half-note.html">half note</a>, <a name="index-quarter-note-1"></a>
+<a href="../music-glossary/quarter-note.html">quarter note</a>,
+<a name="index-dotted-note-1"></a>
+<a href="../music-glossary/dotted-note.html">dotted note</a>.
+</p>
+<p>The <var>duration</var> of a note is specified by a number after
+the note name:  <code>1</code> for a <var>whole note</var>, <code>2</code> for
+a <var>half note</var>, <code>4</code> for a <var>quarter note</var> and
+so on.  <var>Beams</var> are added automatically.
+</p>
+<p>If you do not specify a duration, the previous duration is used
+for the next note.  The duration of the first note defaults to a
+quarter note.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'1
+  a2 a4 a8 a
+  a16 a a a a32 a a a a64 a a a a a a a a2
+}
+</pre><p>
+ <a href="../70/lily-d1c83b39.ly">
+  <img align="middle"
+       border="0"
+       src="../70/lily-d1c83b39.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>To create <var>dotted notes</var>, add a dot <code>.</code> to the
+duration number.  The duration of a dotted note must be stated
+explicitly (i.e., with a number).
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'4 a a4. a8
+  a8. a16 a a8. a8 a4.
+}
+</pre><p>
+ <a href="../b8/lily-f4d9a442.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-f4d9a442.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Rests"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#durations-_0028rhythms_0029" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Durations (rhythms)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#time-signature" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Time signature &gt; </a>]</td></tr></table>
+<a name="rests"></a>
+<h4 class="unnumberedsubsubsec">Rests</h4>
+
+<a name="index-rest"></a>
+<a name="index-notating-rests"></a>
+
+<p>Music Glossary: <a name="index-rest-1"></a>
+<a href="../music-glossary/rest.html">rest</a>.
+</p>
+<p>A <var>rest</var> is entered just like a note with the name
+<code>r</code>&nbsp;:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'4 r r2
+  r8 a r4 r4. r8
+}
+</pre><p>
+ <a href="../db/lily-01f801da.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-01f801da.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Time-signature"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#rests" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Rests&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#tempo-marks" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Tempo marks &gt; </a>]</td></tr></table>
+<a name="time-signature"></a>
+<h4 class="unnumberedsubsubsec">Time signature</h4>
+
+<a name="index-time-signature"></a>
+
+<a name="index-_005ctime"></a>
+<a name="index-_005ctime-1"></a>
+<a name="index-time"></a>
+<a name="index-time-1"></a>
+
+<p>Music Glossary: <a name="index-time-signature-1"></a>
+<a href="../music-glossary/time-signature.html">time signature</a>.
+</p>
+<p>The <var>time signature</var> can be set with the <code>\time</code>
+command:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 3/4
+  a'4 a a
+  \time 6/8
+  a4. a
+  \time 4/4
+  a4 a a a
+}
+</pre><p>
+ <a href="../ed/lily-f9bad0c1.ly">
+  <img align="middle"
+       border="0"
+       src="../ed/lily-f9bad0c1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Tempo-marks"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#time-signature" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Time signature&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#clef" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Clef &gt; </a>]</td></tr></table>
+<a name="tempo-marks"></a>
+<h4 class="unnumberedsubsubsec">Tempo marks</h4>
+
+<a name="index-tempo-marks"></a>
+<a name="index-metronome-marks"></a>
+
+<a name="index-_005ctempo"></a>
+<a name="index-_005ctempo-1"></a>
+<a name="index-tempo"></a>
+<a name="index-tempo-1"></a>
+
+<p>Music Glossary: <a name="index-tempo-indication"></a>
+<a href="../music-glossary/tempo-indication.html">tempo indication</a>, <a name="index-metronome"></a>
+<a href="../music-glossary/metronome.html">metronome</a>.
+</p>
+<p>The <var>tempo indication</var> and <var>metronome mark</var> can be
+set with the <code>\tempo</code> command:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 3/4
+  \tempo &quot;Andante&quot;
+  a'4 a a
+  \time 6/8
+  \tempo 4. = 96
+  a4. a
+  \time 4/4
+  \tempo  &quot;Presto&quot; 4 = 120
+  a4 a a a
+}
+</pre><p>
+ <a href="../64/lily-cbd0b303.ly">
+  <img align="middle"
+       border="0"
+       src="../64/lily-cbd0b303.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Clef"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#tempo-marks" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Tempo marks&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#all-together" title="Next section in reading order" accesskey="n" rel="next">&nbsp;All together &gt; </a>]</td></tr></table>
+<a name="clef"></a>
+<h4 class="unnumberedsubsubsec">Clef</h4>
+
+<a name="index-clef"></a>
+<a name="index-treble"></a>
+<a name="index-alto"></a>
+<a name="index-tenor"></a>
+<a name="index-bass"></a>
+
+<a name="index-_005cclef"></a>
+<a name="index-_005cclef-1"></a>
+<a name="index-clef-1"></a>
+<a name="index-clef-2"></a>
+
+<p>Music Glossary: <a name="index-clef-3"></a>
+<a href="../music-glossary/clef.html">clef</a>.
+</p>
+<p>The <var>clef</var> can be set using the <code>\clef</code> command:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;treble&quot;
+  c'1
+  \clef &quot;alto&quot;
+  c1
+  \clef &quot;tenor&quot;
+  c1
+  \clef &quot;bass&quot;
+  c1
+}
+</pre><p>
+ <a href="../ad/lily-c9e7439d.ly">
+  <img align="middle"
+       border="0"
+       src="../ad/lily-c9e7439d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="All-together"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#clef" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Clef&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="working-on-input-files.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Working on input files &gt; </a>]</td></tr></table>
+<a name="all-together"></a>
+<h4 class="unnumberedsubsubsec">All together</h4>
+
+<p>Here is a small example showing all these elements together:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;bass&quot;
+  \time 3/4
+  \tempo &quot;Andante&quot; 4 = 120
+  c,2 e8 c'
+  g'2.
+  f4 e d
+  c4 c, r
+}
+</pre><p>
+ <a href="../70/lily-cc4a7ea5.ly">
+  <img align="middle"
+       border="0"
+       src="../70/lily-cc4a7ea5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="See-also-26"></a>
+<h4 class="subsubheading">See also</h4>
+<p>Notation Reference: <a name="index-Writing-pitches"></a>
+<a href="../notation/writing-pitches.html">Writing pitches</a>,
+<a name="index-Writing-rhythms"></a>
+<a href="../notation/writing-rhythms.html">Writing rhythms</a>, <a name="index-Writing-rests"></a>
+<a href="../notation/writing-rests.html">Writing rests</a>,
+<a name="index-Time-signature"></a>
+<a href="../notation/displaying-rhythms.html#time-signature">Time signature</a>, <a name="index-Clef"></a>
+<a href="../notation/displaying-pitches.html#clef">Clef</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.html" title="Next chapter">&nbsp;Common notation &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#clef" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Clef&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Simple notation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="working-on-input-files.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Working on input files &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Other languages: <a href="simple-notation.ca.html">català</a>, <a href="simple-notation.cs.html">česky</a>, <a href="simple-notation.de.html">deutsch</a>, <a href="simple-notation.es.html">español</a>, <a href="simple-notation.fr.html">français</a>, <a href="simple-notation.hu.html">magyar</a>, <a href="simple-notation.it.html">italiano</a>, <a href="simple-notation.ja.html">日本語</a>, <a href="simple-notation.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Tutorial-1" href="tutorial.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.html">1.1 Compiling a file</a>    </li>
+    <li class=" toc_current"><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.html">1.2 How to write input files</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Simple-notation-1" href="simple-notation.html">1.2.1 Simple notation</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Pitches-1" href="simple-notation.html#pitches">Pitches</a>        </li>
+        <li class=""><a name="toc-Durations-_0028rhythms_0029-1" href="simple-notation.html#durations-_0028rhythms_0029">Durations (rhythms)</a>        </li>
+        <li class=""><a name="toc-Rests-1" href="simple-notation.html#rests">Rests</a>        </li>
+        <li class=""><a name="toc-Time-signature-1" href="simple-notation.html#time-signature">Time signature</a>        </li>
+        <li class=""><a name="toc-Tempo-marks-1" href="simple-notation.html#tempo-marks">Tempo marks</a>        </li>
+        <li class=""><a name="toc-Clef-1" href="simple-notation.html#clef">Clef</a>        </li>
+        <li class=""><a name="toc-All-together-1" href="simple-notation.html#all-together">All together</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Working-on-input-files-1" href="working-on-input-files.html">1.2.2 Working on input files</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tweaking-output-1" href="tweaking-output.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.html">4.5 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.html">4.6 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

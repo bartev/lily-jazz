@@ -1,0 +1,1550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 2.1.2 Técnicas específicas para la letra</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 2.1.2 Técnicas específicas para la letra">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 2.1.2 Técnicas específicas para la letra">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="vocal-music.es.html#vocal-music" rel="up" title="2.1 Música vocal">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="common-notation-for-vocal-music.es.html#common-notation-for-vocal-music" rel="previous" title="2.1.1 Notación común para música vocal">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="T_00e9cnicas-espec_00edficas-para-la-letra"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="common-notation-for-vocal-music.es.html#extenders-and-hyphens" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Líneas de extensión y guiones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vocal-music.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Música vocal&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#working-with-lyrics-and-variables" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Trabajar con letra y variables &gt; </a>]</td></tr></table>
+<a name="techniques-specific-to-lyrics"></a>
+<h3 class="subsection">2.1.2 Técnicas específicas para la letra</h3>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#working-with-lyrics-and-variables" accesskey="1">Trabajar con letra y variables</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#placing-lyrics-vertically" accesskey="2">Posicionamiento vertical de la letra</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#placing-syllables-horizontally" accesskey="3">Colocación horizontal de las sílabas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#lyrics-and-repeats" accesskey="4">Letra y repeticiones</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#divisi-lyrics" accesskey="5">Letras en divisi</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#polyphony-with-shared-lyrics" accesskey="6">Polifonía con letras compartidas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+
+<hr size="6">
+<a name="Trabajar-con-letra-y-variables"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#techniques-specific-to-lyrics" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#placing-lyrics-vertically" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Posicionamiento vertical de la letra &gt; </a>]</td></tr></table>
+<a name="working-with-lyrics-and-variables"></a>
+<h4 class="unnumberedsubsubsec">Trabajar con letra y variables</h4>
+
+<a name="index-lyrics_002c-using-variables"></a>
+
+<p>Se pueden crear variables que contienen letra, pero la letra se debe
+introducir en el modo de letra:
+</p>
+<blockquote><pre class="verbatim">musicOne = \relative {
+  c''4 b8. a16 g4. f8 e4 d c2
+}
+verseOne = \lyricmode {
+  Joy to the world, the Lord is come.
+}
+\score {
+  &lt;&lt;
+    \new Voice = &quot;one&quot; {
+      \time 2/4
+      \musicOne
+    }
+    \new Lyrics \lyricsto &quot;one&quot; {
+      \verseOne
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../e6/lily-6dbd7b65.ly">
+  <img align="middle"
+       border="0"
+       src="../e6/lily-6dbd7b65.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>No es necesario escribir las duraciones si la variables se va a
+invocar con <code>\addlyrics</code> o con <code>\lyricsto</code>.
+</p>
+<p>Para disposiciones distintas o más complejas, la mejor forma es
+definir en primer lugar las variables de la música y de la letra,
+después preparar una jerarquía de pentagramas y letras, omitiendo la
+letra en sí, y después poner la letra utilizando <code>\context</code> por
+debajo.  Esto asegura que las voces referenciadas por <code>\lyricsto</code>
+siempre han sido definidas previamente.  Por ejemplo:
+</p>
+<blockquote><pre class="verbatim">sopranoMusic = \relative { c''4 c c c }
+contraltoMusic = \relative { a'4 a a a }
+sopranoWords = \lyricmode { Sop -- ra -- no words }
+contraltoWords = \lyricmode { Con -- tral -- to words }
+
+\score {
+  \new ChoirStaff &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;sopranos&quot; {
+        \sopranoMusic
+      }
+    }
+    \new Lyrics = &quot;sopranos&quot;
+    \new Lyrics = &quot;contraltos&quot;
+    \new Staff {
+      \new Voice = &quot;contraltos&quot; {
+        \contraltoMusic
+      }
+    }
+    \context Lyrics = &quot;sopranos&quot; {
+      \lyricsto &quot;sopranos&quot; {
+        \sopranoWords
+      }
+    }
+    \context Lyrics = &quot;contraltos&quot; {
+      \lyricsto &quot;contraltos&quot; {
+        \contraltoWords
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../43/lily-93080766.ly">
+  <img align="middle"
+       border="0"
+       src="../43/lily-93080766.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-129"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Referencia de la notación:
+<a href="#placing-lyrics-vertically">Posicionamiento vertical de la letra</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-LyricCombineMusic-1"></a>
+<a href="../internals/lyriccombinemusic.es.html">LyricCombineMusic</a>,
+<a name="index-Lyrics-3"></a>
+<a href="../internals/lyrics.es.html">Lyrics</a>.
+</p>
+
+<hr size="6">
+<a name="Posicionamiento-vertical-de-la-letra"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#working-with-lyrics-and-variables" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Trabajar con letra y variables&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#placing-syllables-horizontally" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Colocación horizontal de las sílabas &gt; </a>]</td></tr></table>
+<a name="placing-lyrics-vertically"></a>
+<h4 class="unnumberedsubsubsec">Posicionamiento vertical de la letra</h4>
+
+<a name="index-posicionamiento-de-la-letra"></a>
+<a name="index-letra_002c-posicionamiento"></a>
+
+<p>Dependiendo del tipo de música, la letra puede colocarse sobre el
+pentagrama, debajo del pentagrama, o entre dos pentagramas.  Lo más
+fácil es situar la letra debajo de la pauta asociada, y se puede
+conseguir simplemente definiendo el contexto Lyrics por debajo del
+contexto Staff:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;melody&quot; {
+        \relative { c''4 c c c }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Here are the words
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../d7/lily-56db3fe2.ly">
+  <img align="middle"
+       border="0"
+       src="../d7/lily-56db3fe2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se puede colocar la letra sobre el pentagrama usando uno de los dos
+métodos disponibles: el más sencillo (y preferible) es usar la misma
+sintaxis que se ha visto más arriba y especificar explícitamente la
+posición de la letra:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff = &quot;staff&quot; {
+      \new Voice = &quot;melody&quot; {
+        \relative { c''4 c c c }
+      }
+    }
+    \new Lyrics \with { alignAboveContext = &quot;staff&quot; } {
+      \lyricsto &quot;melody&quot; {
+        Here are the words
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../9d/lily-8d124b3c.ly">
+  <img align="middle"
+       border="0"
+       src="../9d/lily-8d124b3c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Como alternativa, se puede usar un proceso en dos pasos.  En primer
+lugar se declara el contexto Lyrics (sin ningún contenido) antes de
+los contextos Staff y Voice, y después se escribe la instrucción
+<code>\lyricsto</code> después de la declaración de Voice a que hace
+referencia, usando <code>\context</code>, como se ve a continuación:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Lyrics = &quot;lyrics&quot; \with {
+      % lyrics above a staff should have this override
+      \override VerticalAxisGroup.staff-affinity = #DOWN
+    }
+    \new Staff {
+      \new Voice = &quot;melody&quot; {
+        \relative { c''4 c c c }
+      }
+    }
+    \context Lyrics = &quot;lyrics&quot; {
+      \lyricsto &quot;melody&quot; {
+        Here are the words
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../c4/lily-5a52b24d.ly">
+  <img align="middle"
+       border="0"
+       src="../c4/lily-5a52b24d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Cuando hay dos voces sobre pentagramas separados, la letra se puede
+colocar entre ellos usando cualquiera de estos métodos.  He aquí un
+ejemplo del segundo método:
+</p>
+<blockquote><pre class="verbatim">\score {
+  \new ChoirStaff &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;sopranos&quot; {
+        \relative { c''4 c c c }
+      }
+    }
+    \new Lyrics = &quot;sopranos&quot;
+    \new Lyrics = &quot;contraltos&quot; \with {
+      % lyrics above a staff should have this override
+      \override VerticalAxisGroup.staff-affinity = #DOWN
+    }
+    \new Staff {
+      \new Voice = &quot;contraltos&quot; {
+        \relative { a'4 a a a }
+      }
+    }
+    \context Lyrics = &quot;sopranos&quot; {
+      \lyricsto &quot;sopranos&quot; {
+        Sop -- ra -- no words
+      }
+    }
+    \context Lyrics = &quot;contraltos&quot; {
+      \lyricsto &quot;contraltos&quot; {
+        Con -- tral -- to words
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../ab/lily-cbb6bf4d.ly">
+  <img align="middle"
+       border="0"
+       src="../ab/lily-cbb6bf4d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Es posible generar otras combinaciones de letra y pautas mediante la
+elaboración de los ejemplos anteriores, o examinando las plantillas del
+Manual de Aprendizaje, véase <a name="index-Plantillas-de-conjuntos-vocales"></a>
+<a href="../learning/vocal-ensembles-templates.es.html">Plantillas de conjuntos vocales</a>.
+</p>
+<a name="Fragmentos-de-codigo-seleccionados-8"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+
+<p><em> Conseguir el espaciado de la letra de la versión 2.12</em>
+  en versiones más recientes
+</p>
+
+<p>El motor de espaciado vertical cambió en la versión 2.14.  Esto puede
+hacer que se altere el espaciado de la letra de las canciones.  Es
+posible fijar propiedades para los contextos <code>Lyric</code> y
+<code>Staff</code> de forma que el motor de espaciado se comporte como lo
+hacía en la versión 2.12.
+</p>
+
+<blockquote><pre class="verbatim">global = {
+  \key d \major
+  \time 3/4
+}
+
+sopMusic = \relative c' {
+  % VERSE ONE
+  fis4 fis fis | \break
+  fis4. e8 e4
+}
+
+altoMusic = \relative c' {
+  % VERSE ONE
+  d4 d d |
+  d4. b8 b4 |
+}
+
+tenorMusic = \relative c' {
+  a4 a a |
+  b4. g8 g4 |
+}
+
+bassMusic = \relative c {
+  d4 d d |
+  g,4. g8 g4 |
+}
+
+words = \lyricmode {
+  Great is Thy faith- ful- ness,
+}
+
+\score {
+  \new ChoirStaff &lt;&lt;
+    \new Lyrics = sopranos
+    \new Staff = women &lt;&lt;
+      \new Voice = &quot;sopranos&quot; {
+        \voiceOne
+        \global \sopMusic
+      }
+      \new Voice = &quot;altos&quot; {
+        \voiceTwo
+        \global \altoMusic
+      }
+    &gt;&gt;
+    \new Lyrics = &quot;altos&quot;
+    \new Lyrics = &quot;tenors&quot;
+    \new Staff = men &lt;&lt;
+      \clef bass
+      \new Voice = &quot;tenors&quot; {
+        \voiceOne
+        \global \tenorMusic
+      }
+      \new Voice = &quot;basses&quot; {
+        \voiceTwo  \global \bassMusic
+      }
+    &gt;&gt;
+    \new Lyrics = basses
+    \context Lyrics = sopranos \lyricsto sopranos \words
+    \context Lyrics = altos \lyricsto altos \words
+    \context Lyrics = tenors \lyricsto tenors \words
+    \context Lyrics = basses \lyricsto basses \words
+  &gt;&gt;
+  \layout {
+    \context {
+      \Lyrics
+      \override VerticalAxisGroup.staff-affinity = ##f
+      \override VerticalAxisGroup.staff-staff-spacing =
+        #'((basic-distance . 0)
+	   (minimum-distance . 2)
+	   (padding . 2))
+    }
+    \context {
+      \Staff
+      \override VerticalAxisGroup.staff-staff-spacing =
+        #'((basic-distance . 0)
+	   (minimum-distance . 2)
+	   (padding . 2))
+    }
+  }
+}
+</pre><p>
+ <a href="../e7/lily-0a2a4269.ly">
+  <img align="middle"
+       border="0"
+       src="../e7/lily-0a2a4269.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-224"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Manual de aprendizaje:
+<a name="index-Plantillas-de-conjuntos-vocales-1"></a>
+<a href="../learning/vocal-ensembles-templates.es.html">Plantillas de conjuntos vocales</a>.
+</p>
+<p>Referencia de la notación:
+<a href="context-layout-order.es.html">Orden de disposición de los contextos</a>,
+<a href="creating-and-referencing-contexts.es.html">Crear y referenciar contextos</a>.
+</p>
+<hr size="6">
+<a name="Colocaci_00f3n-horizontal-de-las-s_00edlabas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#placing-lyrics-vertically" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Posicionamiento vertical de la letra&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#lyrics-and-repeats" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Letra y repeticiones &gt; </a>]</td></tr></table>
+<a name="placing-syllables-horizontally"></a>
+<h4 class="unnumberedsubsubsec">Colocación horizontal de las sílabas</h4>
+
+<a name="index-espaciado-de-la-letra"></a>
+<a name="index-letra_002c-aumentar-la-separacion"></a>
+
+<p>Para aumentar la separación entre las líneas de texto, establezca la
+propiedad <code>minimum-distance</code> de <code>LyricSpace</code>.
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  c c c c
+  \override Lyrics.LyricSpace.minimum-distance = #1.0
+  c c c c
+}
+\addlyrics {
+  longtext longtext longtext longtext
+  longtext longtext longtext longtext
+}
+</pre><p>
+ <a href="../23/lily-f4f89f26.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-f4f89f26.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Para efectuar este cambio en todas las letras de la partitura, ajuste
+la propiedad dentro del bloque <code>\layout</code>.
+</p>
+<blockquote><pre class="verbatim">\score {
+  \relative {
+  c' c c c
+  c c c c
+  }
+  \addlyrics {
+  longtext longtext longtext longtext
+  longtext longtext longtext longtext
+  }
+  \layout {
+    \context {
+      \Lyrics
+      \override LyricSpace.minimum-distance = #1.0
+    }
+  }
+}
+</pre><p>
+ <a href="../2a/lily-585ff0c9.ly">
+  <img align="middle"
+       border="0"
+       src="../2a/lily-585ff0c9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Fragmentos-de-codigo-seleccionados-68"></a>
+<h4 class="subsubheading">Fragmentos de código seleccionados</h4>
+
+<p><em> Alineación de la letra</em>
+</p>
+
+<p>La alineación horizontal de la letra se puede ajustar sobreescribiendo
+la propiedad <code>self-alignment-X</code> del objeto <code>LyricText</code>.
+<code>#-1</code> es izquierda, <code>#0</code> es centrado y <code>#1</code> es derecha;
+sin embargo, podemos usar también <code>#LEFT</code>, <code>#CENTER</code> y
+<code>#RIGHT</code>.
+</p>
+
+<blockquote><pre class="verbatim">\layout { ragged-right = ##f }
+\relative c'' {
+  c1
+  c1
+  c1
+}
+\addlyrics {
+  \once \override LyricText.self-alignment-X = #LEFT
+  &quot;This is left-aligned&quot;
+  \once \override LyricText.self-alignment-X = #CENTER
+  &quot;This is centered&quot;
+  \once \override LyricText.self-alignment-X = #1
+  &quot;This is right-aligned&quot;
+}
+</pre><p>
+ <a href="../ad/lily-cad36366.ly">
+  <img align="middle"
+       border="0"
+       src="../ad/lily-cad36366.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p>La comprobación necesaria para asegurar que las inscripciones de texto
+están dentro de los márgenes, requiere cálculos adicionales.  Para
+acelerar ligeramente el procesado, se puede desactivar esta
+funcionalidad:
+</p>
+<blockquote><pre class="example">\override Score.PaperColumn.keep-inside-line = ##f
+</pre></blockquote>
+
+<p>Para hacer que el texto evite también las líneas divisorias, use
+</p>
+<blockquote><pre class="example">\layout {
+  \context {
+    \Lyrics
+      \consists &quot;Bar_engraver&quot;
+      \consists &quot;Separating_line_group_engraver&quot;
+      \hide BarLine
+  }
+}
+</pre></blockquote>
+
+<hr size="6">
+<a name="Letra-y-repeticiones"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#placing-syllables-horizontally" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Colocación horizontal de las sílabas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#divisi-lyrics" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Letras en divisi &gt; </a>]</td></tr></table>
+<a name="lyrics-and-repeats"></a>
+<h4 class="unnumberedsubsubsec">Letra y repeticiones</h4>
+
+<a name="index-repeticiones-y-letra"></a>
+<a name="index-letra_002c-repeticiones"></a>
+
+<a name="Repeticiones-sencillas"></a>
+<h3 class="subheading">Repeticiones sencillas</h3>
+
+<p>Las repeticiones <em>en la música</em> se describen extensamente en
+alguna otra parte de este manual; véase <a href="repeats.es.html">Repeticiones</a>.  Esta
+sección explica cómo añadir letra a secciones de música que se
+repiten.
+</p>
+<p>La letra que va con una sección de música que se repite, debiera estar
+encerrada en la misma construcción de repeticiones exacta que la
+música, si el texto no cambia.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          a'4 a a a
+          \repeat volta 2 { b4 b b b }
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Not re -- peat -- ed.
+        \repeat volta 2 { Re -- peat -- ed twice. }
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../ac/lily-a2186138.ly">
+  <img align="middle"
+       border="0"
+       src="../ac/lily-a2186138.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>El texto se expandirá correctamente de esta manera si las repeticiones
+se despliegan.
+</p>
+<blockquote><pre class="verbatim">\score {
+  \unfoldRepeats {
+    &lt;&lt;
+      \new Staff {
+        \new Voice = &quot;melody&quot; {
+          \relative {
+            a'4 a a a
+            \repeat volta 2 { b4 b b b }
+          }
+        }
+      }
+      \new Lyrics {
+        \lyricsto &quot;melody&quot; {
+          Not re -- peat -- ed.
+          \repeat volta 2 { Re -- peat -- ed twice. }
+        }
+      }
+    &gt;&gt;
+  }
+}
+</pre><p>
+ <a href="../cb/lily-2e206e8b.ly">
+  <img align="middle"
+       border="0"
+       src="../cb/lily-2e206e8b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si la sección repetida ha de desplegarse y tiene distinta letra,
+escriba simplemente todo el texto:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          a'4 a a a
+          \repeat unfold 2 { b4 b b b }
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Not re -- peat -- ed.
+        The first time words.
+        Sec -- ond time words.
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../0f/lily-69d71760.ly">
+  <img align="middle"
+       border="0"
+       src="../0f/lily-69d71760.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Cuando el texto de las secciones de primera o segunda vez es distinto,
+la letra de cada repetición se debe escribir dentro de contextos
+<code>Lyrics</code> diferentes,
+anidados correctamente en secciones paralelas:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          a'4 a a a
+          \repeat volta 2 { b4 b b b }
+        }
+      }
+    }
+    \new Lyrics \lyricsto &quot;melody&quot; {
+      Not re -- peat -- ed.
+      &lt;&lt;
+	{ The first time words. }
+	\new Lyrics {
+	  \set associatedVoice = &quot;melody&quot;
+	  Sec -- ond time words.
+	}
+      &gt;&gt;
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../96/lily-86b16738.ly">
+  <img align="middle"
+       border="0"
+       src="../96/lily-86b16738.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se pueden añadir más estrofas de una manera similar:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;singleVoice&quot; {
+        \relative {
+	  a'4 a a a
+	  \repeat volta 3 { b4 b b b }
+          c4 c c c
+	}
+      }
+    }
+    \new Lyrics \lyricsto &quot;singleVoice&quot; {
+      Not re -- peat -- ed.
+      &lt;&lt;
+        { The first time words.	}
+	\new Lyrics {
+	  \set associatedVoice = &quot;singleVoice&quot;
+	  Sec -- ond time words.
+	}
+	\new Lyrics {
+	  \set associatedVoice = &quot;singleVoice&quot;
+	  The third time words.
+	}
+      &gt;&gt;
+      The end sec -- tion.
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../39/lily-fd652fdf.ly">
+  <img align="middle"
+       border="0"
+       src="../39/lily-fd652fdf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-alignBelowContext"></a>
+<a name="index-alignBelowContext-1"></a>
+<a name="index-alignBelowContext-2"></a>
+
+<p>Sin embargo, si esta construcción se inserta dentro de un contexto de
+varios pentagramas tal como un <code>ChoirStaff</code>, la letra de los
+versos segundo y tercero aparecerán debajo del pentagrama inferior.
+</p>
+<p>Para posicionarlos correctamente utilice <code>alignBelowContext</code>:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \new Voice = &quot;melody&quot; {
+        \relative {
+	  a'4 a a a
+	  \repeat volta 3 { b4 b b b }
+          c4 c c c
+	}
+      }
+    }
+    \new Lyrics = &quot;firstVerse&quot; \lyricsto &quot;melody&quot; {
+      Not re -- peat -- ed.
+      &lt;&lt;
+        { The first time words.	}
+	\new Lyrics = &quot;secondVerse&quot;
+        \with { alignBelowContext = #&quot;firstVerse&quot; } {
+	  \set associatedVoice = &quot;melody&quot;
+	  Sec -- ond time words.
+	}
+	\new Lyrics = &quot;thirdVerse&quot;
+        \with { alignBelowContext = #&quot;secondVerse&quot; } {
+	  \set associatedVoice = &quot;melody&quot;
+	  The third time words.
+	}
+      &gt;&gt;
+      The end sec -- tion.
+    }
+    \new Voice = &quot;harmony&quot; {
+      \relative {
+        f'4 f f f \repeat volta 2 { g8 g g4 g2 } a4 a8. a16 a2
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../b8/lily-3dbcb3a6.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-3dbcb3a6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+
+
+<a name="Repeticiones-con-finales-alternativos-_0028primera-y-segunda-vez_0029"></a>
+<h3 class="subheading">Repeticiones con finales alternativos (primera y segunda vez)</h3>
+
+<a name="index-letra_002c-repeticiones-con-finales-alternativos"></a>
+<a name="index-letra_002c-repeticiones-con-primera-y-segunda-vez"></a>
+<a name="index-repeticion-de-la-letra-con-finales-alternativos"></a>
+<a name="index-repeticion-de-la-letra-con-primera-y-segunda-vez"></a>
+<a name="index-finales-alternativos-y-letra"></a>
+<a name="index-primera-y-segunda-vez-y-letra"></a>
+
+<p>Si el texto de la sección repetida es el mismo, se puede usar
+exactamente la misma estructura tanto para la letra como para la
+música.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \time 2/4
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          a'4 a a a
+          \repeat volta 2 { b4 b }
+          \alternative { { b b } { b c } }
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Not re -- peat -- ed.
+        \repeat volta 2 { Re -- peat -- }
+        \alternative { { ed twice. } { ed twice. } }
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../f1/lily-a61cc514.ly">
+  <img align="middle"
+       border="0"
+       src="../f1/lily-a61cc514.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cskip-2"></a>
+<a name="index-_005cskip-3"></a>
+<a name="index-saltar-notas-en-la-letra"></a>
+<a name="index-letra_002c-saltar-notas"></a>
+
+<p>Pero cuando la sección repetida tiene un texto distinto, no se puede
+usar una construcción de repetición para el texto y es necesario
+insertar manualmente instrucciones <code>\skip</code>
+para saltar sobre las notas en las secciones
+alternativas que no correspondan.
+</p>
+<p>Nota: no utilice un guión bajo, <code>_</code>, para saltar notas: el guión
+bajo indica un melisma, y hace que la sílaba anterior resulte alineada
+por la izquierda.
+</p>
+<div class="warning"><p><strong>Nota:</strong> La instrucción <code>\skip</code> debe ir seguida por un
+número, pero este número se ignora dentro de la letra, que deriva las
+duraciones de las notas de una melodía asociada a través de
+<code>addlyrics</code> o <code>lyricsto</code>.  Cada <code>\skip</code> salta una
+sola nota de cualquier valor, independientemente del valor del número
+que se escribe a continuación.
+</p>
+</div>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \time 2/4
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          \repeat volta 2 { b'4 b }
+          \alternative { { b b } { b c } }
+          c4 c
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        The first time words.
+        \repeat unfold 2 { \skip 1 }
+        End here.
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Sec -- ond
+        \repeat unfold 2 { \skip 1 }
+        time words.
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../be/lily-8f8bc847.ly">
+  <img align="middle"
+       border="0"
+       src="../be/lily-8f8bc847.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-letra-y-notas-ligadas"></a>
+<a name="index-_005crepeatTie-4"></a>
+<a name="index-_005crepeatTie-5"></a>
+
+<p>Cuando una nota está ligada sobre dos o más finales alternativos
+(sobre la primera nota de una casilla de primera y segunda vez), se
+usa una ligadura de unión para arrastrar la nota dentro del primer
+final alternativo y se usa una instrucción <code>\repeatTie</code> de
+ligadura de repetición en las casillas de repetición siguientes.  Esta
+estructura produce problemas de alineación difíciles cuando hay letra
+de por medio; aumentar la longitud de las secciones alternativas de
+forma que las notas ligadas se vean contenidas completamente dentro de
+ellas, puede ofrecer un resultado más aceptable.
+</p>
+<p>La ligadura de unión crea un melisma dentro de la casilla de primera
+vez pero no en la segunda vez y siguientes; por tanto, para alinear la
+letra correctamente es necesario inhabilitar la creación automática de
+melismas sobre la sección de finales alternativos e insertar saltos
+manuales.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \time 2/4
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          \set melismaBusyProperties = #'()
+          \repeat volta 2 { b'4 b ~}
+          \alternative { { b b } { b \repeatTie c } }
+          \unset melismaBusyProperties
+          c4 c
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        \repeat volta 2 { Here's a __ }
+        \alternative {
+          { \skip 1 verse }
+          { \skip 1 sec }
+        }
+        ond one.
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../00/lily-02e0a159.ly">
+  <img align="middle"
+       border="0"
+       src="../00/lily-02e0a159.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe que si se usa <code>\unfoldRepeats</code> sobre una sección que
+contiene alguna <code>\repeatTie</code>, la <code>\repeatTie</code> se debe
+eliminar para evitar que se impriman al mismo tiempo los dos tipos de
+ligadura.
+</p>
+<p>Cuando la sección repetida tiene textos distintos, no se puede usar
+<code>\repeat</code> para la letra y se deben insertar instrucciones
+<code>\skip</code> manualmente, como se vio antes.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \time 2/4
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          \repeat volta 2 { b'4 b ~}
+          \alternative { { b b } { b \repeatTie c } }
+          c4 c
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Here's a __ verse.
+        \repeat unfold 2 { \skip 1 }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Here's one
+        \repeat unfold 2 { \skip 1 }
+        more to sing.
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../ca/lily-54004108.ly">
+  <img align="middle"
+       border="0"
+       src="../ca/lily-54004108.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si queremos imprimir líneas extensoras y guiones que entran o salen de
+las casillas de primera y segunda vez, hemos de insertarlos
+manualmente.
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \time 2/4
+      \new Voice = &quot;melody&quot; {
+        \relative {
+          \repeat volta 2 { b'4 b ~}
+          \alternative { { b b } { b \repeatTie c } }
+          c4 c
+        }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Here's a __ verse.
+        \repeat unfold 2 { \skip 1 }
+      }
+    }
+    \new Lyrics {
+      \lyricsto &quot;melody&quot; {
+        Here's &quot;a_&quot;
+        \skip 1
+        &quot;_&quot; sec -- ond one.
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../d3/lily-ed387037.ly">
+  <img align="middle"
+       border="0"
+       src="../d3/lily-ed387037.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-100"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Referencia de la notación:
+<a href="keeping-contexts-alive.es.html">Mantener vivos los contextos</a>,
+<a href="repeats.es.html">Repeticiones</a>.
+</p>
+
+<hr size="6">
+<a name="Letras-en-divisi"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#lyrics-and-repeats" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Letra y repeticiones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#polyphony-with-shared-lyrics" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Polifonía con letras compartidas &gt; </a>]</td></tr></table>
+<a name="divisi-lyrics"></a>
+<h4 class="unnumberedsubsubsec">Letras en divisi</h4>
+
+<a name="index-dividida_002c-letra"></a>
+<a name="index-letra-dividida"></a>
+
+<p>Cuando solamente difieren las palabras y las duraciones de las dos
+partes mientras que la altura de las notas es la misma, el método
+adecuado puede ser la desactivación temporal de la detección
+automática de los melismas e indicar el melisma dentro de la letra:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Voice = &quot;melody&quot; {
+      \relative c' {
+        \set melismaBusyProperties = #'()
+        \slurDown
+        \slurDashed
+        e4 e8 ( e ) c4 c |
+        \unset melismaBusyProperties
+        c
+      }
+    }
+    \new Lyrics \lyricsto &quot;melody&quot; {
+      They shall not o -- ver -- come
+    }
+    \new Lyrics \lyricsto &quot;melody&quot; {
+      We will _
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../f0/lily-02a3ee91.ly">
+  <img align="middle"
+       border="0"
+       src="../f0/lily-02a3ee91.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Cuando difieren tanto la música como las palabras, puede ser mejor
+imprimir la música y la letra que difieren mediante el nombrado de
+contextos de voz y adjuntando la letra a estos contextos específicos:
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Voice = &quot;melody&quot; {
+      \relative {
+        &lt;&lt;
+          {
+            \voiceOne
+            e'4 e8 e
+          }
+          \new Voice = &quot;splitpart&quot; {
+            \voiceTwo
+            c4 c
+          }
+        &gt;&gt;
+        \oneVoice
+        c4 c |
+        c
+      }
+    }
+    \new Lyrics \lyricsto &quot;melody&quot; {
+      They shall not o -- ver -- come
+    }
+    \new Lyrics \lyricsto &quot;splitpart&quot; {
+      We will
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../2d/lily-cd61428a.ly">
+  <img align="middle"
+       border="0"
+       src="../2d/lily-cd61428a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>En la música coral es frecuente que una parte vocal se divida en
+dos durante varios compases.  La construcción <code>&lt;&lt; {&hellip;}
+\\ {&hellip;} &gt;&gt;</code>, en la que dos (o más) expresiones musicales
+están separadas por dos barras invertidas, puede en principio
+parecer la forma más adecuada de realizar las voces divididas.
+Sin embargo, esta construcción asigna <strong>todas</strong> las
+expresiones que están dentro de ella a <strong>contextos de voz
+NUEVOS</strong> lo que hace que no se asigne a ellas <em>ninguna letra</em>
+porque la letra se asigna al contexto de voz original, que no es
+lo que pretendemos, en general.  La construcción correcta que
+debemos usar es el pasaje polifónico temporal, véase la sección
+<em>Pasajes polifónicos temporales</em> dentro de
+<a href="multiple-voices.es.html#single_002dstaff-polyphony">Polifonía en un solo pentagrama</a>.
+</p>
+
+<hr size="6">
+<a name="Polifon_00eda-con-letras-compartidas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#divisi-lyrics" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Letras en divisi&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="stanzas.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Versos &gt; </a>]</td></tr></table>
+<a name="polyphony-with-shared-lyrics"></a>
+<h4 class="unnumberedsubsubsec">Polifonía con letras compartidas</h4>
+
+<a name="index-NullVoice"></a>
+<a name="index-polifonia_002c-letra-compartida"></a>
+<a name="index-letra_002c-compartida-entre-voces"></a>
+<a name="index-_005cpartcombine-y-letra-1"></a>
+<a name="index-_005cpartcombine-2"></a>
+<a name="index-_005cpartcombine-3"></a>
+
+<p>Cuando dos voces cuyas notas tienen distintas duraciones comparten
+la misma letra, la alineación de ésta a una de las voces puede dar
+lugar a problemas en la otra voz.  Por ejemplo, la segunda línea
+extensora que se ve debajo es demasiado corta, porque la letra
+está alineada solamente a la voz superior:
+</p>
+<blockquote><pre class="verbatim">soprano = \relative { b'8( c d c) d2 }
+alto = \relative { g'2 b8( a g a) }
+words = \lyricmode { la __ la __ }
+
+\new Staff &lt;&lt;
+  \new Voice = &quot;sopranoVoice&quot; { \voiceOne \soprano }
+  \new Voice { \voiceTwo \alto }
+  \new Lyrics \lyricsto &quot;sopranoVoice&quot; \words
+&gt;&gt;
+</pre><p>
+ <a href="../91/lily-0a4fcb2e.ly">
+  <img align="middle"
+       border="0"
+       src="../91/lily-0a4fcb2e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Para obtener el resultado deseado, alinee la letra con un contexto
+<code>NullVoice</code> (&lsquo;Voz Nula&rsquo;) nuevo que contenga una combinación
+adecuada de las dos voces.  Las notas del contexto
+<code>NullVoice</code> no aparecen en la página impresa, pero pueden
+utilizarse para alinear la letra adecuadamente:
+</p>
+<blockquote><pre class="verbatim">soprano = \relative { b'8( c d c) d2 }
+alto = \relative { g'2 b8( a g a) }
+aligner = \relative { b'8( c d c) b( a g a) }
+words = \lyricmode { la __ la __ }
+
+\new Staff &lt;&lt;
+  \new Voice { \voiceOne \soprano }
+  \new Voice { \voiceTwo \alto }
+  \new NullVoice = &quot;aligner&quot; \aligner
+  \new Lyrics \lyricsto &quot;aligner&quot; \words
+&gt;&gt;
+</pre><p>
+ <a href="../1b/lily-5a9e4461.ly">
+  <img align="middle"
+       border="0"
+       src="../1b/lily-5a9e4461.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>El contexto de voz nula <code>NullVoice</code> debe estar situado dentro
+de un contexto <code>Staff</code> y contener notas que ya se están
+mostrando en dicho pentagrama, y en la misma octava.  En caso
+contrario, la <code>NullVoice</code> podría interactuar con las voces
+impresas de forma inesperada.  Por ejemplo, notas arbitrarias en
+la <code>NullVoice</code> pueden hacer que aparezcan (o desaparezcan)
+alteraciones accidentales en el pentragrama.
+</p>
+<p>Este método se puede usar trambién con la función
+<code>\partcombine</code>, que en sí no permite incluir letra:
+</p>
+<blockquote><pre class="verbatim">soprano = \relative { b'8( c d c) d2 }
+alto = \relative { g'2 b8( a g a) }
+aligner = \relative { b'8( c d c) b( a g a) }
+words = \lyricmode { la __ la __ }
+
+\new Staff &lt;&lt;
+  \new Voice \partcombine \soprano \alto
+  \new NullVoice = &quot;aligner&quot; \aligner
+  \new Lyrics \lyricsto &quot;aligner&quot; \words
+&gt;&gt;
+</pre><p>
+ <a href="../54/lily-25d6b770.ly">
+  <img align="middle"
+       border="0"
+       src="../54/lily-25d6b770.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Advertencias-y-problemas-conocidos-78"></a>
+<h4 class="subsubheading">Advertencias y problemas conocidos</h4>
+<p>La función <code>\addLyrics</code> solo funciona con letras de
+<code>Voice</code>, por lo que no puede utilizarse con <code>NullVoice</code>.
+</p>
+<p>La función <code>\partcombine</code> se describe en <a href="multiple-voices.es.html#automatic-part-combining">Combinación automática de las partes</a>.
+</p>
+<p>Por último, este método se puede usar incluso si las voces están
+en distintos pentagramas, y no se limita a dos voces únicamente:
+</p>
+<blockquote><pre class="verbatim">soprano = \relative { b'8( c d c) d2 }
+altoOne = \relative { g'2 b8( a b4) }
+altoTwo = \relative { d'2 g4( fis8 g) }
+aligner = \relative { b'8( c d c) d( d d d) }
+words = \lyricmode { la __ la __ }
+
+\new ChoirStaff &lt;&lt;
+  \new Staff &lt;&lt;
+    \soprano
+    \new NullVoice = &quot;aligner&quot; \aligner
+  &gt;&gt;
+  \new Lyrics \lyricsto &quot;aligner&quot; \words
+  \new Staff \partcombine \altoOne \altoTwo
+&gt;&gt;
+</pre><p>
+ <a href="../76/lily-c4457ce2.ly">
+  <img align="middle"
+       border="0"
+       src="../76/lily-c4457ce2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe, sin embargo, que en la segunda mitad del compás que se ve
+arriba, las notas del contexto <code>NullVoice</code> reflejan las
+duraciones de las notas del pentagrama inferior, pero no se
+desvian de la altura única que se muestra en el pentagrama al que
+pertenece la <code>NullVoice</code>.  Aunque no es obligatorio en este
+ejemplo en particular, generalmente es buena idea introducir las
+notas de esta forma.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Notación especializada&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Entrada y salida generales &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#divisi-lyrics" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Letras en divisi&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#techniques-specific-to-lyrics" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Técnicas específicas para la letra&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="stanzas.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Versos &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="techniques-specific-to-lyrics.html">English</a>, <a href="techniques-specific-to-lyrics.de.html">deutsch</a>, <a href="techniques-specific-to-lyrics.fr.html">français</a>, <a href="techniques-specific-to-lyrics.it.html">italiano</a>, <a href="techniques-specific-to-lyrics.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Notacion-comun-para-musica-vocal" href="common-notation-for-vocal-music.es.html">2.1.1 Notación común para música vocal</a>      </li>
+      <li class=" toc_current"><a name="toc-Tecnicas-especificas-para-la-letra" href="techniques-specific-to-lyrics.es.html">2.1.2 Técnicas específicas para la letra</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Trabajar-con-letra-y-variables-1" href="techniques-specific-to-lyrics.es.html#working-with-lyrics-and-variables">Trabajar con letra y variables</a>        </li>
+        <li class=""><a name="toc-Posicionamiento-vertical-de-la-letra-1" href="techniques-specific-to-lyrics.es.html#placing-lyrics-vertically">Posicionamiento vertical de la letra</a>        </li>
+        <li class=""><a name="toc-Colocacion-horizontal-de-las-silabas" href="techniques-specific-to-lyrics.es.html#placing-syllables-horizontally">Colocación horizontal de las sílabas</a>        </li>
+        <li class=""><a name="toc-Letra-y-repeticiones-1" href="techniques-specific-to-lyrics.es.html#lyrics-and-repeats">Letra y repeticiones</a>        </li>
+        <li class=""><a name="toc-Letras-en-divisi-1" href="techniques-specific-to-lyrics.es.html#divisi-lyrics">Letras en divisi</a>        </li>
+        <li class=""><a name="toc-Polifonia-con-letras-compartidas" href="techniques-specific-to-lyrics.es.html#polyphony-with-shared-lyrics">Polifonía con letras compartidas</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Versos-1" href="stanzas.es.html">2.1.3 Versos</a>      </li>
+      <li class=""><a name="toc-Canciones-1" href="songs.es.html">2.1.4 Canciones</a>      </li>
+      <li class=""><a name="toc-Musica-coral" href="choral.es.html">2.1.5 Música coral</a>      </li>
+      <li class=""><a name="toc-Opera-y-musicales" href="opera-and-stage-musicals.es.html">2.1.6 Ópera y musicales</a>      </li>
+      <li class=""><a name="toc-Canticos-salmos-e-himnos" href="chants-psalms-and-hymns.es.html">2.1.7 Cánticos salmos e himnos</a>      </li>
+      <li class=""><a name="toc-Musica-vocal-antigua" href="ancient-vocal-music.es.html">2.1.8 Música vocal antigua</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

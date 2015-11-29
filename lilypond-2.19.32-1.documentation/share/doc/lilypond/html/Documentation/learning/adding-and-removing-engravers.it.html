@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manuale di apprendimento di LilyPond: 3.3.5 Aggiungere e togliere gli incisori</title>
+
+<meta name="description" content="Manuale di apprendimento di LilyPond: 3.3.5 Aggiungere e togliere gli incisori">
+<meta name="keywords" content="Manuale di apprendimento di LilyPond: 3.3.5 Aggiungere e togliere gli incisori">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Manuale di apprendimento">
+<link href="lilypond-index.it.html#lilypond-index" rel="index" title="C. Indice di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="contexts-and-engravers.it.html#contexts-and-engravers" rel="up" title="3.3 Contesti e incisori">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="C. Indice di LilyPond">
+<link href="modifying-context-properties.it.html#modifying-context-properties" rel="previous" title="3.3.4 Modificare le proprietà di contesto">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="learning devStatus">
+
+
+<div id="main">
+<a name="Aggiungere-e-togliere-gli-incisori"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Concetti fondamentali&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.it.html" title="Capitolo successivo">&nbsp;Modifica dell'output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="modifying-context-properties.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Modificare le proprietà di contesto&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Contesti e incisori&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="extending-the-templates.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Estendere i modelli &gt; </a>]</td></tr></table>
+<a name="adding-and-removing-engravers"></a>
+<h3 class="subsection">3.3.5 Aggiungere e togliere gli incisori</h3>
+
+<a name="index-incisori_002c-aggiungere"></a>
+<a name="index-aggiungere-gli-incisori"></a>
+<a name="index-incisori_002c-rimuovere"></a>
+<a name="index-rimuovere-gli-incisori"></a>
+
+<a name="index-_005cconsists"></a>
+<a name="index-_005cconsists-1"></a>
+<a name="index-consists"></a>
+<a name="index-consists-1"></a>
+<a name="index-_005cremove"></a>
+<a name="index-_005cremove-1"></a>
+<a name="index-remove"></a>
+<a name="index-remove-1"></a>
+
+<p>Abbiamo visto che ciascuno dei contesti contiene vari incisori, ognuno
+dei quali ha il compito di produrre una parte specifica dell&rsquo;output,
+come stanghette, righi, teste, gambi, etc..  Se un incisore
+viene rimosso da un contesto, non può più produrre il suo
+output.  Si tratta di un metodo sbrigativo per modificare l&rsquo;output, e talvolta
+può essere utile.
+</p>
+<a name="Cambiare-un-singolo-contesto"></a>
+<h4 class="subsubheading">Cambiare un singolo contesto</h4>
+
+<p>Per rimuovere un incisore da un singolo contesto usiamo il
+comando <code>\with</code> posto subito dopo il comando di creazione del
+contesto, come esposto nella sezione precedente.
+</p>
+<p>A titolo di esempio, ripetiamo un esempio della sezione precedente
+rimuovendo le linee del rigo.  Ricorda che le linee del rigo vengono
+create dall&rsquo;incisore <code>Staff_symbol_engraver</code>.
+</p>
+<blockquote><pre class="verbatim">\new Staff \with {
+  \remove &quot;Staff_symbol_engraver&quot;
+}
+\relative {
+  c'4 d
+  \set fontSize = #-4  % make note heads smaller
+  e4 f |
+  \set fontSize = #2.5  % make note heads larger
+  g4 a
+  \unset fontSize  % return to default size
+  b4 c |
+}
+</pre><p>
+ <a href="../cd/lily-013999c1.ly">
+  <img align="middle"
+       border="0"
+       src="../cd/lily-013999c1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-ambitus_002c-incisore-dell_0027"></a>
+
+<p>Gli incisori possono essere aggiunti anche a contesti individuali.
+Il comando per farlo è
+</p>
+<p><code>\consists <var>Engraver_name</var></code>,
+</p>
+<p>posto all&rsquo;interno di un blocco <code>\with</code>.  Alcune partiture vocali hanno
+un ambitus collocato all&rsquo;inizio del pentagramma per indicare l&rsquo;intervallo tra la nota
+più grave e quella più acuta in quella parte &ndash; si veda <a name="index-ambitus"></a>
+<a href="../music-glossary/ambitus.it.html">ambitus</a>.  L&rsquo;ambitus
+viene creato dall&rsquo;incisore <code>Ambitus_engraver</code>, che di norma non è incluso in
+alcun contesto.  Se lo aggiungiamo al contesto <code>Voice</code>, calcola l&rsquo;intervallo
+di quella voce soltanto:
+</p>
+<blockquote><pre class="verbatim">\new Staff &lt;&lt;
+  \new Voice \with {
+    \consists &quot;Ambitus_engraver&quot;
+  } {
+    \relative {
+      \voiceOne
+      c''4 a b g
+    }
+  }
+  \new Voice {
+    \relative {
+      \voiceTwo
+      c'4 e d f
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../b2/lily-39f0e3f6.ly">
+  <img align="middle"
+       border="0"
+       src="../b2/lily-39f0e3f6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>ma se aggiungiamo l&rsquo;incisore ambitus al contesto <code>Staff</code>, calcola
+l&rsquo;intervallo di tutte le note in tutte le voci di quel pentagramma:
+</p>
+<blockquote><pre class="verbatim">\new Staff \with {
+  \consists &quot;Ambitus_engraver&quot;
+}
+&lt;&lt;
+  \new Voice {
+    \relative {
+      \voiceOne
+      c''4 a b g
+    }
+  }
+  \new Voice {
+    \relative {
+      \voiceTwo
+      c'4 e d f
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../b4/lily-5b7601e4.ly">
+  <img align="middle"
+       border="0"
+       src="../b4/lily-5b7601e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Modificare-tutti-i-contesti-dello-stesso-tipo"></a>
+<h4 class="subsubheading">Modificare tutti i contesti dello stesso tipo</h4>
+
+<a name="index-_005clayout-2"></a>
+<a name="index-_005clayout-3"></a>
+<a name="index-layout-3"></a>
+<a name="index-layout-4"></a>
+
+<p>Gli esempi precedenti mostrano come rimuovere o aggiungere degli incisori
+a contesti individuali.  È anche possibile rimuovere o aggiungere gli
+incisori per ogni contesto di un particolare tipo inserendo i comandi
+nel contesto appropriato in un blocco <code>\layout</code>.  Ad esempio, se
+volessimo mostrare un ambitus per ogni pentagramma in una partitura
+di quattro pentagrammi, potremmo scrivere
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        c''4 a b g
+      }
+    }
+    \new Staff {
+      \relative {
+        c'4 a b g
+      }
+    }
+    \new Staff {
+      \clef &quot;G_8&quot;
+      \relative {
+        c'4 a b g
+      }
+    }
+    \new Staff {
+      \clef &quot;bass&quot;
+      \relative {
+        c4 a b g
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Staff
+      \consists &quot;Ambitus_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../db/lily-0b2d303c.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-0b2d303c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>I valori delle proprietà di un contesto possono essere impostati anche
+per tutti i contesti di un particolare tipo includendo il comando
+<code>\set</code> in un blocco <code>\context</code> nello stesso modo.
+</p>
+<a name="Vedi-anche-13"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Guida alla notazione: <a name="index-Modifying-context-plug_002dins"></a>
+<a href="../notation/modifying-context-plug_002dins.it.html">Modifying context plug-ins</a>,
+<a name="index-Changing-context-default-settings-1"></a>
+<a href="../notation/changing-context-default-settings.it.html">Changing context default settings</a>.
+</p>
+<a name="Problemi-noti-e-avvertimenti-1"></a>
+<h4 class="subsubheading">Problemi noti e avvertimenti</h4>
+<p>Gli incisori <code>Stem_engraver</code> e <code>Beam_engraver</code> fissano i propri
+oggetti alle teste delle note.  Se si elimina <code>Note_heads_engraver</code>
+le teste delle note non vengono prodotte e di conseguenza non vengono creati
+nemmeno i gambi né le travature.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Concetti fondamentali&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.it.html" title="Capitolo successivo">&nbsp;Modifica dell'output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="modifying-context-properties.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Modificare le proprietà di contesto&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Contesti e incisori&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="extending-the-templates.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Estendere i modelli &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="adding-and-removing-engravers.html">English</a>, <a href="adding-and-removing-engravers.ca.html">català</a>, <a href="adding-and-removing-engravers.cs.html">česky</a>, <a href="adding-and-removing-engravers.de.html">deutsch</a>, <a href="adding-and-removing-engravers.es.html">español</a>, <a href="adding-and-removing-engravers.fr.html">français</a>, <a href="adding-and-removing-engravers.hu.html">magyar</a>, <a href="adding-and-removing-engravers.ja.html">日本語</a>, <a href="adding-and-removing-engravers.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Manuale di apprendimento  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.it.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilare-un-file-1" href="compiling-a-file.it.html">1.1 Compilare un file</a>    </li>
+    <li class=""><a name="toc-Come-scrivere-i-file-di-input-1" href="how-to-write-input-files.it.html">1.2 Come scrivere i file di input</a>    </li>
+    <li class=""><a name="toc-Gestire-gli-errori-1" href="dealing-with-errors.it.html">1.3 Gestire gli errori</a>    </li>
+    <li class=""><a name="toc-Come-leggere-i-manuali-1" href="how-to-read-the-manuals.it.html">1.4 Come leggere i manuali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notazione-comunemente-utilizzata-1" href="common-notation.it.html">2. Notazione comunemente utilizzata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notazione-su-un-solo-pentagramma-1" href="single-staff-notation.it.html">2.1 Notazione su un solo pentagramma</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="multiple-notes-at-once.it.html">2.2 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.3 Canzoni</a>    </li>
+    <li class=""><a name="toc-Ritocchi-finali-1" href="final-touches.it.html">2.4 Ritocchi finali</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Concetti-fondamentali-1" href="fundamental-concepts.it.html">3. Concetti fondamentali</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Come-funzionano-i-file-di-input-di-LilyPond-1" href="how-lilypond-input-files-work.it.html">3.1 Come funzionano i file di input di LilyPond</a>    </li>
+    <li class=""><a name="toc-Le-voci-contengono-la-musica-1" href="voices-contain-music.it.html">3.2 Le voci contengono la musica</a>    </li>
+    <li class=" toc_current"><a name="toc-Contesti-e-incisori-1" href="contexts-and-engravers.it.html">3.3 Contesti e incisori</a>
+    <ul class="toc">
+      <li class=""><a name="toc-I-contesti-1" href="contexts-explained.it.html">3.3.1 I contesti</a>      </li>
+      <li class=""><a name="toc-Creare-i-contesti-1" href="creating-contexts.it.html">3.3.2 Creare i contesti</a>      </li>
+      <li class=""><a name="toc-Gli-incisori-1" href="engravers-explained.it.html">3.3.3 Gli incisori</a>      </li>
+      <li class=""><a name="toc-Modificare-le-proprieta-di-contesto" href="modifying-context-properties.it.html">3.3.4 Modificare le proprietà di contesto</a>      </li>
+      <li class=" toc_current"><a name="toc-Aggiungere-e-togliere-gli-incisori-1" href="adding-and-removing-engravers.it.html">3.3.5 Aggiungere e togliere gli incisori</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Estendere-i-modelli-1" href="extending-the-templates.it.html">3.4 Estendere i modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modifica-dell_0027output-1" href="tweaking-output.it.html">4. Modifica dell&rsquo;output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modifiche-di-base-1" href="tweaking-basics.it.html">4.1 Modifiche di base</a>    </li>
+    <li class=""><a name="toc-Manuale-del-Funzionamento-interno-1" href="the-internals-reference-manual.it.html">4.2 Manuale del Funzionamento interno</a>    </li>
+    <li class=""><a name="toc-Aspetto-degli-oggetti-1" href="appearance-of-objects.it.html">4.3 Aspetto degli oggetti</a>    </li>
+    <li class=""><a name="toc-Posizionamento-degli-oggetti-1" href="placement-of-objects.it.html">4.4 Posizionamento degli oggetti</a>    </li>
+    <li class=""><a name="toc-Spaziatura-verticale-1" href="vertical-spacing.it.html">4.5 Spaziatura verticale</a>    </li>
+    <li class=""><a name="toc-Collisioni-tra-oggetti-1" href="collisions-of-objects.it.html">4.6 Collisioni tra oggetti</a>    </li>
+    <li class=""><a name="toc-Altre-modifiche-1" href="further-tweaking.it.html">4.7 Altre modifiche</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modelli-1" href="templates.it.html">A. Modelli</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modelli-integrati-1" href="built_002din-templates.it.html">A.1 Modelli integrati</a>    </li>
+    <li class=""><a name="toc-Modelli-per-rigo-singolo-1" href="single-staff-templates.it.html">A.2 Modelli per rigo singolo</a>    </li>
+    <li class=""><a name="toc-Modelli-per-pianoforte-1" href="piano-templates.it.html">A.3 Modelli per pianoforte</a>    </li>
+    <li class=""><a name="toc-Modelli-per-quartetto-d_0027archi-1" href="string-quartet-templates.it.html">A.4 Modelli per quartetto d&rsquo;archi</a>    </li>
+    <li class=""><a name="toc-Modelli-per-gruppi-vocali-1" href="vocal-ensembles-templates.it.html">A.5 Modelli per gruppi vocali</a>    </li>
+    <li class=""><a name="toc-Modelli-per-orchestra-1" href="orchestral-templates.it.html">A.6 Modelli per orchestra</a>    </li>
+    <li class=""><a name="toc-Modelli-per-notazione-antica-1" href="ancient-notation-templates.it.html">A.7 Modelli per notazione antica</a>    </li>
+    <li class=""><a name="toc-Altri-modelli-1" href="other-templates.it.html">A.8 Altri modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">C. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

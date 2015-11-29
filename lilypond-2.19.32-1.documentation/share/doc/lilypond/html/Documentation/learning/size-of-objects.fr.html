@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel d'initiation: 4.3.2 Taille des objets</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel d'initiation: 4.3.2 Taille des objets">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel d'initiation: 4.3.2 Taille des objets">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel d'initiation">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="C. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="appearance-of-objects.fr.html#appearance-of-objects" rel="up" title="4.3 Apparence des objets">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="C. Index de LilyPond">
+<link href="visibility-and-color-of-objects.fr.html#visibility-and-color-of-objects" rel="previous" title="4.3.1 Visibilité et couleur des objets">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="learning devStatus">
+
+
+<div id="main">
+<a name="Taille-des-objets"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Retouche de partition&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.fr.html" title="Chapitre suivant">&nbsp;Modèles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="visibility-and-color-of-objects.fr.html#the-color-property" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; La propriété color&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="appearance-of-objects.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Apparence des objets&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="length-and-thickness-of-objects.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Longueur et épaisseur des objets &gt; </a>]</td></tr></table>
+<a name="size-of-objects"></a>
+<h3 class="subsection">4.3.2 Taille des objets</h3>
+
+<a name="index-modification-de-la-taille-des-objets"></a>
+<a name="index-taille-d_0027objets"></a>
+<a name="index-objets_002c-taille"></a>
+<a name="index-objets_002c-modification-de-taille"></a>
+
+<p>Pour commencer, reprenons l&rsquo;exemple qui se trouvait dans
+<a href="nesting-music-expressions.fr.html">Expressions musicales imbriquées</a>, qui montrait comment créer une
+nouvelle portée temporaire, du type <a name="index-ossia-1"></a>
+<a href="../music-glossary/ossia.fr.html">ossia</a>.
+</p>
+<a name="index-alignAboveContext_002c-exemple-d_0027utilisation-de-la-propriete"></a>
+<a name="index-_005cwith_002c-exemple"></a>
+
+<blockquote><pre class="verbatim">\new Staff =&quot;main&quot; {
+  \relative {
+    r4 g'8 g c4 c8 d |
+    e4 r8
+    &lt;&lt;
+      { f8 c c }
+      \new Staff \with {
+        alignAboveContext = #&quot;main&quot; }
+      { f8 f c }
+    &gt;&gt;
+    r4 |
+  }
+}
+</pre><p>
+ <a href="../45/lily-a579f197.ly">
+  <img align="middle"
+       border="0"
+       src="../45/lily-a579f197.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Normalement, les ossias ne comportent ni clef ni indication de mesure,
+et elles sont imprimées légèrement plus petit que la portée principale.
+Nous avons déjà appris à enlever la clef et la métrique &ndash; il suffit de
+régler le stencil de chacun sur <code>#f</code>, comme ceci :
+</p>
+<a name="index-alignAboveContext_002c-exemple-d_0027utilisation-de-la-propriete-1"></a>
+<a name="index-_005cwith_002c-exemple-1"></a>
+<a name="index-Clef_002c-exemple-de-derogation-1"></a>
+<a name="index-TimeSignature_002c-exemple-de-derogation-3"></a>
+<a name="index-_005comit-2"></a>
+<a name="index-_005comit-3"></a>
+
+<blockquote><pre class="verbatim">\new Staff =&quot;main&quot; {
+  \relative {
+    r4 g'8 g c4 c8 d |
+    e4 r8
+    &lt;&lt;
+      { f8 c c }
+      \new Staff \with {
+        alignAboveContext = #&quot;main&quot;
+      }
+      {
+        \omit Staff.Clef
+        \omit Staff.TimeSignature
+        { f8 f c }
+      }
+    &gt;&gt;
+    r4 |
+  }
+}
+</pre><p>
+ <a href="../b6/lily-57f3f412.ly">
+  <img align="middle"
+       border="0"
+       src="../b6/lily-57f3f412.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La paire d&rsquo;accolades ajoutée après la clause <code>\with</code> est nécessaire
+pour être sûr que les retouches (<code>\override</code>) ainsi que la musique
+qui se trouvent à l&rsquo;intérieur soient bien appliquées à la portée
+d&rsquo;ossia.
+</p>
+<p>Mais alors, quelle différence y a-t-il à modifier le contexte de portée
+au moyen de <code>\with</code> ou à modifier les stencils de la clef et de la
+métrique  avec <code>\override</code> ou <code>\omit</code> comme ici ?  La
+principale différence est que les changements opérés dans une
+clause <code>\with</code> sont réalisés au moment où le contexte est
+créé et restent par la suite les valeurs <strong>par défaut</strong> aussi
+longtemps que ce contexte existe, tandis que les commandes
+<code>\set</code> ou <code>\override</code> insérées dans la musique sont
+dynamiques &ndash; elles provoquent des changements synchronisés avec
+un point particulier de la musique.  Si les changements sont annulés ou
+dés activés par <code>\unset</code> ou <code>\revert</code>, les réglages reprennent
+leurs valeurs par défaut, c&rsquo;est-à-dire celles qui ont été fixées dans la
+clause <code>\with</code>, ou, en l&rsquo;absence de celle-ci, les valeurs par
+défaut normales.
+</p>
+<p>Certaines propriétés de contexte ne peuvent être modifiées que dans une
+clause <code>\with</code>.  Il s&rsquo;agit des propriétés qu&rsquo;on ne peut évidemment
+plus changer après que le contexte a été créé.  C&rsquo;est le cas de
+<code>alignAboveContext</code> et de son pendant, <code>alignBelowContext</code>
+&ndash; une fois que la portée a été créée, son alignement est décidé et cela
+n&rsquo;aurait aucun sens de vouloir le modifier par la suite.
+</p>
+<p>Dans une clause <code>\with</code>, on peut aussi régler les valeurs par
+défaut des propriétés d&rsquo;un objet.  Il suffit d&rsquo;utiliser la commande
+<code>\override</code> normale, sans s&rsquo;occuper du nom de contexte
+puisqu&rsquo;il ne fait pas de doute qu&rsquo;il s&rsquo;agit du contexte en cours de
+modification par la clause <code>\with</code>.  Il se produirait même une
+erreur si le contexte était précisé.
+</p>
+<p>Remplaçons donc l&rsquo;exemple ci-dessus par celui-ci :
+</p>
+<a name="index-alignAboveContext_002c-exemple-d_0027utilisation-de-la-propriete-2"></a>
+<a name="index-_005cwith_002c-exemple-2"></a>
+<a name="index-Clef_002c-exemple-de-derogation-2"></a>
+<a name="index-TimeSignature_002c-exemple-de-derogation-4"></a>
+
+<blockquote><pre class="verbatim">\new Staff =&quot;main&quot; {
+  \relative {
+    r4 g'8 g c4 c8 d |
+    e4 r8
+    &lt;&lt;
+      { f8 c c }
+      \new Staff \with {
+        alignAboveContext = #&quot;main&quot;
+        % Don't print clefs in this staff
+        \override Clef.stencil = ##f
+        % Don't print time signatures in this staff
+        \override TimeSignature.stencil = ##f
+      }
+      { f8 f c }
+    &gt;&gt;
+    r4 |
+  }
+}
+</pre><p>
+ <a href="../2a/lily-a378a9f4.ly">
+  <img align="middle"
+       border="0"
+       src="../2a/lily-a378a9f4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nous pourrions tout aussi bien utiliser les raccourcis <code>\hide</code> et
+<code>\omit</code> pour activer la propriété <code>transparent</code> et désactiver
+le <code>stencil</code>, ce qui donnerait :
+</p>
+<blockquote><pre class="verbatim">\new Staff =&quot;main&quot; {
+  \relative {
+    r4 g'8 g c4 c8 d |
+    e4 r8
+    &lt;&lt;
+      { f8 c c }
+      \new Staff \with {
+        alignAboveContext = #&quot;main&quot;
+        % Don't print clefs in this staff
+        \omit Clef
+        % Don't print time signatures in this staff
+        \omit TimeSignature
+      }
+      { f8 f c }
+    &gt;&gt;
+    r4 |
+  }
+}
+</pre><p>
+ <a href="../8d/lily-bf8b829a.ly">
+  <img align="middle"
+       border="0"
+       src="../8d/lily-bf8b829a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Venons-en finalement au changement de taille des objets.
+</p>
+<p>Certains objets sont créés comme des glyphes choisis dans une police de
+caractères.  C&rsquo;est le cas des têtes de notes, des altérations, des
+<em>markup</em>, des clefs, des métriques, des nuances et des paroles.
+Pour changer leur taille, on modifie la propriété <code>font-size</code>,
+comme nous le verrons rapidement.  D&rsquo;autres objets, comme les liaisons
+de phrasé ou de prolongation &ndash; en général les objets étendus &ndash; sont
+dessinés à la demande, si bien qu&rsquo;aucune <code>font-size</code> ne leur est
+associée.  Ces objets tirent généralement leur dimension des objets
+auxquels ils sont rattachés, de sorte qu&rsquo;on ne doit pas avoir à les
+redimensionner à la main.  D&rsquo;autres propriétés, comme la hauteur des
+hampes et des barres de mesure, l&rsquo;épaisseur des ligatures et d&rsquo;autres
+lignes, et l&rsquo;écartement des lignes de portée, doivent encore être
+modifiées de façon particulière.
+</p>
+<p>Si l&rsquo;on revient à l&rsquo;exemple d&rsquo;ossia, commençons par changer la taille de
+police.  Nous pouvons employer deux méthodes.  Soit nous changeons la
+taille de police de chaque type d&rsquo;objet avec des commandes comme
+celle-ci pour les têtes de notes (<code>NoteHead</code>) :
+</p>
+<blockquote><pre class="example">\override NoteHead.font-size = #-2
+</pre></blockquote>
+
+<p>soit nous changeons la taille de toutes les polices à la fois grâce à la
+propriété <code>fontSize</code>, en utilisant <code>\set</code> ou en l&rsquo;insérant
+dans une clause <code>\with</code> (mais alors sans le <code>\set</code>).
+</p>
+<blockquote><pre class="example">\set fontSize = #-2
+</pre></blockquote>
+
+<p>Chacune de ces méthodes réduira la taille de police de deux points par
+rapport à sa valeur précédente, sachant que chaque point réduit ou
+augmente la taille d&rsquo;environ 12 %.
+</p>
+<p>Essayons sur l&rsquo;exemple d&rsquo;ossia :
+</p>
+<a name="index-alignAboveContext_002c-exemple-d_0027utilisation-de-la-propriete-3"></a>
+<a name="index-_005cwith_002c-exemple-3"></a>
+<a name="index-Clef_002c-exemple-de-derogation-3"></a>
+<a name="index-TimeSignature_002c-exemple-de-derogation-5"></a>
+<a name="index-fontSize_002c-exemple-d_0027utilisation-de-la-propriete"></a>
+
+<blockquote><pre class="verbatim">\new Staff =&quot;main&quot; {
+  \relative {
+    r4 g'8 g c4 c8 d |
+    e4 r8
+    &lt;&lt;
+      { f8 c c }
+      \new Staff \with {
+        alignAboveContext = #&quot;main&quot;
+        \omit Clef
+        \omit TimeSignature
+        % Reduce all font sizes by ~24%
+        fontSize = #-2
+      }
+      { f8 f c }
+    &gt;&gt;
+    r4 |
+  }
+}
+</pre><p>
+ <a href="../8f/lily-5b32641b.ly">
+  <img align="middle"
+       border="0"
+       src="../8f/lily-5b32641b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Ce n&rsquo;est pas encore parfait.  Les têtes de notes et les crochets sont
+plus petits mais, proportionnellement, les hampes sont trop longues et
+les lignes de la portée trop espacées.  Il faut donc les réduire dans
+les mêmes proportions que les polices de caractères.  La prochaine
+sous-section montrera comment faire.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Retouche de partition&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.fr.html" title="Chapitre suivant">&nbsp;Modèles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="visibility-and-color-of-objects.fr.html#the-color-property" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; La propriété color&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="appearance-of-objects.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Apparence des objets&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="length-and-thickness-of-objects.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Longueur et épaisseur des objets &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="size-of-objects.html">English</a>, <a href="size-of-objects.ca.html">català</a>, <a href="size-of-objects.cs.html">česky</a>, <a href="size-of-objects.de.html">deutsch</a>, <a href="size-of-objects.es.html">español</a>, <a href="size-of-objects.it.html">italiano</a>, <a href="size-of-objects.ja.html">日本語</a>, <a href="size-of-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel d&rsquo;initiation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-1" href="tutorial.fr.html">1. Tutoriel</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilation-d_0027un-fichier-1" href="compiling-a-file.fr.html">1.1 Compilation d&rsquo;un fichier</a>    </li>
+    <li class=""><a name="toc-Composition-d_0027un-fichier-source-1" href="how-to-write-input-files.fr.html">1.2 Composition d&rsquo;un fichier source</a>    </li>
+    <li class=""><a name="toc-Gestion-des-erreurs-1" href="dealing-with-errors.fr.html">1.3 Gestion des erreurs</a>    </li>
+    <li class=""><a name="toc-Bien-lire-le-manuel-1" href="how-to-read-the-manuals.fr.html">1.4 Bien lire le manuel</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bases-de-notation-musicale-1" href="common-notation.fr.html">2. Bases de notation musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-sur-une-seule-portee" href="single-staff-notation.fr.html">2.1 Notation sur une seule portée</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="multiple-notes-at-once.fr.html">2.2 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Chansons-1" href="songs.fr.html">2.3 Chansons</a>    </li>
+    <li class=""><a name="toc-Dernieres-precisions" href="final-touches.fr.html">2.4 Dernières précisions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concepts-fondamentaux-1" href="fundamental-concepts.fr.html">3. Concepts fondamentaux</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Organisation-des-fichiers-LilyPond-1" href="how-lilypond-input-files-work.fr.html">3.1 Organisation des fichiers LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-voix-contiennent-la-musique-1" href="voices-contain-music.fr.html">3.2 Les voix contiennent la musique</a>    </li>
+    <li class=""><a name="toc-Contextes-et-graveurs-1" href="contexts-and-engravers.fr.html">3.3 Contextes et graveurs</a>    </li>
+    <li class=""><a name="toc-Extension-des-modeles" href="extending-the-templates.fr.html">3.4 Extension des modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Retouche-de-partition-1" href="tweaking-output.fr.html">4. Retouche de partition</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Retouches-elementaires" href="tweaking-basics.fr.html">4.1 Retouches élémentaires</a>    </li>
+    <li class=""><a name="toc-Le-manuel-de-reference-des-proprietes-internes" href="the-internals-reference-manual.fr.html">4.2 Le manuel de référence des propriétés internes</a>    </li>
+    <li class=" toc_current"><a name="toc-Apparence-des-objets-1" href="appearance-of-objects.fr.html">4.3 Apparence des objets</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Visibilite-et-couleur-des-objets" href="visibility-and-color-of-objects.fr.html">4.3.1 Visibilité et couleur des objets</a>      </li>
+      <li class=" toc_current"><a name="toc-Taille-des-objets-1" href="size-of-objects.fr.html">4.3.2 Taille des objets</a>      </li>
+      <li class=""><a name="toc-Longueur-et-epaisseur-des-objets" href="length-and-thickness-of-objects.fr.html">4.3.3 Longueur et épaisseur des objets</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Positionnement-des-objets-1" href="placement-of-objects.fr.html">4.4 Positionnement des objets</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.5 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Collisions-d_0027objets-1" href="collisions-of-objects.fr.html">4.6 Collisions d&rsquo;objets</a>    </li>
+    <li class=""><a name="toc-Autres-retouches-1" href="further-tweaking.fr.html">4.7 Autres retouches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modeles" href="templates.fr.html">A. Modèles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Gabarits-preprogrammes" href="built_002din-templates.fr.html">A.1 Gabarits préprogrammés</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-portee-unique" href="single-staff-templates.fr.html">A.2 Modèles pour portée unique</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-piano" href="piano-templates.fr.html">A.3 Modèles pour piano</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-quatuor-a-cordes" href="string-quartet-templates.fr.html">A.4 Modèles pour quatuor à cordes</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-ensemble-vocal" href="vocal-ensembles-templates.fr.html">A.5 Modèles pour ensemble vocal</a>    </li>
+    <li class=""><a name="toc-Orchestre-1" href="orchestral-templates.fr.html">A.6 Orchestre</a>    </li>
+    <li class=""><a name="toc-Exemples-de-notation-ancienne-1" href="ancient-notation-templates.fr.html">A.7 Exemples de notation ancienne</a>    </li>
+    <li class=""><a name="toc-Autres-modeles" href="other-templates.fr.html">A.8 Autres modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">C. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

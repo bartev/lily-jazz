@@ -1,0 +1,675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Benutzerhandbuch: 5.4.5 Strecker</title>
+
+<meta name="description" content="LilyPond Benutzerhandbuch: 5.4.5 Strecker">
+<meta name="keywords" content="LilyPond Benutzerhandbuch: 5.4.5 Strecker">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Notationsreferenz">
+<link href="lilypond-command-index.de.html#lilypond-command-index" rel="index" title="D. Index der LilyPond-Befehle">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="useful-concepts-and-properties.de.html#useful-concepts-and-properties" rel="up" title="5.4 Nützliche Konzepte und Eigenschaften">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="E. LilyPond-Index">
+<link href="staff-symbol-properties.de.html#staff-symbol-properties" rel="previous" title="5.4.4 Eigenschaften des Staff-Symbols">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="notation devStatus">
+
+
+<div id="main">
+<a name="Strecker"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="staff-symbol-properties.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Eigenschaften des Staff-Symbols&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="useful-concepts-and-properties.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Nützliche Konzepte und Eigenschaften&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spanners" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<a name="spanners"></a>
+<h3 class="subsection">5.4.5 Strecker</h3>
+
+<p>Viele Objekte der Musiknotation erstrecken sich über mehrere
+Objekte oder gar mehrere Takte.  Beispiele hierfür sind etwa
+Bögen, Balken, Triolenklammern, Volta-Klamern in Wiederholungen,
+Crescendo, Triller und Glissando.  Derartige Objekte werden
+als &bdquo;Strecker&ldquo; bezeichnet.  Sie haben spezielle Eigenschaften,
+mit welchen ihre Eigenschaften und ihr Verhalten beeinflusst
+werden kann.  Einige dieser Eigenschaften gelten für alle
+Strecker, andere beschränken sich auf eine Untergruppe der
+Strecker.
+</p>
+<p>Alle Strecker unterstützen das <code>spanner-interface</code>
+(Strecker-Schnittstelle).
+Ein paar, insbesondere die, die zwischen zwei Objekten eine
+gerade Linie ziehen, unterstützen auch das
+<code>line-spanner-interface</code> (Strecker-Linienschnittstelle).
+</p>
+
+<hr size="6">
+<a name="spanners"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spanners" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Strecker&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#spanners" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Strecker&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spanners" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<h4 class="unnumberedsubsubsec">Das <code>spanner-interface</code> benutzen</h4>
+
+<p>Diese Schnittstelle stellt zwei Eigenschaften zur Verfügung,
+die sich auf mehrere Strecker auswirken:
+</p>
+<p><strong><i>Die <code>minimum-length</code>-Eigenschaft</i></strong>
+</p>
+<p>Die Mindestlänge eines Streckers wird durch die
+<code>minimum-length</code>-Eigenschaft definiert.  Wenn diese
+Eigenschaft vergrößert wird, muss in den meisten Fällen
+auch der Abstand der Noten zwischen den zwei Endpunkten
+eines Streckers verändert werden.  Eine Veränderung dieser
+Eigenschaft hat jedoch auf die meisten Strecker keine Auswirkung,
+weil ihre Länge aus anderen Berechnungen hervorgeht.
+Einige Beispiele, wo die Eigenschaft benutzt wird, sind
+unten dargestellt.
+</p>
+<blockquote><pre class="verbatim">a~a
+a
+% increase the length of the tie
+-\tweak minimum-length #5
+~a
+</pre><p>
+ <a href="../24/lily-e34b79e4.ly">
+  <img align="middle"
+       border="0"
+       src="../24/lily-e34b79e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<blockquote><pre class="verbatim">a1
+\compressFullBarRests
+R1*23
+% increase the length of the rest bar
+\once \override MultiMeasureRest.minimum-length = #20
+R1*23
+a1
+</pre><p>
+ <a href="../72/lily-e3c6f370.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-e3c6f370.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<blockquote><pre class="verbatim">a \&lt; a a a \!
+% increase the length of the hairpin
+\override Hairpin.minimum-length = #20
+a \&lt; a a a \!
+</pre><p>
+ <a href="../54/lily-6d22ac5d.ly">
+  <img align="middle"
+       border="0"
+       src="../54/lily-6d22ac5d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese Veränderung kann auch eingesetzt werden, um die Länge
+von Legato- und Phrasierungsbögen zu verändern:
+</p>
+<blockquote><pre class="verbatim">a( a)
+a
+-\tweak minimum-length #5
+( a)
+
+a\( a\)
+a
+-\tweak minimum-length #5
+\( a\)
+</pre><p>
+ <a href="../cf/lily-ff1d4f1b.ly">
+  <img align="middle"
+       border="0"
+       src="../cf/lily-ff1d4f1b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Im Falle einiger Layoutobjekte wirkt sich die
+<code>minimum-length</code>-Eigenschaft erst dann aus, wenn die
+<code>set-spacing-rods</code>-Prozedur explizit aufgerufen wird.
+Um das zu tun, sollte die <code>springs-and-rods</code>-Eigenschaft
+auf <code>ly:spanner::set-spacing-rods</code> gesetzt werden.  Die
+Mindestlänge eines Glissandos etwa wird erst aktiv, wenn
+die <code>springs-and-rods</code>-Eigenschaft gesetzt ist:
+</p>
+<blockquote><pre class="verbatim">% default
+e' \glissando c''
+
+% not effective alone
+\once \override Glissando.minimum-length = #20
+e' \glissando c''
+
+% effective only when both overrides are present
+\once \override Glissando.minimum-length = #20
+\once \override Glissando.springs-and-rods = #ly:spanner::set-spacing-rods
+e' \glissando c''
+</pre><p>
+ <a href="../69/lily-e1380f93.ly">
+  <img align="middle"
+       border="0"
+       src="../69/lily-e1380f93.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Das gilt auch für das <code>Beam</code>-(Balken-)Objekt:
+</p>
+<blockquote><pre class="verbatim">% not effective alone
+\once \override Beam.minimum-length = #20
+e'8 e' e' e'
+
+% effective only when both overrides are present
+\once \override Beam.minimum-length = #20
+\once \override Beam.springs-and-rods = #ly:spanner::set-spacing-rods
+e'8 e' e' e'
+</pre><p>
+ <a href="../01/lily-b0dd0c13.ly">
+  <img align="middle"
+       border="0"
+       src="../01/lily-b0dd0c13.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><strong><i>Die <code>to-barline</code>-Eigenschaft</i></strong>
+</p>
+<p>Die zweite nützliche Eigenschaft des <code>spanner-interface</code> ist
+<code>to-barline</code> (bis zum Taktstrich).  In den Standardeinstellungen
+ist diese Eigenschaft auf &bdquo;wahr&ldquo; gesetzt, was bedeutet, dass
+ein Strecker, etwa eine Crescendo-Klammer, der an der ersten Noten
+eines Taktes beendet wird, sich nur bis zum vorhergehenden
+Taktstrich erstreckt.  Wenn die Eigenschaft auf &bdquo;falsch&ldquo; gesetzt
+wird, erstrecken sich die Strecker entsprechend über die Taktlinie
+hinüber und enden erst an der entsprechenden Note:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a' \&lt; a a a a \! a a a \break
+  \override Hairpin.to-barline = ##f
+  a \&lt; a a a a \! a a a
+}
+</pre><p>
+ <a href="../58/lily-3c43c1b5.ly">
+  <img align="middle"
+       border="0"
+       src="../58/lily-3c43c1b5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese Eigenschaft wirkt sich nicht auf alle Strecker aus.  Im Falle
+von Legato- oder Phrasierungsbögen etwa hat diese Eigenschaft
+keinen Effekt.  Das gilt auch für alle anderen Streckern, bei
+denen es nicht sinnvoll währe, sie an einer Taktlinie abzuschließen.
+</p>
+
+<hr size="6">
+<a name="spanners"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spanners" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#spanners" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Strecker&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="visibility-of-objects.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Sichtbarkeit von Objekten &gt; </a>]</td></tr></table>
+<h4 class="unnumberedsubsubsec">Das <code>line-spanner-interface</code> benutzen</h4>
+
+<p>Objekte, die das <code>line-spanner-interface</code> unterstützen,
+sind unter Anderem:
+</p>
+<ul>
+<li> <code>DynamicTextSpanner</code>
+</li><li> <code>Glissando</code>
+</li><li> <code>TextSpanner</code>
+</li><li> <code>TrillSpanner</code>
+</li><li> <code>VoiceFollower</code>
+</li></ul>
+
+<p>Die Routine, die das Setzen der Matrizen dieser Strecker
+hervorruft, ist <code>ly:line-interface::print</code>.  Diese
+Routine bestimmt die exakte Position der zwei Endpunkte
+und zeichnet eine Linie zwischen ihnen, in dem erforderlichen
+Stil.  Die Position der zwei Endpunkte des Streckers wird
+in Echtzeit errechnet, aber es ist möglich, ihre
+Y-Koordinaten zu verändern.  Die Eigenschaften, die angegeben
+werden müssen, sind zwei Ebenen in der Objekthierarchie
+tiefer angeordnet, aber die Syntax des <code>\override</code>-Befehls
+ist ziemlich einfach:
+</p>
+<blockquote><pre class="verbatim">e''2 \glissando b'
+\once \override Glissando.bound-details.left.Y = #3
+\once \override Glissando.bound-details.right.Y = #-2
+e''2 \glissando b'
+</pre><p>
+ <a href="../67/lily-dade2278.ly">
+  <img align="middle"
+       border="0"
+       src="../67/lily-dade2278.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die Einheiten für die <code>Y</code>-Eigenschaft werden in
+Notenlinienabständen angegeben, wobei die Mittellinie des
+Notensystems die Null darstellt.  Für das Glissando ist
+der Wert von <code>Y</code> am entsprechenden X-Koordinatenpunkt
+entsprechend dem Mittelpunkt des Notenkopfes, wenn die
+Linie bis in die Noten hinein weitergeführt werden würde.
+</p>
+<p>Wenn <code>Y</code> nicht gesetzt wird, wird der Wert aus der
+vertikalen Position des entsprechenden Anknüpfpunkts des
+Streckers errechnet.
+</p>
+<p>Im Fall eines Zeilenumbruchs werden die Werte der Endpunkte
+in den Unterlisten <code>left-broken</code> bzw. <code>right-broken</code>
+von <code>bound-details</code> abgelegt.  Zum Beispiel:
+</p>
+<blockquote><pre class="verbatim">\override Glissando.breakable = ##t
+\override Glissando.bound-details.right-broken.Y = #-3
+c''1 \glissando \break
+f''1
+</pre><p>
+ <a href="../3c/lily-bda777e3.ly">
+  <img align="middle"
+       border="0"
+       src="../3c/lily-bda777e3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Eine Anzahl weitere Eigenschaft der <code>left</code>- und
+<code>right</code>-Unterlisten der <code>bound-details</code>-Eigenschaft
+kann auf gleiche Weise wie  <code>Y</code> verändert werden:
+</p>
+<dl compact="compact">
+<dt> <code>Y</code></dt>
+<dd><p>Hiermit wird der Y-Koordinationspunkt des Endpunktes in
+Notenlinienabständen vom Mittelpunkt des Notensystems
+ausgehend angegeben.  Der Endpunkt ist normalerweise
+der Mittelpunkt des Elternobjektes, sodass Glissandos
+vertikal auf den Mittelpunkt eines Notenkopfes weist.
+</p>
+<p>Für horizontale Strecker, wie Textstrecker und Trillerstrecker
+ist sein Wert mit 0 definiert.
+</p>
+</dd>
+<dt> <code>attach-dir</code></dt>
+<dd><p>Das entscheidet, wo die Linie auf der X-Achse beginnt und endet,
+relativ zum Elternobjekt.  Ein Wert <code>-1</code> (oder
+<code>LEFT</code>) lässt die Linie an der linken Seite der Noten
+beginnen/enden, mit der sie verknüpft ist.
+</p>
+</dd>
+<dt> <code>X</code></dt>
+<dd><p>Das ist der absolute X-Koordinatenpunkt des Endpunktes.  Der
+Wert wird normalerweise in Echtzeit errechnet, und ihn zu
+verändern ist normalerweise nicht nützlich.
+</p>
+</dd>
+<dt> <code>stencil</code></dt>
+<dd><p>Linienstrecker können Symbole am Ende oder zu Anfang des
+Streckers haben, die in dieser Untereigenschaft definiert
+werden.  Die Eigenschaft ist für interne Benutzung, es
+wird empfohlen, die Eigenschaft <code>text</code> zu benutzen.
+</p>
+</dd>
+<dt> <code>text</code></dt>
+<dd><p>Das ist eine Textbeschriftung, die ausgewertet wird und die
+<code>stencil</code>-Eigenschaft überschreibt.  Sie wird eingesetzt,
+um <i>cresc.</i>, <i>tr</i> oder andere Texte an horizontale
+Strecker zu setzen.
+</p>
+<blockquote><pre class="verbatim">\override TextSpanner.bound-details.left.text
+   = \markup { \small \bold Slower }
+\relative { c''2\startTextSpan b c a\stopTextSpan }
+</pre><p>
+ <a href="../8f/lily-407f53ad.ly">
+  <img align="middle"
+       border="0"
+       src="../8f/lily-407f53ad.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+</dd>
+<dt> <code>stencil-align-dir-y</code></dt>
+<dt> <code>stencil-offset</code></dt>
+<dd><p>Wenn keine dieser beiden Eigenschaften gesetzt wird, wird
+die Matrize (engl. stencil) einfach am Endpunkt des Streckers,
+auf seiner Mittellinie (wie durch <code>X</code> und <code>Y</code>
+definiert) zentriert, ausgegeben.  Wenn entweder
+<code>stencil-align-dir-y</code> oder <code>stencil-offset</code>
+gesetzt werden, wird das Symbol am Rand vertikal entsprechend
+des Endpunktes der Linie verschoben:
+</p>
+<blockquote><pre class="verbatim">\override TextSpanner.bound-details.left.stencil-align-dir-y = #-2
+\override TextSpanner.bound-details.right.stencil-align-dir-y = #UP
+
+\override TextSpanner.bound-details.left.text = #&quot;ggg&quot;
+\override TextSpanner.bound-details.right.text = #&quot;hhh&quot;
+
+\relative { c'4^\startTextSpan c c c \stopTextSpan }
+</pre><p>
+ <a href="../11/lily-11f76902.ly">
+  <img align="middle"
+       border="0"
+       src="../11/lily-11f76902.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Dabei sollte beachtet werden, dass negative Werte das Objekt
+nach <em>oben</em> verschieben, anders als man erwarten könnte,
+weil der Wert <code>-1</code> oder <code>DOWN</code> bedeutet, dass
+die <em>Unterkante</em> des Textes mit der Streckerlinie
+ausgerichtet wird.  Ein Wert <code>1</code> oder <code>UP</code>
+richtet die Oberkante des Textes mit der Streckerlinie aus.
+</p>
+</dd>
+<dt> <code>arrow</code></dt>
+<dd><p>Wenn diese Untereigenschaft auf <code>#t</code> gesetzt wird,
+wird ein Pfeilkopf am Ende der Linie erstellt.
+</p>
+</dd>
+<dt> <code>padding</code></dt>
+<dd><p>Diese Eigenschaft kontrolliert den Abstand zwischen
+dem angegebenen Endpunkt der Linie und dem wirklichen Ende.
+Ohne Füllung (engl. padding) würde ein Glissando in der
+Mitte eines Notenkopfes beginnen und enden.
+</p>
+</dd>
+</dl>
+
+<p>Die musikalische Funktion <code>\endSpanners</code> beschließt
+den Strecker, der an der direkt folgenden Note beginnt,
+bevor er eigentlich zu ende wäre.  Er wird exakt nach
+einer Note beendet, oder am nächsten Taktstrich, wenn
+<code>to-barline</code> auf wahr gesetzt ist und eine Taktlinie
+vor der nächsten Note erscheint.
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \endSpanners
+  c2 \startTextSpan c2 c2
+  \endSpanners
+  c2 \&lt; c2 c2
+}
+</pre><p>
+ <a href="../ad/lily-afa12921.ly">
+  <img align="middle"
+       border="0"
+       src="../ad/lily-afa12921.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wenn man <code>\endSpanners</code> benutzt, ist es nicht
+nötig, den Befehl \startTextSpan mit \stopTextSpan
+zu beenden, und es ist auch nicht nötig, Crescendo-Klammern
+mit <code>\!</code> zu beenden.
+</p>
+
+<a name="Siehe-auch-89"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Referenz der Interna:
+<a name="index-TextSpanner-1"></a>
+<a href="../internals/textspanner.de.html">TextSpanner</a>,
+<a name="index-Glissando-2"></a>
+<a href="../internals/glissando.de.html">Glissando</a>,
+<a name="index-VoiceFollower-1"></a>
+<a href="../internals/voicefollower.de.html">VoiceFollower</a>,
+<a name="index-TrillSpanner-1"></a>
+<a href="../internals/trillspanner.de.html">TrillSpanner</a>,
+<a name="index-line_002dspanner_002dinterface"></a>
+<a href="../internals/line_002dspanner_002dinterface.de.html">line-spanner-interface</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="changing-defaults.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Standardeinstellungen verändern&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-command-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="notation-manual-tables.de.html" title="N&auml;chstes Kapitel">&nbsp;Notationsübersicht &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spanners" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#spanners" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Strecker&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="visibility-of-objects.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Sichtbarkeit von Objekten &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="spanners.html">English</a>, <a href="spanners.es.html">español</a>, <a href="spanners.fr.html">français</a>, <a href="spanners.it.html">italiano</a>, <a href="spanners.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Notationsreferenz  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Musikalische-Notation-1" href="musical-notation.de.html">1. Musikalische Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tonhohen" href="pitches.de.html">1.1 Tonhöhen</a>    </li>
+    <li class=""><a name="toc-Rhythmus-1" href="rhythms.de.html">1.2 Rhythmus</a>    </li>
+    <li class=""><a name="toc-Ausdrucksbezeichnungen-1" href="expressive-marks.de.html">1.3 Ausdrucksbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Wiederholungszeichen-1" href="repeats.de.html">1.4 Wiederholungszeichen</a>    </li>
+    <li class=""><a name="toc-Gleichzeitig-erscheinende-Noten-1" href="simultaneous-notes.de.html">1.5 Gleichzeitig erscheinende Noten</a>    </li>
+    <li class=""><a name="toc-Notation-auf-Systemen-1" href="staff-notation.de.html">1.6 Notation auf Systemen</a>    </li>
+    <li class=""><a name="toc-Anmerkungen-1" href="editorial-annotations.de.html">1.7 Anmerkungen</a>    </li>
+    <li class=""><a name="toc-Text-1" href="text.de.html">1.8 Text</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spezielle-Notation-1" href="specialist-notation.de.html">2. Spezielle Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-von-Gesang-1" href="vocal-music.de.html">2.1 Notation von Gesang</a>    </li>
+    <li class=""><a name="toc-Tasteninstrumente-und-andere-Instrumente-mit-mehreren-Systemen-1" href="keyboard-and-other-multi_002dstaff-instruments.de.html">2.2 Tasteninstrumente und andere Instrumente mit mehreren Systemen</a>    </li>
+    <li class=""><a name="toc-Bundlose-Saiteninstrumente-1" href="unfretted-string-instruments.de.html">2.3 Bundlose Saiteninstrumente</a>    </li>
+    <li class=""><a name="toc-Saiteninstrumente-mit-Bunden" href="fretted-string-instruments.de.html">2.4 Saiteninstrumente mit Bünden</a>    </li>
+    <li class=""><a name="toc-Schlagzeug-1" href="percussion.de.html">2.5 Schlagzeug</a>    </li>
+    <li class=""><a name="toc-Blasinstrumente-1" href="wind-instruments.de.html">2.6 Blasinstrumente</a>    </li>
+    <li class=""><a name="toc-Notation-von-Akkorden-1" href="chord-notation.de.html">2.7 Notation von Akkorden</a>    </li>
+    <li class=""><a name="toc-Zeitgenossische-Musik" href="contemporary-music.de.html">2.8 Zeitgenössische Musik</a>    </li>
+    <li class=""><a name="toc-Notation-von-alter-Musik-1" href="ancient-notation.de.html">2.9 Notation von alter Musik</a>    </li>
+    <li class=""><a name="toc-Weltmusik-1" href="world-music.de.html">2.10 Weltmusik</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Allgemeine-Eingabe-und-Ausgabe-1" href="general-input-and-output.de.html">3. Allgemeine Eingabe und Ausgabe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingabestruktur-1" href="input-structure.de.html">3.1 Eingabestruktur</a>    </li>
+    <li class=""><a name="toc-Titel-1" href="titles-and-headers.de.html">3.2 Titel</a>    </li>
+    <li class=""><a name="toc-Arbeiten-an-Eingabe_002dDateien-1" href="working-with-input-files.de.html">3.3 Arbeiten an Eingabe-Dateien</a>    </li>
+    <li class=""><a name="toc-Ausgabe-kontrollieren-1" href="controlling-output.de.html">3.4 Ausgabe kontrollieren</a>    </li>
+    <li class=""><a name="toc-MIDI_002dAusgabe-1" href="midi-output.de.html">3.5 MIDI-Ausgabe</a>    </li>
+    <li class=""><a name="toc-Musikalische-Information-extrahieren-1" href="extracting-musical-information.de.html">3.6 Musikalische Information extrahieren</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Abstande" href="spacing-issues.de.html">4. Abstände</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Seitenlayout-1" href="page-layout.de.html">4.1 Seitenlayout</a>    </li>
+    <li class=""><a name="toc-Partiturlayout-1" href="score-layout.de.html">4.2 Partiturlayout</a>    </li>
+    <li class=""><a name="toc-Umbruche" href="breaks.de.html">4.3 Umbrüche</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.4 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Horizontale-Abstande" href="horizontal-spacing.de.html">4.5 Horizontale Abstände</a>    </li>
+    <li class=""><a name="toc-Die-Musik-auf-weniger-Seiten-zwingen-1" href="fitting-music-onto-fewer-pages.de.html">4.6 Die Musik auf weniger Seiten zwingen</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Standardeinstellungen-verandern" href="changing-defaults.de.html">5. Standardeinstellungen verändern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretationskontexte-1" href="interpretation-contexts.de.html">5.1 Interpretationskontexte</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-erklart" href="explaining-the-internals-reference.de.html">5.2 Die Referenz der Programminterna erklärt</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-verandern" href="modifying-properties.de.html">5.3 Eigenschaften verändern</a>    </li>
+    <li class=" toc_current"><a name="toc-Nutzliche-Konzepte-und-Eigenschaften" href="useful-concepts-and-properties.de.html">5.4 Nützliche Konzepte und Eigenschaften</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Eingabe_002dModi-1" href="input-modes.de.html">5.4.1 Eingabe-Modi</a>      </li>
+      <li class=""><a name="toc-Richtung-und-Platzierung-1" href="direction-and-placement.de.html">5.4.2 Richtung und Platzierung</a>      </li>
+      <li class=""><a name="toc-Abstande-und-Masse" href="distances-and-measurements.de.html">5.4.3 Abstände und Maße</a>      </li>
+      <li class=""><a name="toc-Eigenschaften-des-Staff_002dSymbols-1" href="staff-symbol-properties.de.html">5.4.4 Eigenschaften des Staff-Symbols</a>      </li>
+      <li class=" toc_current"><a name="toc-Strecker-1" href="spanners.de.html">5.4.5 Strecker</a>
+      <ul class="toc">
+        <li class=" toc_current"><a name="toc-Das-spanner_002dinterface-benutzen" href="spanners.de.html">Das <code>spanner-interface</code> benutzen</a>        </li>
+        <li class=" toc_current"><a name="toc-Das-line_002dspanner_002dinterface-benutzen" href="spanners.de.html">Das <code>line-spanner-interface</code> benutzen</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Sichtbarkeit-von-Objekten-1" href="visibility-of-objects.de.html">5.4.6 Sichtbarkeit von Objekten</a>      </li>
+      <li class=""><a name="toc-Linienstile-1" href="line-styles.de.html">5.4.7 Linienstile</a>      </li>
+      <li class=""><a name="toc-Drehen-von-Objekten-1" href="rotating-objects.de.html">5.4.8 Drehen von Objekten</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Fortgeschrittene-Optimierungen-1" href="advanced-tweaks.de.html">5.5 Fortgeschrittene Optimierungen</a>    </li>
+    <li class=""><a name="toc-Musikfunktionen-benutzen-1" href="using-music-functions.de.html">5.6 Musikfunktionen benutzen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notationsubersicht" href="notation-manual-tables.de.html">A. Notationsübersicht</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Liste-der-Akkordbezeichnungen-1" href="chord-name-chart.de.html">A.1 Liste der Akkordbezeichnungen</a>    </li>
+    <li class=""><a name="toc-Ubliche-Akkord_002dVariablen" href="common-chord-modifiers.de.html">A.2 Übliche Akkord-Variablen</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Saitenstimmungen-1" href="predefined-string-tunings.de.html">A.3 Vordefinierte Saitenstimmungen</a>    </li>
+    <li class=""><a name="toc-Die-vordefinierten-Bund_002dDiagramme-1" href="predefined-fretboard-diagrams.de.html">A.4 Die vordefinierten Bund-Diagramme</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Papierformate-1" href="predefined-paper-sizes.de.html">A.5 Vordefinierte Papierformate</a>    </li>
+    <li class=""><a name="toc-MIDI_002dInstrumente-1" href="midi-instruments.de.html">A.6 MIDI-Instrumente</a>    </li>
+    <li class=""><a name="toc-Liste-der-Farben-1" href="list-of-colors.de.html">A.7 Liste der Farben</a>    </li>
+    <li class=""><a name="toc-Die-Feta_002dSchriftart-1" href="the-feta-font.de.html">A.8 Die Feta-Schriftart</a>    </li>
+    <li class=""><a name="toc-Notenkopfstile-1" href="note-head-styles.de.html">A.9 Notenkopfstile</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungsbefehle-1" href="text-markup-commands.de.html">A.10 Textbeschriftungsbefehle</a>    </li>
+    <li class=""><a name="toc-Textbeschriftungslistenbefehle-1" href="text-markup-list-commands.de.html">A.11 Textbeschriftungslistenbefehle</a>    </li>
+    <li class=""><a name="toc-Liste-der-Sonderzeichen-1" href="list-of-special-characters.de.html">A.12 Liste der Sonderzeichen</a>    </li>
+    <li class=""><a name="toc-Liste-der-Artikulationszeichen-1" href="list-of-articulations.de.html">A.13 Liste der Artikulationszeichen</a>    </li>
+    <li class=""><a name="toc-Schlagzeugnoten-1" href="percussion-notes.de.html">A.14 Schlagzeugnoten</a>    </li>
+    <li class=""><a name="toc-Technisches-Glossar-1" href="technical-glossary.de.html">A.15 Technisches Glossar</a>    </li>
+    <li class=""><a name="toc-Alle-Kontexteigenschaften-1" href="all-context-properties.de.html">A.16 Alle Kontexteigenschaften</a>    </li>
+    <li class=""><a name="toc-Eigenschaften-des-Layouts-1" href="layout-properties.de.html">A.17 Eigenschaften des Layouts</a>    </li>
+    <li class=""><a name="toc-Erhaltliche-Musikfunktionen" href="available-music-functions.de.html">A.18 Erhältliche Musikfunktionen</a>    </li>
+    <li class=""><a name="toc-Bezeichner-zur-Kontextveranderung" href="context-modification-identifiers.de.html">A.19 Bezeichner zur Kontextveränderung</a>    </li>
+    <li class=""><a name="toc-Vordefinierte-Typpradikate" href="predefined-type-predicates.de.html">A.20 Vordefinierte Typprädikate</a>    </li>
+    <li class=""><a name="toc-Scheme_002dFunktionen-1" href="scheme-functions.de.html">A.21 Scheme-Funktionen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Befehlsubersicht" href="cheat-sheet.de.html">B. Befehlsübersicht</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-der-LilyPond_002dBefehle-1" href="lilypond-command-index.de.html">D. Index der LilyPond-Befehle</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">E. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel de notation: 4.4.1 Espacement vertical au sein d'un système</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel de notation: 4.4.1 Espacement vertical au sein d'un système">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel de notation: 4.4.1 Espacement vertical au sein d'un système">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel de notation">
+<link href="lilypond-command-index.fr.html#lilypond-command-index" rel="index" title="D. Index des commandes LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="vertical-spacing.fr.html#vertical-spacing" rel="up" title="4.4 Espacement vertical">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="E. Index de LilyPond">
+<link href="vertical-spacing.fr.html#vertical-spacing" rel="previous" title="4.4 Espacement vertical">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="notation devStatus">
+
+
+<div id="main">
+<a name="Espacement-vertical-au-sein-d_0027un-syst_00e8me"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Gestion de l'espace&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.fr.html" title="Chapitre suivant">&nbsp;Modification des réglages prédéfinis &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="vertical-spacing.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Espacement vertical&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vertical-spacing.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Espacement vertical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#within_002dsystem-spacing-properties" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Propriétés d'espacement au sein d'un système &gt; </a>]</td></tr></table>
+<a name="flexible-vertical-spacing-within-systems"></a>
+<h3 class="subsection">4.4.1 Espacement vertical au sein d&rsquo;un système</h3>
+
+<a name="index-distance-entre-les-portees"></a>
+<a name="index-portees_002c-espacement"></a>
+<a name="index-espacement-entre-les-portees"></a>
+<a name="index-espacement-au-sein-d_0027un-systeme"></a>
+
+<p>LilyPond dispose de trois différents mécanismes permettant de contrôler
+l&rsquo;espacement au sein d&rsquo;un système selon trois catégories :
+</p>
+<ul>
+<li>
+<em>portées isolées</em>,
+
+</li><li>
+<em>portées regroupées</em> (portées d&rsquo;un même groupe, telles celles
+d&rsquo;un <code>ChoirStaff</code>, etc.), et
+
+</li><li>
+<em>lignes de non-portée</em> (<code>Lyrics</code>, <code>ChordNames</code>, etc.).
+
+</li></ul>
+
+
+<p>La hauteur de chaque système se détermine en deux phases.  Les portées
+sont tout d&rsquo;abord espacées selon la surface disponible.  Puis les lignes
+autres que des portées, comme les paroles ou les accords, sont réparties
+entre les portées.
+</p>
+<p>Les paragraphes qui suivent traitent exclusivement de la manière de
+gérer l&rsquo;espacement entre les lignes d&rsquo;un système &ndash; portée musicale ou
+non.  Pour ce qui a trait aux espacements entre les systèmes,
+mouvements, annotations et marge, ils sont contrôlés par des variables
+attachées au bloc <code>\paper</code> et font l&rsquo;objet du chapitre
+<a href="flexible-vertical-spacing-paper-variables.fr.html">Variables d&rsquo;espacement vertical fluctuant</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#within_002dsystem-spacing-properties" accesskey="1">Propriétés d&rsquo;espacement au sein d&rsquo;un système</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spacing-of-ungrouped-staves" accesskey="2">Espacement de portées isolées</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spacing-of-grouped-staves" accesskey="3">Espacement de portées regroupées</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spacing-of-non_002dstaff-lines" accesskey="4">Espacement des lignes rattachées à des portées</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Propri_00e9t_00e9s-d_0027espacement-au-sein-d_0027un-syst_00e8me"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Gestion de l'espace&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.fr.html" title="Chapitre suivant">&nbsp;Modification des réglages prédéfinis &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#flexible-vertical-spacing-within-systems" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Espacement vertical au sein d'un système&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Espacement vertical au sein d'un système&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spacing-of-ungrouped-staves" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Espacement de portées isolées &gt; </a>]</td></tr></table>
+<a name="within_002dsystem-spacing-properties"></a>
+<h4 class="unnumberedsubsubsec">Propriétés d&rsquo;espacement au sein d&rsquo;un système</h4>
+
+<a name="index-staff_002daffinity"></a>
+<a name="index-staff_002daffinity-1"></a>
+<a name="index-staffgroup_002dstaff_002dspacing"></a>
+<a name="index-staffgroup_002dstaff_002dspacing-1"></a>
+<a name="index-staff_002dstaff_002dspacing"></a>
+<a name="index-staff_002dstaff_002dspacing-1"></a>
+<a name="index-nonstaff_002dunrelatedstaff_002dspacing"></a>
+<a name="index-nonstaff_002dunrelatedstaff_002dspacing-1"></a>
+<a name="index-nonstaff_002drelatedstaff_002dspacing"></a>
+<a name="index-nonstaff_002drelatedstaff_002dspacing-1"></a>
+<a name="index-nonstaff_002dnonstaff_002dspacing"></a>
+<a name="index-nonstaff_002dnonstaff_002dspacing-1"></a>
+<a name="index-default_002dstaff_002dstaff_002dspacing"></a>
+<a name="index-default_002dstaff_002dstaff_002dspacing-1"></a>
+<a name="index-minimum_002dY_002dextent"></a>
+<a name="index-minimum_002dY_002dextent-1"></a>
+<a name="index-extra_002doffset"></a>
+<a name="index-extra_002doffset-1"></a>
+<a name="index-self_002dalignment_002dX"></a>
+<a name="index-self_002dalignment_002dX-1"></a>
+<a name="index-X_002doffset"></a>
+<a name="index-X_002doffset-1"></a>
+<a name="index-VerticalAxisGroup-2"></a>
+<a name="index-VerticalAxisGroup-3"></a>
+
+<p>L&rsquo;espacement entre les portées est géré par deux jeux de propriétés
+d&rsquo;objet graphique (<em>grob</em>).  Le premier, associé à l&rsquo;objet
+graphique <code>VerticalAxisGroup</code>, est créé pour toute ligne de portée
+ou de non-portée.  Le second, associé à l&rsquo;objet graphique
+<code>StaffGrouper</code>, doit être explicitement créé pour un regroupement
+de portées particulier.  Les propriétés qui leur sont attachées sont
+abordées en fin de section.
+</p>
+<p>Le nom de ces propriétés, sauf <code>staff-affinity</code>, suit le schéma
+<code><var>item1</var>-<var>item2</var>-spacing</code> &ndash; <code><var>item1</var></code> et
+<code><var>item2</var></code> étant les éléments à espacer.  Notez bien que
+<code><var>item2</var></code> n&rsquo;est pas forcément placé au-dessous : c&rsquo;est le
+cas pour la propriété <code>nonstaff-relatedstaff-spacing</code> qui spécifie
+l&rsquo;espacement d&rsquo;une ligne de non-portée alors que sa
+<code>staff-affinity</code> a été déterminée à <code>UP</code>.
+</p>
+<p>Toutes ces distances sont mesurées entre les points de référence
+respectifs des éléments considérés.
+Le <i>point de référence</i> d&rsquo;une portée est le centre vertical du
+<code>StaffSymbol</code> &ndash; la ligne médiane si <code>line-count</code> est impair,
+l&rsquo;interligne médian si <code>line-count</code> est pair.
+Quant aux lignes rattachées à des portées &ndash; lignes de non-portée &ndash; le
+tableau suivant présente le <i>point de référence</i> pour chacune
+d&rsquo;elles :
+</p>
+<table>
+<thead><tr><th>Ligne de non-portée</th><th>Point de référence</th></tr></thead>
+<tr><td><code>ChordNames</code></td><td>ligne de base</td></tr>
+<tr><td><code>NoteNames</code></td><td>ligne de base</td></tr>
+<tr><td><code>Lyrics</code></td><td>ligne de base</td></tr>
+<tr><td><code>Dynamics</code></td><td>mi-hauteur du « m »</td></tr>
+<tr><td><code>FiguredBass</code></td><td>point le plus haut</td></tr>
+<tr><td><code>FretBoards</code></td><td>ligne supérieure</td></tr>
+</table>
+
+<p>En voici une représentation graphique :
+</p>
+<blockquote><p>
+ <a href="../e8/lily-fcc3d855.ly">
+  <img align="middle"
+       border="0"
+       src="../e8/lily-fcc3d855.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Hormis <code>staff-affinity</code> &ndash; propriété attachée au <em>grob</em>
+<code>VerticalAxisGroup</code> &ndash;, chacune de ces propriétés est enregistrée
+sous la forme d&rsquo;une liste associative dont la structure est
+identique à celle des variables du bloc <code>\paper</code> que nous avons
+examinées au chapitre
+<a href="flexible-vertical-spacing-paper-variables.fr.html">Variables d&rsquo;espacement vertical fluctuant</a>.  Les particularités en
+matière de modification d&rsquo;une liste associative font l&rsquo;objet d&rsquo;un
+<a name="index-Modification-de-listes-associatives-1"></a>
+<a href="../notation/modifying-alists.fr.html">chapitre particulier</a>.
+Les propriétés des objets graphiques se règlent avec un <code>\override</code>
+mentionné dans un bloc <code>\score</code> ou <code>\layout</code>, pas dans le bloc
+<code>\paper</code>.
+</p>
+<p>L&rsquo;exemple suivant illustre deux façons de modifier une liste
+associative.  La première déclaration n&rsquo;agit que sur une seule clé,
+alors que la seconde redéfinit la propriété dans son intégralité.
+</p>
+<blockquote><pre class="example">\new Staff \with {
+  \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #10
+} { &hellip; }
+
+\new Staff \with {
+  \override VerticalAxisGroup.default-staff-staff-spacing =
+    #'(('basic-distance  . 10)
+       (minimum-distance . 9)
+       (padding . 1)
+       (stretchability . 10))
+} { &hellip; }
+</pre></blockquote>
+
+<p>La modification d&rsquo;un espacement au niveau global se mentionne au sein du
+bloc <code>\layout</code> :
+</p>
+<blockquote><pre class="example">\layout {
+  \context {
+    \Staff
+    \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #10
+  }
+}
+</pre></blockquote>
+
+<p>Les réglages concernant les propriétés d&rsquo;espacement vertical des objets
+graphiques sont répertoriées aux chapitres
+<a name="index-VerticalAxisGroup-4"></a>
+<a href="../internals/verticalaxisgroup.fr.html">VerticalAxisGroup</a> et <a name="index-StaffGrouper-1"></a>
+<a href="../internals/staffgrouper.fr.html">StaffGrouper</a>.
+Les propriétés relatives aux lignes de non-portée sont répertoriées
+selon la définition de leur contexte dans la
+<a name="index-Contexts"></a>
+<a href="../internals/contexts.fr.html">Référence des propriétés internes</a>.
+</p>
+
+<a name="Proprietes-de-l_0027objet-VerticalAxisGroup"></a>
+<h4 class="subsubheading">Propriétés de l&rsquo;objet <code>VerticalAxisGroup</code></h4>
+
+<p>Les propriétés de l&rsquo;objet <code>VerticalAxisGroup</code> s&rsquo;ajustent à l&rsquo;aide
+d&rsquo;un <code>\override</code> au niveau d&rsquo;un contexte <code>Staff</code> (ou son
+équivalent).
+</p>
+<dl compact="compact">
+<dt> <code>staff-staff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance entre la portée en cours et la portée qui suit
+au sein du même regroupement, qu&rsquo;il y ait ou des lignes de non-portée
+(<code>Lyrics</code> ou autre) entre les deux.  Cette propriété ne s&rsquo;applique
+pas à la dernière portée d&rsquo;un système.
+</p>
+<p>En tout état de cause, la fonction Scheme <code>staff-staff-spacing</code>
+d&rsquo;un <code>VerticalAxisGroup</code> affectera les propriétés du
+<code>StaffGrouper</code> si la portée est incluse dans un regroupement ;
+elle s&rsquo;appliquera au <code>default-staff-staff-spacing</code> en l&rsquo;absence de
+regroupement.  Les portées peuvent donc s&rsquo;aligner différemment selon
+qu&rsquo;elles sont ou non regroupées.  Pour obtenir le même espacement sans
+tenir compte des éventuels regroupements, cette fonction peut faire
+place à une complète redéfinition des espacements fluctuants à l&rsquo;aide de
+règles dérogatoires comme vu précédemment.
+</p>
+</dd>
+<dt> <code>default-staff-staff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance qui s&rsquo;appliquera par défaut aux portées
+isolées, à moins que <code>staff-staff-spacing</code> n&rsquo;ait été redéfini
+explicitement par un <code>\override</code>.
+</p>
+</dd>
+<dt> <code>staff-affinity</code></dt>
+<dd><p>Il s&rsquo;agit de la direction &ndash; <code>UP</code>, <code>DOWN</code> ou <code>CENTER</code> &ndash;
+que prendra une ligne de non-portée pour aller s&rsquo;accoler aux portées
+adjacentes .  Si vous lui attribuez <code>CENTER</code>, cette ligne de
+non-portée ira se placer à équidistance entre les portées qui
+l&rsquo;encadrent, tout en tenant compte des éventuels risques de collision et
+autres contraintes d&rsquo;espacement.  Des lignes de non-portée
+adjacentes devraient avoir une <code>staff-affinity</code> allant de haut en
+bas &ndash; autrement dit, pas de <code>UP</code> après un <code>DOWN</code>.
+Une ligne de non-portée en dessous d&rsquo;un système devrait avoir sa
+<code>staff-affinity</code> définie à <code>UP</code>.  De la même manière, lorsque
+cette ligne surplombe un système, sa <code>staff-affinity</code> devrait être
+définie à <code>DOWN</code>.  Prenez garde à la valeur que vous affectez à
+<code>staff-affinity</code> : si vous affectez la valeur <code>#f</code> à
+une ligne de non-portée, cette ligne sera considérée comme étant une
+portée ; à l&rsquo;inverse, utiliser la propriété <code>staff-affinity</code>
+pour une portée lui fera perdre cette qualité.
+</p>
+</dd>
+<dt> <code>nonstaff-relatedstaff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance entre la ligne de non-portée en cours et la
+portée la plus proche selon la <code>staff-affinity</code>, à la double
+condition qu&rsquo;il n&rsquo;y ait pas déjà une autre ligne de non-portée et que la
+valeur de <code>staff-affinity</code> soit <code>UP</code> ou <code>DOWN</code>.  Lorsque
+la valeur de <code>staff-affinity</code> est égale à <code>CENTER</code>, la valeur
+de <code>nonstaff-relatedstaff-spacing</code> servira à centrer la ligne de
+non-portée entre les deux portées adjacentes même si une autre
+non-portée est présente (quelque soit le côté).  Le positionnement
+d&rsquo;une ligne de non-portée dépend donc à la fois des portées qui
+l&rsquo;entourent tout comme des autres lignes de non-portée adjacentes.
+L&rsquo;affectation d&rsquo;une faible valeur à la propriété <code>stretchability</code>
+de l&rsquo;un de ces types d&rsquo;espacement l&rsquo;avantagera ; lui affecter une
+valeur élevée aura pour conséquence de diminuer l&rsquo;influence de
+l&rsquo;espacement considéré.
+</p>
+</dd>
+<dt> <code>nonstaff-nonstaff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance entre deux lignes de non-portée selon
+l&rsquo;orientation définie par <code>staff-affinity</code> et dès lors qu&rsquo;elles ont
+la même orientation.  Bien entendu, ceci ne peut concerner que les
+valeurs <code>UP</code> et <code>DOWN</code> de <code>staff-affinity</code>.
+</p>
+</dd>
+<dt> <code>nonstaff-unrelatedstaff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance entre une ligne de non-portée et la portée à
+l&rsquo;opposé de l&rsquo;orientation adoptée, à la double condition qu&rsquo;il n&rsquo;y ait
+pas déjà une autre ligne de non-portée et que la valeur de
+<code>staff-affinity</code> soit <code>UP</code> ou <code>DOWN</code>.  Cette propriété
+trouve toute sa légitimité pour décaler une ligne de <code>Lyrics</code> de la
+portée à laquelle elle ne correspond pas.
+</p></dd>
+</dl>
+
+
+<a name="Proprietes-de-l_0027objet-StaffGrouper"></a>
+<h4 class="subsubheading">Propriétés de l&rsquo;objet <code>StaffGrouper</code></h4>
+
+<p>Les propriétés de l&rsquo;objet <code>StaffGrouper</code> s&rsquo;ajustent à l&rsquo;aide
+d&rsquo;un <code>\override</code> au niveau d&rsquo;un contexte <code>StaffGroup</code> (ou son
+équivalent).
+</p>
+<dl compact="compact">
+<dt> <code>staff-staff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance entre deux portées consécutives d&rsquo;un même
+système.  La propriété <code>staff-staff-spacing</code> de l&rsquo;objet
+<code>VerticalAxisGroup</code> d&rsquo;une portée en particulier peut se redéfinir à
+l&rsquo;aide de règles dérogatoires.
+</p>
+</dd>
+<dt> <code>staffgroup-staff-spacing</code></dt>
+<dd><p>Il s&rsquo;agit de la distance entre la dernière portée d&rsquo;un regroupement et
+la portée suivante, au sein d&rsquo;un même système, y compris lorsqu&rsquo;une ou
+plusieurs lignes de non-portée (tel <code>Lyrics</code>) s&rsquo;insèrent entre les
+deux.  Cette propriété ne concerne pas la dernière portée d&rsquo;un système.
+Dans le cas où la propriété <code>staff-staff-spacing</code> d&rsquo;une portée du
+regroupement a été ajustée au niveau de son propre
+<code>VerticalAxisGroup</code>, cette dernière aura préséance.
+</p></dd>
+</dl>
+
+<a name="Voir-aussi-92"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a href="modifying-alists.fr.html">Modification de listes associatives</a>,
+<a href="flexible-vertical-spacing-paper-variables.fr.html">Variables d&rsquo;espacement vertical fluctuant</a>.
+</p>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>ly/engraver-init.ly</tt>&rsquo;,
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Référence des propriétés internes :
+<a name="index-Contexts-1"></a>
+<a href="../internals/contexts.fr.html">Contexts</a>,
+<a name="index-VerticalAxisGroup-5"></a>
+<a href="../internals/verticalaxisgroup.fr.html">VerticalAxisGroup</a>,
+<a name="index-StaffGrouper-2"></a>
+<a href="../internals/staffgrouper.fr.html">StaffGrouper</a>.
+</p>
+
+<hr size="6">
+<a name="Espacement-de-port_00e9es-isol_00e9es"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Gestion de l'espace&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.fr.html" title="Chapitre suivant">&nbsp;Modification des réglages prédéfinis &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#within_002dsystem-spacing-properties" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Propriétés d'espacement au sein d'un système&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Espacement vertical au sein d'un système&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spacing-of-grouped-staves" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Espacement de portées regroupées &gt; </a>]</td></tr></table>
+<a name="spacing-of-ungrouped-staves"></a>
+<h4 class="unnumberedsubsubsec">Espacement de portées isolées</h4>
+
+<p>Les <code>Staff</code>, <code>DrumStaff</code>, <code>TabStaff</code> entre autres sont
+des contextes de « portée » pouvant contenir plusieurs voix, mais pas
+une portée.
+</p>
+<p>L&rsquo;espacement de ces <i>portées isolées</i> est géré par les propriétés
+suivantes :
+</p>
+<ul>
+<li> Propriétés du <code>VerticalAxisGroup</code> :
+<ul>
+<li> <code>default-staff-staff-spacing</code>
+</li><li> <code>staff-staff-spacing</code>
+</li></ul>
+</li></ul>
+
+<p>Ces propriétés d&rsquo;objet graphique sont expliquées une à une au chapitre
+<a href="#within_002dsystem-spacing-properties">Propriétés d&rsquo;espacement au sein d&rsquo;un système</a>.
+</p>
+<p>Certaines propriétés supplémentaires s&rsquo;appliqueront dès lors que
+ces portées sont regroupées &ndash; voir
+<a href="#spacing-of-grouped-staves">Espacement de portées regroupées</a>.
+</p>
+<p>L&rsquo;exemple suivant illustre la manière de gérer l&rsquo;espacement de portées
+isolées à l&rsquo;aide de la propriété <code>default-staff-staff-spacing</code>.
+Les mêmes règles appliquées de manière dérogatoire au
+<code>staff-staff-spacing</code> produiront les mêmes effets, y compris au
+sein de regroupements.
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Staff
+    \override VerticalAxisGroup.default-staff-staff-spacing =
+      #'((basic-distance . 8)
+         (minimum-distance . 7)
+         (padding . 1))
+  }
+}
+
+&lt;&lt;
+  % The very low note here needs more room than 'basic-distance
+  % can provide, so the distance between this staff and the next
+  % is determined by 'padding.
+  \new Staff { b,2 r | }
+
+  % Here, 'basic-distance provides enough room, and there is no
+  % need to compress the space (towards 'minimum-distance) to make
+  % room for anything else on the page, so the distance between
+  % this staff and the next is determined by 'basic-distance.
+  \new Staff { \clef bass g2 r | }
+
+  % By setting 'padding to a negative value, staves can be made to
+  % collide.  The lowest acceptable value for 'basic-distance is 0.
+  \new Staff \with {
+    \override VerticalAxisGroup.default-staff-staff-spacing =
+      #'((basic-distance . 3.5)
+         (padding . -10))
+  } { \clef bass g2 r | }
+  \new Staff { \clef bass g2 r | }
+&gt;&gt;
+</pre><p>
+ <a href="../b1/lily-81d4b0f8.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-81d4b0f8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-196"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/spacing.fr.html">Espacements</a>.
+</p>
+<p>Référence des propriétés internes :
+<a name="index-VerticalAxisGroup-6"></a>
+<a href="../internals/verticalaxisgroup.fr.html">VerticalAxisGroup</a>.
+</p>
+
+<hr size="6">
+<a name="Espacement-de-port_00e9es-regroup_00e9es"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Gestion de l'espace&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.fr.html" title="Chapitre suivant">&nbsp;Modification des réglages prédéfinis &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spacing-of-ungrouped-staves" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Espacement de portées isolées&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Espacement vertical au sein d'un système&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spacing-of-non_002dstaff-lines" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Espacement des lignes rattachées à des portées &gt; </a>]</td></tr></table>
+<a name="spacing-of-grouped-staves"></a>
+<h4 class="unnumberedsubsubsec">Espacement de portées regroupées</h4>
+
+<p>Dans les partitions orchestrales ou de grande ampleur, il arrive
+souvent que des portées soient regroupées.  L&rsquo;espacement est alors plus
+important entre deux regroupements qu&rsquo;entre les portées d&rsquo;un même
+groupe.
+</p>
+<p>Les <i>regroupements de portées</i> tels le <code>StaffGroup</code> ou le
+<code>ChoirStaff</code> sont des contextes qui peuvent contenir simultanément
+une ou plusieurs portées.
+</p>
+<p>L&rsquo;espacement entre les portées d&rsquo;un même regroupement est géré par les
+propriétés suivantes :
+</p>
+<ul>
+<li> Propriétés du <code>VerticalAxisGroup</code> :
+<ul>
+<li> <code>staff-staff-spacing</code>
+</li></ul>
+</li><li> Propriétés du <code>StaffGrouper</code> :
+<ul>
+<li> <code>staff-staff-spacing</code>
+</li><li> <code>staffgroup-staff-spacing</code>
+</li></ul>
+</li></ul>
+
+<p>Ces propriétés d&rsquo;objet graphique sont expliquées une à une au chapitre
+<a href="#within_002dsystem-spacing-properties">Propriétés d&rsquo;espacement au sein d&rsquo;un système</a>.
+</p>
+<p>L&rsquo;exemple suivant illustre la manière de gérer l&rsquo;espacement de portées
+regroupées, à l&rsquo;aide des propriétés de l&rsquo;objet graphique
+<code>StaffGrouper</code> :
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Score
+    \override StaffGrouper.staff-staff-spacing.padding = #0
+    \override StaffGrouper.staff-staff-spacing.basic-distance = #1
+  }
+}
+
+&lt;&lt;
+  \new PianoStaff \with {
+    \override StaffGrouper.staffgroup-staff-spacing.basic-distance = #20
+  } &lt;&lt;
+    \new Staff { c'1 }
+    \new Staff { c'1 }
+  &gt;&gt;
+
+  \new StaffGroup &lt;&lt;
+    \new Staff { c'1 }
+    \new Staff { c'1 }
+  &gt;&gt;
+&gt;&gt;
+</pre><p>
+ <a href="../23/lily-d4009833.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-d4009833.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Voir-aussi-32"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/spacing.fr.html">Espacements</a>.
+</p>
+<p>Référence des propriétés internes:
+<a name="index-VerticalAxisGroup-7"></a>
+<a href="../internals/verticalaxisgroup.fr.html">VerticalAxisGroup</a>,
+<a name="index-StaffGrouper-3"></a>
+<a href="../internals/staffgrouper.fr.html">StaffGrouper</a>.
+</p>
+
+<hr size="6">
+<a name="Espacement-des-lignes-rattach_00e9es-_00e0-des-port_00e9es"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Gestion de l'espace&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.fr.html" title="Chapitre suivant">&nbsp;Modification des réglages prédéfinis &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spacing-of-grouped-staves" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Espacement de portées regroupées&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Espacement vertical au sein d'un système&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicit-staff-and-system-positioning.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Positionnement explicite des portées et systèmes &gt; </a>]</td></tr></table>
+<a name="spacing-of-non_002dstaff-lines"></a>
+<h4 class="unnumberedsubsubsec">Espacement des lignes rattachées à des portées</h4>
+
+<p>Les <i>lignes de non-portée</i>, comme les <code>Lyrics</code> ou les
+<code>ChordNames</code> sont des contextes dont les objets de rendu sont
+gravés à l&rsquo;instar des portées &ndash; une ligne horizontale dans un système.
+En fait, les lignes de non-portée sont des contextes qui vont créer un
+objet de rendu <code>VerticalAxisGroup</code> auxquel est attaché le
+<a name="index-Axis_005fgroup_005fengraver"></a>
+<a href="../internals/axis_005fgroup_005fengraver.fr.html">Axis_group_engraver</a>.
+</p>
+<p>L&rsquo;espacement des lignes de non-portée est géré par les propriétés
+suivantes :
+</p>
+<ul>
+<li> Propriétés du <code>VerticalAxisGroup</code> :
+<ul>
+<li> <code>staff-affinity</code>
+</li><li> <code>nonstaff-relatedstaff-spacing</code>
+</li><li> <code>nonstaff-nonstaff-spacing</code>
+</li><li> <code>nonstaff-unrelatedstaff-spacing</code>
+</li></ul>
+</li></ul>
+
+<p>Ces propriétés d&rsquo;objet graphique sont expliquées une à une au chapitre
+<a href="#within_002dsystem-spacing-properties">Propriétés d&rsquo;espacement au sein d&rsquo;un système</a>.
+</p>
+<p>L&rsquo;exemple suivant utilise la propriété <code>nonstaff-nonstaff-spacing</code>
+pour gérer l&rsquo;espacement entre des lignes consécutives de non-portée.
+Vous noterez que la valeur élevée attribuée à la clé
+<code>stretchability</code> permet aux paroles de s&rsquo;étirer plus que de raison.
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Lyrics
+    \override VerticalAxisGroup.nonstaff-nonstaff-spacing.stretchability = #1000
+  }
+}
+
+\new StaffGroup
+&lt;&lt;
+  \new Staff \with {
+    \override VerticalAxisGroup.staff-staff-spacing = #'((basic-distance . 30))
+  } { c'1 }
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #UP
+  } \lyricmode { up }
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #CENTER
+  } \lyricmode { center }
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #DOWN
+  } \lyricmode { down }
+  \new Staff { c'1 }
+&gt;&gt;
+</pre><p>
+ <a href="../63/lily-255cf8e4.ly">
+  <img align="middle"
+       border="0"
+       src="../63/lily-255cf8e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Voir-aussi-29"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Fichiers d&rsquo;initialisation :
+&lsquo;<tt>ly/engraver-init.ly</tt>&rsquo;,
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Morceaux choisis :
+<a href="../snippets/spacing.fr.html">Espacements</a>.
+</p>
+
+<p>Référence des propriétés internes :
+<a name="index-Contexts-2"></a>
+<a href="../internals/contexts.fr.html">Contexts</a>,
+<a name="index-VerticalAxisGroup-8"></a>
+<a href="../internals/verticalaxisgroup.fr.html">VerticalAxisGroup</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Gestion de l'espace&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-command-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.fr.html" title="Chapitre suivant">&nbsp;Modification des réglages prédéfinis &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spacing-of-grouped-staves" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Espacement de portées regroupées&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Espacement vertical au sein d'un système&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicit-staff-and-system-positioning.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Positionnement explicite des portées et systèmes &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="flexible-vertical-spacing-within-systems.html">English</a>, <a href="flexible-vertical-spacing-within-systems.de.html">deutsch</a>, <a href="flexible-vertical-spacing-within-systems.es.html">español</a>, <a href="flexible-vertical-spacing-within-systems.it.html">italiano</a>, <a href="flexible-vertical-spacing-within-systems.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel de notation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notation-musicale-generale" href="musical-notation.fr.html">1. Notation musicale générale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hauteurs-1" href="pitches.fr.html">1.1 Hauteurs</a>    </li>
+    <li class=""><a name="toc-Rythme-1" href="rhythms.fr.html">1.2 Rythme</a>    </li>
+    <li class=""><a name="toc-Signes-d_0027interpretation" href="expressive-marks.fr.html">1.3 Signes d&rsquo;interprétation</a>    </li>
+    <li class=""><a name="toc-Repetitions-et-reprises" href="repeats.fr.html">1.4 Répétitions et reprises</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="simultaneous-notes.fr.html">1.5 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Notation-sur-la-portee" href="staff-notation.fr.html">1.6 Notation sur la portée</a>    </li>
+    <li class=""><a name="toc-Annotations-editoriales" href="editorial-annotations.fr.html">1.7 Annotations éditoriales</a>    </li>
+    <li class=""><a name="toc-Texte-1" href="text.fr.html">1.8 Texte</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-specialisee" href="specialist-notation.fr.html">2. Notation spécialisée</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musique-vocale-1" href="vocal-music.fr.html">2.1 Musique vocale</a>    </li>
+    <li class=""><a name="toc-Instruments-utilisant-des-portees-multiples" href="keyboard-and-other-multi_002dstaff-instruments.fr.html">2.2 Instruments utilisant des portées multiples</a>    </li>
+    <li class=""><a name="toc-Cordes-non-frettees" href="unfretted-string-instruments.fr.html">2.3 Cordes non frettées</a>    </li>
+    <li class=""><a name="toc-Instruments-a-cordes-frettees" href="fretted-string-instruments.fr.html">2.4 Instruments à cordes frettées</a>    </li>
+    <li class=""><a name="toc-Percussions-1" href="percussion.fr.html">2.5 Percussions</a>    </li>
+    <li class=""><a name="toc-Instruments-a-vent" href="wind-instruments.fr.html">2.6 Instruments à vent</a>    </li>
+    <li class=""><a name="toc-Notation-des-accords-1" href="chord-notation.fr.html">2.7 Notation des accords</a>    </li>
+    <li class=""><a name="toc-Musique-contemporaine-1" href="contemporary-music.fr.html">2.8 Musique contemporaine</a>    </li>
+    <li class=""><a name="toc-Notations-anciennes-1" href="ancient-notation.fr.html">2.9 Notations anciennes</a>    </li>
+    <li class=""><a name="toc-Musiques-du-monde-1" href="world-music.fr.html">2.10 Musiques du monde</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Generalites-en-matiere-d_0027entree-et-sortie" href="general-input-and-output.fr.html">3. Généralités en matière d&rsquo;entrée et sortie</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Agencement-du-code-1" href="input-structure.fr.html">3.1 Agencement du code</a>    </li>
+    <li class=""><a name="toc-Titres-et-entetes" href="titles-and-headers.fr.html">3.2 Titres et entêtes</a>    </li>
+    <li class=""><a name="toc-Travail-sur-des-fichiers-texte-1" href="working-with-input-files.fr.html">3.3 Travail sur des fichiers texte</a>    </li>
+    <li class=""><a name="toc-Controle-des-sorties" href="controlling-output.fr.html">3.4 Contrôle des sorties</a>    </li>
+    <li class=""><a name="toc-Generation-de-fichiers-MIDI" href="creating-midi-output.fr.html">3.5 Génération de fichiers MIDI</a>    </li>
+    <li class=""><a name="toc-Extraction-d_0027informations-musicales-1" href="extracting-musical-information.fr.html">3.6 Extraction d&rsquo;informations musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Gestion-de-l_0027espace-1" href="spacing-issues.fr.html">4. Gestion de l&rsquo;espace</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Mise-en-forme-de-la-page-1" href="page-layout.fr.html">4.1 Mise en forme de la page</a>    </li>
+    <li class=""><a name="toc-Mise-en-forme-de-la-partition-1" href="score-layout.fr.html">4.2 Mise en forme de la partition</a>    </li>
+    <li class=""><a name="toc-Sauts-1" href="breaks.fr.html">4.3 Sauts</a>    </li>
+    <li class=" toc_current"><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.4 Espacement vertical</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Espacement-vertical-au-sein-d_0027un-systeme" href="flexible-vertical-spacing-within-systems.fr.html">4.4.1 Espacement vertical au sein d&rsquo;un système</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Proprietes-d_0027espacement-au-sein-d_0027un-systeme" href="flexible-vertical-spacing-within-systems.fr.html#within_002dsystem-spacing-properties">Propriétés d&rsquo;espacement au sein d&rsquo;un système</a>        </li>
+        <li class=""><a name="toc-Espacement-de-portees-isolees" href="flexible-vertical-spacing-within-systems.fr.html#spacing-of-ungrouped-staves">Espacement de portées isolées</a>        </li>
+        <li class=""><a name="toc-Espacement-de-portees-regroupees" href="flexible-vertical-spacing-within-systems.fr.html#spacing-of-grouped-staves">Espacement de portées regroupées</a>        </li>
+        <li class=""><a name="toc-Espacement-des-lignes-rattachees-a-des-portees" href="flexible-vertical-spacing-within-systems.fr.html#spacing-of-non_002dstaff-lines">Espacement des lignes rattachées à des portées</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Positionnement-explicite-des-portees-et-systemes" href="explicit-staff-and-system-positioning.fr.html">4.4.2 Positionnement explicite des portées et systèmes</a>      </li>
+      <li class=""><a name="toc-Resolution-des-collisions-verticales" href="vertical-collision-avoidance.fr.html">4.4.3 Résolution des collisions verticales</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Espacement-horizontal-1" href="horizontal-spacing.fr.html">4.5 Espacement horizontal</a>    </li>
+    <li class=""><a name="toc-Reduction-du-nombre-de-pages-de-la-partition" href="fitting-music-onto-fewer-pages.fr.html">4.6 Réduction du nombre de pages de la partition</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modification-des-reglages-predefinis" href="changing-defaults.fr.html">5. Modification des réglages prédéfinis</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextes-d_0027interpretation" href="interpretation-contexts.fr.html">5.1 Contextes d&rsquo;interprétation</a>    </li>
+    <li class=""><a name="toc-En-quoi-consiste-la-reference-des-proprietes-internes" href="explaining-the-internals-reference.fr.html">5.2 En quoi consiste la référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Modification-de-proprietes" href="modifying-properties.fr.html">5.3 Modification de propriétés</a>    </li>
+    <li class=""><a name="toc-Proprietes-et-contextes-utiles" href="useful-concepts-and-properties.fr.html">5.4 Propriétés et contextes utiles</a>    </li>
+    <li class=""><a name="toc-Retouches-avancees" href="advanced-tweaks.fr.html">5.5 Retouches avancées</a>    </li>
+    <li class=""><a name="toc-Utilisation-de-fonctions-musicales-1" href="using-music-functions.fr.html">5.6 Utilisation de fonctions musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tables-du-manuel-de-notation-1" href="notation-manual-tables.fr.html">A. Tables du manuel de notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Table-des-noms-d_0027accord-1" href="chord-name-chart.fr.html">A.1 Table des noms d&rsquo;accord</a>    </li>
+    <li class=""><a name="toc-Modificateurs-d_0027accord-usuels-1" href="common-chord-modifiers.fr.html">A.2 Modificateurs d&rsquo;accord usuels</a>    </li>
+    <li class=""><a name="toc-Accordages-predefinis" href="predefined-string-tunings.fr.html">A.3 Accordages prédéfinis</a>    </li>
+    <li class=""><a name="toc-Diagrammes-d_0027accord-predefinis" href="predefined-fretboard-diagrams.fr.html">A.4 Diagrammes d&rsquo;accord prédéfinis</a>    </li>
+    <li class=""><a name="toc-Formats-de-papier-predefinis" href="predefined-paper-sizes.fr.html">A.5 Formats de papier prédéfinis</a>    </li>
+    <li class=""><a name="toc-Instruments-MIDI-1" href="midi-instruments.fr.html">A.6 Instruments MIDI</a>    </li>
+    <li class=""><a name="toc-Liste-des-couleurs-1" href="list-of-colors.fr.html">A.7 Liste des couleurs</a>    </li>
+    <li class=""><a name="toc-La-fonte-Feta-1" href="the-feta-font.fr.html">A.8 La fonte Feta</a>    </li>
+    <li class=""><a name="toc-Styles-de-tete-de-note" href="note-head-styles.fr.html">A.9 Styles de tête de note</a>    </li>
+    <li class=""><a name="toc-Styles-de-clef-1" href="clef-styles.fr.html">A.10 Styles de clef</a>    </li>
+    <li class=""><a name="toc-Commandes-pour-markup-1" href="text-markup-commands.fr.html">A.11 Commandes pour <em>markup</em></a>    </li>
+    <li class=""><a name="toc-Commandes-pour-liste-de-markups-1" href="text-markup-list-commands.fr.html">A.12 Commandes pour liste de <em>markups</em></a>    </li>
+    <li class=""><a name="toc-Liste-des-caracteres-speciaux" href="list-of-special-characters.fr.html">A.13 Liste des caractères spéciaux</a>    </li>
+    <li class=""><a name="toc-Liste-des-signes-d_0027articulation-1" href="list-of-articulations.fr.html">A.14 Liste des signes d&rsquo;articulation</a>    </li>
+    <li class=""><a name="toc-Notes-utilisees-en-percussion" href="percussion-notes.fr.html">A.15 Notes utilisées en percussion</a>    </li>
+    <li class=""><a name="toc-Glossaire-technique-1" href="technical-glossary.fr.html">A.16 Glossaire technique</a>    </li>
+    <li class=""><a name="toc-Liste-des-proprietes-de-contexte" href="all-context-properties.fr.html">A.17 Liste des propriétés de contexte</a>    </li>
+    <li class=""><a name="toc-Proprietes-de-mise-en-forme" href="layout-properties.fr.html">A.18 Propriétés de mise en forme</a>    </li>
+    <li class=""><a name="toc-Fonctions-musicales-predefinies" href="available-music-functions.fr.html">A.19 Fonctions musicales prédéfinies</a>    </li>
+    <li class=""><a name="toc-Identificateurs-de-modification-de-contexte-1" href="context-modification-identifiers.fr.html">A.20 Identificateurs de modification de contexte</a>    </li>
+    <li class=""><a name="toc-Types-de-predicats-predefinis" href="predefined-type-predicates.fr.html">A.21 Types de prédicats prédéfinis</a>    </li>
+    <li class=""><a name="toc-Fonctions-Scheme-1" href="scheme-functions.fr.html">A.22 Fonctions Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Aide_002dmemoire" href="cheat-sheet.fr.html">B. Aide-mémoire</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-des-commandes-LilyPond-1" href="lilypond-command-index.fr.html">D. Index des commandes LilyPond</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">E. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

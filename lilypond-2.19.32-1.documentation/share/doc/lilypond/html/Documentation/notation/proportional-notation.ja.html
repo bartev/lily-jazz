@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 4.5.5 プロポーショナル ノーテーション</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 4.5.5 プロポーショナル ノーテーション">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 4.5.5 プロポーショナル ノーテーション">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="horizontal-spacing.ja.html#horizontal-spacing" rel="up" title="4.5 水平方向のスペース">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="line-length.ja.html#line-length" rel="previous" title="4.5.4 行の長さ">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_30d7_30ed_30dd_30fc_30b7_30e7_30ca_30eb-_30ce_30fc_30c6_30fc_30b7_30e7_30f3"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; スペースの問題&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.ja.html" title="次の章">&nbsp;デフォルトを変更する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="line-length.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; 行の長さ&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="horizontal-spacing.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;水平方向のスペース&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fitting-music-onto-fewer-pages.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;音楽を少ないページに収める &gt; </a>]</td></tr></table>
+<a name="proportional-notation"></a>
+<h3 class="subsection">4.5.5 プロポーショナル ノーテーション</h3>
+
+<p><code>Lilypond はプロポーショナル ノーテーションをサポートします。この記譜法では、各音符は演奏時間に相当する水平方向のスペースをとります。このタイプの水平スペースは、方眼紙上の水平方向スペースと同等です。20 世紀後半、21 世紀前半の楽譜の中には、複雑なリズムをわかりやすく示すため、あるいは、時間軸や他の図の配置を容易にするために、プロポーショナル ノーテーションを使っているものがあります。
+</code></p>
+<p><code>LilyPond はプロポーショナル ノーテーション用に 5 つの設定をサポートします。それらの設定は一緒に使われることもありますし、単独で使われることもあります:
+</code></p>
+<ul>
+<li><code> <code>proportionalNotationDuration</code>
+</code></li><li><code> <code>uniform-stretching</code>
+</code></li><li><code> <code>strict-note-spacing</code>
+</code></li><li><code> <code>\remove &quot;Separating_line_group_engraver&quot;</code>
+</code></li><li><code> <code>\override PaperColumn.used = ##t</code>
+</code></li></ul>
+
+<p><code>以下の例では、これら 5 つのプロポーショナル ノーテーション用の設定を見ていき、それらがどのように相互に作用するかを調べます。
+</code></p>
+<p><code>以下のような 1 小節の例から始めます。これは、<code>ragged-right</code> が ON であり、クラシック音楽でのスペースを使用します。
+</code></p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../c5/lily-27dc2511.ly">
+  <img align="middle"
+       border="0"
+       src="../c5/lily-27dc2511.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>小節の始まりに配置された 2 分音符がその小節で占める水平方向のスペースは、半分よりもずっと少ないということに注意してください。そのため、小節の後半に配置された 16 分音符と、16 分音符からなる 5 連符
+(すなわち、20 分音符) がその小節で占める水平方向のスペースは、半分よりもずっと多くなっています。
+</code></p>
+<p><code>クラシック音楽の譜刻では、このスペースのとり方が望ましいかもしれません。なぜなら、2 分音符から水平方向のスペースを借りてきて、小節全体としてスペースを維持することができるからです。
+</code></p>
+<p><code>他方で、時間軸や他の図を楽譜の上または下に挿入しようとした場合、プロポーショナル ノーテーションが必要になります。<code>proportionalNotationDuration</code> 設定でプロポーショナル ノーテーションを有効にします。
+</code></p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+  &gt;&gt;
+ \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/20)
+    }
+  }
+}
+</pre><p>
+ <a href="../c7/lily-99a783ed.ly">
+  <img align="middle"
+       border="0"
+       src="../c7/lily-99a783ed.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>今度は、小節の前半に配置された 2 分音符と、後半に配置された短い音符の集まりが占める水平方向のスペースは等しくなりました。これで、この例の上または下に、時間軸や他の図を配置することが可能になりました。
+</code></p>
+<p><code><code>proportionalNotationDuration</code> 設定は、<code>Score</code> の中にあるコンテキスト設定です。入力ファイルの中でコンテキスト設定が出現するのは、3 つの場所のどれかだということを思い出してください
+-- <code>\with</code> ブロックの中、<code>\context</code> ブロックの中、あるいは、<code>\set</code> コマンドを前に置いた形で音楽エントリの中に直接配置します。他のすべてのコンテキスト設定と同様に、ユーザはこれら 3 つの場所のどれか 1 つを選択して、そこで <code>proportionalNotationDuration</code> をセットすることができます。
+</code></p>
+<p><code><code>proportionalNotationDuration</code> 設定は引数を 1 つとります。これはすべての音楽要素へのスペースに関係する参照演奏時間です。LilyPond Scheme 関数 <code>make-moment</code> は 2 つの引数をとります
+-- 全音符の分数を表す分子と分母です。それゆえ、<code>(ly:make-moment 1/20)</code> という呼び出しは、20 分音符の参照演奏時間となります。<code>(ly:make-moment 1/16)</code>, <code>(ly:make-moment 1/8)</code>, それに
+<code>(ly:make-moment 3/97)</code> という値はすべてとり得る値です。
+</code></p>
+<p><code>では、どのように <code>proportionalNotationDuration</code> に渡す適切な参照演奏時間を決めるのでしょうか？通常、その楽曲の最速 (あるいは最小) の演奏時間に近い演奏時間から始めて、トライ＆エラーで決めます。小さな参照演奏時間にすると疎な楽譜となり、大きな参照演奏時間にすると密な楽譜になります。
+</code></p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/8)
+    }
+  }
+}
+
+\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/16)
+    }
+  }
+}
+
+\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/32)
+    }
+  }
+}
+</pre><p>
+ <a href="../f7/lily-ba3436a2.ly">
+  <img align="middle"
+       border="0"
+       src="../f7/lily-ba3436a2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>8 分音符以上などのようなあまりにも大きな演奏時間にすると、楽譜が密になりすぎて、符頭の衝突が発生する可能性があるということに注意してください。さらに、一般にプロポーショナル ノーテーションはクラシック音楽のスペースよりも多くの水平方向スペースをとるということに注意してください。プロポーショナル ノーテーションは、多くの水平方向スペースを使うことで、明快なリズムを提供します。
+</code></p>
+<p><code>次に、重複する連符に最適なスペースを割り当てる方法を検証します。
+</code></p>
+<p><code>まず、クラシック音楽のスペースで、異なるタイプの連符を付け加えたときに、何が起こるかを見ていきます。
+</code></p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+    \new RhythmicStaff {
+      \tuplet 9/8 {
+        c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8
+      }
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../4a/lily-e908712b.ly">
+  <img align="middle"
+       border="0"
+       src="../4a/lily-e908712b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>このスペースのとり方は良くありません。なぜなら、下の譜の音符の間隔が一様ではないからです。クラシック音楽の譜刻には複雑な連符はほとんど含まれないため、クラシック音楽の譜刻規則はこのような結果を生み出す可能性があります。<code>proportionalNotationDuration</code> を設定することにより、この状況はかなり修正されます。
+</code></p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+    \new RhythmicStaff {
+      \tuplet 9/8 {
+        c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/20)
+    }
+  }
+}
+</pre><p>
+ <a href="../9e/lily-0503154f.ly">
+  <img align="middle"
+       border="0"
+       src="../9e/lily-0503154f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>しかしながら、注意深く見ると、9 連符の後半の音符の間隔が、前半の音符の間隔よりもわずかに広くなっています。間隔を一様にするため、<code>SpacingSpanner</code> のプロパティである
+<code>uniform-stretching</code> を ON にします。
+</code></p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new RhythmicStaff {
+      c'2
+      c'16 c'16 c'16 c'16
+      \tuplet 5/4 {
+        c'16 c'16 c'16 c'16 c'16
+      }
+    }
+    \new RhythmicStaff {
+      \tuplet 9/8 {
+        c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Score
+      proportionalNotationDuration = #(ly:make-moment 1/20)
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+}
+</pre><p>
+ <a href="../6e/lily-8d5eb31a.ly">
+  <img align="middle"
+       border="0"
+       src="../6e/lily-8d5eb31a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>今度は、適切にスペースが割り当てられました。リズムは視覚的に明快になり、必要があれば時間軸や図を挿入することができます。
+</code></p>
+<p><code>LilyPond のプロポーショナル ノーテーション パッケージは、すべてのプロポーショナルな楽譜は <code>SpacingSpanner</code> の
+<code>'uniform-stretching</code> 属性が <code>##t</code> に設定されているものと見なします。<code>SpacingSpanner</code> の <code>'uniform-stretching</code> 属性が <code>##t</code>
+に設定されずに、<code>proportionalNotationDuration</code> が設定されると、例えば、スキップ (空白音符) の水平方向のスペースが適切に割り当てられません。
+</code></p>
+<p><code><code>SpacingSpanner</code> は <code>Score</code> コンテキストの中にある抽象的なグラフィカル オブジェクトです。<code>proportionalNotationDuration</code> の設定と一緒に、<code>SpacingSpanner</code> をオーバライドする場所は、入力ファイルの 3 つの場所のいずれかになります
+-- <code>Score \with</code> ブロックの中、<code>Score \context</code> ブロックの中、あるいは音符入力の場所に直接配置するかです。
+</code></p>
+<p><code>デフォルトでは、<code>Score</code> ごとに <code>SpacingSpanner</code> が 1 つあります。つまり、デフォルトでは、<code>uniform-stretching</code> は楽譜全体で ON であるか、OFF であるかのどちらかであるということです。しかしながら、この振る舞いをオーバライドして、楽譜内の異なる場所で異なるスペース機能を設定することができます。これを実現するには、コマンド <code>\newSpacingSection</code> を用います。更なる情報は、<a href="new-spacing-area.ja.html">新しいスペース領域</a> を参照してください。
+</code></p>
+<p><code>次に、<code>Separating_line_group_engraver</code> の効果を検証し、なぜプロポーショナルな楽譜は頻繁にこのエングラーバを削除するのかを見ていきます。以下の例は、各システムの最初の音符の直前に小さな &ldquo;前置きの&rdquo; スペースがあることを示しています。</code></p>
+<blockquote><pre class="verbatim">\paper {
+  indent = #0
+}
+
+\new Staff {
+  c'1
+  \break
+  c'1
+}
+</pre><p>
+ <a href="../b1/lily-bf557bf5.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-bf557bf5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><code>この前置きのスペースの量は、前にあるのが拍子記号、調号、あるいは音部記号のいずれであっても、同じです。<code>Separating_line_group_engraver</code> はこのスペースに責任を負います。<code>Separating_line_group_engraver</code> を削除すると、このスペースはゼロになります。
+</code></p>
+<blockquote><pre class="verbatim">\paper {
+  indent = #0
+}
+
+\new Staff \with {
+  \remove &quot;Separating_line_group_engraver&quot;
+} {
+  c'1
+  \break
+  c'1
+}
+</pre><p>
+ <a href="../6a/lily-0e5e9f2a.ly">
+  <img align="middle"
+       border="0"
+       src="../6a/lily-0e5e9f2a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>拍子記号、調号、音部記号、それに臨時記号のような非音楽要素は、プロポーショナル ノーテーションでは問題になります。これらはすべて演奏時間を持ちません。しかしながら、これらはすべて水平方向のスペースを消費します。この問題に対して、プロポーショナルな楽譜はいくつかの異なるアプローチをとります。
+</code></p>
+<p><code>調号のスペースの問題は、調号を持たないことで回避できるかもしれません。これは有効な選択肢です。なぜなら、たいていのプロポーショナルな楽譜は現代音楽だからです。拍子記号についても同じことが言えるかもしれません。時間軸や他の図を持つ楽譜であれば特にそうです。しかしながら、そのような楽譜は例外的なものであり、たいていのプロポーショナルな楽譜は少なくともいくつかの拍子記号を持ちます。さらに、音部記号と臨時記号はより必須のものです。
+</code></p>
+<p><code>それでは、プロポーショナルなコンテキストにおける非音楽要素のスペースに対してどのような解決法が存在するのでしょうか？とり得る選択肢の 1 つに、<code>SpacingSpanner</code> の <code>strict-note-spacing</code>
+プロパティがあります。以下の 2 つの楽譜を比べてください:
+</code></p>
+<blockquote><pre class="verbatim">\new Staff {
+  \set Score.proportionalNotationDuration = #(ly:make-moment 1/16)
+  c''8
+  c''8
+  c''8
+  \clef alto
+  d'8
+  d'2
+}
+
+\new Staff {
+  \set Score.proportionalNotationDuration = #(ly:make-moment 1/16)
+  \override Score.SpacingSpanner.strict-note-spacing = ##t
+  c''8
+  c''8
+  c''8
+  \clef alto
+  d'8
+  d'2
+}
+</pre><p>
+ <a href="../d3/lily-511490ca.ly">
+  <img align="middle"
+       border="0"
+       src="../d3/lily-511490ca.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>どちらの楽譜もプロポーショナルです。しかしながら、最初の楽譜は音部変更があるため広がりすぎています。2 番目の楽譜は、<code>strict-note-spacing</code> を ON にしているため、プロポーショナルな間隔を維持しています。<code>strict-note-spacing</code> を ON にすると、拍子記号、調号、音部記号、それに臨時記号の幅は、スペース アルゴリズムの中で何の役割も果たさなくなります。
+</code></p>
+<p><code>この設定に加えて、他にもプロポーショナルな楽譜で頻出する設定があります。以下のような設定です:
+</code></p>
+<ul>
+<li><code> <code>\override SpacingSpanner.strict-grace-spacing = ##t</code>
+</code></li><li><code> <code>tupletFullLength = ##t</code>
+</code></li><li><code> <code>\override Beam.breakable = ##t</code>
+</code></li><li><code> <code>\override Glissando.breakable = ##t</code>
+</code></li><li><code> <code>\override TextSpanner.breakable = ##t</code>
+</code></li><li><code> <code>\remove &quot;Forbid_line_break_engraver&quot; in the Voice context</code>
+</code></li></ul>
+
+<p><code>これらの設定は、装飾小音符のスペースを厳密にし、連譜の囲みをリズム的な開始点、終了点まで拡張し、(連桁のような) 広がりを持つ要素が、システムやページが改まるときに中断されることを許可します。これらの設定について、本書の関連パートを参照してください。
+</code></p>
+<a name="g_t_53c2_7167-129"></a>
+<h4 class="subsubheading">参照</h4>
+<p><code>記譜法リファレンス:
+<a href="new-spacing-area.ja.html">新しいスペース領域</a>
+</code></p>
+<p><code>コード断片集:
+<a href="../snippets/spacing.ja.html">Spacing</a>
+</code></p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; スペースの問題&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.ja.html" title="次の章">&nbsp;デフォルトを変更する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="line-length.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; 行の長さ&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="horizontal-spacing.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;水平方向のスペース&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fitting-music-onto-fewer-pages.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;音楽を少ないページに収める &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="proportional-notation.html">English</a>, <a href="proportional-notation.de.html">deutsch</a>, <a href="proportional-notation.es.html">español</a>, <a href="proportional-notation.fr.html">français</a>, <a href="proportional-notation.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=""><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=""><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=""><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=" toc_current"><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9_306e_6982_8981-1" href="horizontal-spacing-overview.ja.html">4.5.1 水平方向のスペースの概要</a>      </li>
+      <li class=""><a name="toc-_65b0_3057_3044_30b9_30da_30fc_30b9_9818_57df-1" href="new-spacing-area.ja.html">4.5.2 新しいスペース領域</a>      </li>
+      <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9_3092_5909_66f4_3059_308b-1" href="changing-horizontal-spacing.ja.html">4.5.3 水平方向のスペースを変更する</a>      </li>
+      <li class=""><a name="toc-_884c_306e_9577_3055-1" href="line-length.ja.html">4.5.4 行の長さ</a>      </li>
+      <li class=" toc_current"><a name="toc-_30d7_30ed_30dd_30fc_30b7_30e7_30ca_30eb-_30ce_30fc_30c6_30fc_30b7_30e7_30f3-1" href="proportional-notation.ja.html">4.5.5 プロポーショナル ノーテーション</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

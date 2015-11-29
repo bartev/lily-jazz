@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2007-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Contributor's Guide: 4.6.2 Generating documentation</title>
+
+<meta name="description" content="LilyPond Contributor's Guide: 4.6.2 Generating documentation">
+<meta name="keywords" content="LilyPond Contributor's Guide: 4.6.2 Generating documentation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Contributor's Guide">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="post_002dcompilation-options.html#post_002dcompilation-options" rel="up" title="4.6 Post-compilation options">
+<link href="gnu-free-documentation-license.html#gnu-free-documentation-license" rel="next" title="B. GNU Free Documentation License">
+<link href="installing-lilypond-from-a-local-build.html#installing-lilypond-from-a-local-build" rel="previous" title="4.6.1 Installing LilyPond from a local build">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="contributor devStatus">
+
+
+<div id="main">
+<a name="Generating-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="installing-lilypond-from-a-local-build.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Installing LilyPond from a local build&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="post_002dcompilation-options.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Post-compilation options&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#documentation-editor_0027s-edit_002fcompile-cycle" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Documentation editor's edit/compile cycle &gt; </a>]</td></tr></table>
+<a name="generating-documentation"></a>
+<h3 class="subsection">4.6.2 Generating documentation</h3>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#documentation-editor_0027s-edit_002fcompile-cycle" accesskey="1">Documentation editor&rsquo;s edit/compile cycle</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#building-documentation" accesskey="2">Building documentation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#building-a-single-document" accesskey="3">Building a single document</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#saving-time-with-cpu_005fcount" accesskey="4">Saving time with <code>CPU_COUNT</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#ajax-search" accesskey="5">AJAX search</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#installing-documentation" accesskey="6">Installing documentation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#building-documentation-without-compiling" accesskey="7">Building documentation without compiling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Documentation-editor_0027s-edit_002fcompile-cycle"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#generating-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Generating documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#building-documentation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Building documentation &gt; </a>]</td></tr></table>
+<a name="documentation-editor_0027s-edit_002fcompile-cycle"></a>
+<h4 class="unnumberedsubsubsec">Documentation editor&rsquo;s edit/compile cycle</h4>
+
+<ul>
+<li>
+Initial documentation build:
+
+<blockquote><pre class="example">make [-j<var>X</var>]
+make [-j<var>X</var> CPU_COUNT=<var>X</var>] doc          <em>## can take an hour or more</em>
+make [-j<var>X</var> CPU_COUNT=<var>X</var>] doc-stage-1  <em>## to build only PDF documentation</em>
+</pre></blockquote>
+
+</li><li>
+Edit/compile cycle:
+
+<blockquote><pre class="example"><em>## edit source files, then&hellip;</em>
+
+make [-j<var>X</var>]                  <em>## needed if editing outside</em>
+                            <em>##   Documentation/, but useful anyway</em>
+                            <em>##   for finding Texinfo errors.</em>
+make [-j<var>X</var> CPU_COUNT=<var>X</var>] doc  <em>## usually faster than initial build.</em>
+</pre></blockquote>
+
+</li><li>
+Reset:
+
+<p>It is generally possible to remove the compiled documentation from
+your system
+with &lsquo;<samp>make&nbsp;doc-clean</samp>&rsquo;, but this method is not 100%
+guaranteed.  Instead, if you want to be sure you have a clean
+system, we recommend that you delete your
+&lsquo;<tt>build/</tt>&rsquo; directory, and begin compiling from scratch.  Since
+the documentation compile takes much longer than the
+non-documentation compile, this does not increase the overall time
+by a great deal.
+</p>
+</li></ul>
+
+<hr size="6">
+<a name="Building-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#documentation-editor_0027s-edit_002fcompile-cycle" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Documentation editor's edit/compile cycle&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#building-a-single-document" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Building a single document &gt; </a>]</td></tr></table>
+<a name="building-documentation"></a>
+<h4 class="unnumberedsubsubsec">Building documentation</h4>
+
+<p>After a successful compile (using <code>make</code>), the
+documentation can be built by issuing:
+</p>
+<blockquote><pre class="example">make doc
+</pre></blockquote>
+
+<p>or, to build only the PDF documentation and not the HTML,
+</p>
+<blockquote><pre class="example">make doc-stage-1
+</pre></blockquote>
+
+<div class="warning"><p><strong>Note:</strong> The first time you run <code>make&nbsp;doc</code>, the
+process can easily take an hour or more with not much output
+on the command line.
+</p>
+</div>
+<p>After this initial build, <code>make&nbsp;doc</code> only makes
+changes to the documentation where needed, so it may only take
+a minute or two to test changes if the documentation is already
+built.
+</p>
+<p>If <code>make&nbsp;doc</code> succeeds, the HTML documentation tree
+is available in &lsquo;<tt>out-www/offline-root/</tt>&rsquo;, and can be browsed
+locally.  Various portions of the documentation can be found by
+looking in &lsquo;<tt>out/</tt>&rsquo; and &lsquo;<tt>out-www</tt>&rsquo; subdirectories in other
+places in the source tree, but these are only <em>portions</em> of
+the docs.  Please do not complain about anything which is broken
+in those places; the only complete set of documentation is in
+&lsquo;<tt>out-www/offline-root/</tt>&rsquo; from the top of the source tree.
+</p>
+<p><code>make&nbsp;doc</code> sends the output from most of the
+compilation to logfiles.  If the build fails for any reason, it
+should prompt you with the name of a logfile which will provide
+information to help you work out why the build failed.  These
+logfiles are not deleted with <code>make&nbsp;doc-clean</code>.  To
+remove all the logfiles generated by the compilation process, use:
+</p>
+<blockquote><pre class="example">make log-clean
+</pre></blockquote>
+
+<p><code>make&nbsp;doc</code> compiles the documents for all languages.  To
+save some compile time, the English language documents can be
+compiled on their own with:
+</p>
+<blockquote><pre class="example">make LANGS='' doc
+</pre></blockquote>
+
+<p>Similarly, it is possible to compile a subset of the
+translated documentation by specifying their language codes on the
+command line.  For example, the French and German translations are
+compiled with:
+</p>
+<blockquote><pre class="example">make LANGS='de fr' doc
+</pre></blockquote>
+
+<p>Note that this will also compile the English version.
+</p>
+<p>Compilation of documentation in Info format with images can be
+done separately by issuing:
+</p>
+<blockquote><pre class="example">make info
+</pre></blockquote>
+
+<p>An issue when switching branches between master and translation
+is the appearance/disappearance of translated versions of some manuals.
+If you see such a warning from make:
+</p>
+<blockquote><pre class="example">No rule to make target `X', needed by `Y'
+</pre></blockquote>
+
+<p>Your best bet is to delete the file Y.dep and to try again.
+</p>
+<hr size="6">
+<a name="Building-a-single-document"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#building-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#saving-time-with-cpu_005fcount" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Saving time with CPU_COUNT &gt; </a>]</td></tr></table>
+<a name="building-a-single-document"></a>
+<h4 class="unnumberedsubsubsec">Building a single document</h4>
+<p>It&rsquo;s possible to build a single document.  For example, to rebuild
+only &lsquo;<tt>contributor.pdf</tt>&rsquo;, do the following:
+</p>
+<blockquote><pre class="example">cd build/
+cd Documentation/
+touch ../../Documentation/contributor.texi
+make out=www out-www/contributor.pdf
+</pre></blockquote>
+
+<p>If you are only working on a single document, test-building it in
+this way can give substantial time savings - recreating
+&lsquo;<tt>contributor.pdf</tt>&rsquo;, for example, takes a matter of seconds.
+</p>
+<hr size="6">
+<a name="Saving-time-with-CPU_005fCOUNT"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#building-a-single-document" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building a single document&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ajax-search" title="Next section in reading order" accesskey="n" rel="next">&nbsp;AJAX search &gt; </a>]</td></tr></table>
+<a name="saving-time-with-cpu_005fcount"></a>
+<h4 class="unnumberedsubsubsec">Saving time with <code>CPU_COUNT</code></h4>
+
+<p>The most time consuming task for building the documentation is
+running LilyPond to build images of music, and there cannot be
+several simultaneously running <code>lilypond-book</code> instances,
+so the &lsquo;<samp>-j</samp>&rsquo; <code>make</code> option does not significantly
+speed up the build process.  To help speed it up, the makefile
+variable &lsquo;<samp>CPU_COUNT</samp>&rsquo; may be set in &lsquo;<tt>local.make</tt>&rsquo; or on
+the command line to the number of <code>.ly</code> files that LilyPond
+should process simultaneously, e.g. on a bi-processor or dual core
+machine:
+</p>
+<blockquote><pre class="example">make -j3 CPU_COUNT=3 doc
+</pre></blockquote>
+
+<p>The recommended value of &lsquo;<samp>CPU_COUNT</samp>&rsquo; is one plus the number
+of cores or processors, but it is advisable to set it to a smaller
+value unless your system has enough RAM to run that many
+simultaneous LilyPond instances.  Also, values for the &lsquo;<samp>-j</samp>&rsquo;
+option that pose problems with &lsquo;<samp>make</samp>&rsquo; are less likely to pose
+problems with &lsquo;<samp>make doc</samp>&rsquo; (this applies to both &lsquo;<samp>-j</samp>&rsquo;
+and &lsquo;<samp>CPU_COUNT</samp>&rsquo;).  For example, with a quad-core processor,
+it is possible for &lsquo;<samp>make -j5 CPU_COUNT=5 doc</samp>&rsquo; to work
+consistently even if &lsquo;<samp>make -j5</samp>&rsquo; rarely succeeds.
+</p>
+
+<hr size="6">
+<a name="AJAX-search"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#saving-time-with-cpu_005fcount" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Saving time with CPU_COUNT&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#installing-documentation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Installing documentation &gt; </a>]</td></tr></table>
+<a name="ajax-search"></a>
+<h4 class="unnumberedsubsubsec">AJAX search</h4>
+
+<p>To build the documentation with interactive searching, use:
+</p>
+<blockquote><pre class="example">make doc AJAX_SEARCH=1
+</pre></blockquote>
+
+<p>This requires PHP, and you must view the docs via a http
+connection (you cannot view them on your local filesystem).
+</p>
+<div class="warning"><p><strong>Note:</strong> Due to potential security or load issues, this option is
+not enabled in the official documentation builds.  Enable at your
+own risk.
+</p>
+</div>
+
+<hr size="6">
+<a name="Installing-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ajax-search" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; AJAX search&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#building-documentation-without-compiling" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Building documentation without compiling &gt; </a>]</td></tr></table>
+<a name="installing-documentation"></a>
+<h4 class="unnumberedsubsubsec">Installing documentation</h4>
+
+<p>The HTML, PDF and if available Info files can be installed into
+the standard documentation path by issuing
+</p>
+<blockquote><pre class="example">make install-doc
+</pre></blockquote>
+
+<p>This also installs Info documentation with images if the
+installation prefix is properly set; otherwise, instructions to
+complete proper installation of Info documentation are printed on
+standard output.
+</p>
+<p>To install the Info documentation separately, run:
+</p>
+<blockquote><pre class="example">make install-info
+</pre></blockquote>
+
+<p>Note that to get the images in Info documentation, <code>install-doc</code>
+target creates symbolic links to HTML and PDF installed documentation
+tree in &lsquo;<tt><var>prefix</var>/share/info</tt>&rsquo;, in order to save disk space,
+whereas <code>install-info</code> copies images in
+&lsquo;<tt><var>prefix</var>/share/info</tt>&rsquo; subdirectories.
+</p>
+<p>It is possible to build a documentation tree in
+&lsquo;<tt>out-www/online-root/</tt>&rsquo;, with special processing, so it can be
+used on a website with content negotiation for automatic language
+selection; this can be achieved by issuing
+</p>
+<blockquote><pre class="example">make WEB_TARGETS=online doc
+</pre></blockquote>
+
+<p>and both &lsquo;offline&rsquo; and &lsquo;online&rsquo; targets can be generated by issuing
+</p>
+<blockquote><pre class="example">make WEB_TARGETS=&quot;offline online&quot; doc
+</pre></blockquote>
+
+<p>Several targets are available to clean the documentation build and
+help with maintaining documentation; an overview of these targets is
+available with
+</p>
+<blockquote><pre class="example">make help
+</pre></blockquote>
+
+<p>from every directory in the build tree.  Most targets for
+documentation maintenance are available from
+&lsquo;<tt>Documentation/</tt>&rsquo;; for more information, see
+<a name="index-Documentation-work-1"></a>
+<a href="../contributor/documentation-work.html">Documentation work</a>.
+</p>
+<p>The makefile variable <code>QUIET_BUILD</code> may be set to <code>1</code>
+for a less verbose build output, just like for building the
+programs.
+</p>
+
+<hr size="6">
+<a name="Building-documentation-without-compiling"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#installing-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Installing documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="testing-lilypond-binary.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Testing LilyPond binary &gt; </a>]</td></tr></table>
+<a name="building-documentation-without-compiling"></a>
+<h4 class="unnumberedsubsubsec">Building documentation without compiling</h4>
+
+
+<p>The documentation can be built locally without compiling LilyPond
+binary, if LilyPond is already installed on your system.
+</p>
+<p>From a fresh Git checkout, do
+</p>
+<blockquote><pre class="example">./autogen.sh   # ignore any warning messages
+cp GNUmakefile.in GNUmakefile
+make -C scripts &amp;&amp; make -C python
+nice make LILYPOND_EXTERNAL_BINARY=/path/to/bin/lilypond doc
+</pre></blockquote>
+
+<p>Please note that this may break sometimes &ndash; for example, if a new
+feature is added with a test file in input/regression, even the latest
+development release of LilyPond will fail to build the docs.
+</p>
+<p>You may build the manual without building all the &lsquo;<tt>input/*</tt>&rsquo; stuff
+(i.e. mostly regression tests): change directory, for example to
+&lsquo;<tt>Documentation/</tt>&rsquo;, issue <code>make doc</code>, which will build
+documentation in a subdirectory &lsquo;<tt>out-www</tt>&rsquo; from the source files in
+current directory.  In this case, if you also want to browse the
+documentation in its post-processed form, change back to top directory
+and issue
+</p>
+<blockquote><pre class="example">make out=www WWW-post
+</pre></blockquote>
+
+<a name="Known-issues-and-warnings"></a>
+<h4 class="subsubheading">Known issues and warnings</h4>
+
+<p>You may also need to create a script for <code>pngtopnm</code> and
+<code>pnmtopng</code>.  On GNU/Linux, I use this:
+</p>
+<pre class="verbatim">export LD_LIBRARY_PATH=/usr/lib
+exec /usr/bin/pngtopnm &quot;$@&quot;
+</pre>
+<p>On MacOS X with fink, I use this:
+</p>
+<pre class="verbatim">export DYLD_LIBRARY_PATH=/sw/lib
+exec /sw/bin/pngtopnm &quot;$@&quot;
+</pre>
+<p>On MacOS X with macports, you should use this:
+</p>
+<pre class="verbatim">export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib
+exec /opt/local/bin/pngtopnm &quot;$@&quot;
+</pre>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="compiling.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="documentation-work.html" title="Next chapter">&nbsp;Documentation work &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#installing-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Installing documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="testing-lilypond-binary.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Testing LilyPond binary &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Contributor&rsquo;s Guide  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Introduction-to-contributing-1" href="introduction-to-contributing.html">1. Introduction to contributing</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Help-us-1" href="help-us.html">1.1 Help us</a>    </li>
+    <li class=""><a name="toc-Overview-of-work-flow-1" href="overview-of-work-flow.html">1.2 Overview of work flow</a>    </li>
+    <li class=""><a name="toc-Summary-for-experienced-developers-1" href="summary-for-experienced-developers.html">1.3 Summary for experienced developers</a>    </li>
+    <li class=""><a name="toc-Mentors-1" href="mentors.html">1.4 Mentors</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Quick-start-1" href="quick-start.html">2. Quick start</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyDev-1" href="lilydev.html">2.1 LilyDev</a>    </li>
+    <li class=""><a name="toc-lily_002dgit-1" href="lily_002dgit.html">2.2 lily-git</a>    </li>
+    <li class=""><a name="toc-Compiling-with-LilyDev-1" href="compiling-with-lilydev.html">2.3 Compiling with LilyDev</a>    </li>
+    <li class=""><a name="toc-Now-start-work_0021-1" href="now-start-work_0021.html">2.4 Now start work!</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Working-with-source-code-1" href="working-with-source-code.html">3. Working with source code</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Manually-installing-lily_002dgit_002etcl-1" href="manually-installing-lily_002dgit_002etcl.html">3.1 Manually installing lily-git.tcl</a>    </li>
+    <li class=""><a name="toc-Starting-with-Git-1" href="starting-with-git.html">3.2 Starting with Git</a>    </li>
+    <li class=""><a name="toc-Basic-Git-procedures-1" href="basic-git-procedures.html">3.3 Basic Git procedures</a>    </li>
+    <li class=""><a name="toc-Advanced-Git-procedures-1" href="advanced-git-procedures.html">3.4 Advanced Git procedures</a>    </li>
+    <li class=""><a name="toc-Git-on-Windows-1" href="git-on-windows.html">3.5 Git on Windows</a>    </li>
+    <li class=""><a name="toc-Repository-directory-structure-1" href="repository-directory-structure.html">3.6 Repository directory structure</a>    </li>
+    <li class=""><a name="toc-Other-Git-documentation-1" href="other-git-documentation.html">3.7 Other Git documentation</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Compiling-1" href="compiling.html">4. Compiling</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Overview-of-compiling-1" href="overview-of-compiling.html">4.1 Overview of compiling</a>    </li>
+    <li class=""><a name="toc-Requirements-1" href="requirements.html">4.2 Requirements</a>    </li>
+    <li class=""><a name="toc-Getting-the-source-code-1" href="getting-the-source-code.html">4.3 Getting the source code</a>    </li>
+    <li class=""><a name="toc-Configuring-make-1" href="configuring-make.html">4.4 Configuring <code>make</code></a>    </li>
+    <li class=""><a name="toc-Compiling-LilyPond-1" href="compiling-lilypond.html">4.5 Compiling LilyPond</a>    </li>
+    <li class=" toc_current"><a name="toc-Post_002dcompilation-options-1" href="post_002dcompilation-options.html">4.6 Post-compilation options</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Installing-LilyPond-from-a-local-build-1" href="installing-lilypond-from-a-local-build.html">4.6.1 Installing LilyPond from a local build</a>      </li>
+      <li class=" toc_current"><a name="toc-Generating-documentation-1" href="generating-documentation.html">4.6.2 Generating documentation</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Documentation-editor_0027s-edit_002fcompile-cycle-1" href="generating-documentation.html#documentation-editor_0027s-edit_002fcompile-cycle">Documentation editor&rsquo;s edit/compile cycle</a>        </li>
+        <li class=""><a name="toc-Building-documentation-1" href="generating-documentation.html#building-documentation">Building documentation</a>        </li>
+        <li class=""><a name="toc-Building-a-single-document-1" href="generating-documentation.html#building-a-single-document">Building a single document</a>        </li>
+        <li class=""><a name="toc-Saving-time-with-CPU_005fCOUNT-1" href="generating-documentation.html#saving-time-with-cpu_005fcount">Saving time with <code>CPU_COUNT</code></a>        </li>
+        <li class=""><a name="toc-AJAX-search-1" href="generating-documentation.html#ajax-search">AJAX search</a>        </li>
+        <li class=""><a name="toc-Installing-documentation-1" href="generating-documentation.html#installing-documentation">Installing documentation</a>        </li>
+        <li class=""><a name="toc-Building-documentation-without-compiling-1" href="generating-documentation.html#building-documentation-without-compiling">Building documentation without compiling</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Testing-LilyPond-binary-1" href="testing-lilypond-binary.html">4.6.3 Testing LilyPond binary</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Problems-1" href="problems.html">4.7 Problems</a>    </li>
+    <li class=""><a name="toc-Concurrent-stable-and-development-versions-1" href="concurrent-stable-and-development-versions.html">4.8 Concurrent stable and development versions</a>    </li>
+    <li class=""><a name="toc-Build-system-1" href="build-system.html">4.9 Build system</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Documentation-work-1" href="documentation-work.html">5. Documentation work</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-documentation-work-1" href="introduction-to-documentation-work.html">5.1 Introduction to documentation work</a>    </li>
+    <li class=""><a name="toc-_005cversion-in-documentation-files" href="version-in-documentation-files.html">5.2 <code>\version</code> in documentation files</a>    </li>
+    <li class=""><a name="toc-Documentation-suggestions-1" href="documentation-suggestions.html">5.3 Documentation suggestions</a>    </li>
+    <li class=""><a name="toc-Texinfo-introduction-and-usage-policy-1" href="texinfo-introduction-and-usage-policy.html">5.4 Texinfo introduction and usage policy</a>    </li>
+    <li class=""><a name="toc-Documentation-policy-1" href="documentation-policy.html">5.5 Documentation policy</a>    </li>
+    <li class=""><a name="toc-Tips-for-writing-docs-1" href="tips-for-writing-docs.html">5.6 Tips for writing docs</a>    </li>
+    <li class=""><a name="toc-Scripts-to-ease-doc-work-1" href="scripts-to-ease-doc-work.html">5.7 Scripts to ease doc work</a>    </li>
+    <li class=""><a name="toc-Docstrings-in-scheme-1" href="docstrings-in-scheme.html">5.8 Docstrings in scheme</a>    </li>
+    <li class=""><a name="toc-Translating-the-documentation-1" href="translating-the-documentation.html">5.9 Translating the documentation</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Website-work-1" href="website-work.html">6. Website work</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-website-work-1" href="introduction-to-website-work.html">6.1 Introduction to website work</a>    </li>
+    <li class=""><a name="toc-Uploading-and-security-1" href="uploading-and-security.html">6.2 Uploading and security</a>    </li>
+    <li class=""><a name="toc-Debugging-website-and-docs-locally-1" href="debugging-website-and-docs-locally.html">6.3 Debugging website and docs locally</a>    </li>
+    <li class=""><a name="toc-Translating-the-website-1" href="translating-the-website.html">6.4 Translating the website</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LSR-work-1" href="lsr-work.html">7. LSR work</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-LSR-1" href="introduction-to-lsr.html">7.1 Introduction to LSR</a>    </li>
+    <li class=""><a name="toc-Adding-and-editing-snippets-1" href="adding-and-editing-snippets.html">7.2 Adding and editing snippets</a>    </li>
+    <li class=""><a name="toc-Approving-snippets-1" href="approving-snippets.html">7.3 Approving snippets</a>    </li>
+    <li class=""><a name="toc-LSR-to-Git-1" href="lsr-to-git.html">7.4 LSR to Git</a>    </li>
+    <li class=""><a name="toc-Fixing-snippets-in-LilyPond-sources-1" href="fixing-snippets-in-lilypond-sources.html">7.5 Fixing snippets in LilyPond sources</a>    </li>
+    <li class=""><a name="toc-Renaming-a-snippet-1" href="renaming-a-snippet.html">7.6 Renaming a snippet</a>    </li>
+    <li class=""><a name="toc-Updating-the-LSR-to-a-new-version-1" href="updating-the-lsr-to-a-new-version.html">7.7 Updating the LSR to a new version</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Issues-1" href="issues.html">8. Issues</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-issues-1" href="introduction-to-issues.html">8.1 Introduction to issues</a>    </li>
+    <li class=""><a name="toc-The-Bug-Squad-1" href="the-bug-squad.html">8.2 The Bug Squad</a>    </li>
+    <li class=""><a name="toc-Issue-classification-1" href="issue-classification.html">8.3 Issue classification</a>    </li>
+    <li class=""><a name="toc-Adding-issues-to-the-tracker-1" href="adding-issues-to-the-tracker.html">8.4 Adding issues to the tracker</a>    </li>
+    <li class=""><a name="toc-Patch-handling-1" href="patch-handling.html">8.5 Patch handling</a>    </li>
+    <li class=""><a name="toc-Summary-of-project-status-1" href="summary-of-project-status.html">8.6 Summary of project status</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Regression-tests-1" href="regression-tests.html">9. Regression tests</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-regression-tests-1" href="introduction-to-regression-tests.html">9.1 Introduction to regression tests</a>    </li>
+    <li class=""><a name="toc-Precompiled-regression-tests-1" href="precompiled-regression-tests.html">9.2 Precompiled regression tests</a>    </li>
+    <li class=""><a name="toc-Compiling-regression-tests-1" href="compiling-regression-tests.html">9.3 Compiling regression tests</a>    </li>
+    <li class=""><a name="toc-Regtest-comparison-1" href="regtest-comparison.html">9.4 Regtest comparison</a>    </li>
+    <li class=""><a name="toc-Pixel_002dbased-regtest-comparison-1" href="pixel_002dbased-regtest-comparison.html">9.5 Pixel-based regtest comparison</a>    </li>
+    <li class=""><a name="toc-Finding-the-cause-of-a-regression-1" href="finding-the-cause-of-a-regression.html">9.6 Finding the cause of a regression</a>    </li>
+    <li class=""><a name="toc-Memory-and-coverage-tests-1" href="memory-and-coverage-tests.html">9.7 Memory and coverage tests</a>    </li>
+    <li class=""><a name="toc-MusicXML-tests-1" href="musicxml-tests.html">9.8 MusicXML tests</a>    </li>
+    <li class=""><a name="toc-Grand-Regression-Test-Checking-1" href="grand-regression-test-checking.html">9.9 Grand Regression Test Checking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Programming-work-1" href="programming-work.html">10. Programming work</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Overview-of-LilyPond-architecture-1" href="overview-of-lilypond-architecture.html">10.1 Overview of LilyPond architecture</a>    </li>
+    <li class=""><a name="toc-LilyPond-programming-languages-1" href="lilypond-programming-languages.html">10.2 LilyPond programming languages</a>    </li>
+    <li class=""><a name="toc-Programming-without-compiling-1" href="programming-without-compiling.html">10.3 Programming without compiling</a>    </li>
+    <li class=""><a name="toc-Finding-functions-1" href="finding-functions.html">10.4 Finding functions</a>    </li>
+    <li class=""><a name="toc-Code-style-1" href="code-style.html">10.5 Code style</a>    </li>
+    <li class=""><a name="toc-Warnings_002c-Errors_002c-Progress-and-Debug-Output" href="warnings-errors-progress-and-debug-output.html">10.6 Warnings, Errors, Progress and Debug Output</a>    </li>
+    <li class=""><a name="toc-Debugging-LilyPond-1" href="debugging-lilypond.html">10.7 Debugging LilyPond</a>    </li>
+    <li class=""><a name="toc-Tracing-object-relationships-1" href="tracing-object-relationships.html">10.8 Tracing object relationships</a>    </li>
+    <li class=""><a name="toc-Adding-or-modifying-features-1" href="adding-or-modifying-features.html">10.9 Adding or modifying features</a>    </li>
+    <li class=""><a name="toc-Iterator-tutorial-1" href="iterator-tutorial.html">10.10 Iterator tutorial</a>    </li>
+    <li class=""><a name="toc-Engraver-tutorial-1" href="engraver-tutorial.html">10.11 Engraver tutorial</a>    </li>
+    <li class=""><a name="toc-Callback-tutorial-1" href="callback-tutorial.html">10.12 Callback tutorial</a>    </li>
+    <li class=""><a name="toc-Understanding-pure-properties-1" href="understanding-pure-properties.html">10.13 Understanding pure properties</a>    </li>
+    <li class=""><a name="toc-LilyPond-scoping-1" href="lilypond-scoping.html">10.14 LilyPond scoping</a>    </li>
+    <li class=""><a name="toc-Scheme_002d_003eC-interface-1" href="scheme_002d_003ec-interface.html">10.15 Scheme-&gt;C interface</a>    </li>
+    <li class=""><a name="toc-LilyPond-miscellany-1" href="lilypond-miscellany.html">10.16 LilyPond miscellany</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Release-work-1" href="release-work.html">11. Release work</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Development-phases-1" href="development-phases.html">11.1 Development phases</a>    </li>
+    <li class=""><a name="toc-Minor-release-checklist-1" href="minor-release-checklist.html">11.2 Minor release checklist</a>    </li>
+    <li class=""><a name="toc-Major-release-checklist-1" href="major-release-checklist.html">11.3 Major release checklist</a>    </li>
+    <li class=""><a name="toc-Release-extra-notes-1" href="release-extra-notes.html">11.4 Release extra notes</a>    </li>
+    <li class=""><a name="toc-Notes-on-builds-with-GUB-1" href="notes-on-builds-with-gub.html">11.5 Notes on builds with GUB</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Build-system-notes-1" href="build-system-notes.html">12. Build system notes</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Build-system-overview-1" href="build-system-overview.html">12.1 Build system overview</a>    </li>
+    <li class=""><a name="toc-Tips-for-working-on-the-build-system-1" href="tips-for-working-on-the-build-system.html">12.2 Tips for working on the build system</a>    </li>
+    <li class=""><a name="toc-General-build-system-notes-1" href="general-build-system-notes.html">12.3 General build system notes</a>    </li>
+    <li class=""><a name="toc-Doc-build-1" href="doc-build.html">12.4 Doc build</a>    </li>
+    <li class=""><a name="toc-Website-build-1" href="website-build.html">12.5 Website build</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modifying-the-feta-font-1" href="modifying-the-feta-font.html">13. Modifying the feta font</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Overview-of-the-feta-font-1" href="overview-of-the-feta-font.html">13.1 Overview of the feta font</a>    </li>
+    <li class=""><a name="toc-Font-creation-tools-1" href="font-creation-tools.html">13.2 Font creation tools</a>    </li>
+    <li class=""><a name="toc-Adding-a-new-font-section-1" href="adding-a-new-font-section.html">13.3 Adding a new font section</a>    </li>
+    <li class=""><a name="toc-Adding-a-new-glyph-1" href="adding-a-new-glyph.html">13.4 Adding a new glyph</a>    </li>
+    <li class=""><a name="toc-Building-the-changed-font-1" href="building-the-changed-font.html">13.5 Building the changed font</a>    </li>
+    <li class=""><a name="toc-METAFONT-formatting-rules-1" href="metafont-formatting-rules.html">13.6 METAFONT formatting rules</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Administrative-policies-1" href="administrative-policies.html">14. Administrative policies</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Meta_002dpolicy-for-this-document-1" href="meta_002dpolicy-for-this-document.html">14.1 Meta-policy for this document</a>    </li>
+    <li class=""><a name="toc-Environment-variables-1" href="environment-variables.html">14.2 Environment variables</a>    </li>
+    <li class=""><a name="toc-Meisters-1" href="meisters.html">14.3 Meisters</a>    </li>
+    <li class=""><a name="toc-Managing-Staging-and-Master-branches-with-Patchy-1" href="managing-staging-and-master-branches-with-patchy.html">14.4 Managing Staging and Master branches with Patchy</a>    </li>
+    <li class=""><a name="toc-Administrative-mailing-list-1" href="administrative-mailing-list.html">14.5 Administrative mailing list</a>    </li>
+    <li class=""><a name="toc-Grand-Organization-Project-_0028GOP_0029-1" href="grand-organization-project-_0028gop_0029.html">14.6 Grand Organization Project (GOP)</a>    </li>
+    <li class=""><a name="toc-Grand-LilyPond-Input-Syntax-Standardization-_0028GLISS_0029-1" href="grand-lilypond-input-syntax-standardization-_0028gliss_0029.html">14.7 Grand LilyPond Input Syntax Standardization (GLISS)</a>    </li>
+    <li class=""><a name="toc-Unsorted-policies-1" href="unsorted-policies.html">14.8 Unsorted policies</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-grammar-1" href="lilypond-grammar.html">A. LilyPond grammar</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">B. GNU Free Documentation License</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

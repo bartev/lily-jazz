@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 4.6.1 Moving objects</title>
+
+<meta name="description" content="LilyPond Learning Manual: 4.6.1 Moving objects">
+<meta name="keywords" content="LilyPond Learning Manual: 4.6.1 Moving objects">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.hu.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="About This Document">
+<link href="collisions-of-objects.hu.html#collisions-of-objects" rel="up" title="4.6 Collisions of objects">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="collisions-of-objects.hu.html#collisions-of-objects" rel="previous" title="4.6 Collisions of objects">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Moving-objects"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="collisions-of-objects.hu.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Collisions of objects&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.hu.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Collisions of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fixing-overlapping-notation.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Fixing overlapping notation &gt; </a>]</td></tr></table>
+<a name="moving-objects"></a>
+<h3 class="subsection">4.6.1 Moving objects</h3>
+
+<a name="index-moving-overlapping-objects"></a>
+<a name="index-moving-colliding-objects"></a>
+<a name="index-moving-colliding-grobs"></a>
+<a name="index-objects_002c-moving-colliding"></a>
+<a name="index-grobs_002c-moving-colliding"></a>
+
+<p>This may come as a surprise, but LilyPond is not perfect.  Some
+notation elements can overlap.  This is unfortunate, but in fact
+rather rare.  Usually the need to move objects is for clarity or
+aesthetic reasons &ndash; they would look better with a little more
+or a little less space around them.
+</p>
+<p>There are three main approaches to resolving overlapping
+notation.  They should be considered in the following order:
+</p>
+<ol>
+<li>
+The <strong>direction</strong> of one of the overlapping objects may
+be changed using the predefined commands listed above for
+within-staff objects (see <a href="within_002dstaff-objects.hu.html">Within-staff objects</a>).
+Stems, slurs, beams, ties, dynamics, text and tuplets may be
+repositioned easily in this way.  The limitation is that you
+have a choice of only two positions, and neither may be
+suitable.
+
+</li><li>
+The <strong>object properties</strong>, which LilyPond uses when positioning
+layout objects, may be modified using <code>\override</code>.  The
+advantages of making changes to this type of property are (a) that
+some other objects will be moved automatically if necessary to make
+room and (b) the single override can apply to all instances of the
+same type of object.  Such properties include:
+
+<ul>
+<li>
+<code>direction</code>
+
+<p>This has already been covered in some detail &ndash; see
+<a href="within_002dstaff-objects.hu.html">Within-staff objects</a>.
+</p>
+</li><li>
+<code>padding</code>, <code>right-padding</code>, <code>staff-padding</code>
+
+<a name="index-padding"></a>
+<a name="index-padding-property"></a>
+<a name="index-right_002dpadding-property"></a>
+<a name="index-staff_002dpadding-property"></a>
+
+<p>As an object is being positioned the value of its <code>padding</code>
+property specifies the gap that must be left between itself and the
+nearest edge of the object against which it is being positioned.  Note
+that it is the <code>padding</code> value of the object <strong>being
+placed</strong> that is used; the <code>padding</code> value of the object which is
+already placed is ignored.  Gaps specified by <code>padding</code> can be
+applied to all objects which support the
+<code>side-position-interface</code>.
+</p>
+<p>Instead of <code>padding</code>, the placement of groups of accidentals
+is controlled by <code>right-padding</code>.  This property is to be found
+in the <code>AccidentalPlacement</code> object which, note, lives in the
+<strong>Staff</strong> context.  In the typesetting process the note heads
+are typeset first and then the accidentals, if any, are added to the
+left of the note heads using the <code>right-padding</code> property to determine
+the separation from the note heads and between individual accidentals.
+So only the <code>right-padding</code> property of the <code>AccidentalPlacement</code>
+object has any effect on the placement of the accidentals.
+</p>
+<p>The <code>staff-padding</code> property is closely related to the
+<code>padding</code> property: <code>padding</code> controls the minimum amount of
+space between any object which supports the
+<code>side-position-interface</code> and the nearest other object (generally
+the note or the staff lines); <code>staff-padding</code> applies only to
+those objects which are always set outside the staff &ndash; it controls
+the minimum distance from the staff to the outside-staff object.
+Note that <code>staff-padding</code> has no effect on
+objects that are positioned relative to the note rather than the
+staff, even though it may be overridden without error for such objects
+&ndash; it is simply ignored.
+</p>
+<p>To discover which padding property is required for the object you wish
+to reposition, you need to return to the IR and look up the object&rsquo;s
+properties.  Be aware that the padding properties might not be located
+in the obvious object, so look in objects that appear to be related.
+</p>
+<p>All padding values are measured in staff spaces.  For most
+objects, this value is set by default to be around 1.0 or less
+(it varies with each object).  It may be overridden if a larger
+(or smaller) gap is required.
+</p>
+</li><li>
+<code>self-alignment-X</code>
+
+<a name="index-self_002dalignment_002dX-property"></a>
+
+<p>This property can be used to align the object to the left, to
+the right, or to center it with respect to the parent object&rsquo;s
+reference point.  It may be used with all objects which support
+the <code>self-alignment-interface</code>.  In general these are objects
+that contain text.  The values are <code>LEFT</code>, <code>RIGHT</code>
+or <code>CENTER</code>.  Alternatively, a numerical value between
+<code>-1</code> and <code>+1</code> may be specified, where <code>-1</code> is
+left-aligned, <code>+1</code> is right-aligned, and numbers in between
+move the text progressively from left-aligned to right-aligned.
+Numerical values greater than <code>1</code> may be specified to move
+the text even further to the left, or less than <code>-1</code> to
+move the text even further to the right.  A change of <code>1</code>
+in the value corresponds to a movement of half the text&rsquo;s length.
+</p>
+</li><li>
+<code>extra-spacing-width</code>
+
+<a name="index-extra_002dspacing_002dwidth-property"></a>
+
+<p>This property is available for all objects which support the
+<code>item-interface</code>.  It takes two numbers, the first is added
+to the leftmost extent and the second is added to the rightmost
+extent.  Negative numbers move the edge to the left, positive to
+the right, so to widen an object the first number must be negative,
+the second positive.  Note that not all objects honor both
+numbers.  For example, the <code>Accidental</code> object only takes
+notice of the first (left edge) number.
+</p>
+</li><li>
+<code>staff-position</code>
+
+<a name="index-staff_002dposition-property"></a>
+
+<p><code>staff-position</code> is a property of the
+<code>staff-symbol-referencer-interface</code>, which is supported by
+objects which are positioned relative to the staff.  It specifies
+the vertical position of the object relative to the center line
+of the staff in half staff-spaces.  It is useful in resolving
+collisions between layout objects like multi-measure rests, ties
+and notes in different voices.
+</p>
+</li><li>
+<code>horizontal-shift</code>
+
+<a name="index-horizontal_002dshift-property"></a>
+<a name="index-note-column-1"></a>
+<a name="index-note-collisions-1"></a>
+<a name="index-collisions_002c-notes-1"></a>
+<a name="index-shift-commands-1"></a>
+<a name="index-_005cshiftOff-2"></a>
+<a name="index-_005cshiftOff-3"></a>
+<a name="index-shiftOff-2"></a>
+<a name="index-shiftOff-3"></a>
+<a name="index-_005cshiftOn-2"></a>
+<a name="index-_005cshiftOn-3"></a>
+<a name="index-shiftOn-2"></a>
+<a name="index-shiftOn-3"></a>
+<a name="index-_005cshiftOnn-2"></a>
+<a name="index-_005cshiftOnn-3"></a>
+<a name="index-shiftOnn-2"></a>
+<a name="index-shiftOnn-3"></a>
+<a name="index-_005cshiftOnnn-2"></a>
+<a name="index-_005cshiftOnnn-3"></a>
+<a name="index-shiftOnnn-2"></a>
+<a name="index-shiftOnnn-3"></a>
+
+<p>Within a voice, all the notes occuring at the same musical moment are
+grouped into a note column, and a <code>NoteColumn</code> object is created
+to control the horizontal positioning of that group of notes (see
+&ldquo;Note columns&rdquo; in <a href="explicitly-instantiating-voices.hu.html">Explicitly instantiating voices</a>).  If
+<em>and only if</em> two or more note columns within a single Staff
+context, both with stems in the same direction, occur at the same
+musical moment, the values of their <code>horizontal-shift</code> properties
+are used to rank them and the columns in the higher ranks are
+progessively offset to avoid collisions of the noteheads.  This
+property is set by the <code>\voiceXXX</code> commands and may be overridden
+directly with an <code>\override</code> command or, more usually, by the
+<code>\shiftOn</code> commands.  Note that this property is used to
+<em>rank</em> the note columns for off-setting - it does not specify the
+magnitude of the offset, which is progressively increased in steps
+based on the note head&rsquo;s width for each rank.  The steps are usually
+of half a note head&rsquo;s width, but may be a full note head&rsquo;s width when
+a closely spaced group of notes is involved.
+</p>
+</li><li>
+<code>force-hshift</code>
+
+<a name="index-force_002dhshift-property"></a>
+
+<p>The <code>force-hshift</code> property is a property of a <code>NoteColumn</code>
+(actually of the <code>note-column-interface</code>).  Changing it permits a
+note column to be moved in situations where the note columns overlap.
+Note that it has no effect on note columns that do not overlap.
+It is specified in units appropriate to a note column, viz. the note
+head width of the first voice note.  It should be used in complex
+situations where the normal <code>\shiftOn</code> commands (see
+<a href="explicitly-instantiating-voices.hu.html">Explicitly instantiating voices</a>) do not resolve the note
+conflict satisfactorily.  It is preferable to the <code>extra-offset</code>
+property for this purpose as there is no need to work out the distance
+in staff-spaces, and moving the notes into or out of a
+<code>NoteColumn</code> affects other actions such as merging note heads.
+</p>
+</li></ul>
+
+</li><li>
+Finally, when all else fails, objects may be manually repositioned
+relative to the staff center line vertically, or by displacing them by
+any distance to a new position.  The disadvantages are that the
+correct values for the repositioning have to be worked out, often by
+trial and error, for every object individually, and, because the
+movement is done after LilyPond has placed all other objects, the user
+is responsible for avoiding any collisions that might ensue.  But the
+main difficulty with this approach is that the repositioning values
+may need to be reworked if the music is later modified.  The
+properties that can be used for this type of manual repositioning are:
+
+<dl compact="compact">
+<dt> <code>extra-offset</code></dt>
+<dd>
+<a name="index-extra_002doffset-property"></a>
+
+<p>This property applies to any layout object supporting the
+<code>grob-interface</code>.  It takes a pair of numbers which specify the
+extra displacement in the horizontal and vertical directions.
+Negative numbers move the object to the left or down.  The units are
+staff-spaces.  The extra displacement is made after the typesetting of
+objects is finished, so an object may be repositioned anywhere without
+affecting anything else.
+</p>
+</dd>
+<dt> <code>positions</code></dt>
+<dd>
+<a name="index-positions-property"></a>
+
+<p>This is most useful for manually adjusting the slope and height
+of beams, slurs, and tuplets.  It takes a pair of numbers
+giving the position of the left and right ends of the beam, slur,
+etc. relative to the center line of the staff.  Units are
+staff-spaces.  Note, though, that slurs and phrasing slurs cannot
+be repositioned by arbitrarily large amounts.  LilyPond first
+generates a list of possible positions for the slur and by default
+finds the slur that &ldquo;looks best&rdquo;.  If the <code>positions</code>
+property has been overridden the slur that is closest to the
+requested positions is selected from the list.
+</p></dd>
+</dl>
+
+</li></ol>
+
+<p>A particular object may not have all of these properties.
+It is necessary to go to the IR to look up which properties
+are available for the object in question.
+</p>
+<p>Here is a list of the objects which are most likely to be
+involved in collisions, together with the name of the object which
+should be looked up in the IR in order to discover which properties
+should be used to move them.
+</p>
+<table>
+<thead><tr><th width="50%">Object type</th><th width="50%">Object name</th></tr></thead>
+<tr><td width="50%">Articulations</td><td width="50%"><code>Script</code></td></tr>
+<tr><td width="50%">Beams</td><td width="50%"><code>Beam</code></td></tr>
+<tr><td width="50%">Dynamics (vertically)</td><td width="50%"><code>DynamicLineSpanner</code></td></tr>
+<tr><td width="50%">Dynamics (horizontally)</td><td width="50%"><code>DynamicText</code></td></tr>
+<tr><td width="50%">Fingerings</td><td width="50%"><code>Fingering</code></td></tr>
+<tr><td width="50%">Rehearsal / Text marks</td><td width="50%"><code>RehearsalMark</code></td></tr>
+<tr><td width="50%">Slurs</td><td width="50%"><code>Slur</code></td></tr>
+<tr><td width="50%">Text e.g. <code>^&quot;text&quot;</code></td><td width="50%"><code>TextScript</code></td></tr>
+<tr><td width="50%">Ties</td><td width="50%"><code>Tie</code></td></tr>
+<tr><td width="50%">Tuplets</td><td width="50%"><code>TupletBracket</code></td></tr>
+</table>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="collisions-of-objects.hu.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Collisions of objects&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.hu.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Collisions of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="fixing-overlapping-notation.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Fixing overlapping notation &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="moving-objects.ca.html">català</a>, <a href="moving-objects.cs.html">česky</a>, <a href="moving-objects.de.html">deutsch</a>, <a href="moving-objects.es.html">español</a>, <a href="moving-objects.fr.html">français</a>, <a href="moving-objects.it.html">italiano</a>, <a href="moving-objects.ja.html">日本語</a>, <a href="moving-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.hu.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.hu.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.hu.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.hu.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.hu.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.hu.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.hu.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.hu.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.hu.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.hu.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.hu.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.hu.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.hu.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.hu.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.hu.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Tweaking-output-1" href="tweaking-output.hu.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.hu.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.hu.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.hu.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.hu.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.hu.html">4.5 Vertical spacing</a>    </li>
+    <li class=" toc_current"><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.hu.html">4.6 Collisions of objects</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Moving-objects-1" href="moving-objects.hu.html">4.6.1 Moving objects</a>      </li>
+      <li class=""><a name="toc-Fixing-overlapping-notation-1" href="fixing-overlapping-notation.hu.html">4.6.2 Fixing overlapping notation</a>      </li>
+      <li class=""><a name="toc-Real-music-example-1" href="real-music-example.hu.html">4.6.3 Real music example</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.hu.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.hu.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.hu.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.hu.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.hu.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.hu.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.hu.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.hu.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.hu.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.hu.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.hu.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

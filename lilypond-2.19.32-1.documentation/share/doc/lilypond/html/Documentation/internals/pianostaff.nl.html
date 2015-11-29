@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Internals Reference: 2.1.24 PianoStaff</title>
+
+<meta name="description" content="LilyPond Internals Reference: 2.1.24 PianoStaff">
+<meta name="keywords" content="LilyPond Internals Reference: 2.1.24 PianoStaff">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.nl.html#index" rel="start" title="GNU LilyPond &ndash; Internals Reference">
+<link href="indices.nl.html#indices" rel="index" title="A. Indices">
+<link href="index_toc.nl.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.nl.html#SEC_About" rel="help" title="About This Document">
+<link href="contexts.nl.html#contexts" rel="up" title="2.1 Contexts">
+<link href="indices.nl.html#indices" rel="next" title="A.2 Function index">
+<link href="petruccivoice.nl.html#petruccivoice" rel="previous" title="2.1.23 PetrucciVoice">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="internals devStatus">
+
+
+<div id="main">
+<a name="PianoStaff"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.nl.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="petruccivoice.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; PetrucciVoice&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="rhythmicstaff.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;RhythmicStaff &gt; </a>]</td></tr></table>
+<a name="pianostaff"></a>
+<h3 class="subsection">2.1.24 PianoStaff</h3>
+
+<p>Just like <code>GrandStaff</code>, but the staves are only removed
+together, never separately.
+</p>
+<p>This context also accepts commands for the following context(s):
+</p>
+<p>GrandStaff.
+</p>
+<p>This context creates the following layout object(s):
+</p>
+<p><a href="arpeggio.nl.html">Arpeggio</a>, <a href="instrumentname.nl.html">InstrumentName</a>, <a href="spanbar.nl.html">SpanBar</a>, <a href="spanbarstub.nl.html">SpanBarStub</a>, <a href="systemstartbar.nl.html">SystemStartBar</a>, <a href="systemstartbrace.nl.html">SystemStartBrace</a>, <a href="systemstartbracket.nl.html">SystemStartBracket</a>, <a href="systemstartsquare.nl.html">SystemStartSquare</a> and <a href="verticalalignment.nl.html">VerticalAlignment</a>.
+</p>
+<p>This context sets the following properties:
+</p>
+<ul>
+<li> Set grob-property <code>extra-spacing-width</code> in <a href="dynamictext.nl.html">DynamicText</a> to 
+<code>#f</code>.
+</li><li> Set translator property <code>instrumentName</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>instrumentName</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>localAlterations</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>shortInstrumentName</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>shortInstrumentName</code> to 
+<code>'()</code>.
+</li><li> Set translator property <code>systemStartDelimiter</code> to 
+<code>'SystemStartBrace</code>.
+</li><li> Set translator property <code>topLevelAlignment</code> to 
+<code>#f</code>.
+</li><li> Set translator property <code>topLevelAlignment</code> to 
+<code>#f</code>.
+</li></ul>
+
+
+<p>This is not a &lsquo;Bottom&rsquo; context; search for such a one will commence after creating an implicit context of type <a href="staff.nl.html">Staff</a>.
+</p>
+<p>Context PianoStaff can contain
+<a href="chordnames.nl.html">ChordNames</a>, <a href="drumstaff.nl.html">DrumStaff</a>, <a href="dynamics.nl.html">Dynamics</a>, <a href="figuredbass.nl.html">FiguredBass</a>, <a href="lyrics.nl.html">Lyrics</a>, <a href="rhythmicstaff.nl.html">RhythmicStaff</a>, <a href="staff.nl.html">Staff</a> and <a href="tabstaff.nl.html">TabStaff</a>.
+</p>
+<p>This context is built from the following engraver(s):
+</p><blockquote><dl compact="compact">
+<dt> <code><a href="instrument_005fname_005fengraver.nl.html">Instrument_name_engraver</a></code></dt>
+<dd><p>Create a system start text for instrument or vocal names.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>instrumentName</code> (markup)</dt>
+<dd><p>The name to print left of a staff.  The
+<code>instrumentName</code> property labels the staff in the first system, and
+the <code>shortInstrumentName</code> property labels following lines.
+</p>
+</dd>
+<dt> <code>shortInstrumentName</code> (markup)</dt>
+<dd><p>See <code>instrumentName</code>.
+</p>
+</dd>
+<dt> <code>shortVocalName</code> (markup)</dt>
+<dd><p>Name of a vocal line, short version.
+</p>
+</dd>
+<dt> <code>vocalName</code> (markup)</dt>
+<dd><p>Name of a vocal line.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="instrumentname.nl.html">InstrumentName</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="keep_005falive_005ftogether_005fengraver.nl.html">Keep_alive_together_engraver</a></code></dt>
+<dd><p>This engraver collects all <code>Hara_kiri_group_spanner</code>s that are created in contexts at or below its own.  These spanners are then tied together so that one will be removed only if all are removed.  For example, if a <code>StaffGroup</code> uses this engraver, then the staves in the group will all be visible as long as there is a note in at least one of them.
+</p>
+
+
+
+
+
+
+</dd>
+<dt> <code><a href="span_005farpeggio_005fengraver.nl.html">Span_arpeggio_engraver</a></code></dt>
+<dd><p>Make arpeggios that span multiple staves.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>connectArpeggios</code> (boolean)</dt>
+<dd><p>If set, connect arpeggios across
+piano staff.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="arpeggio.nl.html">Arpeggio</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="span_005fbar_005fengraver.nl.html">Span_bar_engraver</a></code></dt>
+<dd><p>Make cross-staff bar lines: It catches all normal bar lines and draws a single span bar across them.
+</p>
+
+
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="spanbar.nl.html">SpanBar</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="span_005fbar_005fstub_005fengraver.nl.html">Span_bar_stub_engraver</a></code></dt>
+<dd><p>Make stubs for span bars in all contexts that the span bars cross.
+</p>
+
+
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="spanbarstub.nl.html">SpanBarStub</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="system_005fstart_005fdelimiter_005fengraver.nl.html">System_start_delimiter_engraver</a></code></dt>
+<dd><p>Create a system start delimiter (i.e., a <code>SystemStartBar</code>, <code>SystemStartBrace</code>, <code>SystemStartBracket</code> or <code>SystemStartSquare</code> spanner).
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>systemStartDelimiter</code> (symbol)</dt>
+<dd><p>Which grob to make for the start
+of the system/staff?  Set to <code>SystemStartBrace</code>,
+<code>SystemStartBracket</code> or <code>SystemStartBar</code>.
+</p>
+</dd>
+<dt> <code>systemStartDelimiterHierarchy</code> (pair)</dt>
+<dd><p>A nested list, indicating
+the nesting of a start delimiters.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="systemstartbar.nl.html">SystemStartBar</a>, <a href="systemstartbrace.nl.html">SystemStartBrace</a>, <a href="systemstartbracket.nl.html">SystemStartBracket</a> and <a href="systemstartsquare.nl.html">SystemStartSquare</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="vertical_005falign_005fengraver.nl.html">Vertical_align_engraver</a></code></dt>
+<dd><p>Catch groups (staves, lyrics lines, etc.) and stack them vertically.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>alignAboveContext</code> (string)</dt>
+<dd><p>Where to insert newly created context in
+vertical alignment.
+</p>
+</dd>
+<dt> <code>alignBelowContext</code> (string)</dt>
+<dd><p>Where to insert newly created context in
+vertical alignment.
+</p>
+</dd>
+<dt> <code>hasAxisGroup</code> (boolean)</dt>
+<dd><p>True if the current context is contained
+in an axis group.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="verticalalignment.nl.html">VerticalAlignment</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="vertical_005falign_005fengraver.nl.html">Vertical_align_engraver</a></code></dt>
+<dd><p>Catch groups (staves, lyrics lines, etc.) and stack them vertically.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>alignAboveContext</code> (string)</dt>
+<dd><p>Where to insert newly created context in
+vertical alignment.
+</p>
+</dd>
+<dt> <code>alignBelowContext</code> (string)</dt>
+<dd><p>Where to insert newly created context in
+vertical alignment.
+</p>
+</dd>
+<dt> <code>hasAxisGroup</code> (boolean)</dt>
+<dd><p>True if the current context is contained
+in an axis group.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="verticalalignment.nl.html">VerticalAlignment</a>.
+</p>
+
+
+</dd>
+</dl>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.nl.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="petruccivoice.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; PetrucciVoice&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="rhythmicstaff.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;RhythmicStaff &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Deze pagina is voor LilyPond-2.19.32 (ontwikkelingstak).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.nl.html" title="Start of the manual">Internals Reference  v2.19.32 (ontwikkelingstak). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Music-definitions-1" href="music-definitions.nl.html">1. Music definitions</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Music-expressions-1" href="music-expressions.nl.html">1.1 Music expressions</a>    </li>
+    <li class=""><a name="toc-Music-classes-1" href="music-classes.nl.html">1.2 Music classes</a>    </li>
+    <li class=""><a name="toc-Music-properties-1" href="music-properties.nl.html">1.3 Music properties</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Translation-1" href="translation.nl.html">2. Translation</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Contexts-1" href="contexts.nl.html">2.1 Contexts</a>
+    <ul class="toc">
+      <li class=""><a name="toc-ChoirStaff-1" href="choirstaff.nl.html">2.1.1 ChoirStaff</a>      </li>
+      <li class=""><a name="toc-ChordNames-1" href="chordnames.nl.html">2.1.2 ChordNames</a>      </li>
+      <li class=""><a name="toc-CueVoice-1" href="cuevoice.nl.html">2.1.3 CueVoice</a>      </li>
+      <li class=""><a name="toc-Devnull-1" href="devnull.nl.html">2.1.4 Devnull</a>      </li>
+      <li class=""><a name="toc-DrumStaff-1" href="drumstaff.nl.html">2.1.5 DrumStaff</a>      </li>
+      <li class=""><a name="toc-DrumVoice-1" href="drumvoice.nl.html">2.1.6 DrumVoice</a>      </li>
+      <li class=""><a name="toc-Dynamics-1" href="dynamics.nl.html">2.1.7 Dynamics</a>      </li>
+      <li class=""><a name="toc-FiguredBass-1" href="figuredbass.nl.html">2.1.8 FiguredBass</a>      </li>
+      <li class=""><a name="toc-FretBoards-1" href="fretboards.nl.html">2.1.9 FretBoards</a>      </li>
+      <li class=""><a name="toc-Global-1" href="global.nl.html">2.1.10 Global</a>      </li>
+      <li class=""><a name="toc-GrandStaff-1" href="grandstaff.nl.html">2.1.11 GrandStaff</a>      </li>
+      <li class=""><a name="toc-GregorianTranscriptionStaff-1" href="gregoriantranscriptionstaff.nl.html">2.1.12 GregorianTranscriptionStaff</a>      </li>
+      <li class=""><a name="toc-GregorianTranscriptionVoice-1" href="gregoriantranscriptionvoice.nl.html">2.1.13 GregorianTranscriptionVoice</a>      </li>
+      <li class=""><a name="toc-KievanStaff-1" href="kievanstaff.nl.html">2.1.14 KievanStaff</a>      </li>
+      <li class=""><a name="toc-KievanVoice-1" href="kievanvoice.nl.html">2.1.15 KievanVoice</a>      </li>
+      <li class=""><a name="toc-Lyrics-1" href="lyrics.nl.html">2.1.16 Lyrics</a>      </li>
+      <li class=""><a name="toc-MensuralStaff-1" href="mensuralstaff.nl.html">2.1.17 MensuralStaff</a>      </li>
+      <li class=""><a name="toc-MensuralVoice-1" href="mensuralvoice.nl.html">2.1.18 MensuralVoice</a>      </li>
+      <li class=""><a name="toc-NoteNames-1" href="notenames.nl.html">2.1.19 NoteNames</a>      </li>
+      <li class=""><a name="toc-NullVoice-1" href="nullvoice.nl.html">2.1.20 NullVoice</a>      </li>
+      <li class=""><a name="toc-OneStaff-1" href="onestaff.nl.html">2.1.21 OneStaff</a>      </li>
+      <li class=""><a name="toc-PetrucciStaff-1" href="petruccistaff.nl.html">2.1.22 PetrucciStaff</a>      </li>
+      <li class=""><a name="toc-PetrucciVoice-1" href="petruccivoice.nl.html">2.1.23 PetrucciVoice</a>      </li>
+      <li class=" toc_current"><a name="toc-PianoStaff-1" href="pianostaff.nl.html">2.1.24 PianoStaff</a>      </li>
+      <li class=""><a name="toc-RhythmicStaff-1" href="rhythmicstaff.nl.html">2.1.25 RhythmicStaff</a>      </li>
+      <li class=""><a name="toc-Score-1" href="score.nl.html">2.1.26 Score</a>      </li>
+      <li class=""><a name="toc-Staff-1" href="staff.nl.html">2.1.27 Staff</a>      </li>
+      <li class=""><a name="toc-StaffGroup-1" href="staffgroup.nl.html">2.1.28 StaffGroup</a>      </li>
+      <li class=""><a name="toc-TabStaff-1" href="tabstaff.nl.html">2.1.29 TabStaff</a>      </li>
+      <li class=""><a name="toc-TabVoice-1" href="tabvoice.nl.html">2.1.30 TabVoice</a>      </li>
+      <li class=""><a name="toc-VaticanaStaff-1" href="vaticanastaff.nl.html">2.1.31 VaticanaStaff</a>      </li>
+      <li class=""><a name="toc-VaticanaVoice-1" href="vaticanavoice.nl.html">2.1.32 VaticanaVoice</a>      </li>
+      <li class=""><a name="toc-Voice-1" href="voice.nl.html">2.1.33 Voice</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Engravers-and-Performers-1" href="engravers-and-performers.nl.html">2.2 Engravers and Performers</a>    </li>
+    <li class=""><a name="toc-Tunable-context-properties-1" href="tunable-context-properties.nl.html">2.3 Tunable context properties</a>    </li>
+    <li class=""><a name="toc-Internal-context-properties-1" href="internal-context-properties.nl.html">2.4 Internal context properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Backend-1" href="backend.nl.html">3. Backend</a>
+  <ul class="toc">
+    <li class=""><a name="toc-All-layout-objects-1" href="all-layout-objects.nl.html">3.1 All layout objects</a>    </li>
+    <li class=""><a name="toc-Graphical-Object-Interfaces-1" href="graphical-object-interfaces.nl.html">3.2 Graphical Object Interfaces</a>    </li>
+    <li class=""><a name="toc-User-backend-properties-1" href="user-backend-properties.nl.html">3.3 User backend properties</a>    </li>
+    <li class=""><a name="toc-Internal-backend-properties-1" href="internal-backend-properties.nl.html">3.4 Internal backend properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.nl.html">4. Scheme functions</a>  </li>
+  <li class=""><a name="toc-Indices-1" href="indices.nl.html">A. Indices</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Concept-index" href="indices.nl.html">A.1 Concept index</a>    </li>
+    <li class=""><a name="toc-Function-index" href="indices.nl.html">A.2 Function index</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

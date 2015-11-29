@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 door de auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+De vertaling van onderstaande copyright voorwaarden wordt gegeven
+ter oriëntering voor niet-Engelstalige lezers.  Juridisch gezien is
+echter uitsluitend de engelstalige versie rechtsgeldig.
+
+Toestemming wordt verleend tot het kopiëren, verspreiden en/of wijzigen
+van dit document onder de bepalingen van de GNU Vrije Documentatie
+Licentie, versie 1.1 of iedere latere versie uitgegeven door de Free
+Software Foundation; zonder Invariante Secties, zonder Omslagteksten
+voor de Voorkant en zonder Omslagteksten voor de Achterkant. Een kopie
+van de licentie is opgenomen in de sectie getiteld "GNU Vrije
+Documentatie Licentie".
+
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond beginnershandleiding: 3.4.3 Building a score from scratch</title>
+
+<meta name="description" content="LilyPond beginnershandleiding: 3.4.3 Building a score from scratch">
+<meta name="keywords" content="LilyPond beginnershandleiding: 3.4.3 Building a score from scratch">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.nl.html#index" rel="start" title="LilyPond &ndash; Beginnershandleiding">
+<link href="lilypond-index.nl.html#lilypond-index" rel="index" title="C. LilyPond register">
+<link href="index_toc.nl.html#SEC_Contents" rel="contents" title="Inhoudsopgave">
+<link href="index_abt.nl.html#SEC_About" rel="help" title="No translation available!">
+<link href="extending-the-templates.nl.html#extending-the-templates" rel="up" title="3.4 Extending the templates">
+<link href="lilypond-index.nl.html#lilypond-index" rel="next" title="C. LilyPond register">
+<link href="four_002dpart-satb-vocal-score.nl.html#four_002dpart-satb-vocal-score" rel="previous" title="3.4.2 Four-part SATB vocal score">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="nl" class="learning devStatus">
+
+
+<div id="main">
+<a name="Building-a-score-from-scratch"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Fundamentele concepten&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.nl.html" title="Next chapter">&nbsp;Tweaking output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="four_002dpart-satb-vocal-score.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Four-part SATB vocal score&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="extending-the-templates.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Extending the templates&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="saving-typing-with-variables-and-functions.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Saving typing with variables and functions &gt; </a>]</td></tr></table>
+<a name="building-a-score-from-scratch"></a>
+<h3 class="subsection">3.4.3 Building a score from scratch</h3>
+
+<a name="index-template_002c-writing-your-own"></a>
+<a name="index-example-of-writing-a-score"></a>
+<a name="index-writing-a-score_002c-example"></a>
+<a name="index-score_002c-example-of-writing"></a>
+
+<p>After gaining some facility with writing LilyPond code, you
+may find that it is easier to build a score from scratch
+rather than modifying one of the templates.  You can also
+develop your own style this way to suit the sort of music you
+like.  Let&rsquo;s see how to put together the score for an organ
+prelude as an example.
+</p>
+<p>We begin with a header section.  Here go the title, name
+of composer, etc, then come any variable definitions, and
+finally the score block.  Let&rsquo;s start with these in outline
+and fill in the details later.
+</p>
+<p>We&rsquo;ll use the first two bars of Bach&rsquo;s prelude
+based on <em>Jesu, meine Freude</em> which is written for two
+manuals and pedal organ.  You can see these two bars of music
+at the bottom of this section.  The top manual part has two voices,
+the lower and pedal organ one each.  So we need four
+music definitions and one to define the time signature
+and key:
+</p>
+<blockquote><pre class="example">\version &quot;2.19.32&quot;
+\header {
+  title = &quot;Jesu, meine Freude&quot;
+  composer = &quot;J S Bach&quot;
+}
+keyTime = { \key c \minor \time 4/4 }
+ManualOneVoiceOneMusic = { s1 }
+ManualOneVoiceTwoMusic = { s1 }
+ManualTwoMusic = { s1 }
+PedalOrganMusic = { s1 }
+
+\score {
+}
+</pre></blockquote>
+
+<p>For now we&rsquo;ve just used a spacer note, <code>s1</code>,
+instead of the real music.  We&rsquo;ll add that later.
+</p>
+<p>Next let&rsquo;s see what should go in the score block.
+We simply mirror the staff structure we want.
+Organ music is usually written on three staves,
+one for each manual and one for the pedals.  The
+manual staves should be bracketed together, so we
+need to use a PianoStaff for them.  The first
+manual part needs two voices and the second manual
+part just one.
+</p>
+<blockquote><pre class="example">\new PianoStaff &lt;&lt;
+  \new Staff = &quot;ManualOne&quot; &lt;&lt;
+    \new Voice {
+      \ManualOneVoiceOneMusic
+    }
+    \new Voice {
+      \ManualOneVoiceTwoMusic
+    }
+  &gt;&gt;  % end ManualOne Staff context
+  \new Staff = &quot;ManualTwo&quot; &lt;&lt;
+    \new Voice {
+      \ManualTwoMusic
+    }
+  &gt;&gt;  % end ManualTwo Staff context
+&gt;&gt;  % end PianoStaff context
+</pre></blockquote>
+
+<p>Next we need to add a staff for the pedal organ.
+This goes underneath the PianoStaff, but it must
+be simultaneous with it, so we need angle brackets
+around the two.  Missing these out would generate
+an error in the log file.  It&rsquo;s a common mistake
+which you&rsquo;ll make sooner or later!  Try copying
+the final example at the end of this section,
+remove these angle brackets, and compile it to
+see what errors it generates.
+</p>
+<blockquote><pre class="example">&lt;&lt;  % PianoStaff and Pedal Staff must be simultaneous
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;ManualOne&quot; &lt;&lt;
+      \new Voice {
+        \ManualOneVoiceOneMusic
+      }
+      \new Voice {
+        \ManualOneVoiceTwoMusic
+      }
+    &gt;&gt;  % end ManualOne Staff context
+    \new Staff = &quot;ManualTwo&quot; &lt;&lt;
+      \new Voice {
+        \ManualTwoMusic
+      }
+    &gt;&gt;  % end ManualTwo Staff context
+  &gt;&gt;  % end PianoStaff context
+  \new Staff = &quot;PedalOrgan&quot; &lt;&lt;
+    \new Voice {
+      \PedalOrganMusic
+    }
+  &gt;&gt;
+&gt;&gt;
+</pre></blockquote>
+
+<p>It is not necessary to use the simultaneous construct
+<code>&lt;&lt; .. &gt;&gt;</code> for the manual two staff and the pedal organ staff,
+since they contain only one music expression, but it does no harm,
+and always using angle brackets after <code>\new Staff</code> is a good
+habit to cultivate in case there are multiple voices.  The opposite
+is true for Voices: these should habitually be followed by braces
+<code>{ .. }</code> in case your music is coded in several variables
+which need to run consecutively.
+</p>
+<p>Let&rsquo;s add this structure to the score block, and adjust the indenting.
+We also add the appropriate clefs, ensure stems, ties and slurs in
+each voice on the upper staff point to the right direction with
+<code>\voiceOne</code> and <code>\voiceTwo</code>, and enter the key and time
+signature to each staff using our predefined variable, <code>\keyTime</code>.
+</p>
+<blockquote><pre class="example">\score {
+  &lt;&lt;  % PianoStaff and Pedal Staff must be simultaneous
+    \new PianoStaff &lt;&lt;
+      \new Staff = &quot;ManualOne&quot; &lt;&lt;
+        \keyTime  % set key and time signature
+        \clef &quot;treble&quot;
+        \new Voice {
+          \voiceOne
+          \ManualOneVoiceOneMusic
+        }
+        \new Voice {
+          \voiceTwo
+          \ManualOneVoiceTwoMusic
+        }
+      &gt;&gt;  % end ManualOne Staff context
+      \new Staff = &quot;ManualTwo&quot; &lt;&lt;
+        \keyTime
+        \clef &quot;bass&quot;
+        \new Voice {
+          \ManualTwoMusic
+        }
+      &gt;&gt;  % end ManualTwo Staff context
+    &gt;&gt;  % end PianoStaff context
+    \new Staff = &quot;PedalOrgan&quot; &lt;&lt;
+      \keyTime
+      \clef &quot;bass&quot;
+      \new Voice {
+        \PedalOrganMusic
+      }
+    &gt;&gt;  % end PedalOrgan Staff
+  &gt;&gt;
+}  % end Score context
+</pre></blockquote>
+
+<a name="index-stretchability-of-staves"></a>
+<a name="index-staves_002c-stretchability"></a>
+
+<p>The above layout of the organ staves is almost perfect; however,
+there is a slight defect which is not visible by looking at just a
+single system: The distance of the pedal staff to the left hand staff
+should behave approximately the same as the right hand staff to the
+left hand staff.  In particular, the stretchability of staves in a
+<code>PianoStaff</code> context is limited (so that the distance between
+the staves for the left and right hand can&rsquo;t become too large), and
+the pedal staff should behave similarly.
+</p>
+<a name="index-sub_002dproperties"></a>
+<a name="index-properties_002c-sub_002dproperties"></a>
+<a name="index-graphical-objects"></a>
+<a name="index-objects_002c-graphical"></a>
+<a name="index-grobs"></a>
+
+<p>Stretchability of staves can be controlled with the
+<code>staff-staff-spacing</code> property of the
+<code>VerticalAxisGroup</code> &lsquo;graphical object&rsquo; (commonly called
+&lsquo;grob&rsquo;s within the lilypond documentation) &ndash; don&rsquo;t worry about
+the details right now; this is fully explained later.  For the
+curious, have a look at <a name="index-Overview-of-modifying-properties"></a>
+<a href="../notation/overview-of-modifying-properties.nl.html">Overview of modifying properties</a>.
+In this case, we want to modify the <code>stretchability</code>
+sub-property only. Again, for the curious, you can find the
+default values for the staff-staff-spacing property
+in file &lsquo;<tt>scm/define-grobs.scm</tt>&rsquo; by looking up the definition
+of the <code>VerticalAxisGroup</code> grob.  The value for
+<code>stretchability</code> is taken from the definition of the
+<code>PianoStaff</code> context (in file &lsquo;<tt>ly/engraver-init.ly</tt>&rsquo;)
+so that the values are identical.
+</p>
+<blockquote><pre class="example">\score {
+  &lt;&lt;  % PianoStaff and Pedal Staff must be simultaneous
+    \new PianoStaff &lt;&lt;
+      \new Staff = &quot;ManualOne&quot; &lt;&lt;
+        \keyTime  % set key and time signature
+        \clef &quot;treble&quot;
+        \new Voice {
+          \voiceOne
+          \ManualOneVoiceOneMusic
+        }
+        \new Voice {
+          \voiceTwo
+          \ManualOneVoiceTwoMusic
+        }
+      &gt;&gt;  % end ManualOne Staff context
+      \new Staff = &quot;ManualTwo&quot; \with {
+        \override VerticalAxisGroup.staff-staff-spacing.stretchability = 5
+      } &lt;&lt;
+        \keyTime
+        \clef &quot;bass&quot;
+        \new Voice {
+          \ManualTwoMusic
+        }
+      &gt;&gt;  % end ManualTwo Staff context
+    &gt;&gt;  % end PianoStaff context
+    \new Staff = &quot;PedalOrgan&quot; &lt;&lt;
+      \keyTime
+      \clef &quot;bass&quot;
+      \new Voice {
+        \PedalOrganMusic
+      }
+    &gt;&gt;  % end PedalOrgan Staff
+  &gt;&gt;
+}  % end Score context
+</pre></blockquote>
+<p>That completes the structure.  Any three-staff organ music
+will have a similar structure, although the number of voices
+may vary.  All that remains now
+is to add the music, and combine all the parts together.
+</p>
+<blockquote><blockquote><pre class="example">\version &quot;2.19.32&quot;
+</pre></blockquote>
+<pre class="verbatim">\header {
+  title = &quot;Jesu, meine Freude&quot;
+  composer = &quot;J S Bach&quot;
+}
+keyTime = { \key c \minor \time 4/4 }
+ManualOneVoiceOneMusic = \relative {
+  g'4 g f ees |
+  d2 c |
+}
+ManualOneVoiceTwoMusic = \relative {
+  ees'16 d ees8~ 16 f ees d c8 d~ d c~ |
+  8 c4 b8 c8. g16 c b c d |
+}
+ManualTwoMusic = \relative {
+  c'16 b c8~ 16 b c g a8 g~ 16 g aes ees |
+  f16 ees f d g aes g f ees d ees8~ 16 f ees d |
+}
+PedalOrganMusic = \relative {
+  r8 c16 d ees d ees8~ 16 a, b g c b c8 |
+  r16 g ees f g f g8 c,2 |
+}
+
+\score {
+  &lt;&lt;  % PianoStaff and Pedal Staff must be simultaneous
+    \new PianoStaff &lt;&lt;
+      \new Staff = &quot;ManualOne&quot; &lt;&lt;
+        \keyTime  % set key and time signature
+        \clef &quot;treble&quot;
+        \new Voice {
+          \voiceOne
+          \ManualOneVoiceOneMusic
+        }
+        \new Voice {
+          \voiceTwo
+          \ManualOneVoiceTwoMusic
+        }
+      &gt;&gt;  % end ManualOne Staff context
+      \new Staff = &quot;ManualTwo&quot; \with {
+        \override VerticalAxisGroup.staff-staff-spacing.stretchability = 5
+      } &lt;&lt;
+        \keyTime
+        \clef &quot;bass&quot;
+        \new Voice {
+          \ManualTwoMusic
+        }
+      &gt;&gt;  % end ManualTwo Staff context
+    &gt;&gt;  % end PianoStaff context
+    \new Staff = &quot;PedalOrgan&quot; &lt;&lt;
+      \keyTime
+      \clef &quot;bass&quot;
+      \new Voice {
+        \PedalOrganMusic
+      }
+    &gt;&gt;  % end PedalOrgan Staff context
+  &gt;&gt;
+}  % end Score context
+</pre><p>
+ <a href="../94/lily-b2a3c7db.ly">
+  <img align="middle"
+       border="0"
+       src="../94/lily-b2a3c7db.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Zie-ook-18"></a>
+<h4 class="subsubheading">Zie ook</h4>
+<p>Music Glossary:
+<a name="index-system-1"></a>
+<a href="../music-glossary/system.nl.html">system</a>.
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Fundamentele concepten&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.nl.html" title="Next chapter">&nbsp;Tweaking output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="four_002dpart-satb-vocal-score.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Four-part SATB vocal score&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="extending-the-templates.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Extending the templates&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="saving-typing-with-variables-and-functions.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Saving typing with variables and functions &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Deze pagina is voor LilyPond-2.19.32 (ontwikkelingstak).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere talen: <a href="building-a-score-from-scratch.html">English</a>, <a href="building-a-score-from-scratch.ca.html">català</a>, <a href="building-a-score-from-scratch.cs.html">česky</a>, <a href="building-a-score-from-scratch.de.html">deutsch</a>, <a href="building-a-score-from-scratch.es.html">español</a>, <a href="building-a-score-from-scratch.fr.html">français</a>, <a href="building-a-score-from-scratch.hu.html">magyar</a>, <a href="building-a-score-from-scratch.it.html">italiano</a>, <a href="building-a-score-from-scratch.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.nl.html"
+         title="Documentation Index">&lt;&lt; Terug naar de Documentatieindex</a></p>
+<h4 class="toc_header"> <a href="index.nl.html" title="Start of the manual">LilyPond &ndash; Beginnershandleiding  v2.19.32 (ontwikkelingstak). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Leerboek-1" href="tutorial.nl.html">1. Leerboek</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Het-compileren-van-een-bestand-1" href="compiling-a-file.nl.html">1.1 Het compileren van een bestand</a>    </li>
+    <li class=""><a name="toc-Het-schrijven-van-invoerbestanden-1" href="how-to-write-input-files.nl.html">1.2 Het schrijven van invoerbestanden</a>    </li>
+    <li class=""><a name="toc-Omgaan-met-foutmeldingen-1" href="dealing-with-errors.nl.html">1.3 Omgaan met foutmeldingen</a>    </li>
+    <li class=""><a name="toc-Het-lezen-van-de-handleidingen-1" href="how-to-read-the-manuals.nl.html">1.4 Het lezen van de handleidingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Algemene-muzieknotatie-1" href="common-notation.nl.html">2. Algemene muzieknotatie</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notatie-voor-een-enkele-notenbalk-1" href="single-staff-notation.nl.html">2.1 Notatie voor een enkele notenbalk</a>    </li>
+    <li class=""><a name="toc-Verschillende-noten-tegelijk-klinkend-1" href="multiple-notes-at-once.nl.html">2.2 Verschillende noten tegelijk klinkend</a>    </li>
+    <li class=""><a name="toc-Vocale-muziek-1" href="songs.nl.html">2.3 Vocale muziek</a>    </li>
+    <li class=""><a name="toc-De-puntjes-op-de-i_0027s-1" href="final-touches.nl.html">2.4 De puntjes op de i&rsquo;s</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Fundamentele-concepten-1" href="fundamental-concepts.nl.html">3. Fundamentele concepten</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hoe-LilyPond_002dinvoerbestanden-werken-1" href="how-lilypond-input-files-work.nl.html">3.1 Hoe LilyPond-invoerbestanden werken</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.nl.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.nl.html">3.3 Contexts and engravers</a>    </li>
+    <li class=" toc_current"><a name="toc-Extending-the-templates-1" href="extending-the-templates.nl.html">3.4 Extending the templates</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Soprano-and-cello-1" href="soprano-and-cello.nl.html">3.4.1 Soprano and cello</a>      </li>
+      <li class=""><a name="toc-Four_002dpart-SATB-vocal-score-1" href="four_002dpart-satb-vocal-score.nl.html">3.4.2 Four-part SATB vocal score</a>      </li>
+      <li class=" toc_current"><a name="toc-Building-a-score-from-scratch-1" href="building-a-score-from-scratch.nl.html">3.4.3 Building a score from scratch</a>      </li>
+      <li class=""><a name="toc-Saving-typing-with-variables-and-functions-1" href="saving-typing-with-variables-and-functions.nl.html">3.4.4 Saving typing with variables and functions</a>      </li>
+      <li class=""><a name="toc-Scores-and-parts-1" href="scores-and-parts.nl.html">3.4.5 Scores and parts</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tweaking-output-1" href="tweaking-output.nl.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.nl.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.nl.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.nl.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.nl.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.nl.html">4.5 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.nl.html">4.6 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.nl.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.nl.html">A.1 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.nl.html">A.2 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.nl.html">A.3 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.nl.html">A.4 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.nl.html">A.5 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.nl.html">A.6 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.nl.html">A.7 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.nl.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-register-1" href="lilypond-index.nl.html">C. LilyPond register</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 12c6693055728e69dce5c4e5a4a2b5f71180a5e2
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
++-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Zoek met Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Zoek">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

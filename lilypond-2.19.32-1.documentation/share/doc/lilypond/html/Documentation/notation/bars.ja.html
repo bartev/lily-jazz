@@ -1,0 +1,1132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 1.2.5 小節</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 1.2.5 小節">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 1.2.5 小節">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="rhythms.ja.html#rhythms" rel="up" title="1.2 リズム">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="beams.ja.html#beams" rel="previous" title="1.2.4 連桁">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_5c0f_7bc0"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="beams.ja.html#feathered-beams" title="前のセクション" accesskey="p" rel="previous"> &lt; 羽状の連桁&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="rhythms.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;リズム&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#bar-lines" title="次のセクション" accesskey="n" rel="next">&nbsp;小節線 &gt; </a>]</td></tr></table>
+<a name="bars"></a>
+<h3 class="subsection">1.2.5 小節</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#bar-lines" accesskey="1">小節線</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#bar-numbers" accesskey="2">小節番号</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#bar-and-bar-number-checks" accesskey="3">小節と小節番号のチェック</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#rehearsal-marks" accesskey="4">リハーサル記号</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="g_t_5c0f_7bc0_7dda"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#bars" title="前のセクション" accesskey="p" rel="previous"> &lt; 小節&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#bars" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;小節&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#bar-numbers" title="次のセクション" accesskey="n" rel="next">&nbsp;小節番号 &gt; </a>]</td></tr></table>
+<a name="bar-lines"></a>
+<h4 class="unnumberedsubsubsec">小節線</h4>
+
+<a name="index-bar-lines-_0028_5c0f_7bc0_7dda_0029"></a>
+<a name="index-measure-lines-_0028_5c0f_7bc0_7dda_0029"></a>
+<a name="index-closing-bar-lines-_0028_9589_3058_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-bar-lines_002c-closing-_0028_9589_3058_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-double-bar-lines-_00282-_91cd_5c0f_7bc0_7dda_0029"></a>
+<a name="index-bar-lines_002c-double-_00282-_91cd_5c0f_7bc0_7dda_0029"></a>
+<a name="index-repeat-bars-_0028_7e70_308a_8fd4_3057_306e_5c0f_7bc0_7dda_0029"></a>
+
+<a name="index-_005cbar"></a>
+<a name="index-_005cbar-1"></a>
+<a name="index-bar"></a>
+<a name="index-bar-1"></a>
+
+<p>小節線は小節を区切り、繰り返しを示すためにも使用されます。通常、単線の小節線が拍子に基づいて出力に自動的に挿入されます。
+</p>
+<p>自動的に挿入される単線の小節線は
+<code>\bar</code> コマンドで他のタイプに変更することができます。例えば、通常、2 重線の閉じの小節線が楽曲の最後に配置されます:
+</p>
+<blockquote><pre class="verbatim">\relative { e'4 d c2 \bar &quot;|.&quot; }
+</pre><p>
+ <a href="../33/lily-78aa98d7.ly">
+  <img align="middle"
+       border="0"
+       src="../33/lily-78aa98d7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>ある小節の最後の音符が、自動的に挿入される小節線の所で終わっていなくても無効ではありません:
+その音符は次の小節に持ち越されるものと見なされます。しかしながら、そのような持ち越しのある小節がいくつも続く場合、その音楽は圧縮されて表示される可能性があり、ページからはみ出す可能性さえあります。これは、自動改行は完全な小節
+&ndash; つまり、小節の終端ですべての音符が終わっている小節 &ndash;
+の終わりでのみ発生するからです。
+</p>
+<div class="warning"><p><strong>Note:</strong> 誤った演奏時間の指定は改行を抑制し、結果として非常に圧縮された楽譜やページからはみ出す楽譜の原因となります。
+</p>
+</div>
+<a name="index-line-breaks-_0028_6539_884c_0029"></a>
+<a name="index-bar-lines_002c-invisible-_0028_4e0d_53ef_8996_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-measure-lines_002c-invisible-_0028_4e0d_53ef_8996_306e_5c0f_7bc0_7dda_0029"></a>
+
+<p>手動で挿入された小節線のところでも
+&ndash; たとえ、その小節が不完全であっても &ndash;
+改行することができます。小節線を譜刻せずに改行を可能にするには、以下を使用します:
+</p>
+<blockquote><pre class="example">\bar &quot;&quot;
+</pre></blockquote>
+
+<p>これは不可視の小節線を挿入し、そこで改行が発生することを可能にします (強制はしません)。小節番号カウンタは増加しません。強制的に改行を行うには、<a href="line-breaking.ja.html">改行</a> を参照してください。
+</p>
+<a name="index-manual-bar-lines-_0028_624b_52d5_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-manual-measure-lines-_0028_624b_52d5_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-bar-lines_002c-manual-_0028_624b_52d5_306e_5c0f_7bc0_7dda_0029"></a>
+<a name="index-measure-lines_002c-manual-_0028_624b_52d5_306e_5c0f_7bc0_7dda_0029"></a>
+
+<p>不可視の小節線と他の特殊な小節線は任意の位置に手動で挿入することができます。それらの小節線の位置がある小節の終わりと一致する場合、それらの小節線はそこに自動で挿入されるはずだった単線の小節線に取って代わります。小節の終わりと一致しない場合、指定された小節線がその位置に挿入されます。</p>
+<p>手動の小節線は純粋に視覚的なものです。それらは通常の小節線が影響を与えるプロパティ
+&ndash; 小節番号、臨時記号、改行など &ndash;
+には何の影響も与えません。手動の小節線はその後に続く自動小節線の算出や配置に影響を与えません。自動小節線がすでに存在する場所に手動小節線が配置されても、自動小節線の効果は変更されません。
+</p>
+<p>手動で挿入できる小節線として、単線の小節線は 2 種類あり、2 重線の小節線は 5 種類あります:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  f'1 \bar &quot;|&quot;
+  f1 \bar &quot;.&quot;
+  g1 \bar &quot;||&quot;
+  a1 \bar &quot;.|&quot;
+  b1 \bar &quot;..&quot;
+  c1 \bar &quot;|.|&quot;
+  d1 \bar &quot;|.&quot;
+  e1
+}
+</pre><p>
+ <a href="../9f/lily-84412ea9.ly">
+  <img align="middle"
+       border="0"
+       src="../9f/lily-84412ea9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>さらに、点線と破線の小節線があります:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  f'1 \bar &quot;;&quot;
+  g1 \bar &quot;!&quot;
+  a1
+}
+</pre><p>
+ <a href="../6a/lily-9b54cd8e.ly">
+  <img align="middle"
+       border="0"
+       src="../6a/lily-9b54cd8e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>さらに、繰り返しの小節線が 5 種類あります:
+</p>
+<blockquote><pre class="verbatim">f1 \bar &quot;.|:&quot;
+g1 \bar &quot;:..:&quot;
+a1 \bar &quot;:|.|:&quot;
+b1 \bar &quot;:|.:&quot;
+c1 \bar &quot;:|.&quot;
+e1
+</pre><p>
+ <a href="../ed/lily-09057573.ly">
+  <img align="middle"
+       border="0"
+       src="../ed/lily-09057573.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Additionally, a bar line can be printed as a simple tick:
+</p><blockquote><pre class="verbatim">f1 \bar &quot;'&quot;
+</pre><p>
+ <a href="../86/lily-163661fb.ly">
+  <img align="middle"
+       border="0"
+       src="../86/lily-163661fb.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+<p>However, as such ticks are typically used in Gregorian chant, it is preferable
+to use <code>\divisioMinima</code> there instead, described in the section
+<a href="typesetting-gregorian-chant.ja.html#divisiones">Divisiones</a> in Gregorian chant.
+</p>
+<a name="index-segno-_0028_30bb_30fc_30cb_30e7_0029"></a>
+
+<p>行内のセーニョ記号として、3 タイプの小節線があり、改行での振る舞いがそれぞれ異なります:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4 c c c
+  \bar &quot;S&quot;
+  c4 c c c \break
+  \bar &quot;S&quot;
+  c4 c c c
+  \bar &quot;S-|&quot;
+  c4 c c c \break
+  \bar &quot;S-|&quot;
+  c4 c c c
+  \bar &quot;S-S&quot;
+  c4 c c c \break
+  \bar &quot;S-S&quot;
+  c1
+}
+</pre><p>
+ <a href="../f4/lily-9f26cf08.ly">
+  <img align="middle"
+       border="0"
+       src="../f4/lily-9f26cf08.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-repeats-_0028_7e70_308a_8fd4_3057_0029"></a>
+
+<p>繰り返しを表す小節線は手動で挿入される場合がありますが、それらの小節線自体は LilyPond に繰り返されるセクションを認識させることはしません。そのような繰り返されるセクションはさまざまな繰り返しのコマンドを使って入力した方が良いです
+(<a href="repeats.ja.html">繰り返し</a> を参照してください)。繰り返しのコマンドは自動的に適切な小節線を譜刻します。
+</p>
+<p>さらに、<code>&quot;||:&quot;</code> を使用することができます。これは <code>&quot;|:&quot;</code> と等価ですが、例外として改行位置では、この小節線は行の終わりに 2 重線の小節線を置き、次の行の始めに繰り返し開始の小節線を置きます。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4 c c c
+  \bar &quot;.|:-||&quot;
+  c4 c c c \break
+  \bar &quot;.|:-||&quot;
+  c4 c c c
+}
+</pre><p>
+ <a href="../6b/lily-fcce872f.ly">
+  <img align="middle"
+       border="0"
+       src="../6b/lily-fcce872f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>繰り返しとセーニョ記号の組み合わせは 6 種類あります:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4 c c c
+  \bar &quot;:|.S&quot;
+  c4 c c c \break
+  \bar &quot;:|.S&quot;
+  c4 c c c
+  \bar &quot;:|.S-S&quot;
+  c4 c c c \break
+  \bar &quot;:|.S-S&quot;
+  c4 c c c
+  \bar &quot;S.|:-S&quot;
+  c4 c c c \break
+  \bar &quot;S.|:-S&quot;
+  c4 c c c
+  \bar &quot;S.|:&quot;
+  c4 c c c \break
+  \bar &quot;S.|:&quot;
+  c4 c c c
+  \bar &quot;:|.S.|:&quot;
+  c4 c c c \break
+  \bar &quot;:|.S.|:&quot;
+  c4 c c c
+  \bar &quot;:|.S.|:-S&quot;
+  c4 c c c \break
+  \bar &quot;:|.S.|:-S&quot;
+  c1
+}
+</pre><p>
+ <a href="../59/lily-afeb0b34.ly">
+  <img align="middle"
+       border="0"
+       src="../59/lily-afeb0b34.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>さらに、<code>\inStaffSegno</code> コマンドがあります。これは、セーニョ小節線を作り出し、<code>\repeat volta</code> コマンドと連携します。
+</p>
+
+<p>多くの譜を持つ楽譜では、ある譜の <code>\bar</code> コマンドは自動的にすべての譜に適用されます。結果として、<code>StaffGroup</code>, <code>PianoStaff</code>, あるいは
+<code>GrandStaff</code> では、小節線は譜をまたがって 1 本に接続されます。
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new StaffGroup &lt;&lt;
+    \new Staff \relative {
+      e'4 d
+      \bar &quot;||&quot;
+      f4 e
+    }
+    \new Staff \relative { \clef bass c'4 g e g }
+  &gt;&gt;
+  \new Staff \relative { \clef bass c'2 c2 }
+&gt;&gt;
+</pre><p>
+ <a href="../a4/lily-ace15942.ly">
+  <img align="middle"
+       border="0"
+       src="../a4/lily-ace15942.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="index-default-bar-lines_002c-changing-_0028_30c7_30d5_30a9_30eb_30c8_306e_5c0f_7bc0_7dda_3092_5909_66f4_3059_308b_0029"></a>
+<a name="index-bar-lines_002c-default_002c-changing-_0028_30c7_30d5_30a9_30eb_30c8_306e_5c0f_7bc0_7dda_3092_5909_66f4_3059_308b_0029"></a>
+
+<a name="Selected-Snippets-51"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+<a name="index-whichBar"></a>
+<a name="index-whichBar-1"></a>
+<a name="index-defaultBarType"></a>
+<a name="index-defaultBarType-1"></a>
+<a name="index-_005cbar-2"></a>
+<a name="index-_005cbar-3"></a>
+<a name="index-bar-2"></a>
+<a name="index-bar-3"></a>
+<a name="index-bartype"></a>
+<a name="index-bartype-1"></a>
+
+<p>コマンド <code>\bar </code><var>bartype</var> は
+&lsquo;<samp>\set Timing.whichBar = <var>bartype</var></samp>&rsquo; の短縮記法です。<code>whichBar</code> プロパティがセットされるといつでも小節線が作成されます。
+</p>
+<p>自動的に挿入される小節線に使用されるデフォルトの小節線タイプは <code>&quot;|&quot;</code> です。これは &lsquo;<samp>\set Timing.defaultBarType = <var>bartype</var></samp>&rsquo; でいつでも変更することができます。
+</p>
+<a name="g_t_53c2_7167-30"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a href="line-breaking.ja.html">改行</a>,
+<a href="repeats.ja.html">繰り返し</a>,
+<a href="displaying-staves.ja.html#grouping-staves">譜をグループ化する</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-BarLine"></a>
+<a href="../internals/barline.ja.html">BarLine</a> (<a name="index-Staff-3"></a>
+<a href="../internals/staff.ja.html">Staff</a> の階層で作成されます),
+<a name="index-SpanBar"></a>
+<a href="../internals/spanbar.ja.html">SpanBar</a> (譜をまたぎます),
+<a name="index-Timing_005ftranslator-3"></a>
+<a href="../internals/timing_005ftranslator.ja.html">Timing_translator</a> (<code>Timing</code> プロパティ用です)
+</p>
+
+<hr size="6">
+<a name="g_t_5c0f_7bc0_756a_53f7"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#bar-lines" title="前のセクション" accesskey="p" rel="previous"> &lt; 小節線&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#bars" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;小節&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#bar-and-bar-number-checks" title="次のセクション" accesskey="n" rel="next">&nbsp;小節と小節番号のチェック &gt; </a>]</td></tr></table>
+<a name="bar-numbers"></a>
+<h4 class="unnumberedsubsubsec">小節番号</h4>
+
+<a name="index-bar-numbers-_0028_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-measure-numbers-_0028_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-numbers_002c-bar-_0028_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-numbers_002c-measure-_0028_5c0f_7bc0_756a_53f7_0029"></a>
+
+<a name="index-currentBarNumber"></a>
+<a name="index-currentBarNumber-1"></a>
+
+<p>小節番号は、デフォルトでは、最初の行を除く各行の開始点で譜刻されます。番号自体は <code>currentBarNumber</code> プロパティに保存されていて、通常は各小節で自動的に更新されます。小節番号を手動で設定することも可能です:
+</p>
+<blockquote><pre class="verbatim">c1 c c c
+\break
+\set Score.currentBarNumber = #50
+c1 c c c
+</pre><p>
+ <a href="../3e/lily-1ba7f488.ly">
+  <img align="middle"
+       border="0"
+       src="../3e/lily-1ba7f488.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-bar-numbers_002c-regular-spacing--_898f_5247_7684_306a_9593_9694_3067_5c0f_7bc0_756a_53f7_3092_8b5c_523b_3059_308b"></a>
+
+<a name="index-barNumberVisibility"></a>
+<a name="index-barNumberVisibility-1"></a>
+<a name="index-BarNumber"></a>
+<a name="index-BarNumber-1"></a>
+
+<p>小節番号は、各行の開始点に配置する代わりに、規則的な間隔で譜刻することができます。このようにするには、小節番号を行の開始点以外の位置に譜刻できるよう、デフォルトの振る舞いをオーバライドする必要があります。これは <code>BarNumber</code> の <code>break-visibility</code> プロパティによって制御されます。これは 3 つの値をとります
+&ndash; 3 つの値は、対応する小節番号を可視にするかしないかを指定するために、<code>#t</code> または <code>#f</code> にセットされます。3 つの値の順番は、<code>end of line visible</code>,
+<code>middle of line visible</code>, <code>beginning of line visible</code>
+(行の終了点での可視性、行の途中での可視性、行の開始点での可視性) です。以下の例では、譜刻可能な場所すべてに小節番号を譜刻しています:
+</p>
+<blockquote><pre class="verbatim">\override Score.BarNumber.break-visibility = #'#(#t #t #t)
+\set Score.currentBarNumber = #11
+% Permit first bar number to be printed
+\bar &quot;&quot;
+c1 | c | c | c
+\break
+c1 | c | c | c
+</pre><p>
+ <a href="../41/lily-db061204.ly">
+  <img align="middle"
+       border="0"
+       src="../41/lily-db061204.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Selected-Snippets-42"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+<p><em> Printing the bar number for the first measure</em>
+</p>
+
+<p>By default, the first bar number in a score is suppressed if it is less
+than or equal to &lsquo;1&rsquo;.  By setting <code>barNumberVisibility</code> to
+<code>all-bar-numbers-visible</code>, any bar number can be printed for the
+first measure and all subsequent measures.  Note that an empty bar line
+must be inserted before the first note for this to work.
+</p>
+
+<blockquote><pre class="verbatim">\layout {
+  indent = 0
+  ragged-right = ##t
+}
+
+\relative c' {
+  \set Score.barNumberVisibility = #all-bar-numbers-visible
+  \bar &quot;&quot;
+  c1 | d | e | f \break
+  g1 | e | d | c
+}
+</pre><p>
+ <a href="../d4/lily-e230ae84.ly">
+  <img align="middle"
+       border="0"
+       src="../d4/lily-e230ae84.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Printing bar numbers at regular intervals</em>
+</p>
+
+<p>Bar numbers can be printed at regular intervals by setting the property
+<code>barNumberVisibility</code>. Here the bar numbers are printed every two
+measures except at the end of the line.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \override Score.BarNumber.break-visibility = #end-of-line-invisible
+  \set Score.currentBarNumber = #11
+  % Permit first bar number to be printed
+  \bar &quot;&quot;
+  % Print a bar number every second measure
+  \set Score.barNumberVisibility = #(every-nth-bar-number-visible 2)
+  c1 | c | c | c | c
+  \break
+  c1 | c | c | c | c
+}
+</pre><p>
+ <a href="../c9/lily-6ee611e1.ly">
+  <img align="middle"
+       border="0"
+       src="../c9/lily-6ee611e1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-measure-number_002c-format-_0028_5c0f_7bc0_756a_53f7_306e_30d5_30a9_30fc_30de_30c3_30c8_0029"></a>
+<a name="index-bar-number_002c-format-_0028_5c0f_7bc0_756a_53f7_306e_30d5_30a9_30fc_30de_30c3_30c8_0029"></a>
+
+
+<p><em> Printing bar numbers inside boxes or circles</em>
+</p>
+
+<p>Bar numbers can also be printed inside boxes or circles.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  % Prevent bar numbers at the end of a line and permit them elsewhere
+  \override Score.BarNumber.break-visibility = #end-of-line-invisible
+  \set Score.barNumberVisibility = #(every-nth-bar-number-visible 4)
+
+  % Increase the size of the bar number by 2
+  \override Score.BarNumber.font-size = #2
+
+  % Draw a box round the following bar number(s)
+  \override Score.BarNumber.stencil
+    = #(make-stencil-boxer 0.1 0.25 ly:text-interface::print)
+  \repeat unfold 5 { c1 }
+
+  % Draw a circle round the following bar number(s)
+  \override Score.BarNumber.stencil
+    = #(make-stencil-circler 0.1 0.25 ly:text-interface::print)
+  \repeat unfold 4 { c1 } \bar &quot;|.&quot;
+}
+</pre><p>
+ <a href="../48/lily-2fab1c08.ly">
+  <img align="middle"
+       border="0"
+       src="../48/lily-2fab1c08.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-bar-numbers_002c-with-letters-_0028_6587_5b57_4ed8_304d_306e_5c0f_7bc0_756a_53f7_0029"></a>
+<a name="index-bar-numbers_002c-with-repeats-_0028_7e70_308a_8fd4_3057_306e_5c0f_7bc0_756a_53f7_0029"></a>
+
+
+<p><em> Alternative bar numbering</em>
+</p>
+
+<p>Two alternative methods for bar numbering can be set, especially for
+when using repeated music.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'{
+  \set Score.alternativeNumberingStyle = #'numbers
+  \repeat volta 3 { c4 d e f | }
+    \alternative {
+      { c4 d e f | c2 d \break }
+      { f4 g a b | f4 g a b | f2 a | \break }
+      { c4 d e f | c2 d }
+    }
+  c1 \break
+  \set Score.alternativeNumberingStyle = #'numbers-with-letters
+  \repeat volta 3 { c,4 d e f | }
+    \alternative {
+      { c4 d e f | c2 d \break }
+      { f4 g a b | f4 g a b | f2 a | \break }
+      { c4 d e f | c2 d }
+    }
+  c1
+}
+</pre><p>
+ <a href="../48/lily-3fac11a0.ly">
+  <img align="middle"
+       border="0"
+       src="../48/lily-3fac11a0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-bar-number-alignment-_0028_5c0f_7bc0_756a_53f7_3092_63c3_3048_308b_0029"></a>
+
+
+<p><em> Aligning bar numbers</em>
+</p>
+
+<p>Bar numbers by default are right-aligned to their parent object. This
+is usually the left edge of a line or, if numbers are printed within a
+line, the left hand side of a bar line.  The numbers may also be
+positioned directly over the bar line or left-aligned to the bar line.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \set Score.currentBarNumber = #111
+  \override Score.BarNumber.break-visibility = #all-visible
+  % Increase the size of the bar number by 2
+  \override Score.BarNumber.font-size = #2
+  % Print a bar number every second measure
+  \set Score.barNumberVisibility = #(every-nth-bar-number-visible 2)
+  c1 | c1
+  % Center-align bar numbers
+  \override Score.BarNumber.self-alignment-X = #CENTER
+  c1 | c1
+  % Left-align bar numbers
+  \override Score.BarNumber.self-alignment-X = #LEFT
+  c1 | c1
+}
+</pre><p>
+ <a href="../0f/lily-d1c57b13.ly">
+  <img align="middle"
+       border="0"
+       src="../0f/lily-d1c57b13.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Removing bar numbers from a score</em>
+</p>
+
+<p>Bar numbers can be removed entirely by removing the
+<code>Bar_number_engraver</code> from the <code>Score</code> context.
+</p>
+
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Score
+    \omit BarNumber
+    % or:
+    %\remove &quot;Bar_number_engraver&quot;
+  }
+}
+
+\relative c'' {
+  c4 c c c \break
+  c4 c c c
+}
+</pre><p>
+ <a href="../e9/lily-ba58fbb4.ly">
+  <img align="middle"
+       border="0"
+       src="../e9/lily-ba58fbb4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-33"></a>
+<h4 class="subsubheading">参照</h4>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-BarNumber-2"></a>
+<a href="../internals/barnumber.ja.html">BarNumber</a>,
+<a name="index-Bar_005fnumber_005fengraver"></a>
+<a href="../internals/bar_005fnumber_005fengraver.ja.html">Bar_number_engraver</a>
+</p>
+<a name="index-bar-number-collision-_0028_5c0f_7bc0_756a_53f7_306e_885d_7a81_0029"></a>
+<a name="index-collision_002c-bar-number-_0028_5c0f_7bc0_756a_53f7_306e_885d_7a81_0029"></a>
+
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-30"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>小節番号は <code>StaffGroup</code> の左括弧の上端と衝突する可能性があります。これを解決するには、<code>BarNumber</code> の <code>padding</code> プロパティを使って小節番号を適切な位置に配置します。詳細は <a name="index-StaffGroup"></a>
+<a href="../internals/staffgroup.ja.html">StaffGroup</a> と <a name="index-BarNumber-3"></a>
+<a href="../internals/barnumber.ja.html">BarNumber</a> を参照してください。
+</p>
+
+<hr size="6">
+<a name="g_t_5c0f_7bc0_3068_5c0f_7bc0_756a_53f7_306e_30c1_30a7_30c3_30af"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#bar-numbers" title="前のセクション" accesskey="p" rel="previous"> &lt; 小節番号&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#bars" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;小節&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#rehearsal-marks" title="次のセクション" accesskey="n" rel="next">&nbsp;リハーサル記号 &gt; </a>]</td></tr></table>
+<a name="bar-and-bar-number-checks"></a>
+<h4 class="unnumberedsubsubsec">小節と小節番号のチェック</h4>
+
+<a name="index-bar-check-_0028_5c0f_7bc0_30c1_30a7_30c3_30af_0029"></a>
+<a name="index-bar-number-check-_0028_5c0f_7bc0_756a_53f7_30c1_30a7_30c3_30af_0029"></a>
+<a name="index-measure-check-_0028_5c0f_7bc0_30c1_30a7_30c3_30af_0029"></a>
+<a name="index-measure-number-check-_0028_5c0f_7bc0_756a_53f7_30c1_30a7_30c3_30af_0029"></a>
+
+<a name="index-barCheckSynchronize"></a>
+<a name="index-barCheckSynchronize-1"></a>
+<a name="index-_007c"></a>
+<a name="index-_007c-1"></a>
+
+<p>小節チェックは入力された演奏時間の誤りを検出する手助けをします。小節チェックは、小節線が書き込まれると予想される場所ならどこにでも、小節記号 <code>|</code> を使うことで挿入できます。他の場所で小節チェックの線に遭遇した場合、警告のリストがログ ファイルに書き込まれ、小節チェックに失敗した行番号と行を示します。次の例では、2 番目の小節チェックがエラーを発します。
+</p>
+<blockquote><pre class="example">\time 3/4 c2 e4 | g2 |
+</pre></blockquote>
+
+<p>歌詞でも小節チェックを使用することができます。以下に例を挙げます:
+</p>
+<blockquote><pre class="example">\lyricmode {
+  \time 2/4
+  Twin -- kle | Twin -- kle |
+}
+</pre></blockquote>
+
+<p>正しくない演奏時間は滅茶苦茶な楽譜を生成する可能性があります
+&ndash; 特にその楽譜が多声である場合はそうなる可能性があります。入力を修正するには、まずざっと見て失敗した小節チェックと演奏時間の誤りを探すと良いでしょう。
+</p>
+<p>連続する小節チェックは同じ音楽的間隔で off になり、最初の警告メッセージだけが表示されます。これにより、警告の焦点がタイミング エラーの発生源に絞られます。
+</p>
+
+<a name="index-_007c-2"></a>
+<a name="index-_007c-3"></a>
+<a name="index-_0022_007c_0022"></a>
+<a name="index-_0022_007c_0022-1"></a>
+
+<p>入力の中で小節チェックあるいはパイプ記号 <code>|</code> に遭遇した場合にとられるアクションを再定義することも可能です。これにより、小節チェック以外のことを行うことができます。再定義は音楽表記を <code>&quot;|&quot;</code> に代入することによって行います。以下の例では、<code>|</code> は小節の終わりをチェックするのではなく、それが現れた場所に 2 重線の小節線を挿入するようセットされています。
+</p>
+<blockquote><pre class="verbatim">&quot;|&quot; = \bar &quot;||&quot;
+{
+  c'2 c' |
+  c'2 c'
+  c'2 | c'
+  c'2 c'
+}
+</pre><p>
+ <a href="../6b/lily-210b97a6.ly">
+  <img align="middle"
+       border="0"
+       src="../6b/lily-210b97a6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cbarNumberCheck"></a>
+<a name="index-_005cbarNumberCheck-1"></a>
+<a name="index-barNumberCheck"></a>
+<a name="index-barNumberCheck-1"></a>
+
+<p>大きな楽曲をコピーしている場合、LilyPond の小節番号とコピー元のオリジナルの小節番号の対応をチェックすると役に立ちます。この対応は <code>\barNumberCheck</code> によってチェックすることができます。例えば、
+</p>
+<pre class="verbatim">\barNumberCheck #123
+</pre>
+<p>を使用すると、<code>currentBarNumber</code> が処理された時に 123 でなければ、警告が表示されます。
+</p>
+<a name="g_t_53c2_7167-69"></a>
+<h4 class="subsubheading">参照</h4>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+
+<hr size="6">
+<a name="g_t_30ea_30cf_30fc_30b5_30eb_8a18_53f7"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#bar-and-bar-number-checks" title="前のセクション" accesskey="p" rel="previous"> &lt; 小節と小節番号のチェック&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#bars" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;小節&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="special-rhythmic-concerns.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;特殊なリズム関連事項 &gt; </a>]</td></tr></table>
+<a name="rehearsal-marks"></a>
+<h4 class="unnumberedsubsubsec">リハーサル記号</h4>
+
+<a name="index-rehearsal-marks-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_0029"></a>
+<a name="index-mark_002c-rehearsal-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_0029"></a>
+
+<a name="index-_005cmark"></a>
+<a name="index-_005cmark-1"></a>
+<a name="index-mark"></a>
+<a name="index-mark-1"></a>
+
+<p>リハーサル記号を譜刻するには、<code>\mark</code> コマンドを使用します:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c1 \mark \default
+  c1 \mark \default
+  c1 \mark \default
+  c1 \mark \default
+}
+</pre><p>
+ <a href="../15/lily-d6087996.ly">
+  <img align="middle"
+       border="0"
+       src="../15/lily-d6087996.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\mark \default</code> を使用するとリハーサル記号は自動的に +1 されますが、手動で整数をリハーサル記号にセットすることもできます。セットした値は <code>rehearsalMark</code> に保存されます。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c1 \mark \default
+  c1 \mark \default
+  c1 \mark #8
+  c1 \mark \default
+  c1 \mark \default
+}
+</pre><p>
+ <a href="../d3/lily-b105eb63.ly">
+  <img align="middle"
+       border="0"
+       src="../d3/lily-b105eb63.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>文字&nbsp;&lsquo;I&rsquo; は、譜刻の慣習に従って、スキップされます。文字&nbsp;&lsquo;I&rsquo; を含めたければ、リハーサル記号のスタイル (文字のみ、四角で囲まれた文字、丸で囲まれた文字)
+に合わせて以下のコマンドの 1 つを使用します:
+</p>
+<blockquote><pre class="example">\set Score.markFormatter = #format-mark-alphabet
+\set Score.markFormatter = #format-mark-box-alphabet
+\set Score.markFormatter = #format-mark-circle-alphabet
+</pre></blockquote>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  \set Score.markFormatter = #format-mark-box-alphabet
+  c1 \mark \default
+  c1 \mark \default
+  c1 \mark #8
+  c1 \mark \default
+  c1 \mark \default
+}
+</pre><p>
+ <a href="../2e/lily-8d3759fd.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-8d3759fd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-rehearsal-mark-format-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30d5_30a9_30fc_30de_30c3_30c8_0029"></a>
+<a name="index-rehearsal-mark-style-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30b9_30bf_30a4_30eb_0029"></a>
+<a name="index-style_002c-rehearsal-mark-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30b9_30bf_30a4_30eb_0029"></a>
+<a name="index-format_002c-rehearsal-mark-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30d5_30a9_30fc_30de_30c3_30c8_0029"></a>
+<a name="index-mark_002c-rehearsal_002c-style-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30b9_30bf_30a4_30eb_0029"></a>
+<a name="index-mark_002c-rehearsal_002c-format-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30d5_30a9_30fc_30de_30c3_30c8_0029"></a>
+<a name="index-rehearsal-mark_002c-manual-_0028_624b_52d5_3067_30ea_30cf_30fc_30b5_30eb_8a18_53f7_3092_30bb_30c3_30c8_3059_308b_0029"></a>
+<a name="index-mark_002c-rehearsal_002c-manual-_0028_624b_52d5_3067_30ea_30cf_30fc_30b5_30eb_8a18_53f7_3092_30bb_30c3_30c8_3059_308b_0029"></a>
+<a name="index-custom-rehearsal-mark-_0028_30ea_30cf_30fc_30b5_30eb_8a18_53f7_306e_30ab_30b9_30bf_30e0_0029"></a>
+<a name="index-manual-rehearsal-mark-_0028_624b_52d5_306e_30ea_30cf_30fc_30b5_30eb_8a18_53f7_0029"></a>
+
+<p>スタイルはプロパティ <code>markFormatter</code> によって定義されます。これは引数としてカレントの記号 (整数) とカレントのコンテキストをとる関数です。この関数はマークアップ オブジェクトを返します。以下の例では、<code>markFormatter</code> には定義済みの手続きがセットされています。数小節後では、四角で囲まれた番号を作り出す手続きがセットされています。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \set Score.markFormatter = #format-mark-numbers
+  c1 \mark \default
+  c1 \mark \default
+  \set Score.markFormatter = #format-mark-box-numbers
+  c1 \mark \default
+  \set Score.markFormatter = #format-mark-circle-numbers
+  c1 \mark \default
+  \set Score.markFormatter = #format-mark-circle-letters
+  c1
+}
+</pre><p>
+ <a href="../c0/lily-3c60262f.ly">
+  <img align="middle"
+       border="0"
+       src="../c0/lily-3c60262f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>ファイル &lsquo;<tt>scm/translation-functions.scm</tt>&rsquo; は
+<code>format-mark-numbers</code> (デフォルトのフォーマット),
+<code>format-mark-box-numbers</code>, <code>format-mark-letters</code> それに
+<code>format-mark-box-letters</code> の定義を保持しています。これらを参考にして他のフォーマット関数を作り出すこともできます。
+</p>
+<p>加算された数字や文字の代わりに小節番号を取得するために
+<code>format-mark-barnumbers</code>, <code>format-mark-box-barnumbers</code>, それに
+<code>format-mark-circle-barnumbers</code> を使うことがあります。
+</p>
+<p>リハーサル記号の他のスタイルを手動で指定することができます:
+</p>
+<blockquote><pre class="example">\mark &quot;A1&quot;
+</pre></blockquote>
+
+<p><code>Score.markFormatter</code> はこの方法で指定された記号に影響を与えません。しかしながら、文字列として <code>\markup</code> 使用することができます。
+</p>
+<blockquote><pre class="example">\mark \markup{ \box A1 }
+</pre></blockquote>
+
+<a name="index-segno-_0028_30bb_30fc_30cb_30e7_0029-1"></a>
+<a name="index-coda-_0028_30b3_30fc_30c0_0029"></a>
+<a name="index-D_002eS-al-Fine-_0028_3053_3053_3067_66f2_306e_5148_982d_306b_623b_308a_3001Fine-_3067_7d42_308f_308b_0029"></a>
+<a name="index-fermata-_0028_30d5_30a7_30eb_30de_30fc_30bf_0029"></a>
+<a name="index-music-glyphs-_0028_97f3_697d_7684_56f3_67c4_0029"></a>
+<a name="index-glyphs_002c-music-_0028_97f3_697d_7684_56f3_67c4_0029"></a>
+
+<a name="index-_005cmusicglyph"></a>
+<a name="index-_005cmusicglyph-1"></a>
+<a name="index-musicglyph"></a>
+<a name="index-musicglyph-1"></a>
+
+<p>音楽的図柄 (セーニョ記号など) を <code>\mark</code> の中に譜刻することができます:
+</p>
+<blockquote><pre class="verbatim">\relative c' {
+  c1 \mark \markup { \musicglyph #&quot;scripts.segno&quot; }
+  c1 \mark \markup { \musicglyph #&quot;scripts.coda&quot; }
+  c1 \mark \markup { \musicglyph #&quot;scripts.ufermata&quot; }
+  c1
+}
+</pre><p>
+ <a href="../c9/lily-fb774258.ly">
+  <img align="middle"
+       border="0"
+       src="../c9/lily-fb774258.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\musicglyph</code> を使用して譜刻できる記号のリストは、<a href="the-feta-font.ja.html">The Feta font</a> を参照してください。
+</p>
+<p>リハーサル記号の配置の一般的な調整については、<a href="formatting-text.ja.html">テキストをフォーマットする</a> を参照してください。更に細かな制御を行う場合は、<a href="aligning-objects.ja.html">オブジェクトを揃える</a> の <code>break-alignable-interface</code> を参照してください。
+</p>
+<p>ファイル &lsquo;<tt>scm/translation-functions.scm</tt>&rsquo; は
+<code>format-mark-numbers</code> と <code>format-mark-letters</code> の定義を保持しています。ここにある定義を参考にして他のフォーマット関数を作り出すことができます。
+</p>
+<a name="g_t_53c2_7167-18"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a href="the-feta-font.ja.html">The Feta font</a>,
+<a href="formatting-text.ja.html">テキストをフォーマットする</a>,
+<a href="aligning-objects.ja.html">オブジェクトを揃える</a>
+</p>
+<p>インストールされているファイル:
+&lsquo;<tt>scm/translation-functions.scm</tt>&rsquo;
+</p>
+<p>コード断片集:
+<a href="../snippets/_30ea_30ba_30e0.ja.html#g_t_30ea_30ba_30e0">Rhythms</a>
+</p>
+<p>内部リファレンス:
+<a name="index-MarkEvent"></a>
+<a href="../internals/markevent.ja.html">MarkEvent</a>,
+<a name="index-Mark_005fengraver"></a>
+<a href="../internals/mark_005fengraver.ja.html">Mark_engraver</a>,
+<a name="index-RehearsalMark"></a>
+<a href="../internals/rehearsalmark.ja.html">RehearsalMark</a>
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#bar-and-bar-number-checks" title="前のセクション" accesskey="p" rel="previous"> &lt; 小節と小節番号のチェック&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#bars" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;小節&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="special-rhythmic-concerns.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;特殊なリズム関連事項 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="bars.html">English</a>, <a href="bars.de.html">deutsch</a>, <a href="bars.es.html">español</a>, <a href="bars.fr.html">français</a>, <a href="bars.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=" toc_current"><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_30ea_30ba_30e0_3092_8a18_8ff0_3059_308b-1" href="writing-rhythms.ja.html">1.2.1 リズムを記述する</a>      </li>
+      <li class=""><a name="toc-_4f11_7b26_3092_8a18_8ff0_3059_308b-1" href="writing-rests.ja.html">1.2.2 休符を記述する</a>      </li>
+      <li class=""><a name="toc-_30ea_30ba_30e0_3092_8868_793a_3059_308b-1" href="displaying-rhythms.ja.html">1.2.3 リズムを表示する</a>      </li>
+      <li class=""><a name="toc-_9023_6841-1" href="beams.ja.html">1.2.4 連桁</a>      </li>
+      <li class=" toc_current"><a name="toc-_5c0f_7bc0-1" href="bars.ja.html">1.2.5 小節</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_5c0f_7bc0_7dda-1" href="bars.ja.html#bar-lines">小節線</a>        </li>
+        <li class=""><a name="toc-_5c0f_7bc0_756a_53f7-1" href="bars.ja.html#bar-numbers">小節番号</a>        </li>
+        <li class=""><a name="toc-_5c0f_7bc0_3068_5c0f_7bc0_756a_53f7_306e_30c1_30a7_30c3_30af-1" href="bars.ja.html#bar-and-bar-number-checks">小節と小節番号のチェック</a>        </li>
+        <li class=""><a name="toc-_30ea_30cf_30fc_30b5_30eb_8a18_53f7-1" href="bars.ja.html#rehearsal-marks">リハーサル記号</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-_7279_6b8a_306a_30ea_30ba_30e0_95a2_9023_4e8b_9805-1" href="special-rhythmic-concerns.ja.html">1.2.6 特殊なリズム関連事項</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=""><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=""><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

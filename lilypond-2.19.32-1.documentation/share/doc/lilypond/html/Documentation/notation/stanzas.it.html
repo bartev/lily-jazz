@@ -1,0 +1,727 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 degli autori.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Guida alla Notazione di LilyPond: 2.1.3 Strofe</title>
+
+<meta name="description" content="Guida alla Notazione di LilyPond: 2.1.3 Strofe">
+<meta name="keywords" content="Guida alla Notazione di LilyPond: 2.1.3 Strofe">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Guida alla Notazione">
+<link href="lilypond-command-index.it.html#lilypond-command-index" rel="index" title="D. Indice dei comandi di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="vocal-music.it.html#vocal-music" rel="up" title="2.1 Musica vocale">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="E. Indice di LilyPond">
+<link href="techniques-specific-to-lyrics.it.html#techniques-specific-to-lyrics" rel="previous" title="2.1.2 Tecniche specifiche per il testo vocale">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="notation devStatus">
+
+
+<div id="main">
+<a name="Strofe"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="techniques-specific-to-lyrics.it.html#polyphony-with-shared-lyrics" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Polifonia con testo in comune&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vocal-music.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Musica vocale&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#adding-stanza-numbers" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Aggiungere i numeri di strofa &gt; </a>]</td></tr></table>
+<a name="stanzas"></a>
+<h3 class="subsection">2.1.3 Strofe</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#adding-stanza-numbers" accesskey="1">Aggiungere i numeri di strofa</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#adding-dynamics-marks-to-stanzas" accesskey="2">Aggiungere le dinamiche alle strofe</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#adding-singers_0027-names-to-stanzas" accesskey="3">Aggiungere i nomi dei cantanti alle strofe</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#stanzas-with-different-rhythms" accesskey="4">Strofe con durate diverse</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#printing-stanzas-at-the-end" accesskey="5">Stampare le strofe alla fine</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#printing-stanzas-at-the-end-in-multiple-columns" accesskey="6">Stampare le strofe alla fine in molteplici colonne</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Aggiungere-i-numeri-di-strofa"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#stanzas" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Strofe&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#adding-dynamics-marks-to-stanzas" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Aggiungere le dinamiche alle strofe &gt; </a>]</td></tr></table>
+<a name="adding-stanza-numbers"></a>
+<h4 class="unnumberedsubsubsec">Aggiungere i numeri di strofa</h4>
+
+<a name="index-numeri-di-strofa"></a>
+<a name="index-strofa_002c-numeri-di"></a>
+
+<p>I numeri di strofa si aggiungono impostando <code>stanza</code>:
+</p>
+<blockquote><pre class="verbatim">\new Voice \relative {
+  \time 3/4 g'2 e4 a2 f4 g2.
+} \addlyrics {
+  \set stanza = #&quot;1. &quot;
+  Hi, my name is Bert.
+} \addlyrics {
+  \set stanza = #&quot;2. &quot;
+  Oh, ché -- ri, je t'aime
+}
+</pre><p>
+ <a href="../79/lily-e935e471.ly">
+  <img align="middle"
+       border="0"
+       src="../79/lily-e935e471.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p>Questi numeri appaiono prima dell&rsquo;inizio della prima sillaba.
+</p>
+
+
+<hr size="6">
+<a name="Aggiungere-le-dinamiche-alle-strofe"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#adding-stanza-numbers" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Aggiungere i numeri di strofa&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#adding-singers_0027-names-to-stanzas" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Aggiungere i nomi dei cantanti alle strofe &gt; </a>]</td></tr></table>
+<a name="adding-dynamics-marks-to-stanzas"></a>
+<h4 class="unnumberedsubsubsec">Aggiungere le dinamiche alle strofe</h4>
+
+<p>Le strofe che hanno un volume diverso possono essere indicate con un
+segno di dinamica all&rsquo;inizio di ogni strofa.  In LilyPond, tutto ciò
+che si trova di fronte a una strofa va nell&rsquo;oggetto <code>StanzaNumber</code>;
+lo stesso vale per i segni di dinamica.  Per ragioni tecniche, bisogna
+impostare la strofa fuori da <code>\lyricmode</code>:
+</p>
+<blockquote><pre class="verbatim">text = {
+  \set stanza = \markup { \dynamic &quot;ff&quot; &quot;1. &quot; }
+  \lyricmode {
+    Big bang
+  }
+}
+
+&lt;&lt;
+  \new Voice = &quot;tune&quot; {
+    \time 3/4
+    g'4 c'2
+  }
+\new Lyrics \lyricsto &quot;tune&quot; \text
+&gt;&gt;
+</pre><p>
+ <a href="../d8/lily-5eaa847d.ly">
+  <img align="middle"
+       border="0"
+       src="../d8/lily-5eaa847d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Aggiungere-i-nomi-dei-cantanti-alle-strofe"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#adding-dynamics-marks-to-stanzas" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Aggiungere le dinamiche alle strofe&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#stanzas-with-different-rhythms" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Strofe con durate diverse &gt; </a>]</td></tr></table>
+<a name="adding-singers_0027-names-to-stanzas"></a>
+<h4 class="unnumberedsubsubsec">Aggiungere i nomi dei cantanti alle strofe</h4>
+
+<a name="index-nome-del-cantante"></a>
+<a name="index-cantante_002c-nome-del"></a>
+
+<p>Si possono aggiungere anche i nomi dei cantanti.  Appariranno
+all&rsquo;inizio del rigo, proprio come per i nomi degli strumenti.
+Si creano impostando <code>vocalName</code>.  Una versione abbreviata
+si inserisce con <code>shortVocalName</code>.
+</p>
+<blockquote><pre class="verbatim">\new Voice \relative {
+  \time 3/4 g'2 e4 a2 f4 g2.
+} \addlyrics {
+  \set vocalName = #&quot;Bert &quot;
+  Hi, my name is Bert.
+} \addlyrics {
+  \set vocalName = #&quot;Ernie &quot;
+  Oh, ché -- ri, je t'aime
+}
+</pre><p>
+ <a href="../7e/lily-7d72de3c.ly">
+  <img align="middle"
+       border="0"
+       src="../7e/lily-7d72de3c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Strofe-con-durate-diverse"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#adding-singers_0027-names-to-stanzas" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Aggiungere i nomi dei cantanti alle strofe&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#printing-stanzas-at-the-end" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Stampare le strofe alla fine &gt; </a>]</td></tr></table>
+<a name="stanzas-with-different-rhythms"></a>
+<h4 class="unnumberedsubsubsec">Strofe con durate diverse</h4>
+
+<p>Spesso, strofe diverse di una canzone sono collegate a una melodia in
+modi leggermente diversi.  Tali variazioni possono essere colte con
+<code>\lyricsto</code>.
+</p>
+<a name="Ignorare-i-melismi"></a>
+<h4 class="subsubheading">Ignorare i melismi</h4>
+
+<p>Può capitare ad esempio che il testo abbia un melisma in una strofa,
+ma varie sillabe in un&rsquo;altra.  Una possibile soluzione consiste
+nel far sì che la voce più veloce ignori il melisma, impostando
+<code>ignoreMelismata</code> nel contesto Lyrics.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative \new Voice = &quot;lahlah&quot; {
+    \set Staff.autoBeaming = ##f
+    c'4
+    \slurDotted
+    f8.[( g16])
+    a4
+  }
+  \new Lyrics \lyricsto &quot;lahlah&quot; {
+    più len -- ta
+  }
+  \new Lyrics \lyricsto &quot;lahlah&quot; {
+    più
+    \set ignoreMelismata = ##t
+    velo -- ce
+    \unset ignoreMelismata
+    ancora
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../6f/lily-24ee7ff8.ly">
+  <img align="middle"
+       border="0"
+       src="../6f/lily-24ee7ff8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Problemi-noti-e-avvertimenti-29"></a>
+<h4 class="subsubheading">Problemi noti e avvertimenti</h4>
+<p>Diversamente dalla maggior parte dei comandi <code>\set</code>,
+<code>\set ignoreMelismata</code> non funziona se preceduto da <code>\once</code>.
+Bisogna usare <code>\set</code> e <code>\unset</code> per contrassegnare il testo
+in cui il melisma deve essere ignorato.
+</p>
+<a name="Aggiungere-le-sillabe-agli-abbellimenti"></a>
+<h4 class="subsubheading">Aggiungere le sillabe agli abbellimenti</h4>
+
+<a name="index-abbellimenti-e-testo-cantato"></a>
+<a name="index-testo-cantato-su-abbellimenti"></a>
+
+<p>Per impostazione predefinita, gli abbellimenti (ovvero le note inserite
+con <code>\grace</code>) non sono assegnati alle sillabe quando si usa
+<code>\lyricsto</code>, ma tale comportamento può essere modificato:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Voice = melody \relative {
+    f'4 \appoggiatura a32 b4
+    \grace { f16 a16 } b2
+    \afterGrace b2 { f16[ a16] }
+    \appoggiatura a32 b4
+    \acciaccatura a8 b4
+  }
+  \new Lyrics
+  \lyricsto melody {
+    normal
+    \set includeGraceNotes = ##t
+    case,
+    gra -- ce case,
+    after -- grace case,
+    \set ignoreMelismata = ##t
+    app. case,
+    acc. case.
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../30/lily-1f91d39c.ly">
+  <img align="middle"
+       border="0"
+       src="../30/lily-1f91d39c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Problemi-noti-e-avvertimenti-42"></a>
+<h4 class="subsubheading">Problemi noti e avvertimenti</h4>
+<p>Come per <code>associatedVoice</code>, <code>includeGraceNotes</code> deve essere
+impostato al più tardi una sillaba prima di quella da mettere sotto
+un abbellimento. Per il caso di un abbellimento proprio all&rsquo;inizio
+di un brano, meglio usare un blocco <code>\with</code> o <code>\context</code>:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Voice = melody \relative c' {
+    \grace { c16( d e f }
+    g1) f
+  }
+  \new Lyrics \with { includeGraceNotes = ##t }
+  \lyricsto melody {
+    Ah __ fa
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../10/lily-e100b95c.ly">
+  <img align="middle"
+       border="0"
+       src="../10/lily-e100b95c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Passare-a-una-melodia-alternativa"></a>
+<h4 class="subsubheading">Passare a una melodia alternativa</h4>
+
+<a name="index-associatedVoice-2"></a>
+<a name="index-melodia-alternativa_002c-passare-a"></a>
+
+<p>Sono possibili variazioni più complesse nell&rsquo;impostare testo e musica.
+La melodia su cui è impostato il testo può essere modificata all&rsquo;interno
+del contesto del testo impostando la proprietà <code>associatedVoice</code>:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative \new Voice = &quot;lahlah&quot; {
+    \set Staff.autoBeaming = ##f
+    c'4
+    &lt;&lt;
+      \new Voice = &quot;alternative&quot; {
+  \voiceOne
+  \tuplet 3/2 {
+    % mostra chiaramente le associazioni.
+    \override NoteColumn.force-hshift = #-3
+    f8 f g
+  }
+      }
+      {
+  \voiceTwo
+  f8.[ g16]
+  \oneVoice
+      } &gt;&gt;
+    a8( b) c
+  }
+  \new Lyrics \lyricsto &quot;lahlah&quot; {
+    Ju -- ras -- sic Park
+  }
+  \new Lyrics \lyricsto &quot;lahlah&quot; {
+    % Complicato: bisogna impostare associatedVoice
+    % una sillaba prima di quella cui si applica!
+    \set associatedVoice = &quot;alternative&quot; % si applica a &quot;ran&quot;
+    Ty --
+    ran --
+    no --
+    \set associatedVoice = &quot;lahlah&quot; % si applica a &quot;rus&quot;
+    sau -- rus Rex
+  } &gt;&gt;
+</pre><p>
+ <a href="../55/lily-dc60af00.ly">
+  <img align="middle"
+       border="0"
+       src="../55/lily-dc60af00.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Il testo per la prima strofa viene impostato sulla melodia
+&lsquo;lahlah&rsquo; nel solito modo, ma la seconda strofa è impostata
+inizialmente sul contesto <code>lahlah</code> e passa poi alla melodia
+<code>alternative</code> per le sillabe da &lsquo;ran&rsquo; a &lsquo;sau&rsquo;:
+</p>
+<blockquote><pre class="example">\set associatedVoice = &quot;alternative&quot; % si applica a &quot;ran&quot;
+Ty --
+ran --
+no --
+\set associatedVoice = &quot;lahlah&quot; % si applica a &quot;rus&quot;
+sau -- rus Rex
+</pre></blockquote>
+
+<p>In questo esempio <code>alternative</code> è il nome del contesto <code>Voice</code>
+contenente la terzina.
+</p>
+<p>Attenzione al posizionamento del comando <code>\set associatedVoice</code>: appare
+una sillaba troppo presto, ma ciò è corretto.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Il comando <code>set associatedVoice</code> deve essere inserito
+una sillaba <em>prima</em> di quella in cui deve verificarsi il passaggio
+alla nuova voce.  In altre parole, il passaggio alla voce associata
+accade una sillaba dopo quella che ci si aspetterebbe.  Ciò è dovuto
+a ragioni tecniche e non è un difetto di LilyPond.
+</p>
+</div>
+
+<hr size="6">
+<a name="Stampare-le-strofe-alla-fine"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#stanzas-with-different-rhythms" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Strofe con durate diverse&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#printing-stanzas-at-the-end-in-multiple-columns" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Stampare le strofe alla fine in molteplici colonne &gt; </a>]</td></tr></table>
+<a name="printing-stanzas-at-the-end"></a>
+<h4 class="unnumberedsubsubsec">Stampare le strofe alla fine</h4>
+
+<p>Talvolta si allinea una sola strofa alla musica e le strofe
+rimanenti appaiono in forma di versi alla fine del brano.
+Per ottenere ciò si aggiungono le strofe ulteriori in un
+blocco <code>\markup</code> esterno al blocco della partitura.
+Nell&rsquo;esempio seguente si possono notare due modi di forzare
+le interruzioni di linea in un blocco <code>\markup</code>.
+</p>
+<blockquote><pre class="verbatim">melody = \relative {
+e' d c d | e e e e |
+d d e d | c1 |
+}
+
+text = \lyricmode {
+\set stanza = #&quot;1.&quot; Ma- ry had a lit- tle lamb,
+its fleece was white as snow.
+}
+
+\score{ &lt;&lt;
+  \new Voice = &quot;one&quot; { \melody }
+  \new Lyrics \lyricsto &quot;one&quot; \text
+&gt;&gt;
+  \layout { }
+}
+\markup { \column{
+  \line{ Verse 2. }
+  \line{ All the children laughed and played }
+  \line{ To see a lamb at school. }
+  }
+}
+\markup{
+  \wordwrap-string #&quot;
+  Verse 3.
+
+  Mary took it home again,
+
+  It was against the rule.&quot;
+}
+</pre><p>
+ <a href="../da/lily-10b44002.ly">
+  <img align="middle"
+       border="0"
+       src="../da/lily-10b44002.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Stampare-le-strofe-alla-fine-in-molteplici-colonne"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#printing-stanzas-at-the-end" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Stampare le strofe alla fine&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="songs.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Canzoni &gt; </a>]</td></tr></table>
+<a name="printing-stanzas-at-the-end-in-multiple-columns"></a>
+<h4 class="unnumberedsubsubsec">Stampare le strofe alla fine in molteplici colonne</h4>
+
+<p>Quando un brano ha molte strofe, queste sono spesso stampate in
+molteplici colonne lungo la pagina.  Un numero di strofa rientrato
+spesso introduce ciascuna strofa.  L&rsquo;esempio seguente mostra come
+riprodurre questo output in LilyPond.
+</p>
+<blockquote><pre class="verbatim">melody = \relative {
+  c'4 c c c | d d d d
+}
+
+text = \lyricmode {
+  \set stanza = #&quot;1.&quot;
+  This is verse one.
+  It has two lines.
+}
+
+\score {
+  &lt;&lt;
+    \new Voice = &quot;one&quot; { \melody }
+    \new Lyrics \lyricsto &quot;one&quot; \text
+  &gt;&gt;
+  \layout { }
+}
+
+\markup {
+  \fill-line {
+    \hspace #0.1 % sposta la colonna in avanti rispetto al margine sinistro;
+     % può essere tolto se lo spazio nella pagina è stretto
+     \column {
+      \line { \bold &quot;2.&quot;
+  \column {
+    &quot;This is verse two.&quot;
+    &quot;It has two lines.&quot;
+  }
+      }
+      \combine \null \vspace #0.1 % aggiunge spazio verticale tra le strofe
+      \line { \bold &quot;3.&quot;
+  \column {
+    &quot;This is verse three.&quot;
+    &quot;It has two lines.&quot;
+  }
+      }
+    }
+    \hspace #0.1 % aggiunge spazio orizzontale tra le colonne;
+    \column {
+      \line { \bold &quot;4.&quot;
+  \column {
+    &quot;This is verse four.&quot;
+    &quot;It has two lines.&quot;
+  }
+      }
+      \combine \null \vspace #0.1 % aggiunge spazio verticale tra le strofe
+      \line { \bold &quot;5.&quot;
+  \column {
+    &quot;This is verse five.&quot;
+    &quot;It has two lines.&quot;
+  }
+      }
+    }
+  \hspace #0.1 % dà ulteriore spazio sul margine destro;
+  % può essere tolto se lo spazio nella pagina è stretto
+  }
+}
+</pre><p>
+ <a href="../98/lily-48fca3a1.ly">
+  <img align="middle"
+       border="0"
+       src="../98/lily-48fca3a1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Vedi-anche-141"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Guida al funzionamento interno:
+<a name="index-LyricText-1"></a>
+<a href="../internals/lyrictext.it.html">LyricText</a>,
+<a name="index-StanzaNumber"></a>
+<a href="../internals/stanzanumber.it.html">StanzaNumber</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="specialist-notation.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Notazione specialistica&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-command-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="general-input-and-output.it.html" title="Capitolo successivo">&nbsp;General input and output &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#printing-stanzas-at-the-end" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Stampare le strofe alla fine&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#stanzas" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Strofe&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="songs.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Canzoni &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="stanzas.html">English</a>, <a href="stanzas.de.html">deutsch</a>, <a href="stanzas.es.html">español</a>, <a href="stanzas.fr.html">français</a>, <a href="stanzas.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Guida alla Notazione  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notazione-musicale-1" href="musical-notation.it.html">1. Notazione musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Altezze-1" href="pitches.it.html">1.1 Altezze</a>    </li>
+    <li class=""><a name="toc-Ritmi-1" href="rhythms.it.html">1.2 Ritmi</a>    </li>
+    <li class=""><a name="toc-Segni-di-espressione-1" href="expressive-marks.it.html">1.3 Segni di espressione</a>    </li>
+    <li class=""><a name="toc-Ripetizioni-1" href="repeats.it.html">1.4 Ripetizioni</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="simultaneous-notes.it.html">1.5 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Notazione-del-rigo-1" href="staff-notation.it.html">1.6 Notazione del rigo</a>    </li>
+    <li class=""><a name="toc-Note-editoriali-1" href="editorial-annotations.it.html">1.7 Note editoriali</a>    </li>
+    <li class=""><a name="toc-Testo-1" href="text.it.html">1.8 Testo</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Notazione-specialistica-1" href="specialist-notation.it.html">2. Notazione specialistica</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Musica-vocale-1" href="vocal-music.it.html">2.1 Musica vocale</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Notazione-comune-per-la-musica-vocale-1" href="common-notation-for-vocal-music.it.html">2.1.1 Notazione comune per la musica vocale</a>      </li>
+      <li class=""><a name="toc-Tecniche-specifiche-per-il-testo-vocale-1" href="techniques-specific-to-lyrics.it.html">2.1.2 Tecniche specifiche per il testo vocale</a>      </li>
+      <li class=" toc_current"><a name="toc-Strofe-1" href="stanzas.it.html">2.1.3 Strofe</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Aggiungere-i-numeri-di-strofa-1" href="stanzas.it.html#adding-stanza-numbers">Aggiungere i numeri di strofa</a>        </li>
+        <li class=""><a name="toc-Aggiungere-le-dinamiche-alle-strofe-1" href="stanzas.it.html#adding-dynamics-marks-to-stanzas">Aggiungere le dinamiche alle strofe</a>        </li>
+        <li class=""><a name="toc-Aggiungere-i-nomi-dei-cantanti-alle-strofe-1" href="stanzas.it.html#adding-singers_0027-names-to-stanzas">Aggiungere i nomi dei cantanti alle strofe</a>        </li>
+        <li class=""><a name="toc-Strofe-con-durate-diverse-1" href="stanzas.it.html#stanzas-with-different-rhythms">Strofe con durate diverse</a>        </li>
+        <li class=""><a name="toc-Stampare-le-strofe-alla-fine-1" href="stanzas.it.html#printing-stanzas-at-the-end">Stampare le strofe alla fine</a>        </li>
+        <li class=""><a name="toc-Stampare-le-strofe-alla-fine-in-molteplici-colonne-1" href="stanzas.it.html#printing-stanzas-at-the-end-in-multiple-columns">Stampare le strofe alla fine in molteplici colonne</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.1.4 Canzoni</a>      </li>
+      <li class=""><a name="toc-Musica-corale-1" href="choral.it.html">2.1.5 Musica corale</a>      </li>
+      <li class=""><a name="toc-Opera-e-musical-1" href="opera-and-stage-musicals.it.html">2.1.6 Opera e musical</a>      </li>
+      <li class=""><a name="toc-Canti-salmi-e-inni-1" href="chants-psalms-and-hymns.it.html">2.1.7 Canti salmi e inni</a>      </li>
+      <li class=""><a name="toc-Musica-vocale-antica-1" href="ancient-vocal-music.it.html">2.1.8 Musica vocale antica</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Keyboard-and-other-multi_002dstaff-instruments-1" href="keyboard-and-other-multi_002dstaff-instruments.it.html">2.2 Keyboard and other multi-staff instruments</a>    </li>
+    <li class=""><a name="toc-Unfretted-string-instruments-1" href="unfretted-string-instruments.it.html">2.3 Unfretted string instruments</a>    </li>
+    <li class=""><a name="toc-Fretted-string-instruments-1" href="fretted-string-instruments.it.html">2.4 Fretted string instruments</a>    </li>
+    <li class=""><a name="toc-Percussion-1" href="percussion.it.html">2.5 Percussion</a>    </li>
+    <li class=""><a name="toc-Wind-instruments-1" href="wind-instruments.it.html">2.6 Wind instruments</a>    </li>
+    <li class=""><a name="toc-Chord-notation-1" href="chord-notation.it.html">2.7 Chord notation</a>    </li>
+    <li class=""><a name="toc-Contemporary-music-1" href="contemporary-music.it.html">2.8 Contemporary music</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.it.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-World-music-1" href="world-music.it.html">2.10 World music</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-General-input-and-output-1" href="general-input-and-output.it.html">3. General input and output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Input-structure-1" href="input-structure.it.html">3.1 Input structure</a>    </li>
+    <li class=""><a name="toc-Titles-and-headers-1" href="titles-and-headers.it.html">3.2 Titles and headers</a>    </li>
+    <li class=""><a name="toc-Working-with-input-files-1" href="working-with-input-files.it.html">3.3 Working with input files</a>    </li>
+    <li class=""><a name="toc-Controlling-output-1" href="controlling-output.it.html">3.4 Controlling output</a>    </li>
+    <li class=""><a name="toc-Creating-MIDI-output-1" href="creating-midi-output.it.html">3.5 Creating MIDI output</a>    </li>
+    <li class=""><a name="toc-Extracting-musical-information-1" href="extracting-musical-information.it.html">3.6 Extracting musical information</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Spacing-issues-1" href="spacing-issues.it.html">4. Spacing issues</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Page-layout-1" href="page-layout.it.html">4.1 Page layout</a>    </li>
+    <li class=""><a name="toc-Score-layout-1" href="score-layout.it.html">4.2 Score layout</a>    </li>
+    <li class=""><a name="toc-Breaks-1" href="breaks.it.html">4.3 Breaks</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.it.html">4.4 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Horizontal-spacing-1" href="horizontal-spacing.it.html">4.5 Horizontal spacing</a>    </li>
+    <li class=""><a name="toc-Fitting-music-onto-fewer-pages-1" href="fitting-music-onto-fewer-pages.it.html">4.6 Fitting music onto fewer pages</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Changing-defaults-1" href="changing-defaults.it.html">5. Changing defaults</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Interpretation-contexts-1" href="interpretation-contexts.it.html">5.1 Interpretation contexts</a>    </li>
+    <li class=""><a name="toc-Explaining-the-Internals-Reference-1" href="explaining-the-internals-reference.it.html">5.2 Explaining the Internals Reference</a>    </li>
+    <li class=""><a name="toc-Modifying-properties-1" href="modifying-properties.it.html">5.3 Modifying properties</a>    </li>
+    <li class=""><a name="toc-Useful-concepts-and-properties-1" href="useful-concepts-and-properties.it.html">5.4 Useful concepts and properties</a>    </li>
+    <li class=""><a name="toc-Advanced-tweaks-1" href="advanced-tweaks.it.html">5.5 Advanced tweaks</a>    </li>
+    <li class=""><a name="toc-Using-music-functions-1" href="using-music-functions.it.html">5.6 Using music functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.it.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.it.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.it.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.it.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.it.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.it.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.it.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.it.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.it.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.it.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.it.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.it.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.it.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.it.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.it.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.it.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.it.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.it.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.it.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.it.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.it.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.it.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.it.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cheat-sheet-1" href="cheat-sheet.it.html">B. Cheat sheet</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-dei-comandi-di-LilyPond-1" href="lilypond-command-index.it.html">D. Indice dei comandi di LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">E. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

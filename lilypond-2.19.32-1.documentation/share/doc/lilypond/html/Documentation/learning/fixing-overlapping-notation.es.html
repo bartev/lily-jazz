@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual de aprendizaje de GNU LilyPond: 4.6.2 Arreglar notación con superposiciones</title>
+
+<meta name="description" content="Manual de aprendizaje de GNU LilyPond: 4.6.2 Arreglar notación con superposiciones">
+<meta name="keywords" content="Manual de aprendizaje de GNU LilyPond: 4.6.2 Arreglar notación con superposiciones">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Manual de aprendizaje">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="C. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="collisions-of-objects.es.html#collisions-of-objects" rel="up" title="4.6 Colisiones de objetos">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="C. Índice de LilyPond">
+<link href="moving-objects.es.html#moving-objects" rel="previous" title="4.6.1 Mover objetos">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="learning devStatus">
+
+
+<div id="main">
+<a name="Arreglar-notaci_00f3n-con-superposiciones"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="moving-objects.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Mover objetos&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Colisiones de objetos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-padding-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad padding (relleno) &gt; </a>]</td></tr></table>
+<a name="fixing-overlapping-notation"></a>
+<h3 class="subsection">4.6.2 Arreglar notación con superposiciones</h3>
+
+<p>Veamos ahora cómo pueden ser de ayuda las propiedades que hemos visto
+en la sección anterior, para resolver problemas de notación que se
+superpone.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-padding-property" accesskey="1">La propiedad <code>padding</code> (relleno)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-right_002dpadding-property" accesskey="2">La propiedad <code>right-padding</code> (relleno por la derecha)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-staff_002dpadding-property" accesskey="3">La propiedad <code>staff-padding</code> (relleno de pentagrama)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-self_002dalignment_002dx-property" accesskey="4">La propiedad <code>self-alignment-X</code> (auto-alineación en X)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-staff_002dposition-property" accesskey="5">La propiedad <code>staff-position</code> (posición en el pentagrama)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-extra_002doffset-property" accesskey="6">La propiedad <code>extra-offset</code> (desplazamiento adicional)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-positions-property" accesskey="7">La propiedad <code>positions</code> (posiciones)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-force_002dhshift-property" accesskey="8">La propiedad <code>force-hshift</code> (forzar desplazamiento horizontal)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="La-propiedad-padding-_0028relleno_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#fixing-overlapping-notation" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-right_002dpadding-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad right-padding (relleno por la derecha) &gt; </a>]</td></tr></table>
+<a name="the-padding-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>padding</code> (relleno)</h4>
+
+<a name="index-relleno-1"></a>
+<a name="index-arreglar-notacion-que-se-superpone"></a>
+<a name="index-superpuesta_002c-notacion"></a>
+
+<p>La propiedad <code>padding</code> se puede ajustar para aumentar (o
+disminuir) la distancia entre símbolos impresos encima o debajo de las
+notas.
+</p>
+<a name="index-Script_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-padding_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">c'2\fermata
+\override Script.padding = #3
+b2\fermata
+</pre><p>
+ <a href="../40/lily-159f1ece.ly">
+  <img align="middle"
+       border="0"
+       src="../40/lily-159f1ece.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-MetronomeMark_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-padding_002c-propiedad_002c-ejemplo-1"></a>
+
+<blockquote><pre class="verbatim">% This will not work, see below
+\override MetronomeMark.padding = #3
+\tempo 4 = 120
+c'1 |
+% This works
+\override Score.MetronomeMark.padding = #3
+\tempo 4 = 80
+d'1 |
+</pre><p>
+ <a href="../4e/lily-ebfc03a7.ly">
+  <img align="middle"
+       border="0"
+       src="../4e/lily-ebfc03a7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe en el segundo ejemplo la gran importancia que tiene saber qué
+contexto maneja un determinado objeto.  Puesto que el objeto
+<code>MetronomeMark</code> se maneja dentro del contexto <code>Score</code>, los
+cambios de propiedades en el contexto <code>Voice</code> pasarán
+inadvertidos.  Para ver más detalles, consulte <a name="index-Modificar-las-propiedades"></a>
+<a href="../notation/modifying-properties.es.html">Modificar las propiedades</a>.
+</p>
+<p>Si la propiedad de relleno <code>padding</code> de un objeto se incrementa
+cuando dicho objeto se encuentra en una pila de objetos que se están
+colocando de acuerdo a su prioridad <code>outside-staff-priority</code>,
+entonces ese objeto se moverá, y también todos los que están por fuera
+de él.
+</p>
+
+<hr size="6">
+<a name="La-propiedad-right_002dpadding-_0028relleno-por-la-derecha_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-padding-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad padding (relleno)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-staff_002dpadding-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad staff-padding (relleno de pentagrama) &gt; </a>]</td></tr></table>
+<a name="the-right_002dpadding-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>right-padding</code> (relleno por la derecha)</h4>
+
+<a name="index-right_002dpadding_002c-propiedad-1"></a>
+
+<p>La propiedad <code>right-padding</code> afecta al espaciado entre la
+alteración y la nota a que se aplica.  Normalmente no es necesaria,
+pero el espaciado predeterminado puede estar mal para ciertos glifos
+de alteraciones o combinaciones de glifos que se usan en música
+microtonal.  Éstos tienen que introducirse sobreescribiendo el sello
+de la alteración con un elemento de marcado que contenga los símbolos
+deseados, así:
+</p>
+<a name="index-Accidental_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-text_002c-propiedad_002c-ejemplo-1"></a>
+<a name="index-stencil_002c-propiedad_002c-ejemplo-4"></a>
+<a name="index-AccidentalPlacement_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-right_002dpadding_002c-propiedad_002c-ejemplo"></a>
+
+
+<blockquote><pre class="verbatim">sesquisharp = \markup { \sesquisharp }
+\relative {
+  c''4
+  % This prints a sesquisharp but the spacing is too small
+  \once \override Accidental.stencil = #ly:text-interface::print
+  \once \override Accidental.text = #sesquisharp
+  cis4 c
+  % This improves the spacing
+  \once \override Score.AccidentalPlacement.right-padding = #0.6
+  \once \override Accidental.stencil = #ly:text-interface::print
+  \once \override Accidental.text = #sesquisharp
+  cis4 |
+}
+</pre><p>
+ <a href="../17/lily-daa0dee0.ly">
+  <img align="middle"
+       border="0"
+       src="../17/lily-daa0dee0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto utiliza necesariamente una sobreescritura para el sello de la
+alteración que no se estudiará hasta más adelante.  El tipo de sello
+debe ser un procedimiento, aquí modificado para que imprima el
+contenido de la propiedad <code>text</code> del objeto <code>Accidental</code>,
+que a su vez está establecido como un signo de sesquisostenido.
+Entonces el signo se puede separar de la cabeza de la nota
+sobreescribiendo <code>right-padding</code>.
+</p>
+
+<hr size="6">
+<a name="La-propiedad-staff_002dpadding-_0028relleno-de-pentagrama_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-right_002dpadding-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad right-padding (relleno por la derecha)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-self_002dalignment_002dx-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad self-alignment-X (auto-alineación en X) &gt; </a>]</td></tr></table>
+<a name="the-staff_002dpadding-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>staff-padding</code> (relleno de pentagrama)</h4>
+
+<a name="index-alineacion-de-objetos-sobre-la-linea-base"></a>
+<a name="index-objetos_002c-alineacion-sobre-la-linea-base"></a>
+
+<p><code>staff-padding</code> se puede usar para alinear objetos como matices
+dinámicos a lo largo de una línea de base a una distancia fija del
+pentagrama, siempre que no exista ningún otro elemento de notación
+que fuerce una distancia mayor al pentagrama.  No es una propiedad de
+<code>DynamicText</code> sino de <code>DynamicLineSpanner</code>.  Esto es así
+porque la línea de base debe aplicarse por igual a <strong>todas</strong> las
+dinámicas, entre ellas las que se han creado como objetos de
+extensión.  Así que ésta es la forma de alinear las indicaciones de
+matiz en el ejemplo de la sección anterior:
+</p>
+<a name="index-DynamicText_002c-ejemplo-de-sobreescritura-1"></a>
+<a name="index-extra_002dspacing_002dwidth_002c-propiedad_002c-ejemplo-1"></a>
+<a name="index-DynamicLineSpanner_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-staff_002dpadding_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">\override DynamicLineSpanner.staff-padding = #3
+\relative { a'4\f b\mf a\p b\mp }
+</pre><p>
+ <a href="../0d/lily-8d21ce5d.ly">
+  <img align="middle"
+       border="0"
+       src="../0d/lily-8d21ce5d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="La-propiedad-self_002dalignment_002dX-_0028auto_002dalineaci_00f3n-en-X_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-staff_002dpadding-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad staff-padding (relleno de pentagrama)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-staff_002dposition-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad staff-position (posición en el pentagrama) &gt; </a>]</td></tr></table>
+<a name="the-self_002dalignment_002dx-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>self-alignment-X</code> (auto-alineación en X)</h4>
+
+<p>El ejemplo siguiente muestra cómo ajustar la posición
+de un objeto de digitación de cuerda en relación a la plica de una nota
+mediante el alineamiento del límite derecho con el punto de referencia
+de la nota «padre»:
+</p>
+<a name="index-StringNumber_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-self_002dalignment_002dX_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">\voiceOne
+&lt;a''\2&gt;
+\once \override StringNumber.self-alignment-X = #RIGHT
+&lt;a''\2&gt;
+</pre><p>
+ <a href="../73/lily-46037d19.ly">
+  <img align="middle"
+       border="0"
+       src="../73/lily-46037d19.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="La-propiedad-staff_002dposition-_0028posici_00f3n-en-el-pentagrama_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-self_002dalignment_002dx-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad self-alignment-X (auto-alineación en X)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-extra_002doffset-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad extra-offset (desplazamiento adicional) &gt; </a>]</td></tr></table>
+<a name="the-staff_002dposition-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>staff-position</code> (posición en el pentagrama)</h4>
+
+<a name="index-objeto_002c-colision-dentro-del-pentagrama"></a>
+
+<p>Los silencios multi-compás en una voz pueden chocar con las notas en
+otra voz.  Puesto que estos silencios se tipografían centrados entre
+las barras de compás se necesitaría bastante esfuerzo para que
+LilyPond averiguara qué otras notas podrían chocar con él, ya que
+actualmente todo el manejo de colisiones entre notas y silencios se
+hace solamente para notas y silencios que ocurren al mismo tiempo.  He
+aquí un ejemplo de colisión de este tipo:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt; \relative { c'4 c c c } \\ { R1 } &gt;&gt;
+</pre><p>
+ <a href="../25/lily-a05e161f.ly">
+  <img align="middle"
+       border="0"
+       src="../25/lily-a05e161f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La mejor solución aquí es mover el silencio multi-compás hacia abajo,
+pues el silencio está en la voz dos.  El ajuste predeterminado para
+<code>\voiceTwo</code> (es decir, en la segunda voz de una construcción
+<code>&lt;&lt;{&hellip;} \\ {&hellip;}&gt;&gt;</code>) es que <code>staff-position</code> tenga el
+valor -4 para MultiMeasureRest, así que tenemos que bajarlo, digamos,
+cuatro semi-espacios de pentagrama, al valor <code>-8</code>.
+</p>
+<a name="index-MultiMeasureRest_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-staff_002dposition_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">&lt;&lt;
+  \relative { c'4 c c c }
+  \\
+  \override MultiMeasureRest.staff-position = #-8
+  { R1 }
+&gt;&gt;
+</pre><p>
+ <a href="../84/lily-818c8065.ly">
+  <img align="middle"
+       border="0"
+       src="../84/lily-818c8065.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto es mejor que utilizar, por ejemplo, <code>extra-offset</code>, porque
+la línea adicional por encima del silencio se inserta automáticamente.
+</p>
+<hr size="6">
+<a name="La-propiedad-extra_002doffset-_0028desplazamiento-adicional_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-staff_002dposition-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad staff-position (posición en el pentagrama)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-positions-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad positions (posiciones) &gt; </a>]</td></tr></table>
+<a name="the-extra_002doffset-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>extra-offset</code> (desplazamiento adicional)</h4>
+
+<a name="index-posicionar-objetos"></a>
+<a name="index-posicionar-grobs"></a>
+<a name="index-objetos_002c-posicionar"></a>
+<a name="index-grobs_002c-posicionar"></a>
+
+<p>La propiedad <code>extra-offset</code> da un completo control sobre el
+posicionamiento de un objeto tanto vertical como horizontalmente.
+</p>
+<p>En el ejemplo siguiente, la segunda digitación se desplaza ligeramente
+a la izquierda, y 1.8 espacios de pentagrama hacia abajo:
+</p>
+<a name="index-fingering-_0028digitacion_0029_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-extra_002doffset_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">\stemUp
+f4-5
+\once \override Fingering.extra-offset = #'(-0.3 . -1.8)
+f4-5
+</pre><p>
+ <a href="../5d/lily-84c42071.ly">
+  <img align="middle"
+       border="0"
+       src="../5d/lily-84c42071.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="La-propiedad-positions-_0028posiciones_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-extra_002doffset-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad extra-offset (desplazamiento adicional)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-force_002dhshift-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad force-hshift (forzar desplazamiento horizontal) &gt; </a>]</td></tr></table>
+<a name="the-positions-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>positions</code> (posiciones)</h4>
+
+<a name="index-controlar-manualmente-grupos-especiales_002c-ligaduras-y-barras"></a>
+<a name="index-manual_002c-control_002c-de-grupos-especiales_002c-ligaduras-y-barras"></a>
+<a name="index-grupos-especiales_002c-barras-de_002c-control-manual"></a>
+<a name="index-ligaduras-de-expresion_002c-control-manual"></a>
+<a name="index-ligaduras-de-fraseo_002c-control-manual"></a>
+<a name="index-barras-de-corchea_002c-control-manual"></a>
+
+<p>La propiedad <code>positions</code> permite controlar manualmente la
+posición vertical y de ahí también la inclinación de los tresillos,
+ligaduras de expresión y de fraseo, y barras de corchea.
+</p>
+<p>He aquí un ejemplo en el que las ligaduras de fraseo y de expresión
+chocan entre sí:
+</p>
+<blockquote><pre class="verbatim">\relative { a'8 \( ( a'16 ) a \) }
+</pre><p>
+ <a href="../ba/lily-fa8a96ef.ly">
+  <img align="middle"
+       border="0"
+       src="../ba/lily-fa8a96ef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-PhrasingSlur_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-positions_002c-propiedad_002c-ejemplo"></a>
+
+<p>Una posibilidad sería mover los dos extremos de la ligadura de fraseo
+hacia arriba.  Podemos tratar de establecer el extremo izquierdo a 2.5
+espacios de pentagrama por encima de la tercera línea y el extremo
+derecho a 4.5 también hacia arriba, y LilyPond seleccionaría la
+ligadura de fraseo de entre las candidatas que ha encontrado con sus
+extremos más cercanos a éstos:
+</p>
+<blockquote><pre class="verbatim">\once \override PhrasingSlur.positions = #'(2.5 . 4.5)
+a'8 \( ( a''16 ) a'' \)
+</pre><p>
+ <a href="../0d/lily-03b52edc.ly">
+  <img align="middle"
+       border="0"
+       src="../0d/lily-03b52edc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto supone una mejora, pero ¿por qué no bajar un poco el extremo
+derecho de la ligadura de expresión?  Si lo probamos, veremos que no
+se puede hacer así.  Ello es a causa de que no existen ligaduras de
+expresión candidatas que estén más bajas que la que ya se ha
+seleccionado, y en este caso la propiedad <code>positions</code> no tiene
+ningún efecto.  Sin embargo, las ligaduras de unión, expresión y
+fraseo <em>se pueden</em> colocar y conformar de manera muy exacta
+cuando se necesita.  Para aprender la manera de hacerlo, consulte
+<a name="index-Modificacion-de-ligaduras-de-union-y-de-expresion"></a>
+<a href="../notation/modifying-ties-and-slurs.es.html">Modificación de ligaduras de unión y de expresión</a>.
+</p>
+<p>Presentamos otro ejemplo.  Vemos que la barra
+choca con las ligaduras:
+</p>
+<blockquote><pre class="verbatim">{
+  \time 4/2
+  &lt;&lt;
+    { c'1 ~ 2. e'8 f' }
+    \\
+    { e''8 e'' e'' e''  e'' e'' e'' e''  f''2 g'' }
+  &gt;&gt;
+  &lt;&lt;
+    { c'1 ~ 2. e'8 f' }
+    \\
+    { e''8 e'' e'' e''  e'' e'' e'' e''  f''2 g'' }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../cc/lily-b0c04a59.ly">
+  <img align="middle"
+       border="0"
+       src="../cc/lily-b0c04a59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto se puede resolver manualmente elevando los dos extremos de la
+barra desde su posición a 1.81 espacios de pentagrama bajo la línea
+central hasta, digamos, 1 espacio:
+</p>
+<a name="index-Beam_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-positions_002c-propiedad_002c-ejemplo-1"></a>
+
+<blockquote><pre class="verbatim">{
+  \time 4/2
+  &lt;&lt;
+    { c'1 ~ 2. e'8 f' }
+    \\
+    {
+      \override Beam.positions = #'(-1 . -1)
+      e''8 e'' e'' e''  e'' e'' e'' e''  f''2 g''
+    }
+  &gt;&gt;
+  &lt;&lt;
+    { c'1 ~ 2. e'8 f' }
+    \\
+    { e''8 e'' e'' e''  e'' e'' e'' e''  f''2 g'' }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../a5/lily-3c9b3c64.ly">
+  <img align="middle"
+       border="0"
+       src="../a5/lily-3c9b3c64.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe que la sobreescritura sigue aplicándose en la primera voz del
+segundo compás de corcheas, pero no a ninguna de las barras de la
+segunda voz.
+</p>
+<hr size="6">
+<a name="La-propiedad-force_002dhshift-_0028forzar-desplazamiento-horizontal_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-positions-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad positions (posiciones)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="real-music-example.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Ejemplos reales de música &gt; </a>]</td></tr></table>
+<a name="the-force_002dhshift-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>force-hshift</code> (forzar desplazamiento horizontal)</h4>
+
+<p>Ahora podremos ver cómo aplicar las correcciones finales al ejemplo de
+Chopin que presentamos al final de <a href="i_0027m-hearing-voices.es.html">Oigo voces</a>, que
+dejamos con este aspecto:
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;
+    { c''2 aes4. bes8 }
+    \\
+    { &lt;ees, c&gt;2 des }
+    \\
+    \\
+    { aes'2 f4 fes }
+  &gt;&gt; |
+  &lt;c ees aes c&gt;1 |
+}
+</pre><p>
+ <a href="../0b/lily-9084e280.ly">
+  <img align="middle"
+       border="0"
+       src="../0b/lily-9084e280.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Es necesario que la nota interior del primer acorde (el La bemol
+de la cuarta voz) no se aparte de la columna vertical de la nota
+aguda.  Podríamos esperar corregirlo mediante el uso de
+<code>\shiftOff</code>, pero esto produce advertencias sobre columnas de
+notas que colisionan.  En lugar de ello, ajustamos a cero el valor
+para esta nota de <code>force-hshift</code>, que es una propiedad de
+<code>NoteColumn</code>.
+</p>
+<p>En el segundo acorde preferimos que el Fa esté alineado con el La
+bemol y que la nota grave se coloque ligeramente a la derecha para
+evitar una colisión de las plicas.  Lo conseguimos ajustando el
+valor de <code>force-hshift</code> en la <code>NoteColumn</code> del Re bemol
+grave para moverlo a la derecha medio espacio de pentagrama, y
+fijando <code>force-hshift</code> para el Fa al vaor cero.  Observe que
+usamos <code>\once</code> para evitar que los ajustes se propaguen más
+allá del momento musical inmediato, aunque en este pequeño ejemplo
+podrían omitirse el <code>\once</code> y el segundo <code>\override</code> de
+la cuarta voz.  Ello no supondría una buena práctica.
+</p>
+<p>Presentamos a continuación el resultado final:
+</p>
+<a name="index-NoteColumn_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-force_002dhshift_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;
+    { c''2 aes4. bes8 }
+    \\
+    { &lt;ees, c&gt;2 \once \override NoteColumn.force-hshift = 0.5 des }
+    \\
+    \\
+    { \once \override NoteColumn.force-hshift = 0 aes'2
+      \once \override NoteColumn.force-hshift = 0 f4 fes }
+  &gt;&gt; |
+  &lt;c ees aes c&gt;1 |
+}
+</pre><p>
+ <a href="../d2/lily-49bad130.ly">
+  <img align="middle"
+       border="0"
+       src="../d2/lily-49bad130.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-positions-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad positions (posiciones)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#fixing-overlapping-notation" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Arreglar notación con superposiciones&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="real-music-example.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Ejemplos reales de música &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="fixing-overlapping-notation.html">English</a>, <a href="fixing-overlapping-notation.ca.html">català</a>, <a href="fixing-overlapping-notation.cs.html">česky</a>, <a href="fixing-overlapping-notation.de.html">deutsch</a>, <a href="fixing-overlapping-notation.fr.html">français</a>, <a href="fixing-overlapping-notation.it.html">italiano</a>, <a href="fixing-overlapping-notation.ja.html">日本語</a>, <a href="fixing-overlapping-notation.nl.html">nederlands</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Manual de aprendizaje  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.es.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacion-del-archivo" href="compiling-a-file.es.html">1.1 Compilación del archivo</a>    </li>
+    <li class=""><a name="toc-Como-escribir-archivos-de-entrada" href="how-to-write-input-files.es.html">1.2 Cómo escribir archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Tratar-con-los-errores-1" href="dealing-with-errors.es.html">1.3 Tratar con los errores</a>    </li>
+    <li class=""><a name="toc-Como-leer-los-manuales" href="how-to-read-the-manuals.es.html">1.4 Cómo leer los manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-corriente" href="common-notation.es.html">2. Notación corriente</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacion-en-un-solo-pentagrama" href="single-staff-notation.es.html">2.1 Notación en un solo pentagrama</a>    </li>
+    <li class=""><a name="toc-Varias-notas-a-la-vez-1" href="multiple-notes-at-once.es.html">2.2 Varias notas a la vez</a>    </li>
+    <li class=""><a name="toc-Canciones-1" href="songs.es.html">2.3 Canciones</a>    </li>
+    <li class=""><a name="toc-Retoques-finales-1" href="final-touches.es.html">2.4 Retoques finales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptos-fundamentales-1" href="fundamental-concepts.es.html">3. Conceptos fundamentales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Como-funcionan-los-archivos-de-entrada-de-LilyPond" href="how-lilypond-input-files-work.es.html">3.1 Cómo funcionan los archivos de entrada de LilyPond</a>    </li>
+    <li class=""><a name="toc-Las-voces-contienen-musica" href="voices-contain-music.es.html">3.2 Las voces contienen música</a>    </li>
+    <li class=""><a name="toc-Contextos-y-grabadores-1" href="contexts-and-engravers.es.html">3.3 Contextos y grabadores</a>    </li>
+    <li class=""><a name="toc-Extender-las-plantillas-1" href="extending-the-templates.es.html">3.4 Extender las plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Trucar-la-salida-1" href="tweaking-output.es.html">4. Trucar la salida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elementos-de-trucaje-1" href="tweaking-basics.es.html">4.1 Elementos de trucaje</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionamiento-interno-1" href="the-internals-reference-manual.es.html">4.2 Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Apariencia-de-los-objetos-1" href="appearance-of-objects.es.html">4.3 Apariencia de los objetos</a>    </li>
+    <li class=""><a name="toc-Colocacion-de-los-objetos" href="placement-of-objects.es.html">4.4 Colocación de los objetos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.5 Espaciado vertical</a>    </li>
+    <li class=" toc_current"><a name="toc-Colisiones-de-objetos-1" href="collisions-of-objects.es.html">4.6 Colisiones de objetos</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Mover-objetos-1" href="moving-objects.es.html">4.6.1 Mover objetos</a>      </li>
+      <li class=" toc_current"><a name="toc-Arreglar-notacion-con-superposiciones" href="fixing-overlapping-notation.es.html">4.6.2 Arreglar notación con superposiciones</a>
+      <ul class="toc">
+        <li class=""><a name="toc-La-propiedad-padding-_0028relleno_0029-1" href="fixing-overlapping-notation.es.html#the-padding-property">La propiedad <code>padding</code> (relleno)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-right_002dpadding-_0028relleno-por-la-derecha_0029-1" href="fixing-overlapping-notation.es.html#the-right_002dpadding-property">La propiedad <code>right-padding</code> (relleno por la derecha)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-staff_002dpadding-_0028relleno-de-pentagrama_0029-1" href="fixing-overlapping-notation.es.html#the-staff_002dpadding-property">La propiedad <code>staff-padding</code> (relleno de pentagrama)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-self_002dalignment_002dX-_0028auto_002dalineacion-en-X_0029" href="fixing-overlapping-notation.es.html#the-self_002dalignment_002dx-property">La propiedad <code>self-alignment-X</code> (auto-alineación en X)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-staff_002dposition-_0028posicion-en-el-pentagrama_0029" href="fixing-overlapping-notation.es.html#the-staff_002dposition-property">La propiedad <code>staff-position</code> (posición en el pentagrama)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-extra_002doffset-_0028desplazamiento-adicional_0029-1" href="fixing-overlapping-notation.es.html#the-extra_002doffset-property">La propiedad <code>extra-offset</code> (desplazamiento adicional)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-positions-_0028posiciones_0029-1" href="fixing-overlapping-notation.es.html#the-positions-property">La propiedad <code>positions</code> (posiciones)</a>        </li>
+        <li class=""><a name="toc-La-propiedad-force_002dhshift-_0028forzar-desplazamiento-horizontal_0029-1" href="fixing-overlapping-notation.es.html#the-force_002dhshift-property">La propiedad <code>force-hshift</code> (forzar desplazamiento horizontal)</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Ejemplos-reales-de-musica" href="real-music-example.es.html">4.6.3 Ejemplos reales de música</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Trucajes-adicionales-1" href="further-tweaking.es.html">4.7 Trucajes adicionales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantillas-1" href="templates.es.html">A. Plantillas</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantillas-de-pentagrama-unico" href="single-staff-templates.es.html">A.1 Plantillas de pentagrama único</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-piano-1" href="piano-templates.es.html">A.2 Plantillas de piano</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-cuarteto-de-cuerda-1" href="string-quartet-templates.es.html">A.3 Plantillas de cuarteto de cuerda</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-conjuntos-vocales-1" href="vocal-ensembles-templates.es.html">A.4 Plantillas de conjuntos vocales</a>    </li>
+    <li class=""><a name="toc-Plantillas-orquestales-1" href="orchestral-templates.es.html">A.5 Plantillas orquestales</a>    </li>
+    <li class=""><a name="toc-Plantillas-para-notacion-antigua" href="ancient-notation-templates.es.html">A.6 Plantillas para notación antigua</a>    </li>
+    <li class=""><a name="toc-Otras-plantillas-1" href="other-templates.es.html">A.7 Otras plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">C. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

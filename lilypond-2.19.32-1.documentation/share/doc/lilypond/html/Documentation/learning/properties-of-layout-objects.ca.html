@@ -1,0 +1,551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual d'aprenentatge del GNU LilyPond: 4.2.1 Propietats dels objectes de presentació</title>
+
+<meta name="description" content="Manual d'aprenentatge del GNU LilyPond: 4.2.1 Propietats dels objectes de presentació">
+<meta name="keywords" content="Manual d'aprenentatge del GNU LilyPond: 4.2.1 Propietats dels objectes de presentació">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Manual d'aprenentatge">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="C. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="the-internals-reference-manual.ca.html#the-internals-reference-manual" rel="up" title="4.2 Manual de referència de funcionament intern">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="C. Índex del LilyPond">
+<link href="the-internals-reference-manual.ca.html#the-internals-reference-manual" rel="previous" title="4.2 Manual de referència de funcionament intern">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="learning devStatus">
+
+
+<div id="main">
+<a name="Propietats-dels-objectes-de-presentaci_00f3"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Ajustament de la sortida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ca.html" title="Capítol següent">&nbsp;Plantilles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="the-internals-reference-manual.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Manual de referència de funcionament intern&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Manual de referència de funcionament intern&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="properties-found-in-interfaces.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Propietats de les interfícies &gt; </a>]</td></tr></table>
+<a name="properties-of-layout-objects"></a>
+<h3 class="subsection">4.2.1 Propietats dels objectes de presentació</h3>
+
+<a name="index-propietats-dels-objectes-de-presentacio"></a>
+<a name="index-propietats-dels-grobs"></a>
+<a name="index-grobs_002c-propietats-de"></a>
+<a name="index-presentacio_002c-propietats-dels-objectes-de"></a>
+<a name="index-Referencia-de-funcionament-intern-1"></a>
+
+<p>Suposeu que teniu una partitura amb una lligadura d&rsquo;expressió que
+per al vostre gust és massa fina i voleu dibuixar-la una mica més
+gruixuda.  Com heu de procedir?  Ja sabeu, per les afirmacions
+anteriors sobre la flexibilitat del LilyPond, que aquests tipus de
+coses es poden fer, i segurament penseu que una certa ordre
+de sobreescriptura <code>\override</code> serà necessària.  Però, hi ha
+una propietat de gruix per a les lligadures? I si n&rsquo;hi ha, com es
+pot modificar?  Aquí és on intervé el Manual de Funcionament
+Intern.  Conté tota la informació que necessiteu per construir
+aquesta ordre i totes les ordres <code>\override</code> de sobreescriptura.
+</p>
+<p>Un advertiment abans de dirigir la nostra mirada cap a la
+referència de funcionament intern.  Aquest és un document de
+<strong>referència</strong>, el que significa que hi ha poques o cap
+explicació en ell: el seu propòsit és presentar la informació de
+forma precisa i concisa.  Per tant, us pot semblar descoratjador
+inicialment.  No us preocupeu!  La guia i les explicacions que
+presentem aquí us permetran extraure la informació de la
+referència de funcionament intern per sí mateix amb tans sols una
+mica de pràctica.
+</p>
+<a name="index-sobreescriptura_002c-exemple-de"></a>
+<a name="index-Referencia-de-Funcionament-Intern_002c-exemple-d_0027utilitzacio"></a>
+<a name="index-_005caddlyrics_002c-ejemplo"></a>
+
+<p>Utilitzem un exemple concret amb un senzill fragment de música real:
+</p>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../cb/lily-2b99ebc6.ly">
+  <img align="middle"
+       border="0"
+       src="../cb/lily-2b99ebc6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Suposeu ara que decidim que ens agraden les lligadures una mica
+més gruixudes.  És possible?  La lligadura és, certament, un
+objecte de presentació, així que la qüestió és &lsquo;Hi ha una
+propietat pertanyent a les lligadures d&rsquo;expressió que controli el
+seu gruix?&rsquo;  Per respondre a aquesta pregunta hem de mirar el
+manual de Referència de Funcionament Intern, abreujadament
+RFI.<sup><a name="DOCF1" href="#FOOT1">1</a></sup>
+</p>
+<p>El RFI de la versió del LilyPond que esteu usant es pot trobar a
+la pàgina web del LilyPond a <a href="http://lilypond.org">http://lilypond.org</a>.  Aneu a
+la pàgina de documentació i seguiu l&rsquo;enllaç Manual de Referència
+de Funcionament Intern (RFI).  Per als nostres propòsits
+pedagògics fora millor que utilitzéssiu la versió en HTML, no la
+&lsquo;en una sola pàgina&rsquo; ni el PDF.  Perquè els següents paràgrafs
+tinguin algun sentit haureu de consultar-lo realment al mateix
+temps que llegiu.
+</p>
+<p>Sota el encapçalament <strong>Top</strong> podreu veure cinc enllaços.
+Seleccioneu l&rsquo;enllaç <em>Backend</em>, que és don es troba la
+informació sobre els objectes de presentació.  Un cop aquí, sota
+el encapçalament <strong>Backend</strong>, seguiu l&rsquo;enllaç <em>All
+layout objects</em>.  La pàgina que apareix relaciona tots els
+objectes de presentació que s&rsquo;usen en la vostra versió del
+LilyPond, en ordre alfabètic.  Seguiu l&rsquo;enllaç Slur (lligadura
+d&rsquo;expressió), i apareixeran relacionades les propietats de les
+lligadures d&rsquo;expressió o Slurs.
+</p>
+<p>Una forma alternativa de trobar aquesta pàgina és a partir de la
+Referència de la Notació.  A una d&rsquo;aquestes pàgines que tracten de
+les lligadures d&rsquo;expressió, podreu trobar un enllaç al manual de
+referència del funcionament intern.  Aquest enllaç us portarà
+directament a aquesta pàgina, tot i que si teniu una idea del nom
+de l&rsquo;objecte de presentació que preteneu ajustar, us resultarà més
+fàcil anar directament al RFI i buscar allà.
+</p>
+<p>Aquesta pàgina sobre les lligadures d&rsquo;expressió dins del manual
+RFI ens diu en primer lloc que els objectes Slur es creen
+mitjançant el gravador Slur_engraver.  A continuació relaciona els
+ajustos estàndard.  Navegueu per ells buscant una propietat que
+pugui controlar el gruix de les lligadures, i trobareu
+</p>
+<blockquote><pre class="example"><code>thickness</code> (number)
+     <code>1.2</code>
+     Line thickness, generally measured in <code>line-thickness</code>
+</pre></blockquote>
+
+<p>Això promet ser una bona opció per canviar el gruix.  Ens diu
+que el valor de <code>thickness</code> és un simple <em>nombre</em>, que
+el valor predeterminat és 1.2, i que les unitats estan dins d&rsquo;una
+altra propietat nomenada <code>line-thickness</code>.
+</p>
+<p>Com hem dit abans, hi ha enter poques i cap explicació en el RFI,
+però ja tenim informació suficient per a provar a canviar el gruix
+de la lligadura.  Veiem que el nom de l&rsquo;objecte de presentació és
+<code>Slur</code>, que el nom de la propietat que hem de canviar és
+<code>thickness</code> i que el nou valor ha de ser un nombre més gran
+que 1.2 si volem fer les lligadures més gruixudes.
+</p>
+<p>Ara podem contruir l&rsquo;ordre de sobreescriptura
+<code>\override</code> simplement mitjançant la substitució dels valors
+que hem trobar per als noms, ometent el context.  Usarem un valor
+molt gran per al gruix al principi, per estar segurs que
+l&rsquo;ordre està funcionant.  Obtenim el següent:
+</p>
+<blockquote><pre class="example">\override Slur.thickness = #5.0
+</pre></blockquote>
+
+<p>No oblideu i&nbsp;<code>#</code> abans del valor nou!
+</p>
+<p>La pregunta final és &lsquo;On s&rsquo;ha de col·locar aquesta ordre?&rsquo;
+Tot i que ens falta seguretat i encara estem aprenent, la millor
+resposta és: &lsquo;Dins de la música, abans de la primera lligadura i
+a prop d&rsquo;ella.&rsquo; Fem-lo així:
+</p>
+<a name="index-Slur_002c-exemple-de-sobreescriptura"></a>
+<a name="index-thickness_002c-propietat_002c-exemple"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    % Increase thickness of all following slurs from 1.2 to 5.0
+    \override Slur.thickness = #5.0
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../e4/lily-c0d9199e.ly">
+  <img align="middle"
+       border="0"
+       src="../e4/lily-c0d9199e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>i podem veure que la lligadura és, sense dubte, més gruixuda.
+</p>
+<p>Així doncs, aquesta és la forma bàsica de construir ordres
+<code>\override</code> o de sobreescriptura.  Hi ha unes quantes
+complicacions més amb les quals ens trobarem a seccions
+posteriors, però ara coneixeu tots els principis essencials que
+necessiteu per fer-lo vos mateix (tot i que necessiteu encara
+quelcom més de pràctica).  Els exemples següents us proporcionaran
+més pràctica.
+</p>
+<a name="-Cerca-del-context"></a>
+<h4 class="subsubheading"><i> Cerca del context</i></h4>
+
+<a name="index-context_002c-trobar"></a>
+<a name="index-context_002c-cercar-el_002c-correcte"></a>
+
+<p>Però en primer lloc, què hagués passat si haguéssim hagut
+d&rsquo;especificar el context? Quin seria?  Podem suposar que les
+lligadures estan al context Veu, per estar clarament associats de
+manera estreta amb les línies individuals de música, però, podem
+estar segurs?  Per esbrinar-ho, anem de nou a l&rsquo;inici de la pàgina
+del RFI que descriu les lligadures d&rsquo;expressió (Slur), on diu
+&lsquo;Slur objects are created by: Slur engraver&rsquo; («Els objectes de
+lligadura d&rsquo;expressió es creen per: el gravador Slur»).  Així
+doncs, les lligadures d&rsquo;expressió es creen en qualsevol context en
+el qual es trobi el gravador <code>Slur_engraver</code>.  Seguiu
+l&rsquo;enllaç a la pàgina del gravador <code>Slur_engraver</code>.  Al final
+del tot, diu que el gravador <code>Slur_engraver</code> és part de set
+contextos de veu, incloent-hi el context de veu estàndard,
+<code>Voice</code>, per la qual cosa la nostra suposició és correcta.  I
+atès que <code>Voice</code> és un dels contextos de més baix nivell que
+es troba implícit sense ambigüitat pel fet que estem escrivint
+notes, podem ometre&rsquo;l en aquest lloc concret.
+</p>
+<a name="-Sobreescriptura-per-un-sol-cop"></a>
+<h4 class="subsubheading"><i> Sobreescriptura per un sol cop</i></h4>
+
+<a name="index-sobreescriptura-por-un-sol-cop"></a>
+<a name="index-once-override"></a>
+
+<a name="index-_005conce-2"></a>
+<a name="index-_005conce-3"></a>
+<a name="index-once-2"></a>
+<a name="index-once-3"></a>
+
+<p>Com es pot veure, <em>totes</em> les lligadures són més gruixudes a
+l&rsquo;últim exemple.  Però, i si voléssim que sols la primera
+lligadura fos més gruixuda? Això s&rsquo;aconsegueix amb l&rsquo;ordre o
+prefix <code>\once</code>.  Col·locant immediatament abans de
+l&rsquo;ordre <code>\override</code> s&rsquo;aconsegueix que sols canviï la
+lligadura que comença a la nota <strong>immediata següent</strong>.  Si la
+nota immediata següent no inicia una lligadura, l&rsquo;ordre no
+té cap efecte en absolut: no es recorda fins que es trobi alguna
+lligadura, simplement s&rsquo;ignora.  Així dons l&rsquo;ordre que porta
+<code>\once</code> s&rsquo;ha de reposicionar de la forma següent:
+</p>
+<a name="index-Slur_002c-exemple-de-sobreescriptura-1"></a>
+<a name="index-thickness_002c-propietat_002c-exemple-1"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    bes8[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../3a/lily-69d2a6d0.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-69d2a6d0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Hem fet que ara sols la primera lligadura sigui més gruixuda.
+</p>
+<p>L&rsquo;ordre o prefix <code>\once</code> també es pot usar abans de
+l&rsquo;ordre <code>\set</code>.
+</p>
+<a name="-Recuperacio-de-l_0027ajust"></a>
+<h4 class="subsubheading"><i> Recuperació de l&rsquo;ajust</i></h4>
+
+<a name="index-revertir"></a>
+<a name="index-predeterminades_002c-recuperar-las-propietats"></a>
+
+<a name="index-_005crevert-2"></a>
+<a name="index-_005crevert-3"></a>
+<a name="index-revert-2"></a>
+<a name="index-revert-3"></a>
+
+<p>Finalment, i si volguéssim que sols les dues primeres lligadures
+fossin més gruixudes?  En fi, podríem usar dues ordres, cada
+una d&rsquo;elles precedida pel prefix <code>\once</code>, situades
+immediatament abans de cada una de les notes en les quals comencen
+les lligadures:
+</p>
+<a name="index-Slur_002c-exemple-de-sobreescriptura-2"></a>
+<a name="index-thickness_002c-propietat_002c-exemple-2"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    bes[( g]) g |
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../13/lily-ed496687.ly">
+  <img align="middle"
+       border="0"
+       src="../13/lily-ed496687.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>o podríem ometre l&rsquo;ordre o prefix <code>\once</code> i utilitzar l&rsquo;ordre
+<code>\revert</code> (restablir) per revertir la propietat del gruix,
+<code>thickness</code>, al seu valor predeterminat després de la segona
+lligadura:
+</p>
+<a name="index-Slur_002c-exemple-de-sobreesriptura"></a>
+<a name="index-thickness_002c-propietat_002c-exemple-3"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of all following slurs from 1.2 to 5.0
+    \override Slur.thickness = #5.0
+    bes[( g]) g |
+    g8[( es]) es
+    % Revert thickness of all following slurs to default of 1.2
+    \revert Slur.thickness
+    d8[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../7e/lily-af8e6759.ly">
+  <img align="middle"
+       border="0"
+       src="../7e/lily-af8e6759.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>L&rsquo;ordre <code>\revert</code> es pot utilitzar per revertir qualsevol
+propietat que s&rsquo;hagi canviat amb <code>\override</code> al seu valor
+predeterminat.  Podeu utilitzar el mètode que millor s&rsquo;adapti a
+això que voleu fer.
+</p>
+<p>Així finalitza la nostra ordre al manual de RFI, i el mètode
+bàsic d&rsquo;ajustament.  A continuació, a les últimes seccions
+d&rsquo;aquest capítol, trobareu diversos exemples, en part per
+introduir-vos a algunes de les possibilitats addicionals del
+manual RFI, i en part per proporcionar-vos més pràctica sobre com
+extraure informació d&rsquo;ell.  Aquests exemples aniran contenint cada
+cop menys paraules de guia i explicació.
+</p>
+<div class="footnote">
+<hr>
+<h3>Notes a peu de pàgina</h3>
+<p class="footnote"><small>[<a name="FOOT1" href="#DOCF1">1</a>]</small> <strong>IR</strong> (Internals Reference) en anglès
+</p></div>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Ajustament de la sortida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.ca.html" title="Capítol següent">&nbsp;Plantilles &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="the-internals-reference-manual.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Manual de referència de funcionament intern&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Manual de referència de funcionament intern&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="properties-found-in-interfaces.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Propietats de les interfícies &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="properties-of-layout-objects.html">English</a>, <a href="properties-of-layout-objects.cs.html">česky</a>, <a href="properties-of-layout-objects.de.html">deutsch</a>, <a href="properties-of-layout-objects.es.html">español</a>, <a href="properties-of-layout-objects.fr.html">français</a>, <a href="properties-of-layout-objects.it.html">italiano</a>, <a href="properties-of-layout-objects.ja.html">日本語</a>, <a href="properties-of-layout-objects.nl.html">nederlands</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Manual d&rsquo;aprenentatge  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.ca.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacio-d_0027un-fitxer" href="compiling-a-file.ca.html">1.1 Compilació d&rsquo;un fitxer</a>    </li>
+    <li class=""><a name="toc-Com-escriure-fitxers-d_0027entrada-1" href="how-to-write-input-files.ca.html">1.2 Com escriure fitxers d&rsquo;entrada</a>    </li>
+    <li class=""><a name="toc-Gestio-dels-errors" href="dealing-with-errors.ca.html">1.3 Gestió dels errors</a>    </li>
+    <li class=""><a name="toc-Com-llegir-els-manuals-1" href="how-to-read-the-manuals.ca.html">1.4 Com llegir els manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacio-corrent" href="common-notation.ca.html">2. Notació corrent</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacio-en-un-sol-pentagrama" href="single-staff-notation.ca.html">2.1 Notació en un sol pentagrama</a>    </li>
+    <li class=""><a name="toc-Diverses-notes-a-la-vegada-1" href="multiple-notes-at-once.ca.html">2.2 Diverses notes a la vegada</a>    </li>
+    <li class=""><a name="toc-Cancons" href="songs.ca.html">2.3 Cançons</a>    </li>
+    <li class=""><a name="toc-Retocs-finals-1" href="final-touches.ca.html">2.4 Retocs finals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptes-fonamentals-1" href="fundamental-concepts.ca.html">3. Conceptes fonamentals</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Com-funcionen-els-fitxers-d_0027entrada-del-LilyPond-1" href="how-lilypond-input-files-work.ca.html">3.1 Com funcionen els fitxers d&rsquo;entrada del LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-veus-contenen-musica" href="voices-contain-music.ca.html">3.2 Les veus contenen música</a>    </li>
+    <li class=""><a name="toc-Contextos-i-gravadors-1" href="contexts-and-engravers.ca.html">3.3 Contextos i gravadors</a>    </li>
+    <li class=""><a name="toc-Extensio-de-les-plantilles" href="extending-the-templates.ca.html">3.4 Extensió de les plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Ajustament-de-la-sortida-1" href="tweaking-output.ca.html">4. Ajustament de la sortida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elements-de-l_0027ajustament-1" href="tweaking-basics.ca.html">4.1 Elements de l&rsquo;ajustament</a>    </li>
+    <li class=" toc_current"><a name="toc-Manual-de-referencia-de-funcionament-intern" href="the-internals-reference-manual.ca.html">4.2 Manual de referència de funcionament intern</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Propietats-dels-objectes-de-presentacio" href="properties-of-layout-objects.ca.html">4.2.1 Propietats dels objectes de presentació</a>      </li>
+      <li class=""><a name="toc-Propietats-de-les-interficies" href="properties-found-in-interfaces.ca.html">4.2.2 Propietats de les interfícies</a>      </li>
+      <li class=""><a name="toc-Tipus-de-propietats-1" href="types-of-properties.ca.html">4.2.3 Tipus de propietats</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Aparenca-dels-objectes" href="appearance-of-objects.ca.html">4.3 Aparença dels objectes</a>    </li>
+    <li class=""><a name="toc-Col_00b7locacio-dels-objectes" href="placement-of-objects.ca.html">4.4 Col·locació dels objectes</a>    </li>
+    <li class=""><a name="toc-Espaiat-vertical-1" href="vertical-spacing.ca.html">4.5 Espaiat vertical</a>    </li>
+    <li class=""><a name="toc-Col_00b7lisions-d_0027objectes-1" href="collisions-of-objects.ca.html">4.6 Col·lisions d&rsquo;objectes</a>    </li>
+    <li class=""><a name="toc-Ajustaments-addicionals-1" href="further-tweaking.ca.html">4.7 Ajustaments addicionals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantilles-1" href="templates.ca.html">A. Plantilles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantilles-de-pentagrama-unic" href="single-staff-templates.ca.html">A.1 Plantilles de pentagrama únic</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-piano-1" href="piano-templates.ca.html">A.2 Plantilles de piano</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-quartet-de-corda-1" href="string-quartet-templates.ca.html">A.3 Plantilles de quartet de corda</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-conjunts-vocals-1" href="vocal-ensembles-templates.ca.html">A.4 Plantilles de conjunts vocals</a>    </li>
+    <li class=""><a name="toc-Plantilles-orquestrals-1" href="orchestral-templates.ca.html">A.5 Plantilles orquestrals</a>    </li>
+    <li class=""><a name="toc-Plantilles-per-a-notacio-antiga" href="ancient-notation-templates.ca.html">A.6 Plantilles per a notació antiga</a>    </li>
+    <li class=""><a name="toc-Altres-plantilles-1" href="other-templates.ca.html">A.7 Altres plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">C. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

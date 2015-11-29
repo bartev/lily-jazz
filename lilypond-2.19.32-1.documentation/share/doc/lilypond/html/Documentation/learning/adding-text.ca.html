@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual d'aprenentatge del GNU LilyPond: 2.1.5 Addició de text</title>
+
+<meta name="description" content="Manual d'aprenentatge del GNU LilyPond: 2.1.5 Addició de text">
+<meta name="keywords" content="Manual d'aprenentatge del GNU LilyPond: 2.1.5 Addició de text">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Manual d'aprenentatge">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="C. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="single-staff-notation.ca.html#single-staff-notation" rel="up" title="2.1 Notació en un sol pentagrama">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="C. Índex del LilyPond">
+<link href="articulation-and-dynamics.ca.html#articulation-and-dynamics" rel="previous" title="2.1.4 Articulacions i matisos dinàmics">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="learning devStatus">
+
+
+<div id="main">
+<a name="Addici_00f3-de-text"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="common-notation.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Notació corrent&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="fundamental-concepts.ca.html" title="Capítol següent">&nbsp;Conceptes fonamentals &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="articulation-and-dynamics.ca.html#dynamics" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Matisos dinàmics&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="single-staff-notation.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació en un sol pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="automatic-and-manual-beams.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Barres automàtiques i manuals &gt; </a>]</td></tr></table>
+<a name="adding-text"></a>
+<h3 class="subsection">2.1.5 Addició de text</h3>
+
+<a name="index-text_002c-addicio"></a>
+<a name="index-addicio-de-text"></a>
+<a name="index-marcat"></a>
+
+<a name="index-_005cmarkup"></a>
+<a name="index-_005cmarkup-1"></a>
+<a name="index-markup"></a>
+<a name="index-markup-1"></a>
+
+<p>És possible afegir text a la partitura:
+</p>
+<blockquote><pre class="verbatim">c''2^&quot;espr&quot; a'_&quot;legato&quot;
+</pre><p>
+ <a href="../dc/lily-b90f8a59.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-b90f8a59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Es pot aplicar un format addicional mitjançant la instrucció
+<code>\markup</code>:
+</p>
+<blockquote><pre class="verbatim">c''2^\markup { \bold espr }
+a'2_\markup {
+  \dynamic f \italic \small { 2nd } \hspace #0.1 \dynamic p
+}
+</pre><p>
+ <a href="../17/lily-a45f1013.ly">
+  <img align="middle"
+       border="0"
+       src="../17/lily-a45f1013.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Vegeu-tambe-4"></a>
+<h4 class="subsubheading">Vegeu també</h4>
+<p>Referència de la notació:
+<a name="index-Writing-text"></a>
+<a href="../notation/writing-text.ca.html">Writing text</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="common-notation.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Notació corrent&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="fundamental-concepts.ca.html" title="Capítol següent">&nbsp;Conceptes fonamentals &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="articulation-and-dynamics.ca.html#dynamics" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Matisos dinàmics&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="single-staff-notation.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació en un sol pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="automatic-and-manual-beams.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Barres automàtiques i manuals &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="adding-text.html">English</a>, <a href="adding-text.cs.html">česky</a>, <a href="adding-text.de.html">deutsch</a>, <a href="adding-text.es.html">español</a>, <a href="adding-text.fr.html">français</a>, <a href="adding-text.hu.html">magyar</a>, <a href="adding-text.it.html">italiano</a>, <a href="adding-text.ja.html">日本語</a>, <a href="adding-text.nl.html">nederlands</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Manual d&rsquo;aprenentatge  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.ca.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacio-d_0027un-fitxer" href="compiling-a-file.ca.html">1.1 Compilació d&rsquo;un fitxer</a>    </li>
+    <li class=""><a name="toc-Com-escriure-fitxers-d_0027entrada-1" href="how-to-write-input-files.ca.html">1.2 Com escriure fitxers d&rsquo;entrada</a>    </li>
+    <li class=""><a name="toc-Gestio-dels-errors" href="dealing-with-errors.ca.html">1.3 Gestió dels errors</a>    </li>
+    <li class=""><a name="toc-Com-llegir-els-manuals-1" href="how-to-read-the-manuals.ca.html">1.4 Com llegir els manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Notacio-corrent" href="common-notation.ca.html">2. Notació corrent</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Notacio-en-un-sol-pentagrama" href="single-staff-notation.ca.html">2.1 Notació en un sol pentagrama</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Linies-divisories-i-comprovacions-de-compas" href="bar-lines-and-bar-checks.ca.html">2.1.1 Línies divisòries i comprovacions de compàs</a>      </li>
+      <li class=""><a name="toc-Alteracions-accidentals-i-armadures-1" href="accidentals-and-key-signatures.ca.html">2.1.2 Alteracions accidentals i armadures</a>      </li>
+      <li class=""><a name="toc-Lligadures-d_0027unio-i-d_0027expressio" href="ties-and-slurs.ca.html">2.1.3 Lligadures d&rsquo;unió i d&rsquo;expressió</a>      </li>
+      <li class=""><a name="toc-Articulacions-i-matisos-dinamics" href="articulation-and-dynamics.ca.html">2.1.4 Articulacions i matisos dinàmics</a>      </li>
+      <li class=" toc_current"><a name="toc-Addicio-de-text" href="adding-text.ca.html">2.1.5 Addició de text</a>      </li>
+      <li class=""><a name="toc-Barres-automatiques-i-manuals" href="automatic-and-manual-beams.ca.html">2.1.6 Barres automàtiques i manuals</a>      </li>
+      <li class=""><a name="toc-Instruccions-ritmiques-avancades" href="advanced-rhythmic-commands.ca.html">2.1.7 Instruccions rítmiques avançades</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Diverses-notes-a-la-vegada-1" href="multiple-notes-at-once.ca.html">2.2 Diverses notes a la vegada</a>    </li>
+    <li class=""><a name="toc-Cancons" href="songs.ca.html">2.3 Cançons</a>    </li>
+    <li class=""><a name="toc-Retocs-finals-1" href="final-touches.ca.html">2.4 Retocs finals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptes-fonamentals-1" href="fundamental-concepts.ca.html">3. Conceptes fonamentals</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Com-funcionen-els-fitxers-d_0027entrada-del-LilyPond-1" href="how-lilypond-input-files-work.ca.html">3.1 Com funcionen els fitxers d&rsquo;entrada del LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-veus-contenen-musica" href="voices-contain-music.ca.html">3.2 Les veus contenen música</a>    </li>
+    <li class=""><a name="toc-Contextos-i-gravadors-1" href="contexts-and-engravers.ca.html">3.3 Contextos i gravadors</a>    </li>
+    <li class=""><a name="toc-Extensio-de-les-plantilles" href="extending-the-templates.ca.html">3.4 Extensió de les plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ajustament-de-la-sortida-1" href="tweaking-output.ca.html">4. Ajustament de la sortida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elements-de-l_0027ajustament-1" href="tweaking-basics.ca.html">4.1 Elements de l&rsquo;ajustament</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionament-intern" href="the-internals-reference-manual.ca.html">4.2 Manual de referència de funcionament intern</a>    </li>
+    <li class=""><a name="toc-Aparenca-dels-objectes" href="appearance-of-objects.ca.html">4.3 Aparença dels objectes</a>    </li>
+    <li class=""><a name="toc-Col_00b7locacio-dels-objectes" href="placement-of-objects.ca.html">4.4 Col·locació dels objectes</a>    </li>
+    <li class=""><a name="toc-Espaiat-vertical-1" href="vertical-spacing.ca.html">4.5 Espaiat vertical</a>    </li>
+    <li class=""><a name="toc-Col_00b7lisions-d_0027objectes-1" href="collisions-of-objects.ca.html">4.6 Col·lisions d&rsquo;objectes</a>    </li>
+    <li class=""><a name="toc-Ajustaments-addicionals-1" href="further-tweaking.ca.html">4.7 Ajustaments addicionals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantilles-1" href="templates.ca.html">A. Plantilles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantilles-de-pentagrama-unic" href="single-staff-templates.ca.html">A.1 Plantilles de pentagrama únic</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-piano-1" href="piano-templates.ca.html">A.2 Plantilles de piano</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-quartet-de-corda-1" href="string-quartet-templates.ca.html">A.3 Plantilles de quartet de corda</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-conjunts-vocals-1" href="vocal-ensembles-templates.ca.html">A.4 Plantilles de conjunts vocals</a>    </li>
+    <li class=""><a name="toc-Plantilles-orquestrals-1" href="orchestral-templates.ca.html">A.5 Plantilles orquestrals</a>    </li>
+    <li class=""><a name="toc-Plantilles-per-a-notacio-antiga" href="ancient-notation-templates.ca.html">A.6 Plantilles per a notació antiga</a>    </li>
+    <li class=""><a name="toc-Altres-plantilles-1" href="other-templates.ca.html">A.7 Altres plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">C. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

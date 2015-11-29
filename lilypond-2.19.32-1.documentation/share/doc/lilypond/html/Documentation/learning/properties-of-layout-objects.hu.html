@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Learning Manual: 4.2.1 Properties of layout objects</title>
+
+<meta name="description" content="LilyPond Learning Manual: 4.2.1 Properties of layout objects">
+<meta name="keywords" content="LilyPond Learning Manual: 4.2.1 Properties of layout objects">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Learning Manual">
+<link href="lilypond-index.hu.html#lilypond-index" rel="index" title="C. LilyPond index">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="About This Document">
+<link href="the-internals-reference-manual.hu.html#the-internals-reference-manual" rel="up" title="4.2 The Internals Reference manual">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="C. LilyPond index">
+<link href="the-internals-reference-manual.hu.html#the-internals-reference-manual" rel="previous" title="4.2 The Internals Reference manual">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="learning devStatus">
+
+
+<div id="main">
+<a name="Properties-of-layout-objects"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="the-internals-reference-manual.hu.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The Internals Reference manual&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.hu.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;The Internals Reference manual&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="properties-found-in-interfaces.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Properties found in interfaces &gt; </a>]</td></tr></table>
+<a name="properties-of-layout-objects"></a>
+<h3 class="subsection">4.2.1 Properties of layout objects</h3>
+
+<a name="index-properties-of-layout-objects"></a>
+<a name="index-properties-of-grobs"></a>
+<a name="index-grobs_002c-properties-of"></a>
+<a name="index-layout-objects_002c-properties-of"></a>
+<a name="index-Internals-Reference-manual"></a>
+
+<p>Suppose you have a slur in a score which, to your mind,
+appears too thin and you&rsquo;d like to draw it a little heavier.
+How do you go about doing this?  You know from the statements
+earlier about the flexibility of LilyPond that such a thing
+should be possible, and you would probably guess that an
+<code>\override</code> command would be needed.  But is there a
+heaviness property for a slur, and if there is, how might it
+be modified?  This is where the Internals Reference manual
+comes in.  It contains all the information you might need to
+construct this and all other <code>\override</code> commands.
+</p>
+<p>Before we look at the Internals Reference a word of warning.
+This is a <strong>reference</strong> document, which means there is
+little or no explanation contained within it: its purpose is
+to present information precisely and concisely.  This
+means it might look daunting at first sight.  Don&rsquo;t worry!
+The guidance and explanation presented here will enable you
+to extract the information from the Internals Reference for
+yourself with just a little practice.
+</p>
+<a name="index-override-example"></a>
+<a name="index-Internals-Reference_002c-example-of-using"></a>
+<a name="index-_005caddlyrics-example"></a>
+
+<p>Let&rsquo;s use a concrete example with a simple fragment of real
+music:
+</p>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../cb/lily-2b99ebc6.ly">
+  <img align="middle"
+       border="0"
+       src="../cb/lily-2b99ebc6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Suppose now that we decide we would like the slurs to be a
+little heavier.  Is this possible?  The slur is certainly a
+layout object, so the question is, &lsquo;Is there a property
+belonging to a slur which controls the heaviness?&rsquo;  To answer
+this we must look in the Internals Reference, or IR for short.
+</p>
+<p>The IR for the version of LilyPond you are using may be found
+on the LilyPond website at <a href="http://lilypond.org">http://lilypond.org</a>.  Go to the
+documentation page and click on the Internals Reference link.
+For learning purposes you should use the standard HTML version,
+not the &lsquo;one big page&rsquo; or the PDF.  For the next few
+paragraphs to make sense you will need to actually do this
+as you read.
+</p>
+<p>Under the heading <strong>Top</strong> you will see five links.  Select
+the link to the <em>Backend</em>, which is where information about
+layout objects is to be found.  There, under the heading
+<strong>Backend</strong>, select the link to <em>All layout objects</em>.
+The page that appears lists all the layout objects used in your
+version of LilyPond, in alphabetic order.  Select the link to
+Slur, and the properties of Slurs are listed.
+</p>
+<p>An alternative way of finding this page is from the Notation
+Reference.  On one of the pages that deals with slurs you may find a
+link to the Internals Reference.  This link will take you directly to
+this page, but if you have an idea about the name of the layout object
+to be tweaked, it is easier to go straight to the IR and search there.
+</p>
+<p>This Slur page in the IR tells us first that Slur objects are created
+by the Slur_engraver.  Then it lists the standard settings.  Browse
+through them looking for a property that might control the heaviness of
+slurs, and you should find
+</p>
+<blockquote><pre class="example"><code>thickness</code> (number)
+     <code>1.2</code>
+     Line thickness, generally measured in <code>line-thickness</code>
+</pre></blockquote>
+
+<p>This looks a good bet to change the heaviness.  It tells us that
+the value of <code>thickness</code> is a simple <em>number</em>,
+that the default value is 1.2, and that the units are
+in another property called <code>line-thickness</code>.
+</p>
+<p>As we said earlier, there are few to no explanations in the IR,
+but we already have enough information to try changing the
+slur thickness.  We see that the name of the layout object
+is <code>Slur</code>, that the name of the property to change is
+<code>thickness</code> and that the new value should be a number
+somewhat larger than 1.2 if we are to make slurs thicker.
+</p>
+<p>We can now construct the <code>\override</code> command by simply
+substituting the values we have found for the names, omitting
+the context.  Let&rsquo;s use a very large value for the thickness
+at first, so we can be sure the command is working.  We get:
+</p>
+<blockquote><pre class="example">\override Slur.thickness = #5.0
+</pre></blockquote>
+
+<p>Don&rsquo;t forget the&nbsp;<code>#</code> preceding the new value!
+</p>
+<p>The final question is, &lsquo;Where should this command be
+placed?&rsquo;  While you are unsure and learning, the best
+answer is, &lsquo;Within the music, before the first slur and
+close to it.&rsquo;  Let&rsquo;s do that:
+</p>
+<a name="index-Slur-example-of-overriding"></a>
+<a name="index-thickness-property_002c-example"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    % Increase thickness of all following slurs from 1.2 to 5.0
+    \override Slur.thickness = #5.0
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../e4/lily-c0d9199e.ly">
+  <img align="middle"
+       border="0"
+       src="../e4/lily-c0d9199e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>and we see that the slur is indeed heavier.
+</p>
+<p>So this is the basic way of constructing <code>\override</code>
+commands.  There are a few more complications that we
+shall meet in later sections, but you now know all the
+essentials required to make up your own &ndash; but you will
+still need some practice.  This is provided in the examples
+which follow.
+</p>
+<a name="-Finding-the-context"></a>
+<h4 class="subsubheading"><i> Finding the context</i></h4>
+
+<a name="index-context_002c-finding"></a>
+<a name="index-context_002c-identifying-correct"></a>
+
+<p>But first, what if we had needed to specify the Context?
+What should it be?  We could guess that slurs are in
+the Voice context, as they are clearly closely associated
+with individual lines of music, but can we be sure?  To
+find out, go back to the top of the IR page describing the
+Slur, where it says &lsquo;Slur objects are created by: Slur
+engraver&rsquo;.  So slurs will be created in whichever context
+the <code>Slur_engraver</code> is in.  Follow the link to the
+<code>Slur_engraver</code> page.  At the very bottom it tells
+us that <code>Slur_engraver</code> is part of seven Voice contexts,
+including the standard voice context, <code>Voice</code>, so our
+guess was correct.  And because <code>Voice</code> is one of the
+lowest level contexts which is implied unambiguously by
+the fact that we are entering notes, we can omit it in this
+location.
+</p>
+<a name="-Overriding-once-only"></a>
+<h4 class="subsubheading"><i> Overriding once only</i></h4>
+
+<a name="index-overriding-once-only"></a>
+<a name="index-once-override"></a>
+
+<a name="index-_005conce-2"></a>
+<a name="index-_005conce-3"></a>
+<a name="index-once-2"></a>
+<a name="index-once-3"></a>
+
+<p>As you can see, <em>all</em> the slurs are thicker in the final example
+above.  But what if we wanted just the first slur to be thicker?  This
+is achieved with the <code>\once</code> command.  Placed immediately before
+the <code>\override</code> command it causes it to change only the slur
+which begins on the <strong>immediately following</strong> note.  If the
+immediately following note does not begin a slur the command has no
+effect at all &ndash; it is not remembered until a slur is encountered, it
+is simply discarded.  So the command with <code>\once</code> must be
+repositioned as follows:
+</p>
+<a name="index-Slur_002c-example-of-overriding"></a>
+<a name="index-thickness-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    bes8[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../3a/lily-69d2a6d0.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-69d2a6d0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Now only the first slur is made heavier.
+</p>
+<p>The <code>\once</code> command can also be used before the <code>\set</code>
+command.
+</p>
+<a name="-Reverting"></a>
+<h4 class="subsubheading"><i> Reverting</i></h4>
+
+<a name="index-revert-2"></a>
+<a name="index-default-properties_002c-reverting-to"></a>
+
+<a name="index-_005crevert-2"></a>
+<a name="index-_005crevert-3"></a>
+<a name="index-revert-3"></a>
+<a name="index-revert-4"></a>
+
+<p>Finally, what if we wanted just the first two slurs to be
+heavier?  Well, we could use two commands, each preceded by
+<code>\once</code> placed immediately before each of the notes where
+the slurs begin:
+</p>
+<a name="index-Slur_002c-example-of-overriding-1"></a>
+<a name="index-thickness-property_002c-example-2"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    bes[( g]) g |
+    % Increase thickness of immediately following slur only
+    \once \override Slur.thickness = #5.0
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../13/lily-ed496687.ly">
+  <img align="middle"
+       border="0"
+       src="../13/lily-ed496687.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>or we could omit the <code>\once</code> command and use the <code>\revert</code>
+command to return the <code>thickness</code> property to its default value
+after the second slur:
+</p>
+<a name="index-Slur_002c-example-of-overriding-2"></a>
+<a name="index-thickness-property_002c-example-3"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8
+    % Increase thickness of all following slurs from 1.2 to 5.0
+    \override Slur.thickness = #5.0
+    bes[( g]) g |
+    g8[( es]) es
+    % Revert thickness of all following slurs to default of 1.2
+    \revert Slur.thickness
+    d8[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../7e/lily-af8e6759.ly">
+  <img align="middle"
+       border="0"
+       src="../7e/lily-af8e6759.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The <code>\revert</code> command can be used to return any property
+changed with <code>\override</code> back to its default value.
+You may use whichever method best suits what you want to do.
+</p>
+<p>That concludes our introduction to the IR, and the basic
+method of tweaking.  Several examples follow in the later
+sections of this Chapter, partly to introduce you to some of the
+additional features of the IR, and partly to give you more
+practice in extracting information from it.  These examples will
+contain progressively fewer words of guidance and explanation.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.hu.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.hu.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.hu.html" title="Index" rel="index">Index</a>][<a href="index_abt.hu.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.hu.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="the-internals-reference-manual.hu.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The Internals Reference manual&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.hu.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;The Internals Reference manual&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="properties-found-in-interfaces.hu.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Properties found in interfaces &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="properties-of-layout-objects.ca.html">català</a>, <a href="properties-of-layout-objects.cs.html">česky</a>, <a href="properties-of-layout-objects.de.html">deutsch</a>, <a href="properties-of-layout-objects.es.html">español</a>, <a href="properties-of-layout-objects.fr.html">français</a>, <a href="properties-of-layout-objects.it.html">italiano</a>, <a href="properties-of-layout-objects.ja.html">日本語</a>, <a href="properties-of-layout-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Learning Manual  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.hu.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compiling-a-file-1" href="compiling-a-file.hu.html">1.1 Compiling a file</a>    </li>
+    <li class=""><a name="toc-How-to-write-input-files-1" href="how-to-write-input-files.hu.html">1.2 How to write input files</a>    </li>
+    <li class=""><a name="toc-Dealing-with-errors-1" href="dealing-with-errors.hu.html">1.3 Dealing with errors</a>    </li>
+    <li class=""><a name="toc-How-to-read-the-manuals-1" href="how-to-read-the-manuals.hu.html">1.4 How to read the manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Common-notation-1" href="common-notation.hu.html">2. Common notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-notation-1" href="single-staff-notation.hu.html">2.1 Single staff notation</a>    </li>
+    <li class=""><a name="toc-Multiple-notes-at-once-1" href="multiple-notes-at-once.hu.html">2.2 Multiple notes at once</a>    </li>
+    <li class=""><a name="toc-Songs-1" href="songs.hu.html">2.3 Songs</a>    </li>
+    <li class=""><a name="toc-Final-touches-1" href="final-touches.hu.html">2.4 Final touches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamental-concepts-1" href="fundamental-concepts.hu.html">3. Fundamental concepts</a>
+  <ul class="toc">
+    <li class=""><a name="toc-How-LilyPond-input-files-work-1" href="how-lilypond-input-files-work.hu.html">3.1 How LilyPond input files work</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.hu.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.hu.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.hu.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Tweaking-output-1" href="tweaking-output.hu.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.hu.html">4.1 Tweaking basics</a>    </li>
+    <li class=" toc_current"><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.hu.html">4.2 The Internals Reference manual</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Properties-of-layout-objects-1" href="properties-of-layout-objects.hu.html">4.2.1 Properties of layout objects</a>      </li>
+      <li class=""><a name="toc-Properties-found-in-interfaces-1" href="properties-found-in-interfaces.hu.html">4.2.2 Properties found in interfaces</a>      </li>
+      <li class=""><a name="toc-Types-of-properties-1" href="types-of-properties.hu.html">4.2.3 Types of properties</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.hu.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.hu.html">4.4 Placement of objects</a>    </li>
+    <li class=""><a name="toc-Vertical-spacing-1" href="vertical-spacing.hu.html">4.5 Vertical spacing</a>    </li>
+    <li class=""><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.hu.html">4.6 Collisions of objects</a>    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.hu.html">4.7 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.hu.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Built_002din-templates-1" href="built_002din-templates.hu.html">A.1 Built-in templates</a>    </li>
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.hu.html">A.2 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.hu.html">A.3 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.hu.html">A.4 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.hu.html">A.5 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.hu.html">A.6 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.hu.html">A.7 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.hu.html">A.8 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.hu.html">C. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

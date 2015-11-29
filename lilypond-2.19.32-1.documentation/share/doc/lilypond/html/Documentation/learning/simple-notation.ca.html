@@ -1,0 +1,718 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual d'aprenentatge del GNU LilyPond: 1.2.1 Notació senzilla</title>
+
+<meta name="description" content="Manual d'aprenentatge del GNU LilyPond: 1.2.1 Notació senzilla">
+<meta name="keywords" content="Manual d'aprenentatge del GNU LilyPond: 1.2.1 Notació senzilla">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Manual d'aprenentatge">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="C. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="how-to-write-input-files.ca.html#how-to-write-input-files" rel="up" title="1.2 Com escriure fitxers d'entrada">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="C. Índex del LilyPond">
+<link href="how-to-write-input-files.ca.html#how-to-write-input-files" rel="previous" title="1.2 Com escriure fitxers d'entrada">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="learning devStatus">
+
+
+<div id="main">
+<a name="Notaci_00f3-senzilla"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="how-to-write-input-files.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Com escriure fitxers d'entrada&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-to-write-input-files.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Com escriure fitxers d'entrada&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#pitches" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Altures &gt; </a>]</td></tr></table>
+<a name="simple-notation"></a>
+<h3 class="subsection">1.2.1 Notació senzilla</h3>
+
+<a name="index-senzilla_002c-notacio"></a>
+<a name="index-notacio-senzilla"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#pitches" accesskey="1">Altures</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#durations-_0028rhythms_0029" accesskey="2">Duracions (valors rítmics)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#rests" accesskey="3">Silencis</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#time-signature" accesskey="4">Indicació de compàs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#tempo-marks" accesskey="5">Indicacions de tempo</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#clef" accesskey="6">Clau</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#all-together" accesskey="7">Tot a l&rsquo;hora</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<p>El LilyPond afegirà certs elements de notació de manera
+automàtica. A l&rsquo;exemple següent hem especificat solament quatre
+altures, però el LilyPond ha afegit la clau, el compàs i les
+duracions.
+</p>
+<blockquote><pre class="verbatim">{
+  c' e' g' e'
+}
+</pre><p>
+ <a href="../5f/lily-9dc23fce.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-9dc23fce.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Aquest comportament es pot modificar, però en general aquests
+valors automàtics són adequats.
+</p>
+<hr size="6">
+<a name="Altures"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#simple-notation" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Notació senzilla&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#durations-_0028rhythms_0029" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Duracions (valors rítmics) &gt; </a>]</td></tr></table>
+<a name="pitches"></a>
+<h4 class="unnumberedsubsubsec">Altures</h4>
+
+<a name="index-altures"></a>
+<a name="index-notes"></a>
+<a name="index-relatiu_002c-mode"></a>
+<a name="index-apostrof"></a>
+<a name="index-cometa-simple"></a>
+<a name="index-coma"></a>
+<a name="index-alteracions-i-mode-relatiu"></a>
+<a name="index-relatiu_002c-mode_002c-alteracions-i"></a>
+
+<a name="index-_005crelative"></a>
+<a name="index-_005crelative-1"></a>
+<a name="index-relative"></a>
+<a name="index-relative-1"></a>
+<a name="index-_0027"></a>
+<a name="index-_0027-1"></a>
+<a name="index-_002c"></a>
+<a name="index-_002c-1"></a>
+
+<p>Glossari musical:
+<a name="index-pitch"></a>
+<a href="../music-glossary/pitch.ca.html">pitch</a>,
+<a name="index-interval"></a>
+<a href="../music-glossary/interval.ca.html">interval</a>,
+<a name="index-scale"></a>
+<a href="../music-glossary/scale.ca.html">scale</a>,
+<a name="index-middle-C"></a>
+<a href="../music-glossary/middle-c.ca.html">middle C</a>,
+<a name="index-octave"></a>
+<a href="../music-glossary/octave.ca.html">octave</a>,
+<a name="index-accidental"></a>
+<a href="../music-glossary/accidental.ca.html">accidental</a>.
+</p>
+<p>La manera més senzilla d&rsquo;introduir les notes és mitjançant la
+utilització del model <code>\relative</code> (relatiu). En aquest mode,
+s&rsquo;escull l&rsquo;octava automàticament sota el supòsit que la següent
+nota es col·locarà sempre el més a prop de la nota actual, és a
+dir, es col·locarà a l&rsquo;octava compresa dins de fins a tres espais
+de pentagrama a partir de la nota anterior.  Començarem per
+introduir el fragment musical més elemental: una
+<var>escala</var>, on cada nota està compresa dins de tans sols un
+espai de pentagrama des de la nota anterior.
+</p>
+<blockquote><pre class="verbatim">% set the starting point to middle C
+\relative {
+  c' d e f
+  g a b c
+}
+</pre><p>
+ <a href="../91/lily-aada82c8.ly">
+  <img align="middle"
+       border="0"
+       src="../91/lily-aada82c8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La nota inicial és el <var>Do central</var>.  Cada nota successiva
+es col·loca el més a prop possible de la nota prèvia (en altres
+paraules: la primera &lsquo;<samp>c</samp>&rsquo; és el Do més proper al Do central; a
+aquesta nota la segueix el Re més a prop a la nota prèvia, i així
+successivament).  Podem crear melodies amb intervals més grans,
+fins i tot sense deixar d&rsquo;utilitzar el mode relatiu:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  d' f a g
+  c b f d
+}
+</pre><p>
+ <a href="../fd/lily-445d38df.ly">
+  <img align="middle"
+       border="0"
+       src="../fd/lily-445d38df.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>No és necessari que la primera nota de la melodia comenci
+exactament a la nota que especifica l&rsquo;altura d&rsquo;inici.  A l&rsquo;exemple
+anterior, la primera nota (<code>d</code>) és el Re més proper al Do central.
+</p>
+<p>Afegint (o eliminant) cometes simples <code>'</code> o comes <code>,</code> a
+l&rsquo;ordre &lsquo;<code>\relative c'</code>&rsquo;, podem canviar l&rsquo;octava d&rsquo;inici:
+</p>
+<blockquote><pre class="verbatim">% una octava per sobre del Do central
+\relative {
+  e'' c a c
+}
+</pre><p>
+ <a href="../ea/lily-5b8cd35a.ly">
+  <img align="middle"
+       border="0"
+       src="../ea/lily-5b8cd35a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Al principi, el mode relatiu pot resultar una mica confús, però és
+la forma més senzilla d&rsquo;introduir la major par de les melodies.
+Vegem com funciona en la pràctica aquest càlcul relatiu.
+Començant per Si, que està situat a la línia central en clau de
+Sol, podem arribar Do, Re i Mi dins dels tres espais de pentagrama
+cap amunt, i La, Sol i Fa dins del tres espais cap a baix.  Per
+tant, si la nota següent a Si és Do, Re o Mi se suposarà que està
+per sobre del Si, mentre que La, Sol o Fa s&rsquo;entendran situats per
+sota.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  b' c  % el Do està 1 espai per sobre, és el Do de dalt
+  b d  % el Re està 2 espais per sobre o 5 per sota, és el Re de dalt
+  b e  % el Mi està 3 espais per sobre o 4 per sota, és el Mi de dalt
+  b a  % el La està 6 espais per sobre o 1 per sota, és el La de sota
+  b g  % el Sol està 5 espais per sobre o 2 per sota, és el Sol de sota
+  b f  % el Fa està 4 espais per sobre o 3 per sota, és el F de sota
+}
+</pre><p>
+ <a href="../35/lily-516792fe.ly">
+  <img align="middle"
+       border="0"
+       src="../35/lily-516792fe.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>El mateix exactament passa quan qualssevol d&rsquo;aquestes notes porten
+un sostingut o un bemoll.  Les <var>Alteracions accidentals</var>
+s&rsquo; <strong>ignoren totalment</strong> al càlcul de la posició
+relativa. Exactament el mateix compte d&rsquo;espais de pentagrama es fa
+a partir d&rsquo;una nota situada en qualsevol altre lloc del mateix pentagrama.
+</p>
+<p>Per afegir intervals més grans que tres espais de pentagrama, podem
+elevar una <var>octava</var> afegint una cometa simple  <code>'</code> (o
+apòstrof) a continuació del nom de la nota.  També podem baixar
+una octava escrivint una coma <code>,</code> a continuació del nom de la
+nota.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a' a, c' f,
+  g g'' a,, f'
+}
+</pre><p>
+ <a href="../b8/lily-03f1289a.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-03f1289a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Per pujar o baixar una nota en dos (o més!) octaves, utilitzem
+diverses <code>''</code> o <code>,,</code> (però teniu cura d&rsquo;utilitzar dos
+cometes simples <code>''</code> i no una cometa doble <code>&quot;</code>&nbsp;!)
+</p>
+<hr size="6">
+<a name="Duracions-_0028valors-r_00edtmics_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#pitches" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Altures&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#rests" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Silencis &gt; </a>]</td></tr></table>
+<a name="durations-_0028rhythms_0029"></a>
+<h4 class="unnumberedsubsubsec">Duracions (valors rítmics)</h4>
+
+<a name="index-duracions-de-les-notes"></a>
+<a name="index-notes_002c-duracions-de"></a>
+<a name="index-ritmes"></a>
+<a name="index-rodona"></a>
+<a name="index-blanca"></a>
+<a name="index-negra"></a>
+<a name="index-figura-amb-puntet"></a>
+<a name="index-puntet"></a>
+<a name="index-notacio-de-las-duracions"></a>
+
+<p>Glossari musical:
+<a name="index-beam"></a>
+<a href="../music-glossary/beam.ca.html">beam</a>,
+<a name="index-duration"></a>
+<a href="../music-glossary/duration.ca.html">duration</a>,
+<a name="index-whole-note"></a>
+<a href="../music-glossary/whole-note.ca.html">whole note</a>,
+<a name="index-half-note"></a>
+<a href="../music-glossary/half-note.ca.html">half note</a>,
+<a name="index-quarter-note"></a>
+<a href="../music-glossary/quarter-note.ca.html">quarter note</a>,
+<a name="index-dotted-note"></a>
+<a href="../music-glossary/dotted-note.ca.html">dotted note</a>.
+</p>
+<p>La <var>duració</var> d&rsquo;una nota s&rsquo;especifica mitjançant un número
+després del nom de la nota: <code>1</code> significa <var>rodona</var>,
+<code>2</code> significa <var>blanca</var>, <code>4</code> significa
+<var>negra</var> i així successivament. Les <var>barres de
+corxera</var> s&rsquo;afegeixen automàticament.
+</p>
+<p>Si no especifiqueu una  duració, s&rsquo;utilitza la duració prèvia per
+a la nota següent.  La figura per omissió de la primera nota és
+una negra.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'1
+  a2 a4 a8 a
+  a16 a a a a32 a a a a64 a a a a a a a a2
+}
+</pre><p>
+ <a href="../70/lily-d1c83b39.ly">
+  <img align="middle"
+       border="0"
+       src="../70/lily-d1c83b39.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Per crear <var>notes amb puntet</var>, afegiu un punt <code>.</code> al
+número de la duració.  La duració d&rsquo;una nota amb puntet s&rsquo;ha
+d&rsquo;especificar de forma explícita (és a dir: mitjançant un número).
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'4 a a4. a8
+  a8. a16 a a8. a8 a4.
+}
+</pre><p>
+ <a href="../b8/lily-f4d9a442.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-f4d9a442.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Silencis"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#durations-_0028rhythms_0029" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Duracions (valors rítmics)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#time-signature" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Indicació de compàs &gt; </a>]</td></tr></table>
+<a name="rests"></a>
+<h4 class="unnumberedsubsubsec">Silencis</h4>
+
+<a name="index-silenci"></a>
+<a name="index-notacio-dels-silencis"></a>
+
+<p>Glossari musical:
+<a name="index-rest"></a>
+<a href="../music-glossary/rest.ca.html">rest</a>.
+</p>
+<p>Un <var>silenci</var> s&rsquo;introdueix igual que si fos un anota amb
+el nom <code>r</code>&nbsp;:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  a'4 r r2
+  r8 a r4 r4. r8
+}
+</pre><p>
+ <a href="../db/lily-01f801da.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-01f801da.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Indicaci_00f3-de-comp_00e0s"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#rests" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Silencis&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#tempo-marks" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Indicacions de tempo &gt; </a>]</td></tr></table>
+<a name="time-signature"></a>
+<h4 class="unnumberedsubsubsec">Indicació de compàs</h4>
+
+<a name="index-compas_002c-indicacio-de"></a>
+
+<a name="index-_005ctime"></a>
+<a name="index-_005ctime-1"></a>
+<a name="index-time"></a>
+<a name="index-time-1"></a>
+
+<p>Glossari musical:
+<a name="index-time-signature"></a>
+<a href="../music-glossary/time-signature.ca.html">time signature</a>.
+</p>
+<p>La <var>indicació de compàs</var> es pot establir amb l&rsquo;ordre
+<code>\time</code> :
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 3/4
+  a'4 a a
+  \time 6/8
+  a4. a
+  \time 4/4
+  a4 a a a
+}
+</pre><p>
+ <a href="../ed/lily-f9bad0c1.ly">
+  <img align="middle"
+       border="0"
+       src="../ed/lily-f9bad0c1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Indicacions-de-tempo"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#time-signature" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Indicació de compàs&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#clef" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Clau &gt; </a>]</td></tr></table>
+<a name="tempo-marks"></a>
+<h4 class="unnumberedsubsubsec">Indicacions de tempo</h4>
+
+<a name="index-tempo_002c-indicacions-de"></a>
+<a name="index-metronom_002c-indicacions"></a>
+
+<a name="index-_005ctempo"></a>
+<a name="index-_005ctempo-1"></a>
+<a name="index-tempo"></a>
+<a name="index-tempo-1"></a>
+
+<p>Glossari musical:
+<a name="index-tempo-indication"></a>
+<a href="../music-glossary/tempo-indication.ca.html">tempo indication</a>,
+<a name="index-metronome"></a>
+<a href="../music-glossary/metronome.ca.html">metronome</a>.
+</p>
+<p>La <var>indicació de tempo</var> i la <var>indicació
+de metrònom</var> poden establir-se amb l&rsquo;ordre <code>\tempo</code>:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \time 3/4
+  \tempo &quot;Andante&quot;
+  a'4 a a
+  \time 6/8
+  \tempo 4. = 96
+  a4. a
+  \time 4/4
+  \tempo  &quot;Presto&quot; 4 = 120
+  a4 a a a
+}
+</pre><p>
+ <a href="../64/lily-cbd0b303.ly">
+  <img align="middle"
+       border="0"
+       src="../64/lily-cbd0b303.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Clau"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#tempo-marks" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Indicacions de tempo&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#all-together" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Tot a l'hora &gt; </a>]</td></tr></table>
+<a name="clef"></a>
+<h4 class="unnumberedsubsubsec">Clau</h4>
+
+<a name="index-clau"></a>
+<a name="index-sol_002c-clau-de"></a>
+<a name="index-do-en-tercera_002c-clau-de"></a>
+<a name="index-do-en-quarta_002c-clau-de"></a>
+<a name="index-fa_002c-clau-de"></a>
+<a name="index-soprano"></a>
+<a name="index-alto"></a>
+<a name="index-tenor"></a>
+<a name="index-baix"></a>
+
+<a name="index-_005cclef"></a>
+<a name="index-_005cclef-1"></a>
+<a name="index-clef"></a>
+<a name="index-clef-1"></a>
+
+<p>Glossari musical:
+<a name="index-clef-2"></a>
+<a href="../music-glossary/clef.ca.html">clef</a>.
+</p>
+<p>La <var>clau</var> es pot establir utilitzant l&rsquo;ordre
+<code>\clef</code> :
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;treble&quot;
+  c'1
+  \clef &quot;alto&quot;
+  c1
+  \clef &quot;tenor&quot;
+  c1
+  \clef &quot;bass&quot;
+  c1
+}
+</pre><p>
+ <a href="../ad/lily-c9e7439d.ly">
+  <img align="middle"
+       border="0"
+       src="../ad/lily-c9e7439d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Tot-a-l_0027hora"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#clef" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Clau&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="working-on-input-files.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Treball sobre els fitxers d'entrada &gt; </a>]</td></tr></table>
+<a name="all-together"></a>
+<h4 class="unnumberedsubsubsec">Tot a l&rsquo;hora</h4>
+
+<p>Aquí teniu un petit exemple que mostra tots els elements anteriors
+a l&rsquo;hora:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;bass&quot;
+  \time 3/4
+  \tempo &quot;Andante&quot; 4 = 120
+  c,2 e8 c'
+  g'2.
+  f4 e d
+  c4 c, r
+}
+</pre><p>
+ <a href="../70/lily-cc4a7ea5.ly">
+  <img align="middle"
+       border="0"
+       src="../70/lily-cc4a7ea5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Vegeu-tambe-24"></a>
+<h4 class="subsubheading">Vegeu també</h4>
+<p>Referència de la notació:
+<a name="index-Writing-pitches"></a>
+<a href="../notation/writing-pitches.ca.html">Writing pitches</a>,
+<a name="index-Writing-rhythms"></a>
+<a href="../notation/writing-rhythms.ca.html">Writing rhythms</a>, <a name="index-Writing-rests"></a>
+<a href="../notation/writing-rests.ca.html">Writing rests</a>,
+<a name="index-Time-signature"></a>
+<a href="../notation/indicacio-de-compas.ca.html#indicaci_00f3-de-comp_00e0s">Indicació de compàs</a>,
+<a name="index-Clef"></a>
+<a href="../notation/clau.ca.html">Clau</a>.
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tutorial.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Tutorial&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="common-notation.ca.html" title="Capítol següent">&nbsp;Notació corrent &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#clef" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Clau&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#simple-notation" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Notació senzilla&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="working-on-input-files.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Treball sobre els fitxers d'entrada &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="simple-notation.html">English</a>, <a href="simple-notation.cs.html">česky</a>, <a href="simple-notation.de.html">deutsch</a>, <a href="simple-notation.es.html">español</a>, <a href="simple-notation.fr.html">français</a>, <a href="simple-notation.hu.html">magyar</a>, <a href="simple-notation.it.html">italiano</a>, <a href="simple-notation.ja.html">日本語</a>, <a href="simple-notation.nl.html">nederlands</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Manual d&rsquo;aprenentatge  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Tutorial-1" href="tutorial.ca.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacio-d_0027un-fitxer" href="compiling-a-file.ca.html">1.1 Compilació d&rsquo;un fitxer</a>    </li>
+    <li class=" toc_current"><a name="toc-Com-escriure-fitxers-d_0027entrada-1" href="how-to-write-input-files.ca.html">1.2 Com escriure fitxers d&rsquo;entrada</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Notacio-senzilla" href="simple-notation.ca.html">1.2.1 Notació senzilla</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Altures-1" href="simple-notation.ca.html#pitches">Altures</a>        </li>
+        <li class=""><a name="toc-Duracions-_0028valors-ritmics_0029" href="simple-notation.ca.html#durations-_0028rhythms_0029">Duracions (valors rítmics)</a>        </li>
+        <li class=""><a name="toc-Silencis-1" href="simple-notation.ca.html#rests">Silencis</a>        </li>
+        <li class=""><a name="toc-Indicacio-de-compas" href="simple-notation.ca.html#time-signature">Indicació de compàs</a>        </li>
+        <li class=""><a name="toc-Indicacions-de-tempo-1" href="simple-notation.ca.html#tempo-marks">Indicacions de tempo</a>        </li>
+        <li class=""><a name="toc-Clau-1" href="simple-notation.ca.html#clef">Clau</a>        </li>
+        <li class=""><a name="toc-Tot-a-l_0027hora-1" href="simple-notation.ca.html#all-together">Tot a l&rsquo;hora</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Treball-sobre-els-fitxers-d_0027entrada-1" href="working-on-input-files.ca.html">1.2.2 Treball sobre els fitxers d&rsquo;entrada</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Gestio-dels-errors" href="dealing-with-errors.ca.html">1.3 Gestió dels errors</a>    </li>
+    <li class=""><a name="toc-Com-llegir-els-manuals-1" href="how-to-read-the-manuals.ca.html">1.4 Com llegir els manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacio-corrent" href="common-notation.ca.html">2. Notació corrent</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacio-en-un-sol-pentagrama" href="single-staff-notation.ca.html">2.1 Notació en un sol pentagrama</a>    </li>
+    <li class=""><a name="toc-Diverses-notes-a-la-vegada-1" href="multiple-notes-at-once.ca.html">2.2 Diverses notes a la vegada</a>    </li>
+    <li class=""><a name="toc-Cancons" href="songs.ca.html">2.3 Cançons</a>    </li>
+    <li class=""><a name="toc-Retocs-finals-1" href="final-touches.ca.html">2.4 Retocs finals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptes-fonamentals-1" href="fundamental-concepts.ca.html">3. Conceptes fonamentals</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Com-funcionen-els-fitxers-d_0027entrada-del-LilyPond-1" href="how-lilypond-input-files-work.ca.html">3.1 Com funcionen els fitxers d&rsquo;entrada del LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-veus-contenen-musica" href="voices-contain-music.ca.html">3.2 Les veus contenen música</a>    </li>
+    <li class=""><a name="toc-Contextos-i-gravadors-1" href="contexts-and-engravers.ca.html">3.3 Contextos i gravadors</a>    </li>
+    <li class=""><a name="toc-Extensio-de-les-plantilles" href="extending-the-templates.ca.html">3.4 Extensió de les plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ajustament-de-la-sortida-1" href="tweaking-output.ca.html">4. Ajustament de la sortida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elements-de-l_0027ajustament-1" href="tweaking-basics.ca.html">4.1 Elements de l&rsquo;ajustament</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionament-intern" href="the-internals-reference-manual.ca.html">4.2 Manual de referència de funcionament intern</a>    </li>
+    <li class=""><a name="toc-Aparenca-dels-objectes" href="appearance-of-objects.ca.html">4.3 Aparença dels objectes</a>    </li>
+    <li class=""><a name="toc-Col_00b7locacio-dels-objectes" href="placement-of-objects.ca.html">4.4 Col·locació dels objectes</a>    </li>
+    <li class=""><a name="toc-Espaiat-vertical-1" href="vertical-spacing.ca.html">4.5 Espaiat vertical</a>    </li>
+    <li class=""><a name="toc-Col_00b7lisions-d_0027objectes-1" href="collisions-of-objects.ca.html">4.6 Col·lisions d&rsquo;objectes</a>    </li>
+    <li class=""><a name="toc-Ajustaments-addicionals-1" href="further-tweaking.ca.html">4.7 Ajustaments addicionals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantilles-1" href="templates.ca.html">A. Plantilles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantilles-de-pentagrama-unic" href="single-staff-templates.ca.html">A.1 Plantilles de pentagrama únic</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-piano-1" href="piano-templates.ca.html">A.2 Plantilles de piano</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-quartet-de-corda-1" href="string-quartet-templates.ca.html">A.3 Plantilles de quartet de corda</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-conjunts-vocals-1" href="vocal-ensembles-templates.ca.html">A.4 Plantilles de conjunts vocals</a>    </li>
+    <li class=""><a name="toc-Plantilles-orquestrals-1" href="orchestral-templates.ca.html">A.5 Plantilles orquestrals</a>    </li>
+    <li class=""><a name="toc-Plantilles-per-a-notacio-antiga" href="ancient-notation-templates.ca.html">A.6 Plantilles per a notació antiga</a>    </li>
+    <li class=""><a name="toc-Altres-plantilles-1" href="other-templates.ca.html">A.7 Altres plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">C. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

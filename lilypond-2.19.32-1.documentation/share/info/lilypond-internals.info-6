@@ -1,0 +1,4152 @@
+This is out-www/lilypond-internals.info, produced by makeinfo version
+4.13 from out-www/internals.texi.
+
+INFO-DIR-SECTION LilyPond
+START-INFO-DIR-ENTRY
+* GNU LilyPond Internals Reference: (internals).          LilyPond Internals Reference.
+END-INFO-DIR-ENTRY
+
+
+
+File: lilypond-internals.info,  Node: tuplet-bracket-interface,  Next: tuplet-number-interface,  Prev: trill-spanner-interface,  Up: Graphical Object Interfaces
+
+3.2.131 tuplet-bracket-interface
+--------------------------------
+
+A bracket with a number in the middle, used for tuplets.  When the
+bracket spans a line break, the value of `break-overshoot' determines
+how far it extends beyond the staff.  At a line break, the markups in
+the `edge-text' are printed at the edges.
+
+User settable properties:
+.........................
+
+    `avoid-scripts' (boolean)
+          If set, a tuplet bracket avoids the scripts associated with
+          the note heads it encompasses.
+
+    `bracket-flare' (pair of numbers)
+          A pair of numbers specifying how much edges of brackets
+          should slant outward.  Value `0.0' means straight edges.
+
+    `bracket-visibility' (boolean or symbol)
+          This controls the visibility of the tuplet bracket.  Setting
+          it to false prevents printing of the bracket.  Setting the
+          property to `if-no-beam' makes it print only if there is no
+          beam associated with this tuplet bracket.
+
+    `break-overshoot' (pair of numbers)
+          How much does a broken spanner stick out of its bounds?
+
+    `connect-to-neighbor' (pair)
+          Pair of booleans, indicating whether this grob looks as a
+          continued break.
+
+    `direction' (direction)
+          If `side-axis' is `0' (or `X'), then this property determines
+          whether the object is placed `LEFT', `CENTER' or `RIGHT' with
+          respect to the other object.  Otherwise, it determines
+          whether the object is placed `UP', `CENTER' or `DOWN'.
+          Numerical values may also be used: `UP'=`1', `DOWN'=`-1',
+          `LEFT'=`-1', `RIGHT'=`1', `CENTER'=`0'.
+
+    `edge-height' (pair)
+          A pair of numbers specifying the heights of the vertical
+          edges: `(LEFT-HEIGHT . RIGHT-HEIGHT)'.
+
+    `edge-text' (pair)
+          A pair specifying the texts to be set at the edges:
+          `(LEFT-TEXT . RIGHT-TEXT)'.
+
+    `full-length-padding' (number)
+          How much padding to use at the right side of a full-length
+          tuplet bracket.
+
+    `full-length-to-extent' (boolean)
+          Run to the extent of the column for a full-length tuplet
+          bracket.
+
+    `gap' (dimension, in staff space)
+          Size of a gap in a variable symbol.
+
+    `padding' (dimension, in staff space)
+          Add this much extra space between objects that are next to
+          each other.
+
+    `positions' (pair of numbers)
+          Pair of staff coordinates `(LEFT . RIGHT)', where both LEFT
+          and RIGHT are in `staff-space' units of the current staff.
+          For slurs, this value selects which slur candidate to use; if
+          extreme positions are requested, the closest one is taken.
+
+    `shorten-pair' (pair of numbers)
+          The lengths to shorten a text-spanner on both sides, for
+          example a pedal bracket.  Positive values shorten the
+          text-spanner, while negative values lengthen it.
+
+    `staff-padding' (dimension, in staff space)
+          Maintain this much space between reference points and the
+          staff.  Its effect is to align objects of differing sizes
+          (like the dynamics p and f) on their baselines.
+
+    `thickness' (number)
+          For grobs made up of lines, this is the thickness of the
+          line.  For slurs and ties, this is the distance between the
+          two arcs of the curve's outline at its thickest point, not
+          counting the diameter of the virtual "pen" that draws the
+          arcs.  This property is expressed as a multiple of the current
+          staff-line thickness (i.e. the visual output is influenced by
+          changes to `STAFF.StaffSymbol.thickness').
+
+    `X-positions' (pair of numbers)
+          Pair of X staff coordinates of a spanner in the form `(LEFT .
+          RIGHT)', where both LEFT and RIGHT are in `staff-space' units
+          of the current staff.
+
+
+Internal properties:
+....................
+
+    `note-columns' (array of grobs)
+          An array of `NoteColumn' grobs.
+
+    `scripts' (array of grobs)
+          An array of `Script' objects.
+
+    `tuplet-number' (graphical (layout) object)
+          The number for a bracket.
+
+    `tuplets' (array of grobs)
+          An array of smaller tuplet brackets.
+
+
+This grob interface is used in the following graphical object(s): *note
+LigatureBracket:: and *note TupletBracket::.
+
+
+File: lilypond-internals.info,  Node: tuplet-number-interface,  Next: unbreakable-spanner-interface,  Prev: tuplet-bracket-interface,  Up: Graphical Object Interfaces
+
+3.2.132 tuplet-number-interface
+-------------------------------
+
+The number for a bracket.
+
+User settable properties:
+.........................
+
+    `avoid-slur' (symbol)
+          Method of handling slur collisions.  Choices are `inside',
+          `outside', `around', and `ignore'.  `inside' adjusts the slur
+          if needed to keep the grob inside the slur.  `outside' moves
+          the grob vertically to the outside of the slur.  `around'
+          moves the grob vertically to the outside of the slur only if
+          there is a collision.  `ignore' does not move either.  In
+          grobs whose notational significance depends on vertical
+          position (such as accidentals, clefs, etc.), `outside' and
+          `around' behave like `ignore'.
+
+    `direction' (direction)
+          If `side-axis' is `0' (or `X'), then this property determines
+          whether the object is placed `LEFT', `CENTER' or `RIGHT' with
+          respect to the other object.  Otherwise, it determines
+          whether the object is placed `UP', `CENTER' or `DOWN'.
+          Numerical values may also be used: `UP'=`1', `DOWN'=`-1',
+          `LEFT'=`-1', `RIGHT'=`1', `CENTER'=`0'.
+
+    `knee-to-beam' (boolean)
+          Determines whether a tuplet number will be positioned next to
+          a kneed beam.
+
+
+Internal properties:
+....................
+
+    `bracket' (graphical (layout) object)
+          The bracket for a number.
+
+
+This grob interface is used in the following graphical object(s): *note
+TupletNumber::.
+
+
+File: lilypond-internals.info,  Node: unbreakable-spanner-interface,  Next: vaticana-ligature-interface,  Prev: tuplet-number-interface,  Up: Graphical Object Interfaces
+
+3.2.133 unbreakable-spanner-interface
+-------------------------------------
+
+A spanner that should not be broken across line breaks.  Override with
+`breakable=##t'.
+
+User settable properties:
+.........................
+
+    `breakable' (boolean)
+          Allow breaks here.
+
+
+This grob interface is used in the following graphical object(s): *note
+Beam:: and *note Glissando::.
+
+
+File: lilypond-internals.info,  Node: vaticana-ligature-interface,  Next: volta-bracket-interface,  Prev: unbreakable-spanner-interface,  Up: Graphical Object Interfaces
+
+3.2.134 vaticana-ligature-interface
+-----------------------------------
+
+A vaticana style Gregorian ligature.
+
+User settable properties:
+.........................
+
+    `glyph-name' (string)
+          The glyph name within the font.
+
+          In the context of (span) bar lines, GLYPH-NAME represents a
+          processed form of `glyph', where decisions about line breaking
+          etc. are already taken.
+
+    `thickness' (number)
+          For grobs made up of lines, this is the thickness of the
+          line.  For slurs and ties, this is the distance between the
+          two arcs of the curve's outline at its thickest point, not
+          counting the diameter of the virtual "pen" that draws the
+          arcs.  This property is expressed as a multiple of the current
+          staff-line thickness (i.e. the visual output is influenced by
+          changes to `STAFF.StaffSymbol.thickness').
+
+
+Internal properties:
+....................
+
+    `add-cauda' (boolean)
+          Does this flexa require an additional cauda on the left side?
+
+    `add-join' (boolean)
+          Is this ligature head-joined with the next one by a vertical
+          line?
+
+    `add-stem' (boolean)
+          Is this ligature head a virga and therefore needs an
+          additional stem on the right side?
+
+    `delta-position' (number)
+          The vertical position difference.
+
+    `flexa-height' (dimension, in staff space)
+          The height of a flexa shape in a ligature grob (in
+          `staff-space' units).
+
+    `flexa-width' (dimension, in staff space)
+          The width of a flexa shape in a ligature grob in (in
+          `staff-space' units).
+
+    `x-offset' (dimension, in staff space)
+          Extra horizontal offset for ligature heads.
+
+
+This grob interface is used in the following graphical object(s): *note
+NoteHead:: and *note VaticanaLigature::.
+
+
+File: lilypond-internals.info,  Node: volta-bracket-interface,  Next: volta-interface,  Prev: vaticana-ligature-interface,  Up: Graphical Object Interfaces
+
+3.2.135 volta-bracket-interface
+-------------------------------
+
+Volta bracket with number.
+
+User settable properties:
+.........................
+
+    `height' (dimension, in staff space)
+          Height of an object in `staff-space' units.
+
+    `shorten-pair' (pair of numbers)
+          The lengths to shorten a text-spanner on both sides, for
+          example a pedal bracket.  Positive values shorten the
+          text-spanner, while negative values lengthen it.
+
+    `thickness' (number)
+          For grobs made up of lines, this is the thickness of the
+          line.  For slurs and ties, this is the distance between the
+          two arcs of the curve's outline at its thickest point, not
+          counting the diameter of the virtual "pen" that draws the
+          arcs.  This property is expressed as a multiple of the current
+          staff-line thickness (i.e. the visual output is influenced by
+          changes to `STAFF.StaffSymbol.thickness').
+
+
+Internal properties:
+....................
+
+    `bars' (array of grobs)
+          An array of bar line pointers.
+
+
+This grob interface is used in the following graphical object(s): *note
+VoltaBracket::.
+
+
+File: lilypond-internals.info,  Node: volta-interface,  Prev: volta-bracket-interface,  Up: Graphical Object Interfaces
+
+3.2.136 volta-interface
+-----------------------
+
+A volta repeat.
+
+   This grob interface is used in the following graphical object(s):
+*note VoltaBracket:: and *note VoltaBracketSpanner::.
+
+
+File: lilypond-internals.info,  Node: User backend properties,  Next: Internal backend properties,  Prev: Graphical Object Interfaces,  Up: Backend
+
+3.3 User backend properties
+===========================
+
+`add-stem-support' (boolean)
+     If set, the `Stem' object is included in this script's support.
+
+`after-line-breaking' (boolean)
+     Dummy property, used to trigger callback for `after-line-breaking'.
+
+`align-dir' (direction)
+     Which side to align? `-1': left side, `0': around center of width,
+     `1': right side.
+
+`allow-loose-spacing' (boolean)
+     If set, column can be detached from main spacing.
+
+`allow-span-bar' (boolean)
+     If false, no inter-staff bar line will be created below this bar
+     line.
+
+`alteration' (number)
+     Alteration numbers for accidental.
+
+`alteration-alist' (list)
+     List of `(PITCH . ACCIDENTAL)' pairs for key signature.
+
+`annotation' (string)
+     Annotate a grob for debug purposes.
+
+`annotation-balloon' (boolean)
+     Print the balloon around an annotation.
+
+`annotation-line' (boolean)
+     Print the line from an annotation to the grob that it annotates.
+
+`arpeggio-direction' (direction)
+     If set, put an arrow on the arpeggio squiggly line.
+
+`arrow-length' (number)
+     Arrow length.
+
+`arrow-width' (number)
+     Arrow width.
+
+`auto-knee-gap' (dimension, in staff space)
+     If a gap is found between note heads where a horizontal beam fits
+     that is larger than this number, make a kneed beam.
+
+`automatically-numbered' (boolean)
+     Should a footnote be automatically numbered?
+
+`average-spacing-wishes' (boolean)
+     If set, the spacing wishes are averaged over staves.
+
+`avoid-note-head' (boolean)
+     If set, the stem of a chord does not pass through all note heads,
+     but starts at the last note head.
+
+`avoid-scripts' (boolean)
+     If set, a tuplet bracket avoids the scripts associated with the
+     note heads it encompasses.
+
+`avoid-slur' (symbol)
+     Method of handling slur collisions.  Choices are `inside',
+     `outside', `around', and `ignore'.  `inside' adjusts the slur if
+     needed to keep the grob inside the slur.  `outside' moves the grob
+     vertically to the outside of the slur.  `around' moves the grob
+     vertically to the outside of the slur only if there is a
+     collision.  `ignore' does not move either.  In grobs whose
+     notational significance depends on vertical position (such as
+     accidentals, clefs, etc.), `outside' and `around' behave like
+     `ignore'.
+
+`axes' (list)
+     List of axis numbers.  In the case of alignment grobs, this should
+     contain only one number.
+
+`bar-extent' (pair of numbers)
+     The Y-extent of the actual bar line.  This may differ from
+     `Y-extent' because it does not include the dots in a repeat bar
+     line.
+
+`base-shortest-duration' (moment)
+     Spacing is based on the shortest notes in a piece.  Normally,
+     pieces are spaced as if notes at least as short as this are
+     present.
+
+`baseline-skip' (dimension, in staff space)
+     Distance between base lines of multiple lines of text.
+
+`beam-thickness' (dimension, in staff space)
+     Beam thickness, measured in `staff-space' units.
+
+`beam-width' (dimension, in staff space)
+     Width of the tremolo sign.
+
+`beamed-stem-shorten' (list)
+     How much to shorten beamed stems, when their direction is forced.
+     It is a list, since the value is different depending on the number
+     of flags and beams.
+
+`beaming' (pair)
+     Pair of number lists.  Each number list specifies which beams to
+     make.  `0' is the central beam, `1' is the next beam toward the
+     note, etc.  This information is used to determine how to connect
+     the beaming patterns from stem to stem inside a beam.
+
+`beamlet-default-length' (pair)
+     A pair of numbers.  The first number specifies the default length
+     of a beamlet that sticks out of the left hand side of this stem;
+     the second number specifies the default length of the beamlet to
+     the right.  The actual length of a beamlet is determined by taking
+     either the default length or the length specified by
+     `beamlet-max-length-proportion', whichever is smaller.
+
+`beamlet-max-length-proportion' (pair)
+     The maximum length of a beamlet, as a proportion of the distance
+     between two adjacent stems.
+
+`before-line-breaking' (boolean)
+     Dummy property, used to trigger a callback function.
+
+`between-cols' (pair)
+     Where to attach a loose column to.
+
+`bound-details' (list)
+     An alist of properties for determining attachments of spanners to
+     edges.
+
+`bound-padding' (number)
+     The amount of padding to insert around spanner bounds.
+
+`bracket-flare' (pair of numbers)
+     A pair of numbers specifying how much edges of brackets should
+     slant outward.  Value `0.0' means straight edges.
+
+`bracket-visibility' (boolean or symbol)
+     This controls the visibility of the tuplet bracket.  Setting it to
+     false prevents printing of the bracket.  Setting the property to
+     `if-no-beam' makes it print only if there is no beam associated
+     with this tuplet bracket.
+
+`break-align-anchor' (number)
+     Grobs aligned to this breakable item will have their X-offsets
+     shifted by this number.  In bar lines, for example, this is used
+     to position grobs relative to the (visual) center of the bar line.
+
+`break-align-anchor-alignment' (number)
+     Read by `ly:break-aligned-interface::calc-extent-aligned-anchor'
+     for aligning an anchor to a grob's extent.
+
+`break-align-orders' (vector)
+     This is a vector of 3 lists:
+     `#(END-OF-LINE UNBROKEN START-OF-LINE').  Each list contains
+     _break-align symbols_ that specify an order of breakable items
+     (see *note break-alignment-interface:
+     (lilypond-internals)break-alignment-interface.).
+
+     For example, this places time signatures before clefs:
+
+          \override Score.BreakAlignment.break-align-orders =
+            #(make-vector 3 '(left-edge
+                              cue-end-clef
+                              ambitus
+                              breathing-sign
+                              time-signature
+                              clef
+                              cue-clef
+                              staff-bar
+                              key-cancellation
+                              key-signature
+                              custos))
+
+`break-align-symbol' (symbol)
+     This key is used for aligning, ordering, and spacing breakable
+     items.  See *note break-alignment-interface:
+     (lilypond-internals)break-alignment-interface.
+
+`break-align-symbols' (list)
+     A list of _break-align symbols_ that determines which breakable
+     items to align this to.  If the grob selected by the first symbol
+     in the list is invisible due to `break-visibility', we will align
+     to the next grob (and so on).  Choices are listed in *note
+     break-alignment-interface:
+     (lilypond-internals)break-alignment-interface.
+
+`break-overshoot' (pair of numbers)
+     How much does a broken spanner stick out of its bounds?
+
+`break-visibility' (vector)
+     A vector of 3 booleans, `#(END-OF-LINE UNBROKEN BEGIN-OF-LINE)'.
+     `#t' means visible, `#f' means killed.
+
+`breakable' (boolean)
+     Allow breaks here.
+
+`broken-bound-padding' (number)
+     The amount of padding to insert when a spanner is broken at a line
+     break.
+
+`chord-dots-limit' (integer)
+     Limits the column of dots on each chord to the height of the chord
+     plus `chord-dots-limit' staff-positions.
+
+`circled-tip' (boolean)
+     Put a circle at start/end of hairpins (al/del niente).
+
+`clef-alignments' (list)
+     An alist of parent-alignments that should be used for clef
+     modifiers with various clefs
+
+`clip-edges' (boolean)
+     Allow outward pointing beamlets at the edges of beams?
+
+`collapse-height' (dimension, in staff space)
+     Minimum height of system start delimiter.  If equal or smaller,
+     the bracket/brace/line is removed.
+
+`collision-interfaces' (list)
+     A list of interfaces for which automatic beam-collision resolution
+     is run.
+
+`collision-voice-only' (boolean)
+     Does automatic beam collsion apply only to the voice in which the
+     beam was created?
+
+`color' (color)
+     The color of this grob.
+
+`common-shortest-duration' (moment)
+     The most common shortest note length.  This is used in spacing.
+     Enlarging this sets the score tighter.
+
+`concaveness' (number)
+     A beam is concave if its inner stems are closer to the beam than
+     the two outside stems.  This number is a measure of the closeness
+     of the inner stems.  It is used for damping the slope of the beam.
+
+`connect-to-neighbor' (pair)
+     Pair of booleans, indicating whether this grob looks as a
+     continued break.
+
+`control-points' (list of number pairs)
+     List of offsets (number pairs) that form control points for the
+     tie, slur, or bracket shape.  For Béziers, this should list the
+     control points of a third-order Bézier curve.
+
+`count-from' (integer)
+     The first measure in a measure count receives this number.  The
+     following measures are numbered in increments from this initial
+     value.
+
+`damping' (number)
+     Amount of beam slope damping.
+
+`dash-definition' (pair)
+     List of `dash-elements' defining the dash structure.  Each
+     `dash-element' has a starting t value, an ending t-value, a
+     `dash-fraction', and a `dash-period'.
+
+`dash-fraction' (number)
+     Size of the dashes, relative to `dash-period'.  Should be between
+     `0.1' and `1.0' (continuous line).  If set to `0.0', a dotted line
+     is produced
+
+`dash-period' (number)
+     The length of one dash together with whitespace.  If negative, no
+     line is drawn at all.
+
+`default-direction' (direction)
+     Direction determined by note head positions.
+
+`default-staff-staff-spacing' (list)
+     The settings to use for `staff-staff-spacing' when it is unset,
+     for ungrouped staves and for grouped staves that do not have the
+     relevant `StaffGrouper' property set (`staff-staff-spacing' or
+     `staffgroup-staff-spacing').
+
+`details' (list)
+     Alist of parameters for detailed grob behavior.  More information
+     on the allowed parameters for a grob can be found by looking at
+     the top of the Internals Reference page for each interface having
+     a `details' property.
+
+`digit-names' (vector)
+     Names for string finger digits.
+
+`direction' (direction)
+     If `side-axis' is `0' (or `X'), then this property determines
+     whether the object is placed `LEFT', `CENTER' or `RIGHT' with
+     respect to the other object.  Otherwise, it determines whether the
+     object is placed `UP', `CENTER' or `DOWN'.  Numerical values may
+     also be used: `UP'=`1', `DOWN'=`-1', `LEFT'=`-1', `RIGHT'=`1',
+     `CENTER'=`0'.
+
+`dot-count' (integer)
+     The number of dots.
+
+`dot-negative-kern' (number)
+     The space to remove between a dot and a slash in percent repeat
+     glyphs.  Larger values bring the two elements closer together.
+
+`dot-placement-list' (list)
+     List consisting of `(DESCRIPTION STRING-NUMBER FRET-NUMBER
+     FINGER-NUMBER)' entries used to define fret diagrams.
+
+`double-stem-separation' (number)
+     The distance between the two stems of a half note in tablature
+     when using `\tabFullNotation', not counting the width of the stems
+     themselves, expressed as a multiple of the default height of a
+     staff-space in the traditional five-line staff.
+
+`duration-log' (integer)
+     The 2-log of the note head duration, i.e., `0' = whole note, `1' =
+     half note, etc.
+
+`eccentricity' (number)
+     How asymmetrical to make a slur.  Positive means move the center
+     to the right.
+
+`edge-height' (pair)
+     A pair of numbers specifying the heights of the vertical edges:
+     `(LEFT-HEIGHT . RIGHT-HEIGHT)'.
+
+`edge-text' (pair)
+     A pair specifying the texts to be set at the edges: `(LEFT-TEXT .
+     RIGHT-TEXT)'.
+
+`expand-limit' (integer)
+     Maximum number of measures expanded in church rests.
+
+`extra-dy' (number)
+     Slope glissandi this much extra.
+
+`extra-offset' (pair of numbers)
+     A pair representing an offset.  This offset is added just before
+     outputting the symbol, so the typesetting engine is completely
+     oblivious to it.  The values are measured in `staff-space' units
+     of the staff's `StaffSymbol'.
+
+`extra-spacing-height' (pair of numbers)
+     In the horizontal spacing problem, we increase the height of each
+     item by this amount (by adding the `car' to the bottom of the item
+     and adding the `cdr' to the top of the item).  In order to make a
+     grob infinitely high (to prevent the horizontal spacing problem
+     from placing any other grobs above or below this grob), set this
+     to `(-inf.0 . +inf.0)'.
+
+`extra-spacing-width' (pair of numbers)
+     In the horizontal spacing problem, we pad each item by this amount
+     (by adding the `car' on the left side of the item and adding the
+     `cdr' on the right side of the item).  In order to make a grob
+     take up no horizontal space at all, set this to `(+inf.0 .
+     -inf.0)'.
+
+`flag-count' (number)
+     The number of tremolo beams.
+
+`flag-style' (symbol)
+     The style of the flag to be used with `MetronomeMark'. Available
+     are `'modern-straight-flag', `'old-straight-flag', `flat-flag',
+     `mensural' and `'default'
+
+`flat-positions' (list)
+     Flats in key signatures are placed within the specified ranges of
+     staff-positions.  The general form is a list of pairs, with one
+     pair for each type of clef, in order of the staff-position at
+     which each clef places C: `(alto treble tenor soprano baritone
+     mezzosoprano bass)'.  If the list contains a single element it
+     applies for all clefs.  A single number in place of a pair sets
+     accidentals within the octave ending at that staff-position.
+
+`font-encoding' (symbol)
+     The font encoding is the broadest category for selecting a font.
+     Currently, only lilypond's system fonts (Emmentaler) are using
+     this property.  Available values are `fetaMusic' (Emmentaler),
+     `fetaBraces', `fetaText' (Emmentaler).
+
+`font-family' (symbol)
+     The font family is the broadest category for selecting text fonts.
+     Options include: `sans', `roman'.
+
+`font-name' (string)
+     Specifies a file name (without extension) of the font to load.
+     This setting overrides selection using `font-family',
+     `font-series' and `font-shape'.
+
+`font-series' (symbol)
+     Select the series of a font.  Choices include `medium', `bold',
+     `bold-narrow', etc.
+
+`font-shape' (symbol)
+     Select the shape of a font.  Choices include `upright', `italic',
+     `caps'.
+
+`font-size' (number)
+     The font size, compared to the `normal' size.  `0' is
+     style-sheet's normal size, `-1' is smaller, `+1' is bigger.  Each
+     step of 1 is approximately 12% larger; 6 steps are exactly a
+     factor 2 larger.  If the context property `fontSize' is set, its
+     value is added to this before the glyph is printed.  Fractional
+     values are allowed.
+
+`footnote' (boolean)
+     Should this be a footnote or in-note?
+
+`footnote-music' (music)
+     Music creating a footnote.
+
+`footnote-text' (markup)
+     A footnote for the grob.
+
+`force-hshift' (number)
+     This specifies a manual shift for notes in collisions.  The unit
+     is the note head width of the first voice note.  This is used by *note
+     note-collision-interface:
+     (lilypond-internals)note-collision-interface.
+
+`forced-spacing' (number)
+     Spacing forced between grobs, used in various ligature engravers.
+
+`fraction' (fraction, as pair)
+     Numerator and denominator of a time signature object.
+
+`french-beaming' (boolean)
+     Use French beaming style for this stem.  The stem stops at the
+     innermost beams.
+
+`fret-diagram-details' (list)
+     An alist of detailed grob properties for fret diagrams.  Each
+     alist entry consists of a `(PROPERTY .  VALUE)' pair.  The
+     properties which can be included in `fret-diagram-details' include
+     the following:
+
+        * `barre-type' - Type of barre indication used.  Choices include
+          `curved', `straight', and `none'.  Default `curved'.
+
+        * `capo-thickness' - Thickness of capo indicator, in multiples
+          of fret-space.  Default value 0.5.
+
+        * `dot-color' - Color of dots.  Options include `black' and
+          `white'.  Default `black'.
+
+        * `dot-label-font-mag' - Magnification for font used to label
+          fret dots.  Default value 1.
+
+        * `dot-position' - Location of dot in fret space.  Default 0.6
+          for dots without labels, 0.95-`dot-radius' for dots with
+          labels.
+
+        * `dot-radius' - Radius of dots, in terms of fret spaces.
+          Default value 0.425 for labeled dots, 0.25 for unlabeled dots.
+
+        * `finger-code' - Code for the type of fingering indication
+          used.  Options include `none', `in-dot', and `below-string'.
+          Default `none' for markup fret diagrams, `below-string' for
+          `FretBoards' fret diagrams.
+
+        * `fret-count' - The number of frets.  Default 4.
+
+        * `fret-label-custom-format' - The format string to be used
+          label the lowest fret number, when `number-type' equals to
+          `custom'.  Default "~a".
+
+        * `fret-label-font-mag' - The magnification of the font used to
+          label the lowest fret number.  Default 0.5.
+
+        * `fret-label-vertical-offset' - The offset of the fret label
+          from the center of the fret in direction parallel to strings.
+          Default 0.
+
+        * `fret-label-horizontal-offset' - The offset of the fret label
+          from the center of the fret in direction orthogonal to
+          strings.  Default 0.
+
+        * `paren-padding' - The padding for the parenthesis.
+          Default 0.05.
+
+        * `label-dir' - Side to which the fret label is attached.
+          `-1', `LEFT', or `DOWN' for left or down; `1', `RIGHT', or
+          `UP' for right or up.  Default `RIGHT'.
+
+        * `mute-string' - Character string to be used to indicate muted
+          string.  Default `"x"'.
+
+        * `number-type' - Type of numbers to use in fret label.  Choices
+          include `roman-lower', `roman-upper', `arabic' and `custom'.
+          In the later case, the format string is supplied by the
+          `fret-label-custom-format' property.  Default `roman-lower'.
+
+        * `open-string' - Character string to be used to indicate open
+          string.  Default `"o"'.
+
+        * `orientation' - Orientation of fret-diagram.  Options include
+          `normal', `landscape', and `opposing-landscape'.  Default
+          `normal'.
+
+        * `string-count' - The number of strings.  Default 6.
+
+        * `string-label-font-mag' - The magnification of the font used
+          to label fingerings at the string, rather than in the dot.
+          Default value 0.6 for `normal' orientation, 0.5 for
+          `landscape' and `opposing-landscape'.
+
+        * `string-thickness-factor' - Factor for changing thickness of
+          each string in the fret diagram.  Thickness of string K is
+          given by `thickness' * (1+`string-thickness-factor') ^ (K-1).
+          Default 0.
+
+        * `top-fret-thickness' - The thickness of the top fret line, as
+          a multiple of the standard thickness.  Default value 3.
+
+        * `xo-font-magnification' - Magnification used for mute and open
+          string indicators.  Default value 0.5.
+
+        * `xo-padding' - Padding for open and mute indicators from top
+          fret.  Default value 0.25.
+
+`full-length-padding' (number)
+     How much padding to use at the right side of a full-length tuplet
+     bracket.
+
+`full-length-to-extent' (boolean)
+     Run to the extent of the column for a full-length tuplet bracket.
+
+`full-measure-extra-space' (number)
+     Extra space that is allocated at the beginning of a measure with
+     only one note.  This property is read from the
+     NonMusicalPaperColumn that begins the measure.
+
+`full-size-change' (boolean)
+     Don't make a change clef smaller.
+
+`gap' (dimension, in staff space)
+     Size of a gap in a variable symbol.
+
+`gap-count' (integer)
+     Number of gapped beams for tremolo.
+
+`glissando-skip' (boolean)
+     Should this `NoteHead' be skipped by glissandi?
+
+`glyph' (string)
+     A string determining what `style' of glyph is typeset.  Valid
+     choices depend on the function that is reading this property.
+
+     In combination with (span) bar lines, it is a string resembling the
+     bar line appearance in ASCII form.
+
+`glyph-name' (string)
+     The glyph name within the font.
+
+     In the context of (span) bar lines, GLYPH-NAME represents a
+     processed form of `glyph', where decisions about line breaking
+     etc. are already taken.
+
+`glyph-name-alist' (list)
+     An alist of key-string pairs.
+
+`graphical' (boolean)
+     Display in graphical (vs. text) form.
+
+`grow-direction' (direction)
+     Crescendo or decrescendo?
+
+`hair-thickness' (number)
+     Thickness of the thin line in a bar line, expressed as a multiple
+     of the default staff-line thickness (i.e. the visual output is
+     _not_ influenced by changes to `STAFF.StaffSymbol.thickness').
+
+`harp-pedal-details' (list)
+     An alist of detailed grob properties for harp pedal diagrams.
+     Each alist entry consists of a `(PROPERTY . VALUE)' pair.  The
+     properties which can be included in harp-pedal-details include the
+     following:
+
+        * `box-offset' - Vertical shift of the center of flat/sharp
+          pedal boxes above/below the horizontal line.  Default
+          value 0.8.
+
+        * `box-width' - Width of each pedal box.  Default value 0.4.
+
+        * `box-height' - Height of each pedal box.  Default value 1.0.
+
+        * `space-before-divider' - Space between boxes before the first
+          divider (so that the diagram can be made symmetric).  Default
+          value 0.8.
+
+        * `space-after-divider' - Space between boxes after the first
+          divider.  Default value 0.8.
+
+        * `circle-thickness' - Thickness (in unit of the line-thickness)
+          of the ellipse around circled pedals.  Default value 0.5.
+
+        * `circle-x-padding' - Padding in X direction of the ellipse
+          around circled pedals.  Default value 0.15.
+
+        * `circle-y-padding' - Padding in Y direction of the ellipse
+          around circled pedals.  Default value 0.2.
+
+`head-direction' (direction)
+     Are the note heads left or right in a semitie?
+
+`height' (dimension, in staff space)
+     Height of an object in `staff-space' units.
+
+`height-limit' (dimension, in staff space)
+     Maximum slur height: The longer the slur, the closer it is to this
+     height.
+
+`hide-tied-accidental-after-break' (boolean)
+     If set, an accidental that appears on a tied note after a line
+     break will not be displayed.
+
+`horizon-padding' (number)
+     The amount to pad the axis along which a `Skyline' is built for the
+     `side-position-interface'.
+
+`horizontal-shift' (integer)
+     An integer that identifies ranking of `NoteColumn's for horizontal
+     shifting.  This is used by *note note-collision-interface:
+     (lilypond-internals)note-collision-interface.
+
+`horizontal-skylines' (pair of skylines)
+     Two skylines, one to the left and one to the right of this grob.
+
+`id' (string)
+     An id string for the grob.  Depending on the typestting backend
+     being used, this id will be assigned to a group containing all of
+     the stencils that comprise a given grob.  For example, in the svg
+     backend, the string will be assigned to the `id' attribute of a
+     group (<g>) that encloses the stencils that comprise the grob.  In
+     the Postscript backend, as there is no way to group items, the
+     setting of the id property will have no effect.
+
+`ignore-ambitus' (boolean)
+     If set, don't consider this notehead for ambitus calculation.
+
+`ignore-collision' (boolean)
+     If set, don't do note collision resolution on this `NoteColumn'.
+
+`implicit' (boolean)
+     Is this an implicit bass figure?
+
+`inspect-index' (integer)
+     If debugging is set, set beam and slur configuration to this
+     index, and print the respective scores.
+
+`inspect-quants' (pair of numbers)
+     If debugging is set, set beam and slur quants to this position,
+     and print the respective scores.
+
+`keep-inside-line' (boolean)
+     If set, this column cannot have objects sticking into the margin.
+
+`kern' (dimension, in staff space)
+     The space between individual elements in any compound bar line,
+     expressed as a multiple of the default staff-line thickness (i.e.
+     the visual output is _not_ influenced by changes to
+     `STAFF.StaffSymbol.thickness').
+
+`knee' (boolean)
+     Is this beam kneed?
+
+`knee-spacing-correction' (number)
+     Factor for the optical correction amount for kneed beams.  Set
+     between `0' for no correction and `1' for full correction.
+
+`knee-to-beam' (boolean)
+     Determines whether a tuplet number will be positioned next to a
+     kneed beam.
+
+`labels' (list)
+     List of labels (symbols) placed on a column.
+
+`layer' (integer)
+     An integer which determines the order of printing objects.
+     Objects with the lowest value of layer are drawn first, then
+     objects with progressively higher values are drawn, so objects with
+     higher values overwrite objects with lower values.  By default most
+     objects are assigned a layer value of 1.
+
+`ledger-extra' (dimension, in staff space)
+     Extra distance from staff line to draw ledger lines for.
+
+`ledger-line-thickness' (pair of numbers)
+     The thickness of ledger lines.  It is the sum of 2 numbers: The
+     first is the factor for line thickness, and the second for staff
+     space.  Both contributions are added.
+
+`ledger-positions' (list)
+     Repeating pattern for the vertical positions of ledger lines.
+     Bracketed groups are always shown together.
+
+`left-bound-info' (list)
+     An alist of properties for determining attachments of spanners to
+     edges.
+
+`left-padding' (dimension, in staff space)
+     The amount of space that is put left to an object (e.g., a lyric
+     extender).
+
+`length' (dimension, in staff space)
+     User override for the stem length of unbeamed stems.
+
+`length-fraction' (number)
+     Multiplier for lengths.  Used for determining ledger lines and
+     stem lengths.
+
+`line-break-penalty' (number)
+     Penalty for a line break at this column.  This affects the choices
+     of the line breaker; it avoids a line break at a column with a
+     positive penalty and prefers a line break at a column with a
+     negative penalty.
+
+`line-break-permission' (symbol)
+     Instructs the line breaker on whether to put a line break at this
+     column.  Can be `force' or `allow'.
+
+`line-break-system-details' (list)
+     An alist of properties to use if this column is the start of a
+     system.
+
+`line-count' (integer)
+     The number of staff lines.
+
+`line-positions' (list)
+     Vertical positions of staff lines.
+
+`line-thickness' (number)
+     For slurs and ties, this is the diameter of the virtual "pen" that
+     draws the two arcs of the curve's outline, which intersect at the
+     endpoints.  This property is expressed as a multiple of the
+     current staff-line thickness (i.e. the visual output is influenced
+     by changes to `STAFF.StaffSymbol.thickness').
+
+`long-text' (markup)
+     Text markup.  See *note Formatting text:
+     (lilypond-notation)Formatting text.
+
+`max-beam-connect' (integer)
+     Maximum number of beams to connect to beams from this stem.
+     Further beams are typeset as beamlets.
+
+`max-stretch' (number)
+     The maximum amount that this `VerticalAxisGroup' can be vertically
+     stretched (for example, in order to better fill a page).
+
+`maximum-gap' (number)
+     Maximum value allowed for `gap' property.
+
+`measure-count' (integer)
+     The number of measures for a multi-measure rest.
+
+`measure-length' (moment)
+     Length of a measure.  Used in some spacing situations.
+
+`merge-differently-dotted' (boolean)
+     Merge note heads in collisions, even if they have a different
+     number of dots.  This is normal notation for some types of
+     polyphonic music.
+
+     `merge-differently-dotted' only applies to opposing stem
+     directions (i.e., voice 1 & 2).
+
+`merge-differently-headed' (boolean)
+     Merge note heads in collisions, even if they have different note
+     heads.  The smaller of the two heads is rendered invisible.  This
+     is used in polyphonic guitar notation.  The value of this setting
+     is used by *note note-collision-interface:
+     (lilypond-internals)note-collision-interface.
+
+     `merge-differently-headed' only applies to opposing stem
+     directions (i.e., voice 1 & 2).
+
+`minimum-distance' (dimension, in staff space)
+     Minimum distance between rest and notes or beam.
+
+`minimum-length' (dimension, in staff space)
+     Try to make a spanner at least this long, normally in the
+     horizontal direction.  This requires an appropriate callback for
+     the `springs-and-rods' property.  If added to a `Tie', this sets
+     the minimum distance between noteheads.
+
+`minimum-length-after-break' (dimension, in staff space)
+     If set, try to make a broken spanner starting a line this long.
+     This requires an appropriate callback for the `springs-and-rods'
+     property.  If added to a `Tie', this sets the minimum distance to
+     the notehead.
+
+`minimum-length-fraction' (number)
+     Minimum length of ledger line as fraction of note head size.
+
+`minimum-space' (dimension, in staff space)
+     Minimum distance that the victim should move (after padding).
+
+`minimum-X-extent' (pair of numbers)
+     Minimum size of an object in X dimension, measured in
+     `staff-space' units.
+
+`minimum-Y-extent' (pair of numbers)
+     Minimum size of an object in Y dimension, measured in
+     `staff-space' units.
+
+`neutral-direction' (direction)
+     Which direction to take in the center of the staff.
+
+`neutral-position' (number)
+     Position (in half staff spaces) where to flip the direction of
+     custos stem.
+
+`next' (graphical (layout) object)
+     Object that is next relation (e.g., the lyric syllable following
+     an extender).
+
+`no-alignment' (boolean)
+     If set, don't place this grob in a `VerticalAlignment'; rather,
+     place it using its own `Y-offset' callback.
+
+`no-ledgers' (boolean)
+     If set, don't draw ledger lines on this object.
+
+`no-stem-extend' (boolean)
+     If set, notes with ledger lines do not get stems extending to the
+     middle staff line.
+
+`non-break-align-symbols' (list)
+     A list of symbols that determine which NON-break-aligned
+     interfaces to align this to.
+
+`non-default' (boolean)
+     Set for manually specified clefs.
+
+`non-musical' (boolean)
+     True if the grob belongs to a `NonMusicalPaperColumn'.
+
+`nonstaff-nonstaff-spacing' (list)
+     The spacing alist controlling the distance between the current
+     non-staff line and the next non-staff line in the direction of
+     `staff-affinity', if both are on the same side of the related
+     staff, and `staff-affinity' is either `UP' or `DOWN'.  See
+     `staff-staff-spacing' for a description of the alist structure.
+
+`nonstaff-relatedstaff-spacing' (list)
+     The spacing alist controlling the distance between the current
+     non-staff line and the nearest staff in the direction of
+     `staff-affinity', if there are no non-staff lines between the two,
+     and `staff-affinity' is either `UP' or `DOWN'.  If
+     `staff-affinity' is `CENTER', then `nonstaff-relatedstaff-spacing'
+     is used for the nearest staves on _both_ sides, even if other
+     non-staff lines appear between the current one and either of the
+     staves.  See `staff-staff-spacing' for a description of the alist
+     structure.
+
+`nonstaff-unrelatedstaff-spacing' (list)
+     The spacing alist controlling the distance between the current
+     non-staff line and the nearest staff in the opposite direction from
+     `staff-affinity', if there are no other non-staff lines between
+     the two, and `staff-affinity' is either `UP' or `DOWN'.  See
+     `staff-staff-spacing' for a description of the alist structure.
+
+`normalized-endpoints' (pair)
+     Represents left and right placement over the total spanner, where
+     the width of the spanner is normalized between 0 and 1.
+
+`note-names' (vector)
+     Vector of strings containing names for easy-notation note heads.
+
+`number-type' (symbol)
+     Numbering style. Choices include `roman-lower', `roman-upper' and
+     `arabic'.
+
+`outside-staff-horizontal-padding' (number)
+     By default, an outside-staff-object can be placed so that is it
+     very close to another grob horizontally.  If this property is set,
+     the outside-staff-object is raised so that it is not so close to
+     its neighbor.
+
+`outside-staff-padding' (number)
+     The padding to place between grobs when spacing according to
+     `outside-staff-priority'.  Two grobs with different
+     `outside-staff-padding' values have the larger value of padding
+     between them.
+
+`outside-staff-placement-directive' (symbol)
+     One of four directives telling how outside staff objects should be
+     placed.
+        * `left-to-right-greedy' - Place each successive grob from left
+          to right.
+
+        * `left-to-right-polite' - Place a grob from left to right only
+          if it does not potentially overlap with another grob that has
+          been placed on a pass through a grob array. If there is
+          overlap, do another pass to determine placement.
+
+        * `right-to-left-greedy' - Same as `left-to-right-greedy', but
+          from right to left.
+
+        * `right-to-left-polite' - Same as `left-to-right-polite', but
+          from right to left.
+
+`outside-staff-priority' (number)
+     If set, the grob is positioned outside the staff in such a way as
+     to avoid all collisions.  In case of a potential collision, the
+     grob with the smaller `outside-staff-priority' is closer to the
+     staff.
+
+`packed-spacing' (boolean)
+     If set, the notes are spaced as tightly as possible.
+
+`padding' (dimension, in staff space)
+     Add this much extra space between objects that are next to each
+     other.
+
+`padding-pairs' (list)
+     An alist mapping `(NAME . NAME)' to distances.
+
+`page-break-penalty' (number)
+     Penalty for page break at this column.  This affects the choices
+     of the page breaker; it avoids a page break at a column with a
+     positive penalty and prefers a page break at a column with a
+     negative penalty.
+
+`page-break-permission' (symbol)
+     Instructs the page breaker on whether to put a page break at this
+     column.  Can be `force' or `allow'.
+
+`page-turn-penalty' (number)
+     Penalty for a page turn at this column.  This affects the choices
+     of the page breaker; it avoids a page turn at a column with a
+     positive penalty and prefers a page turn at a column with a
+     negative penalty.
+
+`page-turn-permission' (symbol)
+     Instructs the page breaker on whether to put a page turn at this
+     column.  Can be `force' or `allow'.
+
+`parent-alignment-X' (number)
+     Specify on which point of the parent the object is aligned. The
+     value `-1' means aligned on parent's left edge, `0' on center, and
+     `1' right edge, in X direction.  Other numerical values may also
+     be specified - the unit is half the parent's width.  If unset, the
+     value from `self-alignment-X' property will be used.
+
+`parent-alignment-Y' (number)
+     Like `parent-alignment-X' but for the Y axis.
+
+`parenthesis-friends' (list)
+     A list of Grob types, as symbols.  When parentheses enclose a Grob
+     that has 'parenthesis-friends, the parentheses widen to include
+     any child Grobs with type among 'parenthesis-friends.
+
+`parenthesized' (boolean)
+     Parenthesize this grob.
+
+`positions' (pair of numbers)
+     Pair of staff coordinates `(LEFT . RIGHT)', where both LEFT and
+     RIGHT are in `staff-space' units of the current staff.  For slurs,
+     this value selects which slur candidate to use; if extreme
+     positions are requested, the closest one is taken.
+
+`prefer-dotted-right' (boolean)
+     For note collisions, prefer to shift dotted up-note to the right,
+     rather than shifting just the dot.
+
+`protrusion' (number)
+     In an arpeggio bracket, the length of the horizontal edges.
+
+`ratio' (number)
+     Parameter for slur shape.  The higher this number, the quicker the
+     slur attains its `height-limit'.
+
+`remove-empty' (boolean)
+     If set, remove group if it contains no interesting items.
+
+`remove-first' (boolean)
+     Remove the first staff of an orchestral score?
+
+`remove-layer' (integer)
+     The `Keep_alive_together_engraver' removes all `VerticalAxisGroup'
+     grobs with a `remove-layer' larger than the smallest retained
+     `remove-layer'.  Set to `#f' to make a layer invisible to the
+     `Keep_alive_together_engraver', set to `'()' to have it not
+     participate in the layering decisions.
+
+`replacement-alist' (list)
+     Alist of strings.  The key is a string of the pattern to be
+     replaced.  The value is a string of what should be displayed.
+     Useful for ligatures.
+
+`restore-first' (boolean)
+     Print a natural before the accidental.
+
+`rhythmic-location' (rhythmic location)
+     Where (bar number, measure position) in the score.
+
+`right-bound-info' (list)
+     An alist of properties for determining attachments of spanners to
+     edges.
+
+`right-padding' (dimension, in staff space)
+     Space to insert on the right side of an object (e.g., between note
+     and its accidentals).
+
+`rotation' (list)
+     Number of degrees to rotate this object, and what point to rotate
+     around.  For example, `'(45 0 0)' rotates by 45 degrees around the
+     center of this object.
+
+`round-up-exceptions' (list)
+     A list of pairs where car is the numerator and cdr the denominator
+     of a moment.  Each pair in this list means that the multi-measure
+     rests of the corresponding length will be rounded up to the longer
+     rest.  See ROUND-UP-TO-LONGER-REST.
+
+`round-up-to-longer-rest' (boolean)
+     Displays the longer multi-measure rest when the length of a
+     measure is between two values of `usable-duration-logs'.  For
+     example, displays a breve instead of a whole in a 3/2 measure.
+
+`rounded' (boolean)
+     Decide whether lines should be drawn rounded or not.
+
+`same-direction-correction' (number)
+     Optical correction amount for stems that are placed in tight
+     configurations.  This amount is used for stems with the same
+     direction to compensate for note head to stem distance.
+
+`script-priority' (number)
+     A key for determining the order of scripts in a stack, by being
+     added to the position of the script in the user input, the sum
+     being the overall priority.  Smaller means closer to the head.
+
+`segno-kern' (number)
+     The space between the two thin lines of the segno bar line symbol,
+     expressed as a multiple of the default staff-line thickness (i.e.
+     the visual output is _not_ influenced by changes to
+     `STAFF.StaffSymbol.thickness').
+
+`self-alignment-X' (number)
+     Specify alignment of an object.  The value `-1' means left
+     aligned, `0' centered, and `1' right-aligned in X direction.
+     Other numerical values may also be specified - the unit is half
+     the object width.
+
+`self-alignment-Y' (number)
+     Like `self-alignment-X' but for the Y axis.
+
+`shape' (symbol)
+     This setting determines what shape a grob has.  Valid choices
+     depend on the `stencil' callback reading this property.
+
+`sharp-positions' (list)
+     Sharps in key signatures are placed within the specified ranges of
+     staff-positions.  The general form is a list of pairs, with one
+     pair for each type of clef, in order of the staff-position at
+     which each clef places C: `(alto treble tenor soprano baritone
+     mezzosoprano bass)'.  If the list contains a single element it
+     applies for all clefs.  A single number in place of a pair sets
+     accidentals within the octave ending at that staff-position.
+
+`shorten-pair' (pair of numbers)
+     The lengths to shorten a text-spanner on both sides, for example a
+     pedal bracket.  Positive values shorten the text-spanner, while
+     negative values lengthen it.
+
+`shortest-duration-space' (number)
+     Start with this multiple of `spacing-increment' space for the
+     shortest duration.  See also *note spacing-spanner-interface:
+     (lilypond-internals)spacing-spanner-interface.
+
+`shortest-playing-duration' (moment)
+     The duration of the shortest note playing here.
+
+`shortest-starter-duration' (moment)
+     The duration of the shortest note that starts here.
+
+`side-axis' (number)
+     If the value is `X' (or equivalently `0'), the object is placed
+     horizontally next to the other object.  If the value is `Y'
+     or `1', it is placed vertically.
+
+`side-relative-direction' (direction)
+     Multiply direction of `direction-source' with this to get the
+     direction of this object.
+
+`simple-Y' (boolean)
+     Should the Y placement of a spanner disregard changes in system
+     heights?
+
+`size' (number)
+     Size of object, relative to standard size.
+
+`skip-quanting' (boolean)
+     Should beam quanting be skipped?
+
+`skyline-horizontal-padding' (number)
+     For determining the vertical distance between two staves, it is
+     possible to have a configuration which would result in a tight
+     interleaving of grobs from the top staff and the bottom staff.
+     The larger this parameter is, the farther apart the staves are
+     placed in such a configuration.
+
+`skyline-vertical-padding' (number)
+     The amount by which the left and right skylines of a column are
+     padded vertically, beyond the `Y-extent's and
+     `extra-spacing-height's of the constituent grobs in the column.
+     Increase this to prevent interleaving of grobs from adjacent
+     columns.
+
+`slash-negative-kern' (number)
+     The space to remove between slashes in percent repeat glyphs.
+     Larger values bring the two elements closer together.
+
+`slope' (number)
+     The slope of this object.
+
+`slur-padding' (number)
+     Extra distance between slur and script.
+
+`snap-radius' (number)
+     The maximum distance between two objects that will cause them to
+     snap to alignment along an axis.
+
+`space-alist' (list)
+     An alist that specifies distances from this grob to other
+     breakable items, using the format:
+
+          '((BREAK-ALIGN-SYMBOL . (SPACING-STYLE . SPACE))
+            (BREAK-ALIGN-SYMBOL . (SPACING-STYLE . SPACE))
+            ...)
+
+     Standard choices for `BREAK-ALIGN-SYMBOL' are listed in *note
+     break-alignment-interface:
+     (lilypond-internals)break-alignment-interface.  Additionally,
+     three special break-align symbols available to `space-alist' are:
+
+         `first-note'
+               used when the grob is just left of the first note on a
+               line
+
+         `next-note'
+               used when the grob is just left of any other note; if
+               not set, the value of `first-note' gets used
+
+         `right-edge'
+               used when the grob is the last item on the line (only
+               compatible with the `extra-space' spacing style)
+
+     Choices for `SPACING-STYLE' are:
+
+         `extra-space'
+               Put this much space between the two grobs.  The space is
+               stretchable when paired with `first-note' or `next-note';
+               otherwise it is fixed.
+
+         `minimum-space'
+               Put at least this much space between the left sides of
+               both grobs, without allowing them to collide.  The space
+               is stretchable when paired with `first-note' or
+               `next-note'; otherwise it is fixed.  Not compatible with
+               `right-edge'.
+
+         `fixed-space'
+               Only compatible with `first-note' and `next-note'.  Put
+               this much fixed space between the grob and the note.
+
+         `minimum-fixed-space'
+               Only compatible with `first-note' and `next-note'.  Put
+               at least this much fixed space between the left side of
+               the grob and the left side of the note, without allowing
+               them to collide.
+
+         `semi-fixed-space'
+               Only compatible with `first-note' and `next-note'.  Put
+               this much space between the grob and the note, such that
+               half of the space is fixed and half is stretchable.
+
+     Rules for this spacing are much more complicated than this.  See
+     [Wanske] page 126-134, [Ross] page 143-147.
+
+`space-to-barline' (boolean)
+     If set, the distance between a note and the following non-musical
+     column will be measured to the bar line instead of to the
+     beginning of the non-musical column.  If there is a clef change
+     followed by a bar line, for example, this means that we will try
+     to space the non-musical column as though the clef is not there.
+
+`spacing-increment' (dimension, in staff space)
+     The unit of length for note-spacing.  Typically, the width of a
+     note head.  See also *note spacing-spanner-interface:
+     (lilypond-internals)spacing-spanner-interface.
+
+`spacing-pair' (pair)
+     A pair of alignment symbols which set an object's spacing relative
+     to its left and right `BreakAlignment's.
+
+     For example, a `MultiMeasureRest' will ignore prefatory items at
+     its bounds (i.e., clefs, key signatures and time signatures) using
+     the following override:
+
+          \override MultiMeasureRest
+            #'spacing-pair = #'(staff-bar . staff-bar)
+
+`spanner-id' (string)
+     An identifier to distinguish concurrent spanners.
+
+`springs-and-rods' (boolean)
+     Dummy variable for triggering spacing routines.
+
+`stacking-dir' (direction)
+     Stack objects in which direction?
+
+`staff-affinity' (direction)
+     The direction of the staff to use for spacing the current
+     non-staff line.  Choices are `UP', `DOWN', and `CENTER'.  If
+     `CENTER', the non-staff line will be placed equidistant between
+     the two nearest staves on either side, unless collisions or other
+     spacing constraints prevent this.  Setting `staff-affinity' for a
+     staff causes it to be treated as a non-staff line.  Setting
+     `staff-affinity' to `#f' causes a non-staff line to be treated as
+     a staff.
+
+`staff-padding' (dimension, in staff space)
+     Maintain this much space between reference points and the staff.
+     Its effect is to align objects of differing sizes (like the
+     dynamics p and f) on their baselines.
+
+`staff-position' (number)
+     Vertical position, measured in half staff spaces, counted from the
+     middle line.
+
+`staff-space' (dimension, in staff space)
+     Amount of space between staff lines, expressed in global
+     `staff-space'.
+
+`staff-staff-spacing' (list)
+     When applied to a staff-group's `StaffGrouper' grob, this spacing
+     alist controls the distance between consecutive staves within the
+     staff-group.  When applied to a staff's `VerticalAxisGroup' grob,
+     it controls the distance between the staff and the nearest staff
+     below it in the same system, replacing any settings inherited from
+     the `StaffGrouper' grob of the containing staff-group, if there is
+     one.  This property remains in effect even when non-staff lines
+     appear between staves.  The alist can contain the following keys:
+
+        * `basic-distance' - the vertical distance, measured in
+          staff-spaces, between the reference points of the two items
+          when no collisions would result, and no stretching or
+          compressing is in effect.
+
+        * `minimum-distance' - the smallest allowable vertical
+          distance, measured in staff-spaces, between the reference
+          points of the two items, when compressing is in effect.
+
+        * `padding' - the minimum required amount of unobstructed
+          vertical whitespace between the bounding boxes (or skylines)
+          of the two items, measured in staff-spaces.
+
+        * `stretchability' - a unitless measure of the dimension's
+          relative propensity to stretch.  If zero, the distance will
+          not stretch (unless collisions would result).
+
+
+`staffgroup-staff-spacing' (list)
+     The spacing alist controlling the distance between the last staff
+     of the current staff-group and the staff just below it in the same
+     system, even if one or more non-staff lines exist between the two
+     staves.  If the `staff-staff-spacing' property of the staff's
+     `VerticalAxisGroup' grob is set, that is used instead.  See
+     `staff-staff-spacing' for a description of the alist structure.
+
+`stem-attachment' (pair of numbers)
+     An `(X . Y)' pair where the stem attaches to the notehead.
+
+`stem-begin-position' (number)
+     User override for the begin position of a stem.
+
+`stem-spacing-correction' (number)
+     Optical correction amount for stems that are placed in tight
+     configurations.  For opposite directions, this amount is the
+     correction for two normal sized stems that overlap completely.
+
+`stemlet-length' (number)
+     How long should be a stem over a rest?
+
+`stencil' (stencil)
+     The symbol to print.
+
+`stencils' (list)
+     Multiple stencils, used as intermediate value.
+
+`strict-grace-spacing' (boolean)
+     If set, main notes are spaced normally, then grace notes are put
+     left of the musical columns for the main notes.
+
+`strict-note-spacing' (boolean)
+     If set, unbroken columns with non-musical material (clefs, bar
+     lines, etc.) are not spaced separately, but put before musical
+     columns.
+
+`stroke-style' (string)
+     Set to `"grace"' to turn stroke through flag on.
+
+`style' (symbol)
+     This setting determines in what style a grob is typeset.  Valid
+     choices depend on the `stencil' callback reading this property.
+
+`text' (markup)
+     Text markup.  See *note Formatting text:
+     (lilypond-notation)Formatting text.
+
+`text-direction' (direction)
+     This controls the ordering of the words.  The default `RIGHT' is
+     for roman text.  Arabic or Hebrew should use `LEFT'.
+
+`thick-thickness' (number)
+     Thickness of the thick line in a bar line, expressed as a multiple
+     of the default staff-line thickness (i.e. the visual output is
+     _not_ influenced by changes to `STAFF.StaffSymbol.thickness').
+
+`thickness' (number)
+     For grobs made up of lines, this is the thickness of the line.
+     For slurs and ties, this is the distance between the two arcs of
+     the curve's outline at its thickest point, not counting the
+     diameter of the virtual "pen" that draws the arcs.  This property
+     is expressed as a multiple of the current staff-line thickness
+     (i.e. the visual output is influenced by changes to
+     `STAFF.StaffSymbol.thickness').
+
+`tie-configuration' (list)
+     List of `(POSITION .  DIR)' pairs, indicating the desired tie
+     configuration, where POSITION is the offset from the center of the
+     staff in staff space and DIR indicates the direction of the tie
+     (`1'=>up, `-1'=>down, `0'=>center).  A non-pair entry in the list
+     causes the corresponding tie to be formatted automatically.
+
+`to-barline' (boolean)
+     If true, the spanner will stop at the bar line just before it
+     would otherwise stop.
+
+`toward-stem-shift' (number)
+     Amount by which scripts are shifted toward the stem if their
+     direction coincides with the stem direction.  `0.0' means centered
+     on the note head (the default position of most scripts); `1.0'
+     means centered on the stem.  Interpolated values are possible.
+
+`toward-stem-shift-in-column' (number)
+     Amount by which a script is shifted toward the stem if its
+     direction coincides with the stem direction and it is associated
+     with a `ScriptColumn' object.  `0.0' means centered on the note
+     head (the default position of most scripts); `1.0' means centered
+     on the stem.  Interpolated values are possible.
+
+`transparent' (boolean)
+     This makes the grob invisible.
+
+`uniform-stretching' (boolean)
+     If set, items stretch proportionally to their natural separation
+     based on durations.  This looks better in complex polyphonic
+     patterns.
+
+`usable-duration-logs' (list)
+     List of `duration-log's that can be used in typesetting the grob.
+
+`use-skylines' (boolean)
+     Should skylines be used for side positioning?
+
+`used' (boolean)
+     If set, this spacing column is kept in the spacing problem.
+
+`vertical-skylines' (pair of skylines)
+     Two skylines, one above and one below this grob.
+
+`voiced-position' (number)
+     The staff-position of a voiced `Rest', negative if the rest has
+     `direction' `DOWN'.
+
+`when' (moment)
+     Global time step associated with this column.
+
+`whiteout' (boolean-or-number)
+     If a number or true, the grob is printed over a white background
+     to white-out underlying material, if the grob is visible.  A
+     number indicates how far the white background extends beyond the
+     bounding box of the grob as a multiple of the staff-line
+     thickness.  The shape of the background is determined by
+     `whiteout-style'.  Usually `#f' by default.
+
+`whiteout-style' (symbol)
+     Determines the shape of the `whiteout' background.  Available are
+     `'outline' and the default `'box'.
+
+`width' (dimension, in staff space)
+     The width of a grob measured in staff space.
+
+`word-space' (dimension, in staff space)
+     Space to insert between words in texts.
+
+`X-align-on-main-noteheads' (boolean)
+     If true, this grob will ignore suspended noteheads when aligning
+     itself on NoteColumn.
+
+`X-extent' (pair of numbers)
+     Extent (size) in the X direction, measured in staff-space units,
+     relative to object's reference point.
+
+`X-offset' (number)
+     The horizontal amount that this object is moved relative to its
+     X-parent.
+
+`X-positions' (pair of numbers)
+     Pair of X staff coordinates of a spanner in the form `(LEFT .
+     RIGHT)', where both LEFT and RIGHT are in `staff-space' units of
+     the current staff.
+
+`Y-extent' (pair of numbers)
+     Extent (size) in the Y direction, measured in staff-space units,
+     relative to object's reference point.
+
+`Y-offset' (number)
+     The vertical amount that this object is moved relative to its
+     Y-parent.
+
+`zigzag-length' (dimension, in staff space)
+     The length of the lines of a zigzag, relative to `zigzag-width'.
+     A value of `1' gives 60-degree zigzags.
+
+`zigzag-width' (dimension, in staff space)
+     The width of one zigzag squiggle.  This number is adjusted
+     slightly so that the glissando line can be constructed from a
+     whole number of squiggles.
+
+
+
+File: lilypond-internals.info,  Node: Internal backend properties,  Prev: User backend properties,  Up: Backend
+
+3.4 Internal backend properties
+===============================
+
+`accidental-grob' (graphical (layout) object)
+     The accidental for this note.
+
+`accidental-grobs' (list)
+     An alist with `(NOTENAME .  GROBLIST)' entries.
+
+`add-cauda' (boolean)
+     Does this flexa require an additional cauda on the left side?
+
+`add-join' (boolean)
+     Is this ligature head-joined with the next one by a vertical line?
+
+`add-stem' (boolean)
+     Is this ligature head a virga and therefore needs an additional
+     stem on the right side?
+
+`adjacent-pure-heights' (pair)
+     A pair of vectors.  Used by a `VerticalAxisGroup' to cache the
+     `Y-extent's of different column ranges.
+
+`adjacent-spanners' (array of grobs)
+     An array of directly neighboring dynamic spanners.
+
+`all-elements' (array of grobs)
+     An array of all grobs in this line.  Its function is to protect
+     objects from being garbage collected.
+
+`ascendens' (boolean)
+     Is this neume of ascending type?
+
+`auctum' (boolean)
+     Is this neume liquescentically augmented?
+
+`axis-group-parent-X' (graphical (layout) object)
+     Containing X axis group.
+
+`axis-group-parent-Y' (graphical (layout) object)
+     Containing Y axis group.
+
+`bars' (array of grobs)
+     An array of bar line pointers.
+
+`beam' (graphical (layout) object)
+     A pointer to the beam, if applicable.
+
+`beam-segments' (list)
+     Internal representation of beam segments.
+
+`begin-of-line-visible' (boolean)
+     Set to make `ChordName' or `FretBoard' be visible only at
+     beginning of line or at chord changes.
+
+`bound-alignment-interfaces' (list)
+     Interfaces to be used for positioning elements that align with a
+     column.
+
+`bounded-by-me' (array of grobs)
+     An array of spanners that have this column as start/begin point.
+     Only columns that have grobs or act as bounds are spaced.
+
+`bracket' (graphical (layout) object)
+     The bracket for a number.
+
+`c0-position' (integer)
+     An integer indicating the position of middle C.
+
+`cause' (any type)
+     Any kind of causation objects (i.e., music, or perhaps translator)
+     that was the cause for this grob.
+
+`cavum' (boolean)
+     Is this neume outlined?
+
+`columns' (array of grobs)
+     An array of grobs, typically containing `PaperColumn' or
+     `NoteColumn' objects.
+
+`concurrent-hairpins' (array of grobs)
+     All concurrent hairpins.
+
+`conditional-elements' (array of grobs)
+     Internal use only.
+
+`context-info' (integer)
+     Within a ligature, the final glyph or shape of a head may be
+     affected by the left and/or right neighbour head.  `context-info'
+     holds for each head such information about the left and right
+     neighbour, encoded as a bit mask.
+
+`covered-grobs' (array of grobs)
+     Grobs that could potentially collide with a beam.
+
+`cross-staff' (boolean)
+     True for grobs whose `Y-extent' depends on inter-staff spacing.
+     The extent is measured relative to the grobs's parent staff (more
+     generally, its `VerticalAxisGroup') so this boolean flags grobs
+     that are not rigidly fixed to their parent staff.  Beams that join
+     notes from two staves are `cross-staff'.  Grobs that are
+     positioned around such beams are also `cross-staff'.  Grobs that
+     are grouping objects, however, like `VerticalAxisGroups' will not
+     in general be marked `cross-staff' when some of the members of the
+     group are `cross-staff'.
+
+`delta-position' (number)
+     The vertical position difference.
+
+`deminutum' (boolean)
+     Is this neume deminished?
+
+`descendens' (boolean)
+     Is this neume of descendent type?
+
+`direction-source' (graphical (layout) object)
+     In case `side-relative-direction' is set, which grob to get the
+     direction from.
+
+`display-cautionary' (boolean)
+     Should the grob be displayed as a cautionary grob?
+
+`dot' (graphical (layout) object)
+     A reference to a `Dots' object.
+
+`dots' (array of grobs)
+     Multiple `Dots' objects.
+
+`elements' (array of grobs)
+     An array of grobs; the type is depending on the grob where this is
+     set in.
+
+`encompass-objects' (array of grobs)
+     Objects that a slur should avoid in addition to notes and stems.
+
+`figures' (array of grobs)
+     Figured bass objects for continuation line.
+
+`flag' (graphical (layout) object)
+     A pointer to a `Flag' object.
+
+`flexa-height' (dimension, in staff space)
+     The height of a flexa shape in a ligature grob (in `staff-space'
+     units).
+
+`flexa-interval' (integer)
+     The interval spanned by the two notes of a flexa shape (1 is a
+     second, 7 is an octave).
+
+`flexa-width' (dimension, in staff space)
+     The width of a flexa shape in a ligature grob in (in `staff-space'
+     units).
+
+`font' (font metric)
+     A cached font metric object.
+
+`footnote-stencil' (stencil)
+     The stencil of a system's footnotes.
+
+`footnotes-after-line-breaking' (array of grobs)
+     Footnote grobs of a broken system.
+
+`footnotes-before-line-breaking' (array of grobs)
+     Footnote grobs of a whole system.
+
+`forced' (boolean)
+     Manually forced accidental.
+
+`glissando-index' (integer)
+     The index of a glissando in its note column.
+
+`grace-spacing' (graphical (layout) object)
+     A run of grace notes.
+
+`has-span-bar' (pair)
+     A pair of grobs containing the span bars to be drawn below and
+     above the staff.  If no span bar is in a position, the respective
+     element is set to `#f'.
+
+`head-width' (dimension, in staff space)
+     The width of this ligature head.
+
+`heads' (array of grobs)
+     An array of note heads.
+
+`ideal-distances' (list)
+     `(OBJ . (DIST .  STRENGTH))' pairs.
+
+`important-column-ranks' (vector)
+     A cache of columns that contain `items-worth-living' data.
+
+`in-note-direction' (direction)
+     Direction to place in-notes above a system.
+
+`in-note-padding' (number)
+     Padding between in-notes.
+
+`in-note-stencil' (stencil)
+     The stencil of a system's in-notes.
+
+`inclinatum' (boolean)
+     Is this neume an inclinatum?
+
+`interfaces' (list)
+     A list of symbols indicating the interfaces supported by this
+     object.  It is initialized from the `meta' field.
+
+`items-worth-living' (array of grobs)
+     An array of interesting items.  If empty in a particular staff,
+     then that staff is erased.
+
+`keep-alive-with' (array of grobs)
+     An array of other `VerticalAxisGroup's.  If any of them are alive,
+     then we will stay alive.
+
+`least-squares-dy' (number)
+     The ideal beam slope, without damping.
+
+`left-items' (array of grobs)
+     Grobs organized on the left by a spacing object.
+
+`left-neighbor' (graphical (layout) object)
+     The right-most column that has a spacing-wish for this column.
+
+`ligature-flexa' (boolean)
+     request joining note to the previous one in a flexa.
+
+`linea' (boolean)
+     Attach vertical lines to this neume?
+
+`make-dead-when' (array of grobs)
+     An array of other `VerticalAxisGroup's.  If any of them are alive,
+     then we will turn dead.
+
+`maybe-loose' (boolean)
+     Used to mark a breakable column that is loose if and only if it is
+     in the middle of a line.
+
+`melody-spanner' (graphical (layout) object)
+     The `MelodyItem' object for a stem.
+
+`meta' (list)
+     Provide meta information.  It is an alist with the entries `name'
+     and `interfaces'.
+
+`minimum-distances' (list)
+     A list of rods that have the format `(OBJ . DIST)'.
+
+`minimum-translations-alist' (list)
+     An list of translations for a given start and end point.
+
+`neighbors' (array of grobs)
+     The X-axis neighbors of a grob. Used by the
+     pure-from-neighbor-interface to determine various grob heights.
+
+`normal-stems' (array of grobs)
+     An array of visible stems.
+
+`note-collision' (graphical (layout) object)
+     The `NoteCollision' object of a dot column.
+
+`note-columns' (array of grobs)
+     An array of `NoteColumn' grobs.
+
+`note-head' (graphical (layout) object)
+     A single note head.
+
+`note-heads' (array of grobs)
+     An array of note head grobs.
+
+`numbering-assertion-function' (any type)
+     The function used to assert that footnotes are receiving correct
+     automatic numbers.
+
+`oriscus' (boolean)
+     Is this neume an oriscus?
+
+`pedal-text' (graphical (layout) object)
+     A pointer to the text of a mixed-style piano pedal.
+
+`pes-or-flexa' (boolean)
+     Shall this neume be joined with the previous head?
+
+`positioning-done' (boolean)
+     Used to signal that a positioning element did its job.  This
+     ensures that a positioning is only done once.
+
+`prefix-set' (number)
+     A bit mask that holds all Gregorian head prefixes, such as
+     `\virga' or `\quilisma'.
+
+`primitive' (integer)
+     A pointer to a ligature primitive, i.e., an item similar to a note
+     head that is part of a ligature.
+
+`pure-relevant-grobs' (array of grobs)
+     All the grobs (items and spanners) that are relevant for finding
+     the `pure-Y-extent'
+
+`pure-relevant-items' (array of grobs)
+     A subset of elements that are relevant for finding the
+     `pure-Y-extent'.
+
+`pure-relevant-spanners' (array of grobs)
+     A subset of elements that are relevant for finding the
+     `pure-Y-extent'.
+
+`pure-Y-common' (graphical (layout) object)
+     A cache of the `common_refpoint_of_array' of the `elements' grob
+     set.
+
+`pure-Y-extent' (pair of numbers)
+     The estimated height of a system.
+
+`pure-Y-offset-in-progress' (boolean)
+     A debugging aid for catching cyclic dependencies.
+
+`quantize-position' (boolean)
+     If set, a vertical alignment is aligned to be within staff spaces.
+
+`quantized-positions' (pair of numbers)
+     The beam positions after quanting.
+
+`quilisma' (boolean)
+     Is this neume a quilisma?
+
+`rest' (graphical (layout) object)
+     A pointer to a `Rest' object.
+
+`rest-collision' (graphical (layout) object)
+     A rest collision that a rest is in.
+
+`rests' (array of grobs)
+     An array of rest objects.
+
+`right-items' (array of grobs)
+     Grobs organized on the right by a spacing object.
+
+`right-neighbor' (graphical (layout) object)
+     See `left-neighbor'.
+
+`script-column' (graphical (layout) object)
+     A `ScriptColumn' associated with a `Script' object.
+
+`script-stencil' (pair)
+     A pair `(TYPE . ARG)' which acts as an index for looking up a
+     `Stencil' object.
+
+`scripts' (array of grobs)
+     An array of `Script' objects.
+
+`shorten' (dimension, in staff space)
+     The amount of space that a stem is shortened.  Internally used to
+     distribute beam shortening over stems.
+
+`side-support-elements' (array of grobs)
+     The side support, an array of grobs.
+
+`slur' (graphical (layout) object)
+     A pointer to a `Slur' object.
+
+`space-increment' (dimension, in staff space)
+     The amount by which the total duration of a multimeasure rest
+     affects horizontal spacing.  Each doubling of the duration adds
+     `space-increment' to the length of the bar.
+
+`spacing' (graphical (layout) object)
+     The spacing spanner governing this section.
+
+`spacing-wishes' (array of grobs)
+     An array of note spacing or staff spacing objects.
+
+`span-start' (boolean)
+     Is the note head at the start of a spanner?
+
+`spanner-broken' (boolean)
+     Indicates whether spanner alignment should be broken after the
+     current spanner.
+
+`spanner-placement' (direction)
+     The place of an annotation on a spanner.  `LEFT' is for the first
+     spanner, and `RIGHT' is for the last.  `CENTER' will place it on
+     the broken spanner that falls closest to the center of the length
+     of the entire spanner, although this behavior is unpredictable in
+     situations with lots of rhythmic diversity.  For predictable
+     results, use `LEFT' and `RIGHT'.
+
+`staff-grouper' (graphical (layout) object)
+     The staff grouper we belong to.
+
+`staff-symbol' (graphical (layout) object)
+     The staff symbol grob that we are in.
+
+`stem' (graphical (layout) object)
+     A pointer to a `Stem' object.
+
+`stem-info' (pair)
+     A cache of stem parameters.
+
+`stems' (array of grobs)
+     An array of stem objects.
+
+`stropha' (boolean)
+     Is this neume a stropha?
+
+`system-Y-offset' (number)
+     The Y-offset (relative to the bottom of the top-margin of the
+     page) of the system to which this staff belongs.
+
+`tie' (graphical (layout) object)
+     A pointer to a `Tie' object.
+
+`ties' (array of grobs)
+     A grob array of `Tie' objects.
+
+`tremolo-flag' (graphical (layout) object)
+     The tremolo object on a stem.
+
+`tuplet-number' (graphical (layout) object)
+     The number for a bracket.
+
+`tuplet-start' (boolean)
+     Is stem at the start of a tuplet?
+
+`tuplets' (array of grobs)
+     An array of smaller tuplet brackets.
+
+`vertical-alignment' (graphical (layout) object)
+     The VerticalAlignment in a System.
+
+`vertical-skyline-elements' (array of grobs)
+     An array of grobs used to create vertical skylines.
+
+`virga' (boolean)
+     Is this neume a virga?
+
+`X-common' (graphical (layout) object)
+     Common reference point for axis group.
+
+`x-offset' (dimension, in staff space)
+     Extra horizontal offset for ligature heads.
+
+`Y-common' (graphical (layout) object)
+     See `X-common'.
+
+
+
+File: lilypond-internals.info,  Node: Scheme functions,  Next: Indices,  Prev: Backend,  Up: Top
+
+4 Scheme functions
+******************
+
+ -- Function: ly:add-context-mod contextmods modification
+     Adds the given context MODIFICATION to the list CONTEXTMODS of
+     context modifications.
+
+ -- Function: ly:add-file-name-alist alist
+     Add mappings for error messages from ALIST.
+
+ -- Function: ly:add-interface iface desc props
+     Add a new grob interface.  IFACE is the interface name, DESC is
+     the interface description, and PROPS is the list of user-settable
+     properties for the interface.
+
+ -- Function: ly:add-listener callback disp cl
+     Add the single-argument procedure CALLBACK as listener to the
+     dispatcher DISP.  Whenever DISP hears an event of class CL, it
+     calls CALLBACK with it.
+
+ -- Function: ly:add-option sym val description
+     Add a program option SYM.  VAL is the default value and
+     DESCRIPTION is a string description.
+
+ -- Function: ly:all-grob-interfaces
+     Return the hash table with all grob interface descriptions.
+
+ -- Function: ly:all-options
+     Get all option settings in an alist.
+
+ -- Function: ly:all-stencil-expressions
+     Return all symbols recognized as stencil expressions.
+
+ -- Function: ly:assoc-get key alist default-value strict-checking
+     Return value if KEY in ALIST, else DEFAULT-VALUE (or `#f' if not
+     specified).  If STRICT-CHECKING is set to `#t' and KEY is not in
+     ALIST, a programming_error is output.
+
+ -- Function: ly:axis-group-interface::add-element grob grob-element
+     Set GROB the parent of GROB-ELEMENT on all axes of GROB.
+
+ -- Function: ly:basic-progress str rest
+     A Scheme callable function to issue a basic progress message STR.
+     The message is formatted with `format' and REST.
+
+ -- Function: ly:beam-score-count
+     count number of beam scores.
+
+ -- Function: ly:bigpdfs
+     Return true if the command line includes the `--bigpdf' parameter.
+
+ -- Function: ly:book? x
+     Is X a `Book' object?
+
+ -- Function: ly:book-add-bookpart! book-smob book-part
+     Add BOOK-PART to BOOK-SMOB book part list.
+
+ -- Function: ly:book-add-score! book-smob score
+     Add SCORE to BOOK-SMOB score list.
+
+ -- Function: ly:book-book-parts book
+     Return book parts in BOOK.
+
+ -- Function: ly:book-header book
+     Return header in BOOK.
+
+ -- Function: ly:book-paper book
+     Return paper in BOOK.
+
+ -- Function: ly:book-process book-smob default-paper default-layout
+          output
+     Print book.  OUTPUT is passed to the backend unchanged.  For
+     example, it may be a string (for file based outputs) or a socket
+     (for network based output).
+
+ -- Function: ly:book-process-to-systems book-smob default-paper
+          default-layout output
+     Print book.  OUTPUT is passed to the backend unchanged.  For
+     example, it may be a string (for file based outputs) or a socket
+     (for network based output).
+
+ -- Function: ly:book-scores book
+     Return scores in BOOK.
+
+ -- Function: ly:book-set-header! book module
+     Set the book header.
+
+ -- Function: ly:box? x
+     Is X a `Box' object?
+
+ -- Function: ly:bp num
+     NUM bigpoints (1/72th inch).
+
+ -- Function: ly:bracket a iv t p
+     Make a bracket in direction A.  The extent of the bracket is given
+     by IV.  The wings protrude by an amount of P, which may be
+     negative.  The thickness is given by T.
+
+ -- Function: ly:broadcast disp ev
+     Send the stream event EV to the dispatcher DISP.
+
+ -- Function: ly:camel-case->lisp-identifier name-sym
+     Convert `FooBar_Bla' to `foo-bar-bla' style symbol.
+
+ -- Function: ly:chain-assoc-get key achain default-value
+          strict-checking
+     Return value for KEY from a list of alists ACHAIN.  If no entry is
+     found, return DEFAULT-VALUE or `#f' if DEFAULT-VALUE is not
+     specified.  With STRICT-CHECKING set to `#t', a programming_error
+     is output in such cases.
+
+ -- Function: ly:check-expected-warnings
+     Check whether all expected warnings have really been triggered.
+
+ -- Function: ly:cm num
+     NUM cm.
+
+ -- Function: ly:command-line-code
+     The Scheme code specified on command-line with `-e'.
+
+ -- Function: ly:command-line-options
+     The Scheme options specified on command-line with `-d'.
+
+ -- Function: ly:connect-dispatchers to from
+     Make the dispatcher TO listen to events from FROM.
+
+ -- Function: ly:context? x
+     Is X a `Context' object?
+
+ -- Function: ly:context-current-moment context
+     Return the current moment of CONTEXT.
+
+ -- Function: ly:context-def? x
+     Is X a `Context_def' object?
+
+ -- Function: ly:context-def-lookup def sym val
+     Return the value of SYM in context definition DEF (e.g.,
+     `\Voice').  If no value is found, return VAL or `'()' if VAL is
+     undefined. SYM can be any of `default-child', `consists',
+     `description', `aliases', `accepts', `property-ops',
+     `context-name', `group-type'.
+
+ -- Function: ly:context-def-modify def mod
+     Return the result of applying the context-mod MOD to the context
+     definition DEF.  Does not change DEF.
+
+ -- Function: ly:context-event-source context
+     Return `event-source' of context CONTEXT.
+
+ -- Function: ly:context-events-below context
+     Return a `stream-distributor' that distributes all events from
+     CONTEXT and all its subcontexts.
+
+ -- Function: ly:context-find context name
+     Find a parent of CONTEXT that has name or alias NAME.  Return `#f'
+     if not found.
+
+ -- Function: ly:context-grob-definition context name
+     Return the definition of NAME (a symbol) within CONTEXT as an
+     alist.
+
+ -- Function: ly:context-id context
+     Return the ID string of CONTEXT, i.e., for `\context Voice = "one"
+     ...' return the string `one'.
+
+ -- Function: ly:context-matched-pop-property context grob cell
+     This undoes a particular `\override', `\once \override' or `\once
+     \revert' when given the specific alist pair to undo.
+
+ -- Function: ly:context-mod? x
+     Is X a `Context_mod' object?
+
+ -- Function: ly:context-mod-apply! context mod
+     Apply the context modification MOD to CONTEXT.
+
+ -- Function: ly:context-name context
+     Return the name of CONTEXT, i.e., for `\context Voice = "one" ...'
+     return the symbol `Voice'.
+
+ -- Function: ly:context-now context
+     Return `now-moment' of context CONTEXT.
+
+ -- Function: ly:context-parent context
+     Return the parent of CONTEXT, `#f' if none.
+
+ -- Function: ly:context-property context sym def
+     Return the value for property SYM in CONTEXT. If DEF is given, and
+     property value is `'()', return DEF.
+
+ -- Function: ly:context-property-where-defined context name
+     Return the context above CONTEXT where NAME is defined.
+
+ -- Function: ly:context-pushpop-property context grob eltprop val
+     Do `\temporary \override' or `\revert' operation in CONTEXT.  The
+     grob definition GROB is extended with ELTPROP (if VAL is
+     specified) or reverted (if unspecified).
+
+ -- Function: ly:context-set-property! context name val
+     Set value of property NAME in context CONTEXT to VAL.
+
+ -- Function: ly:context-unset-property context name
+     Unset value of property NAME in context CONTEXT.
+
+ -- Function: ly:debug str rest
+     A Scheme callable function to issue a debug message STR.  The
+     message is formatted with `format' and REST.
+
+ -- Function: ly:default-scale
+     Get the global default scale.
+
+ -- Function: ly:dimension? d
+     Return D as a number.  Used to distinguish length variables from
+     normal numbers.
+
+ -- Function: ly:dir? s
+     Is S a direction?  Valid directions are `-1', `0', or `1', where
+     `-1' represents left or down, `1' represents right or up, and `0'
+     represents a neutral direction.
+
+ -- Function: ly:disconnect-dispatchers to from
+     Stop the dispatcher TO listening to events from FROM.
+
+ -- Function: ly:dispatcher? x
+     Is X a `Dispatcher' object?
+
+ -- Function: ly:duration? x
+     Is X a `Duration' object?
+
+ -- Function: ly:duration<? p1 p2
+     Is P1 shorter than P2?
+
+ -- Function: ly:duration->string dur
+     Convert DUR to a string.
+
+ -- Function: ly:duration-dot-count dur
+     Extract the dot count from DUR.
+
+ -- Function: ly:duration-factor dur
+     Extract the compression factor from DUR.  Return it as a pair.
+
+ -- Function: ly:duration-length dur
+     The length of the duration as a `moment'.
+
+ -- Function: ly:duration-log dur
+     Extract the duration log from DUR.
+
+ -- Function: ly:duration-scale dur
+     Extract the compression factor from DUR.  Return it as a rational.
+
+ -- Function: ly:effective-prefix
+     Return effective prefix.
+
+ -- Function: ly:encode-string-for-pdf str
+     Encode the given string to either Latin1 (which is a subset of the
+     PDFDocEncoding) or if that's not possible to full UTF-16BE with
+     Byte-Order-Mark (BOM).
+
+ -- Function: ly:engraver-announce-end-grob engraver grob cause
+     Announce the end of a grob (i.e., the end of a spanner)
+     originating from given ENGRAVER instance, with GROB being a grob.
+     CAUSE should either be another grob or a music event.
+
+ -- Function: ly:engraver-make-grob engraver grob-name cause
+     Create a grob originating from given ENGRAVER instance, with given
+     GROB-NAME, a symbol.  CAUSE should either be another grob or a
+     music event.
+
+ -- Function: ly:error str rest
+     A Scheme callable function to issue the error STR.  The error is
+     formatted with `format' and REST.
+
+ -- Function: ly:event? obj
+     Is OBJ a proper (non-rhythmic) event object?
+
+ -- Function: ly:event-deep-copy m
+     Copy M and all sub expressions of M.
+
+ -- Function: ly:event-property sev sym val
+     Get the property SYM of stream event SEV.  If SYM is undefined,
+     return VAL or `'()' if VAL is not specified.
+
+ -- Function: ly:event-set-property! ev sym val
+     Set property SYM in event EV to VAL.
+
+ -- Function: ly:expand-environment str
+     Expand `$VAR' and `${VAR}' in STR.
+
+ -- Function: ly:expect-warning str rest
+     A Scheme callable function to register a warning to be expected
+     and subsequently suppressed.  If the warning is not encountered, a
+     warning about the missing warning will be shown.  The message
+     should be translated with `(_ ...)' and changing parameters given
+     after the format string.
+
+ -- Function: ly:find-file name
+     Return the absolute file name of NAME, or `#f' if not found.
+
+ -- Function: ly:font-config-add-directory dir
+     Add directory DIR to FontConfig.
+
+ -- Function: ly:font-config-add-font font
+     Add font FONT to FontConfig.
+
+ -- Function: ly:font-config-display-fonts
+     Dump a list of all fonts visible to FontConfig.
+
+ -- Function: ly:font-config-get-font-file name
+     Get the file for font NAME.
+
+ -- Function: ly:font-design-size font
+     Given the font metric FONT, return the design size, relative to
+     the current output-scale.
+
+ -- Function: ly:font-file-name font
+     Given the font metric FONT, return the corresponding file name.
+
+ -- Function: ly:font-get-glyph font name
+     Return a stencil from FONT for the glyph named NAME.  If the glyph
+     is not available, return an empty stencil.
+
+     Note that this command can only be used to access glyphs from
+     fonts loaded with `ly:system-font-load'; currently, this means
+     either the Emmentaler or Emmentaler-Brace  fonts, corresponding to
+     the font encodings `fetaMusic' and `fetaBraces', respectively.
+
+ -- Function: ly:font-glyph-name-to-charcode font name
+     Return the character code for glyph NAME in FONT.
+
+     Note that this command can only be used to access glyphs from
+     fonts loaded with `ly:system-font-load'; currently, this means
+     either the Emmentaler or Emmentaler-Brace fonts, corresponding to
+     the font encodings `fetaMusic' and `fetaBraces', respectively.
+
+ -- Function: ly:font-glyph-name-to-index font name
+     Return the index for NAME in FONT.
+
+     Note that this command can only be used to access glyphs from
+     fonts loaded with `ly:system-font-load'; currently, this means
+     either the Emmentaler or Emmentaler-Brace fonts, corresponding to
+     the font encodings `fetaMusic' and `fetaBraces', respectively.
+
+ -- Function: ly:font-index-to-charcode font index
+     Return the character code for INDEX in FONT.
+
+     Note that this command can only be used to access glyphs from
+     fonts loaded with `ly:system-font-load'; currently, this means
+     either the Emmentaler or Emmentaler-Brace fonts, corresponding to
+     the font encodings `fetaMusic' and `fetaBraces', respectively.
+
+ -- Function: ly:font-magnification font
+     Given the font metric FONT, return the magnification, relative to
+     the current output-scale.
+
+ -- Function: ly:font-metric? x
+     Is X a `Font_metric' object?
+
+ -- Function: ly:font-name font
+     Given the font metric FONT, return the corresponding name.
+
+ -- Function: ly:font-sub-fonts font
+     Given the font metric FONT of an OpenType font, return the names
+     of the subfonts within FONT.
+
+ -- Function: ly:format str rest
+     LilyPond specific format, supporting `~a' and `~[0-9]f'.  Basic
+     support for `~s' is also provided.
+
+ -- Function: ly:format-output context
+     Given a global context in its final state, process it and return
+     the `Music_output' object in its final state.
+
+ -- Function: ly:generic-bound-extent grob common
+     Determine the extent of GROB relative to COMMON along the X axis,
+     finding its extent as a bound when it a has
+     `bound-alignment-interfaces' property list set and otherwise the
+     full extent.
+
+ -- Function: ly:get-all-function-documentation
+     Get a hash table with all LilyPond Scheme extension functions.
+
+ -- Function: ly:get-all-translators
+     Return a list of all translator objects that may be instantiated.
+
+ -- Function: ly:get-context-mods contextmod
+     Returns the list of context modifications stored in CONTEXTMOD.
+
+ -- Function: ly:get-option var
+     Get a global option setting.
+
+ -- Function: ly:get-spacing-spec from-scm to-scm
+     Return the spacing spec going between the two given grobs,
+     FROM_SCM and TO_SCM.
+
+ -- Function: ly:get-undead undead
+     Get back object from UNDEAD.
+
+ -- Function: ly:gettext original
+     A Scheme wrapper function for `gettext'.
+
+ -- Function: ly:grob? x
+     Is X a `Grob' object?
+
+ -- Function: ly:grob-alist-chain grob global
+     Get an alist chain for grob GROB, with GLOBAL as the global
+     default.  If unspecified, `font-defaults' from the layout block is
+     taken.
+
+ -- Function: ly:grob-array? x
+     Is X a `Grob_array' object?
+
+ -- Function: ly:grob-array->list grob-arr
+     Return the elements of GROB-ARR as a Scheme list.
+
+ -- Function: ly:grob-array-length grob-arr
+     Return the length of GROB-ARR.
+
+ -- Function: ly:grob-array-ref grob-arr index
+     Retrieve the INDEXth element of GROB-ARR.
+
+ -- Function: ly:grob-basic-properties grob
+     Get the immutable properties of GROB.
+
+ -- Function: ly:grob-chain-callback grob proc sym
+     Find the callback that is stored as property SYM of grob GROB and
+     chain PROC to the head of this, meaning that it is called using
+     GROB and the previous callback's result.
+
+ -- Function: ly:grob-common-refpoint grob other axis
+     Find the common refpoint of GROB and OTHER for AXIS.
+
+ -- Function: ly:grob-common-refpoint-of-array grob others axis
+     Find the common refpoint of GROB and OTHERS (a grob-array) for
+     AXIS.
+
+ -- Function: ly:grob-default-font grob
+     Return the default font for grob GROB.
+
+ -- Function: ly:grob-extent grob refp axis
+     Get the extent in AXIS direction of GROB relative to the grob REFP.
+
+ -- Function: ly:grob-get-vertical-axis-group-index grob
+     Get the index of the vertical axis group the grob GROB belongs to;
+     return `-1' if none is found.
+
+ -- Function: ly:grob-interfaces grob
+     Return the interfaces list of grob GROB.
+
+ -- Function: ly:grob-layout grob
+     Get `\layout' definition from grob GROB.
+
+ -- Function: ly:grob-object grob sym
+     Return the value of a pointer in grob GROB of property SYM.  It
+     returns `'()' (end-of-list) if SYM is undefined in GROB.
+
+ -- Function: ly:grob-original grob
+     Return the unbroken original grob of GROB.
+
+ -- Function: ly:grob-parent grob axis
+     Get the parent of GROB.  AXIS is 0 for the X-axis, 1 for the
+     Y-axis.
+
+ -- Function: ly:grob-pq<? a b
+     Compare two grob priority queue entries.  This is an internal
+     function.
+
+ -- Function: ly:grob-properties grob
+     Get the mutable properties of GROB.
+
+ -- Function: ly:grob-properties? x
+     Is X a `Grob_properties' object?
+
+ -- Function: ly:grob-property grob sym val
+     Return the value for property SYM of GROB.  If no value is found,
+     return VAL or `'()' if VAL is not specified.
+
+ -- Function: ly:grob-property-data grob sym
+     Return the value for property SYM of GROB, but do not process
+     callbacks.
+
+ -- Function: ly:grob-pure-height grob refp beg end val
+     Return the pure height of GROB given refpoint REFP.  If no value
+     is found, return VAL or `'()' if VAL is not specified.
+
+ -- Function: ly:grob-pure-property grob sym beg end val
+     Return the pure value for property SYM of GROB.  If no value is
+     found, return VAL or `'()' if VAL is not specified.
+
+ -- Function: ly:grob-relative-coordinate grob refp axis
+     Get the coordinate in AXIS direction of GROB relative to the grob
+     REFP.
+
+ -- Function: ly:grob-robust-relative-extent grob refp axis
+     Get the extent in AXIS direction of GROB relative to the grob
+     REFP, or `(0,0)' if empty.
+
+ -- Function: ly:grob-script-priority-less a b
+     Compare two grobs by script priority.  For internal use.
+
+ -- Function: ly:grob-set-nested-property! grob symlist val
+     Set nested property SYMLIST in grob GROB to value VAL.
+
+ -- Function: ly:grob-set-object! grob sym val
+     Set SYM in grob GROB to value VAL.
+
+ -- Function: ly:grob-set-parent! grob axis parent-grob
+     Set PARENT-GROB the parent of grob GROB in axis AXIS.
+
+ -- Function: ly:grob-set-property! grob sym val
+     Set SYM in grob GROB to value VAL.
+
+ -- Function: ly:grob-staff-position sg
+     Return the Y-position of SG relative to the staff.
+
+ -- Function: ly:grob-suicide! grob
+     Kill GROB.
+
+ -- Function: ly:grob-system grob
+     Return the system grob of GROB.
+
+ -- Function: ly:grob-translate-axis! grob d a
+     Translate GROB on axis A over distance D.
+
+ -- Function: ly:grob-vertical<? a b
+     Does A lie above B on the page?
+
+ -- Function: ly:gulp-file name size
+     Read SIZE characters from the file NAME, and return its contents
+     in a string.  If SIZE is undefined, the entire file is read.  The
+     file is looked up using the search path.
+
+ -- Function: ly:hash-table-keys tab
+     Return a list of keys in TAB.
+
+ -- Function: ly:inch num
+     NUM inches.
+
+ -- Function: ly:input-both-locations sip
+     Return input location in SIP as `(file-name first-line
+     first-column last-line last-column)'.
+
+ -- Function: ly:input-file-line-char-column sip
+     Return input location in SIP as `(file-name line char column)'.
+
+ -- Function: ly:input-location? x
+     Is X a `Input' object?
+
+ -- Function: ly:input-message sip msg rest
+     Print MSG as a GNU compliant error message, pointing to the
+     location in SIP.  MSG is interpreted similar to `format''s
+     argument, using REST.
+
+ -- Function: ly:input-warning sip msg rest
+     Print MSG as a GNU compliant warning message, pointing to the
+     location in SIP.  MSG is interpreted similar to `format''s
+     argument, using REST.
+
+ -- Function: ly:interpret-music-expression mus ctx
+     Interpret the music expression MUS in the global context CTX.  The
+     context is returned in its final state.
+
+ -- Function: ly:interpret-stencil-expression expr func arg1 offset
+     Parse EXPR, feed bits to FUNC with first arg ARG1 having offset
+     OFFSET.
+
+ -- Function: ly:intlog2 d
+     The 2-logarithm of 1/D.
+
+ -- Function: ly:item? g
+     Is G an `Item' object?
+
+ -- Function: ly:item-break-dir it
+     The break status direction of item IT.  `-1' means end of line,
+     `0' unbroken, and `1' beginning of line.
+
+ -- Function: ly:item-get-column it
+     Return the `PaperColumn' or `NonMusicalPaperColumn' associated
+     with this `Item'.
+
+ -- Function: ly:iterator? x
+     Is X a `Music_iterator' object?
+
+ -- Function: ly:lexer-keywords lexer
+     Return a list of `(KEY . CODE)' pairs, signifying the LilyPond
+     reserved words list.
+
+ -- Function: ly:lily-lexer? x
+     Is X a `Lily_lexer' object?
+
+ -- Function: ly:lily-parser? x
+     Is X a `Lily_parser' object?
+
+ -- Function: ly:line-interface::line grob startx starty endx endy
+     Make a line using layout information from grob GROB.
+
+ -- Function: ly:listened-event-class? disp cl
+     Does DISP listen to any event type in the list CL?
+
+ -- Function: ly:listened-event-types disp
+     Return a list of all event types that DISP listens to.
+
+ -- Function: ly:listener? x
+     Is X a `Listener' object?
+
+ -- Function: ly:make-book paper header scores
+     Make a `\book' of PAPER and HEADER (which may be `#f' as well)
+     containing `\scores'.
+
+ -- Function: ly:make-book-part scores
+     Make a `\bookpart' containing `\scores'.
+
+ -- Function: ly:make-context-mod mod-list
+     Creates a context modification, optionally initialized via the
+     list of modifications MOD-LIST.
+
+ -- Function: ly:make-dispatcher
+     Return a newly created dispatcher.
+
+ -- Function: ly:make-duration length dotcount num den
+     LENGTH is the negative logarithm (base 2) of the duration: 1 is a
+     half note, 2 is a quarter note, 3 is an eighth note, etc.  The
+     number of dots after the note is given by the optional argument
+     DOTCOUNT.
+
+     The duration factor is optionally given by integers NUM and DEN,
+     alternatively by a single rational number.
+
+     A duration is a musical duration, i.e., a length of time described
+     by a power of two (whole, half, quarter, etc.) and a number of
+     augmentation dots.
+
+ -- Function: ly:make-global-context output-def
+     Set up a global interpretation context, using the output block
+     OUTPUT-DEF.  The context is returned.
+
+ -- Function: ly:make-global-translator global
+     Create a translator group and connect it to the global context
+     GLOBAL.  The translator group is returned.
+
+ -- Function: ly:make-grob-properties alist
+     This packages the given property list ALIST in a grob property
+     container stored in a context property with the name of a grob.
+
+ -- Function: ly:make-moment m g gn gd
+     Create the moment with rational main timing M, and optional grace
+     timing G.
+
+     A "moment" is a point in musical time.  It consists of a pair of
+     rationals (M, G), where M is the timing for the main notes, and G
+     the timing for grace notes.  In absence of grace notes, G is zero.
+
+     For compatibility reasons, it is possible to write two numbers
+     specifying numerator and denominator instead of the rationals.
+     These forms cannot be mixed, and the two-argument form is
+     disambiguated by the sign of the second argument: if it is
+     positive, it can only be a denominator and not a grace timing.
+
+ -- Function: ly:make-music props
+     Make a C++ `Music' object and initialize it with PROPS.
+
+     This function is for internal use and is only called by
+     `make-music', which is the preferred interface for creating music
+     objects.
+
+ -- Function: ly:make-music-function signature func
+     Make a function to process music, to be used for the parser.  FUNC
+     is the function, and SIGNATURE describes its arguments.
+     SIGNATURE's cdr is a list containing either `ly:music?' predicates
+     or other type predicates.  Its car is the syntax function to call.
+
+ -- Function: ly:make-music-relative! music pitch
+     Make MUSIC relative to PITCH, return final pitch.
+
+ -- Function: ly:make-output-def
+     Make an output definition.
+
+ -- Function: ly:make-page-label-marker label
+     Return page marker with label LABEL.
+
+ -- Function: ly:make-page-permission-marker symbol permission
+     Return page marker with page breaking and turning permissions.
+
+ -- Function: ly:make-pango-description-string chain size
+     Make a `PangoFontDescription' string for the property alist CHAIN
+     at size SIZE.
+
+ -- Function: ly:make-paper-outputter port format
+     Create an outputter that evaluates within `output-'FORMAT, writing
+     to PORT.
+
+ -- Function: ly:make-pitch octave note alter
+     OCTAVE is specified by an integer, zero for the octave containing
+     middle C.  NOTE is a number indexing the global default scale,
+     with 0 corresponding to pitch C and 6 usually corresponding to
+     pitch B.  Optional ALTER is a rational number of 200-cent whole
+     tones for alteration.
+
+ -- Function: ly:make-prob type init rest
+     Create a `Prob' object.
+
+ -- Function: ly:make-scale steps
+     Create a scale.  The argument is a vector of rational numbers,
+     each of which represents the number of 200 cent tones of a pitch
+     above the tonic.
+
+ -- Function: ly:make-score music
+     Return score with MUSIC encapsulated in it.
+
+ -- Function: ly:make-spring ideal min-dist
+     Make a spring.  IDEAL is the ideal distance of the spring, and
+     MIN-DIST is the minimum distance.
+
+ -- Function: ly:make-stencil expr xext yext
+     Stencils are device independent output expressions.  They carry
+     two pieces of information:
+
+       1. A specification of how to print this object.  This
+          specification is processed by the output backends, for
+          example `scm/output-ps.scm'.
+
+       2. The vertical and horizontal extents of the object, given as
+          pairs.  If an extent is unspecified (or if you use
+          `empty-interval' as its value), it is taken to be empty.
+
+
+ -- Function: ly:make-stream-event cl proplist
+     Create a stream event of class CL with the given mutable property
+     list.
+
+ -- Function: ly:make-undead object
+     This packages OBJECT in a manner that keeps it from triggering
+     "Parsed object should be dead" messages.
+
+ -- Function: ly:make-unpure-pure-container unpure pure
+     Make an unpure-pure container.  UNPURE should be an unpure
+     expression, and PURE should be a pure expression.  If PURE is
+     omitted, the value of UNPURE will be used twice, except that a
+     callback is given two extra arguments that are ignored for the
+     sake of pure calculations.
+
+ -- Function: ly:message str rest
+     A Scheme callable function to issue the message STR.  The message
+     is formatted with `format' and REST.
+
+ -- Function: ly:minimal-breaking pb
+     Break (pages and lines) the `Paper_book' object PB without looking
+     for optimal spacing: stack as many lines on a page before moving
+     to the next one.
+
+ -- Function: ly:mm num
+     NUM mm.
+
+ -- Function: ly:module->alist mod
+     Dump the contents of module MOD as an alist.
+
+ -- Function: ly:module-copy dest src
+     Copy all bindings from module SRC into DEST.
+
+ -- Function: ly:modules-lookup modules sym def
+     Look up SYM in the list MODULES, returning the first occurence.
+     If not found, return DEF or `#f' if DEF isn't specified.
+
+ -- Function: ly:moment? x
+     Is X a `Moment' object?
+
+ -- Function: ly:moment<? a b
+     Compare two moments.
+
+ -- Function: ly:moment-add a b
+     Add two moments.
+
+ -- Function: ly:moment-div a b
+     Divide two moments.
+
+ -- Function: ly:moment-grace mom
+     Extract grace timing as a rational number from MOM.
+
+ -- Function: ly:moment-grace-denominator mom
+     Extract denominator from grace timing.
+
+ -- Function: ly:moment-grace-numerator mom
+     Extract numerator from grace timing.
+
+ -- Function: ly:moment-main mom
+     Extract main timing as a rational number from MOM.
+
+ -- Function: ly:moment-main-denominator mom
+     Extract denominator from main timing.
+
+ -- Function: ly:moment-main-numerator mom
+     Extract numerator from main timing.
+
+ -- Function: ly:moment-mod a b
+     Modulo of two moments.
+
+ -- Function: ly:moment-mul a b
+     Multiply two moments.
+
+ -- Function: ly:moment-sub a b
+     Subtract two moments.
+
+ -- Function: ly:music? obj
+     Is OBJ a music object?
+
+ -- Function: ly:music-compress m factor
+     Compress music object M by moment FACTOR.
+
+ -- Function: ly:music-deep-copy m origin
+     Copy M and all sub expressions of M. M may be an arbitrary type;
+     cons cells and music are copied recursively.  If ORIGIN is given,
+     it is used as the origin for one level of music by calling
+     `ly:set-origin!' on the copy.
+
+ -- Function: ly:music-duration-compress mus fact
+     Compress MUS by factor FACT, which is a `Moment'.
+
+ -- Function: ly:music-duration-length mus
+     Extract the duration field from MUS and return the length.
+
+ -- Function: ly:music-function? x
+     Is X a `Music_function' object?
+
+ -- Function: ly:music-function-extract x
+     Return the Scheme function inside X.
+
+ -- Function: ly:music-function-signature x
+     Return the function signature inside X.
+
+ -- Function: ly:music-length mus
+     Get the length of music expression MUS and return it as a `Moment'
+     object.
+
+ -- Function: ly:music-list? lst
+     Is LST a list of music objects?
+
+ -- Function: ly:music-mutable-properties mus
+     Return an alist containing the mutable properties of MUS.  The
+     immutable properties are not available, since they are constant
+     and initialized by the `make-music' function.
+
+ -- Function: ly:music-output? x
+     Is X a `Music_output' object?
+
+ -- Function: ly:music-property mus sym val
+     Return the value for property SYM of music expression MUS.  If no
+     value is found, return VAL or `'()' if VAL is not specified.
+
+ -- Function: ly:music-set-property! mus sym val
+     Set property SYM in music expression MUS to VAL.
+
+ -- Function: ly:music-transpose m p
+     Transpose M such that central C is mapped to P.  Return M.
+
+ -- Function: ly:note-column-accidentals note-column
+     Return the `AccidentalPlacement' grob from NOTE-COLUMN if any, or
+     `SCM_EOL' otherwise.
+
+ -- Function: ly:note-column-dot-column note-column
+     Return the `DotColumn' grob from NOTE-COLUMN if any, or `SCM_EOL'
+     otherwise.
+
+ -- Function: ly:note-head::stem-attachment font-metric glyph-name
+     Get attachment in FONT-METRIC for attaching a stem to notehead
+     GLYPH-NAME.
+
+ -- Function: ly:number->string s
+     Convert S to a string without generating many decimals.
+
+ -- Function: ly:one-line-breaking pb
+     Put each score on a single line, and put each line on its own
+     page.  The paper-width setting will be modified so that every page
+     will be wider than the widest line.
+
+ -- Function: ly:optimal-breaking pb
+     Optimally break (pages and lines) the `Paper_book' object PB to
+     minimize badness in bother vertical and horizontal spacing.
+
+ -- Function: ly:option-usage port
+     Print `ly:set-option' usage.  Optional PORT argumentfor the
+     destination defaults to current output port.
+
+ -- Function: ly:otf->cff otf-file-name
+     Convert the contents of an OTF file to a CFF file, returning it as
+     a string.
+
+ -- Function: ly:otf-font? font
+     Is FONT an OpenType font?
+
+ -- Function: ly:otf-font-glyph-info font glyph
+     Given the font metric FONT of an OpenType font, return the
+     information about named glyph GLYPH (a string).
+
+ -- Function: ly:otf-font-table-data font tag
+     Extract a table TAG from FONT.  Return empty string for
+     non-existent TAG.
+
+ -- Function: ly:otf-glyph-count font
+     Return the number of glyphs in FONT.
+
+ -- Function: ly:otf-glyph-list font
+     Return a list of glyph names for FONT.
+
+ -- Function: ly:output-def? x
+     Is X a `Output_def' object?
+
+ -- Function: ly:output-def-clone def
+     Clone output definition DEF.
+
+ -- Function: ly:output-def-lookup def sym val
+     Return the value of SYM in output definition DEF (e.g., `\paper').
+     If no value is found, return VAL or `'()' if VAL is undefined.
+
+ -- Function: ly:output-def-parent def
+     Return the parent output definition of DEF.
+
+ -- Function: ly:output-def-scope def
+     Return the variable scope inside DEF.
+
+ -- Function: ly:output-def-set-variable! def sym val
+     Set an output definition DEF variable SYM to VAL.
+
+ -- Function: ly:output-description output-def
+     Return the description of translators in OUTPUT-DEF.
+
+ -- Function: ly:output-find-context-def output-def context-name
+     Return an alist of all context defs (matching CONTEXT-NAMEif
+     given) in OUTPUT-DEF.
+
+ -- Function: ly:output-formats
+     Formats passed to `--format' as a list of strings, used for the
+     output.
+
+ -- Function: ly:outputter-close outputter
+     Close port of OUTPUTTER.
+
+ -- Function: ly:outputter-dump-stencil outputter stencil
+     Dump stencil EXPR onto OUTPUTTER.
+
+ -- Function: ly:outputter-dump-string outputter str
+     Dump STR onto OUTPUTTER.
+
+ -- Function: ly:outputter-module outputter
+     Return output module of OUTPUTTER.
+
+ -- Function: ly:outputter-output-scheme outputter expr
+     Eval EXPR in module of OUTPUTTER.
+
+ -- Function: ly:outputter-port outputter
+     Return output port for OUTPUTTER.
+
+ -- Function: ly:page-marker? x
+     Is X a `Page_marker' object?
+
+ -- Function: ly:page-turn-breaking pb
+     Optimally break (pages and lines) the `Paper_book' object PB such
+     that page turns only happen in specified places, returning its
+     pages.
+
+ -- Function: ly:pango-font? f
+     Is F a pango font?
+
+ -- Function: ly:pango-font-physical-fonts f
+     Return alist of `(ps-name file-name font-index)' lists for Pango
+     font F.
+
+ -- Function: ly:paper-book? x
+     Is X a `Paper_book' object?
+
+ -- Function: ly:paper-book-header pb
+     Return the header definition (`\header') in `Paper_book' object PB.
+
+ -- Function: ly:paper-book-pages pb
+     Return pages in `Paper_book' object PB.
+
+ -- Function: ly:paper-book-paper pb
+     Return the paper output definition (`\paper') in `Paper_book'
+     object PB.
+
+ -- Function: ly:paper-book-performances pb
+     Return performances in `Paper_book' object PB.
+
+ -- Function: ly:paper-book-scopes pb
+     Return scopes in `Paper_book' object PB.
+
+ -- Function: ly:paper-book-systems pb
+     Return systems in `Paper_book' object PB.
+
+ -- Function: ly:paper-column::print
+     Optional stencil for `PaperColumn' or`NonMusicalPaperColumn'.
+     Draws the `rank number' of each column, its moment in time, a blue
+     arrow showing the ideal distance, and a red arrow showing the
+     minimum distance between columns.
+
+ -- Function: ly:paper-fonts def
+     Return a list containing the fonts from output definition DEF
+     (e.g., `\paper').
+
+ -- Function: ly:paper-get-font def chain
+     Find a font metric in output definition DEF satisfying the
+     font-qualifiers in alist chain CHAIN, and return it.  (An alist
+     chain is a list of alists, containing grob properties.)
+
+ -- Function: ly:paper-get-number def sym
+     Return the value of variable SYM in output definition DEF as a
+     double.
+
+ -- Function: ly:paper-outputscale def
+     Return the output-scale for output definition DEF.
+
+ -- Function: ly:paper-score-paper-systems paper-score
+     Return vector of `paper_system' objects from PAPER-SCORE.
+
+ -- Function: ly:paper-system? obj
+     Is OBJ a C++ `Prob' object of type `paper-system'?
+
+ -- Function: ly:paper-system-minimum-distance sys1 sys2
+     Measure the minimum distance between these two paper-systems,
+     using their stored skylines if possible and falling back to their
+     extents otherwise.
+
+ -- Function: ly:parse-file name
+     Parse a single `.ly' file.  Upon failure, throw `ly-file-failed'
+     key.
+
+ -- Function: ly:parse-string-expression parser-smob ly-code filename
+          line
+     Parse the string LY-CODE with PARSER-SMOB. Return the contained
+     music expression. FILENAME and LINE are optional source indicators.
+
+ -- Function: ly:parsed-undead-list!
+     Return the list of objects that have been found live that should
+     have been dead, and clear that list.
+
+ -- Function: ly:parser-clear-error parser
+     Clear error flag for PARSER, defaulting to current parser.
+
+ -- Function: ly:parser-clone closures location
+     Return a clone of current parser.  An association list of port
+     positions to closures can be specified in CLOSURES in order to
+     have `$' and `#' interpreted in their original lexical
+     environment.  If LOCATION is a valid location, it becomes the
+     source of all music expressions inside.
+
+ -- Function: ly:parser-define! symbol val
+     Bind SYMBOL to VAL in current parser's module.
+
+ -- Function: ly:parser-error msg input
+     Display an error message and make current parser fail. Without a
+     current parser, trigger an ordinary error.
+
+ -- Function: ly:parser-has-error? parser
+     Does PARSER (defaulting to current parser) have an error flag?
+
+ -- Function: ly:parser-include-string ly-code
+     Include the string LY-CODE into the input stream for current
+     parser.  Can only be used in immediate Scheme expressions (`$'
+     instead of `#').
+
+ -- Function: ly:parser-lexer parser
+     Return the lexer for PARSER, defaulting to current parser
+
+ -- Function: ly:parser-lookup symbol
+     Look up SYMBOL in current parser's module.  Return `'()' if not
+     defined.
+
+ -- Function: ly:parser-output-name parser
+     Return the base name of the output file.  If `parser' is left off,
+     use currently active parser.
+
+ -- Function: ly:parser-parse-string parser-smob ly-code
+     Parse the string LY-CODE with PARSER-SMOB.  Upon failure, throw
+     `ly-file-failed' key.
+
+ -- Function: ly:parser-set-note-names names
+     Replace current note names in parser.  NAMES is an alist of
+     symbols.  This only has effect if the current mode is notes.
+
+ -- Function: ly:performance-header performance
+     Return header of performance.
+
+ -- Function: ly:performance-set-header! performance module
+     Set the performance header.
+
+ -- Function: ly:performance-write performance filename name
+     Write PERFORMANCE to FILENAME storing NAME as the name of the
+     performance in the file metadata.
+
+ -- Function: ly:pfb->pfa pfb-file-name
+     Convert the contents of a Type 1 font in PFB format to PFA format.
+
+ -- Function: ly:pitch? x
+     Is X a `Pitch' object?
+
+ -- Function: ly:pitch<? p1 p2
+     Is P1 lexicographically smaller than P2?
+
+ -- Function: ly:pitch-alteration pp
+     Extract the alteration from pitch PP.
+
+ -- Function: ly:pitch-diff pitch root
+     Return pitch DELTA such that ROOT transposed by DELTA equals PITCH.
+
+ -- Function: ly:pitch-negate p
+     Negate P.
+
+ -- Function: ly:pitch-notename pp
+     Extract the note name from pitch PP.
+
+ -- Function: ly:pitch-octave pp
+     Extract the octave from pitch PP.
+
+ -- Function: ly:pitch-quartertones pp
+     Calculate the number of quarter tones of PP from middle C.
+
+ -- Function: ly:pitch-semitones pp
+     Calculate the number of semitones of PP from middle C.
+
+ -- Function: ly:pitch-steps p
+     Number of steps counted from middle C of the pitch P.
+
+ -- Function: ly:pitch-tones pp
+     Calculate the number of tones of PP from middle C as a rational
+     number.
+
+ -- Function: ly:pitch-transpose p delta
+     Transpose P by the amount DELTA, where DELTA is relative to
+     middle C.
+
+ -- Function: ly:pointer-group-interface::add-grob grob sym grob-element
+     Add GROB-ELEMENT to GROB's SYM grob array.
+
+ -- Function: ly:position-on-line? sg spos
+     Return whether SPOS is on a line of the staff associated with the
+     grob SG (even on an extender line).
+
+ -- Function: ly:prob? x
+     Is X a `Prob' object?
+
+ -- Function: ly:prob-immutable-properties prob
+     Retrieve an alist of immutable properties.
+
+ -- Function: ly:prob-mutable-properties prob
+     Retrieve an alist of mutable properties.
+
+ -- Function: ly:prob-property prob sym val
+     Return the value for property SYM of Prob object PROB.  If no
+     value is found, return VAL or `'()' if VAL is not specified.
+
+ -- Function: ly:prob-property? obj sym
+     Is boolean prop SYM of SYM set?
+
+ -- Function: ly:prob-set-property! obj sym value
+     Set property SYM of OBJ to VALUE.
+
+ -- Function: ly:prob-type? obj type
+     Is OBJ the specified prob-type?
+
+ -- Function: ly:programming-error str rest
+     A Scheme callable function to issue the internal warning  STR.
+     The message is formatted with `format' and REST.
+
+ -- Function: ly:progress str rest
+     A Scheme callable function to print progress STR.  The message is
+     formatted with `format' and REST.
+
+ -- Function: ly:property-lookup-stats sym
+     Return hash table with a property access corresponding to SYM.
+     Choices are `prob', `grob', and `context'.
+
+ -- Function: ly:protects
+     Return hash of protected objects.
+
+ -- Function: ly:pt num
+     NUM printer points.
+
+ -- Function: ly:pure-call data grob start end rest
+     Convert property DATA (unpure-pure container or procedure) to
+     value in a pure context defined by GROB, START, END, and possibly
+     REST arguments.
+
+ -- Function: ly:register-stencil-expression symbol
+     Add SYMBOL as head of a stencil expression.
+
+ -- Function: ly:relative-group-extent elements common axis
+     Determine the extent of ELEMENTS relative to COMMON in the AXIS
+     direction.
+
+ -- Function: ly:reset-all-fonts
+     Forget all about previously loaded fonts.
+
+ -- Function: ly:round-filled-box xext yext blot
+     Make a `Stencil' object that prints a black box of dimensions
+     XEXT, YEXT and roundness BLOT.
+
+ -- Function: ly:round-filled-polygon points blot extroversion
+     Make a `Stencil' object that prints a black polygon with corners
+     at the points defined by POINTS (list of coordinate pairs) and
+     roundness BLOT.  OptionalEXTROVERSION shifts the outline outward,
+     with thedefault of `-1.0' keeping the outer boundary ofthe outline
+     just inside of the polygon.
+
+ -- Function: ly:run-translator mus output-def
+     Process MUS according to OUTPUT-DEF.  An interpretation context is
+     set up, and MUS is interpreted with it.  The context is returned
+     in its final state.
+
+     Optionally, this routine takes an object-key to to uniquely
+     identify the score block containing it.
+
+ -- Function: ly:score? x
+     Is X a `Score' object?
+
+ -- Function: ly:score-add-output-def! score def
+     Add an output definition DEF to SCORE.
+
+ -- Function: ly:score-embedded-format score layout
+     Run SCORE through LAYOUT (an output definition) scaled to correct
+     output-scale already, returning a list of layout-lines.
+
+ -- Function: ly:score-error? score
+     Was there an error in the score?
+
+ -- Function: ly:score-header score
+     Return score header.
+
+ -- Function: ly:score-music score
+     Return score music.
+
+ -- Function: ly:score-output-defs score
+     All output definitions in a score.
+
+ -- Function: ly:score-set-header! score module
+     Set the score header.
+
+ -- Function: ly:separation-item::print
+     Optional stencil for `PaperColumn' or`NonMusicalPaperColumn'.
+     Draws the `horizontal-skylines' of each `PaperColumn', showing the
+     shapes used to determine the minimum distances between
+     `PaperColumns' at the note-spacing step, before staves have been
+     spaced (vertically) on the page.
+
+ -- Function: ly:set-default-scale scale
+     Set the global default scale.  This determines the tuning of
+     pitches with no accidentals or key signatures.  The first pitch is
+     C.  Alterations are calculated relative to this scale.  The number
+     of pitches in this scale determines the number of scale steps that
+     make up an octave.  Usually the 7-note major scale.
+
+ -- Function: ly:set-grob-modification-callback cb
+     Specify a procedure that will be called every time LilyPond
+     modifies a grob property.  The callback will receive as arguments
+     the grob that is being modified, the name of the C++ file in which
+     the modification was requested, the line number in the C++ file in
+     which the modification was requested, the name of the function in
+     which the modification was requested, the property to be changed,
+     and the new value for the property.
+
+ -- Function: ly:set-middle-C! context
+     Set the `middleCPosition' variable in CONTEXT based on the
+     variables `middleCClefPosition' and `middleCOffset'.
+
+ -- Function: ly:set-option var val
+     Set a program option.
+
+ -- Function: ly:set-origin! m origin
+     This sets the origin given in ORIGIN to M.  M will typically be a
+     music expression or a list of music.  List structures are searched
+     recursively, but recursion stops at the changed music expressions
+     themselves.  ORIGIN is generally of type `ly:input-location?',
+     defaulting to `(*location*)'.  Other valid values for `origin' are
+     a music expression which is then used as the source of location
+     information, or `#f' or `'()' in which case no action is
+     performed.  The return value is M itself.
+
+ -- Function: ly:set-property-cache-callback cb
+     Specify a procedure that will be called whenever lilypond
+     calculates a callback function and caches the result.  The
+     callback will receive as arguments the grob whose property it is,
+     the name of the property, the name of the callback that calculated
+     the property, and the new (cached) value of the property.
+
+ -- Function: ly:skyline? x
+     Is X a `Skyline' object?
+
+ -- Function: ly:skyline-empty? sky
+     Return whether SKY is empty.
+
+ -- Function: ly:skyline-pair? x
+     Is X a `Skyline_pair' object?
+
+ -- Function: ly:slur-score-count
+     count number of slur scores.
+
+ -- Function: ly:smob-protects
+     Return LilyPond's internal smob protection list.
+
+ -- Function: ly:solve-spring-rod-problem springs rods length ragged
+     Solve a spring and rod problem for COUNT objects, that are
+     connected by COUNT-1 SPRINGS, and an arbitrary number of RODS.
+     COUNT is implicitly given by SPRINGS and RODS.  The SPRINGS
+     argument has the format `(ideal, inverse_hook)' and RODS is of the
+     form `(idx1, idx2, distance)'.
+
+     LENGTH is a number, RAGGED a boolean.
+
+     The function returns a list containing the force (positive for
+     stretching, negative for compressing and `#f' for non-satisfied
+     constraints) followed by SPRING-COUNT+1 positions of the objects.
+
+ -- Function: ly:source-file? x
+     Is X a `Source_file' object?
+
+ -- Function: ly:spanner? g
+     Is G a spanner object?
+
+ -- Function: ly:spanner-bound spanner dir
+     Get one of the bounds of SPANNER.  DIR is `-1' for left, and `1'
+     for right.
+
+ -- Function: ly:spanner-broken-into spanner
+     Return broken-into list for SPANNER.
+
+ -- Function: ly:spanner-set-bound! spanner dir item
+     Set grob ITEM as bound in direction DIR for SPANNER.
+
+ -- Function: ly:spawn command rest
+     Simple interface to g_spawn_sync STR.  The error is formatted with
+     `format' and REST.
+
+ -- Function: ly:spring? x
+     Is X a `Spring' object?
+
+ -- Function: ly:spring-set-inverse-compress-strength! spring strength
+     Set the inverse compress STRENGTH of SPRING.
+
+ -- Function: ly:spring-set-inverse-stretch-strength! spring strength
+     Set the inverse stretch STRENGTH of SPRING.
+
+ -- Function: ly:staff-symbol-line-thickness grob
+     Returns the current staff-line thickness in the staff associated
+     with GROB, expressed as a multiple of the current staff-space
+     height.
+
+ -- Function: ly:staff-symbol-staff-radius grob
+     Returns the radius of the staff associated with GROB.
+
+ -- Function: ly:staff-symbol-staff-space grob
+     Returns the current staff-space height in the staff associated
+     with GROB, expressed as a multiple of the default height of a
+     staff-space in the traditional five-line staff.
+
+ -- Function: ly:start-environment
+     Return the environment (a list of strings) that was in effect at
+     program start.
+
+ -- Function: ly:stderr-redirect file-name mode
+     Redirect stderr to FILE-NAME, opened with MODE.
+
+ -- Function: ly:stencil? x
+     Is X a `Stencil' object?
+
+ -- Function: ly:stencil-add args
+     Combine stencils.  Takes any number of arguments.
+
+ -- Function: ly:stencil-aligned-to stil axis dir
+     Align STIL using its own extents.  DIR is a number.  `-1' and `1'
+     are left and right, respectively.  Other values are interpolated
+     (so `0' means the center).
+
+ -- Function: ly:stencil-combine-at-edge first axis direction second
+          padding
+     Construct a stencil by putting SECOND next to FIRST.  AXIS can be
+     0 (x-axis) or 1 (y-axis).  DIRECTION can be -1 (left or down) or 1
+     (right or up).  The stencils are juxtaposed with PADDING as extra
+     space.  FIRST and SECOND may also be `'()' or `#f'.
+
+ -- Function: ly:stencil-empty? stil axis
+     Return whether STIL is empty.  If an optional AXIS is supplied,
+     the emptiness check is restricted to that axis.
+
+ -- Function: ly:stencil-expr stil
+     Return the expression of STIL.
+
+ -- Function: ly:stencil-extent stil axis
+     Return a pair of numbers signifying the extent of STIL in AXIS
+     direction (`0' or `1' for x and y axis, respectively).
+
+ -- Function: ly:stencil-fonts s
+     Analyze S, and return a list of fonts used in S.
+
+ -- Function: ly:stencil-in-color stc r g b
+     Put STC in a different color.
+
+ -- Function: ly:stencil-rotate stil angle x y
+     Return a stencil STIL rotated ANGLE degrees around the relative
+     offset (X, Y).  E.g., an offset of (-1, 1) will rotate the stencil
+     around the left upper corner.
+
+ -- Function: ly:stencil-rotate-absolute stil angle x y
+     Return a stencil STIL rotated ANGLE degrees around point (X, Y),
+     given in absolute coordinates.
+
+ -- Function: ly:stencil-scale stil x y
+     Scale stencil STIL using the horizontal and vertical scaling
+     factors X and Y.  Negative values will flip or mirror STIL without
+     changing its origin; this may result in collisions unless it is
+     repositioned.
+
+ -- Function: ly:stencil-stack first axis direction second padding
+          mindist
+     Construct a stencil by stacking SECOND next to FIRST.  AXIS can be
+     0 (x-axis) or 1 (y-axis).  DIRECTION can be -1 (left or down) or 1
+     (right or up).  The stencils are juxtaposed with PADDING as extra
+     space.  FIRST and SECOND may also be `'()' or `#f'.  As opposed to
+     `ly:stencil-combine-at-edge', metrics are suited for successively
+     accumulating lines of stencils.  Also, SECOND stencil is drawn
+     last.
+
+     If MINDIST is specified, reference points are placed apart at
+     least by this distance.  If either of the stencils is spacing,
+     PADDING and MINDIST do not apply.
+
+ -- Function: ly:stencil-translate stil offset
+     Return a STIL, but translated by OFFSET (a pair of numbers).
+
+ -- Function: ly:stencil-translate-axis stil amount axis
+     Return a copy of STIL but translated by AMOUNT in AXIS direction.
+
+ -- Function: ly:stream-event? obj
+     Is `OBJ' a `Stream_event' object?
+
+ -- Function: ly:string-percent-encode str
+     Encode all characters in string STR with hexadecimal percent
+     escape sequences, with the following exceptions: characters `-',
+     `.', `/', and `_'; and characters in ranges `0-9', `A-Z', and
+     `a-z'.
+
+ -- Function: ly:string-substitute a b s
+     Replace string A by string B in string S.
+
+ -- Function: ly:system-font-load name
+     Load the OpenType system font `NAME.otf'.  Fonts loaded with this
+     command must contain three additional SFNT font tables called
+     `LILC', `LILF', and `LILY', needed for typesetting musical
+     elements.  Currently, only the Emmentaler and the Emmentaler-Brace
+     fonts fulfill these requirements.
+
+     Note that only `ly:font-get-glyph' and derived code (like
+     `\lookup') can access glyphs from the system fonts; text strings
+     are handled exclusively via the Pango interface.
+
+ -- Function: ly:text-interface::interpret-markup
+     Convert a text markup into a stencil.  Takes three arguments,
+     LAYOUT, PROPS, and MARKUP.
+
+     LAYOUT is a `\layout' block; it may be obtained from a grob with
+     `ly:grob-layout'.  PROPS is an alist chain, i.e. a list of
+     alists.  This is typically obtained with `(ly:grob-alist-chain
+     grob (ly:output-def-lookup layout 'text-font-defaults))'.  MARKUP
+     is the markup text to be processed.
+
+ -- Function: ly:translate-cpp-warning-scheme str
+     Translates a string in C++ printf format and modifies it to use it
+     for scheme formatting.
+
+ -- Function: ly:translator? x
+     Is X a `Translator' object?
+
+ -- Function: ly:translator-context trans
+     Return the context of the translator object TRANS.
+
+ -- Function: ly:translator-description me
+     Return an alist of properties of translator ME.
+
+ -- Function: ly:translator-group? x
+     Is X a `Translator_group' object?
+
+ -- Function: ly:translator-name trans
+     Return the type name of the translator object TRANS.  The name is
+     a symbol.
+
+ -- Function: ly:transpose-key-alist l pit
+     Make a new key alist of L transposed by pitch PIT.
+
+ -- Function: ly:truncate-list! lst i
+     Take at most the first I of list LST.
+
+ -- Function: ly:ttf->pfa ttf-file-name idx
+     Convert the contents of a TrueType font file to PostScript Type 42
+     font, returning it as a string.  The optional IDX argument is
+     useful for TrueType collections (TTC) only; it specifies the font
+     index within the TTC.  The default value of IDX is 0.
+
+ -- Function: ly:ttf-ps-name ttf-file-name idx
+     Extract the PostScript name from a TrueType font.  The optional
+     IDX argument is useful for TrueType collections (TTC) only; it
+     specifies the font index within the TTC.  The default value of IDX
+     is 0.
+
+ -- Function: ly:undead? x
+     Is X a `Undead' object?
+
+ -- Function: ly:unit
+     Return the unit used for lengths as a string.
+
+ -- Function: ly:unpure-call data grob rest
+     Convert property DATA (unpure-pure container or procedure) to
+     value in an unpure context defined by GROB and possibly REST
+     arguments.
+
+ -- Function: ly:unpure-pure-container? x
+     Is X a `Unpure_pure_container' object?
+
+ -- Function: ly:unpure-pure-container-pure-part pc
+     Return the pure part of PC.
+
+ -- Function: ly:unpure-pure-container-unpure-part pc
+     Return the unpure part of PC.
+
+ -- Function: ly:usage
+     Print usage message.
+
+ -- Function: ly:verbose-output?
+     Was verbose output requested, i.e. loglevel at least `DEBUG'?
+
+ -- Function: ly:version
+     Return the current lilypond version as a list, e.g., `(1 3 127
+     uu1)'.
+
+ -- Function: ly:warning str rest
+     A Scheme callable function to issue the warning STR.  The message
+     is formatted with `format' and REST.
+
+ -- Function: ly:warning-located location str rest
+     A Scheme callable function to issue the warning STR at the
+     specified location in an input file.  The message is formatted
+     with `format' and REST.
+
+ -- Function: ly:wide-char->utf-8 wc
+     Encode the Unicode codepoint WC, an integer, as UTF-8.
+
+
+File: lilypond-internals.info,  Node: Indices,  Prev: Scheme functions,  Up: Top
+
+Appendix A Indices
+******************
+
+A.1 Concept index
+=================
+
+ [index ]
+* Menu:
+A.2 Function index
+==================
+
+ [index ]
+* Menu:
+
+* ly:add-context-mod:                    Scheme functions.   (line    7)
+* ly:add-file-name-alist:                Scheme functions.   (line   11)
+* ly:add-interface:                      Scheme functions.   (line   14)
+* ly:add-listener:                       Scheme functions.   (line   19)
+* ly:add-option:                         Scheme functions.   (line   24)
+* ly:all-grob-interfaces:                Scheme functions.   (line   28)
+* ly:all-options:                        Scheme functions.   (line   31)
+* ly:all-stencil-expressions:            Scheme functions.   (line   34)
+* ly:assoc-get:                          Scheme functions.   (line   37)
+* ly:axis-group-interface::add-element:  Scheme functions.   (line   42)
+* ly:basic-progress:                     Scheme functions.   (line   45)
+* ly:beam-score-count:                   Scheme functions.   (line   49)
+* ly:bigpdfs:                            Scheme functions.   (line   52)
+* ly:book-add-bookpart!:                 Scheme functions.   (line   58)
+* ly:book-add-score!:                    Scheme functions.   (line   61)
+* ly:book-book-parts:                    Scheme functions.   (line   64)
+* ly:book-header:                        Scheme functions.   (line   67)
+* ly:book-paper:                         Scheme functions.   (line   70)
+* ly:book-process:                       Scheme functions.   (line   74)
+* ly:book-process-to-systems:            Scheme functions.   (line   80)
+* ly:book-scores:                        Scheme functions.   (line   85)
+* ly:book-set-header!:                   Scheme functions.   (line   88)
+* ly:book?:                              Scheme functions.   (line   55)
+* ly:box?:                               Scheme functions.   (line   91)
+* ly:bp:                                 Scheme functions.   (line   94)
+* ly:bracket:                            Scheme functions.   (line   97)
+* ly:broadcast:                          Scheme functions.   (line  102)
+* ly:camel-case->lisp-identifier:        Scheme functions.   (line  105)
+* ly:chain-assoc-get:                    Scheme functions.   (line  109)
+* ly:check-expected-warnings:            Scheme functions.   (line  115)
+* ly:cm:                                 Scheme functions.   (line  118)
+* ly:command-line-code:                  Scheme functions.   (line  121)
+* ly:command-line-options:               Scheme functions.   (line  124)
+* ly:connect-dispatchers:                Scheme functions.   (line  127)
+* ly:context-current-moment:             Scheme functions.   (line  133)
+* ly:context-def-lookup:                 Scheme functions.   (line  139)
+* ly:context-def-modify:                 Scheme functions.   (line  146)
+* ly:context-def?:                       Scheme functions.   (line  136)
+* ly:context-event-source:               Scheme functions.   (line  150)
+* ly:context-events-below:               Scheme functions.   (line  153)
+* ly:context-find:                       Scheme functions.   (line  157)
+* ly:context-grob-definition:            Scheme functions.   (line  161)
+* ly:context-id:                         Scheme functions.   (line  165)
+* ly:context-matched-pop-property:       Scheme functions.   (line  169)
+* ly:context-mod-apply!:                 Scheme functions.   (line  176)
+* ly:context-mod?:                       Scheme functions.   (line  173)
+* ly:context-name:                       Scheme functions.   (line  179)
+* ly:context-now:                        Scheme functions.   (line  183)
+* ly:context-parent:                     Scheme functions.   (line  186)
+* ly:context-property:                   Scheme functions.   (line  189)
+* ly:context-property-where-defined:     Scheme functions.   (line  193)
+* ly:context-pushpop-property:           Scheme functions.   (line  196)
+* ly:context-set-property!:              Scheme functions.   (line  201)
+* ly:context-unset-property:             Scheme functions.   (line  204)
+* ly:context?:                           Scheme functions.   (line  130)
+* ly:debug:                              Scheme functions.   (line  207)
+* ly:default-scale:                      Scheme functions.   (line  211)
+* ly:dimension?:                         Scheme functions.   (line  214)
+* ly:dir?:                               Scheme functions.   (line  218)
+* ly:disconnect-dispatchers:             Scheme functions.   (line  223)
+* ly:dispatcher?:                        Scheme functions.   (line  226)
+* ly:duration->string:                   Scheme functions.   (line  235)
+* ly:duration-dot-count:                 Scheme functions.   (line  238)
+* ly:duration-factor:                    Scheme functions.   (line  241)
+* ly:duration-length:                    Scheme functions.   (line  244)
+* ly:duration-log:                       Scheme functions.   (line  247)
+* ly:duration-scale:                     Scheme functions.   (line  250)
+* ly:duration<?:                         Scheme functions.   (line  232)
+* ly:duration?:                          Scheme functions.   (line  229)
+* ly:effective-prefix:                   Scheme functions.   (line  253)
+* ly:encode-string-for-pdf:              Scheme functions.   (line  256)
+* ly:engraver-announce-end-grob:         Scheme functions.   (line  261)
+* ly:engraver-make-grob:                 Scheme functions.   (line  266)
+* ly:error:                              Scheme functions.   (line  271)
+* ly:event-deep-copy:                    Scheme functions.   (line  278)
+* ly:event-property:                     Scheme functions.   (line  281)
+* ly:event-set-property!:                Scheme functions.   (line  285)
+* ly:event?:                             Scheme functions.   (line  275)
+* ly:expand-environment:                 Scheme functions.   (line  288)
+* ly:expect-warning:                     Scheme functions.   (line  291)
+* ly:find-file:                          Scheme functions.   (line  298)
+* ly:font-config-add-directory:          Scheme functions.   (line  301)
+* ly:font-config-add-font:               Scheme functions.   (line  304)
+* ly:font-config-display-fonts:          Scheme functions.   (line  307)
+* ly:font-config-get-font-file:          Scheme functions.   (line  310)
+* ly:font-design-size:                   Scheme functions.   (line  313)
+* ly:font-file-name:                     Scheme functions.   (line  317)
+* ly:font-get-glyph:                     Scheme functions.   (line  320)
+* ly:font-glyph-name-to-charcode:        Scheme functions.   (line  329)
+* ly:font-glyph-name-to-index:           Scheme functions.   (line  337)
+* ly:font-index-to-charcode:             Scheme functions.   (line  345)
+* ly:font-magnification:                 Scheme functions.   (line  353)
+* ly:font-metric?:                       Scheme functions.   (line  357)
+* ly:font-name:                          Scheme functions.   (line  360)
+* ly:font-sub-fonts:                     Scheme functions.   (line  363)
+* ly:format:                             Scheme functions.   (line  367)
+* ly:format-output:                      Scheme functions.   (line  371)
+* ly:generic-bound-extent:               Scheme functions.   (line  375)
+* ly:get-all-function-documentation:     Scheme functions.   (line  381)
+* ly:get-all-translators:                Scheme functions.   (line  384)
+* ly:get-context-mods:                   Scheme functions.   (line  387)
+* ly:get-option:                         Scheme functions.   (line  390)
+* ly:get-spacing-spec:                   Scheme functions.   (line  393)
+* ly:get-undead:                         Scheme functions.   (line  397)
+* ly:gettext:                            Scheme functions.   (line  400)
+* ly:grob-alist-chain:                   Scheme functions.   (line  406)
+* ly:grob-array->list:                   Scheme functions.   (line  414)
+* ly:grob-array-length:                  Scheme functions.   (line  417)
+* ly:grob-array-ref:                     Scheme functions.   (line  420)
+* ly:grob-array?:                        Scheme functions.   (line  411)
+* ly:grob-basic-properties:              Scheme functions.   (line  423)
+* ly:grob-chain-callback:                Scheme functions.   (line  426)
+* ly:grob-common-refpoint:               Scheme functions.   (line  431)
+* ly:grob-common-refpoint-of-array:      Scheme functions.   (line  434)
+* ly:grob-default-font:                  Scheme functions.   (line  438)
+* ly:grob-extent:                        Scheme functions.   (line  441)
+* ly:grob-get-vertical-axis-group-index: Scheme functions.   (line  444)
+* ly:grob-interfaces:                    Scheme functions.   (line  448)
+* ly:grob-layout:                        Scheme functions.   (line  451)
+* ly:grob-object:                        Scheme functions.   (line  454)
+* ly:grob-original:                      Scheme functions.   (line  458)
+* ly:grob-parent:                        Scheme functions.   (line  461)
+* ly:grob-pq<?:                          Scheme functions.   (line  465)
+* ly:grob-properties:                    Scheme functions.   (line  469)
+* ly:grob-properties?:                   Scheme functions.   (line  472)
+* ly:grob-property:                      Scheme functions.   (line  475)
+* ly:grob-property-data:                 Scheme functions.   (line  479)
+* ly:grob-pure-height:                   Scheme functions.   (line  483)
+* ly:grob-pure-property:                 Scheme functions.   (line  487)
+* ly:grob-relative-coordinate:           Scheme functions.   (line  491)
+* ly:grob-robust-relative-extent:        Scheme functions.   (line  495)
+* ly:grob-script-priority-less:          Scheme functions.   (line  499)
+* ly:grob-set-nested-property!:          Scheme functions.   (line  502)
+* ly:grob-set-object!:                   Scheme functions.   (line  505)
+* ly:grob-set-parent!:                   Scheme functions.   (line  508)
+* ly:grob-set-property!:                 Scheme functions.   (line  511)
+* ly:grob-staff-position:                Scheme functions.   (line  514)
+* ly:grob-suicide!:                      Scheme functions.   (line  517)
+* ly:grob-system:                        Scheme functions.   (line  520)
+* ly:grob-translate-axis!:               Scheme functions.   (line  523)
+* ly:grob-vertical<?:                    Scheme functions.   (line  526)
+* ly:grob?:                              Scheme functions.   (line  403)
+* ly:gulp-file:                          Scheme functions.   (line  529)
+* ly:hash-table-keys:                    Scheme functions.   (line  534)
+* ly:inch:                               Scheme functions.   (line  537)
+* ly:input-both-locations:               Scheme functions.   (line  540)
+* ly:input-file-line-char-column:        Scheme functions.   (line  544)
+* ly:input-location?:                    Scheme functions.   (line  547)
+* ly:input-message:                      Scheme functions.   (line  550)
+* ly:input-warning:                      Scheme functions.   (line  555)
+* ly:interpret-music-expression:         Scheme functions.   (line  560)
+* ly:interpret-stencil-expression:       Scheme functions.   (line  564)
+* ly:intlog2:                            Scheme functions.   (line  568)
+* ly:item-break-dir:                     Scheme functions.   (line  574)
+* ly:item-get-column:                    Scheme functions.   (line  578)
+* ly:item?:                              Scheme functions.   (line  571)
+* ly:iterator?:                          Scheme functions.   (line  582)
+* ly:lexer-keywords:                     Scheme functions.   (line  585)
+* ly:lily-lexer?:                        Scheme functions.   (line  589)
+* ly:lily-parser?:                       Scheme functions.   (line  592)
+* ly:line-interface::line:               Scheme functions.   (line  595)
+* ly:listened-event-class?:              Scheme functions.   (line  598)
+* ly:listened-event-types:               Scheme functions.   (line  601)
+* ly:listener?:                          Scheme functions.   (line  604)
+* ly:make-book:                          Scheme functions.   (line  607)
+* ly:make-book-part:                     Scheme functions.   (line  611)
+* ly:make-context-mod:                   Scheme functions.   (line  614)
+* ly:make-dispatcher:                    Scheme functions.   (line  618)
+* ly:make-duration:                      Scheme functions.   (line  621)
+* ly:make-global-context:                Scheme functions.   (line  634)
+* ly:make-global-translator:             Scheme functions.   (line  638)
+* ly:make-grob-properties:               Scheme functions.   (line  642)
+* ly:make-moment:                        Scheme functions.   (line  646)
+* ly:make-music:                         Scheme functions.   (line  660)
+* ly:make-music-function:                Scheme functions.   (line  667)
+* ly:make-music-relative!:               Scheme functions.   (line  673)
+* ly:make-output-def:                    Scheme functions.   (line  676)
+* ly:make-page-label-marker:             Scheme functions.   (line  679)
+* ly:make-page-permission-marker:        Scheme functions.   (line  682)
+* ly:make-pango-description-string:      Scheme functions.   (line  685)
+* ly:make-paper-outputter:               Scheme functions.   (line  689)
+* ly:make-pitch:                         Scheme functions.   (line  693)
+* ly:make-prob:                          Scheme functions.   (line  700)
+* ly:make-scale:                         Scheme functions.   (line  703)
+* ly:make-score:                         Scheme functions.   (line  708)
+* ly:make-spring:                        Scheme functions.   (line  711)
+* ly:make-stencil:                       Scheme functions.   (line  715)
+* ly:make-stream-event:                  Scheme functions.   (line  728)
+* ly:make-undead:                        Scheme functions.   (line  732)
+* ly:make-unpure-pure-container:         Scheme functions.   (line  736)
+* ly:message:                            Scheme functions.   (line  743)
+* ly:minimal-breaking:                   Scheme functions.   (line  747)
+* ly:mm:                                 Scheme functions.   (line  752)
+* ly:module->alist:                      Scheme functions.   (line  755)
+* ly:module-copy:                        Scheme functions.   (line  758)
+* ly:modules-lookup:                     Scheme functions.   (line  761)
+* ly:moment-add:                         Scheme functions.   (line  771)
+* ly:moment-div:                         Scheme functions.   (line  774)
+* ly:moment-grace:                       Scheme functions.   (line  777)
+* ly:moment-grace-denominator:           Scheme functions.   (line  780)
+* ly:moment-grace-numerator:             Scheme functions.   (line  783)
+* ly:moment-main:                        Scheme functions.   (line  786)
+* ly:moment-main-denominator:            Scheme functions.   (line  789)
+* ly:moment-main-numerator:              Scheme functions.   (line  792)
+* ly:moment-mod:                         Scheme functions.   (line  795)
+* ly:moment-mul:                         Scheme functions.   (line  798)
+* ly:moment-sub:                         Scheme functions.   (line  801)
+* ly:moment<?:                           Scheme functions.   (line  768)
+* ly:moment?:                            Scheme functions.   (line  765)
+* ly:music-compress:                     Scheme functions.   (line  807)
+* ly:music-deep-copy:                    Scheme functions.   (line  810)
+* ly:music-duration-compress:            Scheme functions.   (line  816)
+* ly:music-duration-length:              Scheme functions.   (line  819)
+* ly:music-function-extract:             Scheme functions.   (line  825)
+* ly:music-function-signature:           Scheme functions.   (line  828)
+* ly:music-function?:                    Scheme functions.   (line  822)
+* ly:music-length:                       Scheme functions.   (line  831)
+* ly:music-list?:                        Scheme functions.   (line  835)
+* ly:music-mutable-properties:           Scheme functions.   (line  838)
+* ly:music-output?:                      Scheme functions.   (line  843)
+* ly:music-property:                     Scheme functions.   (line  846)
+* ly:music-set-property!:                Scheme functions.   (line  850)
+* ly:music-transpose:                    Scheme functions.   (line  853)
+* ly:music?:                             Scheme functions.   (line  804)
+* ly:note-column-accidentals:            Scheme functions.   (line  856)
+* ly:note-column-dot-column:             Scheme functions.   (line  860)
+* ly:note-head::stem-attachment:         Scheme functions.   (line  864)
+* ly:number->string:                     Scheme functions.   (line  868)
+* ly:one-line-breaking:                  Scheme functions.   (line  871)
+* ly:optimal-breaking:                   Scheme functions.   (line  876)
+* ly:option-usage:                       Scheme functions.   (line  880)
+* ly:otf->cff:                           Scheme functions.   (line  884)
+* ly:otf-font-glyph-info:                Scheme functions.   (line  891)
+* ly:otf-font-table-data:                Scheme functions.   (line  895)
+* ly:otf-font?:                          Scheme functions.   (line  888)
+* ly:otf-glyph-count:                    Scheme functions.   (line  899)
+* ly:otf-glyph-list:                     Scheme functions.   (line  902)
+* ly:output-def-clone:                   Scheme functions.   (line  908)
+* ly:output-def-lookup:                  Scheme functions.   (line  911)
+* ly:output-def-parent:                  Scheme functions.   (line  915)
+* ly:output-def-scope:                   Scheme functions.   (line  918)
+* ly:output-def-set-variable!:           Scheme functions.   (line  921)
+* ly:output-def?:                        Scheme functions.   (line  905)
+* ly:output-description:                 Scheme functions.   (line  924)
+* ly:output-find-context-def:            Scheme functions.   (line  927)
+* ly:output-formats:                     Scheme functions.   (line  931)
+* ly:outputter-close:                    Scheme functions.   (line  935)
+* ly:outputter-dump-stencil:             Scheme functions.   (line  938)
+* ly:outputter-dump-string:              Scheme functions.   (line  941)
+* ly:outputter-module:                   Scheme functions.   (line  944)
+* ly:outputter-output-scheme:            Scheme functions.   (line  947)
+* ly:outputter-port:                     Scheme functions.   (line  950)
+* ly:page-marker?:                       Scheme functions.   (line  953)
+* ly:page-turn-breaking:                 Scheme functions.   (line  956)
+* ly:pango-font-physical-fonts:          Scheme functions.   (line  964)
+* ly:pango-font?:                        Scheme functions.   (line  961)
+* ly:paper-book-header:                  Scheme functions.   (line  971)
+* ly:paper-book-pages:                   Scheme functions.   (line  974)
+* ly:paper-book-paper:                   Scheme functions.   (line  977)
+* ly:paper-book-performances:            Scheme functions.   (line  981)
+* ly:paper-book-scopes:                  Scheme functions.   (line  984)
+* ly:paper-book-systems:                 Scheme functions.   (line  987)
+* ly:paper-book?:                        Scheme functions.   (line  968)
+* ly:paper-column::print:                Scheme functions.   (line  990)
+* ly:paper-fonts:                        Scheme functions.   (line  996)
+* ly:paper-get-font:                     Scheme functions.   (line 1000)
+* ly:paper-get-number:                   Scheme functions.   (line 1005)
+* ly:paper-outputscale:                  Scheme functions.   (line 1009)
+* ly:paper-score-paper-systems:          Scheme functions.   (line 1012)
+* ly:paper-system-minimum-distance:      Scheme functions.   (line 1018)
+* ly:paper-system?:                      Scheme functions.   (line 1015)
+* ly:parse-file:                         Scheme functions.   (line 1023)
+* ly:parse-string-expression:            Scheme functions.   (line 1028)
+* ly:parsed-undead-list!:                Scheme functions.   (line 1032)
+* ly:parser-clear-error:                 Scheme functions.   (line 1036)
+* ly:parser-clone:                       Scheme functions.   (line 1039)
+* ly:parser-define!:                     Scheme functions.   (line 1046)
+* ly:parser-error:                       Scheme functions.   (line 1049)
+* ly:parser-has-error?:                  Scheme functions.   (line 1053)
+* ly:parser-include-string:              Scheme functions.   (line 1056)
+* ly:parser-lexer:                       Scheme functions.   (line 1061)
+* ly:parser-lookup:                      Scheme functions.   (line 1064)
+* ly:parser-output-name:                 Scheme functions.   (line 1068)
+* ly:parser-parse-string:                Scheme functions.   (line 1072)
+* ly:parser-set-note-names:              Scheme functions.   (line 1076)
+* ly:performance-header:                 Scheme functions.   (line 1080)
+* ly:performance-set-header!:            Scheme functions.   (line 1083)
+* ly:performance-write:                  Scheme functions.   (line 1086)
+* ly:pfb->pfa:                           Scheme functions.   (line 1090)
+* ly:pitch-alteration:                   Scheme functions.   (line 1099)
+* ly:pitch-diff:                         Scheme functions.   (line 1102)
+* ly:pitch-negate:                       Scheme functions.   (line 1105)
+* ly:pitch-notename:                     Scheme functions.   (line 1108)
+* ly:pitch-octave:                       Scheme functions.   (line 1111)
+* ly:pitch-quartertones:                 Scheme functions.   (line 1114)
+* ly:pitch-semitones:                    Scheme functions.   (line 1117)
+* ly:pitch-steps:                        Scheme functions.   (line 1120)
+* ly:pitch-tones:                        Scheme functions.   (line 1123)
+* ly:pitch-transpose:                    Scheme functions.   (line 1127)
+* ly:pitch<?:                            Scheme functions.   (line 1096)
+* ly:pitch?:                             Scheme functions.   (line 1093)
+* ly:pointer-group-interface::add-grob:  Scheme functions.   (line 1131)
+* ly:position-on-line?:                  Scheme functions.   (line 1134)
+* ly:prob-immutable-properties:          Scheme functions.   (line 1141)
+* ly:prob-mutable-properties:            Scheme functions.   (line 1144)
+* ly:prob-property:                      Scheme functions.   (line 1147)
+* ly:prob-property?:                     Scheme functions.   (line 1151)
+* ly:prob-set-property!:                 Scheme functions.   (line 1154)
+* ly:prob-type?:                         Scheme functions.   (line 1157)
+* ly:prob?:                              Scheme functions.   (line 1138)
+* ly:programming-error:                  Scheme functions.   (line 1160)
+* ly:progress:                           Scheme functions.   (line 1164)
+* ly:property-lookup-stats:              Scheme functions.   (line 1168)
+* ly:protects:                           Scheme functions.   (line 1172)
+* ly:pt:                                 Scheme functions.   (line 1175)
+* ly:pure-call:                          Scheme functions.   (line 1178)
+* ly:register-stencil-expression:        Scheme functions.   (line 1183)
+* ly:relative-group-extent:              Scheme functions.   (line 1186)
+* ly:reset-all-fonts:                    Scheme functions.   (line 1190)
+* ly:round-filled-box:                   Scheme functions.   (line 1193)
+* ly:round-filled-polygon:               Scheme functions.   (line 1197)
+* ly:run-translator:                     Scheme functions.   (line 1204)
+* ly:score-add-output-def!:              Scheme functions.   (line 1215)
+* ly:score-embedded-format:              Scheme functions.   (line 1218)
+* ly:score-error?:                       Scheme functions.   (line 1222)
+* ly:score-header:                       Scheme functions.   (line 1225)
+* ly:score-music:                        Scheme functions.   (line 1228)
+* ly:score-output-defs:                  Scheme functions.   (line 1231)
+* ly:score-set-header!:                  Scheme functions.   (line 1234)
+* ly:score?:                             Scheme functions.   (line 1212)
+* ly:separation-item::print:             Scheme functions.   (line 1237)
+* ly:set-default-scale:                  Scheme functions.   (line 1244)
+* ly:set-grob-modification-callback:     Scheme functions.   (line 1251)
+* ly:set-middle-C!:                      Scheme functions.   (line 1260)
+* ly:set-option:                         Scheme functions.   (line 1264)
+* ly:set-origin!:                        Scheme functions.   (line 1267)
+* ly:set-property-cache-callback:        Scheme functions.   (line 1277)
+* ly:skyline-empty?:                     Scheme functions.   (line 1287)
+* ly:skyline-pair?:                      Scheme functions.   (line 1290)
+* ly:skyline?:                           Scheme functions.   (line 1284)
+* ly:slur-score-count:                   Scheme functions.   (line 1293)
+* ly:smob-protects:                      Scheme functions.   (line 1296)
+* ly:solve-spring-rod-problem:           Scheme functions.   (line 1299)
+* ly:source-file?:                       Scheme functions.   (line 1312)
+* ly:spanner-bound:                      Scheme functions.   (line 1318)
+* ly:spanner-broken-into:                Scheme functions.   (line 1322)
+* ly:spanner-set-bound!:                 Scheme functions.   (line 1325)
+* ly:spanner?:                           Scheme functions.   (line 1315)
+* ly:spawn:                              Scheme functions.   (line 1328)
+* ly:spring-set-inverse-compress-strength!: Scheme functions.
+                                                             (line 1335)
+* ly:spring-set-inverse-stretch-strength!: Scheme functions. (line 1338)
+* ly:spring?:                            Scheme functions.   (line 1332)
+* ly:staff-symbol-line-thickness:        Scheme functions.   (line 1341)
+* ly:staff-symbol-staff-radius:          Scheme functions.   (line 1346)
+* ly:staff-symbol-staff-space:           Scheme functions.   (line 1349)
+* ly:start-environment:                  Scheme functions.   (line 1354)
+* ly:stderr-redirect:                    Scheme functions.   (line 1358)
+* ly:stencil-add:                        Scheme functions.   (line 1364)
+* ly:stencil-aligned-to:                 Scheme functions.   (line 1367)
+* ly:stencil-combine-at-edge:            Scheme functions.   (line 1373)
+* ly:stencil-empty?:                     Scheme functions.   (line 1379)
+* ly:stencil-expr:                       Scheme functions.   (line 1383)
+* ly:stencil-extent:                     Scheme functions.   (line 1386)
+* ly:stencil-fonts:                      Scheme functions.   (line 1390)
+* ly:stencil-in-color:                   Scheme functions.   (line 1393)
+* ly:stencil-rotate:                     Scheme functions.   (line 1396)
+* ly:stencil-rotate-absolute:            Scheme functions.   (line 1401)
+* ly:stencil-scale:                      Scheme functions.   (line 1405)
+* ly:stencil-stack:                      Scheme functions.   (line 1412)
+* ly:stencil-translate:                  Scheme functions.   (line 1425)
+* ly:stencil-translate-axis:             Scheme functions.   (line 1428)
+* ly:stencil?:                           Scheme functions.   (line 1361)
+* ly:stream-event?:                      Scheme functions.   (line 1431)
+* ly:string-percent-encode:              Scheme functions.   (line 1434)
+* ly:string-substitute:                  Scheme functions.   (line 1440)
+* ly:system-font-load:                   Scheme functions.   (line 1443)
+* ly:text-interface::interpret-markup:   Scheme functions.   (line 1454)
+* ly:translate-cpp-warning-scheme:       Scheme functions.   (line 1464)
+* ly:translator-context:                 Scheme functions.   (line 1471)
+* ly:translator-description:             Scheme functions.   (line 1474)
+* ly:translator-group?:                  Scheme functions.   (line 1477)
+* ly:translator-name:                    Scheme functions.   (line 1480)
+* ly:translator?:                        Scheme functions.   (line 1468)
+* ly:transpose-key-alist:                Scheme functions.   (line 1484)
+* ly:truncate-list!:                     Scheme functions.   (line 1487)
+* ly:ttf->pfa:                           Scheme functions.   (line 1490)
+* ly:ttf-ps-name:                        Scheme functions.   (line 1496)
+* ly:undead?:                            Scheme functions.   (line 1502)
+* ly:unit:                               Scheme functions.   (line 1505)
+* ly:unpure-call:                        Scheme functions.   (line 1508)
+* ly:unpure-pure-container-pure-part:    Scheme functions.   (line 1516)
+* ly:unpure-pure-container-unpure-part:  Scheme functions.   (line 1519)
+* ly:unpure-pure-container?:             Scheme functions.   (line 1513)
+* ly:usage:                              Scheme functions.   (line 1522)
+* ly:verbose-output?:                    Scheme functions.   (line 1525)
+* ly:version:                            Scheme functions.   (line 1528)
+* ly:warning:                            Scheme functions.   (line 1532)
+* ly:warning-located:                    Scheme functions.   (line 1536)
+* ly:wide-char->utf-8:                   Scheme functions.   (line 1541)
+
+
+
+
+Local Variables:
+coding: utf-8
+End:

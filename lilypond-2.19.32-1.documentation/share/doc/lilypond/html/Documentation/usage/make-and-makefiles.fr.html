@@ -1,0 +1,551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Utilisation des programmes: 5.5 De la commande make et des fichiers Makefile</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Utilisation des programmes: 5.5 De la commande make et des fichiers Makefile">
+<meta name="keywords" content="GNU LilyPond &ndash; Utilisation des programmes: 5.5 De la commande make et des fichiers Makefile">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Utilisation des programmes">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="B. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="suggestions-for-writing-files.fr.html#suggestions-for-writing-files" rel="up" title="5. Suggestions pour la saisie de fichiers LilyPond">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="B. Index de LilyPond">
+<link href="troubleshooting.fr.html#troubleshooting" rel="previous" title="5.4 Résolution de problèmes">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="usage devStatus">
+
+
+<div id="main">
+<a name="De-la-commande-make-et-des-fichiers-Makefile"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="suggestions-for-writing-files.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Suggestions pour la saisie de fichiers LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="gnu-free-documentation-license.fr.html" title="Chapitre suivant">&nbsp;GNU Free Documentation License &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="troubleshooting.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Résolution de problèmes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="suggestions-for-writing-files.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Suggestions pour la saisie de fichiers LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="gnu-free-documentation-license.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;GNU Free Documentation License &gt; </a>]</td></tr></table>
+<a name="make-and-makefiles"></a>
+<h2 class="section">5.5 De la commande make et des fichiers Makefile</h2>
+
+<a name="index-makefiles"></a>
+<a name="index-make"></a>
+
+<p>La plupart des plates-formes sur lesquelles tourne LilyPond disposent
+d&rsquo;un logiciel appelé <code>make</code>.  Ce logiciel va lire un fichier
+spécial, nommé <code>Makefile</code>, qui contient tout ce qu&rsquo;il
+faut &ndash; les dépendances entre certains fichiers, les instructions
+successives à traiter par le système &ndash; pour aboutir au fichier que
+vous désirez obtenir.  Il pourrait par exemple contenir tout ce qu&rsquo;il
+faut pour produire &lsquo;<tt>ballade.pdf</tt>&rsquo; et &lsquo;<tt>ballade.midi</tt>&rsquo; à partir de
+&lsquo;<tt>ballade.ly</tt>&rsquo; en lançant LilyPond.
+</p>
+<p>La création d&rsquo;un <code>Makefile</code> peut se révéler pertinente pour
+certains projets, que ce soit par simple goût personnel ou bien par
+respect de ceux qui pourront accéder à vos sources.  Cette manière de
+procéder est particulièrement indiquée lorsque vous travaillez sur un
+projet de grande envergure impliquant de nombreuses inclusions de
+fichiers et différentes éditions &ndash; par exemple un conducteur et un
+matériel d&rsquo;orchestre complet avec la partition pour le chef et une
+partition séparée pour chacun des pupitres &ndash; ou bien si votre projet
+requiert certaines commandes particulières comme <code>lilypond-book</code>.
+Les <em>Makefiles</em> varient tant en complexité qu&rsquo;en flexibilité selon
+les besoin et les aptitudes de celui qui les crée.  Le programme GNU
+Make est installé par défaut sur les distributions GNU/Linux et sur
+MacOS X, et il en existe une version pour les environnements Windows.
+</p>
+<p>Consultez le <strong>GNU Make Manual</strong> pour plus de détails sur ce dont
+<code>make</code> est capable &ndash; vous pourrez même en trouver des versions
+françaises à l&rsquo;aide des moteurs de recherche &ndash;, dans la mesure où ce
+qui suit ne donne qu&rsquo;un bref aperçu de ses possibilités.
+</p>
+<p>Les commandes permettant de définir les règles diffèrent selon la
+plate-forme : si les différents GNU/Linux et MacOS X utilisent
+<code>bash</code>, Windows utilise <code>cmd</code>.  Dans le cas de MacOS X,
+vous devrez toutefois configurer votre système de telle sorte qu&rsquo;il
+utilise l&rsquo;interpréteur en ligne de commande.  Voici quelques exemples de
+fichier <em>Makefile</em>, avec une version pour GNU/Linux ou MacOS et une
+pour Windows.
+</p>
+<p>Pour commencer, une pièce à quatre mouvements pour orchestre et dont les
+fichiers sont répartis selon l&rsquo;arborescence suivante :
+</p>
+<blockquote><pre class="example">Symphonie/
+|-- MIDI/
+|-- Makefile
+|-- Notes/
+|   |-- alto.ily
+|   |-- cor.ily
+|   |-- cello.ily
+|   |-- figures.ily
+|   |-- hautbois.ily
+|   |-- trioCordes.ily
+|   |-- violonUn.ily
+|   `-- violonDeux.ily
+|-- Partitions/
+|   |-- symphonie.ly
+|   |-- symphonieI.ly
+|   |-- symphonieII.ly
+|   |-- symphonieIII.ly
+|   `-- symphonieIV.ly
+|-- PDF/
+|-- Pupitres/
+|   |-- symphonie-alto.ly
+|   |-- symphonie-cello.ly
+|   |-- symphonie-cor.ly
+|   |-- symphonie-hautbois.ly
+|   |-- symphonie-violonUn.ly
+|   `-- symphonie-violonDeux.ly
+`-- symphonieDefs.ily
+</pre></blockquote>
+
+<p>Les fichiers &lsquo;<tt>.ly</tt>&rsquo; des répertoires <code>Partitions</code> et
+<code>Pupitres</code> récupéreront la notation des fichiers &lsquo;<tt>.ily</tt>&rsquo;
+contenus dans le répertoire <code>Notes</code> :
+</p>
+<blockquote><pre class="example">%%% début du fichier &quot;symphonie-cello.ly&quot;
+\include ../symphonieDefs.ily
+\include ../Notes/cello.ily
+</pre></blockquote>
+
+<p>Le <em>Makefile</em> répertorie des cibles correspondant à <code>score</code>
+(l&rsquo;intégrale au format conducteur), <code>mouvements</code> (chacun des
+mouvements au format conducteur) et <code>pupitres</code> (une partition par
+pupitre).  Il contient aussi une cible <code>archive</code> chargée de générer
+une archive des fichiers source qui pourra être diffusée sur la toile ou
+transmise par courriel.  Voici ce que contiendrait ce <em>Makefile</em>
+pour GNU/Linux ou MacOS X.  Ce fichier doit être enregistré sous le nom
+de <code>Makefile</code> à la racine du projet &ndash; ici <code>Symphonie</code>.
+</p>
+<div class="warning"><p><strong>Note :</strong> Lorsque vous définissez une cible ou une règle sur plusieurs
+lignes, les lignes à partir de la deuxième <strong>doivent</strong> débuter par
+une tabulation, non pas par des espaces.
+</p>
+</div>
+<blockquote><pre class="example"># Le préfixe au nom des fichiers résultants
+piece = symphonie
+# Détermination du nombre de processeurs
+CPU_CORES=`cat /proc/cpuinfo | grep -m1 &quot;cpu cores&quot; | sed s/&quot;.*: &quot;//`
+# La commande d'appel à lilypond
+LILY_CMD = lilypond -ddelete-intermediate-files \
+                    -dno-point-and-click -djob-count=$(CPU_CORES)
+
+# Les suffixes utilisés dans ce Makefile
+.SUFFIXES: .ly .ily .pdf .midi
+
+# Les fichiers sources et résultants sont recherchés dans les répertoires
+# listés dans la variable VPATH.  Ceux-ci sont tous des sous-répertoires
+# du répertoire courant (fourni par la variable de GNU make `CURDIR').
+VPATH = \
+  $(CURDIR)/Partitions \
+  $(CURDIR)/PDF \
+  $(CURDIR)/Pupitres \
+  $(CURDIR)/Notes
+
+# La règle type pour créer un PDF et un MIDI à partir d'un fichier
+# source LY.
+# Les .pdf résultants iront dans le sous-répertoire &quot;PDF&quot; et les fichiers
+# .midi dans le sous-répertoire &quot;MIDI&quot;.
+%.pdf %.midi: %.ly
+        $(LILY_CMD) $&lt;; \       # cette ligne commence par une tabulation
+        if test -f &quot;$*.pdf&quot;; then \
+            mv &quot;$*.pdf&quot; PDF/; \
+        fi; \
+        if test -f &quot;$*.midi&quot;; then \
+            mv &quot;$*.midi&quot; MIDI/; \
+        fi
+
+notes = \
+  alto.ily \
+  cello.ily \
+  cor.ily \
+  hautbois.ily \
+  violonUn.ily \
+  violonDeux.ily
+
+# Les dépendances selon le mouvement.
+$(piece)I.pdf: $(piece)I.ly $(notes)
+$(piece)II.pdf: $(piece)II.ly $(notes)
+$(piece)III.pdf: $(piece)III.ly $(notes)
+$(piece)IV.pdf: $(piece)IV.ly $(notes)
+
+# Les dépendances pour la partition intégrale.
+$(piece).pdf: $(piece).ly $(notes)
+
+# Les dépendances pour les pupitres.
+$(piece)-alto.pdf: $(piece)-alto.ly alto.ily
+$(piece)-cello.pdf: $(piece)-cello.ly cello.ily
+$(piece)-cor.pdf: $(piece)-cor.ly cor.ily
+$(piece)-hautbois.pdf: $(piece)-hautbois.ly hautbois.ily
+$(piece)-violonUn.pdf: $(piece)-violonUn.ly violonUn.ily
+$(piece)-violonDeux.pdf: $(piece)-violonDeux.ly violonDeux.ily
+
+# Lancer `make score' pour générer l'intégrale des quatre mouvements
+# en un seul fichier.
+.PHONY: score
+score: $(piece).pdf
+
+# Lancer `make parties' pour obtenir tous les pupitres.
+# Lancer `make toto.pdf' pour obtenir la partie instrumentale de toto.
+# Par exemple : `make symphonie-cello.pdf'.
+.PHONY: parties
+parties: $(piece)-cello.pdf \
+         $(piece)-violonUn.pdf \
+         $(piece)-violonDeux.pdf \
+         $(piece)-alto.pdf \
+         $(piece)-hautbois.pdf \
+         $(piece)-cor.pdf
+
+# Lancer `make mouvements' pour générer un fichier séparé pour chacun
+# des mouvements.
+.PHONY: mouvements
+mouvements: $(piece)I.pdf \
+            $(piece)II.pdf \
+            $(piece)III.pdf \
+            $(piece)IV.pdf
+
+all: score parties mouvements
+
+archive:
+        tar -cvvf symphonie.tar \    # cette ligne commence par une tabulation
+        --exclude=*pdf --exclude=*~ \
+        --exclude=*midi --exclude=*.tar \
+        ../Symphonie/*
+</pre></blockquote>
+
+
+<p>Les choses se compliquent sous Windows.  Une fois GNU Make pour Windows
+téléchargé et installé, il vous faudra correctement définir le chemin
+d&rsquo;accès au programme <em>Make</em> &ndash; dans les variables d&rsquo;environnement
+du système &ndash;  afin que l&rsquo;interpréteur de commandes DOS puisse le
+localiser.  Pour cela, faites un clic droite sur « Poste de travail »,
+choisissez <code>Propriétés</code> puis <code>Avancées</code>.  Cliquez sur
+<code>Variables d'environnement</code> puis, dans l&rsquo;onglet
+<code>Variables système</code>, mettez <code>path</code> en surbrillance et
+cliquez sur <code>Modifier</code>.  Ajoutez alors le chemin d&rsquo;accès complet à
+l&rsquo;exécutable de GNU Make, qui devrait ressembler à :
+</p>
+<blockquote><pre class="example">C:\Program Files\GnuWin32\bin
+</pre></blockquote>
+
+<p>Il va également falloir adapter le <em>makefile</em> aux particularités de
+l&rsquo;interpréteur de commandes et à la présence d&rsquo;espaces dans le nom de
+certains répertoire de ce système.
+La cible <code>archive</code> est tout bonnement supprimée, puisque Windows ne
+dispose pas de la commande <code>tar</code>.  Enfin, les fichiers MIDI ont une
+extension par défaut propre à Windows.
+</p>
+
+<blockquote><pre class="example">## VERSION POUR WINDOWS
+##
+piece = symphonie
+LILY_CMD = lilypond -ddelete-intermediate-files \
+                    -dno-point-and-click \
+                    -djob-count=$(NUMBER_OF_PROCESSORS)
+
+#Détermination du nom de CURDIR sous sa forme 8.3
+#(solution pour les espaces dans le PATH)
+workdir = $(shell for /f &quot;tokens=*&quot; %%b in (&quot;$(CURDIR)&quot;) \
+          do @echo %%~sb)
+
+.SUFFIXES: .ly .ily .pdf .mid
+
+VPATH = \
+  $(workdir)/Partitions \
+  $(workdir)/PDF \
+  $(workdir)/Pupitress \
+  $(workdir)/Notes
+
+%.pdf %.mid: %.ly
+        $(LILY_CMD) $&lt;      # cette ligne commence par une tabulation
+        if exist &quot;$*.pdf&quot;  move /Y &quot;$*.pdf&quot;  PDF/ # tabulation au début
+        if exist &quot;$*.mid&quot; move /Y &quot;$*.mid&quot; MIDI/  # tabulation au début
+
+notes = \
+  cello.ily \
+  figures.ily \
+  cor.ily \
+  hautbois.ily \
+  trioCordes.ily \
+  alto.ily \
+  violonUn.ily \
+  violonDeux.ily
+
+$(piece)I.pdf: $(piece)I.ly $(notes)
+$(piece)II.pdf: $(piece)II.ly $(notes)
+$(piece)III.pdf: $(piece)III.ly $(notes)
+$(piece)IV.pdf: $(piece)IV.ly $(notes)
+
+$(piece).pdf: $(piece).ly $(notes)
+
+$(piece)-cello.pdf: $(piece)-cello.ly cello.ily
+$(piece)-cor.pdf: $(piece)-cor.ly cor.ily
+$(piece)-hautbois.pdf: $(piece)-hautbois.ly hautbois.ily
+$(piece)-alto.pdf: $(piece)-alto.ly alto.ily
+$(piece)-violonUn.pdf: $(piece)-violonUn.ly violonUn.ily
+$(piece)-violonDeux.pdf: $(piece)-violonDeux.ly violonDeux.ily
+
+.PHONY: score
+score: $(piece).pdf
+
+.PHONY: parties
+parties: $(piece)-cello.pdf \
+         $(piece)-violonUn.pdf \
+         $(piece)-violonDeux.pdf \
+         $(piece)-alto.pdf \
+         $(piece)-hautbois.pdf \
+         $(piece)-cor.pdf
+
+.PHONY: mouvements
+mouvements: $(piece)I.pdf \
+           $(piece)II.pdf \
+           $(piece)III.pdf \
+           $(piece)IV.pdf
+
+all: score parties mouvements
+</pre></blockquote>
+
+
+<p>Le <em>Makefile</em> suivant convient pour un document
+<code>lilypond-book</code> réalisé avec LaTeX.  Ce projet contiendra un
+index, ce qui nécessitera de lancer une deuxième fois <code>latex</code>
+pour mettre à jour les liens.  Les fichiers résultants iront dans le
+répertoire <code>out</code> pour ce qui est des pdf et dans le répertoire
+<code>htmlout</code> pour ce qui est du html.
+</p>
+<blockquote><pre class="example">SHELL=/bin/sh
+FILE=monprojet
+OUTDIR=out
+WEBDIR=htmlout
+VIEWER=acroread
+BROWSER=firefox
+LILYBOOK_PDF=lilypond-book --output=$(OUTDIR) --pdf $(FILE).lytex
+LILYBOOK_HTML=lilypond-book --output=$(WEBDIR) $(FILE).lytex
+PDF=cd $(OUTDIR) &amp;&amp; pdflatex $(FILE)
+HTML=cd $(WEBDIR) &amp;&amp; latex2html $(FILE)
+INDEX=cd $(OUTDIR) &amp;&amp; makeindex $(FILE)
+PREVIEW=$(VIEWER) $(OUTDIR)/$(FILE).pdf &amp;
+
+all: pdf web keep
+
+pdf:
+        $(LILYBOOK_PDF)  # tabulation en début de ligne
+        $(PDF)           # tabulation en début de ligne
+        $(INDEX)         # tabulation en début de ligne
+        $(PDF)           # tabulation en début de ligne
+        $(PREVIEW)       # tabulation en début de ligne
+
+web:
+        $(LILYBOOK_HTML) # tabulation en début de ligne
+        $(HTML)          # tabulation en début de ligne
+        cp -R $(WEBDIR)/$(FILE)/ ./  # tabulation en début de ligne
+        $(BROWSER) $(FILE)/$(FILE).html &amp;  # tabulation en début de ligne
+
+keep: pdf
+        cp $(OUTDIR)/$(FILE).pdf $(FILE).pdf  # tabulation en début de ligne
+
+clean:
+        rm -rf $(OUTDIR) # tabulation en début de ligne
+
+web-clean:
+        rm -rf $(WEBDIR) # tabulation en début de ligne
+
+archive:
+        tar -cvvf monprojet.tar \ # tabulation en début de ligne
+        --exclude=out/* \
+        --exclude=htmlout/* \
+        --exclude=monprojet/* \
+        --exclude=*midi \
+        --exclude=*pdf \
+        --exclude=*~ \
+        ../MonProjet/*
+</pre></blockquote>
+
+<p>AVENIR: faire que ça marche sous Windows
+</p>
+<p>Ce <em>makefile</em> n&rsquo;est malheureusement pas opérationnel sous Windows.
+La seule alternative qui s&rsquo;offre aux utilisateurs de Windows consiste à
+créer un fichier de traitement par lot (<code>.bat</code>) qui contienne les
+différentes commandes successives.  Bien que cette manière de procéder
+ne tienne aucun compte des dépendances entre fichiers, elle permet de
+réduire le nombre de processus à lancer dans une seule commande.  Vous
+devrez enregistrer les lignes suivantes dans un fichier
+<code>construire.bat</code> ou <code>construire.cmd</code>.  Ce fichier pourra être
+exécuté soit en ligne de commande, soit par un double clic sur son
+icône.
+</p>
+<blockquote><pre class="example">lilypond-book --output=out --pdf monprojet.lytex
+cd out
+pdflatex monprojet
+makeindex monprojet
+pdflatex monprojet
+cd ..
+copy out\monprojet.pdf MonProjet.pdf
+</pre></blockquote>
+
+<a name="Voir-aussi-2"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel d&rsquo;utilisation :
+<a href="command_002dline-usage.fr.html">Utilisation en ligne de commande</a>,
+<a href="lilypond_002dbook.fr.html">Association musique-texte avec <code>lilypond-book</code></a>
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="suggestions-for-writing-files.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Suggestions pour la saisie de fichiers LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="gnu-free-documentation-license.fr.html" title="Chapitre suivant">&nbsp;GNU Free Documentation License &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="troubleshooting.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Résolution de problèmes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="suggestions-for-writing-files.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Suggestions pour la saisie de fichiers LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="gnu-free-documentation-license.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;GNU Free Documentation License &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="make-and-makefiles.html">English</a>, <a href="make-and-makefiles.ca.html">català</a>, <a href="make-and-makefiles.de.html">deutsch</a>, <a href="make-and-makefiles.es.html">español</a>, <a href="make-and-makefiles.hu.html">magyar</a>, <a href="make-and-makefiles.it.html">italiano</a>, <a href="make-and-makefiles.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Utilisation des programmes  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Execution-de-lilypond" href="running-lilypond.fr.html">1. Exécution de <code>lilypond</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilisation-habituelle-1" href="normal-usage.fr.html">1.1 Utilisation habituelle</a>    </li>
+    <li class=""><a name="toc-Utilisation-en-ligne-de-commande-1" href="command_002dline-usage.fr.html">1.2 Utilisation en ligne de commande</a>    </li>
+    <li class=""><a name="toc-Messages-d_0027erreur-1" href="error-messages.fr.html">1.3 Messages d&rsquo;erreur</a>    </li>
+    <li class=""><a name="toc-Quelques-erreurs-des-plus-courantes-1" href="common-errors.fr.html">1.4 Quelques erreurs des plus courantes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Mise-a-jour-avec-convert_002dly" href="updating-files-with-convert_002dly.fr.html">2. Mise à jour avec <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-est-une-langue-vivante-1" href="why-does-the-syntax-change_003f.fr.html">2.1 LilyPond est une langue vivante</a>    </li>
+    <li class=""><a name="toc-Execution-de-convert_002dly" href="invoking-convert_002dly.fr.html">2.2 Exécution de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Options-en-ligne-de-commande-pour-convert_002dly-1" href="command-line-options-for-convert_002dly.fr.html">2.3 Options en ligne de commande pour <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemes-d_0027execution-de-convert_002dly" href="problems-running-convert_002dly.fr.html">2.4 Problèmes d&rsquo;exécution de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversions-manuelles-1" href="manual-conversions.fr.html">2.5 Conversions manuelles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Association-musique_002dtexte-avec-lilypond_002dbook" href="lilypond_002dbook.fr.html">3. Association musique-texte avec <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Exemple-de-document-musicologique-1" href="an-example-of-a-musicological-document.fr.html">3.1 Exemple de document musicologique</a>    </li>
+    <li class=""><a name="toc-Association-musique_002dtexte-1" href="integrating-music-and-text.fr.html">3.2 Association musique-texte</a>    </li>
+    <li class=""><a name="toc-Options-applicables-aux-fragments-de-musique-1" href="music-fragment-options.fr.html">3.3 Options applicables aux fragments de musique</a>    </li>
+    <li class=""><a name="toc-Utilisation-de-lilypond_002dbook-1" href="invoking-lilypond_002dbook.fr.html">3.4 Utilisation de <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Extensions-de-nom-de-fichier-1" href="filename-extensions.fr.html">3.5 Extensions de nom de fichier</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-lilypond_002dbook" href="lilypond_002dbook-templates.fr.html">3.6 Modèles pour lilypond-book</a>    </li>
+    <li class=""><a name="toc-Gestion-de-la-table-des-matieres" href="sharing-the-table-of-contents.fr.html">3.7 Gestion de la table des matières</a>    </li>
+    <li class=""><a name="toc-Autres-methodes-d_0027association-texte_002dmusique" href="alternate-methods-of-mixing-text-and-music.fr.html">3.8 Autres méthodes d&rsquo;association texte-musique</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Programmes-externes-1" href="external-programs.fr.html">4. Programmes externes</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Pointer_002dcliquer-1" href="point-and-click.fr.html">4.1 Pointer-cliquer</a>    </li>
+    <li class=""><a name="toc-LilyPond-et-les-editeurs-de-texte" href="text-editor-support.fr.html">4.2 LilyPond et les éditeurs de texte</a>    </li>
+    <li class=""><a name="toc-Conversion-a-partir-d_0027autres-formats" href="converting-from-other-formats.fr.html">4.3 Conversion à partir d&rsquo;autres formats</a>    </li>
+    <li class=""><a name="toc-Inclusion-de-partition-LilyPond-dans-d_0027autres-programmes-1" href="lilypond-output-in-other-programs.fr.html">4.4 Inclusion de partition LilyPond dans d&rsquo;autres programmes</a>    </li>
+    <li class=""><a name="toc-Inclusion-du-travail-des-autres-1" href="independent-includes.fr.html">4.5 Inclusion du travail des autres</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Suggestions-pour-la-saisie-de-fichiers-LilyPond-1" href="suggestions-for-writing-files.fr.html">5. Suggestions pour la saisie de fichiers LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Suggestions-generales" href="general-suggestions.fr.html">5.1 Suggestions générales</a>    </li>
+    <li class=""><a name="toc-Gravure-de-musique-existante-1" href="typesetting-existing-music.fr.html">5.2 Gravure de musique existante</a>    </li>
+    <li class=""><a name="toc-Projets-d_0027envergure-1" href="large-projects.fr.html">5.3 Projets d&rsquo;envergure</a>    </li>
+    <li class=""><a name="toc-Resolution-de-problemes" href="troubleshooting.fr.html">5.4 Résolution de problèmes</a>    </li>
+    <li class=" toc_current"><a name="toc-De-la-commande-make-et-des-fichiers-Makefile-1" href="make-and-makefiles.fr.html">5.5 De la commande make et des fichiers Makefile</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">B. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

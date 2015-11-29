@@ -1,0 +1,927 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond: manual de utilización del programa: 1.2 Utilización desde la línea de órdenes</title>
+
+<meta name="description" content="LilyPond: manual de utilización del programa: 1.2 Utilización desde la línea de órdenes">
+<meta name="keywords" content="LilyPond: manual de utilización del programa: 1.2 Utilización desde la línea de órdenes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Utilización">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="B. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="running-lilypond.es.html#running-lilypond" rel="up" title="1. Ejecutar LilyPond">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="B. Índice de LilyPond">
+<link href="normal-usage.es.html#normal-usage" rel="previous" title="1.1 Utilización normal">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="usage devStatus">
+
+
+<div id="main">
+<a name="Utilizaci_00f3n-desde-la-l_00ednea-de-_00f3rdenes"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="normal-usage.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Utilización normal&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#invoking-lilypond" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Invocar a LilyPond &gt; </a>]</td></tr></table>
+<a name="command_002dline-usage"></a>
+<h2 class="section">1.2 Utilización desde la línea de órdenes</h2>
+
+<p>Esta sección contiene información adicional sobre el uso de LilyPond
+en la línea de órdenes.  Esta forma puede ser preferible para pasarle
+al programa algunas opciones adicionales.  Además, existen algunos
+programas complementarios &lsquo;de apoyo&rsquo; (como <code>midi2ly</code>) que sólo
+están disponibles en la línea de órdenes.
+</p>
+<p>Al hablar de la &lsquo;línea de órdenes&rsquo;, nos referimos a la consola del
+sistema operativo.  Los usuarios de Windows posiblemente estén más
+familiarizados con los términos &lsquo;ventana de MS-DOS&rsquo; o &lsquo;línea de
+comandos&rsquo;; Los usuarios de MacOS&nbsp;X puede que estén más
+familiarizados con los términos &lsquo;terminal&rsquo; o &lsquo;consola&rsquo;.  Éstos
+podrían requerir algunas configuraciones adicionales y deberían
+consultar también el apartado <a name="index-MacOS-X"></a>
+<a href="../web/macos-x.es.html">MacOS X</a>.
+</p>
+<p>La descripción del uso de esta parte de los sistemas operativos se
+sale del ámbito de este manual; le rogamos que consulte otros
+documentos sobre este tema si no le resulta familiar la línea de
+órdenes.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#invoking-lilypond" accesskey="1">Invocar <code>lilypond</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#basic-command-line-options-for-lilypond" accesskey="2">Opciones básicas de la línea de órdenes para LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#advanced-command-line-options-for-lilypond" accesskey="3">Opciones avanzadas de línea de órdenes para LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#environment-variables" accesskey="4">Variables de entorno</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#lilypond-in-chroot-jail" accesskey="5">LilyPond en una jaula de chroot</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Invocar-a-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#command_002dline-usage" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#invoking-lilypond" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<a name="invoking-lilypond"></a>
+<h3 class="unnumberedsubsec">Invocar <code>lilypond</code></h3>
+
+<p>El ejecutable <code>lilypond</code> se puede llamar desde la línea de
+órdenes de la siguiente manera:
+</p>
+<blockquote><pre class="example">lilypond [<var>opción</var>]&hellip; <var>archivo</var>&hellip;
+</pre></blockquote>
+
+<p>Cuando se invoca con un nombre de archivo sin extensión, se prueba en
+primer lugar con la extensión &lsquo;<tt>.ly</tt>&rsquo;.  Para leer la entrada desde
+stdin, utilice un guión (<code>-</code>) en sustitución de <var>archivo</var>.
+</p>
+<p>Cuando se procesa &lsquo;<tt>archivo.ly</tt>&rsquo;, la salida resultante son los
+archivos &lsquo;<tt>archivo.ps</tt>&rsquo; y &lsquo;<tt>archivo.pdf</tt>&rsquo;.  Se pueden
+especificar varios archivos; cada uno de ellos se procesará de forma
+independiente<sup><a name="DOCF1" href="#FOOT1">1</a></sup>.
+</p>
+<p>Si &lsquo;<tt>archivo.ly</tt>&rsquo; contiene más de un bloque <code>\score</code>, el resto
+de las partituras se obtendrán como salida en archivos numerados,
+empezando por &lsquo;<tt>archivo-1.pdf</tt>&rsquo;.  además, el valor de
+<code>output-suffix</code> (sufijo de salida) se insertará entre el nombre
+base y el número.  Un archivo de entrada que contenga
+</p>
+<blockquote><pre class="example">#(define output-suffix &quot;violin&quot;)
+\score { &hellip; }
+#(define output-suffix &quot;cello&quot;)
+\score { &hellip; }
+</pre></blockquote>
+
+<p>producirá como salida <var>base</var>&lsquo;<tt>-violin.pdf</tt>&rsquo; y
+<var>base</var>&lsquo;<tt>-cello-1.pdf</tt>&rsquo;.
+</p>
+
+<hr size="6">
+<a name="invoking-lilypond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#invoking-lilypond" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Invocar a LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#invoking-lilypond" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Invocar a LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#basic-command-line-options-for-lilypond" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Opciones básicas de la línea de órdenes para LilyPond &gt; </a>]</td></tr></table>
+<h4 class="unnumberedsubsubsec">Instrucciones estándar de la línea de órdenes</h4>
+
+<p>Si su terminal (o ventana de órdenes) contempla las redirecciones
+normales, quizá le sean de utilidad las siguientes instrucciones para
+redirigir la salida de la consola a un archivo:
+</p>
+<ul>
+<li>
+<code>lilypond archivo.ly 1&gt;salidaestandar.log</code> para redirigir la salida normal
+
+</li><li>
+<code>lilypond archivo.ly 2&gt;salidadeerror.log</code> para redirigir los mensajes de error
+
+</li><li>
+<code>lilypond archivo.ly &amp;&gt;todo.log</code> para redirigir toda la salida
+
+</li></ul>
+
+<p>Consulte la documentación de su shell para ver si contempla estas
+opciones, o si la sintaxis es distinta.  Observe que son instrucciones
+del shell y que no tienen nada que ver con lilypond.
+</p>
+
+<hr size="6">
+<a name="Opciones-b_00e1sicas-de-la-l_00ednea-de-_00f3rdenes-para-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#invoking-lilypond" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#advanced-command-line-options-for-lilypond" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Opciones avanzadas de línea de órdenes para LilyPond &gt; </a>]</td></tr></table>
+<a name="basic-command-line-options-for-lilypond"></a>
+<h3 class="unnumberedsubsec">Opciones básicas de la línea de órdenes para LilyPond</h3>
+
+<a name="index-invocacion-de-lilypond"></a>
+<a name="index-opciones-de-la-linea-de-ordenes-para-lilypond"></a>
+<a name="index-linea-de-ordenes_002c-opciones-de"></a>
+<a name="index-modificadores"></a>
+
+<p>Están contempladas las siguientes opciones:
+</p>
+<dl compact="compact">
+<dt> <code>-d, --define-default=<var>variable</var>=<var>valor</var></code></dt>
+<dd><p>Véase <a href="#advanced-command-line-options-for-lilypond">Opciones avanzadas de línea de órdenes para LilyPond</a>.
+</p>
+<a name="index-Scheme_002c-evaluacion-de-expresiones"></a>
+<a name="index-expresiones-de-Scheme_002c-evaluacion"></a>
+
+</dd>
+<dt> <code>-e, --evaluate=<var>expresión</var></code></dt>
+<dd><p>Evaluar la <var>expresión</var> de Scheme antes de analizar los archivos
+&lsquo;<tt>.ly</tt>&rsquo;.  Se pueden pasar varias opciones &lsquo;<samp>-e</samp>&rsquo;, que se
+evaluarán en secuencia.
+</p>
+<p>La expresión se evaluará en el módulo <code>guile-user</code>, de manera que
+si quiere usar definiciones dentro de <var>expresión</var>, debe utilizar
+</p>
+<blockquote><pre class="example">lilypond -e '(define-public a 42)'
+</pre></blockquote>
+
+<p>en la línea de órdenes, e incluir
+</p>
+<blockquote><pre class="example">#(use-modules (guile-user))
+</pre></blockquote>
+
+<p>al principio del archivo &lsquo;<tt>.ly</tt>&rsquo;.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Los usuarios de Windows deben utilizar comillas dobles en lugar de apóstrofos simples.
+</p>
+</div>
+<a name="index-output_002c-format"></a>
+<a name="index-format_002c-output"></a>
+
+</dd>
+<dt> <code>-f, --format=<var>format</var></code></dt>
+<dd><p>which formats should be written.  Choices for <code>format</code> are
+<code>ps</code>, <code>pdf</code>, and <code>png</code>.
+</p>
+<p>Example: <code>lilypond -fpng <var>filename</var>.ly</code>
+</p>
+</dd>
+<dt> <code>-h, --help</code></dt>
+<dd><p>Mostrar un resumen de las formas de utilización.
+</p>
+</dd>
+<dt> <code>-H, --header=<var>CAMPO</var></code></dt>
+<dd><p>Volcar un campo de cabecera al archivo &lsquo;<tt>NOMBREBASE.<var>CAMPO</var></tt>&rsquo;
+</p>
+</dd>
+<dt> <code>-i, --init=<var>archivo</var></code></dt>
+<dd><p>Establecer el archivo de inicio a <var>archivo</var> (predeterminado:
+&lsquo;<tt>init.ly</tt>&rsquo;).
+</p>
+<a name="index-archivos_002c-busqueda-de"></a>
+<a name="index-busqueda_002c-ruta-de"></a>
+
+</dd>
+<dt> <code>-I, --include=<var>directorio</var></code></dt>
+<dd><p>Añadir el <var>directorio</var> a la ruta de búsqueda de archivos de
+entrada.
+</p>
+<p>Se pueden escribir varias opciones -I.  La búsqueda se inicia en el
+primer directorio definido, y si el archivo que se debe incluir no se
+encuentra, la búsqueda continúa en los directorios siguientes.
+</p>
+<a name="index-chroot_002c-ejecutar-dentro-de-una-jaula"></a>
+
+</dd>
+<dt> <code>-j, --jail=<var>usuario</var>,<var>grupo</var>,<var>jaula</var>,<var>directorio</var></code></dt>
+<dd><p>Ejecutar <code>lilypond</code> en una jaula de chroot.
+</p>
+<p>La opción &lsquo;<samp>--jail</samp>&rsquo; (jaula) proporciona una alternativa más
+flexible a la opción &lsquo;<samp>-dsafe</samp>&rsquo; cuando el proceso de tipografía de
+LilyPond está disponible a través de un servidor web o cuando LilyPond
+ejecuta instrucciones enviadas por fuentes externas
+(véase <a href="#advanced-command-line-options-for-lilypond">Opciones avanzadas de línea de órdenes para LilyPond</a>).
+</p>
+<p>La opción &lsquo;<samp>--jail</samp>&rsquo; funciona cambiando la raíz de
+<code>lilypond</code> a <var>jaula</var> justo antes de comenzar el proceso de
+compilación en sí.  Entonces se cambian el usuario y el grupo a los
+que se han dado en la opción, y el directorio actual se cambia a
+<var>directorio</var>.  Esta instalación garantiza que no es posible, al
+menos en teoría, escapar de la jaula.  Observe que para que funcione
+&lsquo;<samp>--jail</samp>&rsquo;, se debe ejecutar <code>lilypond</code> como root, lo que
+normalmente se puede hacer de una forma segura utilizando
+<code>sudo</code>.
+</p>
+<p>La instalación de una jaula puede ser un asunto relativamente
+complejo, pues debemos asegurarnos de que LilyPond puede encontrar
+<em>dentro</em> de la propia jaula todo lo que necesita para poder
+compilar la fuente.  Una típica configuración de jaula de chroot
+consta de los siguientes elementos:
+</p>
+<dl compact="compact">
+<dt> Preparar un sistema de archivos separado</dt>
+<dd><p>Se debe crear un sistema de archivos separado para LilyPond, de forma
+que se pueda montar con opciones seguras como <code>noexec</code>,
+<code>nodev</code> y <code>nosuid</code>.  De esta forma, es imposible ejecutar
+programas o escribir directamente a un dispositivo desde LilyPond.  Si
+no quiere crear una partición separada, tan sólo tiene que crear un
+archivo de un tamaño razonable y usarlo para montar un dispositivo
+loop.  El sistema de archivos separado garantiza también que LilyPond
+nunca pueda escribir en un espacio mayor del que se le permita.
+</p>
+</dd>
+<dt> Preparar un usuario separado</dt>
+<dd><p>Se debe usar un usuario y grupo separados (digamos
+<code>lily</code>/<code>lily</code>) con bajos privilegios para ejecutar LilyPond
+dentro de la jaula.  Debería existir un solo directorio con permisos
+de escritura para este usuario, y debe pasarse en el valor
+<var>directorio</var>.
+</p>
+</dd>
+<dt> Preparar la jaula</dt>
+<dd><p>LilyPond necesita leer algunos archivos mientras se ejecuta.  Todos
+estos archivos se deben copiar dentro de la jaula, bajo la misma ruta
+en que aparecen en el sistema de archivos real de root.  Todo el
+contenido de la instalación de LilyPond (por ejemplo
+&lsquo;<tt>/usr/share/lilypond</tt>&rsquo;) se debe copiar.
+</p>
+<p>Si surgen problemas, la forma más sencilla de rastrearlos es ejecutar
+LilyPond usando <code>strace</code>, lo que le permitirá determinar qué
+archivos faltan.
+</p>
+</dd>
+<dt> Ejecutar LilyPond</dt>
+<dd><p>Dentro de una jaula montada con <code>noexec</code> es imposible ejecutar
+ningún programa externo.  Por tanto, LilyPond se debe ejecutar con un
+backend que no necesite tal programa.  Como ya hemos mencionado, se
+debe ejecutar con privilegios del superusuario (que por supuesto
+perderá inmediatamente), posiblemente usando <code>sudo</code>.  También
+es una práctica recomendable limitar el número de segundos de tiempo
+de CPU que LilyPond puede usar (p.ej., usando
+<code>ulimit&nbsp;-t</code>), y, si su sistema operativo lo contempla, el
+tamaño de la memoria que se puede reservar.  Véase también
+<a href="#lilypond-in-chroot-jail">LilyPond en una jaula de chroot</a>.
+</p>
+</dd>
+</dl>
+
+<a name="index-loglevel"></a>
+<a name="index-registro_002c-nivel-de"></a>
+<a name="index-salida-prolija_002c-fijar-el-nivel"></a>
+
+</dd>
+<dt> <code>-l, --loglevel=<var>LEVEL</var></code></dt>
+<dd><p>Fijar el grado en que la salida de consola es prolija al nivel
+<var>LEVEL</var>. Los valores posibles son:
+</p>
+<dl compact="compact">
+<dt> <code>NONE</code></dt>
+<dd><p>Ninguna salida en absoluto, ni siquiera mensajes de error.
+</p>
+</dd>
+<dt> <code>ERROR</code></dt>
+<dd><p>Solamente mensajes de error, no advertencias o indicaciones de progreso.
+</p>
+</dd>
+<dt> <code>WARN</code></dt>
+<dd><p>Advertencias y mensajes de error, no de progreso.
+</p>
+</dd>
+<dt> <code>BASIC_PROGRESS</code></dt>
+<dd><p>Mensajes de progreso básicos (éxito), advertencias y errores.
+</p>
+</dd>
+<dt> <code>PROGRESS</code></dt>
+<dd><p>Todos los mensajes de progreso, advertencias y errores.
+</p>
+</dd>
+<dt> <code>INFO (predeterminado)</code></dt>
+<dd><p>Mensajes de progreso, advertencias, errores e información de ejecución
+adicional.
+</p>
+</dd>
+<dt> <code>DEBUG</code></dt>
+<dd><p>Todos los mensajes posibles, incuida la información de depuración
+prolija.
+</p></dd>
+</dl>
+
+<a name="index-carpeta_002c-dirigir-la-salida-hacia"></a>
+<a name="index-salida_002c-establecer-el-nombre-del-archivo-de"></a>
+
+</dd>
+<dt> <code>-o, --output=<var>ARCHIVO</var> o <var>CARPETA</var></code></dt>
+<dd><p>Establecer el nombre del archivo de salida predeterminado a
+<var>ARCHIVO</var> o, si existe una carpeta con ese nombre, dirigir la
+salida hacia <var>CARPETA</var>, tomando el nombre de archivo del documento
+de entrada.  Se añade el sufijo correspondiente (por ejemplo,
+<code>.pdf</code> para PDF) en los dos casos.
+</p>
+<a name="index-PS-_0028Postscript_0029_002c-salida"></a>
+<a name="index-Postscript-_0028PS_0029_002c-salida"></a>
+<a name="index-salida_002c-PS-_0028Postscript_0029"></a>
+
+</dd>
+<dt> <code>--ps</code></dt>
+<dd><p>Generar PostScript.
+</p>
+<a name="index-PNG-_0028Portable-Network-Graphics_0029_002c-salida"></a>
+<a name="index-salida_002c-PNG-_0028Portable-Network-Graphics_0029"></a>
+
+</dd>
+<dt> <code>--png</code></dt>
+<dd><p>Generar imágenes de las páginas en formato PNG.  Esto implica
+&lsquo;<samp>--ps</samp>&rsquo;.  La resolución en PPP de la imagen se puede establecer
+con
+</p><blockquote><pre class="example">-dresolution=110
+</pre></blockquote>
+
+<a name="index-PDF-_0028formato-de-documento-portatil_0029_002c-salida-de"></a>
+<a name="index-salida_002c-PDF-_0028formato-de-documento-portatil_0029"></a>
+
+</dd>
+<dt> <code>--pdf</code></dt>
+<dd><p>Generar PDF.  Implica &lsquo;<samp>--ps</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>-v, --version</code></dt>
+<dd><p>Mostrar la información de la versión.
+</p>
+</dd>
+<dt> <code>-V, --verbose</code></dt>
+<dd><p>Ser prolijo: mostrar las rutas completas de todos los archivos que se
+leen, y dar información cronométrica.
+</p>
+</dd>
+<dt> <code>-w, --warranty</code></dt>
+<dd><p>Mostrar la garantía con que viene GNU LilyPond (¡no viene con
+<strong>NINGUNA GARANTÍA</strong>!).
+</p>
+</dd>
+</dl>
+
+
+<hr size="6">
+<a name="Opciones-avanzadas-de-l_00ednea-de-_00f3rdenes-para-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#basic-command-line-options-for-lilypond" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Opciones básicas de la línea de órdenes para LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#environment-variables" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Variables de entorno &gt; </a>]</td></tr></table>
+<a name="advanced-command-line-options-for-lilypond"></a>
+<h3 class="unnumberedsubsec">Opciones avanzadas de línea de órdenes para LilyPond</h3>
+
+<dl compact="compact">
+<dt> <code>-d<var>[option-name]</var>=<var>[value]</var>, --define-default=<var>[option-name]</var>=<var>[value]</var></code></dt>
+<dd><p>Establece la función de Scheme interna equivalente a <var>valor</var>.
+</p>
+<blockquote><pre class="example">-dbackend=svg
+</pre></blockquote>
+
+<p>Si no se proporciona ningún <var>valor</var>, se usa el valor predeterminado.
+Para desactivar una opción se puede anteponer <code>no-</code> a la
+<var>variable</var>, p.ej.:
+</p>
+<a name="index-point-and-click_002c-command-line"></a>
+
+<blockquote><pre class="example">-dno-point-and-click
+</pre></blockquote>
+
+<p>is the same as
+</p><blockquote><pre class="example">-dpoint-and-click=#f
+</pre></blockquote>
+</dd>
+</dl>
+
+<p>Están contempladas las siguientes opciones junto a sus respectivos
+valores predeterminados:
+</p>
+<table>
+<tr><td width="33%"><strong>Símbolo</strong></td><td width="16%"><strong>Valor</strong></td><td width="51%"><strong>Explicación/Opciones</strong></td></tr>
+<tr><td width="33%"><code>anti-alias-factor</code> (factor de antialias)</td><td width="16%"><code>1</code></td><td width="51%">Renderizar a mayor resolución (utilizando el factor dado) y reducir la
+escala del resultado para así evitar &lsquo;escaleras&rsquo; en las imágenes
+<code>PNG</code>.</td></tr>
+<tr><td width="33%"><code>aux-files</code> (archivos auxiliares)</td><td width="16%"><code>#t</code></td><td width="51%">Crear archivos <code>.tex</code>, <code>.texi</code>, <code>.count</code> en el
+&lsquo;back-end&rsquo; <code>EPS</code>.</td></tr>
+<tr><td width="33%"><code>backend</code></td><td width="16%"><code>ps</code></td><td width="51%">Seleccionar un &lsquo;back-end&rsquo;.  Los archivos (la opción predeterminada)
+incluyen las fuentes tipográficas <code>TTF</code>, <code>Type1</code> y
+<code>OTF</code>.  No se hace ningún subconjunto de estas fuentes.  El uso
+de conjuntos de caracteres &lsquo;orientales&rsquo; puede dar lugar a archivos
+muy grandes.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>eps</code></td><td width="51%">PostScript encapsulado.  Vuelca cada página o sistema como un archivo
+&lsquo;<tt>EPS</tt>&rsquo; distinto, sin fuentes tipográficas, y como un archivo
+&lsquo;<tt>EPS</tt>&rsquo; encuadernado con todas las páginas o sistemas que incluye
+las fuentes.  Utilizado como opción predeterminada por parte de
+<code>lilypond-book</code>.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>null</code></td><td width="51%">No producir ninguna partitura impresa a la salida; tiene el mismo
+efecto que <code>-dno-print-pages</code>.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>svg</code></td><td width="51%">Grácifos vectoriales escalables.  Crea un solo archivo <code>SVG</code>, sin
+fuentes tipográficas incrustadas, por cada página de salida.  Se
+recomienda instalar las fuentes Century Schoolbook, incluidas con la
+instalación de LilyPond, para un renderizado óptimo.  Bajo UNIX,
+bastará con que copie estaos archivos de fuente del directorio de
+LilyPond (normalmente &lsquo;<tt>/usr/share/lilypond/VERSION/fonts/otf/</tt>&rsquo;)
+al directorio &lsquo;<tt>~/.fonts/</tt>&rsquo;.  La salida <code>SVG</code> debería ser
+compatible con cualquier editor o cliente de SVG.  También hay una
+opción <code>svg-woff</code> (véase más abajo) para usar los archivos de
+fuente woff en el &lsquo;back-end&rsquo; SVG.</td></tr>
+<tr><td width="33%"></td><td width="16%"><code>scm</code></td><td width="51%">Volcado de las instrucciones de dibujo internas basadas en Scheme, en
+bruto.</td></tr>
+<tr><td width="33%"><code>check-internal-types</code></td><td width="16%"><code>#f</code></td><td width="51%">Comprobar el tipo de cada asignación de propiedades.</td></tr>
+<tr><td width="33%"><code>clip-systems</code> (recortar los sistemas)</td><td width="16%"><code>#f</code></td><td width="51%">Generar fragmentos de imagen recortados de una partitura.</td></tr>
+<tr><td width="33%"><code>datadir</code> (directorio de datos)</td><td width="16%"></td><td width="51%">Prefijo de los archivos de datos (sólo lectura).</td></tr>
+<tr><td width="33%"><code>debug-gc</code></td><td width="16%"><code>#f</code></td><td width="51%">Volcar estadísticas de depuración de memoria.</td></tr>
+<tr><td width="33%"><code>debug-gc-assert-parsed-dead</code></td><td width="16%"><code>#f</code></td><td width="51%">Para la depuración de memoria: asegurarse de que todas las referencias
+a objetos analizados están muertas.  Es una opción interna, y se
+activa automáticamente para <code>`-ddebug-gc'</code>.</td></tr>
+<tr><td width="33%"><code>debug-lexer</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuración del analizador léxico flex.</td></tr>
+<tr><td width="33%"><code>debug-page-breaking-scoring</code></td><td width="16%"><code>#f</code></td><td width="51%">Volcar las partituras para muchas configuraciones de saltos de página
+diferentes.</td></tr>
+<tr><td width="33%"><code>debug-parser</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuración del analizador sintáctico bison.</td></tr>
+<tr><td width="33%"><code>debug-property-callbacks</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuración de las cadenas cíclicas de funciones de callback.</td></tr>
+<tr><td width="33%"><code>debug-skylines</code></td><td width="16%"><code>#f</code></td><td width="51%">Depuración de las líneas de horizonte.</td></tr>
+<tr><td width="33%"><code>delete-intermediate-files</code></td><td width="16%"><code>#t</code></td><td width="51%">Eliminar los archivos intermedios <code>.ps</code> inútiles ques e crean
+durante la compilación.</td></tr>
+<tr><td width="33%"><code>dump-cpu-profile</code></td><td width="16%"><code>#f</code></td><td width="51%">Volcar información de cuenta de tiempo (dependiente del sistema).</td></tr>
+<tr><td width="33%"><code>dump-profile</code></td><td width="16%"><code>#f</code></td><td width="51%">Volcar de la información de memoria y de tiempo para cada archivo.</td></tr>
+<tr><td width="33%"><code>dump-signatures</code></td><td width="16%"><code>#f</code></td><td width="51%">Volcar las firmas de salida de cada sistema.  Usado para las pruebas
+de regresión.</td></tr>
+<tr><td width="33%"><code>eps-box-padding</code></td><td width="16%"><code>#f</code></td><td width="51%">Rellenar el borde izquierdo de la caja contenedora del EPS de salida
+en la cantidad dada (en mm).</td></tr>
+<tr><td width="33%"><code>gs-load-fonts</code></td><td width="16%"><code>#f</code></td><td width="51%">Cargar las fuentes tipográficas a través de Ghostscript.</td></tr>
+<tr><td width="33%"><code>gs-load-lily-fonts</code></td><td width="16%"><code>#f</code></td><td width="51%">Cargar sólo las fuentes de LilyPond por medio de Ghostscript.</td></tr>
+<tr><td width="33%"><code>gui</code></td><td width="16%"><code>#f</code></td><td width="51%">Se ejecuta silenciosamente y se redirige toda la salida a un archivo
+de registro.</td></tr>
+</table>
+
+<p><strong>Nota para los usuarios de Windows:</strong> De manera predeterminada,
+<code>lilypond.exe</code> dirige toda la salida de la información de avance
+hacia la ventana de consola, <code>lilypond-windows.exe</code> no lo hace y
+devuelve un indicador del sistema, sin ninguna indicación del avance,
+inmediatamente en la línea de órdenes.  La opción &lsquo;<samp>-dgui</samp>&rsquo; se
+puede usar en este caso para redirigir la salida a un archivo de
+registro.
+</p>
+<table>
+<tr><td width="33%"><code>help</code></td><td width="16%"><code>#f</code></td><td width="51%">Mostrar esta ayuda.</td></tr>
+<tr><td width="33%"><code>include-book-title-preview</code></td><td width="16%"><code>#t</code></td><td width="51%">Incluir los títulos de libro en las imágenes de vista previa.</td></tr>
+<tr><td width="33%"><code>include-eps-fonts</code></td><td width="16%"><code>#t</code></td><td width="51%">Incluir las fuentes tipográficas en los archivos EPS de cada uno de
+los sistemas.</td></tr>
+<tr><td width="33%"><code>include-settings</code></td><td width="16%"><code>#f</code></td><td width="51%">Incluir el archivo de los ajustes globales, se incluye antes de que la
+partitura se procese.</td></tr>
+<tr><td width="33%"><code>job-count</code></td><td width="16%"><code>#f</code></td><td width="51%">Procesar en paralelo, usando el número de tareas dado.</td></tr>
+<tr><td width="33%"><code>log-file</code></td><td width="16%"><code>#f [file]</code></td><td width="51%">Si se da una cadena <code>NOMBRE</code> como segundo argumento,
+redirigir la salida al archivo de registro <code>NOMBRE.log</code>.</td></tr>
+<tr><td width="33%"><code>max-markup-depth</code></td><td width="16%"><code>1024</code></td><td width="51%">Profundidad máxima del árbol de marcado. Si un marcado tiene más niveles,
+suponer que no terminará por sí mismo, imprimiento una advertencia y
+devolviendo en su lugar un elemento de marcado nulo.</td></tr>
+<tr><td width="33%"><code>midi-extension</code></td><td width="16%"><code>&quot;midi&quot;</code></td><td width="51%">Fijar la extensión de archivo predeterminada para el archivo de salida
+MIDI a la cadena dada.</td></tr>
+<tr><td width="33%"><code>music-strings-to-paths</code></td><td width="16%"><code>#f</code></td><td width="51%">Convertir las cadenas de texto a rutas cuando los glifos pertenecen a
+una fuente de tipografía musical.</td></tr>
+<tr><td width="33%"><code>paper-size</code></td><td width="16%"><code>\&quot;a4\&quot;</code></td><td width="51%">Establecer el tamaño predeterminado del papel.  Observe que la cadena
+debe ir encerrada entre comillas dobles.</td></tr>
+<tr><td width="33%"><code>pixmap-format</code></td><td width="16%"><code>png16m</code></td><td width="51%">Fijar el formato de salida de Ghostscript para las imágenes de píxeles.</td></tr>
+<tr><td width="33%"><code>point-and-click</code></td><td width="16%"><code>#f</code></td><td width="51%">Añadir enlaces de &lsquo;apuntar y pulsar&rsquo; a la salida <code>PDF</code>. Véase
+<a href="point-and-click.es.html">Apuntar y pulsar</a>.</td></tr>
+<tr><td width="33%"><code>preview</code></td><td width="16%"><code>#f</code></td><td width="51%">Crear imágenes de vista previa además de la salida normal.</td></tr>
+</table>
+
+<p>Esta opción está contemplada por todos los &lsquo;back-ends&rsquo;: <code>pdf</code>,
+<code>png</code>, <code>ps</code>, <code>eps</code> y <code>svg</code>, pero no por
+<code>scm</code>.  Genera un archivo de salida, en la forma
+<code>miArchivo.preview.extensión</code>, que contiene los títulos y el
+primer sistema de la música.  Si se están utilizando bloques
+<code>\book</code> o <code>\bookpart</code>, aparecen en la salida los títulos de
+<code>\book</code>, <code>\bookpart</code> o <code>\score</code>, incluido el primer
+sistema de cada bloque <code>\score</code> si la variable de <code>\paper</code>
+<code>print-all-headers</code> está fijada al valor <code>#t</code>.
+</p>
+<p>Para suprimir la salida usual, utilice las opciones
+&lsquo;<samp>-dprint-pages</samp>&rsquo; o &lsquo;<samp>-dno-print-pages</samp>&rsquo; según sus
+necesidades.
+</p>
+<table>
+<tr><td width="33%"><code>print-pages</code></td><td width="16%"><code>#t</code></td><td width="51%">Generar páginas completas (es la opción predeterminada).  Es útil
+&lsquo;<samp>-dno-print-pages</samp>&rsquo; en combinación con &lsquo;<samp>-dpreview</samp>&rsquo;.</td></tr>
+<tr><td width="33%"><code>profile-property-accesses</code></td><td width="16%"><code>#f</code></td><td width="51%">Conservar las estadísticas de las llamadas de función
+<code>get_property()</code>.</td></tr>
+<tr><td width="33%"><code>protected-scheme-parsing</code></td><td width="16%"><code>#t</code></td><td width="51%">Continuar cuando se captan en el analizador sintáctico errores del
+Scheme empotrado.  Si se fija a <code>#f</code>, detenerse cuando haya
+errores e imprimir un registro de traza de pila.</td></tr>
+<tr><td width="33%"><code>read-file-list</code></td><td width="16%"><code>#f [archivo]</code></td><td width="51%">Especificar el nobmre de un archivo que contiene una lista de archivos
+de entrada para procesar.</td></tr>
+<tr><td width="33%"><code>relative-includes</code></td><td width="16%"><code>#f</code></td><td width="51%">Cuando se procesa una instrucción <code>\include</code> command, buscar el
+archivo incluido de forma relativa al archivo actual (en lugar del
+archivo principal).</td></tr>
+<tr><td width="33%"><code>resolution</code></td><td width="16%"><code>101</code></td><td width="51%">Fijar la resolución para generar imágenes de píxeles <code>PNG</code> al
+valor dado (en ppp).</td></tr>
+<tr><td width="33%"><code>safe</code></td><td width="16%"><code>#f</code></td><td width="51%">No confiar en la entrada <code>.ly</code>.</td></tr>
+</table>
+
+<p>Cuando el servicio de tipografía está disponible a través de un
+servidor web, <b>SE DEBEN</b> pasar las opciones &lsquo;<samp>--safe</samp>&rsquo; o
+&lsquo;<samp>--jail</samp>&rsquo;.  La opción &lsquo;<samp>--safe</samp>&rsquo; evita que el código de
+Scheme monte un desastre, p.ej.:
+</p>
+<blockquote><pre class="verbatim">#(system &quot;rm -rf /&quot;)
+{
+  c4^$(ly:gulp-file &quot;/etc/passwd&quot;)
+}
+</pre></blockquote>
+
+<p>La opción &lsquo;<samp>-dsafe</samp>&rsquo; funciona evaluando las expresiones de Scheme
+en línea dentro de un módulo seguro especial.  Deriva del módulo
+&lsquo;<tt>safe-r5rs</tt>&rsquo; de GUILE, pero además añade unas cuantas funciones de
+la API de LIlyPond que están relacionadas en &lsquo;<tt>scm/safe-lily.scm</tt>&rsquo;.
+</p>
+<p>Además, el modo seguro prohíbe las directivas <code>\include</code> y
+desactiva la utilización de barras invertidas en las cadenas de
+TeX.  Asimismo, no es posible importar variables de LilyPond dentro
+de Scheme cuando se está en modo seguro.
+</p>
+<p>&lsquo;<samp>-dsafe</samp>&rsquo; <em>no</em> detecta la sobreutilización de recursos, por
+lo que aún es posible hacer que el programa se cuelgue
+indefinidamente, por ejemplo suministrando estructuras de datos
+cíclicas en el backend.  Por ello, si está usando LilyPond en un
+servidor web accesible públicamente, el proceso se debe limitar tanto
+en el uso de memoria como de CPU.
+</p>
+<p>El modo seguro evita que se puedan compilar muchos fragmentos de
+código útiles.
+</p>
+<p>La opción &lsquo;<samp>--jail</samp>&rsquo; es una aliternativa más segura aún, pero
+requiere más trabajo para su configuración.  Véase
+<a href="#basic-command-line-options-for-lilypond">Opciones básicas de la línea de órdenes para LilyPond</a>.
+</p>
+<table>
+<tr><td width="33%"><code>separate-log-files</code></td><td width="16%"><code>#f</code></td><td width="51%">Para los archivos de entrada <code>ARCHIVO1.ly</code>, <code>ARCHIVO2.ly</code>,
+etc. sacar los datos de registro hacia los archivos <code>ARCHIVO1.log</code>,
+<code>ARCHIVO2.log</code>&hellip;</td></tr>
+<tr><td width="33%"><code>show-available-fonts</code></td><td width="16%"><code>#f</code></td><td width="51%">Listar todos los nombres de las fuentes tipográficas disponibles.</td></tr>
+<tr><td width="33%"><code>strict-infinity-checking</code></td><td width="16%"><code>#f</code></td><td width="51%">Forzar una terminación abrupta si se encuentran las excepciones de
+punto flotante <code>Inf</code> y <code>NaN</code>.</td></tr>
+<tr><td width="33%"><code>strip-output-dir</code></td><td width="16%"><code>#t</code></td><td width="51%">No usar los directorios de los archivos de entrada al construir los
+nombres de los archivos de salida.</td></tr>
+<tr><td width="33%"><code>strokeadjust</code></td><td width="16%"><code>#f</code></td><td width="51%">Forzar el ajuste de los trazos de PostScript.  Esta opción es
+relevante principalmente cuando se genera un <code>PDF</code> a partir
+de la salida de PostScript (el ajuste del trazo está por lo
+general activado automáticamente para dispositivos de mapa de
+puntos de baja resolución).  Sin esta opción, los visores
+de<code>PDF</code> tienden a producir anchuras de plica muy poco
+consistentes a las resoluciones típicas de las pantallas de
+ordenador.  La opción no afecta de forma muy significativa a la
+calidad de la impresión y causa grandes incrementos en el tamaño
+del archivo <code>PDF</code>.</td></tr>
+<tr><td width="33%"><code>svg-woff</code></td><td width="16%"><code>#f</code></td><td width="51%">Usar archivos de fuente tipográfica de woff en el backend SVG.</td></tr>
+<tr><td width="33%"><code>trace-memory-frequency</code></td><td width="16%"><code>#f</code></td><td width="51%">Registrar el uso de células de Scheme esta cantidad de veces por
+segundo.  Volcar los resultados en <code>ARCHIVO.stacks</code> y en
+<code>ARCHIVO.graph</code>.</td></tr>
+<tr><td width="33%"><code>trace-scheme-coverage</code></td><td width="16%"><code>#f</code></td><td width="51%">Registrar la cobertura de los archivos de Scheme en <code>ARCHIVO.cov</code>.</td></tr>
+<tr><td width="33%"><code>verbose</code></td><td width="16%"><code>#f</code></td><td width="51%">Salida prolija, es decir el nivel de registro en DEBUG (sólo lectura).</td></tr>
+<tr><td width="33%"><code>warning-as-error</code></td><td width="16%"><code>#f</code></td><td width="51%">Cambiar todos los mensajes de advertencia y de &lsquo;error de
+programación&rsquo; a errores.</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Variables-de-entorno"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#advanced-command-line-options-for-lilypond" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Opciones avanzadas de línea de órdenes para LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#lilypond-in-chroot-jail" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;LilyPond en una jaula de chroot &gt; </a>]</td></tr></table>
+<a name="environment-variables"></a>
+<h3 class="unnumberedsubsec">Variables de entorno</h3>
+
+<a name="index-LANG"></a>
+<a name="index-LILYPOND_005fDATADIR"></a>
+
+<p><code>lilypond</code> reconoce las siguientes variables de entorno:
+</p><dl compact="compact">
+<dt> <code>LILYPOND_DATADIR</code></dt>
+<dd><p>Especifica un directorio en el que los mensajes de localización y de
+datos se buscarán de forma predeterminada.  El directorio debe
+contener subdirectorios llamados &lsquo;<tt>ly/</tt>&rsquo;, &lsquo;<tt>ps/</tt>&rsquo;, &lsquo;<tt>tex/</tt>&rsquo;,
+etc.
+</p>
+</dd>
+<dt> <code>LANG</code></dt>
+<dd><p>Selecciona el idioma de los mensajes de advertencia.
+</p>
+</dd>
+<dt> <code>LILYPOND_LOGLEVEL</code></dt>
+<dd><p>Nivel de registro predeterminado.  Si LilyPond se llama sin ningún
+nivel de registro explícito (es decir, sin opción de línea de órdenes
+&lsquo;<samp>--loglevel</samp>&rsquo;), se usa este valor.
+</p>
+</dd>
+<dt> <code>LILYPOND_GC_YIELD</code></dt>
+<dd><p>Una variable, como porcentaje, que ajusta el comportamiento de la
+administración de memoria.  Con valores más altos, el programa usa más
+memoria; con valores más bajos, usa más tiempo de CPU.  El valor
+predeterminado es <code>70</code>.
+</p>
+</dd>
+</dl>
+
+
+<hr size="6">
+<a name="LilyPond-en-una-jaula-de-chroot"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#environment-variables" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Variables de entorno&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="error-messages.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Mensajes de error &gt; </a>]</td></tr></table>
+<a name="lilypond-in-chroot-jail"></a>
+<h3 class="unnumberedsubsec">LilyPond en una jaula de chroot</h3>
+
+<p>La preparación del servidor para que ejecute LilyPond en una jaula de
+chroot es una tarea muy complicada.  Los pasos están relacionados más
+abajo.  Los ejemplos que aparecen en cada uno de los pasos son válidos
+para Ubuntu GNU/Linux, y pueden requerir el uso de <code>sudo</code> según
+corresponda.
+</p>
+<ul>
+<li> Instale los paquetes necesarios: LilyPond, Ghostscript e ImageMagick.
+
+</li><li> Cree un usuario nuevo con el nombre de <code>lily</code>:
+
+<blockquote><pre class="example">adduser lily
+</pre></blockquote>
+
+<p>Esto también creará un nuevo grupo para el usuario <code>lily</code>, y una
+carpeta personal, <code>/home/lily</code>
+</p>
+</li><li> En la carpeta personal del usuario <code>lily</code>, cree un archivo para usarlo como un sistema de archivos separado:
+
+<blockquote><pre class="example">dd if=/dev/zero of=/home/lily/loopfile bs=1k count= 200000
+</pre></blockquote>
+
+<p>Este ejemplo crea un archivo de 200MB para su uso como el sistema de
+archivos de la jaula.
+</p>
+</li><li> Cree un dispositivo loop, haga un sistema de archivos y móntelo,
+después cree una carpeta que sea escribible por el usuario
+<code>lily</code>:
+
+<blockquote><pre class="example">mkdir /mnt/lilyloop
+losetup /dev/loop0 /home/lily/loopfile
+mkfs -t ext3 /dev/loop0 200000
+mount -t ext3 /dev/loop0 /mnt/lilyloop
+mkdir /mnt/lilyloop/lilyhome
+chown lily /mnt/lilyloop/lilyhome
+</pre></blockquote>
+
+</li><li> En la configuración de los servidores, JAIL será <code>/mnt/lilyloop</code>
+y DIR será <code>/lilyhome</code>.
+
+</li><li> Cree un gran árbol de directorios dentro de la jaula copiando los
+archivos necesarios, como se muestra en el guión de ejemplo que aparece
+más abajo.
+
+<p>Puede usar <code>sed</code> para crear los archivos de copia necesarios para
+un ejecutable dado:
+</p>
+<blockquote><pre class="example">for i in &quot;/usr/local/lilypond/usr/bin/lilypond&quot; &quot;/bin/sh&quot; &quot;/usr/bin/;  \
+  do ldd $i | sed 's/.*=&gt; \/\(.*\/\)\([^(]*\).*/mkdir -p \1 \&amp;\&amp;  \
+    cp -L \/\1\2 \1\2/' | sed 's/\t\/\(.*\/\)\(.*\) (.*)$/mkdir -p  \
+      \1 \&amp;\&amp; cp -L \/\1\2 \1\2/' | sed '/.*=&gt;.*/d'; done
+</pre></blockquote>
+
+</li></ul>
+
+<a name="Guion-de-ejemplo-para-Ubuntu-8_002e04-de-32-bits"></a>
+<h3 class="subheading">Guión de ejemplo para Ubuntu 8.04 de 32 bits</h3>
+
+<blockquote><pre class="example">#!/bin/sh
+## aquí se fijan los valores predeterminados
+
+username=lily
+home=/home
+loopdevice=/dev/loop0
+jaildir=/mnt/lilyloop
+# prefijo (¡sin la barra inicial!)
+lilyprefix=usr/local
+# el directorio en que lilypond se encuentra instalado en el sistema
+lilydir=/$lilyprefix/lilypond/
+
+userhome=$home/$username
+loopfile=$userhome/loopfile
+adduser $username
+dd if=/dev/zero of=$loopfile bs=1k count=200000
+mkdir $jaildir
+losetup $loopdevice $loopfile
+mkfs -t ext3 $loopdevice 200000
+mount -t ext3 $loopdevice $jaildir
+mkdir $jaildir/lilyhome
+chown $username $jaildir/lilyhome
+cd $jaildir
+
+mkdir -p bin usr/bin usr/share usr/lib usr/share/fonts $lilyprefix tmp
+chmod a+w tmp
+
+cp -r -L $lilydir $lilyprefix
+cp -L /bin/sh /bin/rm bin
+cp -L /usr/bin/convert /usr/bin/gs usr/bin
+cp -L /usr/share/fonts/truetype usr/share/fonts
+
+# Ahora la magia de copiar las bibliotecas
+for i in &quot;$lilydir/usr/bin/lilypond&quot; &quot;$lilydir/usr/bin/guile&quot; &quot;/bin/sh&quot;  \
+  &quot;/bin/rm&quot; &quot;/usr/bin/gs&quot; &quot;/usr/bin/convert&quot;; do ldd $i | sed 's/.*=&gt;  \
+    \/\(.*\/\)\([^(]*\).*/mkdir -p \1 \&amp;\&amp; cp -L \/\1\2 \1\2/' | sed  \
+      's/\t\/\(.*\/\)\(.*\) (.*)$/mkdir -p \1 \&amp;\&amp; cp -L \/\1\2 \1\2/'  \
+        | sed '/.*=&gt;.*/d'; done | sh -s
+
+# Los archivos compartidos para ghostscript...
+      cp -L -r /usr/share/ghostscript usr/share
+# Los archivos compartidos para ImageMagick
+      cp -L -r /usr/lib/ImageMagick* usr/lib
+
+### Ahora, suponiendo que tenemos test.ly en /mnt/lilyloop/lilyhome,
+### deberíamos poder ejecutar:
+### Observe que /$lilyprefix/bin/lilypond es un guión, que establece
+### un valor para LD_LIBRARY_PATH : esto es crucial
+      /$lilyprefix/bin/lilypond -jlily,lily,/mnt/lilyloop,/lilyhome test.ly
+</pre></blockquote>
+
+
+<div class="footnote">
+<hr>
+<h3>Notas el pie</h3>
+<p class="footnote"><small>[<a name="FOOT1" href="#DOCF1">1</a>]</small> El estado de GUILE no se restablece después de
+procesar un archivo <code>.ly</code>, por lo que debe tener cuidado de no
+modificar ningún valor predeterminado desde dentro de Scheme.
+</p></div>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Ejecutar LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Actualizar ficheros con convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#environment-variables" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Variables de entorno&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Utilización desde la línea de órdenes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="error-messages.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Mensajes de error &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="command_002dline-usage.html">English</a>, <a href="command_002dline-usage.ca.html">català</a>, <a href="command_002dline-usage.de.html">deutsch</a>, <a href="command_002dline-usage.fr.html">français</a>, <a href="command_002dline-usage.hu.html">magyar</a>, <a href="command_002dline-usage.it.html">italiano</a>, <a href="command_002dline-usage.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Utilización  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Ejecutar-LilyPond-1" href="running-lilypond.es.html">1. Ejecutar LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilizacion-normal" href="normal-usage.es.html">1.1 Utilización normal</a>    </li>
+    <li class=" toc_current"><a name="toc-Utilizacion-desde-la-linea-de-ordenes" href="command_002dline-usage.es.html">1.2 Utilización desde la línea de órdenes</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Invocar-lilypond" href="command_002dline-usage.es.html#invoking-lilypond">Invocar <code>lilypond</code></a>      </li>
+      <li class=""><a name="toc-Opciones-basicas-de-la-linea-de-ordenes-para-LilyPond" href="command_002dline-usage.es.html#basic-command-line-options-for-lilypond">Opciones básicas de la línea de órdenes para LilyPond</a>      </li>
+      <li class=""><a name="toc-Opciones-avanzadas-de-linea-de-ordenes-para-LilyPond" href="command_002dline-usage.es.html#advanced-command-line-options-for-lilypond">Opciones avanzadas de línea de órdenes para LilyPond</a>      </li>
+      <li class=""><a name="toc-Variables-de-entorno-1" href="command_002dline-usage.es.html#environment-variables">Variables de entorno</a>      </li>
+      <li class=""><a name="toc-LilyPond-en-una-jaula-de-chroot-1" href="command_002dline-usage.es.html#lilypond-in-chroot-jail">LilyPond en una jaula de chroot</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Mensajes-de-error-1" href="error-messages.es.html">1.3 Mensajes de error</a>    </li>
+    <li class=""><a name="toc-Errores-comunes-1" href="common-errors.es.html">1.4 Errores comunes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Actualizar-ficheros-con-convert_002dly-1" href="updating-files-with-convert_002dly.es.html">2. Actualizar ficheros con <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-_00bfPor-que-cambia-la-sintaxis_003f" href="why-does-the-syntax-change_003f.es.html">2.1 ¿Por qué cambia la sintaxis?</a>    </li>
+    <li class=""><a name="toc-Invocar-convert_002dly-1" href="invoking-convert_002dly.es.html">2.2 Invocar <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Opciones-de-la-linea-de-ordenes-para-convert_002dly" href="command-line-options-for-convert_002dly.es.html">2.3 Opciones de la línea de órdenes para <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemas-con-convert_002dly-1" href="problems-running-convert_002dly.es.html">2.4 Problemas con <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversiones-manuales-1" href="manual-conversions.es.html">2.5 Conversiones manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ejecucion-de-lilypond_002dbook" href="lilypond_002dbook.es.html">3. Ejecución de <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Un-ejemplo-de-documento-musicologico" href="an-example-of-a-musicological-document.es.html">3.1 Un ejemplo de documento musicológico</a>    </li>
+    <li class=""><a name="toc-Integrar-musica-y-texto" href="integrating-music-and-text.es.html">3.2 Integrar música y texto</a>    </li>
+    <li class=""><a name="toc-Opciones-de-fragmentos-de-musica" href="music-fragment-options.es.html">3.3 Opciones de fragmentos de música</a>    </li>
+    <li class=""><a name="toc-Invocar-lilypond_002dbook-1" href="invoking-lilypond_002dbook.es.html">3.4 Invocar <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Extensiones-de-nombres-de-archivo-1" href="filename-extensions.es.html">3.5 Extensiones de nombres de archivo</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-lilypond_002dbook-1" href="lilypond_002dbook-templates.es.html">3.6 Plantillas de lilypond-book</a>    </li>
+    <li class=""><a name="toc-Compartir-el-indice-general" href="sharing-the-table-of-contents.es.html">3.7 Compartir el índice general</a>    </li>
+    <li class=""><a name="toc-Metodos-alternativos-para-mezclar-texto-y-musica" href="alternate-methods-of-mixing-text-and-music.es.html">3.8 Métodos alternativos para mezclar texto y música</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Programas-externos-1" href="external-programs.es.html">4. Programas externos</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Apuntar-y-pulsar-1" href="point-and-click.es.html">4.1 Apuntar y pulsar</a>    </li>
+    <li class=""><a name="toc-Apoyo-respecto-de-los-editores-de-texto-1" href="text-editor-support.es.html">4.2 Apoyo respecto de los editores de texto</a>    </li>
+    <li class=""><a name="toc-Conversion-desde-otros-formatos" href="converting-from-other-formats.es.html">4.3 Conversión desde otros formatos</a>    </li>
+    <li class=""><a name="toc-Salida-de-LilyPond-dentro-de-otros-programas-1" href="lilypond-output-in-other-programs.es.html">4.4 Salida de LilyPond dentro de otros programas</a>    </li>
+    <li class=""><a name="toc-Archivos-include-independientes-1" href="independent-includes.es.html">4.5 Archivos <code>include</code> independientes</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Sugerencias-para-escribir-archivos-de-entrada-1" href="suggestions-for-writing-files.es.html">5. Sugerencias para escribir archivos de entrada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Sugerencias-de-tipo-general-1" href="general-suggestions.es.html">5.1 Sugerencias de tipo general</a>    </li>
+    <li class=""><a name="toc-Tipografiar-musica-existente" href="typesetting-existing-music.es.html">5.2 Tipografiar música existente</a>    </li>
+    <li class=""><a name="toc-Proyectos-grandes-1" href="large-projects.es.html">5.3 Proyectos grandes</a>    </li>
+    <li class=""><a name="toc-Solucion-de-problemas" href="troubleshooting.es.html">5.4 Solución de problemas</a>    </li>
+    <li class=""><a name="toc-Make-y-los-Makefiles-1" href="make-and-makefiles.es.html">5.5 Make y los Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">B. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

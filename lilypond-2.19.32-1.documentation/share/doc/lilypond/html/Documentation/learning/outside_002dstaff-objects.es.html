@@ -1,0 +1,692 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual de aprendizaje de GNU LilyPond: 4.4.3 Objetos fuera del pentagrama</title>
+
+<meta name="description" content="Manual de aprendizaje de GNU LilyPond: 4.4.3 Objetos fuera del pentagrama">
+<meta name="keywords" content="Manual de aprendizaje de GNU LilyPond: 4.4.3 Objetos fuera del pentagrama">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Manual de aprendizaje">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="C. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="placement-of-objects.es.html#placement-of-objects" rel="up" title="4.4 Colocación de los objetos">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="C. Índice de LilyPond">
+<link href="within_002dstaff-objects.es.html#within_002dstaff-objects" rel="previous" title="4.4.2 Objetos interiores al pentagrama">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="learning devStatus">
+
+
+<div id="main">
+<a name="Objetos-fuera-del-pentagrama"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="within_002dstaff-objects.es.html#fingering" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Digitaciones&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="placement-of-objects.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Colocación de los objetos&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-outside_002dstaff_002dpriority-property" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La propiedad outside-staff-priority (prioridad fuera del pentagrama) &gt; </a>]</td></tr></table>
+<a name="outside_002dstaff-objects"></a>
+<h3 class="subsection">4.4.3 Objetos fuera del pentagrama</h3>
+
+<p>Los objetos fuera-del-pentagrama se sitúan automáticamente para evitar
+las colisiones.  Existen varias formas de sobreescribir la colocación
+automática si el posicionado no resulta óptimo.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-outside_002dstaff_002dpriority-property" accesskey="1">La propiedad <code>outside-staff-priority</code> (prioridad fuera del pentagrama)</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-textlengthon-command" accesskey="2">La instrucción <code>\textLengthOn</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dynamics-placement" accesskey="3">Posicionamiento de los matices dinámicos</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#grob-sizing" accesskey="4">Escalado de un «Grob»</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="La-propiedad-outside_002dstaff_002dpriority-_0028prioridad-fuera-del-pentagrama_0029"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#outside_002dstaff-objects" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Objetos fuera del pentagrama&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Objetos fuera del pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-textlengthon-command" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;La instrucción textLengthOn &gt; </a>]</td></tr></table>
+<a name="the-outside_002dstaff_002dpriority-property"></a>
+<h4 class="unnumberedsubsubsec">La propiedad <code>outside-staff-priority</code> (prioridad fuera del pentagrama)</h4>
+
+<p>Los objetos fuera-del-pentagrama se colocan automáticamente para
+evitar las colisiones.  Los objetos que tienen el valor más bajo de la
+propiedad <code>outside-staff-priority</code> se sitúan más cerca del
+pentagrama, y entonces otros objetos fuera-del-pentagrama se elevan
+tanto como sea necesario para evitar la colisión.  La prioridad
+<code>outside-staff-priority</code> se defina en el <code>grob-interface</code> y
+así es una propiedad de todos los objetos de presentación.  De forma
+predeterminada se establece a <code>#f</code> para todos los objetos
+dentro-del-pentagrama, y a un valor numérico adecuado a cada objeto
+fuera-del-pentagrama cuando se crea el objeto.  La tabla siguiente
+presenta los valores numéricos predeterminados para algunos de los
+objetos fuera-del-pentagrama más comunes.
+</p>
+<a name="index-objetos-de-extension"></a>
+
+<p>Observe los nombres algo inusuales de algunos de los objetos: los
+objetos de extensión se crean automáticamente para controlar el
+posicionamiento vertical de los grobs que (quizá) comienzan y terminan
+en distintos momentos musicales, de manera que cualquier modificación
+a la prioridad <code>outside-staff-priority</code> del grob subyacente no
+tiene ningún efecto.  Por ejemplo, cambiar la
+<code>outside-staff-priority</code> del objeto de regulador <code>Hairpin</code>
+no tiene efecto sobre la posición vertical de los reguladores: en
+lugar de eso, tenemos que cambiar la <code>outside-staff-priority</code> del
+objeto asociado <code>DynamicLineSpanner</code>.  Esta sobreescritura se
+debe escribir al comienzo del objeto de extensión, que podría incluir
+varios reguladores o matices dinámicos encadenados.
+</p>
+<table>
+<thead><tr><th width="30%">Objeto de presentación</th><th width="30%">Prioridad</th><th width="30%">Controla la posición de:</th></tr></thead>
+<tr><td width="30%"><code>RehearsalMark</code></td><td width="30%"><code>1500</code></td><td width="30%">Letras de ensayo</td></tr>
+<tr><td width="30%"><code>MetronomeMark</code></td><td width="30%"><code>1000</code></td><td width="30%">Indicaciones metronómicas</td></tr>
+<tr><td width="30%"><code>VoltaBracketSpanner</code></td><td width="30%"><code>600</code></td><td width="30%">Cajetines de primera y segunda vez</td></tr>
+<tr><td width="30%"><code>TextScript</code></td><td width="30%"><code>450</code></td><td width="30%">Texto en elementos de marcado</td></tr>
+<tr><td width="30%"><code>MultiMeasureRestText</code></td><td width="30%"><code>450</code></td><td width="30%">Texto sobre silencios de compás completo</td></tr>
+<tr><td width="30%"><code>OttavaBracket</code></td><td width="30%"><code>400</code></td><td width="30%">Corchetes de octava alta y baja</td></tr>
+<tr><td width="30%"><code>TextSpanner</code></td><td width="30%"><code>350</code></td><td width="30%">Objetos de extensión de texto</td></tr>
+<tr><td width="30%"><code>DynamicLineSpanner</code></td><td width="30%"><code>250</code></td><td width="30%">Todas las indicaciones dinámicas</td></tr>
+<tr><td width="30%"><code>VoltaBracketSpanner</code></td><td width="30%"><code>100</code></td><td width="30%">Números de compás</td></tr>
+<tr><td width="30%"><code>TrillSpanner</code></td><td width="30%"><code>50</code></td><td width="30%">Trinos mantenidos</td></tr>
+</table>
+
+<p>He aquí un ejemplo que muestra la situación predeterminada de algunos
+de ellos.
+</p>
+<a name="index-texto_002c-extensiones-de"></a>
+<a name="index-octava-alta-y-baja_002c-corchete-de"></a>
+
+<a name="index-_005cstartTextSpan"></a>
+<a name="index-_005cstartTextSpan-1"></a>
+<a name="index-startTextSpan"></a>
+<a name="index-startTextSpan-1"></a>
+<a name="index-_005cstopTextSpan"></a>
+<a name="index-_005cstopTextSpan-1"></a>
+<a name="index-stopTextSpan"></a>
+<a name="index-stopTextSpan-1"></a>
+
+<a name="index-TextSpanner_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-bound_002ddetails_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">% Set details for later Text Spanner
+\override TextSpanner.bound-details.left.text
+    = \markup { \small \bold Slower }
+% Place dynamics above staff
+\dynamicUp
+% Start Ottava Bracket
+\ottava #1
+c''4 \startTextSpan
+% Add Dynamic Text and hairpin
+c''4\pp\&lt;
+c''4
+% Add Text Script
+c''4^Text |
+c''4 c''
+% Add Dynamic Text and terminate hairpin
+c''4\ff c'' \stopTextSpan |
+% Stop Ottava Bracket
+\ottava #0
+c'4 c' c' c' |
+</pre><p>
+ <a href="../5f/lily-463b4ea2.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-463b4ea2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Este ejemplo también muestra cómo crear textos con extensión (Text
+Spanners): textos con líneas extensoras por encima de una sección de
+música.  El extensor abarca desde la instrucción <code>\startTextSpan</code>
+hasta la instrucción <code>\stopTextSpan</code>, y el formado del texto se
+define por medio de la instrucción <code>\override TextSpanner</code>.  Para
+ver más detalles, consulte <a name="index-Extensiones-de-texto"></a>
+<a href="../notation/text-spanners.es.html">Extensiones de texto</a>.
+</p>
+<p>También muestra la manera de crear corchetes de octava alta y baja.
+</p>
+<a name="index-trucar-la-situacion-de-los-numeros-de-compas"></a>
+<a name="index-numeros-de-compas_002c-ajustar-posicion"></a>
+<a name="index-trucar-la-situacion-de-marcas-metronomicas"></a>
+<a name="index-metronomo_002c-situacion-de-las-indicaciones-de"></a>
+<a name="index-trucar-la-situacion-de-las-letras-de-ensayo"></a>
+<a name="index-ensayo_002c-letras_002c-trucar-la-colocacion"></a>
+
+<p>Si los valores predeterminados de <code>outside-staff-priority</code> no le
+ofrecen las colocaciones deseadas se puede sobreescribir la prioridad
+de cualquiera de los objetos.  Suponga que quisiéramos que el corchete
+de octava estuviera situado por debajo del elemento extensor de texto
+en el ejemplo de arriba.  Todo lo que debemos hacer es localizar la
+prioridad de <code>OttavaBracket</code> en el RFI o en las tablas
+anteriores, y reducirlo a un valor inferior al de <code>TextSpanner</code>,
+recordando que <code>OttavaBracket</code> se crea dentro del contexto de
+<code>Staff</code>:
+</p>
+<a name="index-TextSpanner_002c-ejemplo-de-sobreescritura-1"></a>
+<a name="index-bound_002ddetails_002c-propiedad_002c-ejemplo-1"></a>
+
+<blockquote><pre class="verbatim">% Set details for later Text Spanner
+\override TextSpanner.bound-details.left.text
+    = \markup { \small \bold Slower }
+% Place dynamics above staff
+\dynamicUp
+% Place following Ottava Bracket below Text Spanners
+\once \override Staff.OttavaBracket.outside-staff-priority = #340
+% Start Ottava Bracket
+\ottava #1
+c''4 \startTextSpan
+% Add Dynamic Text
+c''4\pp
+% Add Dynamic Line Spanner
+c''4\&lt;
+% Add Text Script
+c''4^Text |
+c''4 c''
+% Add Dynamic Text
+c''4\ff c'' \stopTextSpan |
+% Stop Ottava Bracket
+\ottava #0
+c'4 c' c' c' |
+</pre><p>
+ <a href="../f0/lily-1ef07b66.ly">
+  <img align="middle"
+       border="0"
+       src="../f0/lily-1ef07b66.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observe que algunos de estos objetos, concretamente los números de
+compás, las indicaciones metronómicas y las letras de ensayo, se
+alojan de forma predeterminada dentro del contexto <code>Score</code>; así
+pues, debe asegurarse de que utiliza el contexto adecuado cuando se
+sobreescriben sus propiedades.
+</p>
+<a name="index-ligaduras-y-outside_002dstaff_002dpriority"></a>
+<a name="index-ligaduras-y-articulaciones"></a>
+<a name="index-articulaciones-y-ligaduras"></a>
+
+<p>De forma predeterminada, las ligaduras de expresión están clasificadas
+como objetos dentro-del-pentagrama, pero con frecuencia aparecen
+encima del pentagrama si las notas que une son muy agudas.  Ello puede
+empujar a una posición muy elevada a los objetos fuera-del-pentagrama
+como las articulaciones, pues la ligadura se colocará en primer lugar.
+La propiedad <code>avoid-slur</code> de la articulación se puede establecer
+al valor <code>'inside</code> (por dentro) para llevarla al interior de la
+ligadura, pero la propiedad <code>avoid-slur</code> es efectiva solamente si
+la prioridad <code>outside-staff-priority</code> está también ajustada al
+valor <code>#f</code>.  De forma alternativa, la prioridad
+<code>outside-staff-priority</code> de la ligadura se puede fijar en un
+valor numérico para hacer que se sitúe en línea con otros objetos
+fuera del pentagrama de acuerdo con este valor.  He aquí un ejemplo
+que muestra el efecto de los dos métodos:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4( c^\markup { \tiny \sharp } d4.) c8 |
+  c4(
+    \once \override TextScript.avoid-slur = #'inside
+    \once \override TextScript.outside-staff-priority = ##f
+    c4^\markup { \tiny \sharp } d4.) c8 |
+  \once \override Slur.outside-staff-priority = #500
+    c4( c^\markup { \tiny \sharp } d4.) c8 |
+}
+</pre><p>
+ <a href="../23/lily-244d87e7.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-244d87e7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Los cambios en <code>outside-staff-priority</code> también se pueden emplear
+para controlar la situación vertical de los objetos individuales,
+aunque los resultados pueden no siempre ser deseables.  Suponga que
+quiere que &ldquo;Text3&rdquo; se sitúe por encima de &ldquo;Text4&rdquo; en el ejemplo
+bajo el epígrafe Comportamiento Automático de más arriba (véase
+<a href="automatic-behavior.es.html">Comportamiento automático</a>).  Todo lo que debemos hacer es localizar la
+prioridad de <code>TextScript</code> en el RFI o en las tablas de arriba, y
+aumentar la prioridad de &ldquo;Text3&rdquo; hasta un valor superior:
+</p>
+<a name="index-TextScript_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-outside_002dstaff_002dpriority_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">c''2^&quot;Text1&quot;
+c''2^&quot;Text2&quot; |
+\once \override TextScript.outside-staff-priority = #500
+c''2^&quot;Text3&quot;
+c''2^&quot;Text4&quot; |
+</pre><p>
+ <a href="../50/lily-f5954fc4.ly">
+  <img align="middle"
+       border="0"
+       src="../50/lily-f5954fc4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto, ciertamente, eleva a &ldquo;Text3&rdquo; por encima de &ldquo;Text4&rdquo; pero
+también lo eleva por encima de &ldquo;Text2&rdquo;, y &ldquo;Text4&rdquo; ahora se
+desploma hacia abajo.  Quizá no sea tan buena idea.  ¿Y si lo que
+realmente queremos hacer es posicionar todas las anotaciones a la
+misma distancia por encima del pentagrama?  Para hacerlo, vamos a
+necesitar claramente espaciar las notas en sentido horizontal para
+hacer sitio para el texto.  Esto se hace empleando la instrucción
+<code>textLengthOn</code>.
+</p>
+<hr size="6">
+<a name="La-instrucci_00f3n-textLengthOn"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-outside_002dstaff_002dpriority-property" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La propiedad outside-staff-priority (prioridad fuera del pentagrama)&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Objetos fuera del pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#dynamics-placement" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Posicionamiento de los matices dinámicos &gt; </a>]</td></tr></table>
+<a name="the-textlengthon-command"></a>
+<h4 class="unnumberedsubsubsec">La instrucción <code>\textLengthOn</code></h4>
+
+<a name="index-notas_002c-espaciar-junto-al-texto"></a>
+
+<a name="index-_005ctextLengthOn"></a>
+<a name="index-_005ctextLengthOn-1"></a>
+<a name="index-textLengthOn"></a>
+<a name="index-textLengthOn-1"></a>
+<a name="index-_005ctextLengthOff"></a>
+<a name="index-_005ctextLengthOff-1"></a>
+<a name="index-textLengthOff"></a>
+<a name="index-textLengthOff-1"></a>
+
+<p>De forma predeterminada, el texto producido mediante marcado no ocupa
+ningún espacio horizontal en cuanto se refiere a la disposición de la
+música.  La instrucción <code>\textLengthOn</code> invierte este
+comportamiento, ocasionando que las notas resulten tan espaciadas como
+sea necesario para acomodar el texto:
+</p>
+<blockquote><pre class="verbatim">\textLengthOn  % Cause notes to space out to accommodate text
+c''2^&quot;Text1&quot;
+c''2^&quot;Text2&quot; |
+c''2^&quot;Text3&quot;
+c''2^&quot;Text4&quot; |
+</pre><p>
+ <a href="../b9/lily-0c33b057.ly">
+  <img align="middle"
+       border="0"
+       src="../b9/lily-0c33b057.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>La instrucción para volver al comportamiento predeterminado es
+<code>\textLengthOff</code>.  De forma alternativa, se puede usar
+<code>\once</code> con <code>\textLengthOn</code> si el efecto se ha de limitar a
+un solo momento musical.
+The corresponding spacing behavior for rehearsal marks and tempo
+indications is independently controlled with the commands
+<code>\markLengthOn</code> and <code>\markLengthOff</code>.
+</p>
+<a name="index-marcado_002c-texto-de_002c-permitir-las-colisiones-en"></a>
+
+<p>El texto de marcado también evita las notas que se proyectan por
+encima del pentagrama.  Si esto no es lo que deseamos, el
+desplazamiento automático hacia arriba se puede desactivar mediante el
+establecimiento de la prioridad a <code>#f</code>.  He aquí un ejemplo que
+muestra cómo el texto de marcado interactúa con tales notas.
+</p>
+<a name="index-TextScript_002c-ejemplo-de-sobreescritura-1"></a>
+<a name="index-outside_002dstaff_002dpriority_002c-propiedad_002c-ejemplo-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  % This markup is short enough to fit without collision
+  c''2^&quot;Tex&quot; c'' |
+  R1 |
+
+  % This is too long to fit, so it is displaced upwards
+  c,,2^&quot;Text&quot; c'' |
+  R1 |
+
+  % Turn off collision avoidance
+  \once \override TextScript.outside-staff-priority = ##f
+  c,,2^&quot;Long Text   &quot; c'' |
+  R1 |
+
+  % Turn off collision avoidance
+  \once \override TextScript.outside-staff-priority = ##f
+  \textLengthOn        % and turn on textLengthOn
+  c,,2^&quot;Long Text   &quot;  % Spaces at end are honored
+  c''2 |
+}
+</pre><p>
+ <a href="../07/lily-573b6cbd.ly">
+  <img align="middle"
+       border="0"
+       src="../07/lily-573b6cbd.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<hr size="6">
+<a name="Posicionamiento-de-los-matices-din_00e1micos"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-textlengthon-command" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; La instrucción textLengthOn&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Objetos fuera del pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#grob-sizing" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Escalado de un «Grob» &gt; </a>]</td></tr></table>
+<a name="dynamics-placement"></a>
+<h4 class="unnumberedsubsubsec">Posicionamiento de los matices dinámicos</h4>
+
+<a name="index-trucar-la-colocacion-de-los-matices"></a>
+<a name="index-dinamica_002c-trucar-la-colocacion-de-las-indicaciones-de"></a>
+<a name="index-matices_002c-trucar-la-colocacion"></a>
+
+<p>Las indicaciones de matiz dinámico normalmente se colocarán por debajo
+del pentagrama, pero se pueden posicionar por encima con la
+instrucción <code>\dynamicUp</code>.  Se situarán verticalmente respecto a la
+nota a la que van adosadas, y flotarán por debajo (o por encima) de
+todos los objetos dentro-del-pentagrama tales como ligaduras de fraseo
+y números de compás.  Esto puede ofrecer resultados bastante
+aceptables, como muestra este ejemplo:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;bass&quot;
+  \key aes \major
+  \time 9/8
+  \dynamicUp
+  bes4.~\f\&lt; \( bes4 bes8 des4\ff\&gt; c16 bes\! |
+  ees,2.~\)\mf ees4 r8 |
+}
+</pre><p>
+ <a href="../88/lily-461e4504.ly">
+  <img align="middle"
+       border="0"
+       src="../88/lily-461e4504.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Sin embargo, si las notas y sus indicaciones dinámicas adosadas están
+muy cerca, la colocación automática evitará las colisiones desplazando
+las marcas dinámicas posteriores más lejos, aunque este puede no ser
+el lugar óptimo, como muestra el siguiente ejemplo más bien
+artificial:
+</p>
+<blockquote><pre class="verbatim">\dynamicUp
+\relative { a'4\f b\mf a\mp b\p }
+</pre><p>
+ <a href="../68/lily-0fc78af9.ly">
+  <img align="middle"
+       border="0"
+       src="../68/lily-0fc78af9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si se presentara una situación similar en música &lsquo;real&rsquo;, podría ser
+preferible espaciar las notas un poco más entre sí, de forma que todas
+las marcas dinámicas puedan caber a la misma distancia vertical desde
+el pentagrama.  Hemos sido capaces de hacer esto para el texto de
+marcado utilizando la instrucción <code>\textLengthOn</code>, pero no existe
+una instrucción equivalente para las indicaciones de matiz dinámico.
+Por tanto, tendremos que averiguar cómo hacerlo utilizando
+instrucciones <code>\override</code>.
+</p>
+<hr size="6">
+<a name="Escalado-de-un-_00abGrob_00bb"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#dynamics-placement" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Posicionamiento de los matices dinámicos&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Objetos fuera del pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="vertical-spacing.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Espaciado vertical &gt; </a>]</td></tr></table>
+<a name="grob-sizing"></a>
+<h4 class="unnumberedsubsubsec">Escalado de un «Grob»</h4>
+
+<a name="index-grob_002c-cambio-de-tamano-de-un"></a>
+<a name="index-escala-de-los-grobs"></a>
+
+<p>En primer lugar debemos aprender cómo se especifica el tamaño de los
+grobs.  Todos los grobs tienen un punto de referencia definido dentro
+de ellos que se usa para colocarlos respecto a su objeto padre.
+Entonces, este punto del grob se posiciona a una distancia horizontal,
+<code>X-offset</code>, y una distancia vertical, <code>Y-offset</code>, a partir
+de su padre.  La dimensión horizontal del objeto viene dada por una
+pareja de números, <code>X-extent</code>, que dice dónde están los límites
+izquierdo y derecho respecto del punto de referencia.  La amplitud
+vertical se define de forma similar mediante una pareja de números,
+<code>Y-extent</code>.  Éstas son propiedades de todos los grobs que
+contemplan el <code>grob-interface</code>.
+</p>
+<a name="index-extra_002dspacing_002dwidth"></a>
+
+<p>De forma predeterminada, los objetos fuera-del-pentagrama reciben
+una anchura cero, de manera que pueden solaparse en la dirección
+horizontal.  Esto se hace mediante el truco de hacer que la
+dimensión más a la izquierda sea igual a infinito y que la
+dimensión más a la derecha sea igual a menos infinito,
+estableciendo el valor de <code>extra-spacing-width</code> a
+<code>'(+inf.0 . -inf.0)</code>.  Así, para asegurar que no se
+superponen en la dirección horizontal tendremos que sobreescribir
+este valor de <code>extra-spacing-width</code> para darles un poco de
+espacio adicional.  Las unidades son el espacio entre dos líneas
+del pentagrama, de forma que debería bastar mover el límite
+izquierdo media unidad a la izquierda y el límite derecho media
+unidad a la derecha:
+</p>
+<blockquote><pre class="example">\override DynamicText.extra-spacing-width = #'(-0.5 . 0.5)
+</pre></blockquote>
+
+<p>Veamos si funciona en nuestro ejemplo anterior:
+</p>
+<a name="index-DynamicText_002c-ejemplo-de-sobreescritura"></a>
+<a name="index-extra_002dspacing_002dwidth_002c-propiedad_002c-ejemplo"></a>
+
+<blockquote><pre class="verbatim">\dynamicUp
+% Extend width by 1 staff space
+\override DynamicText.extra-spacing-width = #'(-0.5 . 0.5)
+\relative { a'4\f b\mf a\mp b\p }
+</pre><p>
+ <a href="../9f/lily-cb76b05f.ly">
+  <img align="middle"
+       border="0"
+       src="../9f/lily-cb76b05f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Esto tiene un mejor aspecto, pero quizá habríamos preferido que
+las indicaciones de dinámica estuvieran alineadas sobre la misma
+línea de base en lugar de ir hacia arriba y hacia abajo con las
+notas.  La propiedad que lo hace es <code>staff-padding</code> (relleno
+de pentagrama) que se estudia en la sección dedicada a las
+colisiones (véase <a href="collisions-of-objects.es.html">Colisiones de objetos</a>).
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Trucar la salida&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Plantillas &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#dynamics-placement" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Posicionamiento de los matices dinámicos&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Objetos fuera del pentagrama&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="vertical-spacing.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Espaciado vertical &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="outside_002dstaff-objects.html">English</a>, <a href="outside_002dstaff-objects.ca.html">català</a>, <a href="outside_002dstaff-objects.cs.html">česky</a>, <a href="outside_002dstaff-objects.de.html">deutsch</a>, <a href="outside_002dstaff-objects.fr.html">français</a>, <a href="outside_002dstaff-objects.it.html">italiano</a>, <a href="outside_002dstaff-objects.ja.html">日本語</a>, <a href="outside_002dstaff-objects.nl.html">nederlands</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Manual de aprendizaje  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.es.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacion-del-archivo" href="compiling-a-file.es.html">1.1 Compilación del archivo</a>    </li>
+    <li class=""><a name="toc-Como-escribir-archivos-de-entrada" href="how-to-write-input-files.es.html">1.2 Cómo escribir archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Tratar-con-los-errores-1" href="dealing-with-errors.es.html">1.3 Tratar con los errores</a>    </li>
+    <li class=""><a name="toc-Como-leer-los-manuales" href="how-to-read-the-manuals.es.html">1.4 Cómo leer los manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-corriente" href="common-notation.es.html">2. Notación corriente</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacion-en-un-solo-pentagrama" href="single-staff-notation.es.html">2.1 Notación en un solo pentagrama</a>    </li>
+    <li class=""><a name="toc-Varias-notas-a-la-vez-1" href="multiple-notes-at-once.es.html">2.2 Varias notas a la vez</a>    </li>
+    <li class=""><a name="toc-Canciones-1" href="songs.es.html">2.3 Canciones</a>    </li>
+    <li class=""><a name="toc-Retoques-finales-1" href="final-touches.es.html">2.4 Retoques finales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Conceptos-fundamentales-1" href="fundamental-concepts.es.html">3. Conceptos fundamentales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Como-funcionan-los-archivos-de-entrada-de-LilyPond" href="how-lilypond-input-files-work.es.html">3.1 Cómo funcionan los archivos de entrada de LilyPond</a>    </li>
+    <li class=""><a name="toc-Las-voces-contienen-musica" href="voices-contain-music.es.html">3.2 Las voces contienen música</a>    </li>
+    <li class=""><a name="toc-Contextos-y-grabadores-1" href="contexts-and-engravers.es.html">3.3 Contextos y grabadores</a>    </li>
+    <li class=""><a name="toc-Extender-las-plantillas-1" href="extending-the-templates.es.html">3.4 Extender las plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Trucar-la-salida-1" href="tweaking-output.es.html">4. Trucar la salida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elementos-de-trucaje-1" href="tweaking-basics.es.html">4.1 Elementos de trucaje</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionamiento-interno-1" href="the-internals-reference-manual.es.html">4.2 Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Apariencia-de-los-objetos-1" href="appearance-of-objects.es.html">4.3 Apariencia de los objetos</a>    </li>
+    <li class=" toc_current"><a name="toc-Colocacion-de-los-objetos" href="placement-of-objects.es.html">4.4 Colocación de los objetos</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Comportamiento-automatico" href="automatic-behavior.es.html">4.4.1 Comportamiento automático</a>      </li>
+      <li class=""><a name="toc-Objetos-interiores-al-pentagrama-1" href="within_002dstaff-objects.es.html">4.4.2 Objetos interiores al pentagrama</a>      </li>
+      <li class=" toc_current"><a name="toc-Objetos-fuera-del-pentagrama-1" href="outside_002dstaff-objects.es.html">4.4.3 Objetos fuera del pentagrama</a>
+      <ul class="toc">
+        <li class=""><a name="toc-La-propiedad-outside_002dstaff_002dpriority-_0028prioridad-fuera-del-pentagrama_0029-1" href="outside_002dstaff-objects.es.html#the-outside_002dstaff_002dpriority-property">La propiedad <code>outside-staff-priority</code> (prioridad fuera del pentagrama)</a>        </li>
+        <li class=""><a name="toc-La-instruccion-_005ctextLengthOn" href="outside_002dstaff-objects.es.html#the-textlengthon-command">La instrucción <code>\textLengthOn</code></a>        </li>
+        <li class=""><a name="toc-Posicionamiento-de-los-matices-dinamicos" href="outside_002dstaff-objects.es.html#dynamics-placement">Posicionamiento de los matices dinámicos</a>        </li>
+        <li class=""><a name="toc-Escalado-de-un-_00abGrob_00bb-1" href="outside_002dstaff-objects.es.html#grob-sizing">Escalado de un «Grob»</a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.5 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Colisiones-de-objetos-1" href="collisions-of-objects.es.html">4.6 Colisiones de objetos</a>    </li>
+    <li class=""><a name="toc-Trucajes-adicionales-1" href="further-tweaking.es.html">4.7 Trucajes adicionales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantillas-1" href="templates.es.html">A. Plantillas</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantillas-de-pentagrama-unico" href="single-staff-templates.es.html">A.1 Plantillas de pentagrama único</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-piano-1" href="piano-templates.es.html">A.2 Plantillas de piano</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-cuarteto-de-cuerda-1" href="string-quartet-templates.es.html">A.3 Plantillas de cuarteto de cuerda</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-conjuntos-vocales-1" href="vocal-ensembles-templates.es.html">A.4 Plantillas de conjuntos vocales</a>    </li>
+    <li class=""><a name="toc-Plantillas-orquestales-1" href="orchestral-templates.es.html">A.5 Plantillas orquestales</a>    </li>
+    <li class=""><a name="toc-Plantillas-para-notacion-antigua" href="ancient-notation-templates.es.html">A.6 Plantillas para notación antigua</a>    </li>
+    <li class=""><a name="toc-Otras-plantillas-1" href="other-templates.es.html">A.7 Otras plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">C. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

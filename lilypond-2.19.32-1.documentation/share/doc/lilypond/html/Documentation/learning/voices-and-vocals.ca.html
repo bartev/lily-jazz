@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 pels autors.
+
+La traducció de la següent nota de copyright s'ofereix com a
+cortesia per a les persones de parla no anglesa, però únicament la
+nota en anglès té validesa legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+S'atorga permís per copiar, distribuir i/o modificar aquest
+document sota els termes de la Llicència de Documentació Lliure de
+GNU, versió 1.1 o qualsevol posterior publicada per la Free
+Software Foundation; sense cap de les seccions invariants.
+S'inclou una còpia d'aquesta llicència dins de la secció titulada
+"Llicència de Documentació Lliure de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual d'aprenentatge del GNU LilyPond: 3.2.3 Veus i música vocal</title>
+
+<meta name="description" content="Manual d'aprenentatge del GNU LilyPond: 3.2.3 Veus i música vocal">
+<meta name="keywords" content="Manual d'aprenentatge del GNU LilyPond: 3.2.3 Veus i música vocal">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="LilyPond &mdash; Manual d'aprenentatge">
+<link href="lilypond-index.ca.html#lilypond-index" rel="index" title="C. Índex del LilyPond">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Taula de contingus">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="Quant a aquest document">
+<link href="voices-contain-music.ca.html#voices-contain-music" rel="up" title="3.2 Les veus contenen música">
+<link href="lilypond-index.ca.html#lilypond-index" rel="next" title="C. Índex del LilyPond">
+<link href="explicitly-instantiating-voices.ca.html#explicitly-instantiating-voices" rel="previous" title="3.2.2 Veus explícites">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ca" class="learning devStatus">
+
+
+<div id="main">
+<a name="Veus-i-m_00fasica-vocal"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Conceptes fonamentals&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ca.html" title="Capítol següent">&nbsp;Ajustament de la sortida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="explicitly-instantiating-voices.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Veus explícites&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Les veus contenen música&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="contexts-and-engravers.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Contextos i gravadors &gt; </a>]</td></tr></table>
+<a name="voices-and-vocals"></a>
+<h3 class="subsection">3.2.3 Veus i música vocal</h3>
+
+<p>La música vocal presenta una dificultat especial: hem de combinar
+dues expressions, és a dir, les notes i la lletra.
+</p>
+<a name="index-_005cnew-Lyrics"></a>
+<a name="index-_005cnew-Lyrics-1"></a>
+<a name="index-_005clyricsto"></a>
+<a name="index-_005clyricsto-1"></a>
+<a name="index-lyricsto"></a>
+<a name="index-lyricsto-1"></a>
+<a name="index-Lyrics-2"></a>
+<a name="index-Lyrics-3"></a>
+<a name="index-Lyrics_002c-creacio-d_0027un-context"></a>
+<a name="index-lletra_002c-creacio-d_0027un-context-de"></a>
+<a name="index-lletra_002c-enllacar-amb-una-veu"></a>
+
+<p>Ja heu vist la instrucció <code>\addlyrics{}</code>, que funciona bé
+per a partitures senzilles.  Tot i així, aquesta tècnica és una
+mica limitada.  Per a música de complexitat més gran, hem
+d&rsquo;introduir la lletra en un context <code>Lyrics</code> utilitzant
+<code>\new Lyrics</code> i enllaçar explícitament la lletra i les notes
+mitjançant <code>\lyricsto{}</code>, usant el nom assignat a la veu.
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \new Voice = &quot;una&quot; {
+    \relative {
+      \autoBeamOff
+      \time 2/4
+      c''4 b8. a16 | g4. f8 | e4 d | c2 |
+    }
+  }
+  \new Lyrics \lyricsto &quot;una&quot; {
+    No more let | sins and | sor -- rows | grow. |
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../98/lily-1ed1a9e9.ly">
+  <img align="middle"
+       border="0"
+       src="../98/lily-1ed1a9e9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Observeu que la lletra s&rsquo;ha d&rsquo;enllaçar a un context de
+<code>Voice</code>, <em>no</em> a un context de <code>Staff</code>.  Aquest és
+un cas on és necessari crear contextos de <code>Staff</code> i de
+<code>Voice</code> explícitament.
+</p>
+<a name="index-lletra-i-barrat"></a>
+<a name="index-barrat-i-lletra"></a>
+<a name="index-_005cautoBeamOff-2"></a>
+<a name="index-_005cautoBeamOff-3"></a>
+<a name="index-autoBeamOff-2"></a>
+<a name="index-autoBeamOff-3"></a>
+
+<p>El barrat automàtic que el LilyPond usa de forma predeterminada
+funciona bé per a la música instrumental, però no tan bé per a
+música sense lletra, on o bé el barrat no es necessita en absolut,
+o bé s&rsquo;utilitza per indicar els melismes de la lletra.  A
+l&rsquo;exemple anterior hem utilitzat la instrucció <code>\autoBeamOff</code>
+per desactivar el barrat automàtic.
+</p>
+<a name="index-_005cnew-ChoirStaff"></a>
+<a name="index-_005cnew-ChoirStaff-1"></a>
+<a name="index-ChoirStaff-2"></a>
+<a name="index-ChoirStaff-3"></a>
+<a name="index-_005clyricmode"></a>
+<a name="index-_005clyricmode-1"></a>
+<a name="index-lyricmode"></a>
+<a name="index-lyricmode-1"></a>
+<a name="index-vocal_002c-estructura-d_0027una-partitura"></a>
+<a name="index-cor_002c-sistema-de-1"></a>
+
+<p>Ara reutilitzarem l&rsquo;exemple anterior de «Judes Macabeu» per a
+il·lustrar aquesta tècnica més flexible.  Primer la reescriurem
+per que faci servir variables, de manera que la música i la lletra
+es puguin separar de l&rsquo;estructura de pentagrames.  També
+introduirem una clau de grup de ChoirStaff.  La lletra pròpiament
+dita s&rsquo;ha de introduir amb <code>\lyricmode</code> perquè tenir seguretat
+que s&rsquo;interpreti com a lletra i no com a música.
+</p>
+<blockquote><pre class="verbatim">global = { \key f \major \time 6/8 \partial 8 }
+
+SopOneMusic = \relative {
+  c''8 | c8([ bes)] a a([ g)] f | f'4. b, | c4.~ 4
+}
+SopOneLyrics = \lyricmode {
+  Let | flee -- cy flocks the | hills a -- dorn, __
+}
+SopTwoMusic = \relative {
+  r8 | r4. r4 c'8 | a'8([ g)] f f([ e)] d | e8([ d)] c bes'
+}
+SopTwoLyrics = \lyricmode {
+  Let | flee -- cy flocks the | hills a -- dorn,
+}
+
+\score {
+  \new ChoirStaff &lt;&lt;
+    \new Staff &lt;&lt;
+      \new Voice = &quot;SopOne&quot; {
+        \global
+        \SopOneMusic
+      }
+      \new Lyrics \lyricsto &quot;SopOne&quot; {
+        \SopOneLyrics
+      }
+    &gt;&gt;
+    \new Staff &lt;&lt;
+      \new Voice = &quot;SopTwo&quot; {
+        \global
+        \SopTwoMusic
+      }
+      \new Lyrics \lyricsto &quot;SopTwo&quot; {
+        \SopTwoLyrics
+      }
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../9c/lily-0fc4f4f3.ly">
+  <img align="middle"
+       border="0"
+       src="../9c/lily-0fc4f4f3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Aquesta és l&rsquo;estructura bàsica de totes les partitures vocals.  Es
+poden afegir més pentagrames segons es necessiti, es poden afegir
+més veus als pentagrames i més estrofes a la lletra, i les
+variables que contenen la música es poden col·locar fàcilment en
+fitxers separats quan es facin massa llargs.
+</p>
+<a name="index-himne_002c-estructura-de"></a>
+<a name="index-SATB_002c-estructura-de"></a>
+<a name="index-vocal_002c-partitura_002c-diverses-estrofes"></a>
+<a name="index-diverses-estrofes-vocals"></a>
+<a name="index-estrofes_002c-diverses_002c-vocals"></a>
+
+<p>A continuació podem veure un exemple final de la primera línia
+d&rsquo;un himne amb quatre estrofes, per a cor SATB.  En aquest cas la
+lletra de les quatre parts és la mateixa.  Observeu com utilitzem
+variables per a separar la notació musical de l&rsquo;estructura de
+pentagrames.  Observeu també com s&rsquo;utilitza una variable, per a la
+qual hem escollit el nom &lsquo;TimeKey&rsquo; («compàs i tonalitat»), per a
+que contingui diverses instruccions que s&rsquo;usaran dins dels dos
+pentagrames.  A d&rsquo;altres exemples se li sol donar el nom de &lsquo;global&rsquo;.
+</p>
+<blockquote><pre class="verbatim">keyTime = { \key c \major \time 4/4 \partial 4 }
+
+SopMusic   = \relative { c'4 | e4. e8 g4  g    | a4   a   g  }
+AltoMusic  = \relative { c'4 | c4. c8 e4  e    | f4   f   e  }
+TenorMusic = \relative  { e4 | g4. g8 c4.   b8 | a8 b c d e4 }
+BassMusic  = \relative  { c4 | c4. c8 c4  c    | f8 g a b c4 }
+
+VerseOne =
+  \lyricmode { E -- | ter -- nal fa -- ther, | strong to save, }
+VerseTwo   =
+  \lyricmode { O | Christ, whose voice the | wa -- ters heard, }
+VerseThree =
+  \lyricmode { O | Ho -- ly Spi -- rit, | who didst brood }
+VerseFour  =
+  \lyricmode { O | Tri -- ni -- ty of | love and pow'r }
+
+\score {
+  \new ChoirStaff &lt;&lt;
+    \new Staff &lt;&lt;
+      \clef &quot;treble&quot;
+      \new Voice = &quot;Sop&quot;  { \voiceOne \keyTime \SopMusic }
+      \new Voice = &quot;Alto&quot; { \voiceTwo \AltoMusic }
+      \new Lyrics \lyricsto &quot;Sop&quot; { \VerseOne   }
+      \new Lyrics \lyricsto &quot;Sop&quot; { \VerseTwo   }
+      \new Lyrics \lyricsto &quot;Sop&quot; { \VerseThree }
+      \new Lyrics \lyricsto &quot;Sop&quot; { \VerseFour  }
+    &gt;&gt;
+    \new Staff &lt;&lt;
+      \clef &quot;bass&quot;
+      \new Voice = &quot;Tenor&quot; { \voiceOne \keyTime \TenorMusic }
+      \new Voice = &quot;Bass&quot;  { \voiceTwo \BassMusic }
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../bf/lily-87a9dbe3.ly">
+  <img align="middle"
+       border="0"
+       src="../bf/lily-87a9dbe3.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Vegeu-tambe-17"></a>
+<h4 class="subsubheading">Vegeu també</h4>
+<p>Referència de la notació:
+<a name="index-Vocal-music-2"></a>
+<a href="../notation/vocal-music.ca.html">Vocal music</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ca.html" title="Inici d&rsquo;aquest capítol o capítol previ"> &lt;&lt; Conceptes fonamentals&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Portada (inici) del document" rel="start">Part superior</a>][<a href="index_toc.ca.html#SEC_Contents" title="Taula de continguts" rel="contents">Continguts</a>][<a href="lilypond-index.ca.html" title="Índex" rel="index">Índex</a>][<a href="index_abt.ca.html#SEC_About" title="Quant a (ajuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ca.html" title="Capítol següent">&nbsp;Ajustament de la sortida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="explicitly-instantiating-voices.ca.html" title="Secció prèvia en ordre de lectura" accesskey="p" rel="previous"> &lt; Veus explícites&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.ca.html" title="Amunt secció" accesskey="u" rel="up">&nbsp; Amunt :&nbsp;Les veus contenen música&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="contexts-and-engravers.ca.html" title="Secció següent en ordre de lectura" accesskey="n" rel="next">&nbsp;Contextos i gravadors &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altres idiomes: <a href="voices-and-vocals.html">English</a>, <a href="voices-and-vocals.cs.html">česky</a>, <a href="voices-and-vocals.de.html">deutsch</a>, <a href="voices-and-vocals.es.html">español</a>, <a href="voices-and-vocals.fr.html">français</a>, <a href="voices-and-vocals.hu.html">magyar</a>, <a href="voices-and-vocals.it.html">italiano</a>, <a href="voices-and-vocals.ja.html">日本語</a>, <a href="voices-and-vocals.nl.html">nederlands</a>.
+ <br>
+ Quant a <a href="http://www.lilypond.org/website/misc/browser-language">selecció automàtica de l'idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ca.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">LilyPond &mdash; Manual d&rsquo;aprenentatge  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.ca.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacio-d_0027un-fitxer" href="compiling-a-file.ca.html">1.1 Compilació d&rsquo;un fitxer</a>    </li>
+    <li class=""><a name="toc-Com-escriure-fitxers-d_0027entrada-1" href="how-to-write-input-files.ca.html">1.2 Com escriure fitxers d&rsquo;entrada</a>    </li>
+    <li class=""><a name="toc-Gestio-dels-errors" href="dealing-with-errors.ca.html">1.3 Gestió dels errors</a>    </li>
+    <li class=""><a name="toc-Com-llegir-els-manuals-1" href="how-to-read-the-manuals.ca.html">1.4 Com llegir els manuals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacio-corrent" href="common-notation.ca.html">2. Notació corrent</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacio-en-un-sol-pentagrama" href="single-staff-notation.ca.html">2.1 Notació en un sol pentagrama</a>    </li>
+    <li class=""><a name="toc-Diverses-notes-a-la-vegada-1" href="multiple-notes-at-once.ca.html">2.2 Diverses notes a la vegada</a>    </li>
+    <li class=""><a name="toc-Cancons" href="songs.ca.html">2.3 Cançons</a>    </li>
+    <li class=""><a name="toc-Retocs-finals-1" href="final-touches.ca.html">2.4 Retocs finals</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Conceptes-fonamentals-1" href="fundamental-concepts.ca.html">3. Conceptes fonamentals</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Com-funcionen-els-fitxers-d_0027entrada-del-LilyPond-1" href="how-lilypond-input-files-work.ca.html">3.1 Com funcionen els fitxers d&rsquo;entrada del LilyPond</a>    </li>
+    <li class=" toc_current"><a name="toc-Les-veus-contenen-musica" href="voices-contain-music.ca.html">3.2 Les veus contenen música</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Sento-veus-1" href="i_0027m-hearing-voices.ca.html">3.2.1 Sento veus</a>      </li>
+      <li class=""><a name="toc-Veus-explicites" href="explicitly-instantiating-voices.ca.html">3.2.2 Veus explícites</a>      </li>
+      <li class=" toc_current"><a name="toc-Veus-i-musica-vocal" href="voices-and-vocals.ca.html">3.2.3 Veus i música vocal</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Contextos-i-gravadors-1" href="contexts-and-engravers.ca.html">3.3 Contextos i gravadors</a>    </li>
+    <li class=""><a name="toc-Extensio-de-les-plantilles" href="extending-the-templates.ca.html">3.4 Extensió de les plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ajustament-de-la-sortida-1" href="tweaking-output.ca.html">4. Ajustament de la sortida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elements-de-l_0027ajustament-1" href="tweaking-basics.ca.html">4.1 Elements de l&rsquo;ajustament</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionament-intern" href="the-internals-reference-manual.ca.html">4.2 Manual de referència de funcionament intern</a>    </li>
+    <li class=""><a name="toc-Aparenca-dels-objectes" href="appearance-of-objects.ca.html">4.3 Aparença dels objectes</a>    </li>
+    <li class=""><a name="toc-Col_00b7locacio-dels-objectes" href="placement-of-objects.ca.html">4.4 Col·locació dels objectes</a>    </li>
+    <li class=""><a name="toc-Espaiat-vertical-1" href="vertical-spacing.ca.html">4.5 Espaiat vertical</a>    </li>
+    <li class=""><a name="toc-Col_00b7lisions-d_0027objectes-1" href="collisions-of-objects.ca.html">4.6 Col·lisions d&rsquo;objectes</a>    </li>
+    <li class=""><a name="toc-Ajustaments-addicionals-1" href="further-tweaking.ca.html">4.7 Ajustaments addicionals</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantilles-1" href="templates.ca.html">A. Plantilles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantilles-de-pentagrama-unic" href="single-staff-templates.ca.html">A.1 Plantilles de pentagrama únic</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-piano-1" href="piano-templates.ca.html">A.2 Plantilles de piano</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-quartet-de-corda-1" href="string-quartet-templates.ca.html">A.3 Plantilles de quartet de corda</a>    </li>
+    <li class=""><a name="toc-Plantilles-de-conjunts-vocals-1" href="vocal-ensembles-templates.ca.html">A.4 Plantilles de conjunts vocals</a>    </li>
+    <li class=""><a name="toc-Plantilles-orquestrals-1" href="orchestral-templates.ca.html">A.5 Plantilles orquestrals</a>    </li>
+    <li class=""><a name="toc-Plantilles-per-a-notacio-antiga" href="ancient-notation-templates.ca.html">A.6 Plantilles per a notació antiga</a>    </li>
+    <li class=""><a name="toc-Altres-plantilles-1" href="other-templates.ca.html">A.7 Altres plantilles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ca.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-del-LilyPond" href="lilypond-index.ca.html">C. Índex del LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca a Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

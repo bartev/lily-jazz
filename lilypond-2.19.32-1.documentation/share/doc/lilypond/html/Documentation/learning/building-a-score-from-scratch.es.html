@@ -1,0 +1,503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manual de aprendizaje de GNU LilyPond: 3.4.3 Crear una partitura partiendo de cero</title>
+
+<meta name="description" content="Manual de aprendizaje de GNU LilyPond: 3.4.3 Crear una partitura partiendo de cero">
+<meta name="keywords" content="Manual de aprendizaje de GNU LilyPond: 3.4.3 Crear una partitura partiendo de cero">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Manual de aprendizaje">
+<link href="lilypond-index.es.html#lilypond-index" rel="index" title="C. Índice de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="extending-the-templates.es.html#extending-the-templates" rel="up" title="3.4 Extender las plantillas">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="C. Índice de LilyPond">
+<link href="four_002dpart-satb-vocal-score.es.html#four_002dpart-satb-vocal-score" rel="previous" title="3.4.2 Partitura vocal a cuatro voces SATB">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="learning devStatus">
+
+
+<div id="main">
+<a name="Crear-una-partitura-partiendo-de-cero"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Conceptos fundamentales&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Trucar la salida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="four_002dpart-satb-vocal-score.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Partitura vocal a cuatro voces SATB&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="extending-the-templates.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Extender las plantillas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="saving-typing-with-variables-and-functions.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Ahorrar tecleo mediante variables y funciones &gt; </a>]</td></tr></table>
+<a name="building-a-score-from-scratch"></a>
+<h3 class="subsection">3.4.3 Crear una partitura partiendo de cero</h3>
+
+<a name="index-plantilla_002c-escribir-su-propia"></a>
+<a name="index-ejemplo-de-escritura-de-una-partitura"></a>
+<a name="index-escribir-una-partitura_002c-ejemplo"></a>
+<a name="index-partitura_002c-ejemplo-de-escritura"></a>
+
+<p>Después de adquirir algo de soltura en la escritura del código de
+LilyPond, se dará cuenta de que es más fácil construir completamente
+una partitura partiendo de cero, que modificar una plantilla.  También
+puede desarrollar su propio estilo de forma que se adapte al tipo de
+música que le apetezca.  Veamos a continuación cómo confeccionar una
+partitura para un preludio de órgano, como ejemplo.
+</p>
+<p>Comenzamos con una sección para el encabezamiento.  Aquí es donde van
+el título, nombre del compositor, etc., después van las definiciones
+de las variables, y finalmente el bloque de partitura.  Comencemos a
+verlas por encima y más tarde completaremos los detalles.
+</p>
+<p>Utilizaremos los dos primeros compases del preludio de Bach basado en
+<em>Jesu, meine Freude</em>, que está escrito para órgano con dos
+manuales y pedal.  Tiene estos dos compases de música al final de la
+sección.  La parte del manual superior tiene dos voces, y el inferior
+y el pedal, una voz cada uno.  Así pues, necesitamos cuatro
+definiciones para la música y una más para definir el compás y la
+tonalidad:
+</p>
+<blockquote><pre class="example">\version &quot;2.19.32&quot;
+\header {
+  title = &quot;Jesu, meine Freude&quot;
+  composer = &quot;J S Bach&quot;
+}
+keyTime = { \key c \minor \time 4/4 }
+MusicaManualUnoVozUno = { s1 }
+MusicaManualUnoVozDos = { s1 }
+MusicaManualDos = { s1 }
+MusicaPedal = { s1 }
+
+\score {
+}
+</pre></blockquote>
+
+<p>Por el momento hemos escrito tan sólo una nota espaciadora, <code>s1</code>,
+en lugar de la música de verdad.  La añadiremos más adelante.
+</p>
+<p>A continuación veamos qué va en el bloque de partitura.
+Sencillamente, reflejaremos la estructura de pentagramas que deseemos.
+La música de órgano se escribe por lo general en tres pentagramas, uno
+para cada uno de los manuales y otro para el pedal.  Los pentagramas
+de los manuales se abarcan con una llave, así que los incluiremos en
+un grupo PianoStaff.  La primera parte de manual tiene dos voces, y la
+segunda sólo una.
+</p>
+<blockquote><pre class="example">\new PianoStaff &lt;&lt;
+  \new Staff = &quot;ManualUno&quot; &lt;&lt;
+    \new Voice {
+      \MusicaManualUnoVozUno
+    }
+    \new Voice {
+      \MusicaManualUnoVozDos
+    }
+  &gt;&gt;  % fin del contexto de Staff ManualUno
+  \new Staff = &quot;ManualDos&quot; &lt;&lt;
+    \new Voice {
+      \MusicaManualDos
+    }
+  &gt;&gt;  % fin del contexto de Staff ManualDos
+&gt;&gt;  % fin del contexto de PianoStaff
+</pre></blockquote>
+
+<p>Después, tenemos que añadir un pentagrama para el órgano de pedal.
+Esto va por debajo del PianoStaff, pero debe ser simultáneo con él,
+por lo que escribimos dobles ángulos rodeando a los dos.  Si esto se
+nos olvida, se producirá un error en el archivo log de registro.  ¡Es
+un error muy común que cometerá antes o después!  Intente copiar el
+ejemplo final que aparece al final de la sección, borre los dobles
+ángulos y procese el archivo para ver qué error produce.
+</p>
+<blockquote><pre class="example">&lt;&lt;  % el grupo PianoStaff y el pentagrama de Pedal son simultáneos
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;ManualUno&quot; &lt;&lt;
+      \new Voice {
+        \MusicaManualUnoVozUno
+      }
+      \new Voice {
+        \MusicaManualUnoVozDos
+      }
+    &gt;&gt;  % fin del contexto de Staff ManualUno
+    \new Staff = &quot;ManualDos&quot; &lt;&lt;
+      \new Voice {
+        \MusicaManualDos
+      }
+    &gt;&gt;  % fin del contexto de Staff ManualDos
+  &gt;&gt;  % fin del contexto de PianoStaff
+  \new Staff = &quot;OrganoPedal&quot; &lt;&lt;
+    \new Voice {
+      \MusicaOrganoPedal
+    }
+  &gt;&gt;
+&gt;&gt;
+</pre></blockquote>
+
+<p>No es necesario utilizar la construcción simultánea <code>&lt;&lt; &hellip; &gt;&gt;</code> para
+el pentagrama del manual dos y el pentagrama del órgano de pedal, ya
+que contienen una única expresión, pero no hace daño, y es una buena
+costumbre utilizar siempre dobles ángulos después de <code>\new Staff</code>
+cuando hay varias voces.  Lo opuesto es cierto para las voces:
+normalmente deben ir seguidas de llaves <code>{ &hellip; }</code> en caso de que
+tengamos música codificada como distintas variables que se deben
+situar consecutivamente.
+</p>
+<p>Añadamos esta estructura al bloque de partitura, y ajustemos el
+sangrado de los márgenes.  También escribimos las claves
+correspondientes, nos aseguramos de que las plicas y ligaduras de
+unión y de expresión en cada una de las voces del pentagrama superior
+apuntan en la dirección adecuada con <code>\voiceOne</code> y
+<code>\voiceTwo</code> y escribimos el compás y la tonalidad en cada uno de
+los pentagramas usando nuestra variable previamente definida
+<code>\TimeKey</code>.
+</p>
+<blockquote><pre class="example">\score {
+  &lt;&lt;  % el grupo PianoStaff y el pentagrama de Pedal son simultáneos
+    \new PianoStaff &lt;&lt;
+      \new Staff = &quot;ManualUno&quot; &lt;&lt;
+        \keyTime  % establecer compás y tonalidad
+        \clef &quot;treble&quot;
+        \new Voice {
+          \voiceOne
+          \MusicaManualUnoVozUno
+        }
+        \new Voice {
+          \voiceTwo
+          \MusicaManualUnoVozDos
+        }
+      &gt;&gt;  % fin del contexto de Staff ManualUno
+      \new Staff = &quot;ManualDos&quot; &lt;&lt;
+        \keyTime
+        \clef &quot;bass&quot;
+        \new Voice {
+          \MusicaManualDos
+        }
+      &gt;&gt;  % fin del contexto de Staff ManualDos
+    &gt;&gt;  % fin del contexto de PianoStaff
+    \new Staff = &quot;OrganoPedal&quot; &lt;&lt;
+     \keyTime
+      \clef &quot;bass&quot;
+      \new Voice {
+        \MusicaOrganoPedal
+      }
+    &gt;&gt;  % fin del pentagrama de OrganoPedal
+  &gt;&gt;
+}  % fin del contexto Score
+</pre></blockquote>
+
+<a name="index-ampliabilidad-de-las-pautas"></a>
+<a name="index-pautas_002c-ampliabilidad"></a>
+
+<p>La disposición anterior de los pentagramas de órgano es casi perfecta;
+sin embargo, existe un ligero defecto que no es visible cuando se
+observa un solo sistema: la distancia entre el pentagrama de pedal y
+el de la mano izquierda debiera ser aproximadamente la misma que la
+que existe entre los pentagramas de las manos izquierda y derecha.
+Concretamente, la ampliabilidad de los pentagramas dentro de un
+contexto <code>PianoStaff</code> es limitada (de forma que la distancia
+entre los pentagramas de las manos izquierda y derecha nunca crezcan
+excesivamente), y el pentagrama de los pedales debería comportarse de
+una forma similar.
+</p>
+<a name="index-sub_002dpropiedades"></a>
+<a name="index-propiedades_002c-sub_002dpropiedades"></a>
+<a name="index-objetos-graficos"></a>
+<a name="index-graficos_002c-objetos"></a>
+<a name="index-grobs"></a>
+
+<p>El grado de ampliabilidad o separabilidad de los pentagramas se puede
+controlar con la propiedad <code>staff-staff-spacing</code> del &lsquo;objeto
+gráfico&rsquo; <code>VerticalAxisGroup</code> (los objetos gráficos reciben por lo
+general el nombre de &lsquo;grob&rsquo;s en la documentación de lilypond); no se
+preocupe por el momento de los detalles, pues esto se explica más
+tarde de forma exhaustiva.  Los más curiosos pueden echar un vistazo a
+<a name="index-Panoramica-de-la-modificacion-de-las-propiedades"></a>
+<a href="../notation/overview-of-modifying-properties.es.html">Panorámica de la modificación de las propiedades</a>.  En este
+caso, queremos modificar solamente la sub-propiedad
+<code>stretchability</code>.
+De nuevo, los curiosos encontrarán los valores
+predeterminados para la propiedad staff-staff-spacing
+en el archivo &lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;
+examinando la definición del grob <code>VerticalAxisGroup</code> grob.  El
+valor de <code>stretchability</code> se toma de la definición del contexto
+<code>PianoStaff</code> (en el archivo &lsquo;<tt>ly/engraver-init.ly</tt>&rsquo;) de
+forma que los valores sean idénticos.
+</p>
+<blockquote><pre class="example">\score {
+  &lt;&lt;  % el grupo PianoStaff y el pentagrama de Pedal son simultáneos
+    \new PianoStaff &lt;&lt;
+      \new Staff = &quot;ManualUno&quot; &lt;&lt;
+        \keyTime  % establecer compás y tonalidad
+        \clef &quot;treble&quot;
+        \new Voice {
+          \voiceOne
+          \MusicaManualUnoVozUno
+        }
+        \new Voice {
+          \voiceTwo
+          \MusicaManualUnoVozDos
+        }
+      &gt;&gt;  % % fin del contexto de Staff ManualUno
+      \new Staff = &quot;ManualDos&quot; \with {
+        \override VerticalAxisGroup.staff-staff-spacing.stretchability = 5
+      } &lt;&lt;
+        \keyTime
+        \clef &quot;bass&quot;
+        \new Voice {
+          \MusicaManualDos
+        }
+      &gt;&gt;  % fin del contexto de Staff ManualDos
+    &gt;&gt;  % fin del contexto de PianoStaff
+    \new Staff = &quot;OrganoPedal&quot; &lt;&lt;
+      \keyTime
+      \clef &quot;bass&quot;
+      \new Voice {
+        \MusicaOrganoPedal
+      }
+    &gt;&gt;  % fin del pentagrama de OrganoPedal
+  &gt;&gt;
+}  % fin del contexto Score
+</pre></blockquote>
+
+<p>Con esto se completa la estructura.  Toda música para órgano de tres
+pentagramas tendrá una estructura similar, aunque el número de voces
+puede variar.  Todo lo que nos queda es añadir la música, y combinar
+todas las partes.
+</p>
+<blockquote><blockquote><pre class="example">\version &quot;2.19.32&quot;
+</pre></blockquote>
+<pre class="verbatim">\header {
+  title = &quot;Jesu, meine Freude&quot;
+  composer = &quot;J S Bach&quot;
+}
+keyTime = { \key c \minor \time 4/4 }
+ManualOneVoiceOneMusic = \relative {
+  g'4 g f ees |
+  d2 c |
+}
+ManualOneVoiceTwoMusic = \relative {
+  ees'16 d ees8~ 16 f ees d c8 d~ d c~ |
+  8 c4 b8 c8. g16 c b c d |
+}
+ManualTwoMusic = \relative {
+  c'16 b c8~ 16 b c g a8 g~ 16 g aes ees |
+  f16 ees f d g aes g f ees d ees8~ 16 f ees d |
+}
+PedalOrganMusic = \relative {
+  r8 c16 d ees d ees8~ 16 a, b g c b c8 |
+  r16 g ees f g f g8 c,2 |
+}
+
+\score {
+  &lt;&lt;  % PianoStaff and Pedal Staff must be simultaneous
+    \new PianoStaff &lt;&lt;
+      \new Staff = &quot;ManualOne&quot; &lt;&lt;
+        \keyTime  % set key and time signature
+        \clef &quot;treble&quot;
+        \new Voice {
+          \voiceOne
+          \ManualOneVoiceOneMusic
+        }
+        \new Voice {
+          \voiceTwo
+          \ManualOneVoiceTwoMusic
+        }
+      &gt;&gt;  % end ManualOne Staff context
+      \new Staff = &quot;ManualTwo&quot; \with {
+        \override VerticalAxisGroup.staff-staff-spacing.stretchability = 5
+      } &lt;&lt;
+        \keyTime
+        \clef &quot;bass&quot;
+        \new Voice {
+          \ManualTwoMusic
+        }
+      &gt;&gt;  % end ManualTwo Staff context
+    &gt;&gt;  % end PianoStaff context
+    \new Staff = &quot;PedalOrgan&quot; &lt;&lt;
+      \keyTime
+      \clef &quot;bass&quot;
+      \new Voice {
+        \PedalOrganMusic
+      }
+    &gt;&gt;  % end PedalOrgan Staff context
+  &gt;&gt;
+}  % end Score context
+</pre><p>
+ <a href="../94/lily-b2a3c7db.ly">
+  <img align="middle"
+       border="0"
+       src="../94/lily-b2a3c7db.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-28"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Glosario musical:
+<a name="index-system-1"></a>
+<a href="../music-glossary/system.es.html">system</a>.
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Conceptos fundamentales&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Trucar la salida &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="four_002dpart-satb-vocal-score.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Partitura vocal a cuatro voces SATB&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="extending-the-templates.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Extender las plantillas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="saving-typing-with-variables-and-functions.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Ahorrar tecleo mediante variables y funciones &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="building-a-score-from-scratch.html">English</a>, <a href="building-a-score-from-scratch.ca.html">català</a>, <a href="building-a-score-from-scratch.cs.html">česky</a>, <a href="building-a-score-from-scratch.de.html">deutsch</a>, <a href="building-a-score-from-scratch.fr.html">français</a>, <a href="building-a-score-from-scratch.hu.html">magyar</a>, <a href="building-a-score-from-scratch.it.html">italiano</a>, <a href="building-a-score-from-scratch.ja.html">日本語</a>, <a href="building-a-score-from-scratch.nl.html">nederlands</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Manual de aprendizaje  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.es.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilacion-del-archivo" href="compiling-a-file.es.html">1.1 Compilación del archivo</a>    </li>
+    <li class=""><a name="toc-Como-escribir-archivos-de-entrada" href="how-to-write-input-files.es.html">1.2 Cómo escribir archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Tratar-con-los-errores-1" href="dealing-with-errors.es.html">1.3 Tratar con los errores</a>    </li>
+    <li class=""><a name="toc-Como-leer-los-manuales" href="how-to-read-the-manuals.es.html">1.4 Cómo leer los manuales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-corriente" href="common-notation.es.html">2. Notación corriente</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notacion-en-un-solo-pentagrama" href="single-staff-notation.es.html">2.1 Notación en un solo pentagrama</a>    </li>
+    <li class=""><a name="toc-Varias-notas-a-la-vez-1" href="multiple-notes-at-once.es.html">2.2 Varias notas a la vez</a>    </li>
+    <li class=""><a name="toc-Canciones-1" href="songs.es.html">2.3 Canciones</a>    </li>
+    <li class=""><a name="toc-Retoques-finales-1" href="final-touches.es.html">2.4 Retoques finales</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Conceptos-fundamentales-1" href="fundamental-concepts.es.html">3. Conceptos fundamentales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Como-funcionan-los-archivos-de-entrada-de-LilyPond" href="how-lilypond-input-files-work.es.html">3.1 Cómo funcionan los archivos de entrada de LilyPond</a>    </li>
+    <li class=""><a name="toc-Las-voces-contienen-musica" href="voices-contain-music.es.html">3.2 Las voces contienen música</a>    </li>
+    <li class=""><a name="toc-Contextos-y-grabadores-1" href="contexts-and-engravers.es.html">3.3 Contextos y grabadores</a>    </li>
+    <li class=" toc_current"><a name="toc-Extender-las-plantillas-1" href="extending-the-templates.es.html">3.4 Extender las plantillas</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Soprano-y-violoncello-1" href="soprano-and-cello.es.html">3.4.1 Soprano y violoncello</a>      </li>
+      <li class=""><a name="toc-Partitura-vocal-a-cuatro-voces-SATB-1" href="four_002dpart-satb-vocal-score.es.html">3.4.2 Partitura vocal a cuatro voces SATB</a>      </li>
+      <li class=" toc_current"><a name="toc-Crear-una-partitura-partiendo-de-cero-1" href="building-a-score-from-scratch.es.html">3.4.3 Crear una partitura partiendo de cero</a>      </li>
+      <li class=""><a name="toc-Ahorrar-tecleo-mediante-variables-y-funciones-1" href="saving-typing-with-variables-and-functions.es.html">3.4.4 Ahorrar tecleo mediante variables y funciones</a>      </li>
+      <li class=""><a name="toc-Partituras-y-particellas-1" href="scores-and-parts.es.html">3.4.5 Partituras y particellas</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Trucar-la-salida-1" href="tweaking-output.es.html">4. Trucar la salida</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Elementos-de-trucaje-1" href="tweaking-basics.es.html">4.1 Elementos de trucaje</a>    </li>
+    <li class=""><a name="toc-Manual-de-referencia-de-funcionamiento-interno-1" href="the-internals-reference-manual.es.html">4.2 Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Apariencia-de-los-objetos-1" href="appearance-of-objects.es.html">4.3 Apariencia de los objetos</a>    </li>
+    <li class=""><a name="toc-Colocacion-de-los-objetos" href="placement-of-objects.es.html">4.4 Colocación de los objetos</a>    </li>
+    <li class=""><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.5 Espaciado vertical</a>    </li>
+    <li class=""><a name="toc-Colisiones-de-objetos-1" href="collisions-of-objects.es.html">4.6 Colisiones de objetos</a>    </li>
+    <li class=""><a name="toc-Trucajes-adicionales-1" href="further-tweaking.es.html">4.7 Trucajes adicionales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Plantillas-1" href="templates.es.html">A. Plantillas</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Plantillas-de-pentagrama-unico" href="single-staff-templates.es.html">A.1 Plantillas de pentagrama único</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-piano-1" href="piano-templates.es.html">A.2 Plantillas de piano</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-cuarteto-de-cuerda-1" href="string-quartet-templates.es.html">A.3 Plantillas de cuarteto de cuerda</a>    </li>
+    <li class=""><a name="toc-Plantillas-de-conjuntos-vocales-1" href="vocal-ensembles-templates.es.html">A.4 Plantillas de conjuntos vocales</a>    </li>
+    <li class=""><a name="toc-Plantillas-orquestales-1" href="orchestral-templates.es.html">A.5 Plantillas orquestales</a>    </li>
+    <li class=""><a name="toc-Plantillas-para-notacion-antigua" href="ancient-notation-templates.es.html">A.6 Plantillas para notación antigua</a>    </li>
+    <li class=""><a name="toc-Otras-plantillas-1" href="other-templates.es.html">A.7 Otras plantillas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">C. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

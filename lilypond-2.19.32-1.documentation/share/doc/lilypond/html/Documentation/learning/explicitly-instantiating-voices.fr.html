@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel d'initiation: 3.2.2 Instanciation explicite des voix</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel d'initiation: 3.2.2 Instanciation explicite des voix">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel d'initiation: 3.2.2 Instanciation explicite des voix">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel d'initiation">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="C. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="voices-contain-music.fr.html#voices-contain-music" rel="up" title="3.2 Les voix contiennent la musique">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="C. Index de LilyPond">
+<link href="i_0027m-hearing-voices.fr.html#i_0027m-hearing-voices" rel="previous" title="3.2.1 J'entends des Voix">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="learning devStatus">
+
+
+<div id="main">
+<a name="Instanciation-explicite-des-voix"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Concepts fondamentaux&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.fr.html" title="Chapitre suivant">&nbsp;Retouche de partition &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="i_0027m-hearing-voices.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; J'entends des Voix&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Les voix contiennent la musique&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="voices-and-vocals.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Voix et paroles &gt; </a>]</td></tr></table>
+<a name="explicitly-instantiating-voices"></a>
+<h3 class="subsection">3.2.2 Instanciation explicite des voix</h3>
+
+<a name="index-_005cvoiceOne"></a>
+<a name="index-_005cvoiceOne-1"></a>
+<a name="index-voiceOne"></a>
+<a name="index-voiceOne-1"></a>
+<a name="index-_005cvoiceTwo"></a>
+<a name="index-_005cvoiceTwo-1"></a>
+<a name="index-voiceTwo"></a>
+<a name="index-voiceTwo-1"></a>
+<a name="index-_005cvoiceThree"></a>
+<a name="index-_005cvoiceThree-1"></a>
+<a name="index-voiceThree"></a>
+<a name="index-voiceThree-1"></a>
+<a name="index-_005cvoiceFour"></a>
+<a name="index-_005cvoiceFour-1"></a>
+<a name="index-voiceFour"></a>
+<a name="index-voiceFour-1"></a>
+<a name="index-_005coneVoice"></a>
+<a name="index-_005coneVoice-1"></a>
+<a name="index-oneVoice"></a>
+<a name="index-oneVoice-1"></a>
+<a name="index-_005cnew-Voice"></a>
+<a name="index-_005cnew-Voice-1"></a>
+<a name="index-Voice_002c-creation-de-contextes"></a>
+
+<p>Les contextes <a name="index-Voice-2"></a>
+<a href="../internals/voice.fr.html">Voice</a> peuvent être déclarés manuellement
+dans un bloc <code>&lt;&lt; &gt;&gt;</code> pour créer de la musique polyphonique, en
+utilisant <code>\voiceOne</code>&hellip; jusqu&rsquo;à <code>\voiceFour</code> pour
+assigner des directions de hampes et un déplacement horizontal pour
+chaque partie.  Cette méthode apporte de la clarté pour des partitions
+plus importantes puisqu&rsquo;elle permet de bien séparer les voix et de leur
+affecter un nom plus parlant.
+</p>
+<p>En particulier, la construction <code>&lt;&lt; \\ &gt;&gt;</code> que nous avons vue
+précédemment :
+</p>
+<blockquote><pre class="example">\new Staff {
+  \relative {
+    &lt;&lt; { e'4 f g a } \\ { c,4 d e f } &gt;&gt;
+  }
+}
+</pre></blockquote>
+
+<p>équivaut à
+</p>
+<blockquote><pre class="example">\new Staff &lt;&lt;
+  \new Voice = &quot;1&quot; { \voiceOne \relative { e'4 f g a } }
+  \new Voice = &quot;2&quot; { \voiceTwo \relative { c'4 d e f } }
+&gt;&gt;
+</pre></blockquote>
+
+<p>Toutes deux produiront
+</p>
+<blockquote><p>
+ <a href="../ac/lily-2c9ec852.ly">
+  <img align="middle"
+       border="0"
+       src="../ac/lily-2c9ec852.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Voice_002c-retour-a-un-seul-contexte"></a>
+<a name="index-retour-a-un-contexte-Voice-unique"></a>
+
+<p>Les commandes <code>\voiceXXX</code> fixent la direction des hampes, des
+liaisons de prolongation et de phrasé, des articulations, des
+annotations, des points d&rsquo;augmentation des notes pointées et des
+doigtés.  <code>\voiceOne</code> et <code>\voiceThree</code> font pointer ces objets
+vers le haut, alors que <code>\voiceTwo</code> et <code>\voiceFour</code> les font
+pointer vers le bas.  Ces commandes génèrent par ailleurs un décalage
+horizontal de chacune des voix pour éviter tout risque de chevauchement
+entre plusieurs notes.  La commande <code>\oneVoice</code> les ramène aux
+critères normaux.
+</p>
+<p>Voyons, à l&rsquo;aide de ces exemples simples, les effets respectifs de
+<code>\oneVoice</code>, <code>\voiceOne</code> et <code>\voiceTwo</code> sur les
+annotations, liaisons de prolongation ou de phrasé, et sur les nuances.
+</p>
+<blockquote><pre class="verbatim">\relative {
+  % Default behavior or behavior after \oneVoice
+  c'4 d8~ 8 e4( f | g4 a) b-&gt; c |
+}
+</pre><p>
+ <a href="../ba/lily-571b6839.ly">
+  <img align="middle"
+       border="0"
+       src="../ba/lily-571b6839.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<blockquote><pre class="verbatim">\relative {
+  \voiceOne
+  c'4 d8~ 8 e4( f | g4 a) b-&gt; c |
+  \oneVoice
+  c,4 d8~ 8 e4( f | g4 a) b-&gt; c |
+}
+</pre><p>
+ <a href="../a9/lily-8d5564db.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-8d5564db.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<blockquote><pre class="verbatim">\relative {
+  \voiceTwo
+  c'4 d8~ 8 e4( f | g4 a) b-&gt; c |
+  \oneVoice
+  c,4 d8~ 8 e4( f | g4 a) b-&gt; c |
+}
+</pre><p>
+ <a href="../9b/lily-c020fe1a.ly">
+  <img align="middle"
+       border="0"
+       src="../9b/lily-c020fe1a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Voyons à présent trois différentes façons d&rsquo;exprimer un passage
+polyphonique, à partir d&rsquo;un exemple de la section précédente.  Chacune
+d&rsquo;elles aura ses avantages selon les circonstances.
+</p>
+<p>Une expression séquentielle qui apparaît en premier dans un <code>&lt;&lt; &gt;&gt;</code>
+&ndash; attention, <strong>pas</strong> dans une construction <code>&lt;&lt; \\ &gt;&gt;</code> &ndash;
+appartient à la voix principale.  Ceci est utile lorsque des voix
+supplémentaires apparaissent pendant que la voix principale est jouée.
+Voici une meilleure réalisation de notre exemple.  Les notes colorées et
+en croix mettent en évidence le fait que la mélodie principale est
+maintenant dans un seul contexte de voix, ce qui permet d&rsquo;ajouter une
+liaison de phrasé à l&rsquo;ensemble.
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \voiceOneStyle
+  % The following notes are homophonic
+  c'16^( d e f
+  % Start simultaneous section of three voices
+  &lt;&lt;
+    % Continue the main voice in parallel
+    { g4 f e | d2 e) | }
+    % Initiate second voice
+    \new Voice {
+      % Set stems, etc., down
+      \voiceTwo
+      r8 e4 d c8~ | 8 b16 a b8 g~ 2 |
+    }
+    % Initiate third voice
+    \new Voice {
+      % Set stems, etc, up
+      \voiceThree
+      s2. | s4 b c2 |
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../fa/lily-b78702c5.ly">
+  <img align="middle"
+       border="0"
+       src="../fa/lily-b78702c5.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-imbrication-d_0027expressions-musicales"></a>
+<a name="index-imbrication-de-constructions-simultanees"></a>
+<a name="index-voix-temporaires"></a>
+<a name="index-voix_002c-imbrication"></a>
+
+<p>Dans certaines circonstances de polyphonie complexe, vous pourrez être
+amené à recourir à une voix temporaire, ce qui peut être une manière
+plus naturelle de saisir la musique :
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  c'16^( d e f
+  &lt;&lt;
+    { g4 f e | d2 e) | }
+    \new Voice {
+      \voiceTwo
+      r8 e4 d c8~ |
+      &lt;&lt;
+        { c8 b16 a b8 g~ 2 | }
+        \new Voice {
+          \voiceThree
+          s4 b c2 |
+        }
+      &gt;&gt;
+    }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../8c/lily-2cc03f8c.ly">
+  <img align="middle"
+       border="0"
+       src="../8c/lily-2cc03f8c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-espacement-des-notes"></a>
+
+<p>Cette manière de brièvement imbriquer des voix est bien utile pour de
+courts fragments de musique polyphonique.  Mais lorsqu&rsquo;une portée est
+très souvent polyphonique, on peut y gagner en clarté si l&rsquo;on utilise
+plusieurs voix sur l&rsquo;ensemble de cette portée et que l&rsquo;on positionne des
+silences invisibles pour sauter les moments où il n&rsquo;y a rien dans cette
+voix.
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative &lt;&lt;
+  % Initiate first voice
+  \new Voice {
+    \voiceOne
+    c'16^( d e f g4 f e | d2 e2) |
+  }
+  % Initiate second voice
+  \new Voice {
+    % Set stems, etc, down
+    \voiceTwo
+    s4 r8 e4 d c8 ~ | 8 b16 a b8 g ~ 2 |
+  }
+  % Initiate third voice
+  \new Voice {
+    % Set stems, etc, up
+    \voiceThree
+    s1 | s4 b4 c2 |
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../a9/lily-ef4190ee.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-ef4190ee.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Empilement-des-notes"></a>
+<h4 class="subsubheading">Empilement des notes</h4>
+
+<a name="index-note-column"></a>
+<a name="index-empilement-de-notes"></a>
+<a name="index-collisions-de-notes"></a>
+<a name="index-shift_002c-commandes"></a>
+<a name="index-decalage_002c-commandes"></a>
+
+<a name="index-_005cshiftOff"></a>
+<a name="index-_005cshiftOff-1"></a>
+<a name="index-shiftOff"></a>
+<a name="index-shiftOff-1"></a>
+<a name="index-_005cshiftOn"></a>
+<a name="index-_005cshiftOn-1"></a>
+<a name="index-shiftOn"></a>
+<a name="index-shiftOn-1"></a>
+<a name="index-_005cshiftOnn"></a>
+<a name="index-_005cshiftOnn-1"></a>
+<a name="index-shiftOnn"></a>
+<a name="index-shiftOnn-1"></a>
+<a name="index-_005cshiftOnnn"></a>
+<a name="index-_005cshiftOnnn-1"></a>
+<a name="index-shiftOnnn"></a>
+<a name="index-shiftOnnn-1"></a>
+
+<p>Les notes rapprochées d&rsquo;un accord, ou des notes de différentes voix qui
+tombent ensemble, seront rangées sur deux colonnes, voire plus, pour
+palier d&rsquo;éventuels chevauchements des têtes.  On appelle cela des
+empilements de notes.  Chaque voix dispose de plusieurs empilements, et
+l&rsquo;attribution d&rsquo;un décalage à une voix en particulier s&rsquo;appliquera à
+l&rsquo;empilement en question s&rsquo;il y avait risque de collision.
+Nous en avons une illustration à la deuxième mesure de l&rsquo;exemple
+ci-dessus : le do de la deuxième voix est décalé à droite du ré de
+la première voix et, dans l&rsquo;accord final, le do de la troisième voix est
+lui aussi décalé à droite des autres notes.
+</p>
+<p>Les commandes <code>\shiftOn</code>, <code>\shiftOnn</code>, <code>\shiftOnnn</code> et
+<code>\shiftOff</code> spécifient le degré nécessaire de décalage qui sera
+appliqué aux notes ou accords de la voix en question afin d&rsquo;éviter une
+collision.  Par défaut, les voix extérieures &ndash; normalement les
+première et deuxième &ndash; se verront attribuer <code>\shiftOff</code>, alors
+que les voix intérieures &ndash; trois et quatre &ndash; se verront attribuer
+<code>\shiftOn</code>.  Lorsqu&rsquo;un décalage s&rsquo;applique, les voix un et trois
+iront vers la droite, et les voix deux et quatre vers la gauche.
+</p>
+<p><code>\shiftOnn</code> et <code>\shiftOnnn</code> définissent des degrés augmentés
+de décalage auquel on peut devoir temporairement recourir dans des
+situations complexes &ndash; voir <a href="real-music-example.fr.html">Exemple concret</a>.
+</p>
+<p>Un empilement peut ne contenir qu&rsquo;une note ou un accord dans une voix
+aux hampes vers le haut, et une note ou un accord dans une voix
+aux hampes vers le bas.  Dans le cas où des notes, issues de deux voix
+ayant toutes deux des hampes dans la même direction, se retrouvent au
+même moment et qu&rsquo;aucun décalage n&rsquo;a été spécifié ou qu&rsquo;ils sont
+identiques, LilyPond vous le signalera par le message « Cette voix
+requiert un <code>\voiceXx</code> ou un réglage <code>\shiftXx</code>  ».
+</p>
+<a name="Voir-aussi-6"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel d&rsquo;initiation :
+<a href="moving-objects.fr.html">Déplacement d&rsquo;objets</a>
+</p>
+<p>Manuel de notation :
+<a name="index-Plusieurs-voix-1"></a>
+<a href="../notation/multiple-voices.fr.html">Plusieurs voix</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Concepts fondamentaux&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.fr.html" title="Chapitre suivant">&nbsp;Retouche de partition &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="i_0027m-hearing-voices.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; J'entends des Voix&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Les voix contiennent la musique&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="voices-and-vocals.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Voix et paroles &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="explicitly-instantiating-voices.html">English</a>, <a href="explicitly-instantiating-voices.ca.html">català</a>, <a href="explicitly-instantiating-voices.cs.html">česky</a>, <a href="explicitly-instantiating-voices.de.html">deutsch</a>, <a href="explicitly-instantiating-voices.es.html">español</a>, <a href="explicitly-instantiating-voices.hu.html">magyar</a>, <a href="explicitly-instantiating-voices.it.html">italiano</a>, <a href="explicitly-instantiating-voices.ja.html">日本語</a>, <a href="explicitly-instantiating-voices.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel d&rsquo;initiation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-1" href="tutorial.fr.html">1. Tutoriel</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilation-d_0027un-fichier-1" href="compiling-a-file.fr.html">1.1 Compilation d&rsquo;un fichier</a>    </li>
+    <li class=""><a name="toc-Composition-d_0027un-fichier-source-1" href="how-to-write-input-files.fr.html">1.2 Composition d&rsquo;un fichier source</a>    </li>
+    <li class=""><a name="toc-Gestion-des-erreurs-1" href="dealing-with-errors.fr.html">1.3 Gestion des erreurs</a>    </li>
+    <li class=""><a name="toc-Bien-lire-le-manuel-1" href="how-to-read-the-manuals.fr.html">1.4 Bien lire le manuel</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bases-de-notation-musicale-1" href="common-notation.fr.html">2. Bases de notation musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-sur-une-seule-portee" href="single-staff-notation.fr.html">2.1 Notation sur une seule portée</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="multiple-notes-at-once.fr.html">2.2 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Chansons-1" href="songs.fr.html">2.3 Chansons</a>    </li>
+    <li class=""><a name="toc-Dernieres-precisions" href="final-touches.fr.html">2.4 Dernières précisions</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Concepts-fondamentaux-1" href="fundamental-concepts.fr.html">3. Concepts fondamentaux</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Organisation-des-fichiers-LilyPond-1" href="how-lilypond-input-files-work.fr.html">3.1 Organisation des fichiers LilyPond</a>    </li>
+    <li class=" toc_current"><a name="toc-Les-voix-contiennent-la-musique-1" href="voices-contain-music.fr.html">3.2 Les voix contiennent la musique</a>
+    <ul class="toc">
+      <li class=""><a name="toc-J_0027entends-des-Voix-1" href="i_0027m-hearing-voices.fr.html">3.2.1 J&rsquo;entends des Voix</a>      </li>
+      <li class=" toc_current"><a name="toc-Instanciation-explicite-des-voix-1" href="explicitly-instantiating-voices.fr.html">3.2.2 Instanciation explicite des voix</a>      </li>
+      <li class=""><a name="toc-Voix-et-paroles-1" href="voices-and-vocals.fr.html">3.2.3 Voix et paroles</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Contextes-et-graveurs-1" href="contexts-and-engravers.fr.html">3.3 Contextes et graveurs</a>    </li>
+    <li class=""><a name="toc-Extension-des-modeles" href="extending-the-templates.fr.html">3.4 Extension des modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Retouche-de-partition-1" href="tweaking-output.fr.html">4. Retouche de partition</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Retouches-elementaires" href="tweaking-basics.fr.html">4.1 Retouches élémentaires</a>    </li>
+    <li class=""><a name="toc-Le-manuel-de-reference-des-proprietes-internes" href="the-internals-reference-manual.fr.html">4.2 Le manuel de référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Apparence-des-objets-1" href="appearance-of-objects.fr.html">4.3 Apparence des objets</a>    </li>
+    <li class=""><a name="toc-Positionnement-des-objets-1" href="placement-of-objects.fr.html">4.4 Positionnement des objets</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.5 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Collisions-d_0027objets-1" href="collisions-of-objects.fr.html">4.6 Collisions d&rsquo;objets</a>    </li>
+    <li class=""><a name="toc-Autres-retouches-1" href="further-tweaking.fr.html">4.7 Autres retouches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modeles" href="templates.fr.html">A. Modèles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Gabarits-preprogrammes" href="built_002din-templates.fr.html">A.1 Gabarits préprogrammés</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-portee-unique" href="single-staff-templates.fr.html">A.2 Modèles pour portée unique</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-piano" href="piano-templates.fr.html">A.3 Modèles pour piano</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-quatuor-a-cordes" href="string-quartet-templates.fr.html">A.4 Modèles pour quatuor à cordes</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-ensemble-vocal" href="vocal-ensembles-templates.fr.html">A.5 Modèles pour ensemble vocal</a>    </li>
+    <li class=""><a name="toc-Orchestre-1" href="orchestral-templates.fr.html">A.6 Orchestre</a>    </li>
+    <li class=""><a name="toc-Exemples-de-notation-ancienne-1" href="ancient-notation-templates.fr.html">A.7 Exemples de notation ancienne</a>    </li>
+    <li class=""><a name="toc-Autres-modeles" href="other-templates.fr.html">A.8 Autres modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">C. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

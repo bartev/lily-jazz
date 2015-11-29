@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2004-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Extending LilyPond: 2.2.2 Scheme function usage</title>
+
+<meta name="description" content="Extending LilyPond: 2.2.2 Scheme function usage">
+<meta name="keywords" content="Extending LilyPond: 2.2.2 Scheme function usage">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.nl.html#index" rel="start" title="LilyPond &mdash; Extending">
+<link href="lilypond-index.nl.html#lilypond-index" rel="index" title="B. LilyPond index">
+<link href="index_toc.nl.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.nl.html#SEC_About" rel="help" title="About This Document">
+<link href="scheme-functions.nl.html#scheme-functions" rel="up" title="2.2 Scheme functions">
+<link href="lilypond-index.nl.html#lilypond-index" rel="next" title="B. LilyPond index">
+<link href="scheme-function-definitions.nl.html#scheme-function-definitions" rel="previous" title="2.2.1 Scheme function definitions">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="extending devStatus">
+
+
+<div id="main">
+<a name="Scheme-function-usage"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Interfaces for programmers&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.nl.html" title="Next chapter">&nbsp;LilyPond Scheme interfaces &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="scheme-function-definitions.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Scheme function definitions&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="scheme-functions.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Scheme functions&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="void-scheme-functions.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Void scheme functions &gt; </a>]</td></tr></table>
+<a name="scheme-function-usage"></a>
+<h3 class="subsection">2.2.2 Scheme function usage</h3>
+
+<p>Scheme functions can be called pretty much anywhere where a Scheme
+expression starting with <code>#</code> can be written.  You call a
+scheme function from LilyPond by writing its name preceded by
+<code>\</code>, followed by its arguments.  Once an optional argument
+predicate does not match an argument, LilyPond skips this and all
+following optional arguments, replacing them with their specified
+default, and &lsquo;backs up&rsquo; the argument that did not match to the
+place of the next mandatory argument.  Since the backed up
+argument needs to go somewhere, optional arguments are not
+actually considered optional unless followed by a mandatory
+argument.
+</p>
+<p>There is one exception: if you write <code>\default</code> in the place of an
+optional argument, this and all following optional arguments are skipped
+and replaced by their default.  This works even when no mandatory
+argument follows since <code>\default</code> does not need to get backed up.
+The <code>mark</code> and <code>key</code> commands make use of that trick to
+provide their default behavior when just followed by <code>\default</code>.
+</p>
+<p>Apart from places where a Scheme value is required, there are a few
+places where <code>#</code> expressions are currently accepted and evaluated
+for their side effects but otherwise ignored.  Mostly those are the
+places where an assignment would be acceptable as well.
+</p>
+<p>Since it is a bad idea to return values that can be misinterpreted in
+some context, you should use normal scheme functions only for those
+cases where you always return a useful value, and use void scheme
+functions (see section <a href="void-scheme-functions.nl.html">Void scheme functions</a>) otherwise.
+</p>
+<p>For convenience, scheme functions may also be called directly from
+Scheme bypassing the LilyPond parser.  Their name can be used like
+the name of an ordinary function.  Typechecking of the arguments
+and skipping optional arguments will happen in the same manner as
+when called from within LilyPond, with the Scheme value
+<code>*unspecified*</code> taking the role of the <code>\default</code>
+reserved word for explicitly skipping optional arguments.
+</p>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="interfaces-for-programmers.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Interfaces for programmers&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="lilypond-scheme-interfaces.nl.html" title="Next chapter">&nbsp;LilyPond Scheme interfaces &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="scheme-function-definitions.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Scheme function definitions&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="scheme-functions.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Scheme functions&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="void-scheme-functions.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Void scheme functions &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Deze pagina is voor LilyPond-2.19.32 (ontwikkelingstak).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere talen: <a href="scheme-function-usage.de.html">deutsch</a>, <a href="scheme-function-usage.es.html">español</a>, <a href="scheme-function-usage.fr.html">français</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.nl.html" title="Start of the manual">LilyPond &mdash; Extending  v2.19.32 (ontwikkelingstak). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Scheme-tutorial-1" href="scheme-tutorial.nl.html">1. Scheme tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Introduction-to-Scheme-1" href="introduction-to-scheme.nl.html">1.1 Introduction to Scheme</a>    </li>
+    <li class=""><a name="toc-Scheme-in-LilyPond-1" href="scheme-in-lilypond.nl.html">1.2 Scheme in LilyPond</a>    </li>
+    <li class=""><a name="toc-Building-complicated-functions-1" href="building-complicated-functions.nl.html">1.3 Building complicated functions</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Interfaces-for-programmers-1" href="interfaces-for-programmers.nl.html">2. Interfaces for programmers</a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-code-blocks-1" href="lilypond-code-blocks.nl.html">2.1 LilyPond code blocks</a>    </li>
+    <li class=" toc_current"><a name="toc-Scheme-functions-1" href="scheme-functions.nl.html">2.2 Scheme functions</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Scheme-function-definitions-1" href="scheme-function-definitions.nl.html">2.2.1 Scheme function definitions</a>      </li>
+      <li class=" toc_current"><a name="toc-Scheme-function-usage-1" href="scheme-function-usage.nl.html">2.2.2 Scheme function usage</a>      </li>
+      <li class=""><a name="toc-Void-scheme-functions-1" href="void-scheme-functions.nl.html">2.2.3 Void scheme functions</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Music-functions-1" href="music-functions.nl.html">2.3 Music functions</a>    </li>
+    <li class=""><a name="toc-Event-functions-1" href="event-functions.nl.html">2.4 Event functions</a>    </li>
+    <li class=""><a name="toc-Markup-functions-1" href="markup-functions.nl.html">2.5 Markup functions</a>    </li>
+    <li class=""><a name="toc-Contexts-for-programmers-1" href="contexts-for-programmers.nl.html">2.6 Contexts for programmers</a>    </li>
+    <li class=""><a name="toc-Callback-functions-1" href="callback-functions.nl.html">2.7 Callback functions</a>    </li>
+    <li class=""><a name="toc-Difficult-tweaks-1" href="difficult-tweaks.nl.html">2.8 Difficult tweaks</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-Scheme-interfaces-1" href="lilypond-scheme-interfaces.nl.html">3. LilyPond Scheme interfaces</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.nl.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.nl.html">B. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

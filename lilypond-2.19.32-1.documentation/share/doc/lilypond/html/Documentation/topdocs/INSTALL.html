@@ -1,0 +1,2062 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>INSTALL - compiling and installing GNU LilyPond</title>
+
+<meta name="description" content="INSTALL - compiling and installing GNU LilyPond">
+<meta name="keywords" content="INSTALL - compiling and installing GNU LilyPond">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="#index" rel="start" title="INSTALL - compiling and installing GNU LilyPond">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="#SEC_About" rel="help" title="About This Document">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="INSTALL devStatus">
+
+
+<div id="main">
+<a name="Top"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td></tr></table>
+<a name="index"></a>
+<h1 class="settitle">INSTALL - compiling and installing GNU LilyPond</h1>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#compilation" accesskey="1">1. Compilation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr size="1">
+<a name="Compilation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#index" title="Beginning of this chapter or previous chapter"> &lt;&lt; Top&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#index" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Top&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#index" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Top&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#overview-of-compiling" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Overview of compiling &gt; </a>]</td></tr></table>
+<a name="compilation"></a>
+<h1 class="chapter">1. Compilation</h1>
+
+
+
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#overview-of-compiling" accesskey="1">1.1 Overview of compiling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#requirements" accesskey="2">1.2 Requirements</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#getting-the-source-code" accesskey="3">1.3 Getting the source code</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#configuring-make" accesskey="4">1.4 Configuring <code>make</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#compiling-lilypond" accesskey="5">1.5 Compiling LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#post_002dcompilation-options" accesskey="6">1.6 Post-compilation options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#problems" accesskey="7">1.7 Problems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#concurrent-stable-and-development-versions" accesskey="8">1.8 Concurrent stable and development versions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#build-system" accesskey="9">1.9 Build system</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Overview-of-compiling"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#compilation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#requirements" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Requirements &gt; </a>]</td></tr></table>
+<a name="overview-of-compiling"></a>
+<h2 class="section">1.1 Overview of compiling</h2>
+
+<p>Compiling LilyPond from source is an involved process, and is only
+recommended for developers and packagers.  Typical program users
+are instead encouraged to obtain the program from a package
+manager (on Unix) or by downloading a precompiled binary
+configured for a specific operating system.  Pre-compiled binaries
+are available on the <a name="index-Download"></a>
+<a href="web.html#download">Download</a> page.
+</p>
+<p>Compiling LilyPond from source is necessary if you want to build,
+install, or test your own version of the program.
+</p>
+<p>A successful compile can also be used to generate and install the
+documentation, incorporating any changes you may have made.
+However, a successful compile is not a requirement for generating
+the documentation.  The documentation can be built using a Git
+repository in conjunction with a locally installed copy of the
+program.  For more information, see <a href="#building-documentation-without-compiling">Building documentation without compiling</a>.
+</p>
+<p>Attempts to compile LilyPond natively on Windows have been
+unsuccessful, though a workaround is available (see
+<a name="index-LilyDev"></a>
+<a href="contributor.html#lilydev">LilyDev</a>).
+</p>
+
+<hr size="6">
+<a name="Requirements"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#overview-of-compiling" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Overview of compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#requirements-for-running-lilypond" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Requirements for running LilyPond &gt; </a>]</td></tr></table>
+<a name="requirements"></a>
+<h2 class="section">1.2 Requirements</h2>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#requirements-for-running-lilypond" accesskey="1">1.2.1 Requirements for running LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#requirements-for-compiling-lilypond" accesskey="2">1.2.2 Requirements for compiling LilyPond</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#requirements-for-building-documentation" accesskey="3">1.2.3 Requirements for building documentation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Requirements-for-running-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#requirements" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Requirements&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#requirements-for-compiling-lilypond" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Requirements for compiling LilyPond &gt; </a>]</td></tr></table>
+<a name="requirements-for-running-lilypond"></a>
+<h3 class="subsection">1.2.1 Requirements for running LilyPond</h3>
+
+<p>This section contains the list of separate software packages that are
+required to run LilyPond.
+</p>
+<ul>
+<li> <a href="http://www.dejavu-fonts.org">DejaVu fonts</a>
+These are normally installed by default.
+
+</li><li>
+<a href="http://www.fontconfig.org">FontConfig</a>
+Use version 2.4.0 or newer.
+
+</li><li>
+<a href="http://www.freetype.org">Freetype</a>
+Use version 2.1.10 or newer.
+
+</li><li>
+<a href="http://www.ghostscript.com">Ghostscript</a>
+Use version 8.60 or newer.
+
+</li><li>
+<a href="http://www.gnu.org/software/guile/guile.html">Guile</a>
+Use version 1.8.8. Version 2.x of Guile is not currently supported.
+
+</li><li>
+<a href="http://www.pango.org">Pango</a>
+User version 1.12 or newer.
+
+</li><li>
+<a href="http://www.python.org">Python</a>
+Use version 2.4 or newer.
+
+</li><li>
+International fonts.  For example:
+
+<p>Fedora:
+</p>
+<blockquote><pre class="example">fonts-arabic
+fonts-hebrew
+fonts-ja
+fonts-xorg-truetype
+taipeifonts
+ttfonts-ja
+ttfonts-zh_CN
+</pre></blockquote>
+
+<p>Debian based distributions:
+</p>
+<blockquote><pre class="example">emacs-intl-fonts
+fonts-ipafont-gothic
+fonts-ipafont-mincho
+xfonts-bolkhov-75dpi
+xfonts-cronyx-75dpi
+xfonts-cronyx-100dpi
+xfonts-intl-.*
+</pre></blockquote>
+
+<p>These are normally installed by default and are required only to create
+music with international text or lyrics.
+</p>
+</li></ul>
+
+
+<hr size="6">
+<a name="Requirements-for-compiling-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#requirements-for-running-lilypond" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Requirements for running LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#fedora" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Fedora &gt; </a>]</td></tr></table>
+<a name="requirements-for-compiling-lilypond"></a>
+<h3 class="subsection">1.2.2 Requirements for compiling LilyPond</h3>
+
+<p>This section contains instructions on how to quickly and easily get all
+the software packages required to build LilyPond.
+</p>
+<p>Most of the more popular Linux distributions only require a few simple
+commands to download all the software needed.  For others, there is an
+explicit list of all the individual packages (as well as where to get
+them from) for those that are not already included in your
+distributions&rsquo; own repositories.
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#fedora" accesskey="1">Fedora</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#linux-mint" accesskey="2">Linux Mint</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#opensuse" accesskey="3">OpenSUSE</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#ubuntu" accesskey="4">Ubuntu</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#other" accesskey="5">Other</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Fedora"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#requirements-for-compiling-lilypond" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Requirements for compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements-for-compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements for compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#linux-mint" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Linux Mint &gt; </a>]</td></tr></table>
+<a name="fedora"></a>
+<h4 class="unnumberedsubsubsec">Fedora</h4>
+
+<p>The following instructions were tested on &lsquo;Fedora 22&rsquo; and include all
+the software to both compile LilyPond and build the documenation.
+</p>
+<ul>
+<li>
+Download and install all the LilyPond build-dependencies (approximately
+700MB);
+
+<blockquote><pre class="example">sudo dnf builddep lilypond --nogpgcheck
+</pre></blockquote>
+
+</li><li>
+Download and install additional &lsquo;build&rsquo; tools required for compiling;
+
+<blockquote><pre class="example">sudo dnf install autoconf gcc-c++
+</pre></blockquote>
+
+</li><li>
+Download <code>texi2html 1.82</code> directly from:
+<a href="http://download.savannah.gnu.org/releases/texi2html/texi2html-1.82.tar.gz">http://download.savannah.gnu.org/releases/texi2html/texi2html-1.82.tar.gz</a>;
+
+<p><code>texi2html</code> is only required if you intend to compile LilyPond&rsquo;s
+own documentation (e.g. to help with any document writing).  The version
+available in the Fedora repositories is too new and will not work.
+Extract the files into an appropriate location and then run the
+commands;
+</p>
+<blockquote><pre class="example">./configure
+make
+sudo make install
+</pre></blockquote>
+
+<p>This should install <code>texi2html 1.82</code> into <code>/usr/local/bin</code>,
+which will normally take priority over <code>/usr/bin</code> where the
+later, pre-installed versions gets put.  Now verify that your operating
+system is able to see the correct version of <code>texi2html</code>.
+</p>
+<blockquote><pre class="example">texi2html --version
+</pre></blockquote>
+
+</li><li>
+Although not &lsquo;required&rsquo; to compile LilyPond, if you intend to
+contribute to LilyPond (codebase or help improve the documentation) then
+it is recommended that you also need to install <code>git</code>.
+
+<blockquote><pre class="example">sudo dnf install git
+</pre></blockquote>
+
+<p>Also see <a name="index-Starting-with-Git"></a>
+<a href="notation.html#starting-with-git">Starting with Git</a>.
+</p>
+</li><li>
+To use the <code>lily-git.tcl</code> GUI;
+
+<blockquote><pre class="example">sudo dnf install tk
+</pre></blockquote>
+
+<p>See <a name="index-lily_002dgit"></a>
+<a href="notation.html#lily_002dgit">lily-git</a>.
+</p>
+</li></ul>
+
+
+
+<hr size="6">
+<a name="Linux-Mint"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#fedora" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Fedora&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements-for-compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements for compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#opensuse" title="Next section in reading order" accesskey="n" rel="next">&nbsp;OpenSUSE &gt; </a>]</td></tr></table>
+<a name="linux-mint"></a>
+<h4 class="unnumberedsubsubsec">Linux Mint</h4>
+
+<p>The following instructions were tested on &lsquo;Linux Mint 17.1&rsquo; and
+&lsquo;LMDE - Betsy&rsquo; and include all the software to both compile LilyPond
+and build the documenation.
+</p>
+<ul>
+<li>
+Enable the <em>sources</em> repository;
+
+<ol>
+<li>
+Using the <em>Software Sources</em> GUI (located under
+<em>Administration</em>).
+
+</li><li>
+Select <em>Official Repositories</em>.
+
+</li><li>
+Check the <em>Enable source code repositories</em> box under the
+<em>Source Code</em> section.
+
+</li><li>
+Click the <em>Update the cache</em> button and when it has completed,
+close the <em>Software Sources</em> GUI.
+
+</li></ol>
+
+</li><li>
+Download and install all the LilyPond build-dependencies (approximately
+200MB);
+
+<blockquote><pre class="example">sudo apt-get build-dep lilypond
+</pre></blockquote>
+
+</li><li>
+Download and install additional &lsquo;build&rsquo; tools required for compiling;
+
+<blockquote><pre class="example">sudo apt-get install autoconf fonts-texgyre texlive-lang-cyrillic
+</pre></blockquote>
+
+</li><li>
+Although not &lsquo;required&rsquo; to compile LilyPond, if you intend to
+contribute to LilyPond (codebase or help improve the documentation) then
+it is recommended that you also need to install <code>git</code>.
+
+<blockquote><pre class="example">sudo apt-get install git
+</pre></blockquote>
+
+<p>Also see <a name="index-Starting-with-Git-1"></a>
+<a href="notation.html#starting-with-git">Starting with Git</a>.
+</p>
+</li><li>
+To use the <code>lily-git.tcl</code> GUI;
+
+<blockquote><pre class="example">sudo apt-get install tk
+</pre></blockquote>
+
+<p>Also see <a name="index-lily_002dgit-1"></a>
+<a href="notation.html#lily_002dgit">lily-git</a>.
+</p>
+</li></ul>
+
+
+<hr size="6">
+<a name="OpenSUSE"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#linux-mint" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Linux Mint&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements-for-compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements for compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ubuntu" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Ubuntu &gt; </a>]</td></tr></table>
+<a name="opensuse"></a>
+<h4 class="unnumberedsubsubsec">OpenSUSE</h4>
+
+<p>The following instructions were tested on &lsquo;OpenSUSE 13.2&rsquo; and include
+all the software to both compile LilyPond and build the documenation.
+</p>
+<ul>
+<li>
+Add the <em>sources</em> repository;
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">sudo zypper addrepo -f \
+&quot;http://download.opensuse.org/source/distribution/13.2/repo/oss/&quot; sources
+</pre></td></tr></table>
+
+</li><li>
+Download and install all the LilyPond build-dependencies (approximately
+680MB);
+
+<blockquote><pre class="example">sudo zypper source-install lilypond
+</pre></blockquote>
+
+</li><li>
+Download and install additional &lsquo;build&rsquo; tools required for compiling;
+
+<blockquote><pre class="example">sudo zypper install make
+</pre></blockquote>
+
+</li><li>
+Although not &lsquo;required&rsquo; to compile LilyPond, if you intend to
+contribute to LilyPond (codebase or help improve the documentation) then
+it is recommended that you also need to install <code>git</code>.
+
+<blockquote><pre class="example">sudo apt-get install git
+</pre></blockquote>
+
+<p>Also see <a name="index-Starting-with-Git-2"></a>
+<a href="notation.html#starting-with-git">Starting with Git</a>.
+</p>
+</li><li>
+To use the <code>lily-git.tcl</code> GUI;
+
+<blockquote><pre class="example">sudo zypper install tk
+</pre></blockquote>
+
+<p>Also see <a name="index-lily_002dgit-2"></a>
+<a href="notation.html#lily_002dgit">lily-git</a>.
+</p>
+</li></ul>
+
+
+
+<hr size="6">
+<a name="Ubuntu"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#opensuse" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; OpenSUSE&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements-for-compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements for compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#other" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Other &gt; </a>]</td></tr></table>
+<a name="ubuntu"></a>
+<h4 class="unnumberedsubsubsec">Ubuntu</h4>
+
+<p>The following commands were tested on Ubuntu versions <code>14.04 LTS</code>,
+<code>14.10</code> and <code>15.04</code> and include all the software to both
+compile LilyPond and build the documenation.
+</p>
+<ul>
+<li>
+Download and install all the LilyPond build-dependencies (approximately
+200MB);
+
+<blockquote><pre class="example">sudo apt-get build-dep lilypond
+</pre></blockquote>
+
+</li><li>
+Download and install additional &lsquo;build&rsquo; tools required for compiling;
+
+<blockquote><pre class="example">sudo apt-get install autoconf fonts-texgyre texlive-land-cyrillic
+</pre></blockquote>
+
+</li><li>
+Although not &lsquo;required&rsquo; to compile LilyPond, if you intend to
+contribute to LilyPond (codebase or help improve the documentation) then
+it is recommended that you also need to install <code>git</code>.
+
+<blockquote><pre class="example">sudo apt-get install git
+</pre></blockquote>
+
+<p>Also see <a name="index-Starting-with-Git-3"></a>
+<a href="notation.html#starting-with-git">Starting with Git</a>.
+</p>
+</li><li>
+To use the <code>lily-git.tcl</code> GUI;
+
+<blockquote><pre class="example">sudo apt-get install tk
+</pre></blockquote>
+
+<p>Also see <a name="index-lily_002dgit-3"></a>
+<a href="notation.html#lily_002dgit">lily-git</a>.
+</p>
+</li></ul>
+
+
+<hr size="6">
+<a name="Other"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ubuntu" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Ubuntu&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements-for-compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements for compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#requirements-for-building-documentation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Requirements for building documentation &gt; </a>]</td></tr></table>
+<a name="other"></a>
+<h4 class="unnumberedsubsubsec">Other</h4>
+
+<p>The following individual software packages are required just to compile
+LilyPond.
+</p>
+<ul>
+<li>
+<a href="http://www.gnu.org/software/autoconf">GNU Autoconf</a>
+
+</li><li>
+<a href="http://www.gnu.org/software/bison">GNU Bison</a>
+
+<p>Use version <code>2.0</code> or newer.
+</p>
+</li><li>
+<a href="http://gcc.gnu.org">GNU Compiler Collection</a>
+
+<p>Use version <code>3.4</code> or newer (<code>4.x</code> recommended).
+</p>
+</li><li>
+<a href="http://flex.sourceforge.net">Flex</a>
+
+</li><li>
+<a href="http://fontforge.sf.net">FontForge</a>
+
+<p>Use version <code>20060125</code> or newer (we recommend using at least
+<code>20100501</code>); it must also be compiled with the
+&lsquo;<samp>--enable-double</samp>&rsquo; switch, else this can lead to inaccurate
+intersection calculations which end up with poorly-rendered glyphs in
+the output.
+</p>
+</li><li>
+<a href="http://www.gnu.org/software/gettext/gettext.html">GNU gettext</a>
+
+<p>Use version <code>0.17</code> or newer.
+</p>
+</li><li>
+<a href="http://www.gnu.org/software/make">GNU Make</a>
+
+<p>Use version <code>3.78</code> or newer.
+</p>
+</li><li>
+<a href="http://metafont.tutorial.free.fr">MetaFont</a>
+
+<p>The <code>mf-nowin</code>, <code>mf</code>, <code>mfw</code> or <code>mfont</code> binaries are
+usually packaged along with
+<a href="http://www.latex-project.org/ftp.html">TeX</a>.
+</p>
+</li><li>
+<a href="http://cm.bell-labs.com/who/hobby/MetaPost.html">MetaPost</a>
+
+<p>The <code>mpost</code> binary is also usually packaged with
+<a href="http://www.latex-project.org/ftp.html">TeX</a>.
+</p>
+</li><li>
+<a href="http://www.perl.org">Perl</a>
+
+</li><li>
+<a href="http://www.gnu.org/software/texinfo">Texinfo</a>
+
+<p>Use version <code>4.11</code> or newer.
+</p>
+</li><li>
+<a href="http://www.lcdf.org/~eddietwo/type/#t1utils">Type 1 utilities</a>
+
+<p>Use version <code>1.33</code> or newer.
+</p>
+</li><li>
+<a href="https://www.ctan.org/pkg/cyrillic?lang=en">Cyrillic fonts</a>
+
+<p>Often packaged in repositories as <code>texlive-lang-cyrillic</code>.
+</p>
+</li><li>
+TeX Gyre &lsquo;OTF&rsquo; font packages.  As of LilyPond version <code>2.19.26</code>,
+the previous default serif, san serif and monospace fonts now use Tex
+Gyre&rsquo;s <em>Schola</em>, <em>Heros</em> and <em>Cursor</em> fonts respectively.
+Also See <a name="index-Fonts"></a>
+<a href="notation.html#fonts">Fonts</a>.
+
+<p>Some distributions do not always provide &lsquo;OTF&rsquo; font files in the Tex
+Gyre packages from their repositories.  Use the command
+<code>fc-list | grep texgyre</code> to list the fonts available to your system
+and check that the appropriate <code>*.otf</code> files are reported.  If they
+are not then download and manually extract the &lsquo;OTF&rsquo; files to either
+your local  <code>~/.fonts/</code> directory or use the
+<code>configure</code> command and the
+<code>--with-texgyre-dir=/path_to_otf_files/</code> option.
+</p>
+<p>The following font families are required:
+</p>
+<p><a href="http://www.gust.org.pl/projects/e-foundry/tex-gyre/schola">Schola</a>,
+<a href="http://www.gust.org.pl/projects/e-foundry/tex-gyre/heros">Heros</a>
+and
+<a href="http://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor">Cursor</a>.
+</p>
+</li></ul>
+
+
+
+<hr size="6">
+<a name="Requirements-for-building-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#other" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Other&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#requirements" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Requirements&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#getting-the-source-code" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Getting the source code &gt; </a>]</td></tr></table>
+<a name="requirements-for-building-documentation"></a>
+<h3 class="subsection">1.2.3 Requirements for building documentation</h3>
+
+<p>The entire set of documentation for the most current build of LilyPond
+is available online at
+<a href="http://lilypond.org/doc/v2.19/Documentation/web/development">http://lilypond.org/doc/v2.19/Documentation/web/development</a>, but
+you can also build them locally from the source code.  This process
+requires some additional tools and packages.
+</p>
+<div class="warning"><p><strong>Note:</strong> If you have used the instructions for one of the Linux
+distributions explicitly listed in the previous section
+(<a name="index-Requirements-for-compiling-LilyPond"></a>
+<a href="contributor.html#requirements-for-compiling-lilypond">Requirements for compiling LilyPond</a>) then the following can
+be ignored as the software should already be installed.
+</p>
+</div>
+<ul>
+<li>
+Everything listed in <a href="#requirements-for-compiling-lilypond">Requirements for compiling LilyPond</a>
+
+</li><li>
+<a href="http://www.imagemagick.org">ImageMagick</a>
+
+</li><li>
+<a href="http://netpbm.sourceforge.net">Netpbm</a>
+
+</li><li>
+<a href="http://gzip.org">gzip</a>
+
+</li><li>
+<a href="http://rsync.samba.org">rsync</a>
+
+</li><li>
+<a href="http://www.nongnu.org/texi2html">Texi2HTML</a>
+
+<p>Use version <code>1.82</code>.  Later versions will not work.
+</p>
+<p>Download <code>texi2html 1.82</code> directly from:
+<a href="http://download.savannah.gnu.org/releases/texi2html/texi2html-1.82.tar.gz">http://download.savannah.gnu.org/releases/texi2html/texi2html-1.82.tar.gz</a>;
+</p>
+<p>Extract the files into an appropriate location and then run the
+commands;
+</p>
+<blockquote><pre class="example">./configure
+make
+sudo make install
+</pre></blockquote>
+
+<p>Now verify that your operating system is able to see the correct version
+of <code>texi2html</code>.
+</p>
+<blockquote><pre class="example">texi2html --version
+</pre></blockquote>
+
+</li><li>
+Fonts required to build the documentation in addition to those required
+to run LilyPond:
+
+<blockquote><pre class="example">gsfonts
+fonts-linuxlibertine
+fonts-liberation
+fonts-dejavu
+fonts-freefont-otf
+ttf-bitstream-vera
+texlive-fonts-recommended
+ttf-xfree86-nonfree
+</pre></blockquote>
+
+</li></ul>
+
+
+
+<hr size="6">
+<a name="Getting-the-source-code"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#requirements-for-building-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Requirements for building documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#configuring-make" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Configuring make &gt; </a>]</td></tr></table>
+<a name="getting-the-source-code"></a>
+<h2 class="section">1.3 Getting the source code</h2>
+
+
+<a name="Downloading-the-Git-repository"></a>
+<h3 class="subheading">Downloading the Git repository</h3>
+
+<p>In general, developers compile LilyPond from within a local Git
+repository.  Setting up a local Git repository is explained in
+<a name="index-Starting-with-Git-4"></a>
+<a href="contributor.html#starting-with-git">Starting with Git</a>.
+</p>
+
+<a name="Downloading-a-source-tarball"></a>
+<h3 class="subheading">Downloading a source tarball</h3>
+
+<p>Packagers are encouraged to use source tarballs for compiling.
+</p>
+<p>The tarball for the latest stable release is available on the
+<a name="index-Source"></a>
+<a href="web.html#source">Source</a> page.
+</p>
+<p>The latest
+<a href="http://git.savannah.gnu.org/gitweb/?p=lilypond.git;a=snapshot">source code snapshot</a>
+is also available as a tarball from the GNU Savannah Git server.
+</p>
+<p>All tagged releases (including legacy stable
+versions and the most recent development release) are available
+here:
+</p>
+<blockquote><pre class="example"><a href="http://download.linuxaudio.org/lilypond/source">http://download.linuxaudio.org/lilypond/source/</a>
+</pre></blockquote>
+
+<p>Download the tarball to your &lsquo;<tt>~/src/</tt>&rsquo; directory, or some
+other appropriate place.
+</p>
+<div class="warning"><p><strong>Note:</strong> Be careful where you unpack the tarball!  Any
+subdirectories of the current folder named &lsquo;<tt>lilypond/</tt>&rsquo; or
+&lsquo;<tt>lilypond-<var>x.y.z</var>/</tt>&rsquo; (where <var>x.y.z</var> is the release
+number) will be overwritten if there is a name clash with the
+tarball.
+</p>
+</div>
+<p>Unpack the tarball with this command:
+</p>
+<blockquote><pre class="example">tar -xzf lilypond-<var>x.y.z</var>.tar.gz
+</pre></blockquote>
+
+<p>This creates a subdirectory within the current directory called
+&lsquo;<tt>lilypond-<var>x.y.z</var>/</tt>&rsquo;.  Once unpacked, the source files
+occupy about 40 MB of disk space.
+</p>
+<p>Windows users wanting to look at the source code may have to
+download and install the free-software
+<a href="http://www.7-zip.org">7zip archiver</a> to extract the tarball.
+</p>
+
+<hr size="6">
+<a name="Configuring-make"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#getting-the-source-code" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Getting the source code&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#running-_002e_002fautogen_002esh" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Running ./autogen.sh &gt; </a>]</td></tr></table>
+<a name="configuring-make"></a>
+<h2 class="section">1.4 Configuring <code>make</code></h2>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#running-_002e_002fautogen_002esh" accesskey="1">1.4.1 Running <code>./autogen.sh</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#running-_002e_002e_002fconfigure" accesskey="2">1.4.2 Running <code>../configure</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Running-_002e_002fautogen_002esh"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#configuring-make" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Configuring make&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#configuring-make" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Configuring make&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#running-_002e_002e_002fconfigure" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Running ../configure &gt; </a>]</td></tr></table>
+<a name="running-_002e_002fautogen_002esh"></a>
+<h3 class="subsection">1.4.1 Running <code>./autogen.sh</code></h3>
+
+<p>After you unpack the tarball (or download the Git repository), the
+contents of your top source directory should be similar to the
+current source tree listed at
+<a href="http://git.sv.gnu.org/gitweb/?p=lilypond.git;a=tree">http://git.sv.gnu.org/gitweb/?p=lilypond.git;a=tree</a>.
+</p>
+<p>Next, you need to create the generated files; enter the following
+command from your top source directory:
+</p>
+<blockquote><pre class="example">./autogen.sh --noconfigure
+</pre></blockquote>
+
+<p>This will generate a number of files and directories to aid
+configuration, such as &lsquo;<tt>configure</tt>&rsquo;, &lsquo;<tt>README.txt</tt>&rsquo;, etc.
+</p>
+<p>Next, create the build directory with:
+</p>
+<blockquote><pre class="example">mkdir build/
+cd build/
+</pre></blockquote>
+
+<p>We heavily recommend building lilypond inside a separate directory
+with this method.
+</p>
+
+<hr size="6">
+<a name="Running-_002e_002e_002fconfigure"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#running-_002e_002fautogen_002esh" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Running ./autogen.sh&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#configuring-make" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Configuring make&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#configuration-options" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Configuration options &gt; </a>]</td></tr></table>
+<a name="running-_002e_002e_002fconfigure"></a>
+<h3 class="subsection">1.4.2 Running <code>../configure</code></h3>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#configuration-options" accesskey="1">Configuration options</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#checking-build-dependencies" accesskey="2">Checking build dependencies</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#configuring-target-directories" accesskey="3">Configuring target directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Configuration-options"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#running-_002e_002e_002fconfigure" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Running ../configure&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#running-_002e_002e_002fconfigure" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Running ../configure&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#checking-build-dependencies" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Checking build dependencies &gt; </a>]</td></tr></table>
+<a name="configuration-options"></a>
+<h4 class="unnumberedsubsubsec">Configuration options</h4>
+
+<div class="warning"><p><strong>Note:</strong> make sure that you are in the &lsquo;<tt>build/</tt>&rsquo; subdirectory
+of your source tree.
+</p>
+</div>
+<p>The <code>../configure</code> command (generated by
+<code>./autogen.sh</code>) provides many options for configuring
+<code>make</code>.  To see them all, run:
+</p>
+<blockquote><pre class="example">../configure --help
+</pre></blockquote>
+
+
+<hr size="6">
+<a name="Checking-build-dependencies"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#configuration-options" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Configuration options&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#running-_002e_002e_002fconfigure" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Running ../configure&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#configuring-target-directories" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Configuring target directories &gt; </a>]</td></tr></table>
+<a name="checking-build-dependencies"></a>
+<h4 class="unnumberedsubsubsec">Checking build dependencies</h4>
+
+<div class="warning"><p><strong>Note:</strong> make sure that you are in the &lsquo;<tt>build/</tt>&rsquo; subdirectory
+of your source tree.
+</p>
+</div>
+<p>When <code>../configure</code> is run without any arguments, it will
+check to make sure your system has everything required for
+compilation:
+</p>
+<blockquote><pre class="example">../configure
+</pre></blockquote>
+
+<p>If any build dependency is missing, <code>../configure</code> will
+return with:
+</p>
+<blockquote><pre class="example">ERROR: Please install required programs:  <var>foo</var>
+</pre></blockquote>
+
+<p>The following message is issued if you are missing programs that
+are only needed for building the documentation:
+</p>
+<blockquote><pre class="example">WARNING: Please consider installing optional programs:  <var>bar</var>
+</pre></blockquote>
+
+<p>If you intend to build the documentation locally, you will need to
+install or update these programs accordingly.
+</p>
+<div class="warning"><p><strong>Note:</strong> <code>../configure</code> may fail to issue warnings for
+certain documentation build requirements that are not met.  If you
+experience problems when building the documentation, you may need
+to do a manual check of <a href="#requirements-for-building-documentation">Requirements for building documentation</a>.
+</p>
+</div>
+
+<hr size="6">
+<a name="Configuring-target-directories"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#checking-build-dependencies" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Checking build dependencies&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#running-_002e_002e_002fconfigure" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Running ../configure&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#compiling-lilypond" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Compiling LilyPond &gt; </a>]</td></tr></table>
+<a name="configuring-target-directories"></a>
+<h4 class="unnumberedsubsubsec">Configuring target directories</h4>
+
+<div class="warning"><p><strong>Note:</strong> make sure that you are in the &lsquo;<tt>build/</tt>&rsquo; subdirectory
+of your source tree.
+</p>
+</div>
+<p>If you intend to use your local build to install a local copy of
+the program, you will probably want to configure the installation
+directory.  Here are the relevant lines taken from the output of
+<code>../configure&nbsp;--help</code>:
+</p>
+<blockquote><p>By default, &lsquo;<code>make&nbsp;install</code>&rsquo; will install all the
+files in &lsquo;<tt>/usr/local/bin</tt>&rsquo;, &lsquo;<tt>/usr/local/lib</tt>&rsquo; etc.  You
+can specify an installation prefix other than &lsquo;<tt>/usr/local</tt>&rsquo;
+using &lsquo;&lsquo;<samp>--prefix</samp>&rsquo;&rsquo;, for instance &lsquo;&lsquo;<samp>--prefix=$HOME</samp>&rsquo;&rsquo;.
+</p></blockquote>
+
+<p>A typical installation prefix is &lsquo;<tt>$HOME/usr</tt>&rsquo;:
+</p>
+<blockquote><pre class="example">../configure --prefix=$HOME/usr
+</pre></blockquote>
+
+<p>Note that if you plan to install a local build on a system where
+you do not have root privileges, you will need to do something
+like this anyway&mdash;<code>make&nbsp;install</code> will only succeed
+if the installation prefix points to a directory where you have
+write permission (such as your home directory).  The installation
+directory will be automatically created if necessary.
+</p>
+<p>The location of the <code>lilypond</code> command installed by this
+process will be &lsquo;<tt><var>prefix</var>/bin/lilypond</tt>&rsquo;; you may want to
+add &lsquo;<tt><var>prefix</var>/bin/</tt>&rsquo; to your <code>$PATH</code> if it is not
+already included.
+</p>
+<p>It is also possible to specify separate installation directories
+for different types of program files.  See the full output of
+<code>../configure&nbsp;--help</code> for more information.
+</p>
+<p>If you encounter any problems, please see <a href="#problems">Problems</a>.
+</p>
+
+<hr size="6">
+<a name="Compiling-LilyPond"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#configuring-target-directories" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Configuring target directories&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-make" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Using make &gt; </a>]</td></tr></table>
+<a name="compiling-lilypond"></a>
+<h2 class="section">1.5 Compiling LilyPond</h2>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#using-make" accesskey="1">1.5.1 Using <code>make</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#saving-time-with-the-_002dj-option" accesskey="2">1.5.2 Saving time with the &lsquo;<samp>-j</samp>&rsquo; option</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#compiling-for-multiple-platforms" accesskey="3">1.5.3 Compiling for multiple platforms</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#useful-make-variables" accesskey="4">1.5.4 Useful <code>make</code> variables</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Using-make"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#compiling-lilypond" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#saving-time-with-the-_002dj-option" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Saving time with the -j option &gt; </a>]</td></tr></table>
+<a name="using-make"></a>
+<h3 class="subsection">1.5.1 Using <code>make</code></h3>
+
+<div class="warning"><p><strong>Note:</strong> make sure that you are in the &lsquo;<tt>build/</tt>&rsquo; subdirectory
+of your source tree.
+</p>
+</div>
+<p>LilyPond is compiled with the <code>make</code> command.  Assuming
+<code>make</code> is configured properly, you can simply run:
+</p>
+<blockquote><pre class="example">make
+</pre></blockquote>
+
+<p>&lsquo;<samp>make</samp>&rsquo; is short for &lsquo;<samp>make all</samp>&rsquo;.  To view a list of <code>make</code>
+targets, run:
+</p>
+<blockquote><pre class="example">make help
+</pre></blockquote>
+
+<p>TODO: Describe what <code>make</code> actually does.
+</p>
+<a name="See-also-1"></a>
+<h4 class="subsubheading">See also</h4>
+<p><a href="#generating-documentation">Generating documentation</a> provides more info on the <code>make</code> targets
+used to build the LilyPond documentation.
+</p>
+
+<hr size="6">
+<a name="Saving-time-with-the-_002dj-option"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-make" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Using make&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#compiling-for-multiple-platforms" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Compiling for multiple platforms &gt; </a>]</td></tr></table>
+<a name="saving-time-with-the-_002dj-option"></a>
+<h3 class="subsection">1.5.2 Saving time with the &lsquo;<samp>-j</samp>&rsquo; option</h3>
+
+<p>If your system has multiple CPUs, you can speed up compilation by
+adding &lsquo;<samp>-j<var>X</var></samp>&rsquo; to the <code>make</code> command, where
+&lsquo;<samp><var>X</var></samp>&rsquo; is one more than the number of cores you have.  For
+example, a typical Core2Duo machine would use:
+</p>
+<blockquote><pre class="example">make -j3
+</pre></blockquote>
+
+<p>If you get errors using the &lsquo;<samp>-j</samp>&rsquo; option, and &lsquo;<samp>make</samp>&rsquo;
+succeeds without it, try lowering the <code><var>X</var></code> value.
+</p>
+<p>Because multiple jobs run in parallel when &lsquo;<samp>-j</samp>&rsquo; is used, it can
+be difficult to determine the source of an error when one occurs.  In
+that case, running &lsquo;<samp>make</samp>&rsquo; without the &lsquo;<samp>-j</samp>&rsquo; is advised.
+</p>
+<hr size="6">
+<a name="Compiling-for-multiple-platforms"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#saving-time-with-the-_002dj-option" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Saving time with the -j option&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#useful-make-variables" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Useful make variables &gt; </a>]</td></tr></table>
+<a name="compiling-for-multiple-platforms"></a>
+<h3 class="subsection">1.5.3 Compiling for multiple platforms</h3>
+
+<p>If you want to build multiple versions of LilyPond with different
+configuration settings, you can use the
+&lsquo;<samp>--enable-config=<var>conf</var></samp>&rsquo; option of <code>configure</code>.
+You should use <code>make&nbsp;conf=<var>conf</var></code> to generate the
+output in &lsquo;<tt>out-<var>conf</var></tt>&rsquo;.  For example, suppose you want to
+build with and without profiling, then use the following for the
+normal build
+</p>
+<blockquote><pre class="example">./configure --prefix=$HOME/usr/ --enable-checking
+make
+</pre></blockquote>
+
+<p>and for the profiling version, specify a different configuration
+</p>
+<blockquote><pre class="example">./configure --prefix=$HOME/usr/ --enable-profiling \
+  --enable-config=prof --disable-checking
+make conf=prof
+</pre></blockquote>
+
+<p>If you wish to install a copy of the build with profiling, don&rsquo;t
+forget to use <code>conf=<var>CONF</var></code> when issuing
+<code>make&nbsp;install</code>:
+</p>
+<blockquote><pre class="example">make conf=prof install
+</pre></blockquote>
+
+
+<a name="See-also"></a>
+<h4 class="subsubheading">See also</h4>
+<p><a href="#installing-lilypond-from-a-local-build">Installing LilyPond from a local build</a>
+</p>
+
+<hr size="6">
+<a name="Useful-make-variables"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#compiling-for-multiple-platforms" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Compiling for multiple platforms&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compiling-lilypond" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compiling LilyPond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#post_002dcompilation-options" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Post-compilation options &gt; </a>]</td></tr></table>
+<a name="useful-make-variables"></a>
+<h3 class="subsection">1.5.4 Useful <code>make</code> variables</h3>
+
+<p>If a less verbose build output if desired, the variable
+<code>QUIET_BUILD</code> may be set to <code>1</code> on <code>make</code>
+command line, or in &lsquo;<tt>local.make</tt>&rsquo; at top of the build tree.
+</p>
+
+<hr size="6">
+<a name="Post_002dcompilation-options"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#useful-make-variables" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Useful make variables&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#installing-lilypond-from-a-local-build" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Installing LilyPond from a local build &gt; </a>]</td></tr></table>
+<a name="post_002dcompilation-options"></a>
+<h2 class="section">1.6 Post-compilation options</h2>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#installing-lilypond-from-a-local-build" accesskey="1">1.6.1 Installing LilyPond from a local build</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#generating-documentation" accesskey="2">1.6.2 Generating documentation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#testing-lilypond-binary" accesskey="3">1.6.3 Testing LilyPond binary</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Installing-LilyPond-from-a-local-build"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#post_002dcompilation-options" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Post-compilation options&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#post_002dcompilation-options" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Post-compilation options&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#generating-documentation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Generating documentation &gt; </a>]</td></tr></table>
+<a name="installing-lilypond-from-a-local-build"></a>
+<h3 class="subsection">1.6.1 Installing LilyPond from a local build</h3>
+
+<p>If you configured <code>make</code> to install your local build in a
+directory where you normally have write permission (such as your
+home directory), and you have compiled LilyPond by running
+<code>make</code>, you can install the program in your target
+directory by running:
+</p>
+<blockquote><pre class="example">make install
+</pre></blockquote>
+
+<p>If instead, your installation directory is not one that you can
+normally write to (such as the default &lsquo;<tt>/usr/local/</tt>&rsquo;, which
+typically is only writeable by the superuser), you will need to
+temporarily become the superuser when running
+<code>make&nbsp;install</code>:
+</p>
+<blockquote><pre class="example">sudo make install
+</pre></blockquote>
+
+<p>or&hellip;
+</p>
+<blockquote><pre class="example">su -c 'make install'
+</pre></blockquote>
+
+<p>If you don&rsquo;t have superuser privileges, then you need to configure
+the installation directory to one that you can write to, and then
+re-install.  See <a href="#configuring-target-directories">Configuring target directories</a>.
+</p>
+
+<hr size="6">
+<a name="Generating-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#installing-lilypond-from-a-local-build" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Installing LilyPond from a local build&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#post_002dcompilation-options" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Post-compilation options&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#documentation-editor_0027s-edit_002fcompile-cycle" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Documentation editor's edit/compile cycle &gt; </a>]</td></tr></table>
+<a name="generating-documentation"></a>
+<h3 class="subsection">1.6.2 Generating documentation</h3>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#documentation-editor_0027s-edit_002fcompile-cycle" accesskey="1">Documentation editor&rsquo;s edit/compile cycle</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#building-documentation" accesskey="2">Building documentation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#building-a-single-document" accesskey="3">Building a single document</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#saving-time-with-cpu_005fcount" accesskey="4">Saving time with <code>CPU_COUNT</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#ajax-search" accesskey="5">AJAX search</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#installing-documentation" accesskey="6">Installing documentation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#building-documentation-without-compiling" accesskey="7">Building documentation without compiling</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Documentation-editor_0027s-edit_002fcompile-cycle"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#generating-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Generating documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#building-documentation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Building documentation &gt; </a>]</td></tr></table>
+<a name="documentation-editor_0027s-edit_002fcompile-cycle"></a>
+<h4 class="unnumberedsubsubsec">Documentation editor&rsquo;s edit/compile cycle</h4>
+
+<ul>
+<li>
+Initial documentation build:
+
+<blockquote><pre class="example">make [-j<var>X</var>]
+make [-j<var>X</var> CPU_COUNT=<var>X</var>] doc          <em>## can take an hour or more</em>
+make [-j<var>X</var> CPU_COUNT=<var>X</var>] doc-stage-1  <em>## to build only PDF documentation</em>
+</pre></blockquote>
+
+</li><li>
+Edit/compile cycle:
+
+<blockquote><pre class="example"><em>## edit source files, then&hellip;</em>
+
+make [-j<var>X</var>]                  <em>## needed if editing outside</em>
+                            <em>##   Documentation/, but useful anyway</em>
+                            <em>##   for finding Texinfo errors.</em>
+make [-j<var>X</var> CPU_COUNT=<var>X</var>] doc  <em>## usually faster than initial build.</em>
+</pre></blockquote>
+
+</li><li>
+Reset:
+
+<p>It is generally possible to remove the compiled documentation from
+your system
+with &lsquo;<samp>make&nbsp;doc-clean</samp>&rsquo;, but this method is not 100%
+guaranteed.  Instead, if you want to be sure you have a clean
+system, we recommend that you delete your
+&lsquo;<tt>build/</tt>&rsquo; directory, and begin compiling from scratch.  Since
+the documentation compile takes much longer than the
+non-documentation compile, this does not increase the overall time
+by a great deal.
+</p>
+</li></ul>
+
+<hr size="6">
+<a name="Building-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#documentation-editor_0027s-edit_002fcompile-cycle" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Documentation editor's edit/compile cycle&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#building-a-single-document" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Building a single document &gt; </a>]</td></tr></table>
+<a name="building-documentation"></a>
+<h4 class="unnumberedsubsubsec">Building documentation</h4>
+
+<p>After a successful compile (using <code>make</code>), the
+documentation can be built by issuing:
+</p>
+<blockquote><pre class="example">make doc
+</pre></blockquote>
+
+<p>or, to build only the PDF documentation and not the HTML,
+</p>
+<blockquote><pre class="example">make doc-stage-1
+</pre></blockquote>
+
+<div class="warning"><p><strong>Note:</strong> The first time you run <code>make&nbsp;doc</code>, the
+process can easily take an hour or more with not much output
+on the command line.
+</p>
+</div>
+<p>After this initial build, <code>make&nbsp;doc</code> only makes
+changes to the documentation where needed, so it may only take
+a minute or two to test changes if the documentation is already
+built.
+</p>
+<p>If <code>make&nbsp;doc</code> succeeds, the HTML documentation tree
+is available in &lsquo;<tt>out-www/offline-root/</tt>&rsquo;, and can be browsed
+locally.  Various portions of the documentation can be found by
+looking in &lsquo;<tt>out/</tt>&rsquo; and &lsquo;<tt>out-www</tt>&rsquo; subdirectories in other
+places in the source tree, but these are only <em>portions</em> of
+the docs.  Please do not complain about anything which is broken
+in those places; the only complete set of documentation is in
+&lsquo;<tt>out-www/offline-root/</tt>&rsquo; from the top of the source tree.
+</p>
+<p><code>make&nbsp;doc</code> sends the output from most of the
+compilation to logfiles.  If the build fails for any reason, it
+should prompt you with the name of a logfile which will provide
+information to help you work out why the build failed.  These
+logfiles are not deleted with <code>make&nbsp;doc-clean</code>.  To
+remove all the logfiles generated by the compilation process, use:
+</p>
+<blockquote><pre class="example">make log-clean
+</pre></blockquote>
+
+<p><code>make&nbsp;doc</code> compiles the documents for all languages.  To
+save some compile time, the English language documents can be
+compiled on their own with:
+</p>
+<blockquote><pre class="example">make LANGS='' doc
+</pre></blockquote>
+
+<p>Similarly, it is possible to compile a subset of the
+translated documentation by specifying their language codes on the
+command line.  For example, the French and German translations are
+compiled with:
+</p>
+<blockquote><pre class="example">make LANGS='de fr' doc
+</pre></blockquote>
+
+<p>Note that this will also compile the English version.
+</p>
+<p>Compilation of documentation in Info format with images can be
+done separately by issuing:
+</p>
+<blockquote><pre class="example">make info
+</pre></blockquote>
+
+<p>An issue when switching branches between master and translation
+is the appearance/disappearance of translated versions of some manuals.
+If you see such a warning from make:
+</p>
+<blockquote><pre class="example">No rule to make target `X', needed by `Y'
+</pre></blockquote>
+
+<p>Your best bet is to delete the file Y.dep and to try again.
+</p>
+<hr size="6">
+<a name="Building-a-single-document"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#building-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#saving-time-with-cpu_005fcount" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Saving time with CPU_COUNT &gt; </a>]</td></tr></table>
+<a name="building-a-single-document"></a>
+<h4 class="unnumberedsubsubsec">Building a single document</h4>
+<p>It&rsquo;s possible to build a single document.  For example, to rebuild
+only &lsquo;<tt>contributor.pdf</tt>&rsquo;, do the following:
+</p>
+<blockquote><pre class="example">cd build/
+cd Documentation/
+touch ../../Documentation/contributor.texi
+make out=www out-www/contributor.pdf
+</pre></blockquote>
+
+<p>If you are only working on a single document, test-building it in
+this way can give substantial time savings - recreating
+&lsquo;<tt>contributor.pdf</tt>&rsquo;, for example, takes a matter of seconds.
+</p>
+<hr size="6">
+<a name="Saving-time-with-CPU_005fCOUNT"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#building-a-single-document" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building a single document&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#ajax-search" title="Next section in reading order" accesskey="n" rel="next">&nbsp;AJAX search &gt; </a>]</td></tr></table>
+<a name="saving-time-with-cpu_005fcount"></a>
+<h4 class="unnumberedsubsubsec">Saving time with <code>CPU_COUNT</code></h4>
+
+<p>The most time consuming task for building the documentation is
+running LilyPond to build images of music, and there cannot be
+several simultaneously running <code>lilypond-book</code> instances,
+so the &lsquo;<samp>-j</samp>&rsquo; <code>make</code> option does not significantly
+speed up the build process.  To help speed it up, the makefile
+variable &lsquo;<samp>CPU_COUNT</samp>&rsquo; may be set in &lsquo;<tt>local.make</tt>&rsquo; or on
+the command line to the number of <code>.ly</code> files that LilyPond
+should process simultaneously, e.g. on a bi-processor or dual core
+machine:
+</p>
+<blockquote><pre class="example">make -j3 CPU_COUNT=3 doc
+</pre></blockquote>
+
+<p>The recommended value of &lsquo;<samp>CPU_COUNT</samp>&rsquo; is one plus the number
+of cores or processors, but it is advisable to set it to a smaller
+value unless your system has enough RAM to run that many
+simultaneous LilyPond instances.  Also, values for the &lsquo;<samp>-j</samp>&rsquo;
+option that pose problems with &lsquo;<samp>make</samp>&rsquo; are less likely to pose
+problems with &lsquo;<samp>make doc</samp>&rsquo; (this applies to both &lsquo;<samp>-j</samp>&rsquo;
+and &lsquo;<samp>CPU_COUNT</samp>&rsquo;).  For example, with a quad-core processor,
+it is possible for &lsquo;<samp>make -j5 CPU_COUNT=5 doc</samp>&rsquo; to work
+consistently even if &lsquo;<samp>make -j5</samp>&rsquo; rarely succeeds.
+</p>
+
+<hr size="6">
+<a name="AJAX-search"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#saving-time-with-cpu_005fcount" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Saving time with CPU_COUNT&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#installing-documentation" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Installing documentation &gt; </a>]</td></tr></table>
+<a name="ajax-search"></a>
+<h4 class="unnumberedsubsubsec">AJAX search</h4>
+
+<p>To build the documentation with interactive searching, use:
+</p>
+<blockquote><pre class="example">make doc AJAX_SEARCH=1
+</pre></blockquote>
+
+<p>This requires PHP, and you must view the docs via a http
+connection (you cannot view them on your local filesystem).
+</p>
+<div class="warning"><p><strong>Note:</strong> Due to potential security or load issues, this option is
+not enabled in the official documentation builds.  Enable at your
+own risk.
+</p>
+</div>
+
+<hr size="6">
+<a name="Installing-documentation"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#ajax-search" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; AJAX search&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#building-documentation-without-compiling" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Building documentation without compiling &gt; </a>]</td></tr></table>
+<a name="installing-documentation"></a>
+<h4 class="unnumberedsubsubsec">Installing documentation</h4>
+
+<p>The HTML, PDF and if available Info files can be installed into
+the standard documentation path by issuing
+</p>
+<blockquote><pre class="example">make install-doc
+</pre></blockquote>
+
+<p>This also installs Info documentation with images if the
+installation prefix is properly set; otherwise, instructions to
+complete proper installation of Info documentation are printed on
+standard output.
+</p>
+<p>To install the Info documentation separately, run:
+</p>
+<blockquote><pre class="example">make install-info
+</pre></blockquote>
+
+<p>Note that to get the images in Info documentation, <code>install-doc</code>
+target creates symbolic links to HTML and PDF installed documentation
+tree in &lsquo;<tt><var>prefix</var>/share/info</tt>&rsquo;, in order to save disk space,
+whereas <code>install-info</code> copies images in
+&lsquo;<tt><var>prefix</var>/share/info</tt>&rsquo; subdirectories.
+</p>
+<p>It is possible to build a documentation tree in
+&lsquo;<tt>out-www/online-root/</tt>&rsquo;, with special processing, so it can be
+used on a website with content negotiation for automatic language
+selection; this can be achieved by issuing
+</p>
+<blockquote><pre class="example">make WEB_TARGETS=online doc
+</pre></blockquote>
+
+<p>and both &lsquo;offline&rsquo; and &lsquo;online&rsquo; targets can be generated by issuing
+</p>
+<blockquote><pre class="example">make WEB_TARGETS=&quot;offline online&quot; doc
+</pre></blockquote>
+
+<p>Several targets are available to clean the documentation build and
+help with maintaining documentation; an overview of these targets is
+available with
+</p>
+<blockquote><pre class="example">make help
+</pre></blockquote>
+
+<p>from every directory in the build tree.  Most targets for
+documentation maintenance are available from
+&lsquo;<tt>Documentation/</tt>&rsquo;; for more information, see
+<a name="index-Documentation-work"></a>
+<a href="contributor.html#documentation-work">Documentation work</a>.
+</p>
+<p>The makefile variable <code>QUIET_BUILD</code> may be set to <code>1</code>
+for a less verbose build output, just like for building the
+programs.
+</p>
+
+<hr size="6">
+<a name="Building-documentation-without-compiling"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#installing-documentation" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Installing documentation&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#generating-documentation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Generating documentation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#testing-lilypond-binary" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Testing LilyPond binary &gt; </a>]</td></tr></table>
+<a name="building-documentation-without-compiling"></a>
+<h4 class="unnumberedsubsubsec">Building documentation without compiling</h4>
+
+
+<p>The documentation can be built locally without compiling LilyPond
+binary, if LilyPond is already installed on your system.
+</p>
+<p>From a fresh Git checkout, do
+</p>
+<blockquote><pre class="example">./autogen.sh   # ignore any warning messages
+cp GNUmakefile.in GNUmakefile
+make -C scripts &amp;&amp; make -C python
+nice make LILYPOND_EXTERNAL_BINARY=/path/to/bin/lilypond doc
+</pre></blockquote>
+
+<p>Please note that this may break sometimes &ndash; for example, if a new
+feature is added with a test file in input/regression, even the latest
+development release of LilyPond will fail to build the docs.
+</p>
+<p>You may build the manual without building all the &lsquo;<tt>input/*</tt>&rsquo; stuff
+(i.e. mostly regression tests): change directory, for example to
+&lsquo;<tt>Documentation/</tt>&rsquo;, issue <code>make doc</code>, which will build
+documentation in a subdirectory &lsquo;<tt>out-www</tt>&rsquo; from the source files in
+current directory.  In this case, if you also want to browse the
+documentation in its post-processed form, change back to top directory
+and issue
+</p>
+<blockquote><pre class="example">make out=www WWW-post
+</pre></blockquote>
+
+<a name="Known-issues-and-warnings"></a>
+<h4 class="subsubheading">Known issues and warnings</h4>
+
+<p>You may also need to create a script for <code>pngtopnm</code> and
+<code>pnmtopng</code>.  On GNU/Linux, I use this:
+</p>
+<pre class="verbatim">export LD_LIBRARY_PATH=/usr/lib
+exec /usr/bin/pngtopnm &quot;$@&quot;
+</pre>
+<p>On MacOS X with fink, I use this:
+</p>
+<pre class="verbatim">export DYLD_LIBRARY_PATH=/sw/lib
+exec /sw/bin/pngtopnm &quot;$@&quot;
+</pre>
+<p>On MacOS X with macports, you should use this:
+</p>
+<pre class="verbatim">export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib
+exec /opt/local/bin/pngtopnm &quot;$@&quot;
+</pre>
+
+<hr size="6">
+<a name="Testing-LilyPond-binary"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#building-documentation-without-compiling" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Building documentation without compiling&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#post_002dcompilation-options" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Post-compilation options&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#problems" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Problems &gt; </a>]</td></tr></table>
+<a name="testing-lilypond-binary"></a>
+<h3 class="subsection">1.6.3 Testing LilyPond binary</h3>
+
+
+<p>LilyPond comes with an extensive suite that exercises the entire
+program.  This suite can be used to test that the binary has
+been built correctly.
+</p>
+<p>The test suite can be executed with:
+</p>
+<pre class="verbatim">make test
+</pre>
+<p>If the test suite completes successfully, the LilyPond binary
+has been verified.
+</p>
+<p>More information on the regression test suite is found at
+<a name="index-Regression-tests"></a>
+<a href="contributor.html#regression-tests">Regression tests</a>.
+</p>
+<hr size="6">
+<a name="Problems"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#testing-lilypond-binary" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Testing LilyPond binary&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#problems" title="Next section in reading order" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<a name="problems"></a>
+<h2 class="section">1.7 Problems</h2>
+
+<p>For help and questions use <a href="mailto:lilypond-user@gnu.org">lilypond-user@gnu.org</a>.  Send
+bug reports to <a href="mailto:bug-lilypond@gnu.org">bug-lilypond@gnu.org</a>.
+</p>
+<p>Bugs that are not fault of LilyPond are documented here.
+</p>
+
+<hr size="6">
+<a name="problems"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#problems" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Problems&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#problems" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Problems&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#problems" title="Next section in reading order" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<h3 class="unnumberedsubsec">Compiling on MacOS&nbsp;X</h3>
+
+<p>Here are special instructions for compiling under MacOS&nbsp;X.
+These instructions assume that dependencies are installed using
+<a href="http://www.macports.org">MacPorts.</a> The instructions have
+been tested using OS X 10.5 (Leopard).
+</p>
+<p>First, install the relevant dependencies using MacPorts.
+</p>
+<p>Next, add the following to your relevant shell initialization
+files.  This is <code>~/.profile</code> by default.  You should create
+this file if it does not exist.
+</p>
+<blockquote><pre class="example">export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib:$DYLD_FALLBACK_LIBRARY_PATH
+</pre></blockquote>
+
+<p>Now you must edit the generated &lsquo;<tt>config.make</tt>&rsquo; file.  Change
+</p>
+<blockquote><pre class="example">FLEXLEXER_FILE = /usr/include/FlexLexer.h
+</pre></blockquote>
+
+<p>to:
+</p>
+<blockquote><pre class="example">FLEXLEXER_FILE = /opt/local/include/FlexLexer.h
+</pre></blockquote>
+
+<p>At this point, you should verify that you have the appropriate
+fonts installed with your ghostscript installation.  Check <code>ls
+/opt/local/share/ghostscript/fonts</code> for: &rsquo;c0590*&rsquo; files (.pfb,
+.pfb and .afm).  If you don&rsquo;t have them, run the following
+commands to grab them from the ghostscript SVN server and install
+them in the appropriate location:
+</p>
+<blockquote><pre class="example">svn export http://svn.ghostscript.com/ghostscript/tags/urw-fonts-1.0.7pre44/
+sudo mv urw-fonts-1.0.7pre44/* /opt/local/share/ghostscript/fonts/
+rm -rf urw-fonts-1.07pre44
+</pre></blockquote>
+
+<p>Now run the <code>./configure</code> script.  To avoid complications with
+automatic font detection, add
+</p>
+<blockquote><pre class="example">--with-fonts-dir=/opt/local/share/ghostscript/fonts
+</pre></blockquote>
+
+
+<hr size="6">
+<a name="problems"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#problems" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#problems" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Problems&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#problems" title="Next section in reading order" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<h3 class="unnumberedsubsec">Solaris</h3>
+
+<p>Solaris7, ./configure
+</p>
+<p>&lsquo;<tt>./configure</tt>&rsquo; needs a POSIX compliant shell.  On Solaris7,
+&lsquo;<tt>/bin/sh</tt>&rsquo; is not yet POSIX compliant, but &lsquo;<tt>/bin/ksh</tt>&rsquo; or bash
+is.  Run configure like
+</p>
+<blockquote><pre class="example">CONFIG_SHELL=/bin/ksh ksh -c ./configure
+</pre></blockquote>
+
+<p>or
+</p>
+<blockquote><pre class="example">CONFIG_SHELL=/bin/bash bash -c ./configure
+</pre></blockquote>
+
+<hr size="6">
+<a name="problems"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#problems" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#problems" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Problems&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#problems" title="Next section in reading order" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<h3 class="unnumberedsubsec">FreeBSD</h3>
+
+<p>To use system fonts, dejaview must be installed.  With the default
+port, the fonts are installed in &lsquo;<tt>usr/X11R6/lib/X11/fonts/dejavu</tt>&rsquo;.
+</p>
+<p>Open the file &lsquo;<tt>$LILYPONDBASE/usr/etc/fonts/local.conf</tt>&rsquo; and add the
+following line just after the <code>&lt;fontconfig&gt;</code> line.  (Adjust as necessary
+for your hierarchy.)
+</p>
+<blockquote><pre class="example">&lt;dir&gt;/usr/X11R6/lib/X11/fonts&lt;/dir&gt;
+</pre></blockquote>
+
+
+<hr size="6">
+<a name="problems"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#problems" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#problems" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Problems&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#problems" title="Next section in reading order" accesskey="n" rel="next">&nbsp; &gt; </a>]</td></tr></table>
+<h3 class="unnumberedsubsec">International fonts</h3>
+
+<p>On Mac OS X, all fonts are installed by default.  However, finding all
+system fonts requires a bit of configuration; see
+<a href="http://lists.gnu.org/archive/html/lilypond-user/2007-03/msg00472.html">this post</a> on the <code>lilypond-user</code> mailing list.
+</p>
+<p>On Linux, international fonts are installed by different means on
+every distribution.  We cannot list the exact commands or packages
+that are necessary, as each distribution is different, and the exact
+package names within each distribution changes.  Here are some
+hints, though:
+</p>
+<pre class="verbatim">Red Hat Fedora
+
+    taipeifonts fonts-xorg-truetype ttfonts-ja fonts-arabic \
+         ttfonts-zh_CN fonts-ja fonts-hebrew
+
+Debian GNU/Linux
+
+   apt-get install emacs-intl-fonts xfonts-intl-.* \
+        fonts-ipafont-gothic  fonts-ipafont-mincho \
+        xfonts-bolkhov-75dpi xfonts-cronyx-100dpi xfonts-cronyx-75dpi
+</pre>
+
+<hr size="6">
+<a name="problems"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#problems" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#problems" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Problems&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#concurrent-stable-and-development-versions" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Concurrent stable and development versions &gt; </a>]</td></tr></table>
+<h3 class="unnumberedsubsec">Using lilypond python libraries</h3>
+
+<p>If you want to use lilypond&rsquo;s python libraries (either running
+certain build scripts manually, or using them in other programs),
+set <code>PYTHONPATH</code> to &lsquo;<tt>python/out</tt>&rsquo; in your build
+directory, or &lsquo;<tt>&hellip;/usr/lib/lilypond/current/python</tt>&rsquo; in the
+installation directory structure.
+</p>
+
+
+
+<hr size="6">
+<a name="Concurrent-stable-and-development-versions"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#problems" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; &nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#build-system" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Build system &gt; </a>]</td></tr></table>
+<a name="concurrent-stable-and-development-versions"></a>
+<h2 class="section">1.8 Concurrent stable and development versions</h2>
+
+
+<p>It can be useful to have both the stable and the development versions
+of Lilypond available at once.  One way to do this on GNU/Linux is to
+install the stable version using the precompiled binary, and run the
+development version from the source tree.  After running <code>make
+all</code> from the top directory of the Lilypond source files, there will
+be a binary called <code>lilypond</code> in the <code>out</code> directory:
+</p>
+<blockquote><pre class="example">&lt;<var>path to</var>&gt;/lilypond/out/bin/lilypond
+</pre></blockquote>
+
+<p>This binary can be run without actually doing the <code>make
+install</code> command.  The advantage to this is that you can have all
+of the latest changes available after pulling from git and running
+<code>make all</code>, without having to uninstall the old version and
+reinstall the new.
+</p>
+<p>So, to use the stable version, install it as usual and use the
+normal commands:
+</p>
+<blockquote><pre class="example">lilypond foobar.ly
+</pre></blockquote>
+
+<p>To use the development version, create a link to the binary in the
+source tree by saving the following line in a file somewhere in your
+<code>$PATH</code>:
+</p>
+<blockquote><pre class="example">exec &lt;<var>path to</var>&gt;/lilypond/out/bin/lilypond &quot;$@&quot;
+</pre></blockquote>
+
+<p>Save it as <code>Lilypond</code> (with a capital L to distinguish it
+from the stable <code>lilypond</code>), and make it executable:
+</p>
+<blockquote><pre class="example">chmod +x Lilypond
+</pre></blockquote>
+
+<p>Then you can invoke the development version this way:
+</p>
+<blockquote><pre class="example">Lilypond foobar.ly
+</pre></blockquote>
+
+
+<p>TODO: ADD
+</p>
+<p>- other compilation tricks for developers
+</p>
+
+<hr size="6">
+<a name="Build-system"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="#compilation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Compilation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[&nbsp; &gt;&gt; ]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#concurrent-stable-and-development-versions" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Concurrent stable and development versions&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#compilation" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Compilation&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[&nbsp; &gt; ]</td></tr></table>
+<a name="build-system"></a>
+<h2 class="section">1.9 Build system</h2>
+
+
+<p>We currently use make and stepmake, which is complicated and only
+used by us.  Hopefully this will change in the future.
+</p>
+
+<a name="Version_002dspecific-texinfo-macros"></a>
+<h3 class="subheading">Version-specific texinfo macros</h3>
+
+<ul>
+<li>
+made with <code>scripts/build/create-version-itexi.py</code> and<br>
+<code>scripts/build/create-weblinks-itexi.py</code>
+
+</li><li>
+used extensively in the <code>WEBSITE_ONLY_BUILD</code> version of the
+website (made with &lsquo;<tt>website.make</tt>&rsquo;, used on lilypond.org)
+
+</li><li>
+not (?) used in the main docs?
+
+</li><li>
+the numbers in VERSION file: MINOR_VERSION should be 1 more than
+the last release, VERSION_DEVEL should be the last <strong>online</strong>
+release.  Yes, VERSION_DEVEL is less than VERSION.
+
+</li></ul>
+
+<hr size="6">
+<a name="SEC_Contents"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td></tr></table>
+<h1>Table of Contents</h1>
+<div class="contents">
+
+<ul class="toc">
+  <li><a name="toc-Compilation-1" href="#compilation">1. Compilation</a>
+  <ul class="toc">
+    <li><a name="toc-Overview-of-compiling-1" href="#overview-of-compiling">1.1 Overview of compiling</a></li>
+    <li><a name="toc-Requirements-1" href="#requirements">1.2 Requirements</a>
+    <ul class="toc">
+      <li><a name="toc-Requirements-for-running-LilyPond-1" href="#requirements-for-running-lilypond">1.2.1 Requirements for running LilyPond</a></li>
+      <li><a name="toc-Requirements-for-compiling-LilyPond-1" href="#requirements-for-compiling-lilypond">1.2.2 Requirements for compiling LilyPond</a>
+      <ul class="toc">
+        <li><a name="toc-Fedora-1" href="#fedora">Fedora</a></li>
+        <li><a name="toc-Linux-Mint-1" href="#linux-mint">Linux Mint</a></li>
+        <li><a name="toc-OpenSUSE-1" href="#opensuse">OpenSUSE</a></li>
+        <li><a name="toc-Ubuntu-1" href="#ubuntu">Ubuntu</a></li>
+        <li><a name="toc-Other-1" href="#other">Other</a></li>
+      </ul></li>
+      <li><a name="toc-Requirements-for-building-documentation-1" href="#requirements-for-building-documentation">1.2.3 Requirements for building documentation</a></li>
+    </ul></li>
+    <li><a name="toc-Getting-the-source-code-1" href="#getting-the-source-code">1.3 Getting the source code</a></li>
+    <li><a name="toc-Configuring-make-1" href="#configuring-make">1.4 Configuring <code>make</code></a>
+    <ul class="toc">
+      <li><a name="toc-Running-_002e_002fautogen_002esh-1" href="#running-_002e_002fautogen_002esh">1.4.1 Running <code>./autogen.sh</code></a></li>
+      <li><a name="toc-Running-_002e_002e_002fconfigure-1" href="#running-_002e_002e_002fconfigure">1.4.2 Running <code>../configure</code></a>
+      <ul class="toc">
+        <li><a name="toc-Configuration-options-1" href="#configuration-options">Configuration options</a></li>
+        <li><a name="toc-Checking-build-dependencies-1" href="#checking-build-dependencies">Checking build dependencies</a></li>
+        <li><a name="toc-Configuring-target-directories-1" href="#configuring-target-directories">Configuring target directories</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Compiling-LilyPond-1" href="#compiling-lilypond">1.5 Compiling LilyPond</a>
+    <ul class="toc">
+      <li><a name="toc-Using-make-1" href="#using-make">1.5.1 Using <code>make</code></a></li>
+      <li><a name="toc-Saving-time-with-the-_002dj-option-1" href="#saving-time-with-the-_002dj-option">1.5.2 Saving time with the &lsquo;<samp>-j</samp>&rsquo; option</a></li>
+      <li><a name="toc-Compiling-for-multiple-platforms-1" href="#compiling-for-multiple-platforms">1.5.3 Compiling for multiple platforms</a></li>
+      <li><a name="toc-Useful-make-variables-1" href="#useful-make-variables">1.5.4 Useful <code>make</code> variables</a></li>
+    </ul></li>
+    <li><a name="toc-Post_002dcompilation-options-1" href="#post_002dcompilation-options">1.6 Post-compilation options</a>
+    <ul class="toc">
+      <li><a name="toc-Installing-LilyPond-from-a-local-build-1" href="#installing-lilypond-from-a-local-build">1.6.1 Installing LilyPond from a local build</a></li>
+      <li><a name="toc-Generating-documentation-1" href="#generating-documentation">1.6.2 Generating documentation</a>
+      <ul class="toc">
+        <li><a name="toc-Documentation-editor_0027s-edit_002fcompile-cycle-1" href="#documentation-editor_0027s-edit_002fcompile-cycle">Documentation editor&rsquo;s edit/compile cycle</a></li>
+        <li><a name="toc-Building-documentation-1" href="#building-documentation">Building documentation</a></li>
+        <li><a name="toc-Building-a-single-document-1" href="#building-a-single-document">Building a single document</a></li>
+        <li><a name="toc-Saving-time-with-CPU_005fCOUNT-1" href="#saving-time-with-cpu_005fcount">Saving time with <code>CPU_COUNT</code></a></li>
+        <li><a name="toc-AJAX-search-1" href="#ajax-search">AJAX search</a></li>
+        <li><a name="toc-Installing-documentation-1" href="#installing-documentation">Installing documentation</a></li>
+        <li><a name="toc-Building-documentation-without-compiling-1" href="#building-documentation-without-compiling">Building documentation without compiling</a></li>
+      </ul></li>
+      <li><a name="toc-Testing-LilyPond-binary-1" href="#testing-lilypond-binary">1.6.3 Testing LilyPond binary</a></li>
+    </ul></li>
+    <li><a name="toc-Problems-1" href="#problems">1.7 Problems</a>
+    <ul class="toc">
+      <li><a name="toc-Compiling-on-MacOS-X" href="#problems">Compiling on MacOS&nbsp;X</a></li>
+      <li><a name="toc-Solaris" href="#problems">Solaris</a></li>
+      <li><a name="toc-FreeBSD" href="#problems">FreeBSD</a></li>
+      <li><a name="toc-International-fonts" href="#problems">International fonts</a></li>
+      <li><a name="toc-Using-lilypond-python-libraries" href="#problems">Using lilypond python libraries</a></li>
+    </ul></li>
+    <li><a name="toc-Concurrent-stable-and-development-versions-1" href="#concurrent-stable-and-development-versions">1.8 Concurrent stable and development versions</a></li>
+    <li><a name="toc-Build-system-1" href="#build-system">1.9 Build system</a></li>
+  </ul>
+</li>
+</ul>
+</div>
+<hr size="1">
+<a name="SEC_About"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="center" colspan="3">[<a href="#index" title="Cover (top) of document" rel="start">Top</a>][<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][Index][<a href="#SEC_About" title="About (help)" rel="help"> ? </a>]</td></tr></table>
+<h1>About This Document</h1>
+<p>
+  This document was generated by <em>GUB</em> on <em>November 22, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [] </td>
+    <td align="center"></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr size="1">
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="#index" title="Start of the manual">INSTALL - compiling and installing GNU LilyPond  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Compilation-1" href="INSTALL.html#compilation">1. Compilation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Overview-of-compiling-1" href="INSTALL.html#overview-of-compiling">1.1 Overview of compiling</a>    </li>
+    <li class=""><a name="toc-Requirements-1" href="INSTALL.html#requirements">1.2 Requirements</a>    </li>
+    <li class=""><a name="toc-Getting-the-source-code-1" href="INSTALL.html#getting-the-source-code">1.3 Getting the source code</a>    </li>
+    <li class=""><a name="toc-Configuring-make-1" href="INSTALL.html#configuring-make">1.4 Configuring <code>make</code></a>    </li>
+    <li class=""><a name="toc-Compiling-LilyPond-1" href="INSTALL.html#compiling-lilypond">1.5 Compiling LilyPond</a>    </li>
+    <li class=""><a name="toc-Post_002dcompilation-options-1" href="INSTALL.html#post_002dcompilation-options">1.6 Post-compilation options</a>    </li>
+    <li class=""><a name="toc-Problems-1" href="INSTALL.html#problems">1.7 Problems</a>    </li>
+    <li class=""><a name="toc-Concurrent-stable-and-development-versions-1" href="INSTALL.html#concurrent-stable-and-development-versions">1.8 Concurrent stable and development versions</a>    </li>
+    <li class=""><a name="toc-Build-system-1" href="INSTALL.html#build-system">1.9 Build system</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

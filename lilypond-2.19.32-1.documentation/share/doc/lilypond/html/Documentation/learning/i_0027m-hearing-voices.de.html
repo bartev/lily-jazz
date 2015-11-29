@@ -1,0 +1,637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 bei den Autoren.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Die Übersetzung der folgenden Lizenzanmerkung ist zur Orientierung
+für Leser, die nicht Englisch sprechen. Im rechtlichen Sinne ist aber
+nur die englische Version gültig.
+
+Es ist erlaubt, dieses Dokument unter den Bedingungen der
+GNU Free Documentation Lizenz (Version 1.1 oder
+spätere, von der Free Software Foundation publizierte Versionen, ohne
+invariante Abschnitte),
+zu kopieren, zu verbreiten und/oder
+zu verändern. Eine Kopie der Lizenz ist im Abschnitt "GNU
+Free Documentation License" angefügt.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on 22. November 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Handbuch zum Lernen: 3.2.1 Ich höre Stimmen</title>
+
+<meta name="description" content="LilyPond Handbuch zum Lernen: 3.2.1 Ich höre Stimmen">
+<meta name="keywords" content="LilyPond Handbuch zum Lernen: 3.2.1 Ich höre Stimmen">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="LilyPond &ndash; Learning Manual">
+<link href="lilypond-index.de.html#lilypond-index" rel="index" title="C. LilyPond-Index">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Inhaltsverzeichnis">
+<link href="index_abt.de.html#SEC_About" rel="help" title="&Uuml;ber dieses Dokument">
+<link href="voices-contain-music.de.html#voices-contain-music" rel="up" title="3.2 Voice enthält Noten">
+<link href="lilypond-index.de.html#lilypond-index" rel="next" title="C. LilyPond-Index">
+<link href="voices-contain-music.de.html#voices-contain-music" rel="previous" title="3.2 Voice enthält Noten">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="de" class="learning devStatus">
+
+
+<div id="main">
+<a name="Ich-h_00f6re-Stimmen"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Grundbegriffe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.de.html" title="N&auml;chstes Kapitel">&nbsp;Die Ausgabe verbessern &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="voices-contain-music.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Voice enthält Noten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Voice enthält Noten&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicitly-instantiating-voices.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Stimmen explizit beginnen &gt; </a>]</td></tr></table>
+<a name="i_0027m-hearing-voices"></a>
+<h3 class="subsection">3.2.1 Ich höre Stimmen</h3>
+
+<a name="index-Polyphonie-1"></a>
+<a name="index-Ebenen"></a>
+<a name="index-mehrere-Stimmen-1"></a>
+<a name="index-Stimmen_002c-mehrere"></a>
+<a name="index-Voice-context"></a>
+<a name="index-context_002c-Voice"></a>
+<a name="index-Kontext_002c-Stimme"></a>
+<a name="index-Stimmenkontext"></a>
+<a name="index-gleichzeitige-Noten"></a>
+<a name="index-Stimmen-versus-Akkorde"></a>
+<a name="index-Akkorde-versus-Stimmen"></a>
+<a name="index-Noten-gleichzeitig"></a>
+
+<p>Die grundlegenden und innersten Ebenen in einer LilyPond-Partitur
+werden &bdquo;Voice context&ldquo; (Stimmenkontext) oder auch nur &bdquo;Voice&ldquo;
+(Stimme) genannt.  Stimmen werden in anderen Notationsprogrammen
+manchmal auch als &bdquo;layer&ldquo; (Ebene) bezeichnet.
+</p>
+<p>Tatsächlich ist die Voice-Ebene die einzige, die wirklich Noten
+enthalten kann.  Wenn kein Voice-Kontext explizit erstellt wird,
+wird er automatisch erstellt, wie am Anfang dieses Kapitels
+gezeigt.  Manche Instrumente wie etwa die Oboe können nur eine
+Note gleichzeitig spielen.  Noten für solche Instrumente brauchen nur
+eine einzige Stimme.  Instrumente, die
+mehrere Noten gleichzeitig spielen können, wie das Klavier, brauchen
+dagegen oft mehrere Stimmen, um die verschiedenen gleichzeitig
+erklingenden Noten mit oft unterschiedlichen Rhythmen darstellen
+zu können.
+</p>
+<p>Eine einzelne Stimme kann natürlich auch vielen Noten in einem Akkord
+enthalten &ndash; wann also braucht man dann mehrere Stimmen? Schauen wir
+uns zuerst dieses Beispiel mit vier Akkorden an:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \key g \major
+  &lt;d' g&gt;4 &lt;d fis&gt; &lt;d a'&gt; &lt;d g&gt;
+}
+</pre><p>
+ <a href="../09/lily-d3f74138.ly">
+  <img align="middle"
+       border="0"
+       src="../09/lily-d3f74138.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Das kann ausgedrückt werden, indem man die einfachen spitzen Klammern
+<code>&lt; &hellip; &gt;</code> benützt, um Akkorde anzuzeigen.  Hierfür braucht man
+nur eine Stimme.  Aber gesetzt der Fall das Fis sollte eigentlich
+eine Achtelnote sein, gefolgt von einer Achtelnote G (als Durchgangsnote
+hin zum A)? Hier haben wir also zwei Noten, die zur gleichen Zeit
+beginnen, aber unterschiedliche Dauern haben: die Viertelnote D und die
+Achtelnote Fis.  Wie können sie notiert werden? Als Akkord kann man sie
+nicht schreiben, weil alle Noten in einem Akkord die gleiche Länge besitzen
+müssen.  Sie können auch nicht als aufeinander folgende Noten geschrieben
+werden, denn sie beginnen ja zur selben Zeit.  In diesem Fall also brauchen
+wir zwei Stimmen.
+</p>
+<p>Wie aber wird das in der LilyPond-Syntax ausgedrückt?
+</p>
+<a name="index-_003c_003c-_005c_005c-_003e_003e"></a>
+<a name="index-_003c_003c-_005c_005c-_003e_003e-1"></a>
+<a name="index-_005c_005c-2"></a>
+<a name="index-_005c_005c-3"></a>
+
+<p>Die einfachste Art, Fragmente mit mehr als einer Stimme auf einem System
+zu notieren, ist, die Stimmen nacheinander (jeweils mit den Klammern
+<code>{ &hellip; }</code>) zu schreiben und dann mit den spitzen Klammern
+(<code>&lt;&lt; &hellip; &gt;&gt;</code>) simultan zu kombinieren.  Die beiden Fragmente müssen
+zusätzlich noch mit zwei Backslash-Zeichen (<code>\\</code>) voneinander
+getrennt werden, damit sie als zwei unterschiedliche Stimmen erkannt
+werden.  Ohne diese Trenner würden sie als eine einzige Stimme notiert
+werden.  Diese Technik ist besonders dann angebracht, wenn es sich bei
+den Noten um hauptsächlich homophone Musik handelt, in der hier und da
+polyphone Stellen vorkommen.
+</p>
+<p>So sieht es aus, wenn die Akkorde in zwei Stimmen aufgeteilt werden
+und zur Durchgangsnote noch ein Bogen hinzugefügt wird:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \key g \major
+  %    Voice = &quot;1&quot;             Voice = &quot;2&quot;
+  &lt;&lt; { g'4 fis8( g) a4 g } \\ { d4 d d d }  &gt;&gt;
+}
+</pre><p>
+ <a href="../e6/lily-8ef3e1d7.ly">
+  <img align="middle"
+       border="0"
+       src="../e6/lily-8ef3e1d7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Beachten Sie, dass die Hälse der zweiten Stimme nun nach unten zeigen.
+</p>
+<p>Hier ein anderes Beispiel:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \key d \minor
+  %    Voice = &quot;1&quot;           Voice = &quot;2&quot;
+  &lt;&lt; { r4 g' g4. a8 }   \\ { d,2 d4 g }       &gt;&gt; |
+  &lt;&lt; { bes4 bes c bes } \\ { g4 g g8( a) g4 } &gt;&gt; |
+  &lt;&lt; { a2. r4 }         \\ { fis2. s4 }       &gt;&gt; |
+}
+</pre><p>
+ <a href="../50/lily-9d92744b.ly">
+  <img align="middle"
+       border="0"
+       src="../50/lily-9d92744b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Es ist nicht notwendig, für jeden Takt eine eigene
+<code>&lt;&lt; \\ &gt;&gt;</code>-Konstruktion zu benutzen.  Bei Musik mit nur wenigen
+Noten pro Takt kann es die Quelldatei besser lesbar machen, aber
+wenn in einem Takt viele Noten vorkommen, kann man die gesamten Stimmen
+separat schreiben, wie hier:
+</p>
+<blockquote><pre class="verbatim">&lt;&lt;
+  \key d \minor
+  \relative { % Voice = &quot;1&quot;
+    r4 g' g4. a8 |
+    bes4 bes c bes |
+    a2. r4 |
+  } \\
+  \relative { % Voice = &quot;2&quot;
+    d'2 d4 g |
+    g4 g g8( a) g4 |
+    fis2. s4 |
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../5d/lily-b9969383.ly">
+  <img align="middle"
+       border="0"
+       src="../5d/lily-b9969383.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="index-Voice_002c-Benennung"></a>
+<a name="index-Voices-crossing-brackets"></a>
+<a name="index-Legatobogen-crossing-brackets"></a>
+<a name="index-Bindebogen-crossing-brackets"></a>
+
+<p>Dieses Beispiel hat nur zwei Stimmen, aber die gleiche Konstruktion kann
+angewendet werden, wenn man drei oder mehr Stimmen hat, indem man weitere
+Backslash-Trenner hinzufügt.
+</p>
+<p>Die Stimmenkontexte tragen die Namen <code>&quot;1&quot;</code>, <code>&quot;2&quot;</code> usw. Der erste
+Kontext stellt die &bdquo;äußeren&ldquo; Stimmen ein, die höchste Stimme im
+Kontext <code>&quot;1&quot;</code> und die tiefste Stimme im Kontext <code>&quot;2&quot;</code>.  Die
+inneren Stimmen kommen in die Kontexte <code>&quot;3&quot;</code> und <code>&quot;4&quot;</code>.  In
+jedem dieser Kontexte wird die vertikale Ausrichtung von Bögen, Hälsen,
+Dynamik usw. entsprechend eingestellt.
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  % Main voice
+  c'16 d e f
+  %    Voice = &quot;1&quot;   Voice = &quot;2&quot;              Voice = &quot;3&quot;
+  &lt;&lt; { g4 f e } \\ { r8 e4 d c8~ } &gt;&gt; |
+  &lt;&lt; { d2 e }   \\ { c8 b16 a b8 g~ 2 } \\ { s4 b c2 } &gt;&gt; |
+}
+</pre><p>
+ <a href="../b8/lily-55416f40.ly">
+  <img align="middle"
+       border="0"
+       src="../b8/lily-55416f40.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Diese Stimmen sind alle getrennt von der Hauptstimme, die die Noten
+außerhalb der <code>&lt;&lt; .. &gt;&gt;</code>-Konstruktion beinhaltet.  Lassen wir es
+uns die <em>simultane Konstruktion</em> nennen.  Bindebögen und Legatobögen
+können nur Noten in der selben Stimmen miteinander verbinden und können
+also somit nicht aus der simultanen Konstruktion hinausreichen.  Umgekehrt
+gilt, dass parallele Stimmen aus eigenen simultanen Konstruktionen auf
+dem gleichen Notensystem die gleiche Stimme sind.  Auch andere, mit dem
+Stimmenkontext verknüpfte Eigenschaften erstrecken sich auf alle
+simultanen Konstrukte.  Hier das gleiche Beispiel, aber mit unterschiedlichen Farben für die Notenköpfe der unterschiedlichen Stimmen.
+Beachten Sie, dass Änderungen in einer Stimme sich nicht auf die anderen
+Stimmen erstrecken, aber sie sind weiterhin in der selben Stimme vorhanden,
+auch noch später im Stück.  Beachten Sie auch, dass übergebundene Noten
+über die gleiche Stimme in zwei Konstrukten verteilt werden können, wie
+hier an der blauen Dreieckstimme gezeigt.
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  % Hauptstimme
+  c'16 d e f
+  &lt;&lt;  % Takt 1
+    {
+      \voiceOneStyle
+      g4 f e
+    }
+  \\
+    {
+      \voiceTwoStyle
+      r8 e4 d c8~
+    }
+  &gt;&gt; |
+  &lt;&lt;  % Takt 2
+     % Voice 1 wird fortgesetzt
+    { d2 e }
+  \\
+     % Voice 2 wird fortgesetzt
+    { c8 b16 a b8 g~ 2 }
+  \\
+    {
+      \voiceThreeStyle
+      s4 b c2
+    }
+  &gt;&gt; |
+}
+</pre><p>
+ <a href="../5a/lily-e8ea6cfc.ly">
+  <img align="middle"
+       border="0"
+       src="../5a/lily-e8ea6cfc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-_005cvoiceOneStyle"></a>
+<a name="index-_005cvoiceOneStyle-1"></a>
+<a name="index-_005cvoiceTwoStyle"></a>
+<a name="index-_005cvoiceTwoStyle-1"></a>
+<a name="index-_005cvoiceThreeStyle"></a>
+<a name="index-_005cvoiceThreeStyle-1"></a>
+<a name="index-_005cvoiceFourStyle"></a>
+<a name="index-_005cvoiceFourStyle-1"></a>
+<a name="index-_005cvoiceNeutralStyle"></a>
+<a name="index-_005cvoiceNeutralStyle-1"></a>
+
+<p>Die Befehle <code>\voiceXXXStyle</code> sind vor allem dazu da, um in
+pädagogischen Dokumenten wie diesem hier angewandt zu werden.
+Sie verändern die Farbe des Notenkopfes, des Halses und des Balkens, und
+zusätzlich die Form des Notenkopfes, damit die einzelnen Stimmen
+einfach auseinander gehalten werden können.  Die erste Stimme ist als
+rote Raute definiert, die zweite Stimme als blaue Dreiecke, die dritte
+Stimme als grüne Kreise mit Kreuz und die vierte Stimme (die hier nicht
+benutzt wird) hat dunkelrote Kreuze.  <code>\voiceNeutralStyle</code> (hier auch
+nicht benutzt) macht diese Änderungen rückgängig.  Später soll gezeigt
+werden, wie Befehle wie diese vom Benutzer selber erstellt werden
+können.  Siehe auch <a href="visibility-and-color-of-objects.de.html">Sichtbarkeit und Farbe von Objekten</a> und
+<a href="using-variables-for-layout-adjustments.de.html">Variablen für Layout Anpassungen einsetzen</a>.
+</p>
+<a name="index-Polyphonie-und-relativer-Notationsmodus"></a>
+<a name="index-relativer-Notationsmodus-und-Polyphonie"></a>
+
+<p>Polyphonie ändert nicht die Verhältnisse der Noten innerhalb eines
+<code>\relative</code>-Blocks.  Jede Note wird weiterhin relativ zu
+der vorherigen Note errechnet, oder relativ zur ersten Note des vorigen
+Akkords.  So ist etwa hier
+</p>
+<blockquote><pre class="example">\relative { noteA &lt;&lt; &lt; noteB noteC &gt; \\ noteD &gt;&gt; noteE }
+</pre></blockquote>
+
+<p><code>NoteB</code> bezüglich <code>NoteA</code>                      <br>
+<code>NoteC</code> bezüglich <code>NoteB</code>, nicht <code>noteA</code>;   <br>
+<code>NoteD</code> bezüglich <code>NoteB</code>, nicht <code>NoteA</code> oder
+<code>NoteC</code>;                                                 <br>
+<code>NoteE</code> bezüglich <code>NoteD</code>, nicht <code>NoteA</code> errechnet.
+</p>
+<p>Eine andere Möglichkeit ist, den <code>\relative</code>-Befehl vor jede
+Stimme zu stellen.  Das bietet sich an, wenn die Stimmen weit voneinander
+entfernt sind.
+</p>
+<blockquote><pre class="example">\relative { NoteA &hellip; }
+&lt;&lt;
+  \relative { &lt; NoteB NoteC &gt; &hellip; }
+\\
+  \relative { NoteD &hellip; }
+&gt;&gt;
+\relative { NoteE &hellip; }
+</pre></blockquote>
+
+<p>Zum Schluss wollen wir die Stimmen in einem etwas komplizierteren Stück
+analysieren.  Hier die Noten der ersten zwei Takte von Chopins
+<var>Deux Nocturnes</var>, Op. 32.  Dieses Beispiel soll später in diesem
+und dem nächsten Kapitel benutzt werden, um verschiedene Techniken,
+Notation zu erstellen, zu demonstrieren.  Ignorieren Sie deshalb an diesem
+Punkt alles in folgendem Code, das Ihnen seltsam vorkommt, und konzentrieren
+Sie sich auf die Noten und die Stimmen.  Die komplizierten Dinge werden
+in späteren Abschnitten erklärt werden.
+</p>
+<blockquote><p>
+ <a href="../d1/lily-93767a0e.ly">
+  <img align="middle"
+       border="0"
+       src="../d1/lily-93767a0e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Die Richtung der Hälse wird  oft benutzt, um anzuzeigen, dass zwei
+gleichzeitige Melodien sich fortsetzen.  Hier zeigen die Hälse aller
+oberen Noten nach oben und die Hälse aller unteren Noten nach unten.
+Das ist der erste Anhaltspunkt, dass mehr als eine Stimme benötigt
+wird.
+</p>
+<p>Aber die wirkliche Notwendigkeit für mehrere Stimmen tritt erst
+dann auf, wenn unterschiedliche Noten gleichzeitig erklingen, aber
+unterschiedliche Dauern besitzen.  Schauen Sie sich die Noten
+auf dem dritten Schlag im ersten Takt an.  Das As ist eine punktierte
+Viertel, das F ist eine Viertel und das Des eine Halbe.  Sie können
+nicht als Akkord geschrieben werden, denn alle Noten in einem Akkord
+besitzen die gleiche Dauer.  Sie können aber auch nicht nacheinander
+geschrieben werden, denn sie beginnen auf der gleichen Taktzeit.  Dieser
+Taktabschnitt benötigt drei Stimmen, und normalerweise schreibt man
+drei Stimmen für den ganzen Takt, wie im Beispiel unten zu sehen ist;
+hier sind unterschiedliche Köpfe und Farben für die verschiedenen Stimmen
+eingesetzt.  Noch einmal: der Quellcode für dieses Beispiel wird später
+erklärt werden, deshalb ignorieren Sie alles, was Sie hier nicht
+verstehen können.
+</p>
+<blockquote><p>
+ <a href="../d2/lily-81331778.ly">
+  <img align="middle"
+       border="0"
+       src="../d2/lily-81331778.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p>Versuchen wir also, diese Musik selber zu notieren.  Wie wir sehen
+werden, beinhaltet das einige Schwierigkeiten.  Fangen wir an, wie
+wir es gelernt haben, indem wir mit der <code>&lt;&lt; \\  &gt;&gt;</code>-Konstruktion
+die drei Stimmen des ersten Taktes notieren:
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;
+    { c''2 aes4. bes8 } \\ { &lt;ees, c&gt;2 des } \\ { aes'2 f4 fes }
+  &gt;&gt; |
+  &lt;c ees aes c&gt;1 |
+}
+</pre><p>
+ <a href="../58/lily-98e575a8.ly">
+  <img align="middle"
+       border="0"
+       src="../58/lily-98e575a8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-Hals-nach-unten"></a>
+<a name="index-Hals-nach-oben"></a>
+<a name="index-Notenhals_002c-Richtung"></a>
+<a name="index-Richtung-des-Notenhalses"></a>
+<a name="index-Notenhalsrichtung"></a>
+<a name="index-Stimmen-und-Notenhalsrichtung"></a>
+<a name="index-Notenhalsrichtung-in-Stimmen"></a>
+
+<p>Die Richtung des Notenhalses wird automatisch zugewiesen; die ungeraden
+Stimmen tragen Hälse nach oben, die gerade Hälse nach unten.  Die Hälse
+für die Stimmen 1 und 2 stimmen, aber die Hälse in der dritten Stimme
+sollen in diesem Beispiel eigentlich nach unten zeigen.  Wir können das
+korrigieren, indem wir die dritte Stimme einfach auslassen und die
+Noten in die vierte Stimme verschieben.  Das wird einfach vorgenommen,
+indem noch ein Paar <code>\\</code>-Stimmen hinzugefügt wird.
+</p>
+<blockquote><pre class="verbatim">\new Staff \relative {
+  \key aes \major
+  &lt;&lt;  % Voice 1
+    { c''2 aes4. bes8 }
+  \\  % Voice 2
+    { &lt;ees, c&gt;2 des }
+  \\  % Auslassen von Voice 3
+  \\  % Voice 4
+    { aes'2 f4 fes }
+  &gt;&gt; |
+  &lt;c ees aes c&gt;1 |
+}
+</pre><p>
+ <a href="../58/lily-1d306491.ly">
+  <img align="middle"
+       border="0"
+       src="../58/lily-1d306491.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Wie zu sehen ist, ändert das die Richtung der Hälse, aber die horizontale
+Ausrichtung der Noten ist nicht so, wie wir sie wollen.  LilyPond
+verschiebt die inneren Noten wenn sie oder ihre Hälse mit den äußeren
+Stimmen zusammenstoßen würden, aber das ist nicht richtig für Klaviermusik.
+In anderen Situationen können die Verschiebungen von LilyPond nicht
+ausreichend sein, um Überlappungen aufzulösen.  LilyPond stellt verschiedene
+Möglichkeiten zur Verfügung, um die horizontale Ausrichtung von Noten
+zu beeinflussen.  Wir sind aber noch nicht so weit, dass wir diese Funktionen
+anwenden könnten.  Darum heben wir uns das Problem für einen späteren Abschnitt
+auf; siehe <code>force-hshift</code>-Eigenschaft in
+<a href="fixing-overlapping-notation.de.html">Überlappende Notation in Ordnung bringen</a>.
+</p>
+<div class="warning"><p><strong>Achtung:</strong> Gesangstext und Strecker (wie etwa Bögen, Crescendo-Klammern usw.) können
+nicht von einer Stimme zur anderen erstellt werden.
+</p>
+</div>
+
+<a name="Siehe-auch-23"></a>
+<h4 class="subsubheading">Siehe auch</h4>
+<p>Notationsreferenz: <a name="index-Mehrere-Stimmen"></a>
+<a href="../notation/multiple-voices.de.html">Mehrere Stimmen</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.de.html" title="Anfang dieses oder des letzten Kapitels"> &lt;&lt; Grundbegriffe&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Titelseite des Dokuments" rel="start">Anfang</a>][<a href="index_toc.de.html#SEC_Contents" title="Inhaltsverzeichnis" rel="contents">Inhalt</a>][<a href="lilypond-index.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="&Uuml;ber (Hilfe)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.de.html" title="N&auml;chstes Kapitel">&nbsp;Die Ausgabe verbessern &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="voices-contain-music.de.html" title="Voriger Abschnitt in Lesereihenfolge" accesskey="p" rel="previous"> &lt; Voice enthält Noten&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="voices-contain-music.de.html" title="Abschnitt nach oben" accesskey="u" rel="up">&nbsp; Nach oben :&nbsp;Voice enthält Noten&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicitly-instantiating-voices.de.html" title="N&auml;chster Abschnitt in Lesereihenfolge" accesskey="n" rel="next">&nbsp;Stimmen explizit beginnen &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere Sprachen: <a href="i_0027m-hearing-voices.html">English</a>, <a href="i_0027m-hearing-voices.ca.html">català</a>, <a href="i_0027m-hearing-voices.cs.html">česky</a>, <a href="i_0027m-hearing-voices.es.html">español</a>, <a href="i_0027m-hearing-voices.fr.html">français</a>, <a href="i_0027m-hearing-voices.hu.html">magyar</a>, <a href="i_0027m-hearing-voices.it.html">italiano</a>, <a href="i_0027m-hearing-voices.ja.html">日本語</a>, <a href="i_0027m-hearing-voices.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.de.html"
+         title="Documentation Index">&lt;&lt; Zur Dokumentationsübersicht</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">LilyPond &ndash; Learning Manual  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorium-1" href="tutorial.de.html">1. Tutorium</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eine-Quelldatei-ubersetzen" href="compiling-a-file.de.html">1.1 Eine Quelldatei übersetzen</a>    </li>
+    <li class=""><a name="toc-Wie-werden-Eingabe_002dDateien-geschrieben-1" href="how-to-write-input-files.de.html">1.2 Wie werden Eingabe-Dateien geschrieben</a>    </li>
+    <li class=""><a name="toc-Fehlerbehandlung-1" href="dealing-with-errors.de.html">1.3 Fehlerbehandlung</a>    </li>
+    <li class=""><a name="toc-Wie-die-Handbucher-gelesen-werden-sollten" href="how-to-read-the-manuals.de.html">1.4 Wie die Handbücher gelesen werden sollten</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Ubliche-Notation" href="common-notation.de.html">2. Übliche Notation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-auf-einem-System-1" href="single-staff-notation.de.html">2.1 Notation auf einem System</a>    </li>
+    <li class=""><a name="toc-Mehrere-Noten-auf-einmal-1" href="multiple-notes-at-once.de.html">2.2 Mehrere Noten auf einmal</a>    </li>
+    <li class=""><a name="toc-Lieder-1" href="songs.de.html">2.3 Lieder</a>    </li>
+    <li class=""><a name="toc-Letzter-Schliff-1" href="final-touches.de.html">2.4 Letzter Schliff</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Grundbegriffe-1" href="fundamental-concepts.de.html">3. Grundbegriffe</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Wie-eine-LilyPond_002dEingabe_002dDatei-funktioniert-1" href="how-lilypond-input-files-work.de.html">3.1 Wie eine LilyPond-Eingabe-Datei funktioniert</a>    </li>
+    <li class=" toc_current"><a name="toc-Voice-enthalt-Noten" href="voices-contain-music.de.html">3.2 Voice enthält Noten</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Ich-hore-Stimmen" href="i_0027m-hearing-voices.de.html">3.2.1 Ich höre Stimmen</a>      </li>
+      <li class=""><a name="toc-Stimmen-explizit-beginnen-1" href="explicitly-instantiating-voices.de.html">3.2.2 Stimmen explizit beginnen</a>      </li>
+      <li class=""><a name="toc-Stimmen-und-Text-1" href="voices-and-vocals.de.html">3.2.3 Stimmen und Text</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Kontexte-und-Engraver-1" href="contexts-and-engravers.de.html">3.3 Kontexte und Engraver</a>    </li>
+    <li class=""><a name="toc-Erweiterung-der-Vorlagen-1" href="extending-the-templates.de.html">3.4 Erweiterung der Vorlagen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Die-Ausgabe-verbessern-1" href="tweaking-output.de.html">4. Die Ausgabe verbessern</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Grundlagen-fur-die-Optimierung" href="tweaking-basics.de.html">4.1 Grundlagen für die Optimierung</a>    </li>
+    <li class=""><a name="toc-Die-Referenz-der-Programminterna-1" href="the-internals-reference-manual.de.html">4.2 Die Referenz der Programminterna</a>    </li>
+    <li class=""><a name="toc-Erscheinung-von-Objekten-1" href="appearance-of-objects.de.html">4.3 Erscheinung von Objekten</a>    </li>
+    <li class=""><a name="toc-Positionierung-von-Objekten-1" href="placement-of-objects.de.html">4.4 Positionierung von Objekten</a>    </li>
+    <li class=""><a name="toc-Vertikale-Abstande" href="vertical-spacing.de.html">4.5 Vertikale Abstände</a>    </li>
+    <li class=""><a name="toc-Kollision-von-Objekten-1" href="collisions-of-objects.de.html">4.6 Kollision von Objekten</a>    </li>
+    <li class=""><a name="toc-Weitere-Optimierungen-1" href="further-tweaking.de.html">4.7 Weitere Optimierungen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Vorlagen-1" href="templates.de.html">A. Vorlagen</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Eingebaute-Vorlagen-1" href="built_002din-templates.de.html">A.1 Eingebaute Vorlagen</a>    </li>
+    <li class=""><a name="toc-Vorlagen-fur-ein-einzelnes-System" href="single-staff-templates.de.html">A.2 Vorlagen für ein einzelnes System</a>    </li>
+    <li class=""><a name="toc-Klaviervorlagen-1" href="piano-templates.de.html">A.3 Klaviervorlagen</a>    </li>
+    <li class=""><a name="toc-Vorlagen-fur-Streichquartette" href="string-quartet-templates.de.html">A.4 Vorlagen für Streichquartette</a>    </li>
+    <li class=""><a name="toc-Vokalensemble-1" href="vocal-ensembles-templates.de.html">A.5 Vokalensemble</a>    </li>
+    <li class=""><a name="toc-Orchestervorlagen-1" href="orchestral-templates.de.html">A.6 Orchestervorlagen</a>    </li>
+    <li class=""><a name="toc-Vorlagen-fur-alte-Notation" href="ancient-notation-templates.de.html">A.7 Vorlagen für alte Notation</a>    </li>
+    <li class=""><a name="toc-Andere-Vorlagen-1" href="other-templates.de.html">A.8 Andere Vorlagen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.de.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond_002dIndex-1" href="lilypond-index.de.html">C. LilyPond-Index</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: ebe492ca408fb0d9abf80b94c56197eef8dc2f09
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Mit Google suchen">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Suche">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

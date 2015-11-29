@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manuale di apprendimento di LilyPond: 4.2.2 Proprietà presenti nelle interfacce</title>
+
+<meta name="description" content="Manuale di apprendimento di LilyPond: 4.2.2 Proprietà presenti nelle interfacce">
+<meta name="keywords" content="Manuale di apprendimento di LilyPond: 4.2.2 Proprietà presenti nelle interfacce">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Manuale di apprendimento">
+<link href="lilypond-index.it.html#lilypond-index" rel="index" title="C. Indice di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="the-internals-reference-manual.it.html#the-internals-reference-manual" rel="up" title="4.2 Manuale del Funzionamento interno">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="C. Indice di LilyPond">
+<link href="properties-of-layout-objects.it.html#properties-of-layout-objects" rel="previous" title="4.2.1 Proprietà degli oggetti di formattazione">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="learning devStatus">
+
+
+<div id="main">
+<a name="Propriet_00e0-presenti-nelle-interfacce"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="properties-of-layout-objects.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Proprietà degli oggetti di formattazione&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Manuale del Funzionamento interno&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="types-of-properties.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Tipi di proprietà &gt; </a>]</td></tr></table>
+<a name="properties-found-in-interfaces"></a>
+<h3 class="subsection">4.2.2 Proprietà presenti nelle interfacce</h3>
+
+<a name="index-interfaccia-1"></a>
+<a name="index-proprieta-dell_0027interfaccia"></a>
+<a name="index-proprieta-nelle-interfacce"></a>
+
+<p>Supponiamo ora di voler produrre un testo vocale in corsivo.  Che tipo di
+comando <code>\override</code> ci serve?  Consultiamo prima la pagina
+della guida al Funzionamento interno che elenca &lsquo;All layout objects&rsquo;, come
+prima, e cerchiamo un oggetto che potrebbe controllare il testo (in inglese
+<em>lyrics</em>).  Troviamo <code>LyricText</code>, che sembra quello giusto.  Clicchiamo
+su di esso e troviamo le proprietà del testo.  Queste comprendono <code>font-series</code>
+e <code>font-size</code>, ma niente che possa dare una forma corsiva.  Ciò è dovuto
+al fatto che la proprietà della forma è comune a tutti gli oggetti di tipi
+di carattere (<em>font</em>).  Quindi, invece di includerla in ogni oggetto di
+formattazione, viene raggruppata insieme ad altre simili proprietà comuni
+e inserita in un&rsquo;<strong>Interfaccia</strong>: <code>font-interface</code>.
+</p>
+<p>Ora dobbiamo capire come trovare le proprietà delle interfacce e
+come scoprire quali oggetti usano queste proprietà.
+</p>
+<p>Torna a vedere la pagina che descrive LyricText.  In fondo alla
+pagina c&rsquo;è una lista di interfacce cliccabili supportate da LyricText.
+La lista ha molti elementi, incluso <code>font-interface</code>.  Cliccando
+su di essa arriviamo alle proprietà associate con questa interfaccia, che
+sono anche le proprietà di tutti gli oggetti che la supportano, tra cui
+LyricText.
+</p>
+<p>Vediamo tutte le proprietà configurabili dall&rsquo;utente che controllano i
+tipi di carattere, compresa <code>font-shape(symbol)</code>, dove <code>symbol</code> può
+essere impostato su <code>upright</code>, <code>italic</code> o <code>caps</code>.
+</p>
+<p>Puoi notare che lì sono elencate anche <code>font-series</code> e <code>font-size</code>.
+Ti potresti chiedere: perché le proprietà comuni dei tipi di carattere
+<code>font-series</code> e <code>font-size</code> fanno parte sia dell&rsquo;oggetto
+<code>LyricText</code> sia dell&rsquo;interfaccia <code>font-interface</code> mentre <code>font-shape</code>
+è presente solo nell&rsquo;interfaccia?  Ciò è dovuto al fatto che i valori globali
+predefiniti di <code>font-series</code> e <code>font-size</code> cambiano quando viene
+creato un oggetto <code>LyricText</code>, mentre i valori di <code>font-shape</code> non
+cambiano.  Gli elementi in <code>LyricText</code> indicano quali sono i
+valori per queste due proprietà che si applicano a <code>LyricText</code>.  Altri
+oggetti che supportano <code>font-interface</code> imposteranno queste proprietà
+in modo diverso quando vengono creati.
+</p>
+<p>Vediamo se ora riusciamo a costruire il comando <code>\override</code>
+per rendere il testo corsivo.  L&rsquo;oggetto è <code>LyricText</code>,
+la proprietà è <code>font-shape</code> e il valore è
+<code>italic</code>.  Come in precedenza, ometteremo il contesto.
+</p>
+<p>Per inciso, è importante notare che alcune proprietà prendono come valori
+dei simboli, ad esempio <code>italic</code>; in questo caso i valori devono essere
+preceduti da un apostrofo, <code>'</code>.  I simboli vengono letti internamente da
+LilyPond.  Nota che sono diversi dalle stringhe di testo arbitrarie, che
+appaiono nella forma <code>&quot;una stringa di testo&quot;</code>; maggiori informazioni sui
+simboli e le stringhe si trovano in <a name="index-Scheme-tutorial"></a>
+<a href="../extending/scheme-tutorial.it.html">Scheme tutorial</a>.
+</p>
+<p>Quindi il comando <code>\override</code> che rende il testo corsivo è:
+</p>
+<blockquote><pre class="example">\override LyricText.font-shape = #'italic
+</pre></blockquote>
+
+<p>Deve essere posizionato proprio di fronte al testo che vogliamo modificare,
+in questo modo:
+</p>
+<a name="index-proprieta-font_002dshape_002c-esempio"></a>
+<a name="index-font_002dshape_002c-esempio"></a>
+<a name="index-italic_002c-esempio"></a>
+<a name="index-corsivo_002c-esempio"></a>
+<a name="index-LyricText_002c-esempio-di-sovrascrittura"></a>
+<a name="index-_005caddlyrics_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">{
+  \key es \major
+  \time 6/8
+  \relative {
+    r4 bes'8 bes[( g]) g |
+    g8[( es]) es d[( f]) as |
+    as8 g
+  }
+  \addlyrics {
+    \override LyricText.font-shape = #'italic
+    The man who | feels love's sweet e -- | mo -- tion
+  }
+}
+</pre><p>
+ <a href="../33/lily-28637fa4.ly">
+  <img align="middle"
+       border="0"
+       src="../33/lily-28637fa4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>e tutto il testo è in corsivo.
+</p>
+<div class="warning"><p><strong>Nota:</strong> Nel testo bisogna lasciare sempre uno spazio bianco tra l&rsquo;ultima
+sillaba e la parentesi graffa che chiude il blocco.
+</p>
+</div>
+
+<a name="Vedi-anche-25"></a>
+<h4 class="subsubheading">Vedi anche</h4>
+<p>Estendere: <a name="index-Scheme-tutorial-1"></a>
+<a href="../extending/scheme-tutorial.it.html">Scheme tutorial</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="properties-of-layout-objects.it.html" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Proprietà degli oggetti di formattazione&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="the-internals-reference-manual.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Manuale del Funzionamento interno&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="types-of-properties.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Tipi di proprietà &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="properties-found-in-interfaces.html">English</a>, <a href="properties-found-in-interfaces.ca.html">català</a>, <a href="properties-found-in-interfaces.cs.html">česky</a>, <a href="properties-found-in-interfaces.de.html">deutsch</a>, <a href="properties-found-in-interfaces.es.html">español</a>, <a href="properties-found-in-interfaces.fr.html">français</a>, <a href="properties-found-in-interfaces.ja.html">日本語</a>, <a href="properties-found-in-interfaces.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Manuale di apprendimento  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.it.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilare-un-file-1" href="compiling-a-file.it.html">1.1 Compilare un file</a>    </li>
+    <li class=""><a name="toc-Come-scrivere-i-file-di-input-1" href="how-to-write-input-files.it.html">1.2 Come scrivere i file di input</a>    </li>
+    <li class=""><a name="toc-Gestire-gli-errori-1" href="dealing-with-errors.it.html">1.3 Gestire gli errori</a>    </li>
+    <li class=""><a name="toc-Come-leggere-i-manuali-1" href="how-to-read-the-manuals.it.html">1.4 Come leggere i manuali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notazione-comunemente-utilizzata-1" href="common-notation.it.html">2. Notazione comunemente utilizzata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notazione-su-un-solo-pentagramma-1" href="single-staff-notation.it.html">2.1 Notazione su un solo pentagramma</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="multiple-notes-at-once.it.html">2.2 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.3 Canzoni</a>    </li>
+    <li class=""><a name="toc-Ritocchi-finali-1" href="final-touches.it.html">2.4 Ritocchi finali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concetti-fondamentali-1" href="fundamental-concepts.it.html">3. Concetti fondamentali</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Come-funzionano-i-file-di-input-di-LilyPond-1" href="how-lilypond-input-files-work.it.html">3.1 Come funzionano i file di input di LilyPond</a>    </li>
+    <li class=""><a name="toc-Le-voci-contengono-la-musica-1" href="voices-contain-music.it.html">3.2 Le voci contengono la musica</a>    </li>
+    <li class=""><a name="toc-Contesti-e-incisori-1" href="contexts-and-engravers.it.html">3.3 Contesti e incisori</a>    </li>
+    <li class=""><a name="toc-Estendere-i-modelli-1" href="extending-the-templates.it.html">3.4 Estendere i modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Modifica-dell_0027output-1" href="tweaking-output.it.html">4. Modifica dell&rsquo;output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modifiche-di-base-1" href="tweaking-basics.it.html">4.1 Modifiche di base</a>    </li>
+    <li class=" toc_current"><a name="toc-Manuale-del-Funzionamento-interno-1" href="the-internals-reference-manual.it.html">4.2 Manuale del Funzionamento interno</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Proprieta-degli-oggetti-di-formattazione" href="properties-of-layout-objects.it.html">4.2.1 Proprietà degli oggetti di formattazione</a>      </li>
+      <li class=" toc_current"><a name="toc-Proprieta-presenti-nelle-interfacce" href="properties-found-in-interfaces.it.html">4.2.2 Proprietà presenti nelle interfacce</a>      </li>
+      <li class=""><a name="toc-Tipi-di-proprieta" href="types-of-properties.it.html">4.2.3 Tipi di proprietà</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Aspetto-degli-oggetti-1" href="appearance-of-objects.it.html">4.3 Aspetto degli oggetti</a>    </li>
+    <li class=""><a name="toc-Posizionamento-degli-oggetti-1" href="placement-of-objects.it.html">4.4 Posizionamento degli oggetti</a>    </li>
+    <li class=""><a name="toc-Spaziatura-verticale-1" href="vertical-spacing.it.html">4.5 Spaziatura verticale</a>    </li>
+    <li class=""><a name="toc-Collisioni-tra-oggetti-1" href="collisions-of-objects.it.html">4.6 Collisioni tra oggetti</a>    </li>
+    <li class=""><a name="toc-Altre-modifiche-1" href="further-tweaking.it.html">4.7 Altre modifiche</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modelli-1" href="templates.it.html">A. Modelli</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modelli-integrati-1" href="built_002din-templates.it.html">A.1 Modelli integrati</a>    </li>
+    <li class=""><a name="toc-Modelli-per-rigo-singolo-1" href="single-staff-templates.it.html">A.2 Modelli per rigo singolo</a>    </li>
+    <li class=""><a name="toc-Modelli-per-pianoforte-1" href="piano-templates.it.html">A.3 Modelli per pianoforte</a>    </li>
+    <li class=""><a name="toc-Modelli-per-quartetto-d_0027archi-1" href="string-quartet-templates.it.html">A.4 Modelli per quartetto d&rsquo;archi</a>    </li>
+    <li class=""><a name="toc-Modelli-per-gruppi-vocali-1" href="vocal-ensembles-templates.it.html">A.5 Modelli per gruppi vocali</a>    </li>
+    <li class=""><a name="toc-Modelli-per-orchestra-1" href="orchestral-templates.it.html">A.6 Modelli per orchestra</a>    </li>
+    <li class=""><a name="toc-Modelli-per-notazione-antica-1" href="ancient-notation-templates.it.html">A.7 Modelli per notazione antica</a>    </li>
+    <li class=""><a name="toc-Altri-modelli-1" href="other-templates.it.html">A.8 Altri modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">C. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

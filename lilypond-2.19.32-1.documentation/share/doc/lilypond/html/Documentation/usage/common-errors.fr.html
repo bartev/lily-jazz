@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Utilisation des programmes: 1.4 Quelques erreurs des plus courantes</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Utilisation des programmes: 1.4 Quelques erreurs des plus courantes">
+<meta name="keywords" content="GNU LilyPond &ndash; Utilisation des programmes: 1.4 Quelques erreurs des plus courantes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Utilisation des programmes">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="B. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="running-lilypond.fr.html#running-lilypond" rel="up" title="1. Exécution de lilypond">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="B. Index de LilyPond">
+<link href="error-messages.fr.html#error-messages" rel="previous" title="1.3 Messages d'erreur">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="usage devStatus">
+
+
+<div id="main">
+<a name="Quelques-erreurs-des-plus-courantes"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="error-messages.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Messages d'erreur&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#music-runs-off-the-page" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;La musique déborde de la page &gt; </a>]</td></tr></table>
+<a name="common-errors"></a>
+<h2 class="section">1.4 Quelques erreurs des plus courantes</h2>
+
+<p>Les conditions amenant aux erreurs qui suivent sont fréquentes, bien
+qu&rsquo;elles ne soient pas évidentes ni facilement localisables.  Nous
+espérons que ces explications vous aideront à les résoudre plus
+facilement.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#music-runs-off-the-page" accesskey="1">La musique déborde de la page</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#an-extra-staff-appears" accesskey="2">Apparition d&rsquo;une portée supplémentaire</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unbound-variable-_0025" accesskey="3">Message d&rsquo;erreur <code>Unbound variable %</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-ft_005fget_005fglyph_005fname" accesskey="4">Message d&rsquo;erreur <code>FT_Get_Glyph_Name</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#warning-staff-affinities-should-only-decrease" accesskey="5"><em>staff-affinities</em> devraient aller en ordre décroissant</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unexpected-new" accesskey="6">Message d&rsquo;erreur unexpected <code>\new</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#warning-this-voice-needs-a-voicexx-or-shiftxx-setting" accesskey="7">Cette voix requiert un <code>\voiceXx</code> ou un réglage <code>\shiftXx</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="La-musique-d_00e9borde-de-la-page"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#common-errors" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#an-extra-staff-appears" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Apparition d'une portée supplémentaire &gt; </a>]</td></tr></table>
+<a name="music-runs-off-the-page"></a>
+<h3 class="unnumberedsubsec">La musique déborde de la page</h3>
+
+<p>Lorsque la musique s&rsquo;épanche au delà de la marge droite ou bien semble
+anormalement comprimée, la raison en est le plus souvent une note à la
+durée erronée ; cela finit par provoquer le débordement de la
+dernière note d&rsquo;une mesure.  Rien ne s&rsquo;oppose à ce que la dernière note
+d&rsquo;une mesure ne s&rsquo;arrête avant la barre de mesure ; on considère
+simplement qu&rsquo;elle se prolonge sur la mesure suivante.  Des débordements
+à répétition finissent par générer une musique comprimée ou qui sort de
+la page, pour la simple et bonne raison que les sauts de ligne
+automatiques ne peuvent intervenir qu&rsquo;à la fin d&rsquo;une mesure complète,
+autrement dit lorsque toutes les notes sont terminées avant la fin de la
+mesure.
+</p>
+<div class="warning"><p><strong>Note :</strong> Une durée erronée peut empêcher les sauts de ligne, ce qui
+conduit à une musique compressée, voire à un débordement de la page.
+</p>
+</div>
+<p>Une erreur de durée sera bien plus facilement localisable si vous
+positionnez régulièrement des contrôles de barre de mesure &ndash; voir
+<a name="index-Verification-des-limites-et-numeros-de-mesure"></a>
+<a href="../notation/bar-and-bar-number-checks.fr.html">Vérification des limites et numéros de mesure</a>.
+</p>
+<p>Si vous tenez absolument à enchaîner de tels débordements, vous devrez
+insérer des barres de mesure invisibles là où vous souhaitez positionner
+un saut de ligne.  Consultez le chapitre <a name="index-Barres-de-mesure"></a>
+<a href="../notation/bar-lines.fr.html">Barres de mesure</a> pour
+plus de détails.
+</p>
+
+<hr size="6">
+<a name="Apparition-d_0027une-port_00e9e-suppl_00e9mentaire"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#music-runs-off-the-page" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; La musique déborde de la page&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Message d'erreur Unbound variable % &gt; </a>]</td></tr></table>
+<a name="an-extra-staff-appears"></a>
+<h3 class="unnumberedsubsec">Apparition d&rsquo;une portée supplémentaire</h3>
+
+<p>Lorsque les contextes ne sont pas créés explicitement par la commande
+<code>\new</code>, ils le seront si la commande à exécuter n&rsquo;est pas censée
+s&rsquo;appliquer au contexte en cours.  Pour des partitions simples, le fait
+que les contextes soient automatiquement créés rend bien des services,
+et c&rsquo;est d&rsquo;ailleurs le cas pour la majorité des exemples contenus dans
+les manuels de LilyPond.  Cependant, la création implicite d&rsquo;un contexte
+peut aboutir à l&rsquo;apparition d&rsquo;une portée « parasite ».  On s&rsquo;attend par
+exemple, en lisant le code qui suit, à ce que toutes les têtes de note
+soient en rouge, alors que le résultat nous présente deux portées et que
+les notes, placées sur la portée inférieure, restent en noir.
+</p>
+<blockquote><pre class="verbatim">\override Staff.NoteHead.color = #red
+\new Staff { a' }
+</pre><p>
+ <a href="../a3/lily-8a95f028.ly">
+  <img align="middle"
+       border="0"
+       src="../a3/lily-8a95f028.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Étant donné qu&rsquo;aucun contexte <code>Staff</code> n&rsquo;existe lorsque la
+dérogation est introduite, LilyPond le crée implicitement pour lui
+appliquer la directive considérée.  Survient alors la commande
+<code>\new Staff</code> qui, à son tour, crée une nouvelle portée pour
+contenir les notes qui suivent.  Voici la syntaxe correcte pour obtenir
+ces notes en rouge :
+</p>
+<blockquote><pre class="verbatim">\new Staff {
+  \override Staff.NoteHead.color = #red
+  a'
+}
+</pre><p>
+ <a href="../1a/lily-c0a863c0.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-c0a863c0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Message-d_0027erreur-Unbound-variable-_0025"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#an-extra-staff-appears" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Apparition d'une portée supplémentaire&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Message d'erreur FT_Get_Glyph_Name &gt; </a>]</td></tr></table>
+<a name="error-message-unbound-variable-_0025"></a>
+<h3 class="unnumberedsubsec">Message d&rsquo;erreur <code>Unbound variable %</code></h3>
+
+<p>Ce message d&rsquo;erreur, qu&rsquo;il apparaisse sur le terminal ou en fin de
+fichier journal, est associé à un message du type « GUILE a signalé
+une erreur&hellip; ». Il survient à chaque fois qu&rsquo;un commentaire
+<em>LilyPond</em> est indûment placé dans une routine <em>Scheme</em>.
+</p>
+<p>Un commentaire LilyPond est introduit par le signe pourcent (<code>%</code>)
+et ne doit en aucun cas se trouver dans une routine Scheme.  En Scheme,
+les commentaires s&rsquo;introduisent par un point-virgule (<code>;</code>).
+</p>
+
+<hr size="6">
+<a name="Message-d_0027erreur-FT_005fGet_005fGlyph_005fName"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Message d'erreur Unbound variable %&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;staff-affinities devraient aller en ordre décroissant &gt; </a>]</td></tr></table>
+<a name="error-message-ft_005fget_005fglyph_005fname"></a>
+<h3 class="unnumberedsubsec">Message d&rsquo;erreur <code>FT_Get_Glyph_Name</code></h3>
+
+<p>Ce message d&rsquo;erreur, qu&rsquo;il apparaisse sur le terminal ou en fin de
+fichier journal, survient lorsqu&rsquo;un fichier source contient des
+caractères non ASCII et qu&rsquo;il n&rsquo;a pas été enregistré avec un encodage
+UTF-8.  Pour plus de détails, reportez-vous au chapitre
+<a name="index-Caracteres-speciaux"></a>
+<a href="../notation/special-characters.fr.html">Caractères spéciaux</a>.
+</p>
+
+<hr size="6">
+<a name="staff_002daffinities-devraient-aller-en-ordre-d_00e9croissant"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Message d'erreur FT_Get_Glyph_Name&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unexpected-new" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Message d'erreur unexpected new &gt; </a>]</td></tr></table>
+<a name="warning-staff-affinities-should-only-decrease"></a>
+<h3 class="unnumberedsubsec"><em>staff-affinities</em> devraient aller en ordre décroissant</h3>
+
+<p>Cet avertissement est émis lorsque la partition ne comporte pas de
+portée, comme par exemple une feuille de chant avec un contexte
+<code>ChordName</code> et un contexte <code>Lyrics</code>.  Ce message disparaîtra
+dès lors que vous autoriserez l&rsquo;un de ces contextes à se comporter comme
+une portée, à l&rsquo;aide de l&rsquo;instruction
+</p>
+<blockquote><pre class="example">\override VerticalAxisGroup.staff-affinity = ##f
+</pre></blockquote>
+
+<p>que vous insérerez dès sa création.  Pour plus d&rsquo;information,
+reportez-vous à la rubrique
+<a name="index-Espacement-des-lignes-rattachees-a-des-portees"></a>
+<a href="../notation/spacing-of-non_002dstaff-lines.fr.html">Espacement des lignes rattachées à des portées</a>.
+</p>
+
+<hr size="6">
+<a name="Message-d_0027erreur-unexpected-new"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; staff-affinities devraient aller en ordre décroissant&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#warning-this-voice-needs-a-voicexx-or-shiftxx-setting" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Cette voix requiert un voiceXx ou un réglage shiftXx &gt; </a>]</td></tr></table>
+<a name="error-message-unexpected-new"></a>
+<h3 class="unnumberedsubsec">Message d&rsquo;erreur unexpected <code>\new</code></h3>
+
+<p>Un bloc <code>\score</code> ne peut contenir qu&rsquo;<strong>une seule</strong> expression
+musicale. Si, par contre, il comporte plusieurs <code>\new Staff</code>,
+<code>\new StaffGroup</code> ou autres contextes introduits par une commande
+<code>\new</code> qui ne seraient pas bornés par des accolades
+<code>{ &hellip; }</code> ou des doubles chevrons <code>&lt;&lt; &hellip; &gt;&gt;</code> comme
+ici :
+</p>
+<blockquote><pre class="example">\score {
+  % Invalide ! Génère l'erreur : syntax error, unexpected \new
+  % en français : erreur de syntaxe : \new inattendu
+  \new Staff { &hellip; }
+  \new Staff { &hellip; }
+}
+</pre></blockquote>
+
+<p>vous obtiendrez ce message d&rsquo;erreur.
+</p>
+<p>Cette erreur sera évitée dès lors que toutes les instances de
+<code>\new</code> sont bornées par des accolades ou des doubles chevrons.
+</p>
+<p>Des accolades placeront ces clauses <code>\new</code> en séquence :
+</p>
+<blockquote><pre class="verbatim">\score {
+  {
+    \new Staff { a' a' a' a' }
+    \new Staff { g' g' g' g' }
+  }
+}
+</pre><p>
+ <a href="../2e/lily-9b22173f.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-9b22173f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>alors que des doubles chevrons les placeront en parallèle ; autrement
+dit, LilyPond les traitera simultanément :
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff { a' a' a' a' }
+    \new Staff { g' g' g' g' }
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../06/lily-77b293ac.ly">
+  <img align="middle"
+       border="0"
+       src="../06/lily-77b293ac.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Cette-voix-requiert-un-voiceXx-ou-un-r_00e9glage-shiftXx"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unexpected-new" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Message d'erreur unexpected new&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Mise à jour avec convert-ly &gt; </a>]</td></tr></table>
+<a name="warning-this-voice-needs-a-voicexx-or-shiftxx-setting"></a>
+<h3 class="unnumberedsubsec">Cette voix requiert un <code>\voiceXx</code> ou un réglage <code>\shiftXx</code></h3>
+
+<p>Lorsque des notes affectées à des voix différentes et ayant la même
+orientation de hampe interviennent au même instant musical et qu&rsquo;aucun
+décalage spécifique à la voix n&rsquo;a été spécifié, LilyPond émet
+<code>Avertissement : Cette voix requiert un voiceXx ou un réglage
+shiftXx</code> (<em>warning: this voice needs a \voiceXx or \shiftXx
+setting</em>).  Cet avertissement est émis même lorsque ces notes n&rsquo;ont pas
+de hampe visible, comme par exemple des rondes, si les hampes des durées
+inférieures à ces même hauteurs avaient la même orientation.
+</p>
+<p>N&rsquo;oublions pas que l&rsquo;orientation des hampes dépend de la position des
+notes sur la portée à moins que cette orientation n&rsquo;ait été spécifiée,
+par exemple à l&rsquo;aide d&rsquo;un <code>\voiceOne</code> ou autre clause.  En pareil
+cas, l&rsquo;avertissement ne sera émis que lorsque les hampes auront la même
+orientation, autrement dit lorsque les notes seront dans la même moitié
+de la portée.
+</p>
+<p>Le fait de placer les notes dans des voix auxquelles sont attachés
+orientation de hampe et décalage, comme <code>\voiceOne</code> ou autre, peut
+permettre d&rsquo;éviter ces avertissements.
+</p>
+<p>Les notes se trouvant dans des voix au numéro plus élévé &ndash;
+<code>\voiceThree</code> ou <code>\voiceFour</code> &ndash; sont automatiquement décalées
+pour éviter que les empilements se chevauchent.  Ceci aura pour résultat
+de visuellement décaler les notes affublées de hampe sans toutefois
+bouger les rondes, hormis dans le cas d&rsquo;un réel chevauchement ou lorsque
+ces voix se croisent (<code>\voiceThree</code> au dessus de<code>\voiceOne</code>).
+</p>
+<a name="Voir-aussi-1"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel d&rsquo;initiation :
+<a name="index-Instanciation-explicite-des-voix"></a>
+<a href="../learning/explicitly-instantiating-voices.fr.html">Instanciation explicite des voix</a>,
+<a name="index-Exemple-concret"></a>
+<a href="../learning/real-music-example.fr.html">Exemple concret</a>.
+</p>
+<p>Manuel de notation :
+<a name="index-Polyphonie-sur-une-portee"></a>
+<a href="../notation/single_002dstaff-polyphony.fr.html">Polyphonie sur une portée</a>,
+<a name="index-Resolution-des-collisions"></a>
+<a href="../notation/collision-resolution.fr.html">Résolution des collisions</a>.
+</p>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Exécution de lilypond&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.fr.html" title="Chapitre suivant">&nbsp;Mise à jour avec convert-ly &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unexpected-new" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Message d'erreur unexpected new&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Quelques erreurs des plus courantes&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Mise à jour avec convert-ly &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="common-errors.html">English</a>, <a href="common-errors.ca.html">català</a>, <a href="common-errors.de.html">deutsch</a>, <a href="common-errors.es.html">español</a>, <a href="common-errors.hu.html">magyar</a>, <a href="common-errors.it.html">italiano</a>, <a href="common-errors.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Utilisation des programmes  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-Execution-de-lilypond" href="running-lilypond.fr.html">1. Exécution de <code>lilypond</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Utilisation-habituelle-1" href="normal-usage.fr.html">1.1 Utilisation habituelle</a>    </li>
+    <li class=""><a name="toc-Utilisation-en-ligne-de-commande-1" href="command_002dline-usage.fr.html">1.2 Utilisation en ligne de commande</a>    </li>
+    <li class=""><a name="toc-Messages-d_0027erreur-1" href="error-messages.fr.html">1.3 Messages d&rsquo;erreur</a>    </li>
+    <li class=" toc_current"><a name="toc-Quelques-erreurs-des-plus-courantes-1" href="common-errors.fr.html">1.4 Quelques erreurs des plus courantes</a>
+    <ul class="toc">
+      <li class=""><a name="toc-La-musique-deborde-de-la-page" href="common-errors.fr.html#music-runs-off-the-page">La musique déborde de la page</a>      </li>
+      <li class=""><a name="toc-Apparition-d_0027une-portee-supplementaire" href="common-errors.fr.html#an-extra-staff-appears">Apparition d&rsquo;une portée supplémentaire</a>      </li>
+      <li class=""><a name="toc-Message-d_0027erreur-Unbound-variable-_0025-1" href="common-errors.fr.html#error-message-unbound-variable-_0025">Message d&rsquo;erreur <code>Unbound variable %</code></a>      </li>
+      <li class=""><a name="toc-Message-d_0027erreur-FT_005fGet_005fGlyph_005fName-1" href="common-errors.fr.html#error-message-ft_005fget_005fglyph_005fname">Message d&rsquo;erreur <code>FT_Get_Glyph_Name</code></a>      </li>
+      <li class=""><a name="toc-staff_002daffinities-devraient-aller-en-ordre-decroissant" href="common-errors.fr.html#warning-staff-affinities-should-only-decrease"><em>staff-affinities</em> devraient aller en ordre décroissant</a>      </li>
+      <li class=""><a name="toc-Message-d_0027erreur-unexpected-_005cnew" href="common-errors.fr.html#error-message-unexpected-new">Message d&rsquo;erreur unexpected <code>\new</code></a>      </li>
+      <li class=""><a name="toc-Cette-voix-requiert-un-_005cvoiceXx-ou-un-reglage-_005cshiftXx" href="common-errors.fr.html#warning-this-voice-needs-a-voicexx-or-shiftxx-setting">Cette voix requiert un <code>\voiceXx</code> ou un réglage <code>\shiftXx</code></a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Mise-a-jour-avec-convert_002dly" href="updating-files-with-convert_002dly.fr.html">2. Mise à jour avec <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-LilyPond-est-une-langue-vivante-1" href="why-does-the-syntax-change_003f.fr.html">2.1 LilyPond est une langue vivante</a>    </li>
+    <li class=""><a name="toc-Execution-de-convert_002dly" href="invoking-convert_002dly.fr.html">2.2 Exécution de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Options-en-ligne-de-commande-pour-convert_002dly-1" href="command-line-options-for-convert_002dly.fr.html">2.3 Options en ligne de commande pour <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problemes-d_0027execution-de-convert_002dly" href="problems-running-convert_002dly.fr.html">2.4 Problèmes d&rsquo;exécution de <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Conversions-manuelles-1" href="manual-conversions.fr.html">2.5 Conversions manuelles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Association-musique_002dtexte-avec-lilypond_002dbook" href="lilypond_002dbook.fr.html">3. Association musique-texte avec <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Exemple-de-document-musicologique-1" href="an-example-of-a-musicological-document.fr.html">3.1 Exemple de document musicologique</a>    </li>
+    <li class=""><a name="toc-Association-musique_002dtexte-1" href="integrating-music-and-text.fr.html">3.2 Association musique-texte</a>    </li>
+    <li class=""><a name="toc-Options-applicables-aux-fragments-de-musique-1" href="music-fragment-options.fr.html">3.3 Options applicables aux fragments de musique</a>    </li>
+    <li class=""><a name="toc-Utilisation-de-lilypond_002dbook-1" href="invoking-lilypond_002dbook.fr.html">3.4 Utilisation de <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Extensions-de-nom-de-fichier-1" href="filename-extensions.fr.html">3.5 Extensions de nom de fichier</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-lilypond_002dbook" href="lilypond_002dbook-templates.fr.html">3.6 Modèles pour lilypond-book</a>    </li>
+    <li class=""><a name="toc-Gestion-de-la-table-des-matieres" href="sharing-the-table-of-contents.fr.html">3.7 Gestion de la table des matières</a>    </li>
+    <li class=""><a name="toc-Autres-methodes-d_0027association-texte_002dmusique" href="alternate-methods-of-mixing-text-and-music.fr.html">3.8 Autres méthodes d&rsquo;association texte-musique</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Programmes-externes-1" href="external-programs.fr.html">4. Programmes externes</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Pointer_002dcliquer-1" href="point-and-click.fr.html">4.1 Pointer-cliquer</a>    </li>
+    <li class=""><a name="toc-LilyPond-et-les-editeurs-de-texte" href="text-editor-support.fr.html">4.2 LilyPond et les éditeurs de texte</a>    </li>
+    <li class=""><a name="toc-Conversion-a-partir-d_0027autres-formats" href="converting-from-other-formats.fr.html">4.3 Conversion à partir d&rsquo;autres formats</a>    </li>
+    <li class=""><a name="toc-Inclusion-de-partition-LilyPond-dans-d_0027autres-programmes-1" href="lilypond-output-in-other-programs.fr.html">4.4 Inclusion de partition LilyPond dans d&rsquo;autres programmes</a>    </li>
+    <li class=""><a name="toc-Inclusion-du-travail-des-autres-1" href="independent-includes.fr.html">4.5 Inclusion du travail des autres</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggestions-pour-la-saisie-de-fichiers-LilyPond-1" href="suggestions-for-writing-files.fr.html">5. Suggestions pour la saisie de fichiers LilyPond</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Suggestions-generales" href="general-suggestions.fr.html">5.1 Suggestions générales</a>    </li>
+    <li class=""><a name="toc-Gravure-de-musique-existante-1" href="typesetting-existing-music.fr.html">5.2 Gravure de musique existante</a>    </li>
+    <li class=""><a name="toc-Projets-d_0027envergure-1" href="large-projects.fr.html">5.3 Projets d&rsquo;envergure</a>    </li>
+    <li class=""><a name="toc-Resolution-de-problemes" href="troubleshooting.fr.html">5.4 Résolution de problèmes</a>    </li>
+    <li class=""><a name="toc-De-la-commande-make-et-des-fichiers-Makefile-1" href="make-and-makefiles.fr.html">5.5 De la commande make et des fichiers Makefile</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">B. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 by the authors.
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond 学習マニュアル: 3.1.1 LilyPond ファイル構造の紹介</title>
+
+<meta name="description" content="GNU LilyPond 学習マニュアル: 3.1.1 LilyPond ファイル構造の紹介">
+<meta name="keywords" content="GNU LilyPond 学習マニュアル: 3.1.1 LilyPond ファイル構造の紹介">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 学習マニュアル">
+<link href="lilypond-index.ja.html#lilypond-index" rel="index" title="C. LilyPond インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="how-lilypond-input-files-work.ja.html#how-lilypond-input-files-work" rel="up" title="3.1 LilyPond 入力ファイルの仕組み">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="C. LilyPond インデックス">
+<link href="how-lilypond-input-files-work.ja.html#how-lilypond-input-files-work" rel="previous" title="3.1 LilyPond 入力ファイルの仕組み">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="learning devStatus">
+
+
+<div id="main">
+<a name="LilyPond-_30d5_30a1_30a4_30eb_69cb_9020_306e_7d39_4ecb"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 基礎となるコンセプト&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ja.html" title="次の章">&nbsp;出力を調整する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="how-lilypond-input-files-work.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; LilyPond 入力ファイルの仕組み&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-lilypond-input-files-work.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;LilyPond 入力ファイルの仕組み&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="score-is-a-_0028single_0029-compound-musical-expression.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;Score は (単一の) 複合的な音楽表記 &gt; </a>]</td></tr></table>
+<a name="introduction-to-the-lilypond-file-structure"></a>
+<h3 class="subsection">3.1.1 LilyPond ファイル構造の紹介</h3>
+
+<a name="index-input-format-_0028_5165_529b_30d5_30a9_30fc_30de_30c3_30c8_0029"></a>
+<a name="index-file-structure-_0028_30d5_30a1_30a4_30eb_69cb_9020_0029"></a>
+
+<p>LilyPond 入力ファイルの基本例は以下のようなものです:
+</p>
+<blockquote><pre class="example">\version &quot;2.19.32&quot;
+
+\header { }
+
+\score {
+  <var>...複合音楽表記...</var>                  % すべての音楽がここに入ります！
+  \layout { }
+  \midi { }
+}
+</pre></blockquote>
+
+<p>基本パターンは本当にさまざまです。しかしながら、この例はスタート地点として役に立ちます。
+</p>
+<a name="index-_005cbook"></a>
+<a name="index-_005cbook-1"></a>
+<a name="index-book"></a>
+<a name="index-book-1"></a>
+<a name="index-_005cscore"></a>
+<a name="index-_005cscore-1"></a>
+<a name="index-score"></a>
+<a name="index-score-1"></a>
+<a name="index-book-2"></a>
+<a name="index-score-2"></a>
+
+<p>これまで、あなたが見てきた例では <code>\score {}</code> コマンドを使用していませんでした。その理由は、あなたが LilyPond に与えたのが簡単な入力であった場合、LilyPond が自動的に追加のコマンドを付け加えるからです。LilyPond は以下のような入力:
+</p>
+<blockquote><pre class="example">\relative {
+  c''4 a d c
+}
+</pre></blockquote>
+
+<p>を以下を簡略表記したものとして扱います:
+</p>
+<blockquote><pre class="example">\book {
+  \score {
+    \new Staff {
+      \new Voice {
+        \relative {
+          c''4 a b c
+        }
+      }
+    }
+    \layout { }
+  }
+}
+</pre></blockquote>
+
+<p>言い換えると、入力が保持しているのが単一の音楽表記である場合、LilyPond はまるでその音楽表記が上で示されたコマンドで包まれているかのように解釈します。
+</p>
+<a name="index-implicit-contexts-_0028_6697_9ed9_306e_30b3_30f3_30c6_30ad_30b9_30c8_0029"></a>
+<a name="index-contexts_002c-implicit-_0028_6697_9ed9_306e_30b3_30f3_30c6_30ad_30b9_30c8_0029"></a>
+
+<p><strong>一言警告！</strong>  LilyPond ドキュメントの中にある多くの例では、
+<code>\new Staff</code> と <code>\new Voice</code> コマンドは暗黙的に作成されるために省略されています。簡単な例ではそれでうまくいきますが、より複雑な例の場合
+&ndash; 特に追加のコマンドが使用される場合 &ndash;
+コンテキストの暗黙的な作成は予想外の結果となる可能性があります。多分、予期しない余分な譜が作成されるでしょう。コンテキストを明示的に作成する方法は <a href="contexts-and-engravers.ja.html">コンテキストとエングラーバ</a> で説明されています。
+</p>
+<div class="warning"><p><strong>Note:</strong> 数行以上の音楽を入力する場合、常に譜とボイスを明示的に作成したほうが賢明です。
+</p>
+</div>
+<p>今度は最初の例に戻って、<code>\score</code> コマンドについて検証します。他のことはデフォルトのままにしておきます。
+</p>
+<p><code>\score</code> ブロックは常にただ 1 つの音楽表記を保持していなければなりません。そして、その音楽表記は <code>\score</code> コマンドのすぐ後に置かれなければなりません。音楽表記は単一の音符である場合もありますし、以下のような巨大な複合表記である場合もあるということを覚えておいてください:
+</p>
+<blockquote><pre class="example">{
+  \new StaffGroup &lt;&lt;
+    <var>...ワーグナーのオペラの楽譜全体がここに入ります...</var>
+  &gt;&gt;
+}
+</pre></blockquote>
+
+<p>すべては <code>{ ... }</code> の内部にあるため、それは 1 つの音楽表記であるとカウントされます。
+</p>
+<p>以前見てきたように、<code>\score</code> ブロックは他のものを含む可能性もあります。例えば以下のように:
+</p>
+<blockquote><pre class="example">\score {
+  { c'4 a b c' }
+  \header { }
+  \layout { }
+  \midi { }
+}
+</pre></blockquote>
+
+<a name="index-_005cheader-2"></a>
+<a name="index-_005cheader-3"></a>
+<a name="index-header-2"></a>
+<a name="index-header-3"></a>
+<a name="index-_005clayout"></a>
+<a name="index-_005clayout-1"></a>
+<a name="index-layout"></a>
+<a name="index-layout-1"></a>
+<a name="index-_005cmidi"></a>
+<a name="index-_005cmidi-1"></a>
+<a name="index-midi"></a>
+<a name="index-midi-1"></a>
+<a name="index-header-_0028_30d8_30c3_30c0_0029"></a>
+<a name="index-layout-_0028_30ec_30a4_30a2_30a6_30c8_0029"></a>
+<a name="index-midi-2"></a>
+
+<p>これら 3 つのコマンド &ndash; <code>\header</code>, <code>\layout</code>, <code>\midi</code> &ndash; は特別なものであるということに注意してください:
+バックスラッシュ (<code>\</code>) で始まる他の多くのコマンドとは異なり、これらは音楽表記 <em>ではなく</em>、何らかの音楽表記の一部でもありません。そのため、これらは <code>\score</code> ブロックの中に置くこともできますし、外部に置くこともできます。実際、これらのコマンドは一般的に <code>\score</code> ブロックの外側に置かれます
+&ndash; 例えば、このセクションの最初の例のように <code>\header</code> はしばしば <code>\score</code> コマンドの上に置かれます。
+</p>
+<p>以前は見なかった他の 2 つのコマンドは <code>\layout { }</code> と
+<code>\midi { }</code> です。それらが上記のように記述された場合、LilyPond はそれぞれ譜刻された楽譜と
+MIDI 出力を作り出します。それらは記譜法リファレンスの <a name="index-Score-layout"></a>
+<a href="../notation/score-layout.ja.html">Score layout</a> と
+<a name="index-Creating-MIDI-files"></a>
+<a href="../notation/creating-midi-files.ja.html">Creating MIDI files</a> で完全に記述されています。
+</p>
+<a name="index-scores_002c-multiple-_0028_8907_6570_306e-Score_0029"></a>
+<a name="index-book-block_002c-implicit-_0028_6697_9ed9_306e-book-_30d6_30ed_30c3_30af_0029"></a>
+<a name="index-implicit-book-block-_0028_6697_9ed9_306e-book-_30d6_30ed_30c3_30af_0029"></a>
+<a name="index-_005cbook-2"></a>
+<a name="index-_005cbook-3"></a>
+<a name="index-book-3"></a>
+<a name="index-book-4"></a>
+
+<p>あなたは複数の <code>\score</code> ブロックを記述するかもしれません。それらはそれぞれ別々の楽譜として扱われますが、それらは結合されて単一の出力ファイルに収められます。<code>\book</code> コマンドは必要ありません &ndash; このコマンドは暗黙的に 1 つ作成されます。しかしながら、あなたが 1 つの <code>.ly</code> ファイルから別々に分かれた出力ファイルを作成しようとするのなら、それぞれのセクションを異なる出力ファイルに分けるために <code>\book</code>
+コマンドが使用されます:
+各 <code>\book</code> ブロックは別々の出力ファイルを作り出します。
+</p>
+<p>要約:
+</p>
+<p>各 <code>\book</code> ブロックは別々の出力ファイル (つまり PDF ファイル) を作成します。あなたが明示的に <code>\book</code> コマンドを記述しなかった場合、LilyPond は暗黙的に入力コードを <code>\book</code> ブロックで包み込みます。
+</p>
+<p>各 <code>\score</code> ブロックは <code>\book</code> ブロック内部で別々の音楽表記のチャンク (塊) となります。
+</p>
+<a name="index-layout-block_002c-effect-of-location-_0028_30ec_30a4_30a2_30a6_30c8-_30d6_30ed_30c3_30af_306e_914d_7f6e_5834_6240_306b_3088_308b_5f71_97ff_0029"></a>
+
+<p>各 <code>\layout</code> ブロックはそのブロックを含んでいる <code>\score</code> ブロックや
+<code>\book</code> ブロックに影響を与えます &ndash;
+つまり、ある <code>\score</code> ブロックの内部にある <code>\layout</code> ブロックはその <code>\score</code> ブロックにだけ影響を与え、<code>\score</code> ブロックの外部にある (それゆえ、明示的あるいは暗黙的に <code>\book</code> ブロックの中にある) <code>\layout</code> ブロックはその <code>\book</code> ブロックの中にあるすべての <code>\score</code> に影響を与えます。
+</p>
+<p>詳細は、<a name="index-Multiple-scores-in-a-book"></a>
+<a href="../notation/multiple-scores-in-a-book.ja.html">Multiple scores in a book</a> を参照してください。
+</p>
+<a name="index-variables-_0028_5909_6570_0029-1"></a>
+
+<p>もう一つの重要な簡略表記は変数を定義することです。すべてのテンプレートがこれを使っています:
+</p>
+<blockquote><pre class="example">melody = \relative {
+  c'4 a b c
+}
+
+\score {
+  \melody
+}
+</pre></blockquote>
+
+<p>LilyPond がこのファイルを見ると、<code>melody</code> の値
+(イコール記号の後にあるすべて) を記憶し、<code>\melody</code> と記述された箇所すべてにその値を挿入します。変数の名前について特別なことは何もありません
+&ndash; 変数名は <code>melody</code>, <code>global</code>, <code>keyTime</code>, <code>pianorighthand</code>
+などとなります。変数名はアルファベットだけで構成されていて、LilyPond コマンド名と異なっている限りは、ほぼどんな名前でも使用できるということを覚えておいてください。詳細は、<a href="saving-typing-with-variables-and-functions.ja.html">変数と関数を用いて入力の手間を省く</a> を参照してください。変数名の厳密な制限については、<a name="index-File-structure-1"></a>
+<a href="../notation/file-structure.ja.html">File structure</a> で詳述されています。
+</p>
+
+<a name="g_t_53c2_7167-3"></a>
+<h4 class="subsubheading">参照</h4>
+<p>入力フォーマットの完全な定義は、<a name="index-File-structure-2"></a>
+<a href="../notation/file-structure.ja.html">File structure</a> を参照してください。
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 基礎となるコンセプト&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.ja.html" title="次の章">&nbsp;出力を調整する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="how-lilypond-input-files-work.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; LilyPond 入力ファイルの仕組み&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="how-lilypond-input-files-work.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;LilyPond 入力ファイルの仕組み&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="score-is-a-_0028single_0029-compound-musical-expression.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;Score は (単一の) 複合的な音楽表記 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="introduction-to-the-lilypond-file-structure.html">English</a>, <a href="introduction-to-the-lilypond-file-structure.ca.html">català</a>, <a href="introduction-to-the-lilypond-file-structure.cs.html">česky</a>, <a href="introduction-to-the-lilypond-file-structure.de.html">deutsch</a>, <a href="introduction-to-the-lilypond-file-structure.es.html">español</a>, <a href="introduction-to-the-lilypond-file-structure.fr.html">français</a>, <a href="introduction-to-the-lilypond-file-structure.hu.html">magyar</a>, <a href="introduction-to-the-lilypond-file-structure.it.html">italiano</a>, <a href="introduction-to-the-lilypond-file-structure.nl.html">nederlands</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 学習マニュアル  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-_30c1_30e5_30fc_30c8_30ea_30a2_30eb-1" href="tutorial.ja.html">1. チュートリアル</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d5_30a1_30a4_30eb_3092_30b3_30f3_30d1_30a4_30eb_3059_308b-1" href="compiling-a-file.ja.html">1.1 ファイルをコンパイルする</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306e_66f8_304d_65b9-1" href="how-to-write-input-files.ja.html">1.2 入力ファイルの書き方</a>    </li>
+    <li class=""><a name="toc-_30a8_30e9_30fc_306b_5bfe_51e6_3059_308b-1" href="dealing-with-errors.ja.html">1.3 エラーに対処する</a>    </li>
+    <li class=""><a name="toc-_3053_306e_30de_30cb_30e5_30a2_30eb_306e_8aad_307f_65b9-1" href="how-to-read-the-manuals.ja.html">1.4 このマニュアルの読み方</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_4e00_822c_7684_306a_8a18_8b5c_6cd5-1" href="common-notation.ja.html">2. 一般的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_8868_8868_8a18-1" href="single-staff-notation.ja.html">2.1 単一譜表表記</a>    </li>
+    <li class=""><a name="toc-_540c_6642_306b_6f14_594f_3059_308b_8907_6570_306e_97f3_7b26-1" href="multiple-notes-at-once.ja.html">2.2 同時に演奏する複数の音符</a>    </li>
+    <li class=""><a name="toc-_6b4c_66f2-1" href="songs.ja.html">2.3 歌曲</a>    </li>
+    <li class=""><a name="toc-_4ed5_4e0a_3052-1" href="final-touches.ja.html">2.4 仕上げ</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-_57fa_790e_3068_306a_308b_30b3_30f3_30bb_30d7_30c8-1" href="fundamental-concepts.ja.html">3. 基礎となるコンセプト</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-LilyPond-_5165_529b_30d5_30a1_30a4_30eb_306e_4ed5_7d44_307f-1" href="how-lilypond-input-files-work.ja.html">3.1 LilyPond 入力ファイルの仕組み</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-LilyPond-_30d5_30a1_30a4_30eb_69cb_9020_306e_7d39_4ecb-1" href="introduction-to-the-lilypond-file-structure.ja.html">3.1.1 LilyPond ファイル構造の紹介</a>      </li>
+      <li class=""><a name="toc-Score-_306f-_0028_5358_4e00_306e_0029-_8907_5408_7684_306a_97f3_697d_8868_8a18-1" href="score-is-a-_0028single_0029-compound-musical-expression.ja.html">3.1.2 Score は (単一の) 複合的な音楽表記</a>      </li>
+      <li class=""><a name="toc-_97f3_697d_8868_8a18_3092_30cd_30b9_30c8_3059_308b-1" href="nesting-music-expressions.ja.html">3.1.3 音楽表記をネストする</a>      </li>
+      <li class=""><a name="toc-_30cd_30b9_30c8_3055_308c_306a_3044_62ec_5f27_3068_30bf_30a4-1" href="on-the-un_002dnestedness-of-brackets-and-ties.ja.html">3.1.4 ネストされない括弧とタイ</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_4fdd_6301_3059_308b_30dc_30a4_30b9-1" href="voices-contain-music.ja.html">3.2 音楽を保持するボイス</a>    </li>
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3068_30a8_30f3_30b0_30e9_30fc_30d0-1" href="contexts-and-engravers.ja.html">3.3 コンテキストとエングラーバ</a>    </li>
+    <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8_3092_62e1_5f35_3059_308b-1" href="extending-the-templates.ja.html">3.4 テンプレートを拡張する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_51fa_529b_3092_8abf_6574_3059_308b-1" href="tweaking-output.ja.html">4. 出力を調整する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_8abf_6574_306e_57fa_672c-1" href="tweaking-basics.ja.html">4.1 調整の基本</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9-_30de_30cb_30e5_30a2_30eb-1" href="the-internals-reference-manual.ja.html">4.2 内部リファレンス マニュアル</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_898b_305f_76ee-1" href="appearance-of-objects.ja.html">4.3 オブジェクトの見た目</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_914d_7f6e-1" href="placement-of-objects.ja.html">4.4 オブジェクトの配置</a>    </li>
+    <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306e_885d_7a81-1" href="collisions-of-objects.ja.html">4.5 オブジェクトの衝突</a>    </li>
+    <li class=""><a name="toc-_66f4_306a_308b_8abf_6574-1" href="further-tweaking.ja.html">4.6 更なる調整</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="templates.ja.html">A. テンプレート</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5358_4e00_8b5c_30c6_30f3_30d7_30ec_30fc_30c8-1" href="single-staff-templates.ja.html">A.1 単一譜テンプレート</a>    </li>
+    <li class=""><a name="toc-_30d4_30a2_30ce-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="piano-templates.ja.html">A.2 ピアノ テンプレート</a>    </li>
+    <li class=""><a name="toc-_5f26_697d_56db_91cd_594f_30c6_30f3_30d7_30ec_30fc_30c8-1" href="string-quartet-templates.ja.html">A.3 弦楽四重奏テンプレート</a>    </li>
+    <li class=""><a name="toc-_5408_5531_30c6_30f3_30d7_30ec_30fc_30c8-1" href="vocal-ensembles-templates.ja.html">A.4 合唱テンプレート</a>    </li>
+    <li class=""><a name="toc-_30aa_30fc_30b1_30b9_30c8_30e9-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="orchestral-templates.ja.html">A.5 オーケストラ テンプレート</a>    </li>
+    <li class=""><a name="toc-_53e4_4ee3_306e_8a18_8b5c_6cd5_30c6_30f3_30d7_30ec_30fc_30c8-1" href="ancient-notation-templates.ja.html">A.6 古代の記譜法テンプレート</a>    </li>
+    <li class=""><a name="toc-_305d_306e_4ed6_306e_30c6_30f3_30d7_30ec_30fc_30c8-1" href="other-templates.ja.html">A.7 その他のテンプレート</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">C. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

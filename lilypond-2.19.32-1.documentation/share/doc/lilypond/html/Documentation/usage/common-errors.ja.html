@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; アプリケーション使用方法: 1.4 一般的なエラー</title>
+
+<meta name="description" content="GNU LilyPond &ndash; アプリケーション使用方法: 1.4 一般的なエラー">
+<meta name="keywords" content="GNU LilyPond &ndash; アプリケーション使用方法: 1.4 一般的なエラー">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 使用方法">
+<link href="lilypond-index.ja.html#lilypond-index" rel="index" title="B. LilyPond インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="running-lilypond.ja.html#running-lilypond" rel="up" title="1. lilypond を実行する">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="B. LilyPond インデックス">
+<link href="error-messages.ja.html#error-messages" rel="previous" title="1.3 エラー メッセージ">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="usage devStatus">
+
+
+<div id="main">
+<a name="g_t_4e00_822c_7684_306a_30a8_30e9_30fc"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="error-messages.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; エラー メッセージ&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#music-runs-off-the-page" title="次のセクション" accesskey="n" rel="next">&nbsp;楽譜がページからはみ出る &gt; </a>]</td></tr></table>
+<a name="common-errors"></a>
+<h2 class="section">1.4 一般的なエラー</h2>
+
+<p>以下で説明するエラーがしばしば発生しますが、その原因は明白でなかったり、見つけにくかったりします。目を通しておくと、それらのエラーに対処しやすくなります。
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#music-runs-off-the-page" accesskey="1">楽譜がページからはみ出る</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#an-extra-staff-appears" accesskey="2">余計な譜が表示される</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-unbound-variable-_0025" accesskey="3">エラー メッセージ Unbound variable %</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#error-message-ft_005fget_005fglyph_005fname" accesskey="4">エラー メッセージ FT_Get_Glyph_Name</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#warning-staff-affinities-should-only-decrease" accesskey="5">警告 &ndash; Warning staff affinities should only decrease</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_697d_8b5c_304c_30da_30fc_30b8_304b_3089_306f_307f_51fa_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#common-errors" title="前のセクション" accesskey="p" rel="previous"> &lt; 一般的なエラー&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;一般的なエラー&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#an-extra-staff-appears" title="次のセクション" accesskey="n" rel="next">&nbsp;余計な譜が表示される &gt; </a>]</td></tr></table>
+<a name="music-runs-off-the-page"></a>
+<h3 class="unnumberedsubsec">楽譜がページからはみ出る</h3>
+
+<p>楽譜がページの右マージンを越えてはみ出る、あるいは過度に密集するのは、ほぼ間違いなく音符の演奏時間に誤りがあり、小節の最後の音符が小節線を越えてしまうためです。ある小節の最後の音符が自動的に挿入される小節線の所で終わらなくても無効ではありません。なぜなら、その音符は次の小節に持ち越されるためです。しかしながら、そのような持ち越しが発生する小節が長く続くと、楽譜は密集して表示されたり、ページからはみ出たりします。ページからはみ出るのは、自動改行を挿入できるのは正しく終了する小節
+(その小節のすべての音符が小節の中で終了しています)
+の後ろだけだからです。</p>
+<div class="warning"><p><strong>Note:</strong> 誤った演奏時間は改行を抑制し、結果として楽譜が過度に密集したり、c&nbsp;ページからはみ出たりする可能性が生じます。
+</p>
+</div>
+<p>小節チェックを使用していれば、誤った演奏時間を簡単に見つけることができます。<a name="index-_5c0f_7bc0_3068_5c0f_7bc0_756a_53f7_306e_30c1_30a7_30c3_30af"></a>
+<a href="../notation/bar-and-bar-number-checks.ja.html">小節と小節番号のチェック</a> を参照してください。
+</p>
+<p>あなたがそのような音符が持ち越される小節を続けることを意図しているのであれば、改行させたい場所に不可視の小節線を挿入する必要があります。詳細は
+<a name="index-_5c0f_7bc0_7dda"></a>
+<a href="../notation/bar-lines.ja.html">小節線</a> を参照してください。
+</p>
+
+<hr size="6">
+<a name="g_t_4f59_8a08_306a_8b5c_304c_8868_793a_3055_308c_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#music-runs-off-the-page" title="前のセクション" accesskey="p" rel="previous"> &lt; 楽譜がページからはみ出る&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;一般的なエラー&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="次のセクション" accesskey="n" rel="next">&nbsp;エラー メッセージ Unbound variable % &gt; </a>]</td></tr></table>
+<a name="an-extra-staff-appears"></a>
+<h3 class="unnumberedsubsec">余計な譜が表示される</h3>
+
+<p>コンテキストが <code>\new</code> や <code>\context</code> で明示的に作成されていない場合、既存のコンテキストには適用できないコマンドに遭遇した時点で暗黙的に作成されます。単純な楽譜では、コンテキストの自動作成は有用であり、LilyPond マニュアルのほとんどの例はこの手法を用いています。しかしながら、コンテキストの暗黙的な作成はしばしば予期しない譜や楽譜を発生させてしまいます。例えば、以下のコードは後に続く譜の中にあるすべての符頭を赤にすることを意図していますが、結果は 2 つの譜が表示され、下の譜の符頭の色はデフォルトの黒のままとなります。
+</p>
+<blockquote><pre class="verbatim">\override Staff.NoteHead.color = #red
+\new Staff { a' }
+</pre><p>
+ <a href="../a3/lily-8a95f028.ly">
+  <img align="middle"
+       border="0"
+       src="../a3/lily-8a95f028.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これは、(符頭色の) オーバライドが処理される時に
+<code>Staff</code> コンテキストが存在していないため、<code>Staff</code> コンテキストが暗黙的に作成され、そのコンテキストにオーバライドが適用されるからです。その後に <code>\new Staff</code> コマンドによりもう 1 つ別の <code>Staff</code> コンテキストが作成され、そこに音符が配置されます。すべての符頭を赤にする正しいコードは以下のようになります:
+</p>
+<blockquote><pre class="verbatim">\new Staff {
+  \override Staff.NoteHead.color = #red
+  a'
+}
+</pre><p>
+ <a href="../1a/lily-c0a863c0.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-c0a863c0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>次の例では、<code>\repeat</code> コマンドの中に <code>\relative</code> コマンドが置かれているため、譜が 2 つ生じています。<code>\repeat</code> コマンドが 2 つの <code>\relative</code> ブロックを生成し、それぞれが暗黙的に <code>Staff</code> ブロックと <code>Voice</code> を作成するため、2 番目の譜は右にずれています。
+</p>
+<blockquote><pre class="verbatim">\repeat unfold 2 {
+  \relative { c'4 d e f }
+}
+</pre><p>
+ <a href="../2a/lily-843cde99.ly">
+  <img align="middle"
+       border="0"
+       src="../2a/lily-843cde99.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>明示的に <code>Voice</code> をインスタンス化することで、この問題は修正されます:
+</p>
+<blockquote><pre class="verbatim">\new Voice {
+  \repeat unfold 2 {
+    \relative { c'4 d e f }
+  }
+}
+</pre><p>
+ <a href="../75/lily-24772d8d.ly">
+  <img align="middle"
+       border="0"
+       src="../75/lily-24772d8d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="g_t_30a8_30e9_30fc-_30e1_30c3_30bb_30fc_30b8-Unbound-variable-_0025"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#an-extra-staff-appears" title="前のセクション" accesskey="p" rel="previous"> &lt; 余計な譜が表示される&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;一般的なエラー&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="次のセクション" accesskey="n" rel="next">&nbsp;エラー メッセージ FT_Get_Glyph_Name &gt; </a>]</td></tr></table>
+<a name="error-message-unbound-variable-_0025"></a>
+<h3 class="unnumberedsubsec">エラー メッセージ Unbound variable %</h3>
+
+<p>このエラー メッセージは、<em>Scheme</em> 形式ではなく <em>LilyPond</em> 形式のコメントを含む Scheme ルーチンが呼び出されるたびに、コンソール出力またはログ ファイルの最後に表示されます。
+</p>
+<p>LilyPond 形式のコメントはパーセント記号 (<code>%</code>) で始まり、Scheme ルーチンの中で使うことはできません。Scheme 形式のコメントはセミコロン (<code>;</code>) で始まります。
+</p>
+<hr size="6">
+<a name="g_t_30a8_30e9_30fc-_30e1_30c3_30bb_30fc_30b8-FT_005fGet_005fGlyph_005fName"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-unbound-variable-_0025" title="前のセクション" accesskey="p" rel="previous"> &lt; エラー メッセージ Unbound variable %&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;一般的なエラー&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#warning-staff-affinities-should-only-decrease" title="次のセクション" accesskey="n" rel="next">&nbsp;警告 -- Warning staff affinities should only decrease &gt; </a>]</td></tr></table>
+<a name="error-message-ft_005fget_005fglyph_005fname"></a>
+<h3 class="unnumberedsubsec">エラー メッセージ FT_Get_Glyph_Name</h3>
+
+<p>入力ファイルが非 ASCII キャラクタを保持していて、UTF-8 エンコードで保存されていない場合、このエラー メッセージがコンソール出力やログ ファイルに表示されます。詳細は、
+<a name="index-Text-encoding"></a>
+<a href="../notation/special-characters.ja.html#text-encoding">Text encoding</a> を参照してください。
+</p>
+
+<hr size="6">
+<a name="g_t_8b66_544a-_002d_002d-Warning-staff-affinities-should-only-decrease"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="前のセクション" accesskey="p" rel="previous"> &lt; エラー メッセージ FT_Get_Glyph_Name&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;一般的なエラー&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;convert-ly を使ってファイルを更新する &gt; </a>]</td></tr></table>
+<a name="warning-staff-affinities-should-only-decrease"></a>
+<h3 class="unnumberedsubsec">警告 &ndash; Warning staff affinities should only decrease</h3>
+
+<p>この警告は、譜刻された出力の中に譜が無い場合に表示されます。例えば、リード譜に <code>ChordName</code> コンテキストと <code>Lyrics</code> コンテキストしか無い場合です。この警告は、入力の始めに以下を挿入することで譜として振舞うコンテキストを作ることで回避できます:
+</p>
+<blockquote><pre class="example">\override VerticalAxisGroup.staff-affinity = ##f
+</pre></blockquote>
+
+<p>詳細は <a name="index-_30b7_30b9_30c6_30e0_5185_90e8_306e_53ef_5909_306a_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9"></a>
+<a href="../notation/flexible-vertical-spacing-within-systems.ja.html">システム内部の可変な垂直方向のスペース</a> の
+&ldquo;譜ではない行のスペース&rdquo; を参照してください。
+</p>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; lilypond を実行する&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.ja.html" title="次の章">&nbsp;convert-ly を使ってファイルを更新する &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#error-message-ft_005fget_005fglyph_005fname" title="前のセクション" accesskey="p" rel="previous"> &lt; エラー メッセージ FT_Get_Glyph_Name&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#common-errors" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;一般的なエラー&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="updating-files-with-convert_002dly.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;convert-ly を使ってファイルを更新する &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="common-errors.html">English</a>, <a href="common-errors.ca.html">català</a>, <a href="common-errors.de.html">deutsch</a>, <a href="common-errors.es.html">español</a>, <a href="common-errors.fr.html">français</a>, <a href="common-errors.hu.html">magyar</a>, <a href="common-errors.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 使用方法  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-lilypond-_3092_5b9f_884c_3059_308b-1" href="running-lilypond.ja.html">1. <code>lilypond</code> を実行する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_901a_5e38_306e_4f7f_7528_65b9_6cd5-1" href="normal-usage.ja.html">1.1 通常の使用方法</a>    </li>
+    <li class=""><a name="toc-_30b3_30de_30f3_30c9-_30e9_30a4_30f3_306e_4f7f_7528_65b9_6cd5-1" href="command_002dline-usage.ja.html">1.2 コマンド ラインの使用方法</a>    </li>
+    <li class=""><a name="toc-_30a8_30e9_30fc-_30e1_30c3_30bb_30fc_30b8-1" href="error-messages.ja.html">1.3 エラー メッセージ</a>    </li>
+    <li class=" toc_current"><a name="toc-_4e00_822c_7684_306a_30a8_30e9_30fc-1" href="common-errors.ja.html">1.4 一般的なエラー</a>
+    <ul class="toc">
+      <li class=""><a name="toc-_697d_8b5c_304c_30da_30fc_30b8_304b_3089_306f_307f_51fa_308b-1" href="common-errors.ja.html#music-runs-off-the-page">楽譜がページからはみ出る</a>      </li>
+      <li class=""><a name="toc-_4f59_8a08_306a_8b5c_304c_8868_793a_3055_308c_308b-1" href="common-errors.ja.html#an-extra-staff-appears">余計な譜が表示される</a>      </li>
+      <li class=""><a name="toc-_30a8_30e9_30fc-_30e1_30c3_30bb_30fc_30b8-Unbound-variable-_0025-1" href="common-errors.ja.html#error-message-unbound-variable-_0025">エラー メッセージ Unbound variable %</a>      </li>
+      <li class=""><a name="toc-_30a8_30e9_30fc-_30e1_30c3_30bb_30fc_30b8-FT_005fGet_005fGlyph_005fName-1" href="common-errors.ja.html#error-message-ft_005fget_005fglyph_005fname">エラー メッセージ FT_Get_Glyph_Name</a>      </li>
+      <li class=""><a name="toc-_8b66_544a-_002d_002d-Warning-staff-affinities-should-only-decrease-1" href="common-errors.ja.html#warning-staff-affinities-should-only-decrease">警告 &ndash; Warning staff affinities should only decrease</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-convert_002dly-_3092_4f7f_3063_3066_30d5_30a1_30a4_30eb_3092_66f4_65b0_3059_308b-1" href="updating-files-with-convert_002dly.ja.html">2. <code>convert-ly</code> を使ってファイルを更新する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_4f55_6545_69cb_6587_306f_5909_66f4_3055_308c_308b_306e_304b_ff1f-1" href="why-does-the-syntax-change_003f.ja.html">2.1 何故構文は変更されるのか？</a>    </li>
+    <li class=""><a name="toc-convert_002dly-_3092_547c_3073_51fa_3059-1" href="invoking-convert_002dly.ja.html">2.2 <code>convert-ly</code> を呼び出す</a>    </li>
+    <li class=""><a name="toc-convert_002dly-_306e_30b3_30de_30f3_30c9-_30e9_30a4_30f3-_30aa_30d7_30b7_30e7_30f3-1" href="command-line-options-for-convert_002dly.ja.html">2.3 <code>convert-ly</code> のコマンド ライン オプション</a>    </li>
+    <li class=""><a name="toc-convert_002dly-_306e_554f_984c_70b9-1" href="problems-running-convert_002dly.ja.html">2.4 <code>convert-ly</code> の問題点</a>    </li>
+    <li class=""><a name="toc-_624b_52d5_5909_63db-1" href="manual-conversions.ja.html">2.5 手動変換</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-lilypond_002dbook-_3092_5b9f_884c_3059_308b" href="lilypond_002dbook.ja.html">3. <code>lilypond-book</code> を実行する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_97f3_697d_5b66_306e_30c9_30ad_30e5_30e1_30f3_30c8_306e_4f8b-1" href="an-example-of-a-musicological-document.ja.html">3.1 音楽学のドキュメントの例</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_3068_30c6_30ad_30b9_30c8_3092_7d71_5408_3059_308b-1" href="integrating-music-and-text.ja.html">3.2 楽譜とテキストを統合する</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_65ad_7247_30aa_30d7_30b7_30e7_30f3-1" href="music-fragment-options.ja.html">3.3 楽譜断片オプション</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-_3092_547c_3073_51fa_3059-1" href="invoking-lilypond_002dbook.ja.html">3.4 <code>lilypond-book</code> を呼び出す</a>    </li>
+    <li class=""><a name="toc-_30d5_30a1_30a4_30eb_62e1_5f35_5b50-1" href="filename-extensions.ja.html">3.5 ファイル拡張子</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-_30c6_30f3_30d7_30ec_30fc_30c8-1" href="lilypond_002dbook-templates.ja.html">3.6 lilypond-book テンプレート</a>    </li>
+    <li class=""><a name="toc-_76ee_6b21_3092_5171_6709_3059_308b-1" href="sharing-the-table-of-contents.ja.html">3.7 目次を共有する</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8_3068_697d_8b5c_3092_7d44_307f_5408_308f_305b_308b_4ed6_306e_65b9_6cd5-1" href="alternative-methods-of-mixing-text-and-music.ja.html">3.8 テキストと楽譜を組み合わせる他の方法</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5916_90e8_30d7_30ed_30b0_30e9_30e0-1" href="external-programs.ja.html">4. 外部プログラム</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30dd_30a4_30f3_30c8_ff06_30af_30ea_30c3_30af-1" href="point-and-click.ja.html">4.1 ポイント＆クリック</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-_30a8_30c7_30a3_30bf-_30b5_30dd_30fc_30c8-1" href="text-editor-support.ja.html">4.2 テキスト エディタ サポート</a>    </li>
+    <li class=""><a name="toc-_4ed6_306e_30d5_30a9_30fc_30de_30c3_30c8_304b_3089_5909_63db_3059_308b-1" href="converting-from-other-formats.ja.html">4.3 他のフォーマットから変換する</a>    </li>
+    <li class=""><a name="toc-LilyPond-_51fa_529b_3092_4ed6_306e_30d7_30ed_30b0_30e9_30e0_3067_4f7f_7528_3059_308b-1" href="lilypond-output-in-other-programs.ja.html">4.4 LilyPond 出力を他のプログラムで使用する</a>    </li>
+    <li class=""><a name="toc-_72ec_7acb_3057_305f-include-1" href="independent-includes.ja.html">4.5 独立した <code>include</code></a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-LilyPond-_5165_529b_30d5_30a1_30a4_30eb_306e_8a18_8ff0_306b_5bfe_3059_308b_63d0_6848-1" href="suggestions-for-writing-files.ja.html">5. LilyPond 入力ファイルの記述に対する提案</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_4e00_822c_7684_306a_63d0_6848-1" href="general-suggestions.ja.html">5.1 一般的な提案</a>    </li>
+    <li class=""><a name="toc-_65e2_5b58_306e_97f3_697d_3092_8b5c_523b_3059_308b-1" href="typesetting-existing-music.ja.html">5.2 既存の音楽を譜刻する</a>    </li>
+    <li class=""><a name="toc-_5927_304d_306a_30d7_30ed_30b8_30a7_30af_30c8-1" href="large-projects.ja.html">5.3 大きなプロジェクト</a>    </li>
+    <li class=""><a name="toc-_30c8_30e9_30d6_30eb_30b7_30e5_30fc_30c8-1" href="troubleshooting.ja.html">5.4 トラブルシュート</a>    </li>
+    <li class=""><a name="toc-Make-_3068-Makefile-1" href="make-and-makefiles.ja.html">5.5 Make と Makefile</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">B. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

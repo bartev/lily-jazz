@@ -1,0 +1,995 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 1.7.1 譜の内部</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 1.7.1 譜の内部">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 1.7.1 譜の内部">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="editorial-annotations.ja.html#editorial-annotations" rel="up" title="1.7 編集者の注釈">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="editorial-annotations.ja.html#editorial-annotations" rel="previous" title="1.7 編集者の注釈">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_8b5c_306e_5185_90e8"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="editorial-annotations.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; 編集者の注釈&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="editorial-annotations.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;編集者の注釈&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#selecting-notation-font-size" title="次のセクション" accesskey="n" rel="next">&nbsp;記譜フォント サイズを選択する &gt; </a>]</td></tr></table>
+<a name="inside-the-staff"></a>
+<h3 class="subsection">1.7.1 譜の内部</h3>
+
+<p>このセクションでは、譜の内部にある要素に強調を付け加える方法について説明します。
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#selecting-notation-font-size" accesskey="1">記譜フォント サイズを選択する</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#fingering-instructions" accesskey="2">運指の指示</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#hidden-notes" accesskey="3">隠された音符</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#coloring-objects" accesskey="4">オブジェクトに色を付ける</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#parentheses" accesskey="5">括弧</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#stems" accesskey="6">符幹</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="g_t_8a18_8b5c_30d5_30a9_30f3_30c8-_30b5_30a4_30ba_3092_9078_629e_3059_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#inside-the-staff" title="前のセクション" accesskey="p" rel="previous"> &lt; 譜の内部&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#fingering-instructions" title="次のセクション" accesskey="n" rel="next">&nbsp;運指の指示 &gt; </a>]</td></tr></table>
+<a name="selecting-notation-font-size"></a>
+<h4 class="unnumberedsubsubsec">記譜フォント サイズを選択する</h4>
+
+<a name="index-font-size-_0028notation_0029-scaling-_0028_30d5_30a9_30f3_30c8-_30b5_30a4_30ba-_0028_8a18_8b5c_6cd5_0029-_306e_8abf_6574_0029"></a>
+<a name="index-font-size-_0028notation_0029-_0028_30d5_30a9_30f3_30c8-_30b5_30a4_30ba-_0028_8a18_8b5c_6cd5_0029_0029"></a>
+<a name="index-selecting-font-size-_0028notation_0029-_0028_30d5_30a9_30f3_30c8-_30b5_30a4_30ba-_0028_8a18_8b5c_6cd5_0029-_3092_9078_629e_3059_308b_0029"></a>
+<a name="index-notation-font-size-_0028_8a18_8b5c_30d5_30a9_30f3_30c8-_30b5_30a4_30ba_0029"></a>
+<a name="index-note-heads-_0028_7b26_982d_0029"></a>
+
+<a name="index-fontSize"></a>
+<a name="index-fontSize-1"></a>
+<a name="index-font_002dsize"></a>
+<a name="index-font_002dsize-1"></a>
+<a name="index-magstep"></a>
+<a name="index-magstep-1"></a>
+<a name="index-_005chuge"></a>
+<a name="index-_005chuge-1"></a>
+<a name="index-_005clarge"></a>
+<a name="index-_005clarge-1"></a>
+<a name="index-_005cnormalsize"></a>
+<a name="index-_005cnormalsize-1"></a>
+<a name="index-_005csmall"></a>
+<a name="index-_005csmall-1"></a>
+<a name="index-_005ctiny"></a>
+<a name="index-_005ctiny-1"></a>
+<a name="index-_005cteeny"></a>
+<a name="index-_005cteeny-1"></a>
+<a name="index-huge"></a>
+<a name="index-huge-1"></a>
+<a name="index-large"></a>
+<a name="index-large-1"></a>
+<a name="index-normalsize"></a>
+<a name="index-normalsize-1"></a>
+<a name="index-small"></a>
+<a name="index-small-1"></a>
+<a name="index-tiny"></a>
+<a name="index-tiny-1"></a>
+<a name="index-teeny"></a>
+<a name="index-teeny-1"></a>
+
+<p>記譜要素のフォント サイズを変更することができます。これは連桁やスラーなどの可変シンボルのサイズは変更しません。
+</p>
+<div class="warning"><p><strong>Note:</strong> テキストのフォント サイズを変更する方法については
+<a href="formatting-text.ja.html#selecting-font-and-font-size">フォントとフォント サイズを選択する</a> を参照してください。
+</p>
+</div>
+<blockquote><pre class="verbatim">\huge
+c4.-&gt; d8---3
+\large
+c4.-&gt; d8---3
+\normalsize
+c4.-&gt; d8---3
+\small
+c4.-&gt; d8---3
+\tiny
+c4.-&gt; d8---3
+\teeny
+c4.-&gt; d8---3
+</pre><p>
+ <a href="../f1/lily-ff70e947.ly">
+  <img align="middle"
+       border="0"
+       src="../f1/lily-ff70e947.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>内部的には、これは <code>fontSize</code> プロパティを設定します。この設定により <code>font-size</code> プロパティがすべてのレイアウト オブジェクトにセットされます。<code>font-size</code> の値は、カレントの譜の高さでの標準フォント サイズからの相対値を表している数字です。1 段階上がる毎にフォント サイズは約 12% 増加します。6 段階でちょうど 2 倍になります。Scheme 関数 <code>magstep</code> は <code>font-size</code> 数をスケーリング ファクタに変換します。<code>font-size</code> プロパティを直接設定することも可能です。そうした場合、特定のレイアウト オブジェクトだけが影響を受けます。
+</p>
+<blockquote><pre class="verbatim">\set fontSize = #3
+c4.-&gt; d8---3
+\override NoteHead.font-size = #-4
+c4.-&gt; d8---3
+\override Script.font-size = #2
+c4.-&gt; d8---3
+\override Stem.font-size = #-5
+c4.-&gt; d8---3
+</pre><p>
+ <a href="../53/lily-3f8588e7.ly">
+  <img align="middle"
+       border="0"
+       src="../53/lily-3f8588e7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-standard-font-size-_0028notation_0029-_0028_6a19_6e96_30d5_30a9_30f3_30c8-_30b5_30a4_30ba-_0028_8a18_8b5c_6cd5_0029_0029"></a>
+<a name="index-font-size-_0028notation_0029_002c-standard-_0028_6a19_6e96_30d5_30a9_30f3_30c8-_30b5_30a4_30ba-_0028_8a18_8b5c_6cd5_0029_0029"></a>
+
+<a name="index-font_002dinterface"></a>
+<a name="index-font_002dinterface-1"></a>
+<a name="index-font_002dsize-2"></a>
+<a name="index-font_002dsize-3"></a>
+
+<p>フォント サイズの変更は、ひな形のサイズが望みのサイズに最も近くなるよう
+(一定の割合で) 増減することによって、達成されます標準フォント サイズ (<code>font-size = #0</code> のフォント サイズ) は標準の譜の高さに基づきます。20pt の譜では、11pt のフォントが選択されます。
+</p>
+<p><code>font-size</code> プロパティはフォントを使用するレイアウト オブジェクトだけにセットすることができますそのようなオブジェクトは <code>font-interface</code> レイアウト インタフェイスをサポートします。
+</p>
+
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-34"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\teeny</code>,
+<code>\tiny</code>,
+<code>\small</code>,
+<code>\normalsize</code>,
+<code>\large</code>,
+<code>\huge</code>
+</p>
+<a name="g_t_53c2_7167-266"></a>
+<h4 class="subsubheading">参照</h4>
+<p>コード断片集:
+<a href="../snippets/_7de8_96c6_8005_306e_6ce8_91c8.ja.html#g_t_7de8_96c6_8005_306e_6ce8_91c8">Editorial annotations</a>
+</p>
+<p>内部リファレンス:
+<a name="index-font_002dinterface-2"></a>
+<a href="../internals/font_002dinterface.ja.html">font-interface</a>
+</p>
+
+<hr size="6">
+<a name="g_t_904b_6307_306e_6307_793a"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#selecting-notation-font-size" title="前のセクション" accesskey="p" rel="previous"> &lt; 記譜フォント サイズを選択する&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#hidden-notes" title="次のセクション" accesskey="n" rel="next">&nbsp;隠された音符 &gt; </a>]</td></tr></table>
+<a name="fingering-instructions"></a>
+<h4 class="unnumberedsubsubsec">運指の指示</h4>
+
+<a name="index-fingering-_0028_904b_6307_6cd5_0029"></a>
+<a name="index-finger-change-_0028_6307_3092_5909_3048_308b_0029"></a>
+
+<a name="index-_005cfinger"></a>
+<a name="index-_005cfinger-1"></a>
+<a name="index-finger"></a>
+<a name="index-finger-1"></a>
+
+<p>運指の指示は <var>音符</var>-<var>数字</var> を用いることで挿入することができます:
+</p>
+<blockquote><pre class="verbatim">c4-1 d-2 f-4 e-3
+</pre><p>
+ <a href="../0e/lily-99d0ac19.ly">
+  <img align="middle"
+       border="0"
+       src="../0e/lily-99d0ac19.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>指の変更のためにマークアップ テキストや文字列が使用されることもあります。
+</p>
+<blockquote><pre class="verbatim">\relative { c''4-1 d-2 f-4 e-3 }
+</pre><p>
+ <a href="../5d/lily-00a8e953.ly">
+  <img align="middle"
+       border="0"
+       src="../5d/lily-00a8e953.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>指の入れ替えのためにマークアップ テキストを使うこともできます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4-1 d-2 f\finger \markup \tied-lyric #&quot;4~3&quot; c\finger &quot;2 - 3&quot;
+}
+</pre><p>
+ <a href="../c2/lily-ed870b90.ly">
+  <img align="middle"
+       border="0"
+       src="../c2/lily-ed870b90.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-thumb_002dscript-_0028_30b5_30e0_002d_30b9_30af_30ea_30d7_30c8_0029"></a>
+
+<a name="index-_005cthumb-2"></a>
+<a name="index-_005cthumb-3"></a>
+<a name="index-thumb"></a>
+<a name="index-thumb-1"></a>
+
+<p>ある音符を親指で演奏するよう指示するために、サム-スクリプト (thumb-script) を付け加えることができます
+(例えば、チェロ音楽で)。
+</p>
+<blockquote><pre class="verbatim">\relative { &lt;a'_\thumb a'-3&gt;2 &lt;b_\thumb b'-3&gt; }
+</pre><p>
+ <a href="../94/lily-dec79207.ly">
+  <img align="middle"
+       border="0"
+       src="../94/lily-dec79207.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-fingering-chords-_0028_548c_97f3_306e_904b_6307_6cd5_0029"></a>
+<a name="index-fingering-instructions-for-chords-_0028_548c_97f3_306e_904b_6307_6307_793a_0029"></a>
+<a name="index-chords_002c-fingering-_0028_548c_97f3_306e_904b_6307_6cd5_0029"></a>
+
+<p>和音の個々の音符の後に運指を付け加えることによって、和音に対する運指法を付け加えることができます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;c''-1 e-2 g-3 b-5&gt;2 &lt;d-1 f-2 a-3 c-5&gt;
+}
+</pre><p>
+ <a href="../4d/lily-b68bee77.ly">
+  <img align="middle"
+       border="0"
+       src="../4d/lily-b68bee77.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>運指指示の配置を手動で譜の上または下にすることができます。<a href="direction-and-placement.ja.html">向きと配置</a> を参照してください。
+</p>
+<a name="Selected-Snippets-56"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+
+<p><em> Controlling the placement of chord fingerings</em>
+</p>
+
+<p>The placement of fingering numbers can be controlled precisely. For
+fingering orientation to apply, you must use a chord construct &lt;&gt; even
+if it is a single note.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \set fingeringOrientations = #'(left)
+  &lt;c-1 e-3 a-5&gt;4
+  \set fingeringOrientations = #'(down)
+  &lt;c-1 e-3 a-5&gt;4
+  \set fingeringOrientations = #'(down right up)
+  &lt;c-1 e-3 a-5&gt;4
+  \set fingeringOrientations = #'(up)
+  &lt;c-1 e-3 a-5&gt;4
+  \set fingeringOrientations = #'(left)
+  &lt;c-1&gt;2
+  \set fingeringOrientations = #'(down)
+  &lt;e-3&gt;2
+}
+</pre><p>
+ <a href="../33/lily-f319f19b.ly">
+  <img align="middle"
+       border="0"
+       src="../33/lily-f319f19b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Allowing fingerings to be printed inside the staff</em>
+</p>
+
+<p>By default, vertically oriented fingerings are positioned outside the
+staff.  However, this behavior can be canceled. Note: you must use a
+chord construct &lt;&gt;, even if it is only a single note.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  &lt;c-1 e-2 g-3 b-5&gt;2
+  \override Fingering.staff-padding = #'()
+  &lt;c-1 e-2 g-3 b-5&gt;4 &lt;g'-0&gt;
+}
+</pre><p>
+ <a href="../6a/lily-d3b222bc.ly">
+  <img align="middle"
+       border="0"
+       src="../6a/lily-d3b222bc.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p><em> Avoiding collisions with chord fingerings</em>
+</p>
+
+<p>Fingerings and string numbers applied to individual notes will
+automatically avoid beams and stems, but this is not true by default
+for fingerings and string numbers applied to the individual notes of
+chords.  The following example shows how this default behavior can be
+overridden.
+</p>
+
+<blockquote><pre class="verbatim">\relative c' {
+  \set fingeringOrientations = #'(up)
+  \set stringNumberOrientations = #'(up)
+  \set strokeFingerOrientations = #'(up)
+
+  % Default behavior
+  r8
+  &lt;f c'-5&gt;8
+  &lt;f c'\5&gt;8
+  &lt;f c'-\rightHandFinger #2 &gt;8
+
+  % No tweak needed
+  r8
+  &lt;f c'-5&gt;8
+  &lt;f c'\5&gt;8
+   % Corrected to avoid collisions
+  \override StrokeFinger.add-stem-support = ##t
+  &lt;f c'-\rightHandFinger #2 &gt;8
+}
+</pre><p>
+ <a href="../6a/lily-dda5ee97.ly">
+  <img align="middle"
+       border="0"
+       src="../6a/lily-dda5ee97.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="g_t_53c2_7167-104"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a href="direction-and-placement.ja.html">向きと配置</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_7de8_96c6_8005_306e_6ce8_91c8.ja.html#g_t_7de8_96c6_8005_306e_6ce8_91c8">Editorial annotations</a>
+</p>
+<p>内部リファレンス:
+<a name="index-FingeringEvent"></a>
+<a href="../internals/fingeringevent.ja.html">FingeringEvent</a>,
+<a name="index-fingering_002devent"></a>
+<a href="../internals/fingering_002devent.ja.html">fingering-event</a>,
+<a name="index-Fingering_005fengraver"></a>
+<a href="../internals/fingering_005fengraver.ja.html">Fingering_engraver</a>,
+<a name="index-New_005ffingering_005fengraver"></a>
+<a href="../internals/new_005ffingering_005fengraver.ja.html">New_fingering_engraver</a>,
+<a name="index-Fingering"></a>
+<a href="../internals/fingering.ja.html">Fingering</a>
+</p>
+
+<hr size="6">
+<a name="g_t_96a0_3055_308c_305f_97f3_7b26"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#fingering-instructions" title="前のセクション" accesskey="p" rel="previous"> &lt; 運指の指示&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#coloring-objects" title="次のセクション" accesskey="n" rel="next">&nbsp;オブジェクトに色を付ける &gt; </a>]</td></tr></table>
+<a name="hidden-notes"></a>
+<h4 class="unnumberedsubsubsec">隠された音符</h4>
+
+<a name="index-hidden-notes"></a>
+<a name="index-invisible-notes"></a>
+<a name="index-transparent-notes"></a>
+<a name="index-notes_002c-hidden"></a>
+<a name="index-notes_002c-invisible"></a>
+<a name="index-notes_002c-transparent"></a>
+
+<a name="index-_005chideNotes"></a>
+<a name="index-_005chideNotes-1"></a>
+<a name="index-hideNotes"></a>
+<a name="index-hideNotes-1"></a>
+<a name="index-_005cunHideNotes"></a>
+<a name="index-_005cunHideNotes-1"></a>
+<a name="index-unHideNotes"></a>
+<a name="index-unHideNotes-1"></a>
+
+<p>隠された (または不可視、透明の) 音符は、preparing theory や作曲の演習の際に有用です。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''4 d
+  \hideNotes
+  e4 f
+  \unHideNotes
+  g a
+  \hideNotes
+  b
+  \unHideNotes
+  c
+}
+</pre><p>
+ <a href="../1b/lily-078e147a.ly">
+  <img align="middle"
+       border="0"
+       src="../1b/lily-078e147a.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>符頭、符幹、旗、それに休符は不可視です。連桁は、隠された音符から始まる場合は、不可視です。
+不可視の音符に取り付けられたオブジェクトは可視のままです。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  e8(\p f g a)--
+  \hideNotes
+  e8(\p f g a)--
+}
+</pre><p>
+ <a href="../b2/lily-26dfe8f9.ly">
+  <img align="middle"
+       border="0"
+       src="../b2/lily-26dfe8f9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-37"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\hideNotes</code>,
+<code>\unHideNotes</code>
+</p>
+<a name="g_t_53c2_7167-51"></a>
+<h4 class="subsubheading">参照</h4>
+<p>学習マニュアル:
+<a name="index-_30aa_30d6_30b8_30a7_30af_30c8_306e_53ef_8996_6027_3068_8272"></a>
+<a href="../learning/visibility-and-color-of-objects.ja.html">オブジェクトの可視性と色</a>
+</p>
+<p>Notation Reference:
+<a href="writing-rests.ja.html#invisible-rests">不可視の休符</a>,
+<a href="visibility-of-objects.ja.html">オブジェクトの可視性</a>,
+<a href="modifying-single-staves.ja.html#hiding-staves">譜を隠す</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_7de8_96c6_8005_306e_6ce8_91c8.ja.html#g_t_7de8_96c6_8005_306e_6ce8_91c8">Editorial annotations</a>
+</p>
+<p>内部リファレンス:
+<a name="index-Note_005fspacing_005fengraver"></a>
+<a href="../internals/note_005fspacing_005fengraver.ja.html">Note_spacing_engraver</a>,
+<a name="index-NoteSpacing"></a>
+<a href="../internals/notespacing.ja.html">NoteSpacing</a>
+</p>
+
+<hr size="6">
+<a name="g_t_30aa_30d6_30b8_30a7_30af_30c8_306b_8272_3092_4ed8_3051_308b"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#hidden-notes" title="前のセクション" accesskey="p" rel="previous"> &lt; 隠された音符&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#parentheses" title="次のセクション" accesskey="n" rel="next">&nbsp;括弧 &gt; </a>]</td></tr></table>
+<a name="coloring-objects"></a>
+<h4 class="unnumberedsubsubsec">オブジェクトに色を付ける</h4>
+
+<a name="index-colored-objects-_0028_8272_4ed8_304d_306e_30aa_30d6_30b8_30a7_30af_30c8_0029"></a>
+<a name="index-objects_002c-colored-_0028_8272_4ed8_304d_306e_30aa_30d6_30b8_30a7_30af_30c8_0029"></a>
+<a name="index-colors-_0028_8272_0029"></a>
+<a name="index-coloring-objects-_0028_30aa_30d6_30b8_30a7_30af_30c8_306b_8272_3092_4ed8_3051_308b_0029"></a>
+<a name="index-colored-notes-_0028_8272_4ed8_304d_306e_97f3_7b26_0029"></a>
+<a name="index-coloring-notes-_0028_97f3_7b26_306b_8272_3092_4ed8_3051_308b_0029"></a>
+<a name="index-notes_002c-colored-_0028_8272_4ed8_304d_306e_97f3_7b26_0029"></a>
+<a name="index-x11-color-_0028X11-_30ab_30e9_30fc_0029"></a>
+<a name="index-x11_002dcolor"></a>
+<a name="index-with_002dcolor"></a>
+
+<a name="index-color"></a>
+<a name="index-color-1"></a>
+<a name="index-_005cwith_002dcolor"></a>
+<a name="index-_005cwith_002dcolor-1"></a>
+<a name="index-with_002dcolor-1"></a>
+<a name="index-with_002dcolor-2"></a>
+<a name="index-x11_002dcolor-1"></a>
+<a name="index-x11_002dcolor-2"></a>
+
+<p>個々のオブジェクトに色を割り振ることができます。有効なカラー名は <a href="list-of-colors.ja.html">List of colors</a> でリストアップされています。
+</p>
+<blockquote><pre class="verbatim">\override NoteHead.color = #red
+c''4 c''
+\override NoteHead.color = #(x11-color 'LimeGreen)
+d''
+\override Stem.color = #blue
+e''
+</pre><p>
+ <a href="../08/lily-b1b09c94.ly">
+  <img align="middle"
+       border="0"
+       src="../08/lily-b1b09c94.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<p>Scheme 関数 <code>x11-color</code> を用いることによって、X11 のために定義された色の全範囲にアクセスすることができます。この関数は引数を 1 つとります。この引数は <code>'<var>FooBar</var></code> という形式のシンボルであったり、<code>&quot;<var>FooBar</var>&quot;</code> という形式の文字列であったりします。最初の形式はより素早く記述できて、より効率的です。しかしながら、2 番目の形式を使うと複数単語形式の X11 カラーにアクセスすることができます。
+</p>
+<p><code>x11-color</code> がパラメータとして意味をなさない場合、その色はデフォルトの黒になります。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \override Staff.StaffSymbol.color = #(x11-color 'SlateBlue2)
+  \set Staff.instrumentName = \markup {
+    \with-color #(x11-color 'navy) &quot;Clarinet&quot;
+  }
+
+  gis8 a
+  \override Beam.color = #(x11-color &quot;medium turquoise&quot;)
+  gis a
+  \override Accidental.color = #(x11-color 'DarkRed)
+  gis a
+  \override NoteHead.color = #(x11-color &quot;LimeGreen&quot;)
+  gis a
+  % 以下は意図的に意味をなさない色を指定しています。符幹が黒のままであることに注意してください
+  \override Stem.color = #(x11-color 'Boggle)
+  b2 cis
+}
+</pre><p>
+ <a href="../db/lily-37794c84.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-37794c84.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-rgb_002dcolor"></a>
+<a name="index-color_002c-rgb-_0028RGB-_30ab_30e9_30fc_0029"></a>
+<a name="index-rgb-color-_0028RGB-_30ab_30e9_30fc_0029"></a>
+
+<a name="index-rgb_002dcolor-1"></a>
+<a name="index-rgb_002dcolor-2"></a>
+
+<p>Scheme 関数 <code>rgb-color</code> を用いることによって、厳密な RGB カラーを指定することができます。
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  \override Staff.StaffSymbol.color = #(x11-color 'SlateBlue2)
+  \set Staff.instrumentName = \markup {
+    \with-color #(x11-color 'navy) &quot;Clarinet&quot;
+  }
+
+  \override Stem.color = #(rgb-color 0 0 0)
+  gis8 a
+  \override Stem.color = #(rgb-color 1 1 1)
+  gis8 a
+  \override Stem.color = #(rgb-color 0 0 0.5)
+  gis4 a
+}
+</pre><p>
+ <a href="../e2/lily-9bbfa276.ly">
+  <img align="middle"
+       border="0"
+       src="../e2/lily-9bbfa276.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-207"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a href="list-of-colors.ja.html">List of colors</a>,
+<a href="the-tweak-command.ja.html"><code>\tweak</code> コマンド</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_7de8_96c6_8005_306e_6ce8_91c8.ja.html#g_t_7de8_96c6_8005_306e_6ce8_91c8">Editorial annotations</a>
+</p>
+<a name="index-x11-color-_0028X11-_30ab_30e9_30fc_0029-1"></a>
+<a name="index-colored-notes-in-chords-_0028_548c_97f3_306e_4e2d_306b_3042_308b_8272_4ed8_304d_306e_97f3_7b26_0029"></a>
+<a name="index-notes_002c-colored-in-chords-_0028_548c_97f3_306e_4e2d_306b_3042_308b_8272_4ed8_304d_306e_97f3_7b26_0029"></a>
+<a name="index-color-in-chords-_0028_548c_97f3_306e_4e2d_3067_8272_3092_4ed8_3051_308b_0029"></a>
+
+<a name="index-x11_002dcolor-3"></a>
+<a name="index-x11_002dcolor-4"></a>
+
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-27"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>X11 カラーは必ずしも同様の名前を持つノーマル カラーとまったく同じとなるわけではありません。
+</p>
+<p>すべての X11 カラーが Web ブラウザで見分けられるわけではありません。つまり、ある Web ブラウザは <code>LineGreen</code> と <code>ForestGreen</code> を同じ色で表示するかもしれません。Web 向けでは、ノーマル カラーを使用することを推奨します
+(つまり、<code>blue</code>, <code>green</code>, <code>red</code>)。
+</p>
+<p>和音の中にある音符には <code>\override</code> で色を付けることはできません。<code>\override</code> の代わりに <code>\tweak</code> を使用してください
+&ndash; <a href="the-tweak-command.ja.html"><code>\tweak</code> コマンド</a> を参照してください。
+</p>
+
+<hr size="6">
+<a name="g_t_62ec_5f27"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#coloring-objects" title="前のセクション" accesskey="p" rel="previous"> &lt; オブジェクトに色を付ける&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#stems" title="次のセクション" accesskey="n" rel="next">&nbsp;符幹 &gt; </a>]</td></tr></table>
+<a name="parentheses"></a>
+<h4 class="unnumberedsubsubsec">括弧</h4>
+
+<a name="index-ghost-notes-_0028_30b4_30fc_30b9_30c8_97f3_7b26_0029"></a>
+<a name="index-notes_002c-ghost-_0028_30b4_30fc_30b9_30c8_97f3_7b26_0029"></a>
+<a name="index-notes_002c-parenthesized-_0028_62ec_5f27_3067_56f2_307e_308c_305f_97f3_7b26_0029"></a>
+<a name="index-parentheses-_0028_62ec_5f27_0029"></a>
+<a name="index-brackets-_0028_56f2_307f_0029"></a>
+
+<a name="index-_005cparenthesize"></a>
+<a name="index-_005cparenthesize-1"></a>
+<a name="index-parenthesize"></a>
+<a name="index-parenthesize-1"></a>
+
+<p>音楽イベントの前に <code>\parenthesize</code> を置くことによって、そのオブジェクトに括弧を付けることができます。和音の前に <code>\parenthesize</code> を置くと、和音の音符それぞれに括弧が付けられます。和音内部の音符に個別に括弧を付けることもできます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''2 \parenthesize d
+  c2 \parenthesize &lt;c e g&gt;
+  c2 &lt;c \parenthesize e g&gt;
+}
+</pre><p>
+ <a href="../3a/lily-6be5f72e.ly">
+  <img align="middle"
+       border="0"
+       src="../3a/lily-6be5f72e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>音符ではないオブジェクトにも括弧を付けることができます。アーティキュレーションに対して括弧をつける場合、<code>\parenthesize</code> コマンドの前にハイフンが必要です。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  c''2-\parenthesize -. d
+  c2 \parenthesize r
+}
+</pre><p>
+ <a href="../4f/lily-528ba80b.ly">
+  <img align="middle"
+       border="0"
+       src="../4f/lily-528ba80b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-133"></a>
+<h4 class="subsubheading">参照</h4>
+<p>コード断片集:
+<a href="../snippets/_7de8_96c6_8005_306e_6ce8_91c8.ja.html#g_t_7de8_96c6_8005_306e_6ce8_91c8">Editorial annotations</a>
+</p>
+<p>内部リファレンス:
+<a name="index-Parenthesis_005fengraver"></a>
+<a href="../internals/parenthesis_005fengraver.ja.html">Parenthesis_engraver</a>,
+<a name="index-ParenthesesItem"></a>
+<a href="../internals/parenthesesitem.ja.html">ParenthesesItem</a>,
+<a name="index-parentheses_002dinterface"></a>
+<a href="../internals/parentheses_002dinterface.ja.html">parentheses-interface</a>
+</p>
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-15"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>和音に括弧を付けると、和音全体に単一の大きな括弧が付くのではなく、それぞれの音符に個別に括弧が付きます。
+</p>
+
+<hr size="6">
+<a name="g_t_7b26_5e79"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#parentheses" title="前のセクション" accesskey="p" rel="previous"> &lt; 括弧&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside-the-staff.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;譜の外部 &gt; </a>]</td></tr></table>
+<a name="stems"></a>
+<h4 class="unnumberedsubsubsec">符幹</h4>
+
+<a name="index-stem-_0028_7b26_5e79_0029"></a>
+<a name="index-stem_002c-invisible-_0028_4e0d_53ef_8996_306e_7b26_5e79_0029"></a>
+<a name="index-invisible-stem-_0028_4e0d_53ef_8996_306e_7b26_5e79_0029"></a>
+
+<a name="index-_005cstemUp"></a>
+<a name="index-_005cstemUp-1"></a>
+<a name="index-stemUp"></a>
+<a name="index-stemUp-1"></a>
+<a name="index-_005cstemDown"></a>
+<a name="index-_005cstemDown-1"></a>
+<a name="index-stemDown"></a>
+<a name="index-stemDown-1"></a>
+<a name="index-_005cstemNeutral"></a>
+<a name="index-_005cstemNeutral-1"></a>
+<a name="index-stemNeutral"></a>
+<a name="index-stemNeutral-1"></a>
+<a name="index-stem_002c-direction-_0028_7b26_5e79_306e_5411_304d_0029"></a>
+<a name="index-stem_002c-up-_0028_7b26_5e79_3092_4e0a_5411_304d_306b_3059_308b_0029"></a>
+<a name="index-stem_002c-down-_0028_7b26_5e79_3092_4e0b_5411_304d_306b_3059_308b_0029"></a>
+<a name="index-stem_002c-neutral-_0028_7b26_5e79_306e_5411_304d_3092_5143_306b_623b_3059_0029"></a>
+
+<p>音符が見つかった場合はいつでも <code>Stem</code> オブジェクトが自動的に作成されます。全音符や休符の場合でも <code>Stem</code> オブジェクトが作成されますが、不可視になります。
+</p>
+<p>符幹の向きを手動で上または下にすることができます
+&ndash; <a href="direction-and-placement.ja.html">向きと配置</a> を参照してください。
+</p>
+
+<a name="g_t_5b9a_7fa9_6e08_307f_30b3_30de_30f3_30c9-1"></a>
+<h4 class="subsubheading">定義済みコマンド</h4>
+<p><code>\stemUp</code>,
+<code>\stemDown</code>,
+<code>\stemNeutral</code>
+</p>
+
+<a name="Selected-Snippets-41"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+
+<p><em> Default direction of stems on the center line of the staff</em>
+</p>
+
+<p>The default direction of stems on the center line of the staff is set
+by the <code>Stem</code> property <code>neutral-direction</code>.
+</p>
+
+<blockquote><pre class="verbatim">\relative c'' {
+  a4 b c b
+  \override Stem.neutral-direction = #up
+  a4 b c b
+  \override Stem.neutral-direction = #down
+  a4 b c b
+}
+</pre><p>
+ <a href="../1d/lily-507425a4.ly">
+  <img align="middle"
+       border="0"
+       src="../1d/lily-507425a4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="g_t_53c2_7167-271"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a href="direction-and-placement.ja.html">向きと配置</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_7de8_96c6_8005_306e_6ce8_91c8.ja.html#g_t_7de8_96c6_8005_306e_6ce8_91c8">Editorial annotations</a>
+</p>
+<p>内部リファレンス:
+<a name="index-Stem_005fengraver-1"></a>
+<a href="../internals/stem_005fengraver.ja.html">Stem_engraver</a>,
+<a name="index-Stem"></a>
+<a href="../internals/stem.ja.html">Stem</a>,
+<a name="index-stem_002dinterface"></a>
+<a href="../internals/stem_002dinterface.ja.html">stem-interface</a>
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#parentheses" title="前のセクション" accesskey="p" rel="previous"> &lt; 括弧&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#inside-the-staff" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;譜の内部&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="outside-the-staff.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;譜の外部 &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="inside-the-staff.html">English</a>, <a href="inside-the-staff.de.html">deutsch</a>, <a href="inside-the-staff.es.html">español</a>, <a href="inside-the-staff.fr.html">français</a>, <a href="inside-the-staff.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=""><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=""><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=" toc_current"><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-_8b5c_306e_5185_90e8-1" href="inside-the-staff.ja.html">1.7.1 譜の内部</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_8a18_8b5c_30d5_30a9_30f3_30c8-_30b5_30a4_30ba_3092_9078_629e_3059_308b-1" href="inside-the-staff.ja.html#selecting-notation-font-size">記譜フォント サイズを選択する</a>        </li>
+        <li class=""><a name="toc-_904b_6307_306e_6307_793a-1" href="inside-the-staff.ja.html#fingering-instructions">運指の指示</a>        </li>
+        <li class=""><a name="toc-_96a0_3055_308c_305f_97f3_7b26-1" href="inside-the-staff.ja.html#hidden-notes">隠された音符</a>        </li>
+        <li class=""><a name="toc-_30aa_30d6_30b8_30a7_30af_30c8_306b_8272_3092_4ed8_3051_308b-1" href="inside-the-staff.ja.html#coloring-objects">オブジェクトに色を付ける</a>        </li>
+        <li class=""><a name="toc-_62ec_5f27-1" href="inside-the-staff.ja.html#parentheses">括弧</a>        </li>
+        <li class=""><a name="toc-_7b26_5e79-1" href="inside-the-staff.ja.html#stems">符幹</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-_8b5c_306e_5916_90e8-1" href="outside-the-staff.ja.html">1.7.2 譜の外部</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

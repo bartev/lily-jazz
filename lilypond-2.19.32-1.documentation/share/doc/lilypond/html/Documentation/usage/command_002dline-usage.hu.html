@@ -1,0 +1,568 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 a szerzők.
+
+Ezt a dokumentumot a GNU Free Documentation License (GNU Szabad
+Dokumentációs Licenc) 1.1-es vagy frissebb, a Free Software Foundation
+(Szabad Szoftver Alapítvány) által kiadott verziójának megfelelően
+lehet másolni, terjeszteni és/vagy módosítani, nem változtatható szakaszok nélkül.
+A licenc másolata a ,,GNU Free Documentation License" című függelékben
+található.
+
+ -->
+<!-- Created on november 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Használati útmutató: 1.2 Parancssori használat</title>
+
+<meta name="description" content="LilyPond Használati útmutató: 1.2 Parancssori használat">
+<meta name="keywords" content="LilyPond Használati útmutató: 1.2 Parancssori használat">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.hu.html#index" rel="start" title="LilyPond &mdash; Használat">
+<link href="lilypond-index.hu.html#lilypond-index" rel="index" title="B. LilyPond index">
+<link href="index_toc.hu.html#SEC_Contents" rel="contents" title="Tartalomjegyzék">
+<link href="index_abt.hu.html#SEC_About" rel="help" title="A navigációs panel használata">
+<link href="running-lilypond.hu.html#running-lilypond" rel="up" title="1. A lilypond használata">
+<link href="lilypond-index.hu.html#lilypond-index" rel="next" title="B. LilyPond index">
+<link href="normal-usage.hu.html#normal-usage" rel="previous" title="1.1 Egyszerű használat">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="hu" class="usage devStatus">
+
+
+<div id="main">
+<a name="Parancssori-haszn_00e1lat"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; A lilypond használata&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.hu.html" title="Következő fejezet">&nbsp;A convert-ly használata &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="normal-usage.hu.html" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; Egyszerű használat&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="running-lilypond.hu.html" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;A lilypond használata&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#invoking-lilypond" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;A lilypond futtatása &gt; </a>]</td></tr></table>
+<a name="command_002dline-usage"></a>
+<h2 class="section">1.2 Parancssori használat</h2>
+
+<p>Ez a szakasz a LilyPond parancssori futtatásáról tartalmaz plusz
+információkat, arra az esetre, ha a programnak plusz paramétereket szeretnénk
+átadni. Ráadásul bizonyos segédprogramok (mint pl. a <code>midi2ly</code>) csak
+parancssorból érhetőek el.
+</p>
+<p><em>Parancssor</em> alatt az operációs rendszer megfelelő parancssorát értjük.
+A Windows-felhasználók ezt &bdquo;DOS-parancssor&rdquo; néven, a Mac&nbsp;OS&nbsp;X
+felhasználok &bdquo;Terminal&rdquo; néven ismerhetik.
+</p>
+<p>Az operációs rendszer parancssorának használatának leírása kívül esik a
+LilyPond dokumentációjának hatáskörén; az ebben kevésbé járatos felhasználók
+az operációs rendszerhez tartozó dokumentációban olvashatnak erről.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#invoking-lilypond" accesskey="1">A <code>lilypond</code> futtatása</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#command-line-options-for-lilypond" accesskey="2">A <code>lilypond</code> parancssori paraméterei</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#environment-variables" accesskey="3">Környezeti változók</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="A-lilypond-futtat_00e1sa"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; A lilypond használata&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.hu.html" title="Következő fejezet">&nbsp;A convert-ly használata &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#command_002dline-usage" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; Parancssori használat&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;Parancssori használat&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#command-line-options-for-lilypond" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;A lilypond parancssori paraméterei &gt; </a>]</td></tr></table>
+<a name="invoking-lilypond"></a>
+<h3 class="unnumberedsubsec">A <code>lilypond</code> futtatása</h3>
+
+<p>A <code>lilypond</code> program a következő módon futtatható parancssorból:
+</p>
+<blockquote><pre class="example">lilypond [<var>opció</var>]&hellip; <var>fájlnév</var>&hellip;
+</pre></blockquote>
+
+<p>Ha nem adunk meg kiterjesztést, az alapértelmezett &lsquo;<tt>.ly</tt>&rsquo; kiterjesztéssel
+próbálkozik a LilyPond. A szabványos bemenetről való beolvasáshoz a <code>-</code>
+karakter használandó <var>fájlnév</var> gyanánt.
+</p>
+<p>Amikor a &lsquo;<tt>fájlnév.ly</tt>&rsquo; fájl feldolgozásra kerül, egy &lsquo;<tt>fájlnév.ps</tt>&rsquo;
+és egy &lsquo;<tt>fájlnév.pdf</tt>&rsquo; fájlt kapunk kimenetként. Több fájlt is
+feldolgoztathatunk egyszerre; ezek egymástól függetlenül kerülnek
+feldolgozásra. <sup><a name="DOCF1" href="#FOOT1">1</a></sup>
+</p>
+<p>Ha a &lsquo;<tt>fájlnév.ly</tt>&rsquo; több <code>\book</code> blokkot tartalmaz, minden blokkból
+egy-egy, számozott kimeneti fájl keletkezik, &lsquo;<tt>fájlnév.pdf</tt>&rsquo;,
+&lsquo;<tt>fájlnév-1.pdf</tt>&rsquo;, &lsquo;<tt>fájlnév-2.pdf</tt>&rsquo; stb. formában. Az
+<code>output-suffix</code> változó értéke fog szerepelni a fájlnév és a számozás
+között. Például a következő bemeneti fájlból:
+</p>
+<blockquote><pre class="example">#(define output-suffix &quot;violino&quot;)
+\score { &hellip; }
+#(define output-suffix &quot;cello&quot;)
+\score { &hellip; }
+</pre></blockquote>
+
+<p>egy &lsquo;<tt><var>fájlnév</var>-violino.pdf</tt>&rsquo; és egy &lsquo;<tt><var>fájlnév</var>-cello-1.pdf</tt>&rsquo;
+nevű fájl keletkezik.
+</p>
+<hr size="6">
+<a name="A-lilypond-parancssori-param_00e9terei"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; A lilypond használata&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.hu.html" title="Következő fejezet">&nbsp;A convert-ly használata &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#invoking-lilypond" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; A lilypond futtatása&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;Parancssori használat&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#environment-variables" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Környezeti változók &gt; </a>]</td></tr></table>
+<a name="command-line-options-for-lilypond"></a>
+<h3 class="unnumberedsubsec">A <code>lilypond</code> parancssori paraméterei</h3>
+
+<a name="index-parancssori-parameterek"></a>
+
+<p>A következő parancssori opciók támogatottak:
+</p>
+<dl compact="compact">
+<dt> <code>-e, --evaluate=<var>kifejezés</var></code></dt>
+<dd><p>A Scheme <var>kifejezés</var> kiértékelése az &lsquo;<tt>.ly</tt>&rsquo; fájlok beolvasása előtt.
+Több <code>-e</code> opció is megadható, ezek a megadott sorrendben lesznek
+végrehajtva.
+</p>
+<p>A kifejezés kiértékelése a <code>guile-user</code> modulban történik, így ha
+definíciókat kell használni a <var>kifejezés</var>ben, a parancssorban a következőt
+kell megadni:
+</p>
+<blockquote><pre class="example">lilypond -e '(define-public a 42)'
+</pre></blockquote>
+
+<p>a forrásfájl elejére pedig a következőt kell beszúrni:
+</p>
+<blockquote><pre class="example">#(use-modules (guile-user))
+</pre></blockquote>
+
+</dd>
+<dt> <code>-f, --format=<var>formátum</var></code></dt>
+<dd><p>A kimenet formátuma. Lehetőségek: <code>ps</code>, <code>pdf</code> vagy <code>png</code>.
+</p>
+<p>Példa: <code>lilypond -fpng <var>fájlnév</var>.ly</code>
+</p>
+</dd>
+<dt> <code>-d, --define-default=<var>azonosító</var>=<var>érték</var></code></dt>
+<dd><p>Az <var>azonosító</var> nevű belső változó beállítása az <var>érték</var> Scheme
+értékre. Ha az <var>érték</var> nincs megadva, az alapértelmezett <code>#t</code>
+lesz a változó értéke. Egy opció kikapcsolásához a <code>no-</code> prefixumot
+kell az azonosító elé írni, pl.
+</p>
+<a name="index-point_002dand_002dclick_002c-parancssor"></a>
+
+<blockquote><pre class="example">-dno-point-and-click
+</pre></blockquote>
+
+<p>ugyanaz, mint
+</p><blockquote><pre class="example">-dpoint-and-click='#f'
+</pre></blockquote>
+
+<p>Íme pár hasznos opció:
+</p>
+<a name="index-sugo_002c-parancssor"></a>
+
+<dl compact="compact">
+<dt> &lsquo;<samp>help</samp>&rsquo;</dt>
+<dd><p>A <code>lilypond -dhelp</code> parancs futtatása kilistázza az összes elérhető
+<code>-d</code> opciót.
+</p>
+<a name="index-papirmeret_002c-parancssor"></a>
+
+</dd>
+<dt> &lsquo;<samp>paper-size</samp>&rsquo;</dt>
+<dd><p>Az alapértelmezett papírméret beállítása.
+</p><blockquote><pre class="example">-dpaper-size=\&quot;letter\&quot;
+</pre></blockquote>
+
+<p>Ügyelni kell arra, hogy a méretet <code>\&quot;</code> jelek közé írjuk.
+</p>
+<a name="index-biztonsagi-mod_002c-parancssor"></a>
+
+</dd>
+<dt> &lsquo;<samp>safe</samp>&rsquo;</dt>
+<dd><p>A LilyPond futtatása biztonsági módban, megbízhatatlan bemenet esetén.
+</p>
+<p>Amikor a LilyPond egy webszerveren keresztül érhető el, vagy a <code>-dsafe</code>,
+vagy a <code>--jail</code> opciót <b>MINDENKÉPPEN KÖTELEZŐ</b> megadni. A <code>-dsafe</code>
+opcióval megelőzhető, hogy a forrásfájlban szereplő rosszindulatú Scheme kód
+kárt okozzon. Például:
+</p>
+<blockquote><pre class="verbatim">#(system &quot;rm -rf /&quot;)
+{
+  c4^$(ly:gulp-file &quot;/etc/passwd&quot;)
+}
+</pre></blockquote>
+
+<p><code>-dsafe</code> módban a Scheme kifejezések kiértékelése egy speciális
+biztonsági modulban történik. Ez a modul a GUILE &lsquo;<tt>safe-r5rs</tt>&rsquo; modulján
+alapul, de a LilyPond API néhány függvényének meghívását lehetővé teszi.
+Ezek a függvények a &lsquo;<tt>scm/safe-lily.scm</tt>&rsquo; fájlban találhatóak.
+</p>
+<p>Ezenkívül biztonsági módban tilos az <code>\include</code> parancsok alkalmazása
+és a \ karakter használata TeX karakterláncokban.
+</p>
+<p>Biztonsági módban ezenfelül nem lehetséges LilyPond változók importálása
+Scheme-be.
+</p>
+<p>A <code>-dsafe</code> mód <em>nem</em> figyeli az erőforrások túlzott használatát.
+Továbbra is elérhető, hogy a program tetszőlegesen hosszú ideig fusson,
+például ciklikus adatstruktúrák használatával. Így ha a LilyPond publikus
+webszerveren fut, a folyamat processzor- és memóriafelhasználását korlátozni
+kell!
+</p>
+<p>Biztonsági módban sok hasznos LilyPond kódrészlet nem fog lefordulni.
+A <code>--jail</code> mód egy több lehetőséget biztosító alternatíva, de
+előkészítése több munkát igényel.
+</p>
+<a name="index-kimeneti-formatum"></a>
+</dd>
+<dt> &lsquo;<samp>backend</samp>&rsquo;</dt>
+<dd><p>A szedés kimeneti formátuma. Lehetőségek:
+</p><dl compact="compact">
+<dt> <code>ps</code></dt>
+<dd><a name="index-PostScript-kimenet"></a>
+<p> PostScript.
+</p>
+<p>A PostScript fájlok teljes egészükben tartalmazzák a megjelenítéshez szükséges
+TTF, Type1 és OTF betűkészleteket. Keleti karakterkészletek használata esetén
+ez nagy fájlokhoz vezethet.
+</p>
+</dd>
+<dt> <code>eps</code></dt>
+<dd>
+<a name="index-Encapsulated-PostScript"></a>
+<a name="index-EPS-_0028Encapsulated-PostScript_0029"></a>
+
+<p> Encapsulated PostScript.
+</p>
+<p>Minden oldal külön &lsquo;<tt>EPS</tt>&rsquo; fájlba kerül, betűtípusok nélkül, valamint egy
+összesített &lsquo;<tt>EPS</tt>&rsquo; fájl is létrejön, amely az összes oldalt tartalmazza
+betűtípusokkal együtt.
+</p>
+<p>A <code>lilypond-book</code> alapértelmezetten ezt a formátumot használja.
+</p>
+</dd>
+<dt> <code>svg</code></dt>
+<dd>
+<a name="index-SVG-_0028Scalable-Vector-Graphics_0029"></a>
+
+<p> SVG (Scalable Vector Graphics).
+</p>
+<p>Oldalanként egy SVG fájl keletkezik, beágyazott betűtípusok nélkül.
+Így megtekintésükhöz érdemes feltelepíteni a Century Schoolbook betűtípusokat.
+Ezeket tartalmazza a LilyPond. Például UNIX alatt egyszerűen csak be kell
+másolni ezeket a program könyvtárából (tipikusan
+&lsquo;<tt>/usr/share/lilypond/VERZIÓ/fonts/otf/</tt>&rsquo;) a &lsquo;<tt>~/.fonts/</tt>&rsquo; könyvtárba.
+Az SVG kimenet szabványos, így bármilyen, ezt a formátumot olvasni képes
+programmal megnyitható.
+</p>
+</dd>
+<dt> <code>scm</code></dt>
+<dd>
+<a name="index-Scheme-kiiratas"></a>
+
+<p>A belső Scheme rajzolóparancsok szó szerinti kiírása.
+</p>
+</dd>
+<dt> <code>null</code></dt>
+<dd>
+<p>Nincs kimenet; ugyanaz a hatása, mint a <code>-dno-print-pages</code> opciónak.
+</p></dd>
+</dl>
+
+<p>Példa: <code>lilypond -dbackend=svg <var>fájlnév</var>.ly</code>
+</p>
+</dd>
+<dt> &lsquo;<samp>preview</samp>&rsquo;</dt>
+<dd><a name="index-elonezet_002c-parancssor"></a>
+
+<p>A fejléc és az első szisztéma fog szerepelni a kimenetben.
+</p>
+</dd>
+<dt> &lsquo;<samp>print-pages</samp>&rsquo;</dt>
+<dd><p>Teljes oldalak generálása, ez az alapbeállítás. A <code>-dno-print-pages</code>
+opció a <code>-dpreview</code> opcióval együtt hasznos.
+</p>
+</dd>
+</dl>
+
+
+</dd>
+<dt> <code>-h, --help</code></dt>
+<dd><p>Összegzés az alkalmazás használatáról.
+</p>
+</dd>
+<dt> <code>-H, --header=<var>mező</var></code></dt>
+<dd><p>A megadott fejlécmező kiírása a &lsquo;<tt><var>fájlnév</var>.<var>mező</var></tt>&rsquo; nevű fájlba.
+</p>
+</dd>
+<dt> <code>--include, -I=<var>könyvtár</var></code></dt>
+<dd><p>A <var>könyvtár</var> hozzáadása a bemeneti fájlok keresési útvonalához.
+<a name="index-keresesi-utvonal"></a>
+</p>
+</dd>
+<dt> <code>-i, --init=<var>fájl</var></code></dt>
+<dd><p>Az inicializáló fájl beállítása a megadott <var>fájl</var>ra. (Alapértelmezett:
+&lsquo;<tt>init.ly</tt>&rsquo;.)
+</p>
+</dd>
+<dt> <code>-o, --output=<var>fájl</var></code></dt>
+<dd><p>Kimeneti fájl megadása. A megfelelő kiterjesztés automatikusan hozzáfűzésre
+kerül (pl. <code>.pdf</code> PDF kimenet esetén).
+</p>
+<a name="index-PostScript-kimenet-1"></a>
+
+</dd>
+<dt> <code>--ps</code></dt>
+<dd><p>PostScript kimenet generálása.
+</p>
+<a name="index-Portable-Network-Graphics-_0028PNG_0029-kimenet"></a>
+
+</dd>
+<dt> <code>--png</code></dt>
+<dd><p>Oldalanként egy-egy PNG kép létrehozása. Ez a <code>--ps</code> opció hatását vonja
+maga után. A kép DPI-ben mért felbontása (alapértelmezett értéke 110) a
+következőképpen állítható be:
+</p><blockquote><pre class="example">-dresolution=110
+</pre></blockquote>
+
+<a name="index-Portable-Document-Format-_0028PDF_0029-kimenet"></a>
+
+</dd>
+<dt> <code>--pdf</code></dt>
+<dd><p>PDF generálása. A <code>--ps</code> opció hatását vonja maga után.
+</p>
+
+</dd>
+<dt> <code>-j, --jail=<var>felhasználó</var>,<var>csoport</var>,<var>börtön</var>,<var>könyvtár</var></code></dt>
+<dd><p>A <code>lilypond</code> futtatása ún. börtönben.
+</p>
+<p>A <code>--jail</code> opció egy rugalmasabb alternatíva a <code>-dsafe</code> módnál abban
+az esetben, amikor a LilyPond forrás megbízhatatlan forrásból származik, pl.
+amikor webszerveren keresztül érhető el a LilyPond szolgáltatásként.
+</p>
+<p>A <code>--jail</code> módban a <code>lilypond</code> gyökere a <var>börtön</var> lesz,
+mielőtt a fordítási folyamat elkezdődne. Ezután a LilyPond átvált a megadott
+felhasználóra, csoportra és könyvtárba. Ezáltal garantálható, hogy (legalábbis
+elméletben) lehetetlen kitörni a börtönből. A <code>--jail</code> mód csak akkor
+működik, ha a <code>lilypond</code> alkalmazást root felhasználóként futtatjuk.
+Ez általában biztonságosan történik, pl. a <code>sudo</code> parancs
+használatával.
+</p>
+<p>A börtön előkészítése egy bonyolult folyamat, mivel biztosítani kell, hogy a
+LilyPond <em>a börtönben</em> mindent megtaláljon, ami a fordításhoz szükséges.
+Egy tipikus előkészítés a következő lépésekből áll:
+</p>
+<dl compact="compact">
+<dt> Különálló fájlrendszer létrehozása</dt>
+<dd><p>A LilyPond számára létre kell hozni egy fájlrendszert, amelyet a biztonságos
+<code>noexec</code>, <code>nodev</code> és <code>nosuid</code> opciókkal tudunk felcsatolni.
+Így lehetetlen a LilyPondból programokat futtatni vagy közvetlenül eszközökre
+írni. Ha egy külön partíció létrehozása nem kívánatos, egy elegendően nagy
+fájl létrehozása és loop eszközként való használata is megfelelő.
+A külön fájlrendszer azt is megelőzi, hogy a LilyPond többet írjon a lemezre,
+mint amennyi megengedett.
+</p>
+</dd>
+<dt> Különálló felhasználó létrehozása</dt>
+<dd><p>Egy, kevés jogosultsággal rendelkező (pl. <code>lily</code>/<code>lily</code> nevű)
+felhasználó és csoport nevében kell, hogy fusson a LilyPond. Ennek a
+felhasználónak csak egy könyvtárhoz lehet írási joga, amit a <var>könyvtár</var>
+paraméterben kell megadni.
+</p>
+</dd>
+<dt> A börtön előkészítése</dt>
+<dd><p>A LilyPond futásához szükséges összes fájlt be kell másolni a börtönbe,
+megtartva az eredeti elérési utakat. Az egész LilyPond telepítés
+(pl. a &lsquo;<tt>/usr/share/lilypond</tt>&rsquo; könyvtár tartalmának) másolása szükséges.
+</p>
+<p>Ha mégis probléma lépne fel, a forrását legegyszerűbben az <code>strace</code>
+paranccsal határolhatjuk be, amellyel meghatározható, hogy mely fájlok
+hiányoznak.
+</p>
+</dd>
+<dt> A LilyPond futtatása</dt>
+<dd><p>A <code>noexec</code> kapcsolóval csatolt börtönben lehetetlen külső programot
+futtatni. Így csak olyan kimeneti formátumok érhetőek el, amelyek ezt nem
+igénylik. Mint már említettük, superuser privilégiumokkal kell futtatni a
+LilyPondot (amelyeket természetesen egyből elveszít), lehetőleg
+<code>sudo</code> használatával. Ajánlott a LilyPond által elfoglalt
+processzoridő korlátozása (pl. az <code>ulimit -t</code> parancs segítségével),
+illetve a memóriafoglalásáé is.
+</p></dd>
+</dl>
+
+
+</dd>
+<dt> <code>-v, --version</code></dt>
+<dd><p>Verzióinformáció kijelzése.
+</p>
+</dd>
+<dt> <code>-V, --verbose</code></dt>
+<dd><p>Bőbeszédűség bekapcsolása: az összes beolvasott fájl elérési útjának,
+futásidőknek és egyéb információknak a kijelzése.
+</p>
+</dd>
+<dt> <code>-w, --warranty</code></dt>
+<dd><p>A GNU LilyPond garanciavállalásának kijelzése. (A LilyPond fejlesztői
+<strong>SEMMIFÉLE GARANCIÁT</strong> nem vállalnak!)
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="K_00f6rnyezeti-v_00e1ltoz_00f3k"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; A lilypond használata&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.hu.html" title="Következő fejezet">&nbsp;A convert-ly használata &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#command-line-options-for-lilypond" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; A lilypond parancssori paraméterei&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;Parancssori használat&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="error-messages.hu.html" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Hibaüzenetek &gt; </a>]</td></tr></table>
+<a name="environment-variables"></a>
+<h3 class="unnumberedsubsec">Környezeti változók</h3>
+
+
+<a name="index-LANG"></a>
+<a name="index-LILYPOND_005fDATADIR"></a>
+<a name="index-LILYPOND_005fGC_005fYIELD"></a>
+
+<p>A <code>lilypond</code> a következő környezeti változókat veszi figyelembe:
+</p><dl compact="compact">
+<dt> <code>LILYPOND_DATADIR</code></dt>
+<dd><p>Annak a könyvtárnak a megadására szolgál, ahol a LilyPond üzeneteit és
+adatfájljait keresni fogja. Tartalmaznia kell a szükséges alkönyvtárakat
+(&lsquo;<tt>ly/</tt>&rsquo;, &lsquo;<tt>ps/</tt>&rsquo;, &lsquo;<tt>tex/</tt>&rsquo; stb.).
+</p>
+</dd>
+<dt> <code>LANG</code></dt>
+<dd><p>A program kimeneti üzeneteinek nyelve.
+</p>
+</dd>
+<dt> <code>LILYPOND_GC_YIELD</code></dt>
+<dd><p>A program memóriaigénye és futásideje közötti finomhangolást lehet elvégezni
+ezzel a változóval. Százalékos érték; minél nagyobb, annál több memóriát
+használ a program, minél alacsonyabb, annál több processzoridőt. Az
+alapértelmezett érték <code>70</code>.
+</p>
+</dd>
+</dl>
+
+
+<div class="footnote">
+<hr>
+<h3>Lábjegyzet</h3>
+<p class="footnote"><small>[<a name="FOOT1" href="#DOCF1">1</a>]</small> A GUILE megelőző állapota nem áll vissza feldolgozás
+után, így elővigyázatosnak kell lenni, hogy ne változtassuk meg a rendszer
+alapbeállításait Scheme kódból.
+</p></div>
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="running-lilypond.hu.html" title="Fejezet eleje vagy előző fejezet"> &lt;&lt; A lilypond használata&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.hu.html" title="Dokumentum címoldala" rel="start">Címoldal</a>][<a href="index_toc.hu.html#SEC_Contents" title="Tartalomjegyzék" rel="contents">Tartalom</a>][<a href="lilypond-index.hu.html" title="Tárgymutató" rel="index">Tárgymutató</a>][<a href="index_abt.hu.html#SEC_About" title="Segítség a navigációhoz" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="updating-files-with-convert_002dly.hu.html" title="Következő fejezet">&nbsp;A convert-ly használata &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#command-line-options-for-lilypond" title="Előző szakasz az olvasási sorrendben" accesskey="p" rel="previous"> &lt; A lilypond parancssori paraméterei&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#command_002dline-usage" title="Szülő szakasz" accesskey="u" rel="up">&nbsp;Fel:&nbsp;Parancssori használat&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="error-messages.hu.html" title="Következő szakasz az olvasási sorrendben" accesskey="n" rel="next">&nbsp;Hibaüzenetek &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Más nyelvek: <a href="command_002dline-usage.html">English</a>, <a href="command_002dline-usage.ca.html">català</a>, <a href="command_002dline-usage.de.html">deutsch</a>, <a href="command_002dline-usage.es.html">español</a>, <a href="command_002dline-usage.fr.html">français</a>, <a href="command_002dline-usage.it.html">italiano</a>, <a href="command_002dline-usage.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.hu.html"
+         title="Documentation Index">&lt;&lt; Vissza a dokumentációk jegyzékéhez</a></p>
+<h4 class="toc_header"> <a href="index.hu.html" title="Start of the manual">LilyPond &mdash; Használat  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-A-lilypond-hasznalata" href="running-lilypond.hu.html">1. A <code>lilypond</code> használata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Egyszeru-hasznalat" href="normal-usage.hu.html">1.1 Egyszerű használat</a>    </li>
+    <li class=" toc_current"><a name="toc-Parancssori-hasznalat" href="command_002dline-usage.hu.html">1.2 Parancssori használat</a>
+    <ul class="toc">
+      <li class=""><a name="toc-A-lilypond-futtatasa" href="command_002dline-usage.hu.html#invoking-lilypond">A <code>lilypond</code> futtatása</a>      </li>
+      <li class=""><a name="toc-A-lilypond-parancssori-parameterei" href="command_002dline-usage.hu.html#command-line-options-for-lilypond">A <code>lilypond</code> parancssori paraméterei</a>      </li>
+      <li class=""><a name="toc-Kornyezeti-valtozok" href="command_002dline-usage.hu.html#environment-variables">Környezeti változók</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Hibauzenetek" href="error-messages.hu.html">1.3 Hibaüzenetek</a>    </li>
+    <li class=""><a name="toc-Gyakori-hibak" href="common-errors.hu.html">1.4 Gyakori hibák</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-A-convert_002dly-hasznalata" href="updating-files-with-convert_002dly.hu.html">2. A <code>convert-ly</code> használata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Miert-valtozik-a-szintaxis_003f" href="why-does-the-syntax-change_003f.hu.html">2.1 Miért változik a szintaxis?</a>    </li>
+    <li class=""><a name="toc-A-convert_002dly-futtatasa" href="invoking-convert_002dly.hu.html">2.2 A <code>convert-ly</code> futtatása</a>    </li>
+    <li class=""><a name="toc-A-convert_002dly-parancssori-parameterei" href="command-line-options-for-convert_002dly.hu.html">2.3 A <code>convert-ly</code> parancssori paraméterei</a>    </li>
+    <li class=""><a name="toc-Problemak-a-convert_002dly-futtatasa-kozben" href="problems-running-convert_002dly.hu.html">2.4 Problémák a <code>convert-ly</code> futtatása közben</a>    </li>
+    <li class=""><a name="toc-Kezi-frissites" href="manual-conversions.hu.html">2.5 Kézi frissítés</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-A-lilypond_002dbook-hasznalata" href="lilypond_002dbook.hu.html">3. A <code>lilypond-book</code> használata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Egy-kottapeldakat-tartalmazo-dokumentum" href="an-example-of-a-musicological-document.hu.html">3.1 Egy kottapéldákat tartalmazó dokumentum</a>    </li>
+    <li class=""><a name="toc-Zene-es-szoveg-integracioja" href="integrating-music-and-text.hu.html">3.2 Zene és szöveg integrációja</a>    </li>
+    <li class=""><a name="toc-Kottapeldak-parameterei" href="music-fragment-options.hu.html">3.3 Kottapéldák paraméterei</a>    </li>
+    <li class=""><a name="toc-A-lilypond_002dbook-futtatasa" href="invoking-lilypond_002dbook.hu.html">3.4 A <code>lilypond-book</code> futtatása</a>    </li>
+    <li class=""><a name="toc-Fajlkiterjesztesek" href="filename-extensions.hu.html">3.5 Fájlkiterjesztések</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-sablonok-1" href="lilypond_002dbook-templates.hu.html">3.6 lilypond-book sablonok</a>    </li>
+    <li class=""><a name="toc-Kozos-tartalomjegyzek" href="sharing-the-table-of-contents.hu.html">3.7 Közös tartalomjegyzék</a>    </li>
+    <li class=""><a name="toc-Tovabbi-modszerek-zene-es-szoveg-kombinalasara" href="alternate-methods-of-mixing-text-and-music.hu.html">3.8 További módszerek zene és szöveg kombinálására</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-External-programs-1" href="external-programs.hu.html">4. External programs</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Point-and-click-1" href="point-and-click.hu.html">4.1 Point and click</a>    </li>
+    <li class=""><a name="toc-Text-editor-support-1" href="text-editor-support.hu.html">4.2 Text editor support</a>    </li>
+    <li class=""><a name="toc-Converting-from-other-formats-1" href="converting-from-other-formats.hu.html">4.3 Converting from other formats</a>    </li>
+    <li class=""><a name="toc-LilyPond-output-in-other-programs-1" href="lilypond-output-in-other-programs.hu.html">4.4 LilyPond output in other programs</a>    </li>
+    <li class=""><a name="toc-Independent-includes-1" href="independent-includes.hu.html">4.5 Independent <code>include</code>s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggestions-for-writing-files-1" href="suggestions-for-writing-files.hu.html">5. Suggestions for writing files</a>
+  <ul class="toc">
+    <li class=""><a name="toc-General-suggestions-1" href="general-suggestions.hu.html">5.1 General suggestions</a>    </li>
+    <li class=""><a name="toc-Typesetting-existing-music-1" href="typesetting-existing-music.hu.html">5.2 Typesetting existing music</a>    </li>
+    <li class=""><a name="toc-Large-projects-1" href="large-projects.hu.html">5.3 Large projects</a>    </li>
+    <li class=""><a name="toc-Troubleshooting-1" href="troubleshooting.hu.html">5.4 Troubleshooting</a>    </li>
+    <li class=""><a name="toc-Make-and-Makefiles-1" href="make-and-makefiles.hu.html">5.5 Make and Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.hu.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.hu.html">B. LilyPond index</a>  </li>
+<li>
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google keresés">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Keresés">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

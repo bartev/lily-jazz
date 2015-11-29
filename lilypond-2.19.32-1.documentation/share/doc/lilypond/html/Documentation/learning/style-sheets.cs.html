@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Autorské právo C 1999-2015 autoři.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Překlad následující poznámky k autorskému právu je pro čtenáře,
+který neumí anglicky, k obeznámení se. V právním smyslu je ale platná
+pouze anglická verze.
+
+Tento dokument je dovoleno rozšiřovat, kopírovat, a/nebo
+upravovat za podmínek licence GNU Free Documentation, verze 1.1 nebo jakékoli pozdější, 
+ve verzi zveřejněné Free Software Foundation; s žádnými neměnnými částmi.
+Kopie licence je zahrnuta v oddíle nazvaném GNU
+Free Documentation License.
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Příručka k učení se: 4.6.3 Celkové formátování</title>
+
+<meta name="description" content="Příručka k učení se: 4.6.3 Celkové formátování">
+<meta name="keywords" content="Příručka k učení se: 4.6.3 Celkové formátování">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.cs.html#index" rel="start" title="LilyPond &ndash; Learning Manual">
+<link href="lilypond-index.cs.html#lilypond-index" rel="index" title="C. Rejstřík k LilyPondu">
+<link href="index_toc.cs.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.cs.html#SEC_About" rel="help" title="About This Document">
+<link href="further-tweaking.cs.html#further-tweaking" rel="up" title="4.6 Další ladění">
+<link href="lilypond-index.cs.html#lilypond-index" rel="next" title="C. Rejstřík k LilyPondu">
+<link href="using-variables-for-tweaks.cs.html#using-variables-for-tweaks" rel="previous" title="4.6.2 Použití proměnných pro ladění">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="cs" class="learning devStatus">
+
+
+<div id="main">
+<a name="Celkov_00e9-form_00e1tov_00e1n_00ed"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.cs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ladění výstupu&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.cs.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.cs.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.cs.html" title="Index" rel="index">Index</a>][<a href="index_abt.cs.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.cs.html" title="Next chapter">&nbsp;Předlohy &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="using-variables-for-tweaks.cs.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Použití proměnných pro ladění&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="further-tweaking.cs.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Další ladění&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="other-sources-of-information.cs.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Více informací &gt; </a>]</td></tr></table>
+<a name="style-sheets"></a>
+<h3 class="subsection">4.6.3 Celkové formátování</h3>
+
+<p>Die Ausgabe von LilyPond kann sehr stark verändert werden, siehe
+zu Einzelheiten <a href="tweaking-output.cs.html">ladění výstupu</a>.  Aber was ist,
+wenn man mehrere Eingabedateien hat, die die gleichen Anpassungen
+erfahren sollen?  Oder wenn Sie einfach nur die Anpassungen von
+der eigentlichen Musik trennen wollen?  Das lässt sich recht einfach
+erreichen.
+</p>
+<p>Schauen wir uns ein Beispiel an.  Sorgen Sie sich nicht, wenn Sie
+den Abschnitt mit den vielen <code>#()</code> nicht verstehen.  Das wird
+erklärt in <a href="advanced-tweaks-with-scheme.cs.html">pokročilých laděních se Scheme</a>.
+</p>
+<blockquote><pre class="verbatim">mpdolce =
+ #(make-dynamic-script
+  #{ \markup { \hspace #0
+               \translate #'(5 . 0)
+               \line { \dynamic &quot;mp&quot;
+                       \text \italic &quot;dolce&quot; } }
+  #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+    #{ &lt;&gt;^\markup \bold \box #string #})
+
+\relative {
+  \tempo 4=50
+  a'4.\mpdolce d8 cis4--\glissando a |
+  b4 bes a2 |
+  \inst &quot;Clarinet&quot;
+  cis4.\&lt; d8 e4 fis |
+  g8(\! fis)-. e( d)-. cis2 |
+}
+</pre><p>
+ <a href="../70/lily-2b664650.ly">
+  <img align="middle"
+       border="0"
+       src="../70/lily-2b664650.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Es gibt einige Probleme mit sich überschneidender Ausgabe, die wird
+zurechtgerückt mit den Techniken von <a href="moving-objects.cs.html">přesouvání předmětů</a>.
+Aber jetzt zu den Definitionen von <code>mpdolce</code> und <code>inst</code>.
+Sie erstellen die gewünschte Ausgabe, aber wir wollen sie vielleicht
+auch in einem anderen Stück verwenden.  Wir könnten sie immer wieder
+kopieren und oben in jedes Stück einfügen, aber das ist sehr aufwändig.
+Dadurch werden die Definitionen auch in der Eingabedatei belassen,
+und ich finde diese <code>#()</code> irgendwie hässlich.  Verstecken
+wir sie also:
+</p>
+<blockquote><pre class="example">%%% in Datei &quot;definitions.ily&quot; speichern
+mpdolce =
+ #(make-dynamic-script
+  #{ \markup { \hspace #0
+               \translate #'(5 . 0)
+               \line { \dynamic &quot;mp&quot;
+                       \text \italic &quot;dolce&quot; } }
+  #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+	#{ &lt;&gt;^\markup \bold \box #string #})
+</pre></blockquote>
+
+<p>Diese Datei wir mit dem <code>\include</code>-Befehl ziemlich weit oben
+in der Datei eingefügt.  (Die Erweiterung &lsquo;<tt>.ily</tt>&rsquo; wird benutzt,
+um diese Datei als eine eingefügte, inkludierte zu kennzeichnen, die
+man nicht alleinstehend kompilieren kann.)  Jetzt ändern wir die
+Noten (in der Datei &lsquo;<tt>music.ly</tt>&rsquo;).
+</p>
+
+<blockquote><pre class="example">\include &quot;definitions.ily&quot;
+
+\relative {
+  \tempo 4=50
+  a'4.\mpdolce d8 cis4--\glissando a |
+  b4 bes a2 |
+  \inst &quot;Clarinet&quot;
+  cis4.\&lt; d8 e4 fis |
+  g8(\! fis)-. e( d)-. cis2 |
+}
+</pre></blockquote>
+
+<blockquote><p>
+ <a href="../26/lily-9c47b7d0.ly">
+  <img align="middle"
+       border="0"
+       src="../26/lily-9c47b7d0.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Das sieht schon besser aus, aber einige Änderungen könnten wir noch vornehmen.
+Das Glissando ist kaum sichtbar, machen wir es also etwas dicker und
+näher an den Notenkopf.  Die Metronombezeichnung soll über dem
+Schlüssel stehen, anstatt über der ersten Note.  Und schließlich
+mag mein Kompositionsprofessor keine &bdquo;C&ldquo;-Taktangaben, das ändern
+wir also in &bdquo;4/4&ldquo;.
+</p>
+<p>Ändern Sie jetzt jedoch nicht &lsquo;<tt>music.ly</tt>&rsquo;.  Ändern Sie die
+&lsquo;<tt>definitions.ily</tt>&rsquo; mit dem Folgenden:
+</p>
+<blockquote><pre class="example">%%%  definitions.ily
+mpdolce =
+#(make-dynamic-script
+  #{ \markup { \hspace #0
+               \translate #'(5 . 0)
+               \line { \dynamic &quot;mp&quot;
+                       \text \italic &quot;dolce&quot; } }
+  #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+   #{ &lt;&gt;^\markup \bold \box #string #})
+
+\layout{
+  \context {
+    \Score
+    \override MetronomeMark.extra-offset = #'(-9 . 0)
+    \override MetronomeMark.padding = #'3
+  }
+  \context {
+    \Staff
+    \override TimeSignature.style = #'numbered
+  }
+  \context {
+    \Voice
+    \override Glissando.thickness = #3
+    \override Glissando.gap = #0.1
+  }
+}
+</pre></blockquote>
+
+<blockquote><p>
+ <a href="../ac/lily-62aa35d6.ly">
+  <img align="middle"
+       border="0"
+       src="../ac/lily-62aa35d6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Das sieht besser aus!  Aber nehmen wir an, Ich will dieses Stück publizieren.
+Mein Professor mag die &bdquo;C&ldquo;-Taktangabe nicht, mir gefällt sie aber sehr
+gut.  Kopieren wir also die Datei &lsquo;<tt>definitions.ily</tt>&rsquo; nach
+&lsquo;<tt>web-publish.ily</tt>&rsquo; und verändern diese.  Weil die Noten als PDF
+auf dem Monitor dargestellt werden sollen, wird auch die Notengröße
+global geändert.
+</p>
+<blockquote><pre class="example">%%%  definitions.ily
+mpdolce =
+#(make-dynamic-script
+  #{ \markup { \hspace #0
+               \translate #'(5 . 0)
+               \line { \dynamic &quot;mp&quot;
+                       \text \italic &quot;dolce&quot; } }
+  #})
+
+inst =
+#(define-music-function
+     (string)
+     (string?)
+   #{ &lt;&gt;^\markup \bold \box #string #})
+
+#(set-global-staff-size 23)
+
+\layout{
+  \context {
+    \Score
+    \override MetronomeMark.extra-offset = #'(-9 . 0)
+    \override MetronomeMark.padding = #'3
+  }
+  \context {
+    \Staff
+  }
+  \context {
+    \Voice
+    \override Glissando.thickness = #3
+    \override Glissando.gap = #0.1
+  }
+}
+</pre></blockquote>
+
+<blockquote><p>
+ <a href="../73/lily-c06eb50b.ly">
+  <img align="middle"
+       border="0"
+       src="../73/lily-c06eb50b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>In der Eingabedatei muss jetzt nur noch die Zeile
+<code>\include &quot;definitions.ily&quot;</code> mit
+<code>\include &quot;web-publish.ily&quot;</code> ersetzt werden.  Das könnte
+man natürlich noch besser machen.  Es könnte eine Datei
+&lsquo;<tt>definitions.ily</tt>&rsquo; mit allen Definitionen (also
+<code>mpdolce</code> und <code>inst</code>) geben, eine Datei
+&lsquo;<tt>web-publish.ily</tt>&rsquo;, die nur die <code>\layout</code>-Veränderung
+enthält und eine Datei &lsquo;<tt>university.ily</tt>&rsquo;, die nur die
+Prozedur enthält, die Ausgabe meinem Professor angenehm zu  machen.
+Der Anfang von &lsquo;<tt>music.ly</tt>&rsquo; würde dann folgendermaßen aussehen:
+</p>
+<blockquote><pre class="example">\include &quot;definitions.ily&quot;
+
+%%%  nur eine der zwei Zeilen auskommentieren!
+\include &quot;web-publish.ily&quot;
+%\include &quot;university.ily&quot;
+</pre></blockquote>
+
+<p>Diese Herangehensweise kann auch schon nützlich sein, wenn man
+nur ein paar Stimmen schreiben will.  Ich habe eine ganze Anzahl
+an &bdquo;Stylesheets&ldquo; für meine Projekte.  Ich fange jede Datei mit
+der Zeile <code>\include &quot;../global.ily&quot;</code> an, die etwa folgendes
+einbindet:
+</p>
+<blockquote><pre class="example">%%%   global.ily
+\version &quot;2.19.32&quot;
+
+#(ly:set-option 'point-and-click #f)
+
+\include &quot;../init/init-defs.ly&quot;
+\include &quot;../init/init-layout.ly&quot;
+\include &quot;../init/init-headers.ly&quot;
+\include &quot;../init/init-paper.ly&quot;
+</pre></blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.cs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Ladění výstupu&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.cs.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.cs.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.cs.html" title="Index" rel="index">Index</a>][<a href="index_abt.cs.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.cs.html" title="Next chapter">&nbsp;Předlohy &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="using-variables-for-tweaks.cs.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Použití proměnných pro ladění&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="further-tweaking.cs.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Další ladění&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="other-sources-of-information.cs.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Více informací &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Tato stránka je pro LilyPond-2.19.32 (Vývojářská větev).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Jiné jazyky: <a href="style-sheets.html">English</a>, <a href="style-sheets.ca.html">català</a>, <a href="style-sheets.de.html">deutsch</a>, <a href="style-sheets.es.html">español</a>, <a href="style-sheets.fr.html">français</a>, <a href="style-sheets.it.html">italiano</a>, <a href="style-sheets.ja.html">日本語</a>, <a href="style-sheets.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.cs.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.cs.html" title="Start of the manual">LilyPond &ndash; Learning Manual  v2.19.32 (Vývojářská větev). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Cviceni" href="tutorial.cs.html">1. Cvičení</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Prelozeni-zdrojoveho-souboru" href="compiling-a-file.cs.html">1.1 Přeložení zdrojového souboru</a>    </li>
+    <li class=""><a name="toc-Jak-se-pisi-vstupni-soubory" href="how-to-write-input-files.cs.html">1.2 Jak se píší vstupní soubory</a>    </li>
+    <li class=""><a name="toc-Vyporadani-se-s-chybami" href="dealing-with-errors.cs.html">1.3 Vypořádání se s chybami</a>    </li>
+    <li class=""><a name="toc-Jak-cist-prirucky" href="how-to-read-the-manuals.cs.html">1.4 Jak číst příručky</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bezny-notovy-zapis" href="common-notation.cs.html">2. Běžný notový zápis</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notovy-zapis-v-jedne-notove-osnove" href="single-staff-notation.cs.html">2.1 Notový zápis v jedné notové osnově</a>    </li>
+    <li class=""><a name="toc-Vice-not-najednou" href="multiple-notes-at-once.cs.html">2.2 Více not najednou</a>    </li>
+    <li class=""><a name="toc-Pisnicky" href="songs.cs.html">2.3 Písničky</a>    </li>
+    <li class=""><a name="toc-Posledni-upravy" href="final-touches.cs.html">2.4 Poslední úpravy</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Zakladni-pojmy" href="fundamental-concepts.cs.html">3. Základní pojmy</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Jak-pracuji-vstupni-soubory-LilyPondu" href="how-lilypond-input-files-work.cs.html">3.1 Jak pracují vstupní soubory LilyPondu</a>    </li>
+    <li class=""><a name="toc-Hlasy-obsahuji-noty" href="voices-contain-music.cs.html">3.2 Hlasy obsahují noty</a>    </li>
+    <li class=""><a name="toc-Prostredi-a-rytci" href="contexts-and-engravers.cs.html">3.3 Prostředí a rytci</a>    </li>
+    <li class=""><a name="toc-Rozsireni-prikladu" href="extending-the-templates.cs.html">3.4 Rozšíření příkladů</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Ladeni-vystupu" href="tweaking-output.cs.html">4. Ladění výstupu</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Zaklady-pro-ladeni" href="tweaking-basics.cs.html">4.1 Základy pro ladění</a>    </li>
+    <li class=""><a name="toc-Vnitrni-referencni-prirucka" href="the-internals-reference-manual.cs.html">4.2 Vnitřní referenční příručka</a>    </li>
+    <li class=""><a name="toc-Vzhled-predmetu" href="appearance-of-objects.cs.html">4.3 Vzhled předmětů</a>    </li>
+    <li class=""><a name="toc-Umisteni-predmetu" href="placement-of-objects.cs.html">4.4 Umístění předmětů</a>    </li>
+    <li class=""><a name="toc-Strety-predmetu" href="collisions-of-objects.cs.html">4.5 Střety předmětů</a>    </li>
+    <li class=" toc_current"><a name="toc-Dalsi-ladeni" href="further-tweaking.cs.html">4.6 Další ladění</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Jine-vyuziti-ladeni" href="other-uses-for-tweaks.cs.html">4.6.1 Jiné využití ladění</a>      </li>
+      <li class=""><a name="toc-Pouziti-promennych-pro-ladeni" href="using-variables-for-tweaks.cs.html">4.6.2 Použití proměnných pro ladění</a>      </li>
+      <li class=" toc_current"><a name="toc-Celkove-formatovani" href="style-sheets.cs.html">4.6.3 Celkové formátování</a>      </li>
+      <li class=""><a name="toc-Vice-informaci" href="other-sources-of-information.cs.html">4.6.4 Více informací</a>      </li>
+      <li class=""><a name="toc-Vyhnuti-se-ladeni-s-pomalejsim-prekladem" href="avoiding-tweaks-with-slower-processing.cs.html">4.6.5 Vyhnutí se ladění s pomalejším překladem</a>      </li>
+      <li class=""><a name="toc-Pokrocila-ladeni-se-Scheme" href="advanced-tweaks-with-scheme.cs.html">4.6.6 Pokročilá ladění se Scheme</a>      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Predlohy" href="templates.cs.html">A. Předlohy</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Jednotliva-notova-osnova" href="single-staff.cs.html">A.1 Jednotlivá notová osnova</a>    </li>
+    <li class=""><a name="toc-Klavirni-predlohy" href="piano-templates.cs.html">A.2 Klavírní předlohy</a>    </li>
+    <li class=""><a name="toc-Smyccovy-kvartet" href="string-quartet.cs.html">A.3 Smyčcový kvartet</a>    </li>
+    <li class=""><a name="toc-Vokalni-soubor" href="vocal-ensembles.cs.html">A.4 Vokální soubor</a>    </li>
+    <li class=""><a name="toc-Orchestralni-predloha" href="orchestral-templates.cs.html">A.5 Orchestrální předloha</a>    </li>
+    <li class=""><a name="toc-Predlohy-pro-stary-notovy-zapis" href="ancient-notation-templates.cs.html">A.6 Předlohy pro starý notový zápis</a>    </li>
+    <li class=""><a name="toc-Jine-predlohy" href="other-templates.cs.html">A.7 Jiné předlohy</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.cs.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Rejstrik-k-LilyPondu" href="lilypond-index.cs.html">C. Rejstřík k LilyPondu</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

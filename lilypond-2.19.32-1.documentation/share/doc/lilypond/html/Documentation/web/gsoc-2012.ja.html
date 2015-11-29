@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 2003-2015 by the authors.
+
+このファイルは LilyPond Web サイトのドキュメントです。
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって
+発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する
+許可を与えます。
+変更不可部分はありません。
+この利用許諾契約書のコピーは "GNU フリー文書利用許諾契約書" という章に含まれて
+います。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond &ndash; みんなの楽譜作成: GSoC 2012</title>
+
+<meta name="description" content="LilyPond &ndash; みんなの楽譜作成: GSoC 2012">
+<meta name="keywords" content="LilyPond &ndash; みんなの楽譜作成: GSoC 2012">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#top" rel="start" title="LilyPond... みんなの楽譜作成">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="community.ja.html#community" rel="up" title="コミュニティ">
+<link href="attic.ja.html#attic" rel="next" title="物置">
+<link href="development.ja.html#development" rel="previous" title="開発">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-website.css">
+<!--[if lte IE 9]>
+<link href="../../Documentation/css/lilypond-website-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="web devStatus">
+
+
+<div id="main">
+<a name="GSoC-2012"></a>
+
+<a name="gsoc-2012"></a>
+<h2 class="unnumberedsec">GSoC 2012</h2>
+
+<div class="column-center-top"><a name="Google-Summer-of-Code-_3068_306f_ff1f"></a>
+<h3 class="subheading">Google Summer of Code とは？</h3>
+
+<p>これは Google が運営する世界規模のプログラムで、夏休みにオープン ソース プロジェクトのために働く学生に報酬を提供します。
+</p>
+<p>LilyPond チーム GSoC を新しい貢献者を見つけ、すでに LilyPond の開発に参加している学生がより熱心に取り組む動機付けを与える絶好の機会だと捉えました。GSoC 2012 では我々の貢献者の一人が <a href="http://www.gnu.org">GNU プロジェクト</a> の一部として認められました。我々は継続的にこのプログラムに参加したいと思っています。
+</p>
+
+</div>
+<div class="column-center-bottom"><a name="LilyPond-_30c1_30fc_30e0_304b_3089_306e-2012-_5e74_306e_30a2_30a4_30c7_30a3_30a2-_30ea_30b9_30c8"></a>
+<h3 class="subheading">LilyPond チームからの 2012 年のアイディア リスト</h3>
+
+<p>以下のリストは GSoC 2012 に参加する学生に我々が提案したプロジェクトです。応募期間は終了しましたが、LilyPond の開発に興味を持つ人の激励としてこの Web ページをオンラインのままにしておくことにしました。</p>
+<p>開発チームにはこれらのプロジェクトに挑戦しようとする人々を積極的に支援するメンバーがいます。
+</p>
+<p>もちろん、LilyPond には、些細な事も含めてさらに多くに改善すべき事柄があります。既知のすべての問題のリストが
+<a href="http://code.google.com/p/lilypond/issues/list">ここ</a> にあります。
+</p>
+<a name="g_t_88c5_98fe_5c0f_97f3_7b26"></a>
+<h3 class="subheading">装飾小音符</h3>
+
+<p>装飾小音符の同期についての問題を、すべての基本的なアーキテクチャも含めて修正してください (<a href="http://code.google.com/p/lilypond/issues/detail?id=34">バグ トラッカーの問題 34</a> を参照してください)。装飾小音符は時間を巻き戻すかのように振舞い、LilyPond のタイミングを混乱させています。これにより予期しない効果 &ndash; 特に、ある譜が装飾小音符を持っていて、他の譜が持っていない場合に &ndash; が引き起こされています。
+</p>
+<p><strong>難易度:</strong> 中
+</p>
+<p><strong>必須スキル:</strong> C++, MIDI
+</p>
+<p><strong>推奨スキル:</strong> LilyPond の内部を熟知していること
+</p>
+<p><strong>メンター:</strong> Mike Solomon, Carl Sorensen
+</p>
+<a name="MusicXML"></a>
+<h3 class="subheading">MusicXML</h3>
+
+<p>広範囲にわたる MusicXML エクスポート機能の追加と、インポート機能の改良、それらが機能することのチェックを行ってください。参加時間に応じて以下のいくつか、または全てを実現してください:
+</p>
+<div class="keep-bullets"><ul>
+<li>
+MIDI エクスポートのような基本的な音楽コンテンツ エクスポート機能(つまり、翻訳クラスから派生したエクスポート専用のクラス) を扱います。
+
+</li><li>
+基本的な音楽コンテンツの XML ツリーを構築し、音楽イベントと XML タグを結び付けます。
+
+</li><li>
+すべての LilyPond エングラーバにエクスポート処理を実行させます。
+
+</li><li>
+各出力オブジェクト (基本的には各ステンシル / ステンシルのグループ)
+を音楽イベントにリンクさせる機能を追加します
+(そして、それにより、XML ツリーの XML タグにリンクさせます)。
+
+</li><li>
+XML 出力のバックエンドを追加します。その後、バックエンドには各出力オブジェクトのレイアウト情報を XML タグに追加する機能を持たせます。
+
+</li></ul>
+
+</div>
+<p>ゴールは、MusicXML から楽譜をインポートして、データのロス無しにエクスポートすることです。
+</p>
+<p><strong>難易度:</strong> 中
+</p>
+<p><strong>必須スキル:</strong> MusicXML, Python, 基本的な LilyPond の知識
+</p>
+<p><strong>メンター:</strong> Reinhold Kainhofer, Mike Solomon
+</p>
+<p>他の楽譜ライターの経験 (クロス テストのために) があると尚良しです。
+</p>
+<a name="g_t_30b9_30e9_30fc_3068_30bf_30a4_306e_6539_826f"></a>
+<h3 class="subheading">スラーとタイの改良</h3>
+
+<p>スラーとタイのデフォルトのカーブ形状はしばしば満足いかないものです。同音異名の音符間のタイ (<code>{ cis'~ des' }</code>) はサポートされておらず、音部記号や譜の変更によって「中断」されるタイのサポートも十分ではありません。このプロジェクトでは、不満足な出力例を収集、ソートして、どのような出力にするかを決定して実際にコードを記述します。
+</p>
+<p><strong>難易度:</strong> 高
+</p>
+<p><strong>必須スキル:</strong> C++, 試行錯誤によるコード記述の経験
+</p>
+<p><strong>推奨スキル:</strong> LilyPond の知識, 美的感覚
+</p>
+<p><strong>メンター:</strong> Mike Solomon
+</p>
+<a name="g_t_30d5_30a9_30f3_30c8_56f3_67c4_306e_7279_6b8a_306a_5909_4f53_3092_8ffd_52a0_3059_308b"></a>
+<h3 class="subheading">フォント図柄の特殊な変体を追加する</h3>
+
+<p>譜上の線、譜間の線、いくつかの図柄 (例えば臨時記号) を短く幅を縮めたものを追加して、それらをサポートするための一般的なインフラを整備します。使用例には古代記譜法の breve (全音符の 2 倍の長さ) の符頭があり、これには符頭の穴が小さいものと大きいものの 2 つの変体があります。
+</p>
+<p><strong>難易度:</strong> 低
+</p>
+<p><strong>必須スキル:</strong> MetaFont, C++, 細部を確認できる眼力
+</p>
+<p><strong>推奨スキル:</strong> 基本的な LilyPond の知識
+</p>
+<p><strong>メンター:</strong> Werner Lemberg
+</p>
+<a name="g_t_9023_6841_306e_6539_826f"></a>
+<h3 class="subheading">連桁の改良</h3>
+
+<p>連桁 (通常、譜をまたぐ、中断する、符幹が上下に突き出る連桁) のデフォルトの配置を改良する必要があります。連桁はコンテキストと付近の音符に依存します
+(<a href="http://icking-music-archive.org/lists/sottisier/sottieng.pdf">この PDF のセクション 2.2</a> を参照してください)。可能であれば、連桁の算出時間を削減してください。
+</p>
+<p><strong>難易度:</strong> 中
+</p>
+<p><strong>必須スキル:</strong> C++, 試行錯誤によるコード記述の経験
+</p>
+<p><strong>推奨スキル:</strong> 美的感覚
+</p>
+<p><strong>メンター:</strong> Mike Solomon, Carl Sorensen
+</p>
+<a name="g_t_69d8_3005_306a_30b3_30f3_30d1_30a4_30eb_8b66_544a_306e_30af_30ea_30fc_30f3-_30a2_30c3_30d7"></a>
+<h3 class="subheading">様々なコンパイル警告のクリーン アップ</h3>
+
+<p>コンパイラ、静的コード分析、それに valgrind の警告をクリーン アップしてください。自動コード分析ツール (<code>g++</code> と <code>clang</code> の警告)、valgrind メモリ
+リーク検出、それに callgrind コード プロファイラは C++ コードの欠陥についての有用な情報を提供してくれます。これらの警告をクリーン アップすることで、警告を発生させるパッチを自動的に拒絶することが可能になります。
+</p>
+<p><strong>難易度:</strong> 中
+</p>
+<p><strong>必須スキル:</strong> C++
+</p>
+<p><strong>メンター:</strong> Joe Neeman, Reinhold Kainhofer
+</p>
+
+</div>
+
+<hr size="6">
+
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="gsoc-2012.ca.html">català</a>, <a href="gsoc-2012.es.html">español</a>, <a href="gsoc-2012.zh.html">中文</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+<div id="verifier_texinfo">
+<h3>Validation</h3>
+<p><code>lilypond.org</code> をホスティングしてくれている <a href="http://www.webdev.nl/">webdev.nl</a> に感謝します。
+<a href="http://validator.w3.org/check?uri=referer">
+<img src="http://www.w3.org/Icons/valid-html401"
+     alt="Valid HTML 4.01 Transitional"
+     height="31" width="88"></a></p>
+</div>
+
+<div id="tocframe">
+<ul class="toc">
+<li><a href="index.ja.html"><span>LilyPond</span></a></li>
+  <li class=""><a name="toc-_5c0e_5165_90e8-1" href="introduction.ja.html">導入部</a>  </li>
+  <li class=""><a name="toc-_30c0_30a6_30f3_30ed_30fc_30c9-1" href="download.ja.html">ダウンロード</a>  </li>
+  <li class=""><a name="toc-_30de_30cb_30e5_30a2_30eb-1" href="manuals.ja.html">マニュアル</a>  </li>
+  <li class=" toc_current"><a name="toc-_30b3_30df_30e5_30cb_30c6_30a3-1" href="community.ja.html">コミュニティ</a>
+  <ul class="toc">
+  <li class="colorDefault"><a name="toc-_30b3_30df_30e5_30cb_30c6_30a3-1" href="community.ja.html">コミュニティ</a></li>
+    <li class=""><a name="toc-_30b3_30f3_30bf_30af_30c8-1" href="contact.ja.html">コンタクト</a>    </li>
+    <li class=""><a name="toc-_6700_5c0f_5316_4f8b-1" href="tiny-examples.ja.html">最小化例</a>    </li>
+    <li class=""><a name="toc-_30d0_30b0_5831_544a-1" href="bug-reports.ja.html">バグ報告</a>    </li>
+    <li class=""><a name="toc-_63f4_52a9_304c_5fc5_8981_3067_3059-1" href="help-us.ja.html">援助が必要です</a>    </li>
+    <li class=""><a name="toc-_30b9_30dd_30f3_30b5_30fc-1" href="sponsoring.ja.html">スポンサー</a>    </li>
+    <li class=""><a name="toc-_958b_767a-1" href="development.ja.html">開発</a>    </li>
+    <li class=" toc_current"><a name="toc-GSoC-2012-1" href="gsoc-2012.ja.html">GSoC 2012</a>    </li>
+    <li class=""><a name="toc-_8457_8005-1" href="authors.ja.html">著者</a>    </li>
+    <li class=""><a name="toc-_51fa_7248_7269-1" href="publications.ja.html">出版物</a>    </li>
+    <li class=""><a name="toc-_53e4_3044_30cb_30e5_30fc_30b9-1" href="old-news.ja.html">古いニュース</a>    </li>
+    <li class=""><a name="toc-_7269_7f6e-1" href="attic.ja.html">物置</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+
+</div>
+
+</body>
+</html>

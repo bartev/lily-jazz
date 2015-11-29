@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+La traduzione della seguente nota di copyright è gentilmente
+offerta per le persone che non parlano inglese, ma solo
+la nota in inglese ha valore legale.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+E' garantito il permesso di copiare, distribuire e/o modificare questo
+documento seguendo i termini della Licenza per Documentazione
+Libera GNU, Versione 1.1 o ogni versione successiva pubblicata dalla
+Free Software Foundation; senza alcuna sezione non modificabile.
+Una copia della licenza è acclusa nella sezione intitolata "Licenza
+per Documentazione Libera GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on Novembre 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Manuale di apprendimento di LilyPond: 4.4.3 Oggetti esterni al rigo</title>
+
+<meta name="description" content="Manuale di apprendimento di LilyPond: 4.4.3 Oggetti esterni al rigo">
+<meta name="keywords" content="Manuale di apprendimento di LilyPond: 4.4.3 Oggetti esterni al rigo">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.it.html#index" rel="start" title="LilyPond &mdash; Manuale di apprendimento">
+<link href="lilypond-index.it.html#lilypond-index" rel="index" title="C. Indice di LilyPond">
+<link href="index_toc.it.html#SEC_Contents" rel="contents" title="Indice">
+<link href="index_abt.it.html#SEC_About" rel="help" title="Informazioni su questo documento">
+<link href="placement-of-objects.it.html#placement-of-objects" rel="up" title="4.4 Posizionamento degli oggetti">
+<link href="lilypond-index.it.html#lilypond-index" rel="next" title="C. Indice di LilyPond">
+<link href="within_002dstaff-objects.it.html#within_002dstaff-objects" rel="previous" title="4.4.2 Oggetti interni al rigo">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="it" class="learning devStatus">
+
+
+<div id="main">
+<a name="Oggetti-esterni-al-rigo"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="within_002dstaff-objects.it.html#fingering" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Diteggiatura&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="placement-of-objects.it.html" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Posizionamento degli oggetti&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-outside_002dstaff_002dpriority-property" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;La proprietà outside-staff-priority &gt; </a>]</td></tr></table>
+<a name="outside_002dstaff-objects"></a>
+<h3 class="subsection">4.4.3 Oggetti esterni al rigo</h3>
+
+<p>Gli oggetti esterni al rigo sono disposti automaticamente in modo da evitare
+collisioni.  Ci sono vari modi per modificare la disposizione automatica
+se questa non è ottimale.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#the-outside_002dstaff_002dpriority-property" accesskey="1">La proprietà <code>outside-staff-priority</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#the-textlengthon-command" accesskey="2">Il comando <code>\textLengthOn</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dynamics-placement" accesskey="3">Posizionamento delle dinamiche</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#grob-sizing" accesskey="4">Dimensione dei grob</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="La-propriet_00e0-outside_002dstaff_002dpriority"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#outside_002dstaff-objects" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Oggetti esterni al rigo&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti esterni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#the-textlengthon-command" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Il comando textLengthOn &gt; </a>]</td></tr></table>
+<a name="the-outside_002dstaff_002dpriority-property"></a>
+<h4 class="unnumberedsubsubsec">La proprietà <code>outside-staff-priority</code></h4>
+
+<p>Gli oggetti dai valori più bassi per la proprietà
+<code>outside-staff-priority</code> vengono posizionati più vicino al rigo,
+mentre gli altri oggetti esterni al rigo vengono distanziati quanto
+basta per evitare collisioni.  La proprietà <code>outside-staff-priority</code> è
+definita nell&rsquo;interfaccia <code>grob-interface</code> ed è quindi una proprietà di
+tutti gli oggetti di formattazione.  Il valore predefinito è <code>#f</code> per
+tutti gli oggetti interni al rigo e un valore numerico appropriato, determinato
+al momento della creazione dell&rsquo;oggetto, per ogni oggetto esterno al rigo.  La
+seguente tabella mostra i valori numerici predefiniti di alcuni dei più comuni
+oggetti esterni al rigo.
+</p>
+<a name="index-estensori-_0028spanner_0029"></a>
+<a name="index-spanner"></a>
+
+<p>Si notino i nomi insoliti di alcuni oggetti: gli oggetti estensori (spanner)
+sono creati automaticamente per controllare la disposizione verticale dei
+grob che (potrebbero) iniziare e finire in diversi momenti musicali, quindi
+la modifica della proprietà <code>outside-staff-priority</code> del grob sottostante
+non produrrebbe alcun effetto.  Ad esempio, la modifica di
+<code>outside-staff-priority</code> dell&rsquo;oggetto <code>Hairpin</code> non avrà alcun
+effetto sulla disposizione verticale delle forcelle.  Occorre invece modificare
+la proprietà <code>outside-staff-priority</code> dell&rsquo;oggetto associato
+<code>DynamicLineSpanner</code>.  Questa sovrascrittura deve essere posta
+all&rsquo;inizio dell&rsquo;estensore, che potrebbe includere più forcelle e indicazioni dinamiche
+tra loro collegate.
+</p>
+<table>
+<thead><tr><th width="30%">Oggetto di formattazione</th><th width="30%">Priorità</th><th width="30%">Controlla la posizione di:</th></tr></thead>
+<tr><td width="30%"><code>RehearsalMark</code></td><td width="30%"><code>1500</code></td><td width="30%">Numeri di chiamata (e oggetti di testo analoghi)</td></tr>
+<tr><td width="30%"><code>MetronomeMark</code></td><td width="30%"><code>1000</code></td><td width="30%">Indicazioni metronomiche</td></tr>
+<tr><td width="30%"><code>VoltaBracketSpanner</code></td><td width="30%"><code>600</code></td><td width="30%">Delimitatori dei finali alternativi delle ripetizioni</td></tr>
+<tr><td width="30%"><code>TextScript</code></td><td width="30%"><code>450</code></td><td width="30%">Oggetti di testo</td></tr>
+<tr><td width="30%"><code>MultiMeasureRestText</code></td><td width="30%"><code>450</code></td><td width="30%">Testi sopra pause di più misure</td></tr>
+<tr><td width="30%"><code>OttavaBracket</code></td><td width="30%"><code>400</code></td><td width="30%">Estensioni del segno d&rsquo;ottava</td></tr>
+<tr><td width="30%"><code>TextSpanner</code></td><td width="30%"><code>350</code></td><td width="30%">Estensori del testo</td></tr>
+<tr><td width="30%"><code>DynamicLineSpanner</code></td><td width="30%"><code>250</code></td><td width="30%">Tutte le indicazioni dinamiche</td></tr>
+<tr><td width="30%"><code>BarNumber</code></td><td width="30%"><code> 100</code></td><td width="30%">Numeri di battuta</td></tr>
+<tr><td width="30%"><code>TrillSpanner</code></td><td width="30%"><code>50</code></td><td width="30%">Linee ondulate del trillo</td></tr>
+</table>
+
+<p>Ecco un esempio che mostra il posizionamento predefinito di alcuni di
+questi oggetti.
+</p>
+<a name="index-estensore-del-testo"></a>
+<a name="index-segno-del-cambio-d_0027ottava"></a>
+
+<a name="index-_005cstartTextSpan"></a>
+<a name="index-_005cstartTextSpan-1"></a>
+<a name="index-startTextSpan"></a>
+<a name="index-startTextSpan-1"></a>
+<a name="index-_005cstopTextSpan"></a>
+<a name="index-_005cstopTextSpan-1"></a>
+<a name="index-stopTextSpan"></a>
+<a name="index-stopTextSpan-1"></a>
+
+<a name="index-TextSpanner_002c-esempio-di-sovrascrittura"></a>
+<a name="index-proprieta-bound_002ddetails_002c-esempio"></a>
+<a name="index-bound_002ddetails_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">% Set details for later Text Spanner
+\override TextSpanner.bound-details.left.text
+    = \markup { \small \bold Slower }
+% Place dynamics above staff
+\dynamicUp
+% Start Ottava Bracket
+\ottava #1
+c''4 \startTextSpan
+% Add Dynamic Text and hairpin
+c''4\pp\&lt;
+c''4
+% Add Text Script
+c''4^Text |
+c''4 c''
+% Add Dynamic Text and terminate hairpin
+c''4\ff c'' \stopTextSpan |
+% Stop Ottava Bracket
+\ottava #0
+c'4 c' c' c' |
+</pre><p>
+ <a href="../5f/lily-463b4ea2.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-463b4ea2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Questo esempio mostra anche come creare gli estensori (spanner) del testo,
+ovvero testo con delle linee che si estendono sopra una sezione musicale.
+L&rsquo;estensore si allunga dal comando <code>\startTextSpan</code> fino al comando
+<code>\stopTextSpan</code> e il formato del testo è definito dal comando
+<code>\override TextSpanner</code>.  Per maggiori dettagli si veda <a name="index-Text-spanners"></a>
+<a href="../notation/writing-text.it.html#text-spanners">Text spanners</a>.
+</p>
+<p>Mostra anche come si creano le estensioni del segno d&rsquo;ottava.
+</p>
+<a name="index-modificare-il-posizionamento-del-numero-di-battuta"></a>
+<a name="index-numeri-di-battuta_002c-modificare-il-posizionamento"></a>
+<a name="index-modificare-il-posizionamento-dell_0027indicazione-metronomica"></a>
+<a name="index-indicazione-metronomica_002c-modificare-il-posizionamento"></a>
+<a name="index-modificare-il-posizionamento-dei-numeri-di-chiamata"></a>
+<a name="index-numeri-di-chiamata_002c-modificare-il-posizionamento"></a>
+
+<p>Se i valori predefiniti di <code>outside-staff-priority</code> non producono
+il posizionamento desiderato, è possibile sovrascrivere la priorità di
+qualsiasi oggetto.  Immaginiamo di voler posizionare l&rsquo;estensione del segno d&rsquo;ottava
+sotto l&rsquo;estensore del testo nell&rsquo;esempio precedente.  Basta controllare la
+priorità dell&rsquo;oggetto <code>OttavaBracket</code> nella guida al Funzionamento interno
+o nelle tabelle precedenti e ridurla a un valore inferiore di quello di un
+oggetto <code>TextSpanner</code>, ricordando che <code>OttavaBracket</code> è creato
+nel contesto <code>Staff</code>:
+</p>
+<a name="index-TextSpanner_002c-esempio-di-sovrascrittura-1"></a>
+<a name="index-proprieta-bound_002ddetails_002c-esempio-1"></a>
+<a name="index-bound_002ddetails_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">% Set details for later Text Spanner
+\override TextSpanner.bound-details.left.text
+    = \markup { \small \bold Slower }
+% Place dynamics above staff
+\dynamicUp
+% Start Ottava Bracket
+\ottava #1
+c''4 \startTextSpan
+% Add Dynamic Text and hairpin
+c''4\pp\&lt;
+c''4
+% Add Text Script
+c''4^Text |
+c''4 c''
+% Add Dynamic Text and terminate hairpin
+c''4\ff c'' \stopTextSpan |
+% Stop Ottava Bracket
+\ottava #0
+c'4 c' c' c' |
+</pre><p>
+ <a href="../5f/lily-463b4ea2.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-463b4ea2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Si noti che alcuni di questi oggetti, in particolare i numeri di
+battuta, i segni di metronomo e i numeri di chiamata, si trovano nel
+contesto <code>Score</code>; dunque, assicurati di richiamare il contesto
+giusto per sovrascriverli.
+</p>
+<a name="index-legature-di-portamento-e-outside_002dstaff_002dpriority"></a>
+<a name="index-legature-di-portamento-e-articolazioni"></a>
+<a name="index-articolazioni-e-legature-di-portamento"></a>
+
+<p>Le legature di portamento sono classificate come oggetti interni al rigo, anche
+se spesso sono poste sopra il rigo, se le note alle quali sono collegate si
+trovano nella parte superiore del pentagramma.  Questo può far sì che gli oggetti esterni al rigo,
+come le articolazioni, siano spinti troppo in alto, dato che la legatura viene
+posizionata prima.  La proprietà <code>avoid-slur</code> dell&rsquo;articolazione
+può essere impostata su <code>'inside</code> per portare l&rsquo;articolazione
+dentro la legatura, ma la proprietà <code>avoid-slur</code> funziona solo se anche
+<code>outside-staff-priority</code> è impostata su <code>#f</code>.
+Altrimenti, si può impostare la proprietà <code>outside-staff-priority</code> della
+legatura di portamento su un valore numerico, in modo che sia posizionata
+insieme ad altri oggetti esterni al rigo in base a quel valore.  Ecco un
+esempio che mostra l&rsquo;effetto dei due metodi:
+</p>
+<blockquote><pre class="verbatim">\relative c'' {
+  c4( c^\markup { \tiny \sharp } d4.) c8 |
+  c4(
+    \once \override TextScript.avoid-slur = #'inside
+    \once \override TextScript.outside-staff-priority = ##f
+    c4^\markup { \tiny \sharp } d4.) c8 |
+  \once \override Slur.outside-staff-priority = #500
+    c4( c^\markup { \tiny \sharp } d4.) c8 |
+}
+</pre><p>
+ <a href="../23/lily-244d87e7.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-244d87e7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Attraverso la proprietà <code>outside-staff-priority</code> si può
+regolare anche la disposizone verticale di singoli oggetti;
+i risultati potrebbero tuttavia risultare non sempre ottimali.  Supponiamo
+di voler posizionare &ldquo;Testo3&rdquo; sopra &ldquo;Testo4&rdquo; nell&rsquo;esempio
+precedente (si veda <a href="automatic-behavior.it.html">Comportamento automatico</a>).
+Basta andare a cercare la priorità di <code>TextScript</code> nella
+guida al Funzionamento interno o nelle tabelle precedenti e
+aumentare la priorità di &ldquo;Testo3&rdquo; assegnando un valore più alto:
+</p>
+<a name="index-TextScript_002c-esempio-di-sovrascrittura"></a>
+<a name="index-proprieta-outside_002dstaff_002dpriority_002c-esempio"></a>
+<a name="index-outside_002dstaff_002dpriority_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">c''2^&quot;Testo1&quot;
+c''2^&quot;Testo2&quot; |
+\once \override TextScript.outside-staff-priority = #500
+c''2^&quot;Testo3&quot;
+c''2^&quot;Testo4&quot; |
+</pre><p>
+ <a href="../e3/lily-18368d9b.ly">
+  <img align="middle"
+       border="0"
+       src="../e3/lily-18368d9b.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Questo ovviamente pone &ldquo;Testo3&rdquo; sopra &ldquo;Testo4&rdquo;, ma anche
+sopra &ldquo;Testo2&rdquo;, mentre &ldquo;Testo4&rdquo; si sposta più in basso.  Forse questo
+risultato non ci soddisfa:  vorremmo piuttosto collocare
+tutti i testi alla stessa distanza dal rigo.  Per riuscirci,
+naturalmente, dobbiamo creare più spazio orizzontale tra le note per
+far posto al testo.  Lo si può ottenere con il comando
+<code>textLengthOn</code>.
+</p>
+<hr size="6">
+<a name="Il-comando-textLengthOn"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-outside_002dstaff_002dpriority-property" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; La proprietà outside-staff-priority&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti esterni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#dynamics-placement" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Posizionamento delle dinamiche &gt; </a>]</td></tr></table>
+<a name="the-textlengthon-command"></a>
+<h4 class="unnumberedsubsubsec">Il comando <code>\textLengthOn</code></h4>
+
+<a name="index-note_002c-distanziarle-insieme-al-testo"></a>
+
+<a name="index-_005ctextLengthOn"></a>
+<a name="index-_005ctextLengthOn-1"></a>
+<a name="index-textLengthOn"></a>
+<a name="index-textLengthOn-1"></a>
+<a name="index-_005ctextLengthOff"></a>
+<a name="index-_005ctextLengthOff-1"></a>
+<a name="index-textLengthOff"></a>
+<a name="index-textLengthOff-1"></a>
+
+<p>Per impostazione predefinita, finché si tratta di formattare la musica il
+testo prodotto dal comando <code>\markup</code> non occupa uno spazio orizzontale.
+Il comando <code>\textLengthOn</code> inverte questo comportamento e fa sì che
+le note si distanzino quanto basti per introdurre il testo:
+</p>
+<blockquote><pre class="verbatim">\textLengthOn  % Fa sì che le note si distanzino per introdurre il testo
+c''2^&quot;Text1&quot;
+c''2^&quot;Text2&quot; |
+c''2^&quot;Text3&quot;
+c''2^&quot;Text4&quot; |
+</pre><p>
+ <a href="../05/lily-641da848.ly">
+  <img align="middle"
+       border="0"
+       src="../05/lily-641da848.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Il comando che ripristina il comportamento predefinito è
+<code>\textLengthOff</code>.  Altrimenti si può usare <code>\once</code>
+con <code>\textLengthOn</code> se l&rsquo;effetto deve essere limitato
+a un singolo momento musicale.
+Analogalmente, la spaziatura per i segni di chiamata e le indicazioni
+di tempo è regolata in modo indipendente con i comandi <code>\markLengthOn</code>
+e <code>\markLengthOff</code>.
+</p>
+<a name="index-testo-a-margine_002c-permettere-le-collisioni"></a>
+
+<p>Per parte sua, anche il testo a margine eviterà le note che si estendono sopra il
+rigo.  Se lo si vuole evitare, la disposizione automatica in alto può
+essere disattivata impostando la priorità su <code>#f</code>.  Ecco un esempio
+che mostra come il testo a margine interagisce con tali note.
+</p>
+<a name="index-TextScript_002c-esempio-di-sovrascrittura-1"></a>
+<a name="index-proprieta-outside_002dstaff_002dpriority_002c-esempio-1"></a>
+<a name="index-outside_002dstaff_002dpriority_002c-esempio-1"></a>
+
+<blockquote><pre class="verbatim">\relative {
+  % Questo testo è abbastanza corto per starci senza creare collisioni
+  c2^&quot;Tes&quot; c'' |
+  R1 |
+
+  % Questo è troppo lungo per starci, quindi è spostato più in alto
+  c,,2^&quot;Testo&quot; c'' |
+  R1 |
+
+  % Disattiva l'elusione delle collisioni
+  \once \override TextScript.outside-staff-priority = ##f
+  c,,2^&quot;Testo Lungo   &quot; c'' |
+  R1 |
+
+  % Disattiva l'elusione delle collisioni
+  \once \override TextScript.outside-staff-priority = ##f
+  \textLengthOn        % e attiva textLengthOn
+  c,,2^&quot;Testo Lungo   &quot;  % Gli spazi finali vengono rispettati
+  c''2 |
+}
+</pre><p>
+ <a href="../e4/lily-e11abc59.ly">
+  <img align="middle"
+       border="0"
+       src="../e4/lily-e11abc59.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<a name="Posizionamento-delle-dinamiche"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#the-textlengthon-command" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Il comando textLengthOn&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti esterni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#grob-sizing" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Dimensione dei grob &gt; </a>]</td></tr></table>
+<a name="dynamics-placement"></a>
+<h4 class="unnumberedsubsubsec">Posizionamento delle dinamiche</h4>
+
+<a name="index-modificare-il-posizionamento-delle-dinamiche"></a>
+<a name="index-dinamiche_002c-modificare-il-posizionamento"></a>
+
+<p>Le indicazioni dinamiche sono di norma poste sotto il
+rigo, ma possono essere collocati al di sopra del pentagramma col comando <code>\dynamicUp</code>.
+Vengono posizionati verticalmente rispetto alla figura cui
+si riferiscono e fluttuano sopra (o sotto) tutti gli oggetti
+interni al rigo come le legature di fraseggio e i numeri di battuta.
+Si ottengono risultati abbastanza accettabili, come dimostra
+questo esempio:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \clef &quot;bass&quot;
+  \key aes \major
+  \time 9/8
+  \dynamicUp
+  bes4.~\f\&lt; \( bes4 bes8 des4\ff\&gt; c16 bes\! |
+  ees,2.~\)\mf ees4 r8 |
+}
+</pre><p>
+ <a href="../88/lily-461e4504.ly">
+  <img align="middle"
+       border="0"
+       src="../88/lily-461e4504.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Tuttavia, se le note e le loro dinamiche sono molto vicine,
+la disposizione automatica eviterà le collisioni spostando
+più all&rsquo;esterno i segni di dinamica successivi.  Questo
+potrebbe non essere però il posizionamento migliore, come mostra
+questo esempio piuttosto improbabile:
+</p>
+<blockquote><pre class="verbatim">\dynamicUp
+\relative { a'4\f b\mf a\mp b\p }
+</pre><p>
+ <a href="../68/lily-0fc78af9.ly">
+  <img align="middle"
+       border="0"
+       src="../68/lily-0fc78af9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Se si dovesse presentare una situazione simile in un &lsquo;vero&rsquo; brano musicale,
+converrebbe distanziare un po&rsquo; di più le note, in modo che i segni di dinamica
+possano essere tutti collocati alla stessa distanza verticale dal rigo.  Abbiamo
+potuto farlo per il testo a margine usando il comando <code>\textLengthOn</code>,
+ma non esiste un comando equivalente per i segni di dinamica.  Dunque
+dovremo scoprire come farlo usando i comandi <code>\override</code>.
+</p>
+<hr size="6">
+<a name="Dimensione-dei-grob"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#dynamics-placement" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Posizionamento delle dinamiche&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti esterni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="vertical-spacing.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Spaziatura verticale &gt; </a>]</td></tr></table>
+<a name="grob-sizing"></a>
+<h4 class="unnumberedsubsubsec">Dimensione dei grob</h4>
+
+<a name="Estensione-dei-grob"></a>
+<h3 class="subheading">Estensione dei grob</h3>
+
+<a name="index-estensione-dei-grob"></a>
+<a name="index-grob_002c-estensione"></a>
+
+<p>Dobbiamo innanzitutto sapere come i grob occupano lo spazio.  Tutti i grob
+hanno al loro interno un punto di riferimento che viene usato
+per posizionarli in modo relativo all&rsquo;oggetto genitore da cui derivano.  Questo
+punto nel grob viene poi disposto a una distanza orizzontale,
+<code>X-offset</code>, e a una distanza verticale, <code>Y-offset</code>, dall&rsquo;oggetto
+genitore.  L&rsquo;estensione (<em>extent</em>) orizzontale dell&rsquo;oggetto è data da una
+coppia di numeri, <code>X-extent</code>, che indica dove si trovano i margini
+sinistro e destro rispetto al punto di riferimento.  L&rsquo;ampiezza verticale
+è ugualmente definita da una coppia di numeri, <code>Y-extent</code>.
+Queste proprietà appartengono a tutti i grob che supportano l&rsquo;interfaccia
+<code>grob-interface</code>.
+</p>
+<a name="index-extra_002dspacing_002dwidth"></a>
+
+<p>Per impostazione predefinita, gli oggetti esterni al rigo presentano estensione
+pari a zero, in modo da potersi sovrapporre nella direzione orizzontale.
+Ciò si ottiene con un trucco, ovvero dando un valore infinito all&rsquo;estensione
+sinistra e infinito negativo a quella destra, impostando la proprietà
+<code>extra-spacing-width</code> su <code>'(+inf.0 . -inf.0)</code>.  Per
+assicurarci che non si sovrappongano nella direzione orizzontale, dobbiamo
+sovrascrivere il valore di <code>extra-spacing-width</code> per dar loro un po&rsquo; più
+di spazio.  Le unità sono lo spazio tra due linee del rigo, dunque spostare
+il margine sinistro di mezza unità a sinistra e quello destro di mezza unità
+a destra dovrebbe dare il risultato desiderato:
+</p>
+<blockquote><pre class="example">\override DynamicText.extra-spacing-width = #'(-0.5 . 0.5)
+</pre></blockquote>
+
+<p>Vediamo se funziona nell&rsquo;esempio precedente:
+</p>
+<a name="index-DynamicText_002c-esempio-di-sovrascrittura"></a>
+<a name="index-proprieta-extra_002dspacing_002dwidth_002c-esempio"></a>
+<a name="index-extra_002dspacing_002dwidth_002c-esempio"></a>
+
+<blockquote><pre class="verbatim">\dynamicUp
+% Aumenta la larghezza di 1 spazio rigo
+\override DynamicText.extra-spacing-width = #'(-0.5 . 0.5)
+\relative { a'4\f b\mf a\mp b\p }
+</pre><p>
+ <a href="../dc/lily-27ce6dcf.ly">
+  <img align="middle"
+       border="0"
+       src="../dc/lily-27ce6dcf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>L&rsquo;aspetto è migliore, ma sarebbe preferibile avere i segni di dinamica
+allineati alla stessa linea di base invece di spostarsi su e giù seguendo
+la posizione delle note.  La proprietà che permette di ottenere tale
+risultato è <code>staff-padding</code> ed è trattata nella sezione relativa
+alle collisioni (vedi <a href="collisions-of-objects.it.html">Collisioni tra oggetti</a>).
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.it.html" title="Inizio di questo capitolo o capitolo precedente"> &lt;&lt; Modifica dell'output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.it.html" title="Copertina (inizio) del documento" rel="start">Inizio</a>][<a href="index_toc.it.html#SEC_Contents" title="Indice" rel="contents">Contenuti</a>][<a href="lilypond-index.it.html" title="Indice" rel="index">Indice</a>][<a href="index_abt.it.html#SEC_About" title="Informazioni (aiuto)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.it.html" title="Capitolo successivo">&nbsp;Modelli &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#dynamics-placement" title="Sezione precedente in ordine di lettura" accesskey="p" rel="previous"> &lt; Posizionamento delle dinamiche&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#outside_002dstaff-objects" title="Sezione superiore" accesskey="u" rel="up">&nbsp; Su :&nbsp;Oggetti esterni al rigo&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="vertical-spacing.it.html" title="Sezione successiva in ordine di lettura" accesskey="n" rel="next">&nbsp;Spaziatura verticale &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Questa pagina documenta LilyPond-2.19.32 (ramo di sviluppo).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Altre lingue: <a href="outside_002dstaff-objects.html">English</a>, <a href="outside_002dstaff-objects.ca.html">català</a>, <a href="outside_002dstaff-objects.cs.html">česky</a>, <a href="outside_002dstaff-objects.de.html">deutsch</a>, <a href="outside_002dstaff-objects.es.html">español</a>, <a href="outside_002dstaff-objects.fr.html">français</a>, <a href="outside_002dstaff-objects.ja.html">日本語</a>, <a href="outside_002dstaff-objects.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.it.html"
+         title="Documentation Index">&lt;&lt; Torna all'indice della documentazione</a></p>
+<h4 class="toc_header"> <a href="index.it.html" title="Start of the manual">LilyPond &mdash; Manuale di apprendimento  v2.19.32 (ramo di sviluppo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutorial-1" href="tutorial.it.html">1. Tutorial</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilare-un-file-1" href="compiling-a-file.it.html">1.1 Compilare un file</a>    </li>
+    <li class=""><a name="toc-Come-scrivere-i-file-di-input-1" href="how-to-write-input-files.it.html">1.2 Come scrivere i file di input</a>    </li>
+    <li class=""><a name="toc-Gestire-gli-errori-1" href="dealing-with-errors.it.html">1.3 Gestire gli errori</a>    </li>
+    <li class=""><a name="toc-Come-leggere-i-manuali-1" href="how-to-read-the-manuals.it.html">1.4 Come leggere i manuali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notazione-comunemente-utilizzata-1" href="common-notation.it.html">2. Notazione comunemente utilizzata</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notazione-su-un-solo-pentagramma-1" href="single-staff-notation.it.html">2.1 Notazione su un solo pentagramma</a>    </li>
+    <li class=""><a name="toc-Note-simultanee-1" href="multiple-notes-at-once.it.html">2.2 Note simultanee</a>    </li>
+    <li class=""><a name="toc-Canzoni-1" href="songs.it.html">2.3 Canzoni</a>    </li>
+    <li class=""><a name="toc-Ritocchi-finali-1" href="final-touches.it.html">2.4 Ritocchi finali</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Concetti-fondamentali-1" href="fundamental-concepts.it.html">3. Concetti fondamentali</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Come-funzionano-i-file-di-input-di-LilyPond-1" href="how-lilypond-input-files-work.it.html">3.1 Come funzionano i file di input di LilyPond</a>    </li>
+    <li class=""><a name="toc-Le-voci-contengono-la-musica-1" href="voices-contain-music.it.html">3.2 Le voci contengono la musica</a>    </li>
+    <li class=""><a name="toc-Contesti-e-incisori-1" href="contexts-and-engravers.it.html">3.3 Contesti e incisori</a>    </li>
+    <li class=""><a name="toc-Estendere-i-modelli-1" href="extending-the-templates.it.html">3.4 Estendere i modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Modifica-dell_0027output-1" href="tweaking-output.it.html">4. Modifica dell&rsquo;output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modifiche-di-base-1" href="tweaking-basics.it.html">4.1 Modifiche di base</a>    </li>
+    <li class=""><a name="toc-Manuale-del-Funzionamento-interno-1" href="the-internals-reference-manual.it.html">4.2 Manuale del Funzionamento interno</a>    </li>
+    <li class=""><a name="toc-Aspetto-degli-oggetti-1" href="appearance-of-objects.it.html">4.3 Aspetto degli oggetti</a>    </li>
+    <li class=" toc_current"><a name="toc-Posizionamento-degli-oggetti-1" href="placement-of-objects.it.html">4.4 Posizionamento degli oggetti</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Comportamento-automatico-1" href="automatic-behavior.it.html">4.4.1 Comportamento automatico</a>      </li>
+      <li class=""><a name="toc-Oggetti-interni-al-rigo-1" href="within_002dstaff-objects.it.html">4.4.2 Oggetti interni al rigo</a>      </li>
+      <li class=" toc_current"><a name="toc-Oggetti-esterni-al-rigo-1" href="outside_002dstaff-objects.it.html">4.4.3 Oggetti esterni al rigo</a>
+      <ul class="toc">
+        <li class=""><a name="toc-La-proprieta-outside_002dstaff_002dpriority" href="outside_002dstaff-objects.it.html#the-outside_002dstaff_002dpriority-property">La proprietà <code>outside-staff-priority</code></a>        </li>
+        <li class=""><a name="toc-Il-comando-_005ctextLengthOn" href="outside_002dstaff-objects.it.html#the-textlengthon-command">Il comando <code>\textLengthOn</code></a>        </li>
+        <li class=""><a name="toc-Posizionamento-delle-dinamiche-1" href="outside_002dstaff-objects.it.html#dynamics-placement">Posizionamento delle dinamiche</a>        </li>
+        <li class=""><a name="toc-Dimensione-dei-grob-1" href="outside_002dstaff-objects.it.html#grob-sizing">Dimensione dei grob</a>        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Spaziatura-verticale-1" href="vertical-spacing.it.html">4.5 Spaziatura verticale</a>    </li>
+    <li class=""><a name="toc-Collisioni-tra-oggetti-1" href="collisions-of-objects.it.html">4.6 Collisioni tra oggetti</a>    </li>
+    <li class=""><a name="toc-Altre-modifiche-1" href="further-tweaking.it.html">4.7 Altre modifiche</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modelli-1" href="templates.it.html">A. Modelli</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Modelli-integrati-1" href="built_002din-templates.it.html">A.1 Modelli integrati</a>    </li>
+    <li class=""><a name="toc-Modelli-per-rigo-singolo-1" href="single-staff-templates.it.html">A.2 Modelli per rigo singolo</a>    </li>
+    <li class=""><a name="toc-Modelli-per-pianoforte-1" href="piano-templates.it.html">A.3 Modelli per pianoforte</a>    </li>
+    <li class=""><a name="toc-Modelli-per-quartetto-d_0027archi-1" href="string-quartet-templates.it.html">A.4 Modelli per quartetto d&rsquo;archi</a>    </li>
+    <li class=""><a name="toc-Modelli-per-gruppi-vocali-1" href="vocal-ensembles-templates.it.html">A.5 Modelli per gruppi vocali</a>    </li>
+    <li class=""><a name="toc-Modelli-per-orchestra-1" href="orchestral-templates.it.html">A.6 Modelli per orchestra</a>    </li>
+    <li class=""><a name="toc-Modelli-per-notazione-antica-1" href="ancient-notation-templates.it.html">A.7 Modelli per notazione antica</a>    </li>
+    <li class=""><a name="toc-Altri-modelli-1" href="other-templates.it.html">A.8 Altri modelli</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.it.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-di-LilyPond-1" href="lilypond-index.it.html">C. Indice di LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 1df9fc42197a6b2931f448cfba717527aead5e5a
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Cerca con Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Cerca">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

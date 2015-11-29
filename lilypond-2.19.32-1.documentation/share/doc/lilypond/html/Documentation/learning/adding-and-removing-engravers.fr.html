@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2015 par les auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+La traduction de la notice de droits d'auteur ci-dessous vise à
+faciliter sa compréhension par le lecteur non anglophone, mais seule la
+notice en anglais a valeur légale.
+
+Vous avez le droit de copier, distribuer et/ou modifier ce document
+selon les termes de la Licence GNU de documentation libre, version 1.1
+ou tout autre version ultérieure publiée par la Free Software
+Foundation, "sans aucune section invariante".
+Une copie de la licence est fournie à la section "Licence GNU de documentation libre".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on le 22 novembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU LilyPond &ndash; Manuel d'initiation: 3.3.5 Ajout et suppression de graveurs</title>
+
+<meta name="description" content="GNU LilyPond &ndash; Manuel d'initiation: 3.3.5 Ajout et suppression de graveurs">
+<meta name="keywords" content="GNU LilyPond &ndash; Manuel d'initiation: 3.3.5 Ajout et suppression de graveurs">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.fr.html#index" rel="start" title="LilyPond &mdash; Manuel d'initiation">
+<link href="lilypond-index.fr.html#lilypond-index" rel="index" title="C. Index de LilyPond">
+<link href="index_toc.fr.html#SEC_Contents" rel="contents" title="Table des mati&egrave;res">
+<link href="index_abt.fr.html#SEC_About" rel="help" title="A propos de ce document">
+<link href="contexts-and-engravers.fr.html#contexts-and-engravers" rel="up" title="3.3 Contextes et graveurs">
+<link href="lilypond-index.fr.html#lilypond-index" rel="next" title="C. Index de LilyPond">
+<link href="modifying-context-properties.fr.html#modifying-context-properties" rel="previous" title="3.3.4 Modification des propriétés d'un contexte">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="fr" class="learning devStatus">
+
+
+<div id="main">
+<a name="Ajout-et-suppression-de-graveurs"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Concepts fondamentaux&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.fr.html" title="Chapitre suivant">&nbsp;Retouche de partition &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="modifying-context-properties.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Modification des propriétés d'un contexte&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Contextes et graveurs&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="extending-the-templates.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Extension des modèles &gt; </a>]</td></tr></table>
+<a name="adding-and-removing-engravers"></a>
+<h3 class="subsection">3.3.5 Ajout et suppression de graveurs</h3>
+
+<a name="index-graveurs_002c-ajout"></a>
+<a name="index-graveurs_002c-suppression"></a>
+
+<a name="index-_005cconsists"></a>
+<a name="index-_005cconsists-1"></a>
+<a name="index-consists"></a>
+<a name="index-consists-1"></a>
+<a name="index-_005cremove"></a>
+<a name="index-_005cremove-1"></a>
+<a name="index-remove"></a>
+<a name="index-remove-1"></a>
+
+<p>Nous avons vu que chaque contexte met en œuvre plusieurs graveurs, et
+que chacun de ces graveurs est chargé de générer une composante
+particulière du fichier de sortie, qui les barres de mesure, qui la
+portée, qui les têtes de note, les hampes, etc.  Le fait de supprimer un
+graveur d&rsquo;un contexte éliminera sa contribution au fichier de sortie.
+Bien que ce soit là un moyen radical de modifier le résultat, cette
+pratique est dans quelques cas fort utile.
+</p>
+
+<a name="Modification-d_0027un-seul-contexte"></a>
+<h4 class="subsubheading">Modification d&rsquo;un seul contexte</h4>
+
+<p>Nous utilisons, pour supprimer un graveur d&rsquo;un contexte, la commande
+<code>\with</code> dès la création du-dit contexte, comme nous l&rsquo;avons vu dans
+la section précédente.
+</p>
+<p>Illustrons notre propos en reprenant un exemple du chapitre précédent,
+duquel nous supprimerons les lignes de la portée.  Pour mémoire, les
+lignes d&rsquo;une portée sont générées par le <code>Staff_symbol_engraver</code>.
+</p>
+<blockquote><pre class="verbatim">\new Staff \with {
+  \remove &quot;Staff_symbol_engraver&quot;
+}
+\relative {
+  c'4 d
+  \set fontSize = #-4  % make note heads smaller
+  e4 f |
+  \set fontSize = #2.5  % make note heads larger
+  g4 a
+  \unset fontSize  % return to default size
+  b4 c |
+}
+</pre><p>
+ <a href="../cd/lily-013999c1.ly">
+  <img align="middle"
+       border="0"
+       src="../cd/lily-013999c1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-ambitus_002c-graveur"></a>
+
+<p>Vous pouvez aussi ajouter individuellement un graveur à un contexte. La
+commande se formule ainsi :
+</p>
+<p><code>\consists <var>Nom_du_graveur</var></code>
+</p>
+<p>et se place dans un bloc <code>\with</code>.  Certaines partitions vocales
+font apparaître un <a name="index-ambitus"></a>
+<a href="../music-glossary/ambitus.fr.html">ambitus</a> au début de la portée, afin
+d&rsquo;indiquer ses notes extrêmes.  L&rsquo;ambitus est généré par
+l&rsquo;<code>Ambitus_engraver</code>, que l&rsquo;on peut adjoindre à n&rsquo;importe quel
+contexte.  Si nous l&rsquo;ajoutons au contexte <code>Voice</code>, seule la
+tessiture de cette voix sera calculée :
+</p>
+<blockquote><pre class="verbatim">\new Staff &lt;&lt;
+  \new Voice \with {
+    \consists &quot;Ambitus_engraver&quot;
+  } {
+    \relative {
+      \voiceOne
+      c''4 a b g
+    }
+  }
+  \new Voice {
+    \relative {
+      \voiceTwo
+      c'4 e d f
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../b2/lily-39f0e3f6.ly">
+  <img align="middle"
+       border="0"
+       src="../b2/lily-39f0e3f6.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>alors que si nous l&rsquo;ajoutons au contexte <code>Staff</code>,
+l&rsquo;<code>Ambitus_engraver</code> calculera l&rsquo;écart maximal à partir de toutes
+les notes de toutes les voix de la portée :
+</p>
+<blockquote><pre class="verbatim">\new Staff \with {
+  \consists &quot;Ambitus_engraver&quot;
+}
+&lt;&lt;
+  \new Voice {
+    \relative {
+      \voiceOne
+      c''4 a b g
+    }
+  }
+  \new Voice {
+    \relative {
+      \voiceTwo
+      c'4 e d f
+    }
+  }
+&gt;&gt;
+</pre><p>
+ <a href="../b4/lily-5b7601e4.ly">
+  <img align="middle"
+       border="0"
+       src="../b4/lily-5b7601e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<a name="Modification-de-tous-les-contextes-d_0027un-meme-type"></a>
+<h4 class="subsubheading">Modification de tous les contextes d&rsquo;un même type</h4>
+
+<a name="index-_005clayout-2"></a>
+<a name="index-_005clayout-3"></a>
+<a name="index-layout-3"></a>
+<a name="index-layout-4"></a>
+
+<p>Les exemples ci-dessus nous ont montré comment ajouter ou retirer des
+graveurs à des contextes individuels.  Nous pourrions aussi ajouter ou
+supprimer des graveurs à tous les contextes d&rsquo;un même type en insérant
+les commandes pour le contexte approprié au sein d&rsquo;un bloc
+<code>\layout</code>.  Si nous voulions afficher un ambitus pour chacune des
+portées d&rsquo;un système à quatre portées, il nous suffirait d&rsquo;écrire :
+</p>
+<blockquote><pre class="verbatim">\score {
+  &lt;&lt;
+    \new Staff {
+      \relative {
+        c''4 a b g
+      }
+    }
+    \new Staff {
+      \relative {
+        c'4 a b g
+      }
+    }
+    \new Staff {
+      \clef &quot;G_8&quot;
+      \relative {
+        c'4 a b g
+      }
+    }
+    \new Staff {
+      \clef &quot;bass&quot;
+      \relative {
+        c4 a b g
+      }
+    }
+  &gt;&gt;
+  \layout {
+    \context {
+      \Staff
+      \consists &quot;Ambitus_engraver&quot;
+    }
+  }
+}
+</pre><p>
+ <a href="../db/lily-0b2d303c.ly">
+  <img align="middle"
+       border="0"
+       src="../db/lily-0b2d303c.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Vous réglerez de la même manière les propriétés de tous les contextes
+d&rsquo;un type particulier si vous insérez les commandes <code>\set</code> dans un
+bloc <code>\context</code>.
+</p>
+<a name="Voir-aussi-12"></a>
+<h4 class="subsubheading">Voir aussi</h4>
+<p>Manuel de notation :
+<a name="index-Modification-des-greffons-de-contexte"></a>
+<a href="../notation/modifying-context-plug_002dins.fr.html">Modification des greffons de contexte</a>,
+<a name="index-Modification-des-reglages-par-defaut-d_0027un-contexte-1"></a>
+<a href="../notation/changing-context-default-settings.fr.html">Modification des réglages par défaut d'un contexte</a>.
+</p>
+<a name="Problemes-connus-et-avertissements-2"></a>
+<h4 class="subsubheading">Problèmes connus et avertissements</h4>
+<p>Dans la mesure où les <code>Stem_engraver</code> et <code>Beam_engraver</code>
+rattachent à des têtes de note les objets qu&rsquo;ils créent, désactiver le
+<code>Note_heads_engraver</code> entraîne l&rsquo;absence de hampe et de ligature.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="fundamental-concepts.fr.html" title="D&eacute;but de ce chapitre ou chapitre pr&eacute;c&eacute;dent"> &lt;&lt; Concepts fondamentaux&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.fr.html" title="Couverture (top) du document" rel="start">Racine</a>][<a href="index_toc.fr.html#SEC_Contents" title="Table des mati&egrave;res" rel="contents">Table des mati&egrave;res</a>][<a href="lilypond-index.fr.html" title="Index" rel="index">Index</a>][<a href="index_abt.fr.html#SEC_About" title="A propos (page d&rsquo;aide)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="tweaking-output.fr.html" title="Chapitre suivant">&nbsp;Retouche de partition &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="modifying-context-properties.fr.html" title="Section pr&eacute;c&eacute;dente dans l&rsquo;ordre de lecture" accesskey="p" rel="previous"> &lt; Modification des propriétés d'un contexte&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts-and-engravers.fr.html" title="Section sup&eacute;rieure" accesskey="u" rel="up">&nbsp;Plus haut:&nbsp;Contextes et graveurs&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="extending-the-templates.fr.html" title="Section suivante dans l&rsquo;ordre de lecture" accesskey="n" rel="next">&nbsp;Extension des modèles &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Cette page documente LilyPond-2.19.32 (branche de développement).
+</p>
+<p class="footer_report">
+Vos <a href="http://lilypond.org/help-us.html">suggestions</a> sont les bienvenues ; signalez tout bogue en français à la <a href="http://n2.nabble.com/LilyPond-French-Users-f1298960.html">liste francophone des utilisateurs</a> ou en anglais à la <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">liste des utilisateurs</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Autres langues&nbsp;: <a href="adding-and-removing-engravers.html">English</a>, <a href="adding-and-removing-engravers.ca.html">català</a>, <a href="adding-and-removing-engravers.cs.html">česky</a>, <a href="adding-and-removing-engravers.de.html">deutsch</a>, <a href="adding-and-removing-engravers.es.html">español</a>, <a href="adding-and-removing-engravers.hu.html">magyar</a>, <a href="adding-and-removing-engravers.it.html">italiano</a>, <a href="adding-and-removing-engravers.ja.html">日本語</a>, <a href="adding-and-removing-engravers.nl.html">nederlands</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.fr.html"
+         title="Documentation Index">&lt;&lt; Retour à l'accueil de la documentation</a></p>
+<h4 class="toc_header"> <a href="index.fr.html" title="Start of the manual">LilyPond &mdash; Manuel d&rsquo;initiation  v2.19.32 (branche de développement). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Tutoriel-1" href="tutorial.fr.html">1. Tutoriel</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Compilation-d_0027un-fichier-1" href="compiling-a-file.fr.html">1.1 Compilation d&rsquo;un fichier</a>    </li>
+    <li class=""><a name="toc-Composition-d_0027un-fichier-source-1" href="how-to-write-input-files.fr.html">1.2 Composition d&rsquo;un fichier source</a>    </li>
+    <li class=""><a name="toc-Gestion-des-erreurs-1" href="dealing-with-errors.fr.html">1.3 Gestion des erreurs</a>    </li>
+    <li class=""><a name="toc-Bien-lire-le-manuel-1" href="how-to-read-the-manuals.fr.html">1.4 Bien lire le manuel</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Bases-de-notation-musicale-1" href="common-notation.fr.html">2. Bases de notation musicale</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notation-sur-une-seule-portee" href="single-staff-notation.fr.html">2.1 Notation sur une seule portée</a>    </li>
+    <li class=""><a name="toc-Notes-simultanees" href="multiple-notes-at-once.fr.html">2.2 Notes simultanées</a>    </li>
+    <li class=""><a name="toc-Chansons-1" href="songs.fr.html">2.3 Chansons</a>    </li>
+    <li class=""><a name="toc-Dernieres-precisions" href="final-touches.fr.html">2.4 Dernières précisions</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Concepts-fondamentaux-1" href="fundamental-concepts.fr.html">3. Concepts fondamentaux</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Organisation-des-fichiers-LilyPond-1" href="how-lilypond-input-files-work.fr.html">3.1 Organisation des fichiers LilyPond</a>    </li>
+    <li class=""><a name="toc-Les-voix-contiennent-la-musique-1" href="voices-contain-music.fr.html">3.2 Les voix contiennent la musique</a>    </li>
+    <li class=" toc_current"><a name="toc-Contextes-et-graveurs-1" href="contexts-and-engravers.fr.html">3.3 Contextes et graveurs</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Tout-savoir-sur-les-contextes-1" href="contexts-explained.fr.html">3.3.1 Tout savoir sur les contextes</a>      </li>
+      <li class=""><a name="toc-Creation-d_0027un-contexte" href="creating-contexts.fr.html">3.3.2 Création d&rsquo;un contexte</a>      </li>
+      <li class=""><a name="toc-Tout-savoir-sur-les-graveurs-1" href="engravers-explained.fr.html">3.3.3 Tout savoir sur les graveurs</a>      </li>
+      <li class=""><a name="toc-Modification-des-proprietes-d_0027un-contexte" href="modifying-context-properties.fr.html">3.3.4 Modification des propriétés d&rsquo;un contexte</a>      </li>
+      <li class=" toc_current"><a name="toc-Ajout-et-suppression-de-graveurs-1" href="adding-and-removing-engravers.fr.html">3.3.5 Ajout et suppression de graveurs</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Extension-des-modeles" href="extending-the-templates.fr.html">3.4 Extension des modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Retouche-de-partition-1" href="tweaking-output.fr.html">4. Retouche de partition</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Retouches-elementaires" href="tweaking-basics.fr.html">4.1 Retouches élémentaires</a>    </li>
+    <li class=""><a name="toc-Le-manuel-de-reference-des-proprietes-internes" href="the-internals-reference-manual.fr.html">4.2 Le manuel de référence des propriétés internes</a>    </li>
+    <li class=""><a name="toc-Apparence-des-objets-1" href="appearance-of-objects.fr.html">4.3 Apparence des objets</a>    </li>
+    <li class=""><a name="toc-Positionnement-des-objets-1" href="placement-of-objects.fr.html">4.4 Positionnement des objets</a>    </li>
+    <li class=""><a name="toc-Espacement-vertical-1" href="vertical-spacing.fr.html">4.5 Espacement vertical</a>    </li>
+    <li class=""><a name="toc-Collisions-d_0027objets-1" href="collisions-of-objects.fr.html">4.6 Collisions d&rsquo;objets</a>    </li>
+    <li class=""><a name="toc-Autres-retouches-1" href="further-tweaking.fr.html">4.7 Autres retouches</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Modeles" href="templates.fr.html">A. Modèles</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Gabarits-preprogrammes" href="built_002din-templates.fr.html">A.1 Gabarits préprogrammés</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-portee-unique" href="single-staff-templates.fr.html">A.2 Modèles pour portée unique</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-piano" href="piano-templates.fr.html">A.3 Modèles pour piano</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-quatuor-a-cordes" href="string-quartet-templates.fr.html">A.4 Modèles pour quatuor à cordes</a>    </li>
+    <li class=""><a name="toc-Modeles-pour-ensemble-vocal" href="vocal-ensembles-templates.fr.html">A.5 Modèles pour ensemble vocal</a>    </li>
+    <li class=""><a name="toc-Orchestre-1" href="orchestral-templates.fr.html">A.6 Orchestre</a>    </li>
+    <li class=""><a name="toc-Exemples-de-notation-ancienne-1" href="ancient-notation-templates.fr.html">A.7 Exemples de notation ancienne</a>    </li>
+    <li class=""><a name="toc-Autres-modeles" href="other-templates.fr.html">A.8 Autres modèles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.fr.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Index-de-LilyPond-1" href="lilypond-index.fr.html">C. Index de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: febe2e4ff91dda9227e85274ae045e23c6b4ec28
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Recherche sur Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Rechercher">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 door de auteurs.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+De vertaling van onderstaande copyright voorwaarden wordt gegeven
+ter oriëntering voor niet-Engelstalige lezers.  Juridisch gezien is
+echter uitsluitend de engelstalige versie rechtsgeldig.
+
+Toestemming wordt verleend tot het kopiëren, verspreiden en/of wijzigen
+van dit document onder de bepalingen van de GNU Vrije Documentatie
+Licentie, versie 1.1 of iedere latere versie uitgegeven door de Free
+Software Foundation; zonder Invariante Secties, zonder Omslagteksten
+voor de Voorkant en zonder Omslagteksten voor de Achterkant. Een kopie
+van de licentie is opgenomen in de sectie getiteld "GNU Vrije
+Documentatie Licentie".
+
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond beginnershandleiding: 4.5.3 Real music example</title>
+
+<meta name="description" content="LilyPond beginnershandleiding: 4.5.3 Real music example">
+<meta name="keywords" content="LilyPond beginnershandleiding: 4.5.3 Real music example">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.nl.html#index" rel="start" title="LilyPond &ndash; Beginnershandleiding">
+<link href="lilypond-index.nl.html#lilypond-index" rel="index" title="C. LilyPond register">
+<link href="index_toc.nl.html#SEC_Contents" rel="contents" title="Inhoudsopgave">
+<link href="index_abt.nl.html#SEC_About" rel="help" title="No translation available!">
+<link href="collisions-of-objects.nl.html#collisions-of-objects" rel="up" title="4.5 Collisions of objects">
+<link href="lilypond-index.nl.html#lilypond-index" rel="next" title="C. LilyPond register">
+<link href="fixing-overlapping-notation.nl.html#fixing-overlapping-notation" rel="previous" title="4.5.2 Fixing overlapping notation">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="nl" class="learning devStatus">
+
+
+<div id="main">
+<a name="Real-music-example"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.nl.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="fixing-overlapping-notation.nl.html#the-force_002dhshift-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The force-hshift property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Collisions of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="further-tweaking.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Further tweaking &gt; </a>]</td></tr></table>
+<a name="real-music-example"></a>
+<h3 class="subsection">4.5.3 Real music example</h3>
+
+<p>We end this section on Tweaks by showing the steps to be taken to
+deal with a tricky example which needs several tweaks to produce
+the desired output.  The example has been deliberately chosen to
+illustrate the use of the Notation Reference to resolve unusual
+problems with notation.  It is not representative of the more usual
+engraving process, so please do not let these difficulties put
+you off!  Fortunately, difficulties like these are not very common!
+</p>
+<p>The example is from Chopin&rsquo;s Première Ballade, Op. 23, bars 6 to
+9, the transition from the opening Lento to Moderato.
+Here, first, is what we want the output to look like, but to avoid
+over-complicating the example too much we have left out the
+dynamics, fingering and pedalling.
+</p>
+<blockquote><p>
+ <a href="../19/lily-734a13be.ly">
+  <img align="middle"
+       border="0"
+       src="../19/lily-734a13be.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>We note first that the right hand part in the third bar
+requires four voices.  These are the five beamed eighth notes,
+the tied C, the half-note D which is merged with the eighth note
+D, and the dotted quarter note F-sharp, which is also merged with
+the eighth note at the same pitch.  Everything else is in a single
+voice, so the easiest way is to introduce these extra three voices
+temporarily at the time they are needed.  If you have forgotten
+how to do this, look at <a href="i_0027m-hearing-voices.nl.html">I&rsquo;m hearing Voices</a> and <a href="explicitly-instantiating-voices.nl.html">Explicitly instantiating voices</a>.  Here we choose to use explicitly instantiated
+voices for the polyphonic passage, as LilyPond is better able to
+avoid collisions if all voices are instantiated explicitly in this
+way.
+</p>
+<p>So let us begin by entering the notes as two variables, setting up
+the staff structure in a score block, and seeing what LilyPond
+produces by default:
+</p>
+<blockquote><pre class="verbatim">rhMusic = \relative {
+  \new Voice {
+    r2 c''4. g8 |
+    bes1~ |
+    \time 6/4
+    bes2. r8
+    % Start polyphonic section of four voices
+    &lt;&lt;
+      { c,8 d fis bes a }  % continuation of main voice
+      \new Voice {
+        \voiceTwo
+        c,8~ 2
+      }
+      \new Voice {
+        \voiceThree
+        s8 d2
+      }
+      \new Voice {
+        \voiceFour
+        s4 fis4.
+      }
+    &gt;&gt; |
+    g2.  % continuation of main voice
+  }
+}
+
+lhMusic = \relative {
+  r2 &lt;c' g ees&gt;2 |
+  &lt;d g, d&gt;1 |
+  r2. d,,4 r4 r |
+  r4
+}
+
+\score {
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;RH&quot;  &lt;&lt;
+      \key g \minor
+      \rhMusic
+    &gt;&gt;
+    \new Staff = &quot;LH&quot; &lt;&lt;
+      \key g \minor
+      \clef &quot;bass&quot;
+      \lhMusic
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../2d/lily-3ebcd93d.ly">
+  <img align="middle"
+       border="0"
+       src="../2d/lily-3ebcd93d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>All the notes are right, but the appearance is far from
+satisfactory.  The tie collides with the change in time signature,
+some notes are not merged together, and several notation elements
+are missing.  Let&rsquo;s first deal with the easier things.  We can
+easily add the left hand slur and the right hand phrasing slur,
+since these were all covered in the Tutorial.  Doing this gives:
+</p>
+<blockquote><pre class="verbatim">rhMusic = \relative {
+  \new Voice {
+    r2 c''4.\( g8 |
+    bes1~ |
+    \time 6/4
+    bes2. r8
+    % Start polyphonic section of four voices
+    &lt;&lt;
+      { c,8 d fis bes a }  % continuation of main voice
+      \new Voice {
+        \voiceTwo
+        c,8~ 2
+      }
+      \new Voice {
+        \voiceThree
+        s8 d2
+      }
+      \new Voice {
+        \voiceFour
+        s4 fis4.
+      }
+    &gt;&gt; |
+    g2.\)  % continuation of main voice
+  }
+}
+
+lhMusic = \relative {
+  r2 &lt;c' g ees&gt;2( |
+  &lt;d g, d&gt;1) |
+  r2. d,,4 r4 r |
+  r4
+}
+
+\score {
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;RH&quot;  &lt;&lt;
+      \key g \minor
+      \rhMusic
+    &gt;&gt;
+    \new Staff = &quot;LH&quot; &lt;&lt;
+      \key g \minor
+      \clef &quot;bass&quot;
+      \lhMusic
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../16/lily-ec7f1c19.ly">
+  <img align="middle"
+       border="0"
+       src="../16/lily-ec7f1c19.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>The first bar is now correct.  The second bar contains an arpeggio and
+is terminated by a double bar line.  How do we do these, as they have
+not been mentioned in this Learning Manual?  This is where we need to
+turn to the Notation Reference.  Looking up &lsquo;arpeggio&rsquo; and &lsquo;bar
+line&rsquo; in the index quickly shows us that an arpeggio is produced by
+appending <code>\arpeggio</code> to a chord, and a double bar line is
+produced by the <code>\bar &quot;||&quot;</code> command.  That&rsquo;s easily done.  We
+next need to correct the collision of the tie with the time signature.
+This is best done by moving the tie upwards.  Moving objects was
+covered earlier in <a href="moving-objects.nl.html">Moving objects</a>, which says that objects
+positioned relative to the staff can be moved vertically by overriding
+their <code>staff-position</code> property, which is specified in half staff
+spaces relative to the center line of the staff.  So the following
+override placed just before the first tied note would move the tie up
+to 3.5 half staff spaces above the center line:
+</p>
+<p><code>\once \override Tie.staff-position = #3.5</code>
+</p>
+<p>This completes bar two, giving:
+</p>
+<blockquote><pre class="verbatim">rhMusic = \relative {
+  \new Voice {
+    r2 c''4.\( g8 |
+    \once \override Tie.staff-position = #3.5
+    bes1~ |
+    \bar &quot;||&quot;
+    \time 6/4
+    bes2. r8
+    % Start polyphonic section of four voices
+    &lt;&lt;
+      { c,8 d fis bes a }  % continuation of main voice
+      \new Voice {
+        \voiceTwo
+        c,8~ 2
+      }
+      \new Voice {
+        \voiceThree
+        s8 d2
+      }
+      \new Voice {
+        \voiceFour
+        s4 fis4.
+      }
+    &gt;&gt; |
+    g2.\)  % continuation of main voice
+  }
+}
+
+lhMusic = \relative {
+  r2 &lt;c' g ees&gt;2( |
+  &lt;d g, d&gt;1)\arpeggio |
+  r2. d,,4 r4 r |
+  r4
+}
+
+\score {
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;RH&quot;  &lt;&lt;
+      \key g \minor
+      \rhMusic
+    &gt;&gt;
+    \new Staff = &quot;LH&quot; &lt;&lt;
+      \key g \minor
+      \clef &quot;bass&quot;
+      \lhMusic
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../87/lily-9fd63a15.ly">
+  <img align="middle"
+       border="0"
+       src="../87/lily-9fd63a15.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>On to bar three and the start of the Moderato section.  The tutorial
+showed how to add bold text with the <code>\markup</code> command, so
+adding &ldquo;Moderato&rdquo; in bold is easy.  But how do we merge notes in
+different voices together?  This is where we need to turn again to
+the Notation Reference for help.  A search for &ldquo;merge&rdquo; in the
+Notation Reference index quickly leads us to the commands for merging
+differently headed and differently dotted notes in
+<a name="index-Collision-resolution"></a>
+<a href="../notation/multiple-voices.nl.html#collision-resolution">Collision resolution</a>.  In our example we need to merge both
+types of note for the duration of the polyphonic section in bar 3,
+so using the information we find in the Notation Reference we add
+</p>
+<blockquote><pre class="example">\mergeDifferentlyHeadedOn
+\mergeDifferentlyDottedOn
+</pre></blockquote>
+
+<p>to the start of that section and
+</p>
+<blockquote><pre class="example">\mergeDifferentlyHeadedOff
+\mergeDifferentlyDottedOff
+</pre></blockquote>
+
+<p>to the end, giving:
+</p>
+<blockquote><p>
+ <a href="../e6/lily-abf8a949.ly">
+  <img align="middle"
+       border="0"
+       src="../e6/lily-abf8a949.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>These overrides have merged the two F-sharp notes, but not the two
+on D.  Why not?  The answer is there in the same section in the
+Notation Reference &ndash; notes being merged must have stems in
+opposite directions and two notes cannot be merged successfully if
+there is a third note in the same note column.  Here the two D&rsquo;s
+both have upward stems and there is a third note &ndash; the C.  We know
+how to change the stem direction using <code>\stemDown</code>, and
+the Notation Reference also says how to move the C &ndash; apply a shift
+using one of the <code>\shift</code> commands.  But which one?
+The C is in voice two which has shift off, and the two D&rsquo;s are in
+voices one and three, which have shift off and shift on,
+respectively.  So we have to shift the C a further level still
+using <code>\shiftOnn</code> to avoid it interfering with the two D&rsquo;s.
+Applying these changes gives:
+</p>
+<a name="index-Tie_002c-example-of-overriding"></a>
+<a name="index-staff_002dposition-property_002c-example-1"></a>
+
+<blockquote><pre class="verbatim">rhMusic = \relative {
+  \new Voice {
+    r2 c''4.\( g8 |
+    \once \override Tie.staff-position = #3.5
+    bes1~ |
+    \bar &quot;||&quot;
+    \time 6/4
+    bes2.^\markup { \bold &quot;Moderato&quot; } r8
+    \mergeDifferentlyHeadedOn
+    \mergeDifferentlyDottedOn
+    % Start polyphonic section of four voices
+    &lt;&lt;
+      { c,8 d fis bes a }  % continuation of main voice
+      \new Voice {
+        \voiceTwo
+        % Move the c2 out of the main note column
+        % so the merge will work
+        c,8~ \shiftOnn c2
+      }
+      \new Voice {
+        \voiceThree
+        % Stem on the d2 must be down to permit merging
+        s8 \stemDown d2
+      }
+      \new Voice {
+        \voiceFour
+        s4 fis4.
+      }
+    &gt;&gt; |
+    \mergeDifferentlyHeadedOff
+    \mergeDifferentlyDottedOff
+    g2.\)  % continuation of main voice
+  }
+}
+
+lhMusic = \relative {
+  r2 &lt;c' g ees&gt;2( |
+  &lt;d g, d&gt;1)\arpeggio |
+  r2. d,,4 r4 r |
+  r4
+}
+
+\score {
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;RH&quot;  &lt;&lt;
+      \key g \minor
+      \rhMusic
+    &gt;&gt;
+    \new Staff = &quot;LH&quot; &lt;&lt;
+      \key g \minor
+      \clef &quot;bass&quot;
+      \lhMusic
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../b1/lily-d3e65003.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-d3e65003.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Nearly there.  Only two problems remain: The downward stem on the
+merged D should not be there, and the C would be better positioned
+to the right of the D&rsquo;s.  We know how to do both of these from the
+earlier tweaks: we make the stem transparent, and move the C with
+the <code>force-hshift</code> property.  Here&rsquo;s the final result:
+</p>
+<a name="index-NoteColumn_002c-example-of-overriding-1"></a>
+<a name="index-force_002dhshift-property_002c-example-1"></a>
+<a name="index-Stem_002c-example-of-overriding-2"></a>
+<a name="index-transparent-property_002c-example-2"></a>
+
+<blockquote><pre class="verbatim">rhMusic = \relative {
+  \new Voice {
+    r2 c''4.\( g8 |
+    \once \override Tie.staff-position = #3.5
+    bes1~ |
+    \bar &quot;||&quot;
+    \time 6/4
+    bes2.^\markup { \bold &quot;Moderato&quot; } r8
+    \mergeDifferentlyHeadedOn
+    \mergeDifferentlyDottedOn
+    % Start polyphonic section of four voices
+    &lt;&lt;
+      { c,8 d fis bes a }  % continuation of main voice
+      \new Voice {
+        \voiceTwo
+        c,8~
+        % Reposition the c2 to the right of the merged note
+        \once \override NoteColumn.force-hshift = #1.0
+        % Move the c2 out of the main note column
+        % so the merge will work
+        \shiftOnn
+        c2
+      }
+      \new Voice {
+        \voiceThree
+        s8
+        % Stem on the d2 must be down to permit merging
+        \stemDown
+        % Stem on the d2 should be invisible
+        \tweak Stem.transparent ##t
+        d2
+      }
+      \new Voice {
+        \voiceFour
+        s4 fis4.
+      }
+    &gt;&gt; |
+    \mergeDifferentlyHeadedOff
+    \mergeDifferentlyDottedOff
+    g2.\)  % continuation of main voice
+  }
+}
+
+lhMusic = \relative {
+  r2 &lt;c' g ees&gt;2( |
+  &lt;d g, d&gt;1)\arpeggio |
+  r2. d,,4 r4 r |
+  r4
+}
+
+\score {
+  \new PianoStaff &lt;&lt;
+    \new Staff = &quot;RH&quot;  &lt;&lt;
+      \key g \minor
+      \rhMusic
+    &gt;&gt;
+    \new Staff = &quot;LH&quot; &lt;&lt;
+      \key g \minor
+      \clef &quot;bass&quot;
+      \lhMusic
+    &gt;&gt;
+  &gt;&gt;
+}
+</pre><p>
+ <a href="../c4/lily-6b61b137.ly">
+  <img align="middle"
+       border="0"
+       src="../c4/lily-6b61b137.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="tweaking-output.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Tweaking output&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="templates.nl.html" title="Next chapter">&nbsp;Templates &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="fixing-overlapping-notation.nl.html#the-force_002dhshift-property" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; The force-hshift property&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="collisions-of-objects.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Collisions of objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="further-tweaking.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Further tweaking &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Deze pagina is voor LilyPond-2.19.32 (ontwikkelingstak).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Andere talen: <a href="real-music-example.html">English</a>, <a href="real-music-example.ca.html">català</a>, <a href="real-music-example.cs.html">česky</a>, <a href="real-music-example.de.html">deutsch</a>, <a href="real-music-example.es.html">español</a>, <a href="real-music-example.fr.html">français</a>, <a href="real-music-example.it.html">italiano</a>, <a href="real-music-example.ja.html">日本語</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.nl.html"
+         title="Documentation Index">&lt;&lt; Terug naar de Documentatieindex</a></p>
+<h4 class="toc_header"> <a href="index.nl.html" title="Start of the manual">LilyPond &ndash; Beginnershandleiding  v2.19.32 (ontwikkelingstak). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Leerboek-1" href="tutorial.nl.html">1. Leerboek</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Het-compileren-van-een-bestand-1" href="compiling-a-file.nl.html">1.1 Het compileren van een bestand</a>    </li>
+    <li class=""><a name="toc-Het-schrijven-van-invoerbestanden-1" href="how-to-write-input-files.nl.html">1.2 Het schrijven van invoerbestanden</a>    </li>
+    <li class=""><a name="toc-Omgaan-met-foutmeldingen-1" href="dealing-with-errors.nl.html">1.3 Omgaan met foutmeldingen</a>    </li>
+    <li class=""><a name="toc-Het-lezen-van-de-handleidingen-1" href="how-to-read-the-manuals.nl.html">1.4 Het lezen van de handleidingen</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Algemene-muzieknotatie-1" href="common-notation.nl.html">2. Algemene muzieknotatie</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Notatie-voor-een-enkele-notenbalk-1" href="single-staff-notation.nl.html">2.1 Notatie voor een enkele notenbalk</a>    </li>
+    <li class=""><a name="toc-Verschillende-noten-tegelijk-klinkend-1" href="multiple-notes-at-once.nl.html">2.2 Verschillende noten tegelijk klinkend</a>    </li>
+    <li class=""><a name="toc-Vocale-muziek-1" href="songs.nl.html">2.3 Vocale muziek</a>    </li>
+    <li class=""><a name="toc-De-puntjes-op-de-i_0027s-1" href="final-touches.nl.html">2.4 De puntjes op de i&rsquo;s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Fundamentele-concepten-1" href="fundamental-concepts.nl.html">3. Fundamentele concepten</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Hoe-LilyPond_002dinvoerbestanden-werken-1" href="how-lilypond-input-files-work.nl.html">3.1 Hoe LilyPond-invoerbestanden werken</a>    </li>
+    <li class=""><a name="toc-Voices-contain-music-1" href="voices-contain-music.nl.html">3.2 Voices contain music</a>    </li>
+    <li class=""><a name="toc-Contexts-and-engravers-1" href="contexts-and-engravers.nl.html">3.3 Contexts and engravers</a>    </li>
+    <li class=""><a name="toc-Extending-the-templates-1" href="extending-the-templates.nl.html">3.4 Extending the templates</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Tweaking-output-1" href="tweaking-output.nl.html">4. Tweaking output</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Tweaking-basics-1" href="tweaking-basics.nl.html">4.1 Tweaking basics</a>    </li>
+    <li class=""><a name="toc-The-Internals-Reference-manual-1" href="the-internals-reference-manual.nl.html">4.2 The Internals Reference manual</a>    </li>
+    <li class=""><a name="toc-Appearance-of-objects-1" href="appearance-of-objects.nl.html">4.3 Appearance of objects</a>    </li>
+    <li class=""><a name="toc-Placement-of-objects-1" href="placement-of-objects.nl.html">4.4 Placement of objects</a>    </li>
+    <li class=" toc_current"><a name="toc-Collisions-of-objects-1" href="collisions-of-objects.nl.html">4.5 Collisions of objects</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Moving-objects-1" href="moving-objects.nl.html">4.5.1 Moving objects</a>      </li>
+      <li class=""><a name="toc-Fixing-overlapping-notation-1" href="fixing-overlapping-notation.nl.html">4.5.2 Fixing overlapping notation</a>      </li>
+      <li class=" toc_current"><a name="toc-Real-music-example-1" href="real-music-example.nl.html">4.5.3 Real music example</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Further-tweaking-1" href="further-tweaking.nl.html">4.6 Further tweaking</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Templates-1" href="templates.nl.html">A. Templates</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Single-staff-templates-1" href="single-staff-templates.nl.html">A.1 Single staff templates</a>    </li>
+    <li class=""><a name="toc-Piano-templates-1" href="piano-templates.nl.html">A.2 Piano templates</a>    </li>
+    <li class=""><a name="toc-String-quartet-templates-1" href="string-quartet-templates.nl.html">A.3 String quartet templates</a>    </li>
+    <li class=""><a name="toc-Vocal-ensembles-templates-1" href="vocal-ensembles-templates.nl.html">A.4 Vocal ensembles templates</a>    </li>
+    <li class=""><a name="toc-Orchestral-templates-1" href="orchestral-templates.nl.html">A.5 Orchestral templates</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-templates-1" href="ancient-notation-templates.nl.html">A.6 Ancient notation templates</a>    </li>
+    <li class=""><a name="toc-Other-templates-1" href="other-templates.nl.html">A.7 Other templates</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.nl.html">B. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-register-1" href="lilypond-index.nl.html">C. LilyPond register</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 12c6693055728e69dce5c4e5a4a2b5f71180a5e2
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+-->
+
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
++-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Zoek met Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Zoek">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

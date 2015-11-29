@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Application Usage: 4.1.1 Configuring the system</title>
+
+<meta name="description" content="LilyPond Application Usage: 4.1.1 Configuring the system">
+<meta name="keywords" content="LilyPond Application Usage: 4.1.1 Configuring the system">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#index" rel="start" title="LilyPond &mdash; Usage">
+<link href="lilypond-index.html#lilypond-index" rel="index" title="B. LilyPond index">
+<link href="index_toc.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.html#SEC_About" rel="help" title="About This Document">
+<link href="point-and-click.html#point-and-click" rel="up" title="4.1 Point and click">
+<link href="lilypond-index.html#lilypond-index" rel="next" title="B. LilyPond index">
+<link href="point-and-click.html#point-and-click" rel="previous" title="4.1 Point and click">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="usage devStatus">
+
+
+<div id="main">
+<a name="Configuring-the-system-for-point-and-click"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="point-and-click.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="point-and-click.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-xpdf-for-point-and-click" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Using Xpdf for point and click &gt; </a>]</td></tr></table>
+<a name="configuring-the-system-for-point-and-click"></a>
+<h3 class="subsection">4.1.1 Configuring the system</h3>
+
+<p>When this functionality is active, LilyPond adds hyperlinks to PDF and
+SVG files.  These hyperlinks are sent to a &lsquo;URI helper&rsquo; or a
+web-browser, which opens a text-editor with the cursor in the right
+place.
+</p>
+<p>To make this chain work, you should configure your PDF viewer to
+follow hyperlinks using the &lsquo;<tt>lilypond-invoke-editor</tt>&rsquo; script
+supplied with LilyPond.
+</p>
+<p>The program &lsquo;<tt>lilypond-invoke-editor</tt>&rsquo; is a small helper
+program.  It will invoke an editor for the special <code>textedit</code>
+URIs, and run a web browser for others.  It tests the environment
+variable <code>EDITOR</code> for the following patterns,
+</p>
+<dl compact="compact">
+<dt> <code>emacs</code></dt>
+<dd><p>  this will invoke
+</p><blockquote><pre class="example">emacsclient --no-wait +<var>line</var>:<var>column</var> <var>file</var>
+</pre></blockquote>
+</dd>
+<dt> <code>gvim</code></dt>
+<dd><p>  this will invoke
+</p><blockquote><pre class="example">gvim --remote +:<var>line</var>:norm<var>column</var> <var>file</var>
+</pre></blockquote>
+
+</dd>
+<dt> <code>nedit</code></dt>
+<dd><p>this will invoke
+</p><blockquote><pre class="example">  nc -noask +<var>line</var> <var>file</var>'
+</pre></blockquote>
+</dd>
+</dl>
+
+<p>The environment variable <code>LYEDITOR</code> is used to override this.  It
+contains the command line to start the editor, where <code>%(file)s</code>,
+<code>%(column)s</code>, <code>%(line)s</code> is replaced with the file, column
+and line respectively.  The  setting
+</p>
+<blockquote><pre class="example">emacsclient --no-wait +%(line)s:%(column)s %(file)s
+</pre></blockquote>
+
+<p>for <code>LYEDITOR</code> is equivalent to the standard emacsclient
+invocation.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#using-xpdf-for-point-and-click" accesskey="1">Using Xpdf</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#using-gnome-2-for-point-and-click" accesskey="2">Using GNOME 2</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#using-gnome-3-for-point-and-click" accesskey="3">Using GNOME 3</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#extra-configuration-for-evince" accesskey="4">Extra configuration for Evince</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Using-Xpdf-for-point-and-click"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#configuring-the-system-for-point-and-click" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Configuring the system for point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#configuring-the-system-for-point-and-click" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Configuring the system for point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-gnome-2-for-point-and-click" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Using GNOME 2 for point and click &gt; </a>]</td></tr></table>
+<a name="using-xpdf-for-point-and-click"></a>
+<h4 class="unnumberedsubsubsec">Using Xpdf</h4>
+
+<a name="index-Xpdf"></a>
+
+<p>For Xpdf on UNIX, the following should be present in
+&lsquo;<tt>xpdfrc</tt>&rsquo;.  On UNIX, this file is found either in
+&lsquo;<tt>/etc/xpdfrc</tt>&rsquo; or as &lsquo;<tt>$HOME/.xpdfrc</tt>&rsquo;.
+</p>
+<blockquote><pre class="example">urlCommand     &quot;lilypond-invoke-editor %s&quot;
+</pre></blockquote>
+
+<p>If you are using Ubuntu, it is likely that the version of Xpdf
+installed with your system crashes on every PDF file: this state
+has been persisting for several years and is due to library
+mismatches.  Your best bet is to install a current &lsquo;<samp>xpdf</samp>&rsquo;
+package and the corresponding &lsquo;<samp>libpoppler</samp>&rsquo; package from
+Debian instead.  Once you have tested that this works, you might
+want to use
+</p>
+<blockquote><pre class="example">sudo apt-mark hold xpdf
+</pre></blockquote>
+
+<p>in order to keep Ubuntu from overwriting it with the next
+&lsquo;update&rsquo; of its crashing package.
+</p>
+
+<hr size="6">
+<a name="Using-GNOME-2-for-point-and-click"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-xpdf-for-point-and-click" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Using Xpdf for point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#configuring-the-system-for-point-and-click" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Configuring the system for point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#using-gnome-3-for-point-and-click" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Using GNOME 3 for point and click &gt; </a>]</td></tr></table>
+<a name="using-gnome-2-for-point-and-click"></a>
+<h4 class="unnumberedsubsubsec">Using GNOME 2</h4>
+
+<p>For using GNOME 2 (and PDF viewers integrated with it), the magic
+invocation for telling the system about the &lsquo;<samp>textedit:</samp>&rsquo; URI
+is;
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">gconftool-2 -t string -s /desktop/gnome/url-handlers/textedit/command &quot;lilypond-invoke-editor %s&quot;
+gconftool-2 -s /desktop/gnome/url-handlers/textedit/needs_terminal false -t bool
+gconftool-2 -t bool -s /desktop/gnome/url-handlers/textedit/enabled true
+</pre></td></tr></table>
+
+<p>After that invocation;
+</p>
+<blockquote><pre class="example">gnome-open textedit:///etc/issue:1:0:0
+</pre></blockquote>
+
+<p>should call &lsquo;<tt>lilypond-invoke-editor</tt>&rsquo; for opening files.
+</p>
+
+<hr size="6">
+<a name="Using-GNOME-3-for-point-and-click"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-gnome-2-for-point-and-click" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Using GNOME 2 for point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#configuring-the-system-for-point-and-click" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Configuring the system for point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#extra-configuration-for-evince" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Extra configuration for Evince &gt; </a>]</td></tr></table>
+<a name="using-gnome-3-for-point-and-click"></a>
+<h4 class="unnumberedsubsubsec">Using GNOME 3</h4>
+
+<p>In GNOME 3, URIs are handled by the &lsquo;gvfs&rsquo; layer rather than by
+&lsquo;gconf&rsquo;.  Create a file in a local directory such as &lsquo;<tt>/tmp</tt>&rsquo;
+that is called &lsquo;<tt>lilypond-invoke-editor.desktop</tt>&rsquo; and has the
+contents;
+</p>
+<blockquote><pre class="example">[Desktop Entry]
+Version=1.0
+Name=lilypond-invoke-editor
+GenericName=Textedit URI handler
+Comment=URI handler for textedit:
+Exec=lilypond-invoke-editor %u
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/textedit;
+Categories=Editor
+NoDisplay=true
+</pre></blockquote>
+<p>and then execute the commands
+</p><blockquote><pre class="example">xdg-desktop-menu install ./lilypond-invoke-editor.desktop
+xdg-mime default lilypond-invoke-editor.desktop x-scheme-handler/textedit
+</pre></blockquote>
+
+<p>After that invocation;
+</p>
+<blockquote><pre class="example">gnome-open textedit:///etc/issue:1:0:0
+</pre></blockquote>
+<p>should call &lsquo;<tt>lilypond-invoke-editor</tt>&rsquo; for opening files.
+</p>
+
+<hr size="6">
+<a name="Extra-configuration-for-Evince"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#using-gnome-3-for-point-and-click" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Using GNOME 3 for point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#configuring-the-system-for-point-and-click" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Configuring the system for point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#enabling-point-and-click" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Enabling point and click &gt; </a>]</td></tr></table>
+<a name="extra-configuration-for-evince"></a>
+<h4 class="unnumberedsubsubsec">Extra configuration for Evince</h4>
+
+<a name="index-Evince"></a>
+
+<p>If <code>gnome-open</code> works, but Evince still refuses to open point
+and click links due to denied permissions, you might need to
+change the Apparmor profile of Evince which controls the kind of
+actions Evince is allowed to perform.
+</p>
+<p>For Ubuntu, the process is to edit the file
+&lsquo;<tt>/etc/apparmor.d/local/usr.bin.evince</tt>&rsquo; and append the
+following lines:
+</p>
+<blockquote><pre class="example"># For Textedit links
+/usr/local/bin/lilypond-invoke-editor Cx -&gt; sanitized_helper,
+</pre></blockquote>
+
+<p>After adding these lines, call
+</p>
+<blockquote><pre class="example">sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.bin.evince
+</pre></blockquote>
+
+<p>Now Evince should be able to open point and click links.  It is
+likely that similar configurations will work for other viewers.
+</p>
+
+<hr size="6">
+<a name="Enabling-point-and-click"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#extra-configuration-for-evince" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Extra configuration for Evince&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="point-and-click.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#selective-point_002dand_002dclick" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Selective point-and-click &gt; </a>]</td></tr></table>
+<a name="enabling-point-and-click"></a>
+<h3 class="unnumberedsubsec">Enabling point and click</h3>
+<a name="index-file-size_002c-output"></a>
+
+<p>Point and click functionality is enabled by default when creating
+PDF or SVG files.
+</p>
+<p>The point and click links enlarge the output files significantly.  For
+reducing the size of these (and PS) files, point and click may
+be switched off by issuing
+</p>
+<blockquote><pre class="example">\pointAndClickOff
+</pre></blockquote>
+
+<p>in a &lsquo;<tt>.ly</tt>&rsquo; file.  Point and click may be explicitly enabled with
+</p>
+<blockquote><pre class="example">\pointAndClickOn
+</pre></blockquote>
+
+<p>Alternately, you may disable point and click with a command-line
+option:
+</p>
+<blockquote><pre class="example">lilypond -dno-point-and-click file.ly
+</pre></blockquote>
+
+<div class="warning"><p><strong>Note:</strong> You should always turn off point and click in any LilyPond
+files to be distributed to avoid including path information about
+your computer in the PDF file, which can pose a security risk.
+</p>
+</div>
+
+<hr size="6">
+<a name="Selective-point_002dand_002dclick"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#enabling-point-and-click" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Enabling point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="point-and-click.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="text-editor-support.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Text editor support &gt; </a>]</td></tr></table>
+<a name="selective-point_002dand_002dclick"></a>
+<h3 class="unnumberedsubsec">Selective point-and-click</h3>
+
+<p>For some interactive applications, it may be desirable to only
+include certain point-and-click items.  For example, if somebody
+wanted to create an application which played audio or video
+starting from a particular note, it would be awkward if clicking
+on the note produced the point-and-click location for an
+accidental or slur which occurred over that note.
+</p>
+<p>This may be controlled by indicating which events to include:
+</p>
+<ul>
+<li>
+Hard-coded in the &lsquo;<tt>.ly</tt>&rsquo; file:
+
+<blockquote><pre class="example">\pointAndClickTypes #'note-event
+\relative {
+  c'2\f( f)
+}
+</pre></blockquote>
+
+<p>or
+</p>
+<blockquote><pre class="example">#(ly:set-option 'point-and-click 'note-event)
+\relative {
+  c'2\f( f)
+}
+</pre></blockquote>
+
+</li><li>
+Command-line:
+
+<blockquote><pre class="example">lilypond -dpoint-and-click=note-event   example.ly
+</pre></blockquote>
+
+</li></ul>
+
+<p>Multiple events can be included:
+</p>
+<ul>
+<li>
+Hard-coded in the &lsquo;<tt>.ly</tt>&rsquo; file:
+
+<blockquote><pre class="example">\pointAndClickTypes #'(note-event dynamic-event)
+\relative {
+  c'2\f( f)
+}
+</pre></blockquote>
+
+<p>or
+</p>
+<blockquote><pre class="example">#(ly:set-option 'point-and-click '(note-event dynamic-event))
+\relative {
+  c'2\f( f)
+}
+</pre></blockquote>
+
+</li><li>
+Command-line:
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">lilypond \
+  -e&quot;(ly:set-option 'point-and-click '(note-event dynamic-event))&quot; \
+  example.ly
+</pre></td></tr></table>
+
+</li></ul>
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="external-programs.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; External programs&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-index.html" title="Index" rel="index">Index</a>][<a href="index_abt.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="suggestions-for-writing-files.html" title="Next chapter">&nbsp;Suggestions for writing files &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#enabling-point-and-click" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Enabling point and click&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="point-and-click.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Point and click&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="text-editor-support.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;Text editor support &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+This page is for LilyPond-2.19.32 (development-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Other languages: <a href="configuring-the-system-for-point-and-click.ca.html">català</a>, <a href="configuring-the-system-for-point-and-click.es.html">español</a>, <a href="configuring-the-system-for-point-and-click.fr.html">français</a>, <a href="configuring-the-system-for-point-and-click.hu.html">magyar</a>, <a href="configuring-the-system-for-point-and-click.it.html">italiano</a>.
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.html" title="Start of the manual">LilyPond &mdash; Usage  v2.19.32 (development-branch). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Running-lilypond-1" href="running-lilypond.html">1. Running <code>lilypond</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Normal-usage-1" href="normal-usage.html">1.1 Normal usage</a>    </li>
+    <li class=""><a name="toc-Command_002dline-usage-1" href="command_002dline-usage.html">1.2 Command-line usage</a>    </li>
+    <li class=""><a name="toc-Error-messages-1" href="error-messages.html">1.3 Error messages</a>    </li>
+    <li class=""><a name="toc-Common-errors-1" href="common-errors.html">1.4 Common errors</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Updating-files-with-convert_002dly-1" href="updating-files-with-convert_002dly.html">2. Updating files with <code>convert-ly</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-Why-does-the-syntax-change_003f-1" href="why-does-the-syntax-change_003f.html">2.1 Why does the syntax change?</a>    </li>
+    <li class=""><a name="toc-Invoking-convert_002dly-1" href="invoking-convert_002dly.html">2.2 Invoking <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Command-line-options-for-convert_002dly-1" href="command-line-options-for-convert_002dly.html">2.3 Command line options for <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Problems-running-convert_002dly-1" href="problems-running-convert_002dly.html">2.4 Problems running <code>convert-ly</code></a>    </li>
+    <li class=""><a name="toc-Manual-conversions-1" href="manual-conversions.html">2.5 Manual conversions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Running-lilypond_002dbook" href="lilypond_002dbook.html">3. Running <code>lilypond-book</code></a>
+  <ul class="toc">
+    <li class=""><a name="toc-An-example-of-a-musicological-document-1" href="an-example-of-a-musicological-document.html">3.1 An example of a musicological document</a>    </li>
+    <li class=""><a name="toc-Integrating-music-and-text-1" href="integrating-music-and-text.html">3.2 Integrating music and text</a>    </li>
+    <li class=""><a name="toc-Music-fragment-options-1" href="music-fragment-options.html">3.3 Music fragment options</a>    </li>
+    <li class=""><a name="toc-Invoking-lilypond_002dbook-1" href="invoking-lilypond_002dbook.html">3.4 Invoking <code>lilypond-book</code></a>    </li>
+    <li class=""><a name="toc-Filename-extensions-1" href="filename-extensions.html">3.5 Filename extensions</a>    </li>
+    <li class=""><a name="toc-lilypond_002dbook-templates-1" href="lilypond_002dbook-templates.html">3.6 lilypond-book templates</a>    </li>
+    <li class=""><a name="toc-Sharing-the-table-of-contents-1" href="sharing-the-table-of-contents.html">3.7 Sharing the table of contents</a>    </li>
+    <li class=""><a name="toc-Alternative-methods-of-mixing-text-and-music" href="alternate-methods-of-mixing-text-and-music.html">3.8 Alternative methods of mixing text and music</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-External-programs-1" href="external-programs.html">4. External programs</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Point-and-click-1" href="point-and-click.html">4.1 Point and click</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Configuring-the-system" href="configuring-the-system-for-point-and-click.html">4.1.1 Configuring the system</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Using-Xpdf" href="configuring-the-system-for-point-and-click.html#using-xpdf-for-point-and-click">Using Xpdf</a>        </li>
+        <li class=""><a name="toc-Using-GNOME-2" href="configuring-the-system-for-point-and-click.html#using-gnome-2-for-point-and-click">Using GNOME 2</a>        </li>
+        <li class=""><a name="toc-Using-GNOME-3" href="configuring-the-system-for-point-and-click.html#using-gnome-3-for-point-and-click">Using GNOME 3</a>        </li>
+        <li class=""><a name="toc-Extra-configuration-for-Evince-1" href="configuring-the-system-for-point-and-click.html#extra-configuration-for-evince">Extra configuration for Evince</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Enabling-point-and-click-1" href="configuring-the-system-for-point-and-click.html#enabling-point-and-click">Enabling point and click</a>      </li>
+      <li class=""><a name="toc-Selective-point_002dand_002dclick-1" href="configuring-the-system-for-point-and-click.html#selective-point_002dand_002dclick">Selective point-and-click</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Text-editor-support-1" href="text-editor-support.html">4.2 Text editor support</a>    </li>
+    <li class=""><a name="toc-Converting-from-other-formats-1" href="converting-from-other-formats.html">4.3 Converting from other formats</a>    </li>
+    <li class=""><a name="toc-LilyPond-output-in-other-programs-1" href="lilypond-output-in-other-programs.html">4.4 LilyPond output in other programs</a>    </li>
+    <li class=""><a name="toc-Independent-includes-1" href="independent-includes.html">4.5 Independent <code>include</code>s</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Suggestions-for-writing-files-1" href="suggestions-for-writing-files.html">5. Suggestions for writing files</a>
+  <ul class="toc">
+    <li class=""><a name="toc-General-suggestions-1" href="general-suggestions.html">5.1 General suggestions</a>    </li>
+    <li class=""><a name="toc-Typesetting-existing-music-1" href="typesetting-existing-music.html">5.2 Typesetting existing music</a>    </li>
+    <li class=""><a name="toc-Large-projects-1" href="large-projects.html">5.3 Large projects</a>    </li>
+    <li class=""><a name="toc-Troubleshooting-1" href="troubleshooting.html">5.4 Troubleshooting</a>    </li>
+    <li class=""><a name="toc-Make-and-Makefiles-1" href="make-and-makefiles.html">5.5 Make and Makefiles</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.html">A. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-index-1" href="lilypond-index.html">B. LilyPond index</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Internals Reference: 2.2.73 Multi_measure_rest_engraver</title>
+
+<meta name="description" content="LilyPond Internals Reference: 2.2.73 Multi_measure_rest_engraver">
+<meta name="keywords" content="LilyPond Internals Reference: 2.2.73 Multi_measure_rest_engraver">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.nl.html#index" rel="start" title="GNU LilyPond &ndash; Internals Reference">
+<link href="indices.nl.html#indices" rel="index" title="A. Indices">
+<link href="index_toc.nl.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.nl.html#SEC_About" rel="help" title="About This Document">
+<link href="engravers-and-performers.nl.html#engravers-and-performers" rel="up" title="2.2 Engravers and Performers">
+<link href="indices.nl.html#indices" rel="next" title="A.2 Function index">
+<link href="midi_005fcontrol_005ffunction_005fperformer.nl.html#midi_005fcontrol_005ffunction_005fperformer" rel="previous" title="2.2.72 Midi_control_function_performer">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="internals devStatus">
+
+
+<div id="main">
+<a name="Multi_005fmeasure_005frest_005fengraver"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.nl.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="midi_005fcontrol_005ffunction_005fperformer.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Midi_control_function_performer&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="engravers-and-performers.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Engravers and Performers&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new_005ffingering_005fengraver.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;New_fingering_engraver &gt; </a>]</td></tr></table>
+<a name="multi_005fmeasure_005frest_005fengraver"></a>
+<h3 class="subsection">2.2.73 Multi_measure_rest_engraver</h3>
+
+<p>Engrave multi-measure rests that are produced with &lsquo;<samp>R</samp>&rsquo;.  It reads <code>measurePosition</code> and <code>internalBarNumber</code> to determine what number to print over the <a href="multimeasurerest.nl.html">MultiMeasureRest</a>.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="multi_002dmeasure_002drest_002devent.nl.html">multi-measure-rest-event</a> and <a href="multi_002dmeasure_002dtext_002devent.nl.html">multi-measure-text-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>currentCommandColumn</code> (graphical (layout) object)</dt>
+<dd><p>Grob that is X-parent to all
+current breakable (clef, key signature, etc.) items.
+</p>
+</dd>
+<dt> <code>internalBarNumber</code> (integer)</dt>
+<dd><p>Contains the current barnumber.
+This property is used for internal timekeeping, among others by the
+<code>Accidental_engraver</code>.
+</p>
+</dd>
+<dt> <code>measurePosition</code> (moment)</dt>
+<dd><p>How much of the current measure have
+we had.  This can be set manually to create incomplete measures.
+</p>
+</dd>
+<dt> <code>restNumberThreshold</code> (number)</dt>
+<dd><p>If a multimeasure rest has more
+measures than this, a number is printed.
+</p>
+</dd>
+<dt> <code>whichBar</code> (string)</dt>
+<dd><p>This property is read to determine what type
+of bar line to create.
+</p>
+<p>Example:
+</p>
+<blockquote><pre class="example">\set Staff.whichBar = &quot;.|:&quot;
+</pre></blockquote>
+
+<p>This will create a start-repeat bar in this staff only.  Valid values
+are described in &lsquo;<tt>scm/bar-line.scm</tt>&rsquo;.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="multimeasurerest.nl.html">MultiMeasureRest</a>, <a href="multimeasurerestnumber.nl.html">MultiMeasureRestNumber</a> and <a href="multimeasureresttext.nl.html">MultiMeasureRestText</a>.
+</p>
+<p><code>Multi_measure_rest_engraver</code> is part of the following context(s): <a href="cuevoice.nl.html">CueVoice</a>, <a href="drumvoice.nl.html">DrumVoice</a>, <a href="gregoriantranscriptionvoice.nl.html">GregorianTranscriptionVoice</a>, <a href="kievanvoice.nl.html">KievanVoice</a>, <a href="mensuralvoice.nl.html">MensuralVoice</a>, <a href="petruccivoice.nl.html">PetrucciVoice</a>, <a href="tabvoice.nl.html">TabVoice</a>, <a href="vaticanavoice.nl.html">VaticanaVoice</a> and <a href="voice.nl.html">Voice</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.nl.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.nl.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.nl.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.nl.html" title="Index" rel="index">Index</a>][<a href="index_abt.nl.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.nl.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="midi_005fcontrol_005ffunction_005fperformer.nl.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Midi_control_function_performer&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="engravers-and-performers.nl.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Engravers and Performers&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="new_005ffingering_005fengraver.nl.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;New_fingering_engraver &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Deze pagina is voor LilyPond-2.19.32 (ontwikkelingstak).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.nl.html" title="Start of the manual">Internals Reference  v2.19.32 (ontwikkelingstak). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Music-definitions-1" href="music-definitions.nl.html">1. Music definitions</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Music-expressions-1" href="music-expressions.nl.html">1.1 Music expressions</a>    </li>
+    <li class=""><a name="toc-Music-classes-1" href="music-classes.nl.html">1.2 Music classes</a>    </li>
+    <li class=""><a name="toc-Music-properties-1" href="music-properties.nl.html">1.3 Music properties</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Translation-1" href="translation.nl.html">2. Translation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contexts-1" href="contexts.nl.html">2.1 Contexts</a>    </li>
+    <li class=" toc_current"><a name="toc-Engravers-and-Performers-1" href="engravers-and-performers.nl.html">2.2 Engravers and Performers</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Accidental_005fengraver-1" href="accidental_005fengraver.nl.html">2.2.1 Accidental_engraver</a>      </li>
+      <li class=""><a name="toc-Ambitus_005fengraver-1" href="ambitus_005fengraver.nl.html">2.2.2 Ambitus_engraver</a>      </li>
+      <li class=""><a name="toc-Arpeggio_005fengraver-1" href="arpeggio_005fengraver.nl.html">2.2.3 Arpeggio_engraver</a>      </li>
+      <li class=""><a name="toc-Auto_005fbeam_005fengraver-1" href="auto_005fbeam_005fengraver.nl.html">2.2.4 Auto_beam_engraver</a>      </li>
+      <li class=""><a name="toc-Axis_005fgroup_005fengraver-1" href="axis_005fgroup_005fengraver.nl.html">2.2.5 Axis_group_engraver</a>      </li>
+      <li class=""><a name="toc-Balloon_005fengraver-1" href="balloon_005fengraver.nl.html">2.2.6 Balloon_engraver</a>      </li>
+      <li class=""><a name="toc-Bar_005fengraver-1" href="bar_005fengraver.nl.html">2.2.7 Bar_engraver</a>      </li>
+      <li class=""><a name="toc-Bar_005fnumber_005fengraver-1" href="bar_005fnumber_005fengraver.nl.html">2.2.8 Bar_number_engraver</a>      </li>
+      <li class=""><a name="toc-Beam_005fcollision_005fengraver-1" href="beam_005fcollision_005fengraver.nl.html">2.2.9 Beam_collision_engraver</a>      </li>
+      <li class=""><a name="toc-Beam_005fengraver-1" href="beam_005fengraver.nl.html">2.2.10 Beam_engraver</a>      </li>
+      <li class=""><a name="toc-Beam_005fperformer-1" href="beam_005fperformer.nl.html">2.2.11 Beam_performer</a>      </li>
+      <li class=""><a name="toc-Bend_005fengraver-1" href="bend_005fengraver.nl.html">2.2.12 Bend_engraver</a>      </li>
+      <li class=""><a name="toc-Break_005falign_005fengraver-1" href="break_005falign_005fengraver.nl.html">2.2.13 Break_align_engraver</a>      </li>
+      <li class=""><a name="toc-Breathing_005fsign_005fengraver-1" href="breathing_005fsign_005fengraver.nl.html">2.2.14 Breathing_sign_engraver</a>      </li>
+      <li class=""><a name="toc-Chord_005fname_005fengraver-1" href="chord_005fname_005fengraver.nl.html">2.2.15 Chord_name_engraver</a>      </li>
+      <li class=""><a name="toc-Chord_005ftremolo_005fengraver-1" href="chord_005ftremolo_005fengraver.nl.html">2.2.16 Chord_tremolo_engraver</a>      </li>
+      <li class=""><a name="toc-Clef_005fengraver-1" href="clef_005fengraver.nl.html">2.2.17 Clef_engraver</a>      </li>
+      <li class=""><a name="toc-Cluster_005fspanner_005fengraver-1" href="cluster_005fspanner_005fengraver.nl.html">2.2.18 Cluster_spanner_engraver</a>      </li>
+      <li class=""><a name="toc-Collision_005fengraver-1" href="collision_005fengraver.nl.html">2.2.19 Collision_engraver</a>      </li>
+      <li class=""><a name="toc-Completion_005fheads_005fengraver-1" href="completion_005fheads_005fengraver.nl.html">2.2.20 Completion_heads_engraver</a>      </li>
+      <li class=""><a name="toc-Completion_005frest_005fengraver-1" href="completion_005frest_005fengraver.nl.html">2.2.21 Completion_rest_engraver</a>      </li>
+      <li class=""><a name="toc-Concurrent_005fhairpin_005fengraver-1" href="concurrent_005fhairpin_005fengraver.nl.html">2.2.22 Concurrent_hairpin_engraver</a>      </li>
+      <li class=""><a name="toc-Control_005ftrack_005fperformer-1" href="control_005ftrack_005fperformer.nl.html">2.2.23 Control_track_performer</a>      </li>
+      <li class=""><a name="toc-Cue_005fclef_005fengraver-1" href="cue_005fclef_005fengraver.nl.html">2.2.24 Cue_clef_engraver</a>      </li>
+      <li class=""><a name="toc-Custos_005fengraver-1" href="custos_005fengraver.nl.html">2.2.25 Custos_engraver</a>      </li>
+      <li class=""><a name="toc-Default_005fbar_005fline_005fengraver-1" href="default_005fbar_005fline_005fengraver.nl.html">2.2.26 Default_bar_line_engraver</a>      </li>
+      <li class=""><a name="toc-Dot_005fcolumn_005fengraver-1" href="dot_005fcolumn_005fengraver.nl.html">2.2.27 Dot_column_engraver</a>      </li>
+      <li class=""><a name="toc-Dots_005fengraver-1" href="dots_005fengraver.nl.html">2.2.28 Dots_engraver</a>      </li>
+      <li class=""><a name="toc-Double_005fpercent_005frepeat_005fengraver-1" href="double_005fpercent_005frepeat_005fengraver.nl.html">2.2.29 Double_percent_repeat_engraver</a>      </li>
+      <li class=""><a name="toc-Drum_005fnote_005fperformer-1" href="drum_005fnote_005fperformer.nl.html">2.2.30 Drum_note_performer</a>      </li>
+      <li class=""><a name="toc-Drum_005fnotes_005fengraver-1" href="drum_005fnotes_005fengraver.nl.html">2.2.31 Drum_notes_engraver</a>      </li>
+      <li class=""><a name="toc-Dynamic_005falign_005fengraver-1" href="dynamic_005falign_005fengraver.nl.html">2.2.32 Dynamic_align_engraver</a>      </li>
+      <li class=""><a name="toc-Dynamic_005fengraver-1" href="dynamic_005fengraver.nl.html">2.2.33 Dynamic_engraver</a>      </li>
+      <li class=""><a name="toc-Dynamic_005fperformer-1" href="dynamic_005fperformer.nl.html">2.2.34 Dynamic_performer</a>      </li>
+      <li class=""><a name="toc-Engraver-1" href="engraver.nl.html">2.2.35 Engraver</a>      </li>
+      <li class=""><a name="toc-Episema_005fengraver-1" href="episema_005fengraver.nl.html">2.2.36 Episema_engraver</a>      </li>
+      <li class=""><a name="toc-Extender_005fengraver-1" href="extender_005fengraver.nl.html">2.2.37 Extender_engraver</a>      </li>
+      <li class=""><a name="toc-Figured_005fbass_005fengraver-1" href="figured_005fbass_005fengraver.nl.html">2.2.38 Figured_bass_engraver</a>      </li>
+      <li class=""><a name="toc-Figured_005fbass_005fposition_005fengraver-1" href="figured_005fbass_005fposition_005fengraver.nl.html">2.2.39 Figured_bass_position_engraver</a>      </li>
+      <li class=""><a name="toc-Fingering_005fcolumn_005fengraver-1" href="fingering_005fcolumn_005fengraver.nl.html">2.2.40 Fingering_column_engraver</a>      </li>
+      <li class=""><a name="toc-Fingering_005fengraver-1" href="fingering_005fengraver.nl.html">2.2.41 Fingering_engraver</a>      </li>
+      <li class=""><a name="toc-Font_005fsize_005fengraver-1" href="font_005fsize_005fengraver.nl.html">2.2.42 Font_size_engraver</a>      </li>
+      <li class=""><a name="toc-Footnote_005fengraver-1" href="footnote_005fengraver.nl.html">2.2.43 Footnote_engraver</a>      </li>
+      <li class=""><a name="toc-Forbid_005fline_005fbreak_005fengraver-1" href="forbid_005fline_005fbreak_005fengraver.nl.html">2.2.44 Forbid_line_break_engraver</a>      </li>
+      <li class=""><a name="toc-Fretboard_005fengraver-1" href="fretboard_005fengraver.nl.html">2.2.45 Fretboard_engraver</a>      </li>
+      <li class=""><a name="toc-Glissando_005fengraver-1" href="glissando_005fengraver.nl.html">2.2.46 Glissando_engraver</a>      </li>
+      <li class=""><a name="toc-Grace_005fauto_005fbeam_005fengraver-1" href="grace_005fauto_005fbeam_005fengraver.nl.html">2.2.47 Grace_auto_beam_engraver</a>      </li>
+      <li class=""><a name="toc-Grace_005fbeam_005fengraver-1" href="grace_005fbeam_005fengraver.nl.html">2.2.48 Grace_beam_engraver</a>      </li>
+      <li class=""><a name="toc-Grace_005fengraver-1" href="grace_005fengraver.nl.html">2.2.49 Grace_engraver</a>      </li>
+      <li class=""><a name="toc-Grace_005fspacing_005fengraver-1" href="grace_005fspacing_005fengraver.nl.html">2.2.50 Grace_spacing_engraver</a>      </li>
+      <li class=""><a name="toc-Grid_005fline_005fspan_005fengraver-1" href="grid_005fline_005fspan_005fengraver.nl.html">2.2.51 Grid_line_span_engraver</a>      </li>
+      <li class=""><a name="toc-Grid_005fpoint_005fengraver-1" href="grid_005fpoint_005fengraver.nl.html">2.2.52 Grid_point_engraver</a>      </li>
+      <li class=""><a name="toc-Grob_005fpq_005fengraver-1" href="grob_005fpq_005fengraver.nl.html">2.2.53 Grob_pq_engraver</a>      </li>
+      <li class=""><a name="toc-Horizontal_005fbracket_005fengraver-1" href="horizontal_005fbracket_005fengraver.nl.html">2.2.54 Horizontal_bracket_engraver</a>      </li>
+      <li class=""><a name="toc-Hyphen_005fengraver-1" href="hyphen_005fengraver.nl.html">2.2.55 Hyphen_engraver</a>      </li>
+      <li class=""><a name="toc-Instrument_005fname_005fengraver-1" href="instrument_005fname_005fengraver.nl.html">2.2.56 Instrument_name_engraver</a>      </li>
+      <li class=""><a name="toc-Instrument_005fswitch_005fengraver-1" href="instrument_005fswitch_005fengraver.nl.html">2.2.57 Instrument_switch_engraver</a>      </li>
+      <li class=""><a name="toc-Keep_005falive_005ftogether_005fengraver-1" href="keep_005falive_005ftogether_005fengraver.nl.html">2.2.58 Keep_alive_together_engraver</a>      </li>
+      <li class=""><a name="toc-Key_005fengraver-1" href="key_005fengraver.nl.html">2.2.59 Key_engraver</a>      </li>
+      <li class=""><a name="toc-Key_005fperformer-1" href="key_005fperformer.nl.html">2.2.60 Key_performer</a>      </li>
+      <li class=""><a name="toc-Kievan_005fligature_005fengraver-1" href="kievan_005fligature_005fengraver.nl.html">2.2.61 Kievan_ligature_engraver</a>      </li>
+      <li class=""><a name="toc-Laissez_005fvibrer_005fengraver-1" href="laissez_005fvibrer_005fengraver.nl.html">2.2.62 Laissez_vibrer_engraver</a>      </li>
+      <li class=""><a name="toc-Ledger_005fline_005fengraver-1" href="ledger_005fline_005fengraver.nl.html">2.2.63 Ledger_line_engraver</a>      </li>
+      <li class=""><a name="toc-Ligature_005fbracket_005fengraver-1" href="ligature_005fbracket_005fengraver.nl.html">2.2.64 Ligature_bracket_engraver</a>      </li>
+      <li class=""><a name="toc-Lyric_005fengraver-1" href="lyric_005fengraver.nl.html">2.2.65 Lyric_engraver</a>      </li>
+      <li class=""><a name="toc-Lyric_005fperformer-1" href="lyric_005fperformer.nl.html">2.2.66 Lyric_performer</a>      </li>
+      <li class=""><a name="toc-Mark_005fengraver-1" href="mark_005fengraver.nl.html">2.2.67 Mark_engraver</a>      </li>
+      <li class=""><a name="toc-Measure_005fgrouping_005fengraver-1" href="measure_005fgrouping_005fengraver.nl.html">2.2.68 Measure_grouping_engraver</a>      </li>
+      <li class=""><a name="toc-Melody_005fengraver-1" href="melody_005fengraver.nl.html">2.2.69 Melody_engraver</a>      </li>
+      <li class=""><a name="toc-Mensural_005fligature_005fengraver-1" href="mensural_005fligature_005fengraver.nl.html">2.2.70 Mensural_ligature_engraver</a>      </li>
+      <li class=""><a name="toc-Metronome_005fmark_005fengraver-1" href="metronome_005fmark_005fengraver.nl.html">2.2.71 Metronome_mark_engraver</a>      </li>
+      <li class=""><a name="toc-Midi_005fcontrol_005ffunction_005fperformer-1" href="midi_005fcontrol_005ffunction_005fperformer.nl.html">2.2.72 Midi_control_function_performer</a>      </li>
+      <li class=" toc_current"><a name="toc-Multi_005fmeasure_005frest_005fengraver-1" href="multi_005fmeasure_005frest_005fengraver.nl.html">2.2.73 Multi_measure_rest_engraver</a>      </li>
+      <li class=""><a name="toc-New_005ffingering_005fengraver-1" href="new_005ffingering_005fengraver.nl.html">2.2.74 New_fingering_engraver</a>      </li>
+      <li class=""><a name="toc-Note_005fhead_005fline_005fengraver-1" href="note_005fhead_005fline_005fengraver.nl.html">2.2.75 Note_head_line_engraver</a>      </li>
+      <li class=""><a name="toc-Note_005fheads_005fengraver-1" href="note_005fheads_005fengraver.nl.html">2.2.76 Note_heads_engraver</a>      </li>
+      <li class=""><a name="toc-Note_005fname_005fengraver-1" href="note_005fname_005fengraver.nl.html">2.2.77 Note_name_engraver</a>      </li>
+      <li class=""><a name="toc-Note_005fperformer-1" href="note_005fperformer.nl.html">2.2.78 Note_performer</a>      </li>
+      <li class=""><a name="toc-Note_005fspacing_005fengraver-1" href="note_005fspacing_005fengraver.nl.html">2.2.79 Note_spacing_engraver</a>      </li>
+      <li class=""><a name="toc-Ottava_005fspanner_005fengraver-1" href="ottava_005fspanner_005fengraver.nl.html">2.2.80 Ottava_spanner_engraver</a>      </li>
+      <li class=""><a name="toc-Output_005fproperty_005fengraver-1" href="output_005fproperty_005fengraver.nl.html">2.2.81 Output_property_engraver</a>      </li>
+      <li class=""><a name="toc-Page_005fturn_005fengraver-1" href="page_005fturn_005fengraver.nl.html">2.2.82 Page_turn_engraver</a>      </li>
+      <li class=""><a name="toc-Paper_005fcolumn_005fengraver-1" href="paper_005fcolumn_005fengraver.nl.html">2.2.83 Paper_column_engraver</a>      </li>
+      <li class=""><a name="toc-Parenthesis_005fengraver-1" href="parenthesis_005fengraver.nl.html">2.2.84 Parenthesis_engraver</a>      </li>
+      <li class=""><a name="toc-Part_005fcombine_005fengraver-1" href="part_005fcombine_005fengraver.nl.html">2.2.85 Part_combine_engraver</a>      </li>
+      <li class=""><a name="toc-Percent_005frepeat_005fengraver-1" href="percent_005frepeat_005fengraver.nl.html">2.2.86 Percent_repeat_engraver</a>      </li>
+      <li class=""><a name="toc-Phrasing_005fslur_005fengraver-1" href="phrasing_005fslur_005fengraver.nl.html">2.2.87 Phrasing_slur_engraver</a>      </li>
+      <li class=""><a name="toc-Piano_005fpedal_005falign_005fengraver-1" href="piano_005fpedal_005falign_005fengraver.nl.html">2.2.88 Piano_pedal_align_engraver</a>      </li>
+      <li class=""><a name="toc-Piano_005fpedal_005fengraver-1" href="piano_005fpedal_005fengraver.nl.html">2.2.89 Piano_pedal_engraver</a>      </li>
+      <li class=""><a name="toc-Piano_005fpedal_005fperformer-1" href="piano_005fpedal_005fperformer.nl.html">2.2.90 Piano_pedal_performer</a>      </li>
+      <li class=""><a name="toc-Pitch_005fsquash_005fengraver-1" href="pitch_005fsquash_005fengraver.nl.html">2.2.91 Pitch_squash_engraver</a>      </li>
+      <li class=""><a name="toc-Pitched_005ftrill_005fengraver-1" href="pitched_005ftrill_005fengraver.nl.html">2.2.92 Pitched_trill_engraver</a>      </li>
+      <li class=""><a name="toc-Pure_005ffrom_005fneighbor_005fengraver-1" href="pure_005ffrom_005fneighbor_005fengraver.nl.html">2.2.93 Pure_from_neighbor_engraver</a>      </li>
+      <li class=""><a name="toc-Repeat_005facknowledge_005fengraver-1" href="repeat_005facknowledge_005fengraver.nl.html">2.2.94 Repeat_acknowledge_engraver</a>      </li>
+      <li class=""><a name="toc-Repeat_005ftie_005fengraver-1" href="repeat_005ftie_005fengraver.nl.html">2.2.95 Repeat_tie_engraver</a>      </li>
+      <li class=""><a name="toc-Rest_005fcollision_005fengraver-1" href="rest_005fcollision_005fengraver.nl.html">2.2.96 Rest_collision_engraver</a>      </li>
+      <li class=""><a name="toc-Rest_005fengraver-1" href="rest_005fengraver.nl.html">2.2.97 Rest_engraver</a>      </li>
+      <li class=""><a name="toc-Rhythmic_005fcolumn_005fengraver-1" href="rhythmic_005fcolumn_005fengraver.nl.html">2.2.98 Rhythmic_column_engraver</a>      </li>
+      <li class=""><a name="toc-Scheme_005fengraver-1" href="scheme_005fengraver.nl.html">2.2.99 Scheme_engraver</a>      </li>
+      <li class=""><a name="toc-Script_005fcolumn_005fengraver-1" href="script_005fcolumn_005fengraver.nl.html">2.2.100 Script_column_engraver</a>      </li>
+      <li class=""><a name="toc-Script_005fengraver-1" href="script_005fengraver.nl.html">2.2.101 Script_engraver</a>      </li>
+      <li class=""><a name="toc-Script_005frow_005fengraver-1" href="script_005frow_005fengraver.nl.html">2.2.102 Script_row_engraver</a>      </li>
+      <li class=""><a name="toc-Separating_005fline_005fgroup_005fengraver-1" href="separating_005fline_005fgroup_005fengraver.nl.html">2.2.103 Separating_line_group_engraver</a>      </li>
+      <li class=""><a name="toc-Slash_005frepeat_005fengraver-1" href="slash_005frepeat_005fengraver.nl.html">2.2.104 Slash_repeat_engraver</a>      </li>
+      <li class=""><a name="toc-Slur_005fengraver-1" href="slur_005fengraver.nl.html">2.2.105 Slur_engraver</a>      </li>
+      <li class=""><a name="toc-Slur_005fperformer-1" href="slur_005fperformer.nl.html">2.2.106 Slur_performer</a>      </li>
+      <li class=""><a name="toc-Spacing_005fengraver-1" href="spacing_005fengraver.nl.html">2.2.107 Spacing_engraver</a>      </li>
+      <li class=""><a name="toc-Span_005farpeggio_005fengraver-1" href="span_005farpeggio_005fengraver.nl.html">2.2.108 Span_arpeggio_engraver</a>      </li>
+      <li class=""><a name="toc-Span_005fbar_005fengraver-1" href="span_005fbar_005fengraver.nl.html">2.2.109 Span_bar_engraver</a>      </li>
+      <li class=""><a name="toc-Span_005fbar_005fstub_005fengraver-1" href="span_005fbar_005fstub_005fengraver.nl.html">2.2.110 Span_bar_stub_engraver</a>      </li>
+      <li class=""><a name="toc-Spanner_005fbreak_005fforbid_005fengraver-1" href="spanner_005fbreak_005fforbid_005fengraver.nl.html">2.2.111 Spanner_break_forbid_engraver</a>      </li>
+      <li class=""><a name="toc-Staff_005fcollecting_005fengraver-1" href="staff_005fcollecting_005fengraver.nl.html">2.2.112 Staff_collecting_engraver</a>      </li>
+      <li class=""><a name="toc-Staff_005fperformer-1" href="staff_005fperformer.nl.html">2.2.113 Staff_performer</a>      </li>
+      <li class=""><a name="toc-Staff_005fsymbol_005fengraver-1" href="staff_005fsymbol_005fengraver.nl.html">2.2.114 Staff_symbol_engraver</a>      </li>
+      <li class=""><a name="toc-Stanza_005fnumber_005falign_005fengraver-1" href="stanza_005fnumber_005falign_005fengraver.nl.html">2.2.115 Stanza_number_align_engraver</a>      </li>
+      <li class=""><a name="toc-Stanza_005fnumber_005fengraver-1" href="stanza_005fnumber_005fengraver.nl.html">2.2.116 Stanza_number_engraver</a>      </li>
+      <li class=""><a name="toc-Stem_005fengraver-1" href="stem_005fengraver.nl.html">2.2.117 Stem_engraver</a>      </li>
+      <li class=""><a name="toc-System_005fstart_005fdelimiter_005fengraver-1" href="system_005fstart_005fdelimiter_005fengraver.nl.html">2.2.118 System_start_delimiter_engraver</a>      </li>
+      <li class=""><a name="toc-Tab_005fnote_005fheads_005fengraver-1" href="tab_005fnote_005fheads_005fengraver.nl.html">2.2.119 Tab_note_heads_engraver</a>      </li>
+      <li class=""><a name="toc-Tab_005fstaff_005fsymbol_005fengraver-1" href="tab_005fstaff_005fsymbol_005fengraver.nl.html">2.2.120 Tab_staff_symbol_engraver</a>      </li>
+      <li class=""><a name="toc-Tab_005ftie_005ffollow_005fengraver-1" href="tab_005ftie_005ffollow_005fengraver.nl.html">2.2.121 Tab_tie_follow_engraver</a>      </li>
+      <li class=""><a name="toc-Tempo_005fperformer-1" href="tempo_005fperformer.nl.html">2.2.122 Tempo_performer</a>      </li>
+      <li class=""><a name="toc-Text_005fengraver-1" href="text_005fengraver.nl.html">2.2.123 Text_engraver</a>      </li>
+      <li class=""><a name="toc-Text_005fspanner_005fengraver-1" href="text_005fspanner_005fengraver.nl.html">2.2.124 Text_spanner_engraver</a>      </li>
+      <li class=""><a name="toc-Tie_005fengraver-1" href="tie_005fengraver.nl.html">2.2.125 Tie_engraver</a>      </li>
+      <li class=""><a name="toc-Tie_005fperformer-1" href="tie_005fperformer.nl.html">2.2.126 Tie_performer</a>      </li>
+      <li class=""><a name="toc-Time_005fsignature_005fengraver-1" href="time_005fsignature_005fengraver.nl.html">2.2.127 Time_signature_engraver</a>      </li>
+      <li class=""><a name="toc-Time_005fsignature_005fperformer-1" href="time_005fsignature_005fperformer.nl.html">2.2.128 Time_signature_performer</a>      </li>
+      <li class=""><a name="toc-Timing_005ftranslator-1" href="timing_005ftranslator.nl.html">2.2.129 Timing_translator</a>      </li>
+      <li class=""><a name="toc-Translator-1" href="translator.nl.html">2.2.130 Translator</a>      </li>
+      <li class=""><a name="toc-Trill_005fspanner_005fengraver-1" href="trill_005fspanner_005fengraver.nl.html">2.2.131 Trill_spanner_engraver</a>      </li>
+      <li class=""><a name="toc-Tuplet_005fengraver-1" href="tuplet_005fengraver.nl.html">2.2.132 Tuplet_engraver</a>      </li>
+      <li class=""><a name="toc-Tweak_005fengraver-1" href="tweak_005fengraver.nl.html">2.2.133 Tweak_engraver</a>      </li>
+      <li class=""><a name="toc-Vaticana_005fligature_005fengraver-1" href="vaticana_005fligature_005fengraver.nl.html">2.2.134 Vaticana_ligature_engraver</a>      </li>
+      <li class=""><a name="toc-Vertical_005falign_005fengraver-1" href="vertical_005falign_005fengraver.nl.html">2.2.135 Vertical_align_engraver</a>      </li>
+      <li class=""><a name="toc-Volta_005fengraver-1" href="volta_005fengraver.nl.html">2.2.136 Volta_engraver</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Tunable-context-properties-1" href="tunable-context-properties.nl.html">2.3 Tunable context properties</a>    </li>
+    <li class=""><a name="toc-Internal-context-properties-1" href="internal-context-properties.nl.html">2.4 Internal context properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Backend-1" href="backend.nl.html">3. Backend</a>
+  <ul class="toc">
+    <li class=""><a name="toc-All-layout-objects-1" href="all-layout-objects.nl.html">3.1 All layout objects</a>    </li>
+    <li class=""><a name="toc-Graphical-Object-Interfaces-1" href="graphical-object-interfaces.nl.html">3.2 Graphical Object Interfaces</a>    </li>
+    <li class=""><a name="toc-User-backend-properties-1" href="user-backend-properties.nl.html">3.3 User backend properties</a>    </li>
+    <li class=""><a name="toc-Internal-backend-properties-1" href="internal-backend-properties.nl.html">3.4 Internal backend properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.nl.html">4. Scheme functions</a>  </li>
+  <li class=""><a name="toc-Indices-1" href="indices.nl.html">A. Indices</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Concept-index" href="indices.nl.html">A.1 Concept index</a>    </li>
+    <li class=""><a name="toc-Function-index" href="indices.nl.html">A.2 Function index</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

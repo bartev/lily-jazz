@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Internals Reference: 2.1.20 NullVoice</title>
+
+<meta name="description" content="LilyPond Internals Reference: 2.1.20 NullVoice">
+<meta name="keywords" content="LilyPond Internals Reference: 2.1.20 NullVoice">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.de.html#index" rel="start" title="GNU LilyPond &ndash; Internals Reference">
+<link href="indices.de.html#indices" rel="index" title="A. Indices">
+<link href="index_toc.de.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.de.html#SEC_About" rel="help" title="About This Document">
+<link href="contexts.de.html#contexts" rel="up" title="2.1 Contexts">
+<link href="indices.de.html#indices" rel="next" title="A.2 Function index">
+<link href="notenames.de.html#notenames" rel="previous" title="2.1.19 NoteNames">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="internals devStatus">
+
+
+<div id="main">
+<a name="NullVoice"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.de.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.de.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.de.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="notenames.de.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; NoteNames&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts.de.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="onestaff.de.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;OneStaff &gt; </a>]</td></tr></table>
+<a name="nullvoice"></a>
+<h3 class="subsection">2.1.20 NullVoice</h3>
+
+<p>For aligning lyrics without printing notes
+</p>
+<p>This context also accepts commands for the following context(s):
+</p>
+<p>Staff and Voice.
+</p>
+<p>This context creates the following layout object(s):
+</p>
+<p><a href="beam.de.html">Beam</a>, <a href="notehead.de.html">NoteHead</a>, <a href="slur.de.html">Slur</a>, <a href="tie.de.html">Tie</a> and <a href="tiecolumn.de.html">TieColumn</a>.
+</p>
+<p>This context sets the following properties:
+</p>
+<ul>
+<li> Set grob-property <code>stencil</code> in <a href="beam.de.html">Beam</a> to 
+<code>#f</code>.
+</li><li> Set grob-property <code>stencil</code> in <a href="notehead.de.html">NoteHead</a> to 
+<code>#f</code>.
+</li><li> Set grob-property <code>stencil</code> in <a href="slur.de.html">Slur</a> to 
+<code>#f</code>.
+</li><li> Set grob-property <code>stencil</code> in <a href="tie.de.html">Tie</a> to 
+<code>#f</code>.
+</li><li> Set grob-property <code>X-extent</code> in <a href="notehead.de.html">NoteHead</a> to 
+<code>#&lt;procedure #f (g)&gt;</code>.
+</li><li> Set translator property <code>nullAccidentals</code> to 
+<code>#t</code>.
+</li><li> Set translator property <code>squashedPosition</code> to 
+<code>0</code>.
+</li></ul>
+
+
+<p>This is a &lsquo;Bottom&rsquo; context; no contexts will be created implicitly from it.
+</p>
+<p>This context cannot contain other contexts.
+</p>
+<p>This context is built from the following engraver(s):
+</p><blockquote><dl compact="compact">
+<dt> <code><a href="beam_005fengraver.de.html">Beam_engraver</a></code></dt>
+<dd><p>Handle <code>Beam</code> events by engraving beams.  If omitted, then notes are printed with flags instead of beams.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="beam_002devent.de.html">beam-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>baseMoment</code> (moment)</dt>
+<dd><p>Smallest unit of time that will stand on its
+own as a subdivided section.
+</p>
+</dd>
+<dt> <code>beamMelismaBusy</code> (boolean)</dt>
+<dd><p>Signal if a beam is present.
+</p>
+</dd>
+<dt> <code>beatStructure</code> (list)</dt>
+<dd><p>List of <code>baseMoment</code>s that are combined
+to make beats.
+</p>
+</dd>
+<dt> <code>subdivideBeams</code> (boolean)</dt>
+<dd><p>If set, multiple beams will be
+subdivided at <code>baseMoment</code> positions by only drawing one beam over the beat.
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>forbidBreak</code> (boolean)</dt>
+<dd><p>If set to <code>#t</code>, prevent a line break
+at this point.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="beam.de.html">Beam</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="grob_005fpq_005fengraver.de.html">Grob_pq_engraver</a></code></dt>
+<dd><p>Administrate when certain grobs (e.g., note heads) stop playing.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>busyGrobs</code> (list)</dt>
+<dd><p>A queue of <code>(<var>end-moment</var> .
+<var>grob</var>)</code> cons cells.  This is for internal (C++) use only.  This
+property contains the grobs which are still busy (e.g. note heads,
+spanners, etc.).
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>busyGrobs</code> (list)</dt>
+<dd><p>A queue of <code>(<var>end-moment</var> .
+<var>grob</var>)</code> cons cells.  This is for internal (C++) use only.  This
+property contains the grobs which are still busy (e.g. note heads,
+spanners, etc.).
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+
+
+</dd>
+<dt> <code><a href="note_005fheads_005fengraver.de.html">Note_heads_engraver</a></code></dt>
+<dd><p>Generate note heads.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="note_002devent.de.html">note-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>middleCPosition</code> (number)</dt>
+<dd><p>The place of the middle C, measured in
+half staff-spaces.  Usually determined by looking at
+<code>middleCClefPosition</code> and <code>middleCOffset</code>.
+</p>
+</dd>
+<dt> <code>staffLineLayoutFunction</code> (procedure)</dt>
+<dd><p>Layout of staff lines,
+<code>traditional</code>, or <code>semitone</code>.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="notehead.de.html">NoteHead</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="pitch_005fsquash_005fengraver.de.html">Pitch_squash_engraver</a></code></dt>
+<dd><p>Set the vertical position of note heads to <code>squashedPosition</code>, if that property is set.  This can be used to make a single-line staff demonstrating the rhythm of a melody.
+</p>
+
+
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>squashedPosition</code> (integer)</dt>
+<dd><p>Vertical position of squashing for
+<a name="index-Pitch_005fsquash_005fengraver"></a>
+<a href="../internals/pitch_005fsquash_005fengraver.de.html">Pitch_squash_engraver</a>.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+
+
+</dd>
+<dt> <code><a href="slur_005fengraver.de.html">Slur_engraver</a></code></dt>
+<dd><p>Build slur grobs from slur events.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="note_002devent.de.html">note-event</a> and <a href="slur_002devent.de.html">slur-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>doubleSlurs</code> (boolean)</dt>
+<dd><p>If set, two slurs are created for every
+slurred note, one above and one below the chord.
+</p>
+</dd>
+<dt> <code>slurMelismaBusy</code> (boolean)</dt>
+<dd><p>Signal if a slur is present.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="slur.de.html">Slur</a>.
+</p>
+
+
+</dd>
+<dt> <code><a href="tie_005fengraver.de.html">Tie_engraver</a></code></dt>
+<dd><p>Generate ties between note heads of equal pitch.
+</p>
+<p>Music types accepted:
+</p>
+<p><a href="tie_002devent.de.html">tie-event</a>
+</p>
+<p>Properties (read)
+</p><blockquote><dl compact="compact">
+<dt> <code>skipTypesetting</code> (boolean)</dt>
+<dd><p>If true, no typesetting is done,
+speeding up the interpretation phase.  Useful for debugging large
+scores.
+</p>
+</dd>
+<dt> <code>tieWaitForNote</code> (boolean)</dt>
+<dd><p>If true, tied notes do not have to
+follow each other directly.  This can be used for writing out
+arpeggios.
+</p>
+</dd>
+</dl>
+</blockquote>
+<p>Properties (write)
+</p><blockquote><dl compact="compact">
+<dt> <code>tieMelismaBusy</code> (boolean)</dt>
+<dd><p>Signal whether a tie is present.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This engraver creates the following layout object(s):
+</p>
+<p><a href="tie.de.html">Tie</a> and <a href="tiecolumn.de.html">TieColumn</a>.
+</p>
+
+
+</dd>
+</dl>
+</blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="translation.de.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Translation&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.de.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.de.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.de.html" title="Index" rel="index">Index</a>][<a href="index_abt.de.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="backend.de.html" title="Next chapter">&nbsp;Backend &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="notenames.de.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; NoteNames&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="contexts.de.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;Contexts&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="onestaff.de.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;OneStaff &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Diese Seite ist für LilyPond-2.19.32 (Entwicklungszweig).
+</p>
+<p class="footer_report">
+Ihre Hilfe ist willkommen. Bitte <a href="http://lilypond.org/help-us.html">helfen Sie</a> uns, indem Sie Probleme und Fehler an unsere <a·href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">Fehler-Liste</a> schicken.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.de.html" title="Start of the manual">Internals Reference  v2.19.32 (Entwicklungszweig). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Music-definitions-1" href="music-definitions.de.html">1. Music definitions</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Music-expressions-1" href="music-expressions.de.html">1.1 Music expressions</a>    </li>
+    <li class=""><a name="toc-Music-classes-1" href="music-classes.de.html">1.2 Music classes</a>    </li>
+    <li class=""><a name="toc-Music-properties-1" href="music-properties.de.html">1.3 Music properties</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Translation-1" href="translation.de.html">2. Translation</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-Contexts-1" href="contexts.de.html">2.1 Contexts</a>
+    <ul class="toc">
+      <li class=""><a name="toc-ChoirStaff-1" href="choirstaff.de.html">2.1.1 ChoirStaff</a>      </li>
+      <li class=""><a name="toc-ChordNames-1" href="chordnames.de.html">2.1.2 ChordNames</a>      </li>
+      <li class=""><a name="toc-CueVoice-1" href="cuevoice.de.html">2.1.3 CueVoice</a>      </li>
+      <li class=""><a name="toc-Devnull-1" href="devnull.de.html">2.1.4 Devnull</a>      </li>
+      <li class=""><a name="toc-DrumStaff-1" href="drumstaff.de.html">2.1.5 DrumStaff</a>      </li>
+      <li class=""><a name="toc-DrumVoice-1" href="drumvoice.de.html">2.1.6 DrumVoice</a>      </li>
+      <li class=""><a name="toc-Dynamics-1" href="dynamics.de.html">2.1.7 Dynamics</a>      </li>
+      <li class=""><a name="toc-FiguredBass-1" href="figuredbass.de.html">2.1.8 FiguredBass</a>      </li>
+      <li class=""><a name="toc-FretBoards-1" href="fretboards.de.html">2.1.9 FretBoards</a>      </li>
+      <li class=""><a name="toc-Global-1" href="global.de.html">2.1.10 Global</a>      </li>
+      <li class=""><a name="toc-GrandStaff-1" href="grandstaff.de.html">2.1.11 GrandStaff</a>      </li>
+      <li class=""><a name="toc-GregorianTranscriptionStaff-1" href="gregoriantranscriptionstaff.de.html">2.1.12 GregorianTranscriptionStaff</a>      </li>
+      <li class=""><a name="toc-GregorianTranscriptionVoice-1" href="gregoriantranscriptionvoice.de.html">2.1.13 GregorianTranscriptionVoice</a>      </li>
+      <li class=""><a name="toc-KievanStaff-1" href="kievanstaff.de.html">2.1.14 KievanStaff</a>      </li>
+      <li class=""><a name="toc-KievanVoice-1" href="kievanvoice.de.html">2.1.15 KievanVoice</a>      </li>
+      <li class=""><a name="toc-Lyrics-1" href="lyrics.de.html">2.1.16 Lyrics</a>      </li>
+      <li class=""><a name="toc-MensuralStaff-1" href="mensuralstaff.de.html">2.1.17 MensuralStaff</a>      </li>
+      <li class=""><a name="toc-MensuralVoice-1" href="mensuralvoice.de.html">2.1.18 MensuralVoice</a>      </li>
+      <li class=""><a name="toc-NoteNames-1" href="notenames.de.html">2.1.19 NoteNames</a>      </li>
+      <li class=" toc_current"><a name="toc-NullVoice-1" href="nullvoice.de.html">2.1.20 NullVoice</a>      </li>
+      <li class=""><a name="toc-OneStaff-1" href="onestaff.de.html">2.1.21 OneStaff</a>      </li>
+      <li class=""><a name="toc-PetrucciStaff-1" href="petruccistaff.de.html">2.1.22 PetrucciStaff</a>      </li>
+      <li class=""><a name="toc-PetrucciVoice-1" href="petruccivoice.de.html">2.1.23 PetrucciVoice</a>      </li>
+      <li class=""><a name="toc-PianoStaff-1" href="pianostaff.de.html">2.1.24 PianoStaff</a>      </li>
+      <li class=""><a name="toc-RhythmicStaff-1" href="rhythmicstaff.de.html">2.1.25 RhythmicStaff</a>      </li>
+      <li class=""><a name="toc-Score-1" href="score.de.html">2.1.26 Score</a>      </li>
+      <li class=""><a name="toc-Staff-1" href="staff.de.html">2.1.27 Staff</a>      </li>
+      <li class=""><a name="toc-StaffGroup-1" href="staffgroup.de.html">2.1.28 StaffGroup</a>      </li>
+      <li class=""><a name="toc-TabStaff-1" href="tabstaff.de.html">2.1.29 TabStaff</a>      </li>
+      <li class=""><a name="toc-TabVoice-1" href="tabvoice.de.html">2.1.30 TabVoice</a>      </li>
+      <li class=""><a name="toc-VaticanaStaff-1" href="vaticanastaff.de.html">2.1.31 VaticanaStaff</a>      </li>
+      <li class=""><a name="toc-VaticanaVoice-1" href="vaticanavoice.de.html">2.1.32 VaticanaVoice</a>      </li>
+      <li class=""><a name="toc-Voice-1" href="voice.de.html">2.1.33 Voice</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Engravers-and-Performers-1" href="engravers-and-performers.de.html">2.2 Engravers and Performers</a>    </li>
+    <li class=""><a name="toc-Tunable-context-properties-1" href="tunable-context-properties.de.html">2.3 Tunable context properties</a>    </li>
+    <li class=""><a name="toc-Internal-context-properties-1" href="internal-context-properties.de.html">2.4 Internal context properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Backend-1" href="backend.de.html">3. Backend</a>
+  <ul class="toc">
+    <li class=""><a name="toc-All-layout-objects-1" href="all-layout-objects.de.html">3.1 All layout objects</a>    </li>
+    <li class=""><a name="toc-Graphical-Object-Interfaces-1" href="graphical-object-interfaces.de.html">3.2 Graphical Object Interfaces</a>    </li>
+    <li class=""><a name="toc-User-backend-properties-1" href="user-backend-properties.de.html">3.3 User backend properties</a>    </li>
+    <li class=""><a name="toc-Internal-backend-properties-1" href="internal-backend-properties.de.html">3.4 Internal backend properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.de.html">4. Scheme functions</a>  </li>
+  <li class=""><a name="toc-Indices-1" href="indices.de.html">A. Indices</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Concept-index" href="indices.de.html">A.1 Concept index</a>    </li>
+    <li class=""><a name="toc-Function-index" href="indices.de.html">A.2 Function index</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

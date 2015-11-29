@@ -1,0 +1,817 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 por los autores.
+
+La traducción de la siguiente nota de copyright se ofrece como
+cortesía para las personas de habla no inglesa, pero únicamente la
+nota en inglés tiene validez legal.
+
+The translation of the following copyright notice is provided
+for courtesy to non-English speakers, but only the notice in English
+legally counts.
+
+Se otorga permiso para copiar, distribuir y/o modificar este documento
+bajo los términos de la Licencia de Documentación Libre de GNU, versión 1.1
+o cualquier versión posterior publicada por la Free Software Foundation;
+sin ninguna de las secciones invariantes.
+Se incluye una copia de esta licencia dentro de la sección titulada "Licencia
+de Documentación Libre de GNU".
+
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created on el 22 noviembre 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Referencia de la notación de GNU LilyPond: 4.4.1 Espaciado vertical flexible dentro de los sistemas</title>
+
+<meta name="description" content="Referencia de la notación de GNU LilyPond: 4.4.1 Espaciado vertical flexible dentro de los sistemas">
+<meta name="keywords" content="Referencia de la notación de GNU LilyPond: 4.4.1 Espaciado vertical flexible dentro de los sistemas">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.es.html#index" rel="start" title="LilyPond &mdash; Referencia de la notación">
+<link href="lilypond-command-index.es.html#lilypond-command-index" rel="index" title="D. Índice de instrucciones de LilyPond">
+<link href="index_toc.es.html#SEC_Contents" rel="contents" title="&Iacute;ndice General">
+<link href="index_abt.es.html#SEC_About" rel="help" title="Acerca de este documento">
+<link href="vertical-spacing.es.html#vertical-spacing" rel="up" title="4.4 Espaciado vertical">
+<link href="lilypond-index.es.html#lilypond-index" rel="next" title="E. Índice de LilyPond">
+<link href="vertical-spacing.es.html#vertical-spacing" rel="previous" title="4.4 Espaciado vertical">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="es" class="notation devStatus">
+
+
+<div id="main">
+<a name="Espaciado-vertical-flexible-dentro-de-los-sistemas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="vertical-spacing.es.html" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Espaciado vertical&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="vertical-spacing.es.html" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado vertical&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#within_002dsystem-spacing-properties" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Propiedades de espaciado dentro de los sistemas &gt; </a>]</td></tr></table>
+<a name="flexible-vertical-spacing-within-systems"></a>
+<h3 class="subsection">4.4.1 Espaciado vertical flexible dentro de los sistemas</h3>
+
+<a name="index-distancia-entre-pentagramas"></a>
+<a name="index-pentagrama_002c-distancia-entre-los"></a>
+<a name="index-espacio-entre-pentagramas"></a>
+<a name="index-espacio-dentro-de-los-sistemas"></a>
+
+<p>Tres mecanismos distintos controlan el espaciado vertical flexible
+dentro de los sistemas, uno por cada una de las categorías siguientes:
+</p>
+<ul>
+<li>
+<em>pautas sin agrupar</em>,
+
+</li><li>
+<em>pautas agrupadas</em> (pautas dentro de un grupo de pentagramas como
+<code>ChoirStaff</code>, etc.), y
+
+</li><li>
+<em>líneas que no son pautas</em> (como <code>Lyrics</code>,
+<code>ChordNames</code>, etc.).
+
+</li></ul>
+
+
+<p>La altura de cada sistema se determina en dos fases.  Primero, todos
+los pentagramas se disponen según la cantidad de espacio vacío
+disponible.  Después, las líneas que no son pautas se distribuyen
+entre las pautas.
+</p>
+<p>Observe que los mecanismos de espaciado estudiados en esta sección
+solamente controlan el espaciado vertical de las pautas y líneas que
+no son pautas dentro de los sistemas individuales.  El espaciado
+vertical entre distintos sistemas, partituras, marcados y márgenes se
+controla mediante variables de <code>\paper</code> que se estudian en
+<a href="flexible-vertical-spacing-paper-variables.es.html">Variables de espaciado de <code>\paper</code> verticales flexibles</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#within_002dsystem-spacing-properties" accesskey="1">Propiedades de espaciado dentro de los sistemas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spacing-of-ungrouped-staves" accesskey="2">Espaciado de pautas no agrupadas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spacing-of-grouped-staves" accesskey="3">Espaciado de pautas agrupadas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#spacing-of-non_002dstaff-lines" accesskey="4">Espaciado de las líneas que no son pautas</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="Propiedades-de-espaciado-dentro-de-los-sistemas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#flexible-vertical-spacing-within-systems" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Espaciado vertical flexible dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado vertical flexible dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spacing-of-ungrouped-staves" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Espaciado de pautas no agrupadas &gt; </a>]</td></tr></table>
+<a name="within_002dsystem-spacing-properties"></a>
+<h4 class="unnumberedsubsubsec">Propiedades de espaciado dentro de los sistemas</h4>
+
+<a name="index-staff_002daffinity"></a>
+<a name="index-staff_002daffinity-1"></a>
+<a name="index-staffgroup_002dstaff_002dspacing"></a>
+<a name="index-staffgroup_002dstaff_002dspacing-1"></a>
+<a name="index-staff_002dstaff_002dspacing"></a>
+<a name="index-staff_002dstaff_002dspacing-1"></a>
+<a name="index-nonstaff_002dunrelatedstaff_002dspacing"></a>
+<a name="index-nonstaff_002dunrelatedstaff_002dspacing-1"></a>
+<a name="index-nonstaff_002drelatedstaff_002dspacing"></a>
+<a name="index-nonstaff_002drelatedstaff_002dspacing-1"></a>
+<a name="index-nonstaff_002dnonstaff_002dspacing"></a>
+<a name="index-nonstaff_002dnonstaff_002dspacing-1"></a>
+<a name="index-default_002dstaff_002dstaff_002dspacing"></a>
+<a name="index-default_002dstaff_002dstaff_002dspacing-1"></a>
+<a name="index-minimum_002dY_002dextent"></a>
+<a name="index-minimum_002dY_002dextent-1"></a>
+<a name="index-extra_002doffset"></a>
+<a name="index-extra_002doffset-1"></a>
+<a name="index-self_002dalignment_002dX"></a>
+<a name="index-self_002dalignment_002dX-1"></a>
+<a name="index-X_002doffset"></a>
+<a name="index-X_002doffset-1"></a>
+<a name="index-VerticalAxisGroup-2"></a>
+<a name="index-VerticalAxisGroup-3"></a>
+
+<p>Los mecanismos de espaciado vertical dentro del sistema están
+controlados por dos conjuntos de propiedades de grob.  El primer
+conjunto está asociado con el grob <code>VerticalAxisGroup</code>, que se
+crea por parte de todas las pautas y líneas que no son pautas.  El
+segundo conjunto está asociado con el grob <code>StaffGrouper</code>, que
+puede crearse por parte de los grupos de pentagramas, pero solamente
+si se le llama explícitamente.  Estas propiedades se describen
+individualmente al final de la presente sección.
+</p>
+<p>Los nombres de estas propiedades (excepto para <code>staff-affinity</code>)
+siguen el formato <code><var>elemento1</var>-<var>elemento2</var>-spacing</code>,
+donde <code><var>elemento1</var></code> y <code><var>elemento2</var></code> son los
+elementos que se van a espaciar.  Observe que <code><var>elemento2</var></code>
+no está necesariamente por debajo de <code><var>elemento1</var></code>; por
+ejemplo, <code>nonstaff-relatedstaff-spacing</code> mide hacia arriba a
+partir de la línea del tipo no-pauta si <code>staff-affinity</code> es
+<code>UP</code>.
+</p>
+<p>Cada distancia se mide entre los <em>puntos de referencia</em> de los
+dos elementos.  El <em>punto de referencia</em> para un pentagrama y
+otro tipo de pauta es el centro vertical de su <code>StaffSymbol</code> (es
+decir, la línea central si <code>line-count</code> es un número impar; el
+espacio central si <code>line-count</code> es par).  Los puntos de
+referencia para las líneas individuales que no son pautas aparecen en
+la tabla siguiente:
+</p>
+<table>
+<thead><tr><th>Línea que no es una pauta</th><th>Punto de referencia</th></tr></thead>
+<tr><td><code>ChordNames</code></td><td>línea de base</td></tr>
+<tr><td><code>NoteNames</code></td><td>línea de base</td></tr>
+<tr><td><code>Lyrics</code></td><td>línea de base</td></tr>
+<tr><td><code>Dynamics</code></td><td>la mitad de la altura de la &lsquo;m&rsquo;</td></tr>
+<tr><td><code>FiguredBass</code></td><td>punto más alto</td></tr>
+<tr><td><code>FretBoards</code></td><td>línea superior</td></tr>
+</table>
+
+<p>En la siguiente imagen, las líneas horizontales indican las posiciones
+de estos puntos de referencia:
+</p>
+<blockquote><p>
+ <a href="../60/lily-1f25451f.ly">
+  <img align="middle"
+       border="0"
+       src="../60/lily-1f25451f.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>Cada una de las propiedades de grob del espaciado vertical (excepto
+<code>staff-affinity</code>)
+usa la misma estructura de lista-A que las
+variables de espaciado del bloque <code>\paper</code> que se han estudiado
+en <a href="flexible-vertical-spacing-paper-variables.es.html">Variables de espaciado de <code>\paper</code> verticales flexibles</a>.
+En <a href="modifying-alists.es.html">Modificación de las listas-A</a>
+se estudian métodos específicos para la modificación de
+las listas-A.  Las propiedades de los grobs deben ajustarse con un
+<code>\override</code> dentro de un bloque <code>\score</code> o <code>\layout</code>, y
+no dentro de un bloque <code>\paper</code>.
+</p>
+<p>El ejemplo que sigue muestra las dos maneras en que pueden modificarse
+estas listas-A.  La primera declaración actualiza un par clave-valor de
+forma individual, y la segunda redefine la propiedad completamente:
+</p>
+<blockquote><pre class="example">\new Staff \with {
+  \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #10
+} { &hellip; }
+
+\new Staff \with {
+  \override VerticalAxisGroup.default-staff-staff-spacing =
+    #'((basic-distance . 10)
+       (minimum-distance . 9)
+       (padding . 1)
+       (stretchability . 10))
+} { &hellip; }
+</pre></blockquote>
+
+<p>Para modificar globalmente cualquiera de los ajustes de espaciado,
+póngalos dentro del bloque <code>\layout</code>:
+</p>
+<blockquote><pre class="example">\layout {
+  \context {
+    \Staff
+    \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #10
+  }
+}
+</pre></blockquote>
+
+<p>Los ajustes estándar para las propiedades de grob del espaciado
+vertical están relacionadas en <a name="index-VerticalAxisGroup-4"></a>
+<a href="../internals/verticalaxisgroup.es.html">VerticalAxisGroup</a> y en
+<a name="index-StaffGrouper-1"></a>
+<a href="../internals/staffgrouper.es.html">StaffGrouper</a>.  Las sobreescrituras predeterminadas para
+los tipos específicos de líneas que no son pautas están relacionadas
+en las descripciones de contexto correspondientes en
+<a name="index-Contexts"></a>
+<a href="../internals/contexts.es.html">Contexts</a>.
+</p>
+<a name="Propiedades-del-grob-VerticalAxisGroup"></a>
+<h4 class="subsubheading">Propiedades del grob <code>VerticalAxisGroup</code></h4>
+
+<p>Las propiedades de <code>VerticalAxisGroup</code> se suelen ajustar con una
+instrucción <code>\override</code> en el nivel de <code>Staff</code> (o
+equivalente).
+</p>
+<dl compact="compact">
+<dt> <code>staff-staff-spacing</code></dt>
+<dd><p>Se utiliza para determinar la distancia entre la pauta actual
+y la pauta que está justo por debajo
+de ella dentro del mismo sistema, incluso si hay más líneas que no son
+pautas (tales como <code>Lyrics</code>) entre las dos pautas.  No se aplica
+a la pauta inferior de un sistema.
+</p>
+<p>Inicialmente, el valor de espaciado <code>staff-staff-spacing</code> de un
+grupo <code>VerticalAxisGroup</code> es una función de Scheme que aplica las
+propiedades del <code>StaffGrouper</code> si la pauta forma parte de un
+grupo, o el <code>default-staff-staff-spacing</code> de la pauta en caso
+contrario.  Esto hace posible que las pautas estén espaciadas de forma
+diferente cuando están agrupadas.  Para conseguir un espaciado regular
+sin importar el agrupamiento, esta función se puede sustituir por una
+lista-A de espaciado flexible, utilizando la forma de
+sobreescritura de redefinición completa que se ha mostrado más arriba.
+</p>
+</dd>
+<dt> <code>default-staff-staff-spacing</code></dt>
+<dd><p>Una lista-A de espaciado flexible que define el
+espacio <code>staff-staff-spacing</code> que se usará para las pautas sin
+agrupar, a no ser que se haya sobreescrito explícitamente
+<code>staff-staff-spacing</code> con una instrucción <code>\override</code>.
+</p>
+</dd>
+<dt> <code>staff-affinity</code></dt>
+<dd><p>Dirección de la pauta que utilizar para el espaciado de la línea
+actual que no es pauta.  Se puede elegir entre <code>UP</code> (arriba),
+<code>DOWN</code> (abajo) y <code>CENTER</code> (centro).  Si es <code>CENTER</code>, la
+línea del tipo no-pauta se coloca equidistante entre las dos pautas
+contiguas a ambos lados, a no ser que lo impidan colisiones u otras
+restricciones de espaciado.  Las líneas del tipo no-pauta adyacentes
+han de llevar valores de <code>staff-affinity</code> no crecientes desde la
+parte superior hasta la inferior, p.ej. una línea del tipo no-pauta
+establecida a <code>UP</code> no debería seguir inmediatamente a otra que
+esté establecida a <code>DOWN</code>.  Las líneas del tipo no-pauta en la
+parte superior de un sistema deben usar <code>DOWN</code>; las de la parte
+inferior deben usar <code>UP</code>.  El ajuste de <code>staff-affinity</code>
+para una pauta hace que se le trate como una línea que no es una
+pauta.  El establecimiento de <code>staff-affinity</code> a <code>#f</code> para
+una línea que no es una pauta hace que se trate como una pauta.
+Establecer <code>staff-affinity</code> a <code>UP</code>, <code>CENTER</code>, o
+<code>DOWN</code> hace que el pentagrama resulte espaciado como si fuera una
+línea que no es una pauta.
+</p>
+</dd>
+<dt> <code>nonstaff-relatedstaff-spacing</code></dt>
+<dd><p>Distancia entre la línea del tipo no-pauta actual y la pauta más
+próxima en la dirección de <code>staff-affinity</code>, si no hay ninguna
+línea que no sea una pauta entre las dos, y <code>staff-affinity</code> es
+<code>UP</code> o <code>DOWN</code>.  Si <code>staff-affinity</code> es <code>CENTER</code>,
+entonces se usa <code>nonstaff-relatedstaff-spacing</code> para las pautas
+más próximas <em>a los dos lados</em>, incluso aunque aparezcan otras
+líneas del tipo no-pauta entre la pauta actual y una de las otras.
+Esto significa que la colocación de una línea que no es una pauta
+depende tanto de las pautas que la rodean como de las líneas que no
+son pautas y que la rodean.  Establecer la ampliabilidad
+<code>stretchability</code> de uno de estos tipos de espaciado a un valor
+más pequeño provoca que este espaciado domine.  El establecimiento de
+<code>stretchability</code> a un valor mayor hace que dicho espaciado tenga
+un menor efecto.
+</p>
+</dd>
+<dt> <code>nonstaff-nonstaff-spacing</code></dt>
+<dd><p>Distancia entre la línea actual del tipo no-pauta y la siguiente línea
+del tipo no-pauta en la dirección de <code>staff-affinity</code>, si las dos
+están al mismo lado de la pauta relacionada, y <code>staff-affinity</code>
+es <code>UP</code> o <code>DOWN</code>.
+</p>
+</dd>
+<dt> <code>nonstaff-unrelatedstaff-spacing</code></dt>
+<dd><p>Distancia entre la línea actual del tipo no-pauta y la pauta en la
+dirección opuesta de <code>staff-affinity</code>, si no hay ninguna otra
+línea del tipo no-pauta entre las dos, y <code>staff-affinity</code> es
+<code>UP</code> o <code>DOWN</code>.  Se puede usar, por ejemplo, para requerir
+una cantidad de relleno mínima entre una línea de <code>Lyrics</code> y la
+pauta a la que no pertenece.
+</p></dd>
+</dl>
+
+<a name="Propiedades-del-grob-StaffGrouper"></a>
+<h4 class="subsubheading">Propiedades del grob <code>StaffGrouper</code></h4>
+
+<p>Las propiedades de <code>StaffGrouper</code> se suelen ajustar con una
+instrucción <code>\override</code> en el nivel de <code>StaffGroup</code> (o
+equivalente).
+</p>
+<dl compact="compact">
+<dt> <code>staff-staff-spacing</code></dt>
+<dd><p>Distancia entre pautas consecutivas dentro del grupo de pautas actual.
+La propiedad <code>staff-staff-spacing</code> del grob
+<code>VerticalAxisGroup</code> de una pauta individual se puede
+sobreescribir con distintos ajustes de espaciado para dicha
+pauta.
+</p>
+</dd>
+<dt> <code>staffgroup-staff-spacing</code></dt>
+<dd><p>Distancia entre la última pauta del grupo en curso y la pauta que está
+justo por debajo de ella dentro del mismo sistema, incluso si existen
+una o más líneas que no son pautas (tales como <code>Lyrics</code>) entre
+las dos pautas.  No se aplica al pentagrama o pauta inferior de un
+sistema.  La propiedad <code>staff-staff-spacing</code> del grob
+<code>VerticalAxisGroup</code> de una pauta individual se puede
+sobreescribir con distintos ajustes de espaciado para dicha
+pauta.
+</p></dd>
+</dl>
+
+<a name="Vease-tambien-182"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Referencia de la notación:
+<a href="flexible-vertical-spacing-paper-variables.es.html">Variables de espaciado de <code>\paper</code> verticales flexibles</a>,
+<a href="modifying-alists.es.html">Modificación de las listas-A</a>.
+</p>
+<p>Archivos de inicio:
+&lsquo;<tt>ly/engraver-init.ly</tt>&rsquo;,
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-Contexts-1"></a>
+<a href="../internals/contexts.es.html">Contexts</a>,
+<a name="index-VerticalAxisGroup-5"></a>
+<a href="../internals/verticalaxisgroup.es.html">VerticalAxisGroup</a>,
+<a name="index-StaffGrouper-2"></a>
+<a href="../internals/staffgrouper.es.html">StaffGrouper</a>.
+</p>
+
+
+<hr size="6">
+<a name="Espaciado-de-pautas-no-agrupadas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#within_002dsystem-spacing-properties" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Propiedades de espaciado dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado vertical flexible dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spacing-of-grouped-staves" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Espaciado de pautas agrupadas &gt; </a>]</td></tr></table>
+<a name="spacing-of-ungrouped-staves"></a>
+<h4 class="unnumberedsubsubsec">Espaciado de pautas no agrupadas</h4>
+
+<p>Las <em>pautas</em>, tales como los pentagramas (<code>Staff</code>), pautas
+de percusión (<code>DrumStaff</code>) o de tablatura (<code>TabStaff</code>),
+etc. son contextos que pueden contener uno o más contextos de voz,
+pero no pueden contener otras pautas.
+</p>
+<p>Las siguientes propiedades afectan al espaciado de las pautas <em>no
+agrupadas</em>:
+</p>
+<ul>
+<li> Propiedades de <code>VerticalAxisGroup</code>:
+<ul>
+<li> <code>default-staff-staff-spacing</code>
+</li><li> <code>staff-staff-spacing</code>
+</li></ul>
+</li></ul>
+
+<p>Estas propiedades de grob se describen individualmente más arriba;
+véase <a href="#within_002dsystem-spacing-properties">Propiedades de espaciado dentro de los sistemas</a>.
+</p>
+<p>Están implicadas ciertas propiedades adicionales para las pautas que
+son parte de un grupo; véase <a href="#spacing-of-grouped-staves">Espaciado de pautas agrupadas</a>.
+</p>
+<p>El ejemplo siguiente muestra cómo la propiedad
+<code>default-staff-staff-spacing</code> puede afectar al espaciado de pautas no
+agrupadas.  Las mismas sobreescrituras aplicadas a
+<code>staff-staff-spacing</code>
+tendrían el mismo efecto, pero también se aplicaría en caso de que las
+pautas estuvieran combinadas en un grupo o grupos.
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Staff
+    \override VerticalAxisGroup.default-staff-staff-spacing =
+      #'((basic-distance . 8)
+         (minimum-distance . 7)
+         (padding . 1))
+  }
+}
+
+&lt;&lt;
+  % The very low note here needs more room than 'basic-distance
+  % can provide, so the distance between this staff and the next
+  % is determined by 'padding.
+  \new Staff { b,2 r | }
+
+  % Here, 'basic-distance provides enough room, and there is no
+  % need to compress the space (towards 'minimum-distance) to make
+  % room for anything else on the page, so the distance between
+  % this staff and the next is determined by 'basic-distance.
+  \new Staff { \clef bass g2 r | }
+
+  % By setting 'padding to a negative value, staves can be made to
+  % collide.  The lowest acceptable value for 'basic-distance is 0.
+  \new Staff \with {
+    \override VerticalAxisGroup.default-staff-staff-spacing =
+      #'((basic-distance . 3.5)
+         (padding . -10))
+  } { \clef bass g2 r | }
+  \new Staff { \clef bass g2 r | }
+&gt;&gt;
+</pre><p>
+ <a href="../b1/lily-81d4b0f8.ly">
+  <img align="middle"
+       border="0"
+       src="../b1/lily-81d4b0f8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-83"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Archivos de inicio:
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/spacing.es.html">Spacing</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-VerticalAxisGroup-6"></a>
+<a href="../internals/verticalaxisgroup.es.html">VerticalAxisGroup</a>.
+</p>
+
+<hr size="6">
+<a name="Espaciado-de-pautas-agrupadas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spacing-of-ungrouped-staves" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Espaciado de pautas no agrupadas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado vertical flexible dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#spacing-of-non_002dstaff-lines" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Espaciado de las líneas que no son pautas &gt; </a>]</td></tr></table>
+<a name="spacing-of-grouped-staves"></a>
+<h4 class="unnumberedsubsubsec">Espaciado de pautas agrupadas</h4>
+
+<p>En partituras grandes como las orquestales, es común colocar los
+pentagramas en grupos.  El espacio entre los grupos suele ser mayor
+que el espacio que hay entre los pentagramas dentro del mismo grupo.
+</p>
+<p>Los grupos de pautas, <em>Staff-groups</em> (tales como
+<code>StaffGroup</code>, <code>ChoirStaff</code>, etc.) son contextos que pueden
+contener al mismo tiempo uno o más pentagramas o pautas.
+</p>
+<p>Las siguientes propiedades afectan al espaciado de las pautas dentro
+de los grupos:
+</p>
+<ul>
+<li> Propiedades de <code>VerticalAxisGroup</code>:
+<ul>
+<li> <code>staff-staff-spacing</code>
+</li></ul>
+</li><li> Propiedades de <code>StaffGrouper</code>:
+<ul>
+<li> <code>staff-staff-spacing</code>
+</li><li> <code>staffgroup-staff-spacing</code>
+</li></ul>
+</li></ul>
+
+<p>Estas propiedades de grob se describen individualmente más arriba;
+véase <a href="#within_002dsystem-spacing-properties">Propiedades de espaciado dentro de los sistemas</a>.
+</p>
+<p>El ejemplo siguiente muestra cómo pueden afectar las propiedades del
+grob <code>StaffGrouper</code> al espaciado de las pautas agrupadas:
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Score
+    \override StaffGrouper.staff-staff-spacing.padding = #0
+    \override StaffGrouper.staff-staff-spacing.basic-distance = #1
+  }
+}
+
+&lt;&lt;
+  \new PianoStaff \with {
+    \override StaffGrouper.staffgroup-staff-spacing.basic-distance = #20
+  } &lt;&lt;
+    \new Staff { c'1 }
+    \new Staff { c'1 }
+  &gt;&gt;
+
+  \new StaffGroup &lt;&lt;
+    \new Staff { c'1 }
+    \new Staff { c'1 }
+  &gt;&gt;
+&gt;&gt;
+</pre><p>
+ <a href="../23/lily-d4009833.ly">
+  <img align="middle"
+       border="0"
+       src="../23/lily-d4009833.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-121"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Archivos de inicio:
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/spacing.es.html">Spacing</a>.
+</p>
+<p>Referencia de funcionamiento interno:
+<a name="index-VerticalAxisGroup-7"></a>
+<a href="../internals/verticalaxisgroup.es.html">VerticalAxisGroup</a>,
+<a name="index-StaffGrouper-3"></a>
+<a href="../internals/staffgrouper.es.html">StaffGrouper</a>.
+</p>
+
+<hr size="6">
+<a name="Espaciado-de-las-l_00edneas-que-no-son-pautas"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spacing-of-grouped-staves" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Espaciado de pautas agrupadas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado vertical flexible dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicit-staff-and-system-positioning.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Posicionamiento explícito de los pentagramas y los sistemas &gt; </a>]</td></tr></table>
+<a name="spacing-of-non_002dstaff-lines"></a>
+<h4 class="unnumberedsubsubsec">Espaciado de las líneas que no son pautas</h4>
+
+<p>Las <em>Líneas que no son pautas</em> (tales como <code>Lyrics</code>,
+<code>ChordNames</code>, etc.) son contextos cuyos objetos de presentación
+se imprimen como pentagramas (es decir, en líneas horizontales dentro
+de los sistemas).  Específicamente, las líneas que no son pautas son
+contextos del tipo no-pauta que crean el objeto de presentación
+<code>VerticalAxisGroup</code>.
+</p>
+<p>Las siguientes propiedades afectan al espaciado de las líneas que no
+son pautas:
+</p>
+<ul>
+<li> Propiedades de <code>VerticalAxisGroup</code>:
+<ul>
+<li> <code>staff-affinity</code>
+</li><li> <code>nonstaff-relatedstaff-spacing</code>
+</li><li> <code>nonstaff-nonstaff-spacing</code>
+</li><li> <code>nonstaff-unrelatedstaff-spacing</code>
+</li></ul>
+</li></ul>
+
+<p>Estas propiedades de grob se describen individualmente más arriba;
+véase <a href="#within_002dsystem-spacing-properties">Propiedades de espaciado dentro de los sistemas</a>.
+</p>
+<p>El ejemplo siguiente muestra cómo la propiedad
+<code>nonstaff-nonstaff-spacing</code> puede afectar el espaciado de líneas
+consecutivas que no son pautas.  Aquí, mediante el establecimiento de
+la clave de ampliabilidad <code>stretchability</code> a un valor muy grande,
+la línea de letra es capaz de ampliarse mucho más de lo que es usual:
+</p>
+<blockquote><pre class="verbatim">\layout {
+  \context {
+    \Lyrics
+    \override VerticalAxisGroup.nonstaff-nonstaff-spacing.stretchability = #1000
+  }
+}
+
+\new StaffGroup
+&lt;&lt;
+  \new Staff \with {
+    \override VerticalAxisGroup.staff-staff-spacing = #'((basic-distance . 30))
+  } { c'1 }
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #UP
+  } \lyricmode { up }
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #CENTER
+  } \lyricmode { center }
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #DOWN
+  } \lyricmode { down }
+  \new Staff { c'1 }
+&gt;&gt;
+</pre><p>
+ <a href="../63/lily-255cf8e4.ly">
+  <img align="middle"
+       border="0"
+       src="../63/lily-255cf8e4.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="Vease-tambien-258"></a>
+<h4 class="subsubheading">Véase también</h4>
+<p>Archivos de inicio:
+&lsquo;<tt>ly/engraver-init.ly</tt>&rsquo;,
+&lsquo;<tt>scm/define-grobs.scm</tt>&rsquo;.
+</p>
+<p>Fragmentos de código:
+<a href="../snippets/spacing.es.html">Spacing</a>.
+</p>
+
+<p>Referencia de funcionamiento interno:
+<a name="index-Contexts-2"></a>
+<a href="../internals/contexts.es.html">Contexts</a>,
+<a name="index-VerticalAxisGroup-8"></a>
+<a href="../internals/verticalaxisgroup.es.html">VerticalAxisGroup</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="spacing-issues.es.html" title="Inicio de este cap&iacute;tulo o cap&iacute;tulo anterior"> &lt;&lt; Problemas de espaciado&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.es.html" title="Portada del documento" rel="start">Arriba</a>][<a href="index_toc.es.html#SEC_Contents" title="&Iacute;ndice general" rel="contents">&Iacute;ndice general</a>][<a href="lilypond-command-index.es.html" title="&Iacute;ndice" rel="index">&Iacute;ndice</a>][<a href="index_abt.es.html#SEC_About" title="Acerca de (p&aacute;gina de ayuda)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="changing-defaults.es.html" title="Cap&iacute;tulo siguiente">&nbsp;Cambiar los valores por omisión &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#spacing-of-grouped-staves" title="Secci&oacute;n anterior en orden de lectura" accesskey="p" rel="previous"> &lt; Espaciado de pautas agrupadas&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#flexible-vertical-spacing-within-systems" title="Subir secci&oacute;n" accesskey="u" rel="up">&nbsp; Subir :&nbsp;Espaciado vertical flexible dentro de los sistemas&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="explicit-staff-and-system-positioning.es.html" title="Secci&oacute;n siguiente en orden de lectura" accesskey="n" rel="next">&nbsp;Posicionamiento explícito de los pentagramas y los sistemas &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Esta página corresponde a LilyPond-2.19.32 (rama de desarrollo).
+</p>
+<p class="footer_report">
+Se agradecen las <a href="http://lilypond.org/help-us.html">sugerencias para la documentación</a>. Informe de los fallos a través de la lista en español <a href="http://lists.gnu.org/mailman/listinfo/lilypond-es">lilypond-es</a>, o en inglés a través de <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">la lista oficial de fallos</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ Otros idiomas: <a href="flexible-vertical-spacing-within-systems.html">English</a>, <a href="flexible-vertical-spacing-within-systems.de.html">deutsch</a>, <a href="flexible-vertical-spacing-within-systems.fr.html">français</a>, <a href="flexible-vertical-spacing-within-systems.it.html">italiano</a>, <a href="flexible-vertical-spacing-within-systems.ja.html">日本語</a>.
+ <br>
+ Acerca de la <a href="http://www.lilypond.org/website/misc/browser-language">selección automática del idioma</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.es.html"
+         title="Documentation Index">&lt;&lt; Volver al índice de la documentación</a></p>
+<h4 class="toc_header"> <a href="index.es.html" title="Start of the manual">LilyPond &mdash; Referencia de la notación  v2.19.32 (rama de desarrollo). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Notacion-musical" href="musical-notation.es.html">1. Notación musical</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Alturas-1" href="pitches.es.html">1.1 Alturas</a>    </li>
+    <li class=""><a name="toc-Duraciones-1" href="rhythms.es.html">1.2 Duraciones</a>    </li>
+    <li class=""><a name="toc-Expresiones-1" href="expressive-marks.es.html">1.3 Expresiones</a>    </li>
+    <li class=""><a name="toc-Repeticiones-1" href="repeats.es.html">1.4 Repeticiones</a>    </li>
+    <li class=""><a name="toc-Notas-simultaneas" href="simultaneous-notes.es.html">1.5 Notas simultáneas</a>    </li>
+    <li class=""><a name="toc-Notacion-de-los-pentagramas" href="staff-notation.es.html">1.6 Notación de los pentagramas</a>    </li>
+    <li class=""><a name="toc-Anotaciones-editoriales-1" href="editorial-annotations.es.html">1.7 Anotaciones editoriales</a>    </li>
+    <li class=""><a name="toc-Texto-1" href="text.es.html">1.8 Texto</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notacion-especializada" href="specialist-notation.es.html">2. Notación especializada</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Musica-vocal" href="vocal-music.es.html">2.1 Música vocal</a>    </li>
+    <li class=""><a name="toc-Teclados-y-otros-instrumentos-de-varios-pentagramas-1" href="keyboard-and-other-multi_002dstaff-instruments.es.html">2.2 Teclados y otros instrumentos de varios pentagramas</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-sin-trastes-1" href="unfretted-string-instruments.es.html">2.3 Instrumentos de cuerda sin trastes</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-cuerda-con-trastes-1" href="fretted-string-instruments.es.html">2.4 Instrumentos de cuerda con trastes</a>    </li>
+    <li class=""><a name="toc-Percusion" href="percussion.es.html">2.5 Percusión</a>    </li>
+    <li class=""><a name="toc-Instrumentos-de-viento-1" href="wind-instruments.es.html">2.6 Instrumentos de viento</a>    </li>
+    <li class=""><a name="toc-Notacion-de-acordes" href="chord-notation.es.html">2.7 Notación de acordes</a>    </li>
+    <li class=""><a name="toc-Musica-contemporanea" href="contemporary-music.es.html">2.8 Música contemporánea</a>    </li>
+    <li class=""><a name="toc-Notacion-antigua" href="ancient-notation.es.html">2.9 Notación antigua</a>    </li>
+    <li class=""><a name="toc-Musicas-del-mundo" href="world-music.es.html">2.10 Músicas del mundo</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Entrada-y-salida-generales-1" href="general-input-and-output.es.html">3. Entrada y salida generales</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Estructura-del-codigo-de-entrada" href="input-structure.es.html">3.1 Estructura del código de entrada</a>    </li>
+    <li class=""><a name="toc-Titulos-y-encabezamientos" href="titles-and-headers.es.html">3.2 Títulos y encabezamientos</a>    </li>
+    <li class=""><a name="toc-Trabajar-sobre-los-archivos-de-entrada-1" href="working-with-input-files.es.html">3.3 Trabajar sobre los archivos de entrada</a>    </li>
+    <li class=""><a name="toc-Controlar-la-salida-1" href="controlling-output.es.html">3.4 Controlar la salida</a>    </li>
+    <li class=""><a name="toc-Salida-MIDI-1" href="midi-output.es.html">3.5 Salida MIDI</a>    </li>
+    <li class=""><a name="toc-Extraer-informacion-musical" href="extracting-musical-information.es.html">3.6 Extraer información musical</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Problemas-de-espaciado-1" href="spacing-issues.es.html">4. Problemas de espaciado</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Disposicion-de-la-pagina" href="page-layout.es.html">4.1 Disposición de la página</a>    </li>
+    <li class=""><a name="toc-Disposicion-de-la-partitura" href="score-layout.es.html">4.2 Disposición de la partitura</a>    </li>
+    <li class=""><a name="toc-Saltos-1" href="breaks.es.html">4.3 Saltos</a>    </li>
+    <li class=" toc_current"><a name="toc-Espaciado-vertical-1" href="vertical-spacing.es.html">4.4 Espaciado vertical</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-Espaciado-vertical-flexible-dentro-de-los-sistemas-1" href="flexible-vertical-spacing-within-systems.es.html">4.4.1 Espaciado vertical flexible dentro de los sistemas</a>
+      <ul class="toc">
+        <li class=""><a name="toc-Propiedades-de-espaciado-dentro-de-los-sistemas-1" href="flexible-vertical-spacing-within-systems.es.html#within_002dsystem-spacing-properties">Propiedades de espaciado dentro de los sistemas</a>        </li>
+        <li class=""><a name="toc-Espaciado-de-pautas-no-agrupadas-1" href="flexible-vertical-spacing-within-systems.es.html#spacing-of-ungrouped-staves">Espaciado de pautas no agrupadas</a>        </li>
+        <li class=""><a name="toc-Espaciado-de-pautas-agrupadas-1" href="flexible-vertical-spacing-within-systems.es.html#spacing-of-grouped-staves">Espaciado de pautas agrupadas</a>        </li>
+        <li class=""><a name="toc-Espaciado-de-las-lineas-que-no-son-pautas" href="flexible-vertical-spacing-within-systems.es.html#spacing-of-non_002dstaff-lines">Espaciado de las líneas que no son pautas</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-Posicionamiento-explicito-de-los-pentagramas-y-los-sistemas" href="explicit-staff-and-system-positioning.es.html">4.4.2 Posicionamiento explícito de los pentagramas y los sistemas</a>      </li>
+      <li class=""><a name="toc-Evitar-las-colisiones-verticales-1" href="vertical-collision-avoidance.es.html">4.4.3 Evitar las colisiones verticales</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Espaciado-horizontal-1" href="horizontal-spacing.es.html">4.5 Espaciado horizontal</a>    </li>
+    <li class=""><a name="toc-Encajar-la-musica-en-menos-paginas" href="fitting-music-onto-fewer-pages.es.html">4.6 Encajar la música en menos páginas</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Cambiar-los-valores-por-omision" href="changing-defaults.es.html">5. Cambiar los valores por omisión</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contextos-de-interpretacion" href="interpretation-contexts.es.html">5.1 Contextos de interpretación</a>    </li>
+    <li class=""><a name="toc-Explicacion-del-Manual-de-referencia-de-funcionamiento-interno" href="explaining-the-internals-reference.es.html">5.2 Explicación del Manual de referencia de funcionamiento interno</a>    </li>
+    <li class=""><a name="toc-Modificar-las-propiedades-1" href="modifying-properties.es.html">5.3 Modificar las propiedades</a>    </li>
+    <li class=""><a name="toc-Conceptos-y-propiedades-utiles" href="useful-concepts-and-properties.es.html">5.4 Conceptos y propiedades útiles</a>    </li>
+    <li class=""><a name="toc-Trucos-avanzados-1" href="advanced-tweaks.es.html">5.5 Trucos avanzados</a>    </li>
+    <li class=""><a name="toc-Uso-de-las-funciones-musicales-1" href="using-music-functions.es.html">5.6 Uso de las funciones musicales</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Tablas-del-manual-sobre-notacion" href="notation-manual-tables.es.html">A. Tablas del manual sobre notación</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Cuadro-de-nombres-de-acordes-1" href="chord-name-chart.es.html">A.1 Cuadro de nombres de acordes</a>    </li>
+    <li class=""><a name="toc-Modificadores-de-acorde-mas-usuales" href="common-chord-modifiers.es.html">A.2 Modificadores de acorde más usuales</a>    </li>
+    <li class=""><a name="toc-Afinaciones-de-cuerdas-predefinidas-1" href="predefined-string-tunings.es.html">A.3 Afinaciones de cuerdas predefinidas</a>    </li>
+    <li class=""><a name="toc-Diagramas-predefinidos-de-posiciones-1" href="predefined-fretboard-diagrams.es.html">A.4 Diagramas predefinidos de posiciones</a>    </li>
+    <li class=""><a name="toc-Tamanos-de-pagina-predefinidos" href="predefined-paper-sizes.es.html">A.5 Tamaños de página predefinidos</a>    </li>
+    <li class=""><a name="toc-instrumentos-MIDI-1" href="midi-instruments.es.html">A.6 instrumentos MIDI</a>    </li>
+    <li class=""><a name="toc-Lista-de-colores-1" href="list-of-colors.es.html">A.7 Lista de colores</a>    </li>
+    <li class=""><a name="toc-La-tipografia-Feta" href="the-feta-font.es.html">A.8 La tipografía Feta</a>    </li>
+    <li class=""><a name="toc-Estilos-de-cabezas-de-nota-1" href="note-head-styles.es.html">A.9 Estilos de cabezas de nota</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-marcado-de-texto-1" href="text-markup-commands.es.html">A.10 Instrucciones de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Instrucciones-de-listas-de-marcado-de-texto-1" href="text-markup-list-commands.es.html">A.11 Instrucciones de listas de marcado de texto</a>    </li>
+    <li class=""><a name="toc-Lista-de-caracteres-especiales-1" href="list-of-special-characters.es.html">A.12 Lista de caracteres especiales</a>    </li>
+    <li class=""><a name="toc-Lista-de-articulaciones-1" href="list-of-articulations.es.html">A.13 Lista de articulaciones</a>    </li>
+    <li class=""><a name="toc-Notas-de-percusion" href="percussion-notes.es.html">A.14 Notas de percusión</a>    </li>
+    <li class=""><a name="toc-Glosario-tecnico" href="technical-glossary.es.html">A.15 Glosario técnico</a>    </li>
+    <li class=""><a name="toc-Todas-las-propiedades-de-contexto-1" href="all-context-properties.es.html">A.16 Todas las propiedades de contexto</a>    </li>
+    <li class=""><a name="toc-Propiedades-de-disposicion" href="layout-properties.es.html">A.17 Propiedades de disposición</a>    </li>
+    <li class=""><a name="toc-Funciones-musicales-disponibles-1" href="available-music-functions.es.html">A.18 Funciones musicales disponibles</a>    </li>
+    <li class=""><a name="toc-Identificadores-de-modificacion-de-contextos" href="context-modification-identifiers.es.html">A.19 Identificadores de modificación de contextos</a>    </li>
+    <li class=""><a name="toc-Predicados-de-tipo-predefinidos-1" href="predefined-type-predicates.es.html">A.20 Predicados de tipo predefinidos</a>    </li>
+    <li class=""><a name="toc-Funciones-de-Scheme-1" href="scheme-functions.es.html">A.21 Funciones de Scheme</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Hoja-de-referencia-rapida" href="cheat-sheet.es.html">B. Hoja de referencia rápida</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.es.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-Indice-de-instrucciones-de-LilyPond" href="lilypond-command-index.es.html">D. Índice de instrucciones de LilyPond</a>  </li>
+  <li class=""><a name="toc-Indice-de-LilyPond" href="lilypond-index.es.html">E. Índice de LilyPond</a>  </li>
+<li>
+<!--
+    Translation of GIT committish: 9d074d78d7c25852afa87005e21c118630f4f83b
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  See TRANSLATION for details.
+
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Búsqueda en Google">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Buscar">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

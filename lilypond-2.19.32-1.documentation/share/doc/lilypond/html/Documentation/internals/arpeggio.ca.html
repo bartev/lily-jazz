@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created on November 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Internals Reference: 3.1.9 Arpeggio</title>
+
+<meta name="description" content="LilyPond Internals Reference: 3.1.9 Arpeggio">
+<meta name="keywords" content="LilyPond Internals Reference: 3.1.9 Arpeggio">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ca.html#index" rel="start" title="GNU LilyPond &ndash; Internals Reference">
+<link href="indices.ca.html#indices" rel="index" title="A. Indices">
+<link href="index_toc.ca.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt.ca.html#SEC_About" rel="help" title="About This Document">
+<link href="all-layout-objects.ca.html#all-layout-objects" rel="up" title="3.1 All layout objects">
+<link href="indices.ca.html#indices" rel="next" title="A.2 Function index">
+<link href="ambitusnotehead.ca.html#ambitusnotehead" rel="previous" title="3.1.8 AmbitusNoteHead">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="en" class="internals devStatus">
+
+
+<div id="main">
+<a name="Arpeggio"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="backend.ca.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Backend&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.ca.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.ca.html" title="Index" rel="index">Index</a>][<a href="index_abt.ca.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="scheme-functions.ca.html" title="Next chapter">&nbsp;Scheme functions &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="ambitusnotehead.ca.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; AmbitusNoteHead&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="all-layout-objects.ca.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;All layout objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="balloontextitem.ca.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;BalloonTextItem &gt; </a>]</td></tr></table>
+<a name="arpeggio"></a>
+<h3 class="subsection">3.1.9 Arpeggio</h3>
+
+<p>Arpeggio objects are created by: <a href="arpeggio_005fengraver.ca.html">Arpeggio_engraver</a> and <a href="span_005farpeggio_005fengraver.ca.html">Span_arpeggio_engraver</a>.
+</p>
+<p>Standard settings:
+</p>
+<blockquote><dl compact="compact">
+<dt> <code>direction</code> (direction):</dt>
+<dd><p><code>-1</code>
+</p>
+<p>If <code>side-axis</code> is <code>0</code> (or
+<code>X</code>), then this property determines whether the object is placed
+<code>LEFT</code>, <code>CENTER</code> or <code>RIGHT</code> with respect to the
+other object.  Otherwise, it determines whether the object is placed
+<code>UP</code>, <code>CENTER</code> or <code>DOWN</code>.  Numerical values may also
+be used: <code>UP</code>=<code>1</code>, <code>DOWN</code>=<code>-1</code>,
+<code>LEFT</code>=<code>-1</code>, <code>RIGHT</code>=<code>1</code>,
+<code>CENTER</code>=<code>0</code>.
+</p>
+</dd>
+<dt> <code>padding</code> (dimension, in staff space):</dt>
+<dd><p><code>0.5</code>
+</p>
+<p>Add this much extra space between
+objects that are next to each other.
+</p>
+</dd>
+<dt> <code>positions</code> (pair of numbers):</dt>
+<dd><p><code>ly:arpeggio::calc-positions</code>
+</p>
+<p>Pair of staff coordinates
+<code>(<var>left</var> . <var>right</var>)</code>, where both <var>left</var> and
+<var>right</var> are in <code>staff-space</code> units of the current staff.  For
+slurs, this value selects which slur candidate to use; if extreme
+positions are requested, the closest one is taken.
+</p>
+</dd>
+<dt> <code>protrusion</code> (number):</dt>
+<dd><p><code>0.4</code>
+</p>
+<p>In an arpeggio bracket, the length of the
+horizontal edges.
+</p>
+</dd>
+<dt> <code>script-priority</code> (number):</dt>
+<dd><p><code>0</code>
+</p>
+<p>A key for determining the order of
+scripts in a stack, by being added to the position of the script in
+the user input, the sum being the overall priority.  Smaller means
+closer to the head.
+</p>
+</dd>
+<dt> <code>side-axis</code> (number):</dt>
+<dd><p><code>0</code>
+</p>
+<p>If the value is <code>X</code> (or
+equivalently&nbsp;<code>0</code>), the object is placed horizontally next to
+the other object.  If the value is <code>Y</code> or&nbsp;<code>1</code>, it is
+placed vertically.
+</p>
+</dd>
+<dt> <code>staff-position</code> (number):</dt>
+<dd><p><code>0.0</code>
+</p>
+<p>Vertical position, measured in half
+staff spaces, counted from the middle line.
+</p>
+</dd>
+<dt> <code>stencil</code> (stencil):</dt>
+<dd><p><code>ly:arpeggio::print</code>
+</p>
+<p>The symbol to print.
+</p>
+</dd>
+<dt> <code>X-extent</code> (pair of numbers):</dt>
+<dd><p><code>ly:arpeggio::width</code>
+</p>
+<p>Extent (size) in the X&nbsp;direction,
+measured in staff-space units, relative to object&rsquo;s reference point.
+</p>
+</dd>
+<dt> <code>X-offset</code> (number):</dt>
+<dd><p><code>ly:side-position-interface::x-aligned-side</code>
+</p>
+<p>The horizontal amount that this object is
+moved relative to its X-parent.
+</p>
+</dd>
+<dt> <code>Y-extent</code> (pair of numbers):</dt>
+<dd><p><code>#&lt;unpure-pure-container #&lt;primitive-procedure ly:grob::stencil-height&gt; #&lt;primitive-procedure ly:arpeggio::pure-height&gt; &gt;</code>
+</p>
+<p>Extent (size) in the Y&nbsp;direction,
+measured in staff-space units, relative to object&rsquo;s reference point.
+</p>
+</dd>
+<dt> <code>Y-offset</code> (number):</dt>
+<dd><p><code>#&lt;unpure-pure-container #&lt;primitive-procedure ly:staff-symbol-referencer::callback&gt; &gt;</code>
+</p>
+<p>The vertical amount that this object is moved
+relative to its Y-parent.
+</p>
+</dd>
+</dl>
+</blockquote>
+
+
+<p>This object supports the following interface(s):
+<a href="arpeggio_002dinterface.ca.html">arpeggio-interface</a>, <a href="font_002dinterface.ca.html">font-interface</a>, <a href="grob_002dinterface.ca.html">grob-interface</a>, <a href="item_002dinterface.ca.html">item-interface</a>, <a href="side_002dposition_002dinterface.ca.html">side-position-interface</a> and <a href="staff_002dsymbol_002dreferencer_002dinterface.ca.html">staff-symbol-referencer-interface</a>.
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="backend.ca.html" title="Beginning of this chapter or previous chapter"> &lt;&lt; Backend&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ca.html" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc.ca.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="indices.ca.html" title="Index" rel="index">Index</a>][<a href="index_abt.ca.html#SEC_About" title="About (help)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="scheme-functions.ca.html" title="Next chapter">&nbsp;Scheme functions &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="ambitusnotehead.ca.html" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; AmbitusNoteHead&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="all-layout-objects.ca.html" title="Up section" accesskey="u" rel="up">&nbsp; Up :&nbsp;All layout objects&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="balloontextitem.ca.html" title="Next section in reading order" accesskey="n" rel="next">&nbsp;BalloonTextItem &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+Aquesta pàgina correspon a LilyPond-2.19.32 (branca de desenvolupament).
+</p>
+<p class="footer_report">
+Agraïm la vostra ajuda: sisplau <a href="http://lilypond.org/help-us.html">ajudeu-nos</a> informant d'errors a la nostra <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">llista de correu d'errors</a>.
+</p>
+</div>
+
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index.ca.html" title="Start of the manual">Internals Reference  v2.19.32 (branca de desenvolupament). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=""><a name="toc-Music-definitions-1" href="music-definitions.ca.html">1. Music definitions</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Music-expressions-1" href="music-expressions.ca.html">1.1 Music expressions</a>    </li>
+    <li class=""><a name="toc-Music-classes-1" href="music-classes.ca.html">1.2 Music classes</a>    </li>
+    <li class=""><a name="toc-Music-properties-1" href="music-properties.ca.html">1.3 Music properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Translation-1" href="translation.ca.html">2. Translation</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Contexts-1" href="contexts.ca.html">2.1 Contexts</a>    </li>
+    <li class=""><a name="toc-Engravers-and-Performers-1" href="engravers-and-performers.ca.html">2.2 Engravers and Performers</a>    </li>
+    <li class=""><a name="toc-Tunable-context-properties-1" href="tunable-context-properties.ca.html">2.3 Tunable context properties</a>    </li>
+    <li class=""><a name="toc-Internal-context-properties-1" href="internal-context-properties.ca.html">2.4 Internal context properties</a>    </li>
+  </ul>
+  </li>
+  <li class=" toc_current"><a name="toc-Backend-1" href="backend.ca.html">3. Backend</a>
+  <ul class="toc">
+    <li class=" toc_current"><a name="toc-All-layout-objects-1" href="all-layout-objects.ca.html">3.1 All layout objects</a>
+    <ul class="toc">
+      <li class=""><a name="toc-Accidental-1" href="accidental.ca.html">3.1.1 Accidental</a>      </li>
+      <li class=""><a name="toc-AccidentalCautionary-1" href="accidentalcautionary.ca.html">3.1.2 AccidentalCautionary</a>      </li>
+      <li class=""><a name="toc-AccidentalPlacement-1" href="accidentalplacement.ca.html">3.1.3 AccidentalPlacement</a>      </li>
+      <li class=""><a name="toc-AccidentalSuggestion-1" href="accidentalsuggestion.ca.html">3.1.4 AccidentalSuggestion</a>      </li>
+      <li class=""><a name="toc-Ambitus-1" href="ambitus.ca.html">3.1.5 Ambitus</a>      </li>
+      <li class=""><a name="toc-AmbitusAccidental-1" href="ambitusaccidental.ca.html">3.1.6 AmbitusAccidental</a>      </li>
+      <li class=""><a name="toc-AmbitusLine-1" href="ambitusline.ca.html">3.1.7 AmbitusLine</a>      </li>
+      <li class=""><a name="toc-AmbitusNoteHead-1" href="ambitusnotehead.ca.html">3.1.8 AmbitusNoteHead</a>      </li>
+      <li class=" toc_current"><a name="toc-Arpeggio-1" href="arpeggio.ca.html">3.1.9 Arpeggio</a>      </li>
+      <li class=""><a name="toc-BalloonTextItem-1" href="balloontextitem.ca.html">3.1.10 BalloonTextItem</a>      </li>
+      <li class=""><a name="toc-BarLine-1" href="barline.ca.html">3.1.11 BarLine</a>      </li>
+      <li class=""><a name="toc-BarNumber-1" href="barnumber.ca.html">3.1.12 BarNumber</a>      </li>
+      <li class=""><a name="toc-BassFigure-1" href="bassfigure.ca.html">3.1.13 BassFigure</a>      </li>
+      <li class=""><a name="toc-BassFigureAlignment-1" href="bassfigurealignment.ca.html">3.1.14 BassFigureAlignment</a>      </li>
+      <li class=""><a name="toc-BassFigureAlignmentPositioning-1" href="bassfigurealignmentpositioning.ca.html">3.1.15 BassFigureAlignmentPositioning</a>      </li>
+      <li class=""><a name="toc-BassFigureBracket-1" href="bassfigurebracket.ca.html">3.1.16 BassFigureBracket</a>      </li>
+      <li class=""><a name="toc-BassFigureContinuation-1" href="bassfigurecontinuation.ca.html">3.1.17 BassFigureContinuation</a>      </li>
+      <li class=""><a name="toc-BassFigureLine-1" href="bassfigureline.ca.html">3.1.18 BassFigureLine</a>      </li>
+      <li class=""><a name="toc-Beam-1" href="beam.ca.html">3.1.19 Beam</a>      </li>
+      <li class=""><a name="toc-BendAfter-1" href="bendafter.ca.html">3.1.20 BendAfter</a>      </li>
+      <li class=""><a name="toc-BreakAlignGroup-1" href="breakaligngroup.ca.html">3.1.21 BreakAlignGroup</a>      </li>
+      <li class=""><a name="toc-BreakAlignment-1" href="breakalignment.ca.html">3.1.22 BreakAlignment</a>      </li>
+      <li class=""><a name="toc-BreathingSign-1" href="breathingsign.ca.html">3.1.23 BreathingSign</a>      </li>
+      <li class=""><a name="toc-ChordName-1" href="chordname.ca.html">3.1.24 ChordName</a>      </li>
+      <li class=""><a name="toc-Clef-1" href="clef.ca.html">3.1.25 Clef</a>      </li>
+      <li class=""><a name="toc-ClefModifier-1" href="clefmodifier.ca.html">3.1.26 ClefModifier</a>      </li>
+      <li class=""><a name="toc-ClusterSpanner-1" href="clusterspanner.ca.html">3.1.27 ClusterSpanner</a>      </li>
+      <li class=""><a name="toc-ClusterSpannerBeacon-1" href="clusterspannerbeacon.ca.html">3.1.28 ClusterSpannerBeacon</a>      </li>
+      <li class=""><a name="toc-CombineTextScript-1" href="combinetextscript.ca.html">3.1.29 CombineTextScript</a>      </li>
+      <li class=""><a name="toc-CueClef-1" href="cueclef.ca.html">3.1.30 CueClef</a>      </li>
+      <li class=""><a name="toc-CueEndClef-1" href="cueendclef.ca.html">3.1.31 CueEndClef</a>      </li>
+      <li class=""><a name="toc-Custos-1" href="custos.ca.html">3.1.32 Custos</a>      </li>
+      <li class=""><a name="toc-DotColumn-1" href="dotcolumn.ca.html">3.1.33 DotColumn</a>      </li>
+      <li class=""><a name="toc-Dots-1" href="dots.ca.html">3.1.34 Dots</a>      </li>
+      <li class=""><a name="toc-DoublePercentRepeat-1" href="doublepercentrepeat.ca.html">3.1.35 DoublePercentRepeat</a>      </li>
+      <li class=""><a name="toc-DoublePercentRepeatCounter-1" href="doublepercentrepeatcounter.ca.html">3.1.36 DoublePercentRepeatCounter</a>      </li>
+      <li class=""><a name="toc-DoubleRepeatSlash-1" href="doublerepeatslash.ca.html">3.1.37 DoubleRepeatSlash</a>      </li>
+      <li class=""><a name="toc-DynamicLineSpanner-1" href="dynamiclinespanner.ca.html">3.1.38 DynamicLineSpanner</a>      </li>
+      <li class=""><a name="toc-DynamicText-1" href="dynamictext.ca.html">3.1.39 DynamicText</a>      </li>
+      <li class=""><a name="toc-DynamicTextSpanner-1" href="dynamictextspanner.ca.html">3.1.40 DynamicTextSpanner</a>      </li>
+      <li class=""><a name="toc-Episema-1" href="episema.ca.html">3.1.41 Episema</a>      </li>
+      <li class=""><a name="toc-Fingering-1" href="fingering.ca.html">3.1.42 Fingering</a>      </li>
+      <li class=""><a name="toc-FingeringColumn-1" href="fingeringcolumn.ca.html">3.1.43 FingeringColumn</a>      </li>
+      <li class=""><a name="toc-Flag-1" href="flag.ca.html">3.1.44 Flag</a>      </li>
+      <li class=""><a name="toc-FootnoteItem-1" href="footnoteitem.ca.html">3.1.45 FootnoteItem</a>      </li>
+      <li class=""><a name="toc-FootnoteSpanner-1" href="footnotespanner.ca.html">3.1.46 FootnoteSpanner</a>      </li>
+      <li class=""><a name="toc-FretBoard-1" href="fretboard.ca.html">3.1.47 FretBoard</a>      </li>
+      <li class=""><a name="toc-Glissando-1" href="glissando.ca.html">3.1.48 Glissando</a>      </li>
+      <li class=""><a name="toc-GraceSpacing-1" href="gracespacing.ca.html">3.1.49 GraceSpacing</a>      </li>
+      <li class=""><a name="toc-GridLine-1" href="gridline.ca.html">3.1.50 GridLine</a>      </li>
+      <li class=""><a name="toc-GridPoint-1" href="gridpoint.ca.html">3.1.51 GridPoint</a>      </li>
+      <li class=""><a name="toc-Hairpin-1" href="hairpin.ca.html">3.1.52 Hairpin</a>      </li>
+      <li class=""><a name="toc-HorizontalBracket-1" href="horizontalbracket.ca.html">3.1.53 HorizontalBracket</a>      </li>
+      <li class=""><a name="toc-InstrumentName-1" href="instrumentname.ca.html">3.1.54 InstrumentName</a>      </li>
+      <li class=""><a name="toc-InstrumentSwitch-1" href="instrumentswitch.ca.html">3.1.55 InstrumentSwitch</a>      </li>
+      <li class=""><a name="toc-KeyCancellation-1" href="keycancellation.ca.html">3.1.56 KeyCancellation</a>      </li>
+      <li class=""><a name="toc-KeySignature-1" href="keysignature.ca.html">3.1.57 KeySignature</a>      </li>
+      <li class=""><a name="toc-KievanLigature-1" href="kievanligature.ca.html">3.1.58 KievanLigature</a>      </li>
+      <li class=""><a name="toc-LaissezVibrerTie-1" href="laissezvibrertie.ca.html">3.1.59 LaissezVibrerTie</a>      </li>
+      <li class=""><a name="toc-LaissezVibrerTieColumn-1" href="laissezvibrertiecolumn.ca.html">3.1.60 LaissezVibrerTieColumn</a>      </li>
+      <li class=""><a name="toc-LedgerLineSpanner-1" href="ledgerlinespanner.ca.html">3.1.61 LedgerLineSpanner</a>      </li>
+      <li class=""><a name="toc-LeftEdge-1" href="leftedge.ca.html">3.1.62 LeftEdge</a>      </li>
+      <li class=""><a name="toc-LigatureBracket-1" href="ligaturebracket.ca.html">3.1.63 LigatureBracket</a>      </li>
+      <li class=""><a name="toc-LyricExtender-1" href="lyricextender.ca.html">3.1.64 LyricExtender</a>      </li>
+      <li class=""><a name="toc-LyricHyphen-1" href="lyrichyphen.ca.html">3.1.65 LyricHyphen</a>      </li>
+      <li class=""><a name="toc-LyricSpace-1" href="lyricspace.ca.html">3.1.66 LyricSpace</a>      </li>
+      <li class=""><a name="toc-LyricText-1" href="lyrictext.ca.html">3.1.67 LyricText</a>      </li>
+      <li class=""><a name="toc-MeasureCounter-1" href="measurecounter.ca.html">3.1.68 MeasureCounter</a>      </li>
+      <li class=""><a name="toc-MeasureGrouping-1" href="measuregrouping.ca.html">3.1.69 MeasureGrouping</a>      </li>
+      <li class=""><a name="toc-MelodyItem-1" href="melodyitem.ca.html">3.1.70 MelodyItem</a>      </li>
+      <li class=""><a name="toc-MensuralLigature-1" href="mensuralligature.ca.html">3.1.71 MensuralLigature</a>      </li>
+      <li class=""><a name="toc-MetronomeMark-1" href="metronomemark.ca.html">3.1.72 MetronomeMark</a>      </li>
+      <li class=""><a name="toc-MultiMeasureRest-1" href="multimeasurerest.ca.html">3.1.73 MultiMeasureRest</a>      </li>
+      <li class=""><a name="toc-MultiMeasureRestNumber-1" href="multimeasurerestnumber.ca.html">3.1.74 MultiMeasureRestNumber</a>      </li>
+      <li class=""><a name="toc-MultiMeasureRestText-1" href="multimeasureresttext.ca.html">3.1.75 MultiMeasureRestText</a>      </li>
+      <li class=""><a name="toc-NonMusicalPaperColumn-1" href="nonmusicalpapercolumn.ca.html">3.1.76 NonMusicalPaperColumn</a>      </li>
+      <li class=""><a name="toc-NoteCollision-1" href="notecollision.ca.html">3.1.77 NoteCollision</a>      </li>
+      <li class=""><a name="toc-NoteColumn-1" href="notecolumn.ca.html">3.1.78 NoteColumn</a>      </li>
+      <li class=""><a name="toc-NoteHead-1" href="notehead.ca.html">3.1.79 NoteHead</a>      </li>
+      <li class=""><a name="toc-NoteName-1" href="notename.ca.html">3.1.80 NoteName</a>      </li>
+      <li class=""><a name="toc-NoteSpacing-1" href="notespacing.ca.html">3.1.81 NoteSpacing</a>      </li>
+      <li class=""><a name="toc-OttavaBracket-1" href="ottavabracket.ca.html">3.1.82 OttavaBracket</a>      </li>
+      <li class=""><a name="toc-PaperColumn-1" href="papercolumn.ca.html">3.1.83 PaperColumn</a>      </li>
+      <li class=""><a name="toc-ParenthesesItem-1" href="parenthesesitem.ca.html">3.1.84 ParenthesesItem</a>      </li>
+      <li class=""><a name="toc-PercentRepeat-1" href="percentrepeat.ca.html">3.1.85 PercentRepeat</a>      </li>
+      <li class=""><a name="toc-PercentRepeatCounter-1" href="percentrepeatcounter.ca.html">3.1.86 PercentRepeatCounter</a>      </li>
+      <li class=""><a name="toc-PhrasingSlur-1" href="phrasingslur.ca.html">3.1.87 PhrasingSlur</a>      </li>
+      <li class=""><a name="toc-PianoPedalBracket-1" href="pianopedalbracket.ca.html">3.1.88 PianoPedalBracket</a>      </li>
+      <li class=""><a name="toc-RehearsalMark-1" href="rehearsalmark.ca.html">3.1.89 RehearsalMark</a>      </li>
+      <li class=""><a name="toc-RepeatSlash-1" href="repeatslash.ca.html">3.1.90 RepeatSlash</a>      </li>
+      <li class=""><a name="toc-RepeatTie-1" href="repeattie.ca.html">3.1.91 RepeatTie</a>      </li>
+      <li class=""><a name="toc-RepeatTieColumn-1" href="repeattiecolumn.ca.html">3.1.92 RepeatTieColumn</a>      </li>
+      <li class=""><a name="toc-Rest-1" href="rest.ca.html">3.1.93 Rest</a>      </li>
+      <li class=""><a name="toc-RestCollision-1" href="restcollision.ca.html">3.1.94 RestCollision</a>      </li>
+      <li class=""><a name="toc-Script-1" href="script.ca.html">3.1.95 Script</a>      </li>
+      <li class=""><a name="toc-ScriptColumn-1" href="scriptcolumn.ca.html">3.1.96 ScriptColumn</a>      </li>
+      <li class=""><a name="toc-ScriptRow-1" href="scriptrow.ca.html">3.1.97 ScriptRow</a>      </li>
+      <li class=""><a name="toc-Slur-1" href="slur.ca.html">3.1.98 Slur</a>      </li>
+      <li class=""><a name="toc-SostenutoPedal-1" href="sostenutopedal.ca.html">3.1.99 SostenutoPedal</a>      </li>
+      <li class=""><a name="toc-SostenutoPedalLineSpanner-1" href="sostenutopedallinespanner.ca.html">3.1.100 SostenutoPedalLineSpanner</a>      </li>
+      <li class=""><a name="toc-SpacingSpanner-1" href="spacingspanner.ca.html">3.1.101 SpacingSpanner</a>      </li>
+      <li class=""><a name="toc-SpanBar-1" href="spanbar.ca.html">3.1.102 SpanBar</a>      </li>
+      <li class=""><a name="toc-SpanBarStub-1" href="spanbarstub.ca.html">3.1.103 SpanBarStub</a>      </li>
+      <li class=""><a name="toc-StaffGrouper-1" href="staffgrouper.ca.html">3.1.104 StaffGrouper</a>      </li>
+      <li class=""><a name="toc-StaffSpacing-1" href="staffspacing.ca.html">3.1.105 StaffSpacing</a>      </li>
+      <li class=""><a name="toc-StaffSymbol-1" href="staffsymbol.ca.html">3.1.106 StaffSymbol</a>      </li>
+      <li class=""><a name="toc-StanzaNumber-1" href="stanzanumber.ca.html">3.1.107 StanzaNumber</a>      </li>
+      <li class=""><a name="toc-Stem-1" href="stem.ca.html">3.1.108 Stem</a>      </li>
+      <li class=""><a name="toc-StemStub-1" href="stemstub.ca.html">3.1.109 StemStub</a>      </li>
+      <li class=""><a name="toc-StemTremolo-1" href="stemtremolo.ca.html">3.1.110 StemTremolo</a>      </li>
+      <li class=""><a name="toc-StringNumber-1" href="stringnumber.ca.html">3.1.111 StringNumber</a>      </li>
+      <li class=""><a name="toc-StrokeFinger-1" href="strokefinger.ca.html">3.1.112 StrokeFinger</a>      </li>
+      <li class=""><a name="toc-SustainPedal-1" href="sustainpedal.ca.html">3.1.113 SustainPedal</a>      </li>
+      <li class=""><a name="toc-SustainPedalLineSpanner-1" href="sustainpedallinespanner.ca.html">3.1.114 SustainPedalLineSpanner</a>      </li>
+      <li class=""><a name="toc-System-1" href="system.ca.html">3.1.115 System</a>      </li>
+      <li class=""><a name="toc-SystemStartBar-1" href="systemstartbar.ca.html">3.1.116 SystemStartBar</a>      </li>
+      <li class=""><a name="toc-SystemStartBrace-1" href="systemstartbrace.ca.html">3.1.117 SystemStartBrace</a>      </li>
+      <li class=""><a name="toc-SystemStartBracket-1" href="systemstartbracket.ca.html">3.1.118 SystemStartBracket</a>      </li>
+      <li class=""><a name="toc-SystemStartSquare-1" href="systemstartsquare.ca.html">3.1.119 SystemStartSquare</a>      </li>
+      <li class=""><a name="toc-TabNoteHead-1" href="tabnotehead.ca.html">3.1.120 TabNoteHead</a>      </li>
+      <li class=""><a name="toc-TextScript-1" href="textscript.ca.html">3.1.121 TextScript</a>      </li>
+      <li class=""><a name="toc-TextSpanner-1" href="textspanner.ca.html">3.1.122 TextSpanner</a>      </li>
+      <li class=""><a name="toc-Tie-1" href="tie.ca.html">3.1.123 Tie</a>      </li>
+      <li class=""><a name="toc-TieColumn-1" href="tiecolumn.ca.html">3.1.124 TieColumn</a>      </li>
+      <li class=""><a name="toc-TimeSignature-1" href="timesignature.ca.html">3.1.125 TimeSignature</a>      </li>
+      <li class=""><a name="toc-TrillPitchAccidental-1" href="trillpitchaccidental.ca.html">3.1.126 TrillPitchAccidental</a>      </li>
+      <li class=""><a name="toc-TrillPitchGroup-1" href="trillpitchgroup.ca.html">3.1.127 TrillPitchGroup</a>      </li>
+      <li class=""><a name="toc-TrillPitchHead-1" href="trillpitchhead.ca.html">3.1.128 TrillPitchHead</a>      </li>
+      <li class=""><a name="toc-TrillSpanner-1" href="trillspanner.ca.html">3.1.129 TrillSpanner</a>      </li>
+      <li class=""><a name="toc-TupletBracket-1" href="tupletbracket.ca.html">3.1.130 TupletBracket</a>      </li>
+      <li class=""><a name="toc-TupletNumber-1" href="tupletnumber.ca.html">3.1.131 TupletNumber</a>      </li>
+      <li class=""><a name="toc-UnaCordaPedal-1" href="unacordapedal.ca.html">3.1.132 UnaCordaPedal</a>      </li>
+      <li class=""><a name="toc-UnaCordaPedalLineSpanner-1" href="unacordapedallinespanner.ca.html">3.1.133 UnaCordaPedalLineSpanner</a>      </li>
+      <li class=""><a name="toc-VaticanaLigature-1" href="vaticanaligature.ca.html">3.1.134 VaticanaLigature</a>      </li>
+      <li class=""><a name="toc-VerticalAlignment-1" href="verticalalignment.ca.html">3.1.135 VerticalAlignment</a>      </li>
+      <li class=""><a name="toc-VerticalAxisGroup-1" href="verticalaxisgroup.ca.html">3.1.136 VerticalAxisGroup</a>      </li>
+      <li class=""><a name="toc-VoiceFollower-1" href="voicefollower.ca.html">3.1.137 VoiceFollower</a>      </li>
+      <li class=""><a name="toc-VoltaBracket-1" href="voltabracket.ca.html">3.1.138 VoltaBracket</a>      </li>
+      <li class=""><a name="toc-VoltaBracketSpanner-1" href="voltabracketspanner.ca.html">3.1.139 VoltaBracketSpanner</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-Graphical-Object-Interfaces-1" href="graphical-object-interfaces.ca.html">3.2 Graphical Object Interfaces</a>    </li>
+    <li class=""><a name="toc-User-backend-properties-1" href="user-backend-properties.ca.html">3.3 User backend properties</a>    </li>
+    <li class=""><a name="toc-Internal-backend-properties-1" href="internal-backend-properties.ca.html">3.4 Internal backend properties</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ca.html">4. Scheme functions</a>  </li>
+  <li class=""><a name="toc-Indices-1" href="indices.ca.html">A. Indices</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Concept-index" href="indices.ca.html">A.1 Concept index</a>    </li>
+    <li class=""><a name="toc-Function-index" href="indices.ca.html">A.2 Function index</a>    </li>
+  </ul>
+  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>

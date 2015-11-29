@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1999-2015 by 著作者一同
+
+GNU フリー文書利用許諾契約書バージョン 1.1 またはフリー ソフトウェア財団によって発行されたその後のバージョンの約定に従う限り、このドキュメントを複製、変更する許可を与えます。変更不可部分はありません。この利用許諾契約書のコピーは「GNU フリー文書利用許諾契約書」という章に含まれています。
+
+ -->
+<!-- Created on 11 月 22, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond 記譜法リファレンス: 1.5.1 単一のボイス</title>
+
+<meta name="description" content="LilyPond 記譜法リファレンス: 1.5.1 単一のボイス">
+<meta name="keywords" content="LilyPond 記譜法リファレンス: 1.5.1 単一のボイス">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.ja.html#index" rel="start" title="LilyPond &mdash; 記譜法リファレンス">
+<link href="lilypond-command-index.ja.html#lilypond-command-index" rel="index" title="D. LilyPond コマンド インデックス">
+<link href="index_toc.ja.html#SEC_Contents" rel="contents" title="目次">
+<link href="index_abt.ja.html#SEC_About" rel="help" title="このドキュメントについて">
+<link href="simultaneous-notes.ja.html#simultaneous-notes" rel="up" title="1.5 同時進行する音符">
+<link href="lilypond-index.ja.html#lilypond-index" rel="next" title="E. LilyPond インデックス">
+<link href="simultaneous-notes.ja.html#simultaneous-notes" rel="previous" title="1.5 同時進行する音符">
+<link rel="stylesheet" type="text/css" title="Default style" href="../../Documentation/css/lilypond-manuals.css">
+<!--[if lte IE 7]>
+<link href="../../Documentation/css/lilypond-manuals-ie-fixes.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+</head>
+
+<body lang="ja" class="notation devStatus">
+
+
+<div id="main">
+<a name="g_t_5358_4e00_306e_30dc_30a4_30b9"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="simultaneous-notes.ja.html" title="前のセクション" accesskey="p" rel="previous"> &lt; 同時進行する音符&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="simultaneous-notes.ja.html" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;同時進行する音符&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#chorded-notes" title="次のセクション" accesskey="n" rel="next">&nbsp;和音の音符 &gt; </a>]</td></tr></table>
+<a name="single-voice"></a>
+<h3 class="subsection">1.5.1 単一のボイス</h3>
+
+<p>このセクションでは同じボイスの中にある同時進行する音符について議論します。
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#chorded-notes" accesskey="1">和音の音符</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#chord-repetition" accesskey="2">和音の繰り返し</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#simultaneous-expressions" accesskey="3">同時進行表記</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#clusters" accesskey="4">クラスタ</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="g_t_548c_97f3_306e_97f3_7b26"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#single-voice" title="前のセクション" accesskey="p" rel="previous"> &lt; 単一のボイス&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#single-voice" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;単一のボイス&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#chord-repetition" title="次のセクション" accesskey="n" rel="next">&nbsp;和音の繰り返し &gt; </a>]</td></tr></table>
+<a name="chorded-notes"></a>
+<h4 class="unnumberedsubsubsec">和音の音符</h4>
+
+<a name="index-chords-_0028_548c_97f3_0029"></a>
+<a name="index-brackets_002c-angle-_0028_5c71_62ec_5f27_0029"></a>
+
+<a name="index-_003c"></a>
+<a name="index-_003c-1"></a>
+<a name="index-_003e"></a>
+<a name="index-_003e-1"></a>
+<a name="index-_003c_002e_002e_002e_003e"></a>
+<a name="index-_003c_002e_002e_002e_003e-1"></a>
+
+<p>和音は <code>&lt;</code> と <code>&gt;</code> で 1 組のピッチを囲むことによって形成されます。和音の後には &ndash; 普通の音符と同様に &ndash; 演奏時間が続くかもしれません:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c e&gt;1 &lt;a c e&gt;2 &lt;f a c e&gt;4 &lt;a c&gt;8. &lt;g c e&gt;16
+}
+</pre><p>
+ <a href="../5f/lily-82e9bca9.ly">
+  <img align="middle"
+       border="0"
+       src="../5f/lily-82e9bca9.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>さらに、和音の後には &ndash; 普通の音符と同様に &ndash; アーティキュレーションが続くかもしれません:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c e&gt;1\fermata &lt;a c e&gt;2-&gt; &lt;f a c e&gt;4\prall &lt;a c&gt;8.^! &lt;g c e&gt;16-.
+}
+</pre><p>
+ <a href="../61/lily-32305f66.ly">
+  <img align="middle"
+       border="0"
+       src="../61/lily-32305f66.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>和音の中にある音符自体にもアーティキュレーションや装飾を付けることができます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c\prall e&gt;1 &lt;a-&gt; c-^ e&gt;2 &lt;f-. a c-. e-.&gt;4
+  &lt;a-+ c--&gt;8. &lt;g\fermata c e\turn&gt;16
+}
+</pre><p>
+ <a href="../d0/lily-06b73878.ly">
+  <img align="middle"
+       border="0"
+       src="../d0/lily-06b73878.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>しかしながら、いくつかの記譜要素
+&ndash; 強弱記号、ヘアピン、それにスラーなど &ndash;
+は和音の中の音符ではなく、和音に付ける必要があります。そうしなければ、譜刻されません。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a'\f c( e&gt;1 &lt;a c) e&gt;\f &lt;a\&lt; c e&gt;( &lt;a\! c e&gt;)
+  &lt;a c e&gt;\&lt; &lt;a c e&gt; &lt;a c e&gt;\!
+}
+</pre><p>
+ <a href="../e7/lily-efa73d1d.ly">
+  <img align="middle"
+       border="0"
+       src="../e7/lily-efa73d1d.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-chords_002c-empty-_0028_7a7a_306e_548c_97f3_0029"></a>
+<a name="index-placeholder-events-_0028_0029"></a>
+
+<p>和音は和音に含まれる音符、アーティキュレーション、それに他の付属要素のコンテナにすぎません。従って、音符を持たない和音は演奏時間を持ちません。そのような和音に付属するアーティキュレーションは、後に続く音符や和音のタイミングで発生して、組み合わされます (そのような要素の複雑な組み合わせについては <a href="#simultaneous-expressions">同時進行表記</a> を参照してください):
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \grace { g'8( a b }
+  &lt;&gt; ) \p \&lt; -. -\markup \italic &quot;sempre staccato&quot;
+  \repeat unfold 4 { c4 e }  c1\f
+}
+</pre><p>
+ <a href="../d1/lily-60d80aa7.ly">
+  <img align="middle"
+       border="0"
+       src="../d1/lily-60d80aa7.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<a name="index-relative-pitch_002c-chords-_0028_548c_97f3_3068_76f8_5bfe_30d4_30c3_30c1_0029"></a>
+<a name="index-chords_002c-relative-pitch-_0028_76f8_5bfe_30d4_30c3_30c1_3068_548c_97f3_0029"></a>
+
+<p>和音の中のピッチに対して相対モードを使うことができます。各和音の最初の音符は常に、前の和音の最初の音符との相対関係で決まります。前が和音でない場合は、その和音の前にある最後のピッチとの相対関係になります。和音の中にある残りの音符はすべて <em>同じ和音の中にある</em>
+前の音符との相対関係になります。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c e&gt;1 &lt;f a c&gt; &lt;a c e&gt; &lt;f' a c&gt; &lt;b, e b,&gt;
+}
+</pre><p>
+ <a href="../e3/lily-a34a1954.ly">
+  <img align="middle"
+       border="0"
+       src="../e3/lily-a34a1954.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>和音についての更なる情報は、<a href="chord-notation.ja.html">和音記譜法</a> を参照してください。
+</p>
+<a name="g_t_53c2_7167-167"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-chord"></a>
+<a href="../music-glossary/chord.ja.html">chord</a>
+</p>
+<p>学習マニュアル:
+<a name="index-Combining-notes-into-chords"></a>
+<a href="../learning/combining-notes-into-chords.ja.html">Combining notes into chords</a>
+</p>
+<p>記譜法リファレンス:
+<a href="chord-notation.ja.html">和音記譜法</a>,
+<a href="expressive-marks-attached-to-notes.ja.html#articulations-and-ornamentations">アーティキュレーションと装飾</a>,
+<a href="writing-pitches.ja.html#relative-octave-entry">相対オクターブ入力</a>,
+<a href="multiple-voices.ja.html">複数のボイス</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_540c_6642_9032_884c_3059_308b_97f3_7b26.ja.html#g_t_540c_6642_9032_884c_3059_308b_97f3_7b26">Simultaneous notes</a>
+</p>
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-78"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>1 譜スペース内に 3 つ以上のピッチを保持している和音
+&ndash; &lsquo;<samp>&lt;e f! fis!&gt;</samp>&rsquo; など &ndash;
+では、符頭が重なります。状況に応じて、適切な表記を用います
+</p>
+<ul>
+<li>
+一時的に <a href="multiple-voices.ja.html">複数のボイス</a> を使用する &ndash; &lsquo;<samp>&lt;&lt; f! \\ &lt;e fis!&gt; &gt;&gt;</samp>&rsquo;,
+
+</li><li>
+いくつかのピッチを異名同音に書き換える &ndash; &lsquo;<samp>&lt;e f ges&gt;</samp>&rsquo;,
+
+</li><li>
+<a href="#clusters">クラスタ</a>
+
+</li></ul>
+
+
+<hr size="6">
+<a name="g_t_548c_97f3_306e_7e70_308a_8fd4_3057"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#chorded-notes" title="前のセクション" accesskey="p" rel="previous"> &lt; 和音の音符&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#single-voice" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;単一のボイス&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#simultaneous-expressions" title="次のセクション" accesskey="n" rel="next">&nbsp;同時進行表記 &gt; </a>]</td></tr></table>
+<a name="chord-repetition"></a>
+<h4 class="unnumberedsubsubsec">和音の繰り返し</h4>
+
+<a name="index-Chord_002c-repetition-_0028_548c_97f3_306e_7e70_308a_8fd4_3057_0029"></a>
+<a name="index-repetition_002c-using-q-_0028q-_3092_7528_3044_305f_7e70_308a_8fd4_3057_0029"></a>
+
+<p>入力の手間を省くために、前の和音を繰り返すための短縮記法があります。和音を繰り返すためのシンボルは <code>q</code> です:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c e&gt;1 q &lt;f a c&gt;2 q
+}
+</pre><p>
+ <a href="../1a/lily-5c1fcca1.ly">
+  <img align="middle"
+       border="0"
+       src="../1a/lily-5c1fcca1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>前の和音のピッチが複製されているだけなので、
+通常の和音と同様に、和音の繰り返しのシンボルにも演奏時間、アーティキュレーション、マークアップ、スラー、連桁などを使うことができます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c e&gt;1\p^&quot;text&quot; q2\&lt;( q8)[-! q8.]\! q16-1-2-3 q8\prall
+}
+</pre><p>
+ <a href="../a9/lily-fa4c35a2.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-fa4c35a2.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>和音繰り返しのシンボルは常に最後の和音を覚えているため、最後の和音の後に和音ではない音符や休符があったとしても、和音を繰り返すことができます。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c e&gt;1 c'4 q2 r8 q8 |
+  q2 c, |
+}
+</pre><p>
+ <a href="../72/lily-84d2397e.ly">
+  <img align="middle"
+       border="0"
+       src="../72/lily-84d2397e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>しかしながら、和音繰り返しのシンボルは前の和音の中にある、あるいは付属している強弱記号、アーティキュレーション、あるいは装飾を持ち越しません。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a'-. c\prall e&gt;1\sfz c'4 q2 r8 q8 |
+  q2 c, |
+}
+</pre><p>
+ <a href="../60/lily-81f1c723.ly">
+  <img align="middle"
+       border="0"
+       src="../60/lily-81f1c723.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>それらのイベントを持ち越すには、<code>\chordRepeats</code> 関数を明示的に呼び出し、引数に持ち越す <var>イベント タイプ</var> を指定するリストを持たせます。これにより持ち越されるイベントはすでに和音 <code>q</code> に存在しているものだけです。
+</p>
+<blockquote><pre class="verbatim">\relative {
+  \chordRepeats #'(articulation-event)
+  { &lt;a'-. c\prall e&gt;1\sfz c'4 q2 r8 q8-. } |
+  q2 c, |
+}
+</pre><p>
+ <a href="../8a/lily-52a46657.ly">
+  <img align="middle"
+       border="0"
+       src="../8a/lily-52a46657.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>上記の例では <code>\chordRepeats</code> を <code>\relative</code> 構造の内部で使用することで予期しない結果になっています:
+<code>\chordRepeats</code> の和音イベントが展開されると、通常どおりに入力された和音と区別が付かず、<code>\relative</code> はカレントのコンテキストに基づいて音程を割り当てます。
+</p>
+<p>ネストされた <code>\relative</code> のインスタンスは内外のインスタンスに影響を与えないので、<code>\chordRepeats</code> の内側に <code>\relative</code> を配置することで<code>\chordRepeats</code> の和音を展開する前に音程を確定させることができます。今回のケースでは、内側にある <code>\relative</code> の内容は外側にある <code>\relative</code> の影響を受けないので、繰り返しの和音は前の和音の音程を維持しています。また、内側の <code>\relative</code> は外側の <code>\relative</code> に影響を与えないので、最後の音符のオクターブ入力が変化します。
+</p>
+<blockquote><pre class="verbatim">\new Voice
+\relative c'' {
+  \chordRepeats #'(articulation-event)
+  \relative
+  { &lt;a'-. c\prall e&gt;1\sfz c'4 q2 r8 q8-. } |
+  q2 c |
+}
+</pre><p>
+ <a href="../f1/lily-920dcecf.ly">
+  <img align="middle"
+       border="0"
+       src="../f1/lily-920dcecf.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p><code>\chordRepeats</code> は明示的に呼び出された場合にのみ
+<code>\relative</code> と相互作用します:
+暗黙的な繰り返し和音の展開はすべての <code>\relative</code> インスタンスが処理されてから行われます。
+</p>
+<a name="g_t_53c2_7167-120"></a>
+<h4 class="subsubheading">参照</h4>
+<p>記譜法リファレンス:
+<a href="chord-notation.ja.html">和音記譜法</a>,
+<a href="expressive-marks-attached-to-notes.ja.html#articulations-and-ornamentations">アーティキュレーションと装飾</a>
+</p>
+<p>インストールされているファイル:
+&lsquo;<tt>ly/chord-repetition-init.ly</tt>&rsquo;
+</p>
+
+<hr size="6">
+<a name="g_t_540c_6642_9032_884c_8868_8a18"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#chord-repetition" title="前のセクション" accesskey="p" rel="previous"> &lt; 和音の繰り返し&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#single-voice" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;単一のボイス&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="#clusters" title="次のセクション" accesskey="n" rel="next">&nbsp;クラスタ &gt; </a>]</td></tr></table>
+<a name="simultaneous-expressions"></a>
+<h4 class="unnumberedsubsubsec">同時進行表記</h4>
+
+<p>2 重山括弧で囲まれた 1 つあるいは複数の音楽表記は同時進行します。最初の表記が単一の音符で始まる場合、あるいは同時進行する表記全体が明らかに単一のボイスの中にある場合、その表記全体は単一の譜の上に配置されます。そうでない場合、同時進行する表記の要素は別々の譜の上に配置されます。
+</p>
+<p>以下の例は 1 つの譜の上にある同時進行表記を示しています:
+</p>
+<blockquote><pre class="verbatim">\new Voice {  % 明らかに単一のボイスです
+  &lt;&lt; \relative { a'4 b g2 }
+     \relative { d'4 g c,2 } &gt;&gt;
+}
+</pre><p>
+ <a href="../6b/lily-d6fc61b1.ly">
+  <img align="middle"
+       border="0"
+       src="../6b/lily-d6fc61b1.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<blockquote><pre class="verbatim">\relative {
+  % 単一の音符で始まります
+  a' &lt;&lt; \relative { a'4 b g }
+       \relative { d'4 g c, } &gt;&gt;
+}
+</pre><p>
+ <a href="../5e/lily-a6657b09.ly">
+  <img align="middle"
+       border="0"
+       src="../5e/lily-a6657b09.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>これは同時進行するセクションが同一のリズムを持つ場合に役に立ちます。しかしながら、異なる演奏時間を持つ音符を同じ符幹に取り付けようとするとエラーとなります。<em>単一の</em> &lsquo;<samp>Voice</samp>&rsquo; の中にある音符、アーティキュレーション、それにプロパティの変更は収集され、音楽的な順序で譜刻されます:
+</p>
+<blockquote><pre class="verbatim">\relative {
+  &lt;a' c&gt;4-.  &lt;&gt;-. &lt;&lt; c a &gt;&gt;  &lt;&lt; { c-. &lt;c a&gt; } { a s-. } &gt;&gt;
+}
+</pre><p>
+ <a href="../27/lily-f8b9439e.ly">
+  <img align="middle"
+       border="0"
+       src="../27/lily-f8b9439e.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>同時に複数の符幹や連桁、あるいは異なる音符の演奏時間やプロパティが必要な場合、複数のボイスを使う必要があります。
+</p>
+
+<p>以下の例は、同時進行する表記が暗黙的に複数の譜を生成する様子を示しています:
+</p>
+<blockquote><pre class="verbatim">% 単一の音符で始まりません
+&lt;&lt; \relative { a'4 b g2 }
+   \relative { d'4 g2 c,4 } &gt;&gt;
+</pre><p>
+ <a href="../45/lily-b41811a8.ly">
+  <img align="middle"
+       border="0"
+       src="../45/lily-b41811a8.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>ここでは、リズムが異なっていても問題ありません。異なるボイスだと解釈されるからです。
+</p>
+<a name="index-collisions_002c-clashing-note-columns-_0028_97f3_7b26_5217_306e_885d_7a81_0029"></a>
+<a name="index-collisions_002c-ignoring-_0028_885d_7a81_3092_7121_8996_3059_308b_0029"></a>
+
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-61"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>譜の同じ場所で、同じ向きの符幹を持つ複数のボイスから音符がシフトされずに
+(あるいは同じシフトで) 配置された場合、コンパイル中に以下のメッセージが表示されます:
+</p>
+<blockquote><pre class="example">warning: ignoring too many clashing note columns
+</pre></blockquote>
+
+
+<p>以下でこのメッセージを表示させなくすることができます:
+</p>
+<blockquote><pre class="example">\override NoteColumn.ignore-collision = ##t
+</pre></blockquote>
+
+<p>しかしながら、これは警告を非表示にするだけでなく、衝突解決に関するすべてのメッセージを非表示にして、他にも意図しない影響を与える可能性があります
+(<a href="multiple-voices.ja.html#collision-resolution">衝突の解決</a> の <em>既知の問題</em> も参照してください)。
+</p>
+
+<hr size="6">
+<a name="g_t_30af_30e9_30b9_30bf"></a>
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#simultaneous-expressions" title="前のセクション" accesskey="p" rel="previous"> &lt; 同時進行表記&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#single-voice" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;単一のボイス&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="multiple-voices.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;複数のボイス &gt; </a>]</td></tr></table>
+<a name="clusters"></a>
+<h4 class="unnumberedsubsubsec">クラスタ</h4>
+
+<a name="index-cluster-_0028_30af_30e9_30b9_30bf_0029"></a>
+<a name="index-note-cluster-_0028_97f3_7b26_306e_30af_30e9_30b9_30bf_0029"></a>
+
+<a name="index-_005cmakeClusters"></a>
+<a name="index-_005cmakeClusters-1"></a>
+<a name="index-makeClusters"></a>
+<a name="index-makeClusters-1"></a>
+
+<p>クラスタは演奏すべき連続したピッチの範囲を示します。クラスタは 1 組の音符の範囲 (envelope) として表されます。クラスタはひと続きの和音に関数 <code>\makeClusters</code>
+を適用することによって入力されます。例えば以下のように:
+</p>
+<blockquote><pre class="verbatim">\relative \makeClusters { &lt;g' b&gt;2 &lt;c g'&gt; }
+</pre><p>
+ <a href="../04/lily-6e67d8ef.ly">
+  <img align="middle"
+       border="0"
+       src="../04/lily-6e67d8ef.png"
+       alt="[image of music]">
+ </a>
+</p>
+</blockquote>
+
+
+
+<p>通常の音符とクラスタを同じ譜に一緒にして配置することができます
+&ndash; たとえ、それらが同時進行であってもです。そのようなケースでは、通常の音符とクラスタの衝突を自動的に回避しようとする試みは行われません。
+</p>
+<a name="g_t_53c2_7167-67"></a>
+<h4 class="subsubheading">参照</h4>
+<p>音楽用語集:
+<a name="index-cluster"></a>
+<a href="../music-glossary/cluster.ja.html">cluster</a>
+</p>
+<p>コード断片集:
+<a href="../snippets/_540c_6642_9032_884c_3059_308b_97f3_7b26.ja.html#g_t_540c_6642_9032_884c_3059_308b_97f3_7b26">Simultaneous notes</a>
+</p>
+<p>内部リファレンス:
+<a name="index-ClusterSpanner"></a>
+<a href="../internals/clusterspanner.ja.html">ClusterSpanner</a>,
+<a name="index-ClusterSpannerBeacon"></a>
+<a href="../internals/clusterspannerbeacon.ja.html">ClusterSpannerBeacon</a>,
+<a name="index-Cluster_005fspanner_005fengraver"></a>
+<a href="../internals/cluster_005fspanner_005fengraver.ja.html">Cluster_spanner_engraver</a>
+</p>
+<a name="g_t_65e2_77e5_306e_554f_984c_3068_8b66_544a-9"></a>
+<h4 class="subsubheading">既知の問題と警告</h4>
+<p>クラスタは少なくとも 2 つの和音を持つ場合にのみうまく譜刻されます。さもなければ、あまりにも狭く譜刻されます。
+</p>
+<p>クラスタは符幹を持たず、それ自体で演奏時間を示すことはできません。しかしながら、譜刻されるクラスタの長さはクラスタを定義する和音の演奏時間によって決定されます。クラスタを分割するには、クラスタとクラスタの間に分割するための休符が必要です。
+</p>
+<p>クラスタは MIDI 出力を作り出しません。
+</p>
+
+<hr size="6">
+<table class="nav_table">
+<tr><td valign="middle" align="left" colspan="1">[<a href="musical-notation.ja.html" title="この章あるいは前の章の先頭"> &lt;&lt; 音楽記譜法&nbsp;</a>]</td><td valign="middle" align="center" colspan="3">[<a href="index.ja.html" title="ドキュメントの表紙 (先頭)" rel="start">トップ</a>][<a href="index_toc.ja.html#SEC_Contents" title="目次" rel="contents">目次</a>][<a href="lilypond-command-index.ja.html" title="インデックス" rel="index">インデックス</a>][<a href="index_abt.ja.html#SEC_About" title="情報 (ヘルプ)" rel="help"> ? </a>]</td><td valign="middle" align="right" colspan="1">[<a href="specialist-notation.ja.html" title="次の章">&nbsp;専門的な記譜法 &gt;&gt; </a>]</td></tr><tr><td valign="middle" align="left" colspan="2">[<a href="#simultaneous-expressions" title="前のセクション" accesskey="p" rel="previous"> &lt; 同時進行表記&nbsp;</a>]</td><td valign="middle" align="center" colspan="1">[<a href="#single-voice" title="上のセクション" accesskey="u" rel="up">&nbsp; 上へ :&nbsp;単一のボイス&nbsp;</a>]</td><td valign="middle" align="right" colspan="2">[<a href="multiple-voices.ja.html" title="次のセクション" accesskey="n" rel="next">&nbsp;複数のボイス &gt; </a>]</td></tr></table>
+<!-- footer_tag -->
+<div class="footer">
+<!-- This footer was autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+<p class="footer_version">
+このページは LilyPond-2.19.32 (開発版) を対象としています。
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="http://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="http://post.gmane.org/post.php?group=gmane.comp.gnu.lilypond.bugs">bug list</a>.
+</p>
+</div>
+
+
+<p id="languages">
+<!-- These links were autogenerated by /home/gub/NewGub/gub/target/linux-x86/build/lilypond-git.sv.gnu.org--lilypond.git-release-unstable/scripts/build/out/www_post -->
+ 他の言語: <a href="single-voice.html">English</a>, <a href="single-voice.de.html">deutsch</a>, <a href="single-voice.es.html">español</a>, <a href="single-voice.fr.html">français</a>, <a href="single-voice.it.html">italiano</a>
+ <br>
+ About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../../Documentation/web/manuals.ja.html"
+         title="Documentation Index">&lt;&lt; ドキュメント インデックスに戻る</a></p>
+<h4 class="toc_header"> <a href="index.ja.html" title="Start of the manual">LilyPond &mdash; 記譜法リファレンス  v2.19.32 (開発版). </a></h4>
+<div class="contents">
+<ul class="toc">
+  <li class=" toc_current"><a name="toc-_97f3_697d_8a18_8b5c_6cd5-1" href="musical-notation.ja.html">1. 音楽記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30d4_30c3_30c1-1" href="pitches.ja.html">1.1 ピッチ</a>    </li>
+    <li class=""><a name="toc-_30ea_30ba_30e0-1" href="rhythms.ja.html">1.2 リズム</a>    </li>
+    <li class=""><a name="toc-_767a_60f3_8a18_53f7-1" href="expressive-marks.ja.html">1.3 発想記号</a>    </li>
+    <li class=""><a name="toc-_7e70_308a_8fd4_3057-1" href="repeats.ja.html">1.4 繰り返し</a>    </li>
+    <li class=" toc_current"><a name="toc-_540c_6642_9032_884c_3059_308b_97f3_7b26-1" href="simultaneous-notes.ja.html">1.5 同時進行する音符</a>
+    <ul class="toc">
+      <li class=" toc_current"><a name="toc-_5358_4e00_306e_30dc_30a4_30b9-1" href="single-voice.ja.html">1.5.1 単一のボイス</a>
+      <ul class="toc">
+        <li class=""><a name="toc-_548c_97f3_306e_97f3_7b26-1" href="single-voice.ja.html#chorded-notes">和音の音符</a>        </li>
+        <li class=""><a name="toc-_548c_97f3_306e_7e70_308a_8fd4_3057-1" href="single-voice.ja.html#chord-repetition">和音の繰り返し</a>        </li>
+        <li class=""><a name="toc-_540c_6642_9032_884c_8868_8a18-1" href="single-voice.ja.html#simultaneous-expressions">同時進行表記</a>        </li>
+        <li class=""><a name="toc-_30af_30e9_30b9_30bf-1" href="single-voice.ja.html#clusters">クラスタ</a>        </li>
+      </ul>
+      </li>
+      <li class=""><a name="toc-_8907_6570_306e_30dc_30a4_30b9-1" href="multiple-voices.ja.html">1.5.2 複数のボイス</a>      </li>
+    </ul>
+    </li>
+    <li class=""><a name="toc-_8b5c_306e_8a18_8b5c_6cd5-1" href="staff-notation.ja.html">1.6 譜の記譜法</a>    </li>
+    <li class=""><a name="toc-_7de8_96c6_8005_306e_6ce8_91c8-1" href="editorial-annotations.ja.html">1.7 編集者の注釈</a>    </li>
+    <li class=""><a name="toc-_30c6_30ad_30b9_30c8-1" href="text.ja.html">1.8 テキスト</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5c02_9580_7684_306a_8a18_8b5c_6cd5-1" href="specialist-notation.ja.html">2. 専門的な記譜法</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_58f0_697d-1" href="vocal-music.ja.html">2.1 声楽</a>    </li>
+    <li class=""><a name="toc-_30ad_30fc_30dc_30fc_30c9_3068_4ed6_306e_8907_6570_8b5c_306e_697d_5668-1" href="keyboard-and-other-multi_002dstaff-instruments.ja.html">2.2 キーボードと他の複数譜の楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_7121_3044_5f26_697d_5668-1" href="unfretted-string-instruments.ja.html">2.3 フレットの無い弦楽器</a>    </li>
+    <li class=""><a name="toc-_30d5_30ec_30c3_30c8_306e_3042_308b_5f26_697d_5668-1" href="fretted-string-instruments.ja.html">2.4 フレットのある弦楽器</a>    </li>
+    <li class=""><a name="toc-_6253_697d_5668-1" href="percussion.ja.html">2.5 打楽器</a>    </li>
+    <li class=""><a name="toc-_7ba1_697d_5668-1" href="wind-instruments.ja.html">2.6 管楽器</a>    </li>
+    <li class=""><a name="toc-_548c_97f3_8a18_8b5c_6cd5-1" href="chord-notation.ja.html">2.7 和音記譜法</a>    </li>
+    <li class=""><a name="toc-_73fe_4ee3_97f3_697d-1" href="contemporary-music.ja.html">2.8 現代音楽</a>    </li>
+    <li class=""><a name="toc-Ancient-notation-1" href="ancient-notation.ja.html">2.9 Ancient notation</a>    </li>
+    <li class=""><a name="toc-_4e16_754c_306e_97f3_697d-1" href="world-music.ja.html">2.10 世界の音楽</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_5165_51fa_529b_5168_822c-1" href="general-input-and-output.ja.html">3. 入出力全般</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_5165_529b_306e_69cb_9020-1" href="input-structure.ja.html">3.1 入力の構造</a>    </li>
+    <li class=""><a name="toc-_30bf_30a4_30c8_30eb_3068_30d8_30c3_30c0-1" href="titles-and-headers.ja.html">3.2 タイトルとヘッダ</a>    </li>
+    <li class=""><a name="toc-_5165_529b_30d5_30a1_30a4_30eb_306b_53d6_308a_7d44_3080-1" href="working-with-input-files.ja.html">3.3 入力ファイルに取り組む</a>    </li>
+    <li class=""><a name="toc-_51fa_529b_3092_5236_5fa1_3059_308b-1" href="controlling-output.ja.html">3.4 出力を制御する</a>    </li>
+    <li class=""><a name="toc-MIDI-_51fa_529b-1" href="midi-output.ja.html">3.5 MIDI 出力</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_60c5_5831_3092_62bd_51fa_3059_308b-1" href="extracting-musical-information.ja.html">3.6 音楽情報を抽出する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30b9_30da_30fc_30b9_306e_554f_984c-1" href="spacing-issues.ja.html">4. スペースの問題</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30da_30fc_30b8-_30ec_30a4_30a2_30a6_30c8-1" href="page-layout.ja.html">4.1 ページ レイアウト</a>    </li>
+    <li class=""><a name="toc-_697d_8b5c_30ec_30a4_30a2_30a6_30c8-1" href="score-layout.ja.html">4.2 楽譜レイアウト</a>    </li>
+    <li class=""><a name="toc-_6539_884c_002f_6539_30da_30fc_30b8-1" href="breaks.ja.html">4.3 改行/改ページ</a>    </li>
+    <li class=""><a name="toc-_5782_76f4_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="vertical-spacing.ja.html">4.4 垂直方向のスペース</a>    </li>
+    <li class=""><a name="toc-_6c34_5e73_65b9_5411_306e_30b9_30da_30fc_30b9-1" href="horizontal-spacing.ja.html">4.5 水平方向のスペース</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_3092_5c11_306a_3044_30da_30fc_30b8_306b_53ce_3081_308b-1" href="fitting-music-onto-fewer-pages.ja.html">4.6 音楽を少ないページに収める</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30c7_30d5_30a9_30eb_30c8_3092_5909_66f4_3059_308b-1" href="changing-defaults.ja.html">5. デフォルトを変更する</a>
+  <ul class="toc">
+    <li class=""><a name="toc-_30b3_30f3_30c6_30ad_30b9_30c8_3092_7406_89e3_3059_308b-1" href="interpretation-contexts.ja.html">5.1 コンテキストを理解する</a>    </li>
+    <li class=""><a name="toc-_5185_90e8_30ea_30d5_30a1_30ec_30f3_30b9_306e_8aac_660e-1" href="explaining-the-internals-reference.ja.html">5.2 内部リファレンスの説明</a>    </li>
+    <li class=""><a name="toc-_30d7_30ed_30d1_30c6_30a3_3092_5909_66f4_3059_308b-1" href="modifying-properties.ja.html">5.3 プロパティを変更する</a>    </li>
+    <li class=""><a name="toc-_5f79_306b_7acb_3064_30b3_30f3_30bb_30d7_30c8_3068_30d7_30ed_30d1_30c6_30a3-1" href="useful-concepts-and-properties.ja.html">5.4 役に立つコンセプトとプロパティ</a>    </li>
+    <li class=""><a name="toc-_9ad8_5ea6_306a_8abf_6574-1" href="advanced-tweaks.ja.html">5.5 高度な調整</a>    </li>
+    <li class=""><a name="toc-_97f3_697d_95a2_6570_3092_4f7f_7528_3059_308b-1" href="using-music-functions.ja.html">5.6 音楽関数を使用する</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-Notation-manual-tables-1" href="notation-manual-tables.ja.html">A. Notation manual tables</a>
+  <ul class="toc">
+    <li class=""><a name="toc-Chord-name-chart-1" href="chord-name-chart.ja.html">A.1 Chord name chart</a>    </li>
+    <li class=""><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers.ja.html">A.2 Common chord modifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings.ja.html">A.3 Predefined string tunings</a>    </li>
+    <li class=""><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams.ja.html">A.4 Predefined fretboard diagrams</a>    </li>
+    <li class=""><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes.ja.html">A.5 Predefined paper sizes</a>    </li>
+    <li class=""><a name="toc-MIDI-instruments-1" href="midi-instruments.ja.html">A.6 MIDI instruments</a>    </li>
+    <li class=""><a name="toc-List-of-colors-1" href="list-of-colors.ja.html">A.7 List of colors</a>    </li>
+    <li class=""><a name="toc-The-Feta-font-1" href="the-feta-font.ja.html">A.8 The Feta font</a>    </li>
+    <li class=""><a name="toc-Note-head-styles-1" href="note-head-styles.ja.html">A.9 Note head styles</a>    </li>
+    <li class=""><a name="toc-Clef-styles-1" href="clef-styles.ja.html">A.10 Clef styles</a>    </li>
+    <li class=""><a name="toc-Text-markup-commands-1" href="text-markup-commands.ja.html">A.11 Text markup commands</a>    </li>
+    <li class=""><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands.ja.html">A.12 Text markup list commands</a>    </li>
+    <li class=""><a name="toc-List-of-special-characters-1" href="list-of-special-characters.ja.html">A.13 List of special characters</a>    </li>
+    <li class=""><a name="toc-List-of-articulations-1" href="list-of-articulations.ja.html">A.14 List of articulations</a>    </li>
+    <li class=""><a name="toc-Percussion-notes-1" href="percussion-notes.ja.html">A.15 Percussion notes</a>    </li>
+    <li class=""><a name="toc-Technical-glossary-1" href="technical-glossary.ja.html">A.16 Technical glossary</a>    </li>
+    <li class=""><a name="toc-All-context-properties-1" href="all-context-properties.ja.html">A.17 All context properties</a>    </li>
+    <li class=""><a name="toc-Layout-properties-1" href="layout-properties.ja.html">A.18 Layout properties</a>    </li>
+    <li class=""><a name="toc-Available-music-functions-1" href="available-music-functions.ja.html">A.19 Available music functions</a>    </li>
+    <li class=""><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers.ja.html">A.20 Context modification identifiers</a>    </li>
+    <li class=""><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates.ja.html">A.21 Predefined type predicates</a>    </li>
+    <li class=""><a name="toc-Scheme-functions-1" href="scheme-functions.ja.html">A.22 Scheme functions</a>    </li>
+  </ul>
+  </li>
+  <li class=""><a name="toc-_30ab_30f3_30cb_30f3_30b0-_30da_30fc_30d1_30fc-1" href="cheat-sheet.ja.html">B. カンニング ペーパー</a>  </li>
+  <li class=""><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license.ja.html">C. GNU Free Documentation License</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30b3_30de_30f3_30c9-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-command-index.ja.html">D. LilyPond コマンド インデックス</a>  </li>
+  <li class=""><a name="toc-LilyPond-_30a4_30f3_30c7_30c3_30af_30b9-1" href="lilypond-index.ja.html">E. LilyPond インデックス</a>  </li>
+<li>
+<!--
+we depend on an external entity here, which we cannot control.  Suppose
+we go from 2.15.x to 2.17.x and put the documentation under "v2.17".
+For some time, Google won't have the new location in its index, so the
+search would get nothing.  It would be better to keep "v2.15" in the
+search for a while and have a redirection from "v2.15" to "v2.17".
+-->
+
+<form action="http://google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.19 '
+		+ search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.19 '
+		   + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.19 '
+	       + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>
