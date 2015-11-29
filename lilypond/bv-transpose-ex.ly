@@ -13,8 +13,8 @@
 \paper {
   #(define fonts
     (set-global-fonts
-      #:music "lilyjazz-20"
-      #:brace "lilyjazz-20"
+      #:music "lilyjazz"
+      #:brace "lilyjazz"
       #:roman "lilyjazz-text"
       #:sans "lilyjazz-chord"
       #:factor (/ staff-height pt 20)
@@ -46,7 +46,8 @@ date = "2015-11-18"
   source = "urtext"
 }
 
-keyTime = { \key c \minor \time 4/4 }
+keyTime = { \key c \minor 
+            \time 4/4 }
 
 % Read in the notes for C instrument from here
 \include "bv-transpose-ex-melody.ly"
@@ -65,12 +66,23 @@ keyTime = { \key c \minor \time 4/4 }
 \relative c'' {
   \transpose es c \piano
 }
+ 
+text = \lyricmode {
+  do re me fa | so la ti do |
+}
 
-<<
-  \new Staff  \piano
-  \new Lyrics \text
-  \new Staff \soprano
-  \new Staff \alto
-  \new Staff \tenor
-  \new Staff \bari
->>
+\score {
+  <<
+    \new StaffGroup = "horns" <<
+      \new Staff \soprano
+      \new Staff \alto
+      \new Staff \tenor
+      \new Staff \bari
+    >>
+
+    \new StaffGroup = "rhythm" <<
+      \new Staff  = "Piano" \piano
+      \new Lyrics \text
+    >>
+  >>
+}

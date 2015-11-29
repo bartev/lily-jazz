@@ -8,40 +8,44 @@ melody =  \relative c'' {
 }
 
 piano  = {
+  \set Staff.instrumentName = #"Piano"
   \clef treble
   <<
     \melody
-    \harmony
+    % \harmony
   >>
 }
 
 alto =  {
+  \set Staff.instrumentName = #"Alto Sax"
   \clef treble
   \transpose es c \melody 
 }
 
 bari =  {
+  \set Staff.instrumentName = #"Bari Sax"
   \clef bass
   \transpose es c,, \melody
 }
 
 tenor = {
+  \set Staff.instrumentName = #"Tenor Sax"
   \clef treble
   \transpose bes c' \melody
 }
 
 soprano = \transpose bes c {
+  \set Staff.instrumentName = #"Soprano Sax"
   \clef treble
   \melody
 }
 
-text = {
-  do re me fa | so la ti do |
+
+harmony =  \chordmode {
+  c2:7 g:m | d:maj ces:m7
 }
 
-harmony = \new ChordNames \with {
-  \override ChordName #'font-size = #0
-  \override ChordName #'font-name = #"lilyjazzchord"
-} \chordmode {
-  c2:7 g:m | d:maj cs:m7
-}
+% \new ChordNames \with {
+%   \override ChordName #'font-size = #0
+%   \override ChordName #'font-name = #"lilyjazzchord"
+% }
