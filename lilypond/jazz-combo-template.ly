@@ -60,7 +60,7 @@ trumpet = {
 }
 
 % ------ Alto Saxophone ------
-alto = \transpose es c \relative c' {
+alto = \transpose c es \relative c' {
   \Key
   c1 | c | c |
 }
