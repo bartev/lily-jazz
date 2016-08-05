@@ -139,7 +139,8 @@ JazzChords = #(append (sequential-music-to-chord-exceptions JazzChordsList #t) i
     \ChordNames
     chordRootNamer = #JazzChordNames	% update the chord names
     chordNameExceptions = #JazzChords	% update the chord exceptions
-    \override ChordName.font-name = #"LilyJAZZChord"  % use the custom font for displaying the chords
+    % \override ChordName.font-name = #"lilyjazz-chord"
   }
 }
 
+    % \override ChordName.font-name = #"LilyJAZZChord"  % use the custom font for displaying the chords
