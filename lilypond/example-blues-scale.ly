@@ -5,7 +5,6 @@
 % \include "equinox-bv-notes.ly"
 % \include "bv-bill-evans-header.ly"
 
-
 %\new Staff {
   % \tpart
 % }
@@ -71,16 +70,91 @@ Key = { \key c \minor }
 \layout { indent = 0 }
 \midi { \tempo 4 = 80 }
 
-melody-c = \new Staff \relative c' {
+music = {
   \clef treble
+  \Key
   \bar "||" 
   c8 es f ges g bes c4
   \bar "||"
 }
 
-chordmusic-c = \chordmode {
+chord-c = \chordmode {
   c1:min7
 }
+
+melody = {
+  { \relative c'' \music }
+  \transpose es c { \relative c'' \music }
+  \naturalizeMusic \transpose fis c { \relative c'' { \music } }
+}
+
+% chordmusic = \chordmode {
+%   c1:min7
+%   es:min7
+%   fis:min7
+% }
+
+% ############ Horns ############
+
+% ------ Alto Saxophone ------
+alto = \transpose c es \relative c' {
+  \melody
+}
+
+altoSax = {
+  \global
+  \set Staff.instrumentName = #"Alto Sax"
+  \clef treble
+  <<
+    \alto
+  >>
+}
+
+% ------ Trombone ------
+
+tbone = { 
+  \melody
+}
+
+trombone = {
+  \global
+  \set Staff.instrumentName = #"Trombone"
+  \clef bass
+  <<
+    \tbone
+  >>
+}
+
+% ------ Piano --------
+pi-no = {
+  \melody
+}
+
+piano = {
+  % \global
+  \set Staff.instrumentName = #"Piano"
+  \clef treble
+  <<
+    \pi-no
+  >>
+}
+
+\new StaffGroup <<
+  \new Staff = "piano" \piano
+  \new Staff = "alto" \alto
+  \new Staff = "trombone" \trombone
+>>
+
+\markup { \sans "" }
+
+% \new StaffGroup <<
+%   \chords {
+%     \set minorChordModifier = \markup { "-" }
+% 	\chordmusic
+%   }
+%   \melody
+% >>
+
 
 % \score {
 %   \new StaffGroup <<
@@ -90,17 +164,3 @@ chordmusic-c = \chordmode {
 %     \bclef
 %   >>
 % }
-
-\new StaffGroup 
-<<
-  \chords { 
-    \set minorChordModifier = \markup { "-" }
-	\break
-  \chordmusic-c
-  }
-  \melody-c
-  \chordmusic-c
->>
-
-
-\markup { \sans "" }
