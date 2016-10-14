@@ -31,12 +31,12 @@
 
 \new StaffGroup 
 <<
-  \melody
   \chords { 
     \set minorChordModifier = \markup { "-" }
 	\break
     \chordmusic 
   }
+  \melody
   \bassline
 >>
 
