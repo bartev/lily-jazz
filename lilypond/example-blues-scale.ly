@@ -1,77 +1,32 @@
 \version "2.19.31"
 
 \include "bv-jazz-settings.ly"
+\include "naturalize.ly"
 
 % \include "equinox-bv-notes.ly"
 % \include "bv-bill-evans-header.ly"
 
-%\new Staff {
-  % \tpart
-% }
-
-#(define (naturalize-pitch p)
-   (let ((o (ly:pitch-octave p))
-         (a (* 4 (ly:pitch-alteration p)))
-         ;; alteration, a, in quarter tone steps,
-         ;; for historical reasons
-         (n (ly:pitch-notename p)))
-     (cond
-      ((and (> a 1) (or (eq? n 6) (eq? n 2)))
-       (set! a (- a 2))
-       (set! n (+ n 1)))
-      ((and (< a -1) (or (eq? n 0) (eq? n 3)))
-       (set! a (+ a 2))
-       (set! n (- n 1))))
-     (cond
-      ((> a 2) (set! a (- a 4)) (set! n (+ n 1)))
-      ((< a -2) (set! a (+ a 4)) (set! n (- n 1))))
-     (if (< n 0) (begin (set! o (- o 1)) (set! n (+ n 7))))
-     (if (> n 6) (begin (set! o (+ o 1)) (set! n (- n 7))))
-     (ly:make-pitch o n (/ a 4))))
-
-#(define (naturalize music)
-   (let ((es (ly:music-property music 'elements))
-         (e (ly:music-property music 'element))
-         (p (ly:music-property music 'pitch)))
-     (if (pair? es)
-         (ly:music-set-property!
-          music 'elements
-          (map (lambda (x) (naturalize x)) es)))
-     (if (ly:music? e)
-         (ly:music-set-property!
-          music 'element
-          (naturalize e)))
-     (if (ly:pitch? p)
-         (begin
-           (set! p (naturalize-pitch p))
-           (ly:music-set-property! music 'pitch p)))
-     music))
-
-naturalizeMusic =
-#(define-music-function (m)
-   (ly:music?)
-   (naturalize m))
-
 %%%%%%%%%%%% Keys'n'thangs %%%%%%%%%%%%%%%%%
 
-global = { \time 4/4 }
+global = { 
+  \time 4/4 
+}
 
 Key = { \key c \minor }
 
 %%%%%%%%%%%% Headers %%%%%%%%%%%%%%%%%
 
 \header { 
-  title = "Blues Scale"
-  % subtitle = "(Subtitle)"
+  title = "Blues Scales"
+  % subtitle = "C - instruments"
   % composer = "'Trane"
   meter = ""
-  % tagline = "Coltrane's Sound"
+  tagline = "C - instruments"
   piece =  "" }
 \layout { indent = 0 }
 \midi { \tempo 4 = 80 }
 
 music = {
-  \clef treble
   \Key
   \bar "||" 
   c8 es f ges g bes c4
@@ -83,22 +38,53 @@ chord-c = \chordmode {
 }
 
 melody = {
-  { \relative c'' \music }
-  \transpose es c { \relative c'' \music }
-  \naturalizeMusic \transpose fis c { \relative c'' { \music } }
+  \bar ".|"
+  \relative c' \music 
+  \transpose c f { \relative c' \music }
+  \transpose c bes { \relative c' \music } \break
+  \transpose c ees { \relative c' \music }
+  \transpose c gis { \relative c' \music }
+  \transpose c cis { \relative c' \music } \break
+  \transpose c fis { \relative c' \music }
+  \transpose c b { \relative c' \music }
+  \transpose c e { \relative c' \music } \break
+  \transpose c a { \relative c' \music }
+  \transpose c d { \relative c' \music }
+  \transpose c g { \relative c' \music } \break
+  \bar "||"
 }
 
-% chordmusic = \chordmode {
-%   c1:min7
-%   es:min7
-%   fis:min7
-% }
+mychords = \chordmode {
+  c1:min7
+  f:min7
+  bes:min7
+  ees:min7
+  gis:min7
+  cis:min7
+  fis:min7
+  b:min7
+  e:min7
+  a:min7
+  d:min7
+  g:min7
+}
 
 % ############ Horns ############
 
 % ------ Alto Saxophone ------
-alto = \transpose c es \relative c' {
-  \melody
+alto = \transpose c es {
+  \relative c' \music 
+  \transpose c f { \relative c'' \music }
+  \transpose c bes { \relative c'' \music }
+  \transpose c ees { \relative c'' \music }
+  \transpose c aes { \relative c'' \music }
+  \transpose c des { \relative c'' \music }
+  \transpose c ges { \relative c'' \music }
+  \transpose c ces { \relative c'' \music }
+  \transpose c fes { \relative c'' \music }
+  \transpose c gis { \relative c'' \music }
+  \transpose c g { \relative c'' \music }
+
 }
 
 altoSax = {
@@ -106,7 +92,7 @@ altoSax = {
   \set Staff.instrumentName = #"Alto Sax"
   \clef treble
   <<
-    \alto
+    \naturalizeMusic \alto
   >>
 }
 
@@ -131,7 +117,6 @@ pi-no = {
 }
 
 piano = {
-  % \global
   \set Staff.instrumentName = #"Piano"
   \clef treble
   <<
@@ -140,27 +125,14 @@ piano = {
 }
 
 \new StaffGroup <<
+  \chords { 
+    % \set minorChordModifier = \markup { "-" }
+    \mychords 
+  }
+  \global
   \new Staff = "piano" \piano
-  \new Staff = "alto" \alto
-  \new Staff = "trombone" \trombone
+  % \new Staff = "alto" \altoSax
+  % \new Staff = "trombone" \trombone
+  \mychords
 >>
-
 \markup { \sans "" }
-
-% \new StaffGroup <<
-%   \chords {
-%     \set minorChordModifier = \markup { "-" }
-% 	\chordmusic
-%   }
-%   \melody
-% >>
-
-
-% \score {
-%   \new StaffGroup <<
-%     \trumpet
-%     \alto
-%     \tclef
-%     \bclef
-%   >>
-% }
