@@ -111,10 +111,6 @@ altoSax = {
 
 % ------ Trombone ------
 
-% tbone = { 
-%   \melody
-% }
-
 trombone = {
   \global
   \set Staff.instrumentName = #"Trombone"
@@ -133,58 +129,70 @@ piano = {
   >>
 }
 
-\new StaffGroup 
-<<
-  \chords { \mychords }
-  \global
-  \new Staff = "piano" \piano
-  \mychords
->>
+% \new StaffGroup {
+%   <<
+%     \chords { \mychords }
+%     \global
+%     \new Staff = "piano" \piano
+%     \mychords
+%   >>
+% }
+% \markup { \sans "" }
 
-\markup { \sans "" }
 
+\book {
+  % \bookpart {
+    \bookOutputSuffix "C"
+    \header {
+      subtitle = "C instruments (treble clef)"
+      tagline = \subtitle
+    }
+    \score {
+      \new StaffGroup 
+      <<
+        \chords { \mychords }
+        \global
+        \new Staff = "piano" \piano
+        \mychords
+      >>
+    }
+  % }
+}
 
-  \book {
-    \bookpart {
-      \header {
-        subtitle = "C instruments (treble clef)"
-      }
-      \score {
-        \new StaffGroup 
-        <<
-          \chords { \mychords }
-          \global
-          \new Staff = "piano" \piano
-          \mychords
-        >>
-      }
+\book {
+  % \bookpart {
+    \bookOutputSuffix "C-bass"
+    \header {
+      subtitle = "C instruments (bass clef)"
+      tagline = \subtitle
     }
-    \bookpart {
-      \header {
-        subtitle = "C instruments (bass clef)"
-      }
-      \score {
-        \new StaffGroup 
-        <<
-          \chords { \mychords }
-          \global
-          \new Staff = "trombone" \trombone
-          \mychords
-        >>
-      }
+    \score {
+      \new StaffGroup 
+      <<
+        \chords { \mychords }
+        \global
+        \new Staff = "trombone" \trombone
+        \mychords
+      >>
     }
-    \bookpart {
-      \header {
-        subtitle = "E flat instruments"
-      }
-      \score {
-        \new StaffGroup 
-        <<
-          \chords { \transpose ees c \mychords-alto }
-          \global
-          \new Staff = "alto" \altoSax
-          \naturalize \transpose ees c \mychords-alto
-        >>
-      }
+  % }
+}
+
+\book {
+  % \bookpart {
+    \bookOutputSuffix "alto-sax"
+    \header {
+      subtitle = "E flat instruments"
+      tagline = \subtitle
     }
-  }
+    \score {
+      \new StaffGroup 
+      <<
+        \chords { \transpose ees c \mychords-alto }
+        \global
+        \new Staff = "alto" \altoSax
+        \naturalize \transpose ees c \mychords-alto
+      >>
+    }
+  % }
+}
