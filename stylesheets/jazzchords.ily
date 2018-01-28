@@ -40,11 +40,10 @@
 % for major chords, use "acMaj" to print a small "M"
 #(define-markup-command (acMaj layout props extension) (string?)
   (interpret-markup layout props
-    (markup #:super "M" #:super extension)))
-))
+    (markup "maj" extension)))
 % alternative, use capital "M"
 % (markup #:super "M" #:super extension)
-    % (markup "maj" extension)
+    % 
 
 % for chords with up to three alterations, stacked on top of each other
 #(define-markup-command (acAlt layout props strA strB strC) (string? string? string?)
