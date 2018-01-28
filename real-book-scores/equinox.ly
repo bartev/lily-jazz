@@ -1,9 +1,9 @@
 \version "2.19.80"
 
 #(set-global-staff-size 24)
-\include "./stylesheets/jazzchords.ily"
-\include "./stylesheets/lilyjazz.ily"
-\include "./stylesheets/jazzextras.ily"
+\include "../stylesheets/jazzchords.ily"
+\include "../stylesheets/lilyjazz.ily"
+\include "../stylesheets/jazzextras.ily"
 
 \paper {
   #(set-paper-size "letter")

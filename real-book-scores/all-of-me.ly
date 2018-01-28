@@ -1,4 +1,5 @@
 \version "2.19.80"
+
 #(set-global-staff-size 18)
 \include "../stylesheets/jazzchords.ily"
 \include "../stylesheets/lilyjazz.ily"
@@ -162,8 +163,8 @@ theWords = \lyricmode {
 \score {
   <<
     \new ChordNames \theChords
-    \new Voice = vocals \theNotes
-    \new Lyrics \lyricsto vocals \theWords
+    \new Voice = soloist \theNotes
+    \new Lyrics \lyricsto soloist \theWords
   >>
   \layout {
     % make only the first clef visible
