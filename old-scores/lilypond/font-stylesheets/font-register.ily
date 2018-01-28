@@ -10,7 +10,6 @@
 \paper {
   #(define notation-fonts
     (list 
-      (list 'beethoven "arnold" "arnold")
       (list 'beethoven "beethoven" "beethoven")
       (list 'cadence "cadence" "emmentaler")
       (list 'emmentaler "emmentaler" "emmentaler")

@@ -1,5 +1,11 @@
 \version "2.19.31"
 
+\paper {
+  #(define fonts
+    (set-global-fonts
+    #:music "lilyjazz"))
+}
+
 \header {
   title = "Song"
   subtitle = "(tune)"
