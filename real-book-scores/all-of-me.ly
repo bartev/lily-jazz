@@ -1,5 +1,6 @@
 \version "2.19.80"
 
+
 #(set-global-staff-size 18)
 \include "../stylesheets/jazzchords.ily"
 \include "../stylesheets/lilyjazz.ily"
@@ -56,7 +57,7 @@ realBookTitle = \markup {
 }
 
 theNotes = \relative c' {
-  \set Staff.midiInstrument = "flute"
+  % \set Staff.midiInstrument = "flute"
   \key c \major
   \showStartRepeatBar \bar "[|:"
   \repeat volta 2 {
@@ -176,7 +177,7 @@ theWords = \lyricmode {
     \override LyricHyphen.thickness = #4
     \override Score.VoltaBracket.font-name = #"Pea Missy with a Marker"
   }
-  \midi {
-    \tempo 4 = 88
-  }
+  % \midi {
+  %   \tempo 4 = 88
+  % }
 }
