@@ -23,6 +23,7 @@
 title = #"Equinox"
 composer = #"'Trane"
 meter = #""
+copyright = #"Coltrane's Sound"
 
 realBookTitle = \markup {
   \score {
@@ -54,7 +55,7 @@ realBookTitle = \markup {
 \header {
   title = \realBookTitle
   tagline = ##f
-  copyright = "Coltrane's Sound"
+  copyright = \copyright
 }
 
 theNotes = \relative c'' {
