@@ -1,24 +1,34 @@
+downarrow = \markup {
+  \with-color #red
+  \center-column {
+    \combine
+    \draw-line #'(0 . 2)
+    \arrow-head #Y #DOWN ##t
+  }
+}
+
 movementI =  \relative c' { 
   \key f \major
   \time 12/8
-  
+  \set Score.markFormatter = #format-mark-box-numbers
+
   \mark \markup { Allegretto }
   r2. r4 r8 f4\p\<(e8 |
   g4.--\>f\!) r4 r8 a4\<( g8 |
-  bes4.--\> a4.^"vib."\!) r4 r8 a4\<( f'8) | \break
+  bes4.--\> a4.^"vib."\!) r4 r8 a4\<( f'8) |
 
-  f4\>( e8 d4.\!) r4 d8\<( f e d) |
+  f4\>( e8 d4.\!) r4 d8\<( f e d) |  \break
   g4( e8 d4 c8 bes4 c8 d4 e8) |
-  f4\<( c8) c( d a) c4.( c4 bes8) | \break
+  f4\<( c8) c( d a) c4.( c4 bes8) |
 
   a4.\> r4\! r8 r4 r8 f4( e8 |
-  g4.-- f4.) r4 r8 a4(g8 |
-  bes4.--\<_"cresc." a4.\!) r4 r8 a4( a'8) | \break
+  g4.-- f4.) r4 r8 a4(g8 |  \break
+  bes4.--\<_"cresc." a4.\!) r4 r8 a4( a'8) |
 
   a4.\<( g4 fis8 ees4. d4.) |
   bes'2.\mf\< r4 d,8\>( e4 f8) | 
   f4.( e\!) r4 c8( d4\< e8) |
-  e4.( d\!) r4 bes8(\> c4 d8\!) | \break
+  e4.( d\!) r4 bes8(\> c4 d8\!) |
 
   d4.(\< c bes a\!) |
   d,\mf->( d8) e_"dim"\>( fis g8 d' g a bes d) |
@@ -34,42 +44,47 @@ movementI =  \relative c' {
 
   % TODO make 1 measure
   R1.*2 |
-  f'4.\p( ~ f8 e d bes a g e d cis | 
-  f'4.) r8 e( d bes a g \tuplet 3/2 { e16 f e} d8 cis |
+  f'4.\p\<( ~ f8 e d\!  bes\> a g e d cis\! | 
+  f'4.\p) r8 e\<( d bes a g \tuplet 3/2 { e16 f e} d8 cis \!|
 
-  gis''4.) r8 f8( d bes a gis f cis d |
-  a''4.) r8 gis8( bes a g f d a f) |
-  f4. ~ f8( dis e) ->bes'4.->( a4) r8 |
+  gis''4.\<) r8\! f8( d   bes a gis   f\< cis d |
+  a''4.) r8\! gis8\<( bes a g f d a f\!) |
+  f4.\f ~ f8( dis e) bes'4.->( a4) r8 |
 
-  f'4. ~ f8( dis e) bes'4.( a4) r8 | 
-  r8 a( g fis d a g f' es d bes f |
-  es4.) r16 bes'( g es bes es g es g bes es g bes8) a g |
+  f'4.^"echo p" ~ f8( dis e) bes'4.->( a4) r8 | 
+  r8 a\mf\<( g fis d a g f' es d bes f \! |
+  es4.) r16^\downarrow bes'\<( g es bes es 
+  g^\downarrow es g bes es g \!
+  bes8^\downarrow) a g |
 
-  fis4. r16 c16(a fis c fis a fis a c fis a) c8 r8 a8 ||
+  fis4. r16^\downarrow c16(a fis c fis 
+  a^\downarrow fis a c fis a) 
+  c8^\downarrow r8 \breathe a8 ||
+  \mark \default
   \time 9/8
-  cis\mf( d bes g4) r8 f4. |
+  cis\mf( d bes g4) r8 f4.\trill \grace { e16 f }| 
   a8( bes g es4) r8 d4.\trill \grace {cis16 d_"fix grace"} |
 
   c4. d4( bes8 a4.) |
   f'8( ~ f16 d bes a g4.) r8 e( f) ||
 
   \time 12/8 
-  aes4.\f r8 f aes des, f aes des f aes |
+  aes4.\f r8 f^"short" aes des, f aes des f aes |
 
   % \pageBreak
 
-  g8->( ~ g16 aes bes ges) e8->( ~ e16 f g e) bes8->( ~ bes16 c des bes) g8->( ~ g16 aes bes g) |
+  g8->\<( ~ g16 aes bes ges) e8->( ~ e16 f g e) bes8->( ~ bes16 c des bes) g8->( ~ g16 aes bes g) |
   \break
-  aes4. r8 f aes des, f aes des f aes |
+  aes4.\! r8 f aes des, f aes des f aes |
 
-  g16--( e g aes bes g) e--( bes e f g d) bes--( g bes c des bes) g--( e g aes bes g) |
-  aes4. r16 f16( ges aes bes c    des-> es f ges a bes    c-> des, es f ges aes |
+  g16--\<^\downarrow( e g aes bes g)\! e--\<^\downarrow( bes e f g d)\! bes--\<^\downarrow( g bes c des bes)\! g--\<^\downarrow( e g aes bes g)\! |
+  aes4.\< r16\!^\downarrow f16_"sub p"\<( ges aes bes c  des->^\downarrow es f ges a bes \!   c->\<^\downarrow des, es f ges aes \!\f |
 
-  bes4) bes,8( aes4) aes'8( c4) c,8( bes4) g8-- |
-  fis16( a) d a fis a g( bes) e bes g bes   a( c) fis c a c   bes( d) g d bes g |
-  e4.-> ~ e16( g bes cis e g   bes, cis e g) bes8 ~ bes a g |
+  bes4_"sempre f") bes,8( aes4) aes'8( c4) c,8( bes4) g8-- |
+  fis16\<^\downarrow( a) d a fis a \!  g\<^\downarrow( bes) e bes g bes \!   a\<^\downarrow( c) fis c a c \!   bes\<^\downarrow( d) g d bes g \! |
+  e4.->\< ~ e16( g bes cis e g \!   bes,\< cis e g) bes8 \! ~ bes \< a g \! |
 
-  f4-- r8 a4( g8 f4) r8 a4( g8 |
+  f4-- \< r8 \! a4\>( g8 f4)\! r8 a4( g8 |
   f4.\p ~ f8 g es   d4. ~ d8 e c |
   bes4.) r8 d( c bes4.) r8 d'( c |
 
@@ -81,7 +96,7 @@ movementI =  \relative c' {
   a''4->\f( gis8) e4->( d8) a4->( gis8) e4->( d8) |
   f8_"dim"^"poco rit."( e f)\> bes( a bes) d( cis d) f( e f)\!_"rit" | \break
 
-  a,4.->\pp^"a Tempo"( gis) r4 r8 b4\<( a8 ) |
+  \mark \default a,4.->\pp^"a Tempo"( gis) r4 r8 b4\<( a8 ) |
   c4.\>( b)\! r4 r8 b4\<( g'8)\! |
   g4->\>( f8 e4.)\! r4 e8(\< g f e)\! |
 

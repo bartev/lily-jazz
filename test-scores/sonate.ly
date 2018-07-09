@@ -1,5 +1,6 @@
 \version "2.19.31"
 
+
 \header {
   % http://lilypond.org/doc/v2.18/Documentation/notation/creating-titles-headers-and-footers
 
@@ -22,7 +23,7 @@
 #(set-default-paper-size "letter")
 \paper {
   ragged-bottom = ##t
-  page-number-type = #'roman
+  % page-number-type = #'roman
   system-system-spacing.basic-distance = #12
   % page-breaking = #ly:page-turn-breaking
   page-breaking = #ly:minimal-breaking
@@ -46,15 +47,15 @@ movementII =  \relative c' {
     print-all-headers = ##t
     print-page-number = ##t
     print-first-page-number = ##t
-    oddHeaderMarkup = \markup \null
-    evenHeaderMarkup = \markup \null
-    oddFooterMarkup = \markup {
-      \fill-line {
-        \on-the-fly \print-page-number-check-first
-        \fromproperty #'page:page-number-string
-      }
-    }
-    evenFooterMarkup = \oddFooterMarkup
+    % oddHeaderMarkup = \markup \null
+    % evenHeaderMarkup = \markup \null
+    % oddFooterMarkup = \markup {
+    %   \fill-line {
+    %     \on-the-fly \print-page-number-check-first
+    %     \fromproperty #'page:page-number-string
+    %   }
+    % }
+    % evenFooterMarkup = \oddFooterMarkup
 
     %% toc markup
     tocTitleMarkup = \markup \huge \column {
@@ -76,7 +77,11 @@ movementII =  \relative c' {
   \score {
     \new Staff \with { midiInstrument = #"alto sax" } {
       \accidentalStyle modern-cautionary
-      \new Voice { \movementI }
+      \new Voice { 
+        \compressFullBarRests
+        \override MultiMeasureRest.expand-limit = #1
+        \movementI
+      }
     }
     \header{
       piece = \markup { \fontsize #5 "Movement I" }
