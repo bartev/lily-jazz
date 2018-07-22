@@ -13,22 +13,24 @@
   between-system-space = 2.5\cm
   between-system-padding = #0
   indent = 0\mm
+  markup-system-spacing = #'((basic-distance . 23)
+                             (minimum-distance . 8)
+                             (padding . 1))
   page-breaking = #ly:minimal-breaking
   print-all-headers = ##f
   print-page-number = ##t
   print-first-page-number = ##f
   %%set to ##t if your score is less than one page:
   ragged-last-bottom = ##f
-  ragged-bottom = ##t
-  markup-system-spacing = #'((basic-distance . 23)
-                             (minimum-distance . 8)
-                             (padding . 1))
+  ragged-bottom = ##f
+  % system-system-spacing.basic-distance = #12
+
 }
 
 title = #"Spain"
 composer = #"Chick Corea"
 meter = #""
-copyright = #""
+copyright = #"Spain"
 
 realBookTitle = \markup {
   \score {
@@ -58,7 +60,7 @@ realBookTitle = \markup {
 
 \header {
   title = \realBookTitle
-  tagline = ##f
+  tagline = ##t
   copyright = \copyright
 }
 
@@ -99,6 +101,7 @@ theNotes = \relative c''' {
   c8 b e b r2 |
   r1 | \break
 
+  \pageBreak
   \mark \default
   b8 c b a g a b d |
   a8 c e g b, d fis a |
@@ -120,29 +123,126 @@ theNotes = \relative c''' {
   g2.) e16( d c b |
   bes cis e g) fis4-. r2 | \break
 
-  r4 \tuplet 3/2 {r8 fis cis'} \tuplet 3/2 {b f c'} \tuplet 3/2 {b c c} |
-  \tuplet 3/2 {b fis cis'} \tuplet 3/2 {b fis cis'} \tuplet 3/2 {b c c} c16 b fis' gis |
-  \tuplet 3/2 {fis8 fis gis} \tuplet 3/2 {gis fis gis} \tuplet 3/2 {cis, cis b} \tuplet 3/2 {fis b e,} |
+  \set Staff.autoBeaming = ##f
+  \ottava #1
+  r4 \tuplet 3/2 4 {r8[ fis cis'] b[ f c'] b[( c c]} |
+  \tuplet 3/2 4 {b[ fis cis'] b[ fis cis'] b[ c c]} c16[ b fis' gis] |
+  \tuplet 3/2 4 {fis8[ fis gis] gis[ fis gis] cis,[ cis b] fis[ b e,~)]} |
   e4 r r2 | \break
+  \ottava #0
+
+  \set Staff.autoBeaming = ##t
+  \pageBreak
+  \mark \default
+  \ottava #1
+  fis'4-. a-. \tuplet 3/2 {r4 g-. fis} |
+  r8 e r d b4-. e ~ |
+  e4. cis8 d b g e |
+  a aes g fis r fis e4 | \break
+  \ottava #0
+
+  r2 r4 r8 bes16( a |
+  ges8) aes bes des ges aes bes des |
+  ges-> des r4 r2 |
+  r1 | \break
+
+  \ottava #1
+  a'4-. aes-. g-. r |
+  fis4-. f8 e r2 |
+  \ottava #0
+  d4-. b-. bes-. r |
+  bes8 ges des bes r2 | \break
+
+  bes8 gis \noBeam a g'~ \tuplet 3/2 {g8 fis4-.} r4 |
+  fis8 a cis e cis d b g |
+  fis8 e a g fis e d bes |
+  a g d e fis4-- r4 | \break
+
+  r4 r8 g cis, d aes' g |
+  ees8 ges aes b f aes bes d |
+  aes8 b d g bes, cis d e |
+  b4-- r r2 | \break
+
+  r8 a( \noBreak b e fis) a->( b a) |
+  fis'4. a8 r e8 b4-- |
+  \repeat unfold 2 {r1} | \break
+
+  \pageBreak
+  \mark \default
+  r1 |
+  r1 |
+  bes,8 b c b c d e fis |
+  a8 fis g a b a r4 | \break
+
+  r2 bes8 aes bes aes |
+  ges8 f e ees des b bes d |
+  e8 gis ees e g b ees des |
+  r1 | \break
+
+  e8 cis b cis d b g c |
+  cis8 a e bes' b g e gis |
+  a8 fis d b g'2~ |
+  g4. fis16( e d8 e bes'16 a8.) | \break
+
+  r2 a8 b cis a |
+  d8 b r e r cis \noBeam a fis |
+  g8 b d fis a4-^ r |
+  r1 | \break
+
+  r2 r8 aes,,8 bes des |
+  f aes bes des f des r4 |
+  r4 r8 d, d, g a c |
+  d g a c g' c, g' c, | \break
+             
+  r2 fis8 b, cis b |
+  b4 fis'8 b, b2 |
+  fis'8 b, fis' b, fis' b,4-- b8 |
+  fis'8 b, r4 r2 | \break
+
+  \pageBreak
+  \mark \default
+  r4 \tuplet 3/2 {bes8( b c)} b4-- \tuplet 3/2 {bes8( b c)} |
+  b4-- \tuplet 3/2 {bes8( b c)} b4-- \tuplet 3/2 {fis8( g a)} |
+  g1 |
+  d8 b r4 r2 | \break
+
+  r2 r4 r8 bes |
+  a8 bes cis4-- e8 g a bes |
+  \tuplet 3/2 {cis4-- e-- f-.} a4. aes8 |
+  \tuplet 3/2 {g8( fis f} c4-.) r2 | \break
+
+  r2 cis8 d e cis |
+  d4-. r b8 g fis e |
+  a g b, g bes g' e f |
+  fis4-. r r2 | \break
+
+  cis16[( d8.)] \noBeam e8 cis d b g e |
+  fis8 a r a~ a4 d-. |
+  \tuplet 3/2 {d4-- g-. g--~} g4 b-. |
+  b4-- d-. d-. r | \break
+
+  cis4-. b-. bes-. a-. |
+  aes4-. g8 fis r f r e |
+  r1 |
+  r2 r4 b8 d | \break
+
+  e4-. r8 d e e-. r d |
+  e4-- \breathe d8 e~ e2 |
+  r1 |
+  fis4-. r8 c r4 fis-. | \break
 
 }
 
 theChords = \chordmode {
-  \repeat unfold 4 {g1:maj7.11+} 
-  \repeat unfold 4 {fis:7.13-}
-  \repeat unfold 2 {e:m7} \repeat unfold 2 {a:7}
-  \repeat unfold 2 {d:maj7} \repeat unfold 2 {g:maj7.11+}
-  \repeat unfold 2 {cis:7} \repeat unfold 2 {fis:7.13-}
-  \repeat unfold 2 {b:min7} \repeat unfold 2 {b:7}
-
-  \repeat unfold 4 {g:maj7.11+}
-  \repeat unfold 4 {fis:7.13-}
-  \repeat unfold 2 {e:m7} \repeat unfold 2 {a:7}
-  \repeat unfold 2 {d:maj7} \repeat unfold 2 {g:maj7.11+}
-  \repeat unfold 2 {cis:7} \repeat unfold 2 {fis:7.13-}
-  \repeat unfold 2 {b:min7} \repeat unfold 2 {b:7}
-
-
+  \set chordChanges = ##t
+  \repeat unfold 5 {
+    \repeat unfold 4 {g1:maj7.11+}  \break
+    \repeat unfold 4 {fis:7.13-} \break
+    \repeat unfold 2 {e:m7} \repeat unfold 2 {a:7} \break
+    \repeat unfold 2 {d:maj7} \repeat unfold 2 {g:maj7.11+} \break
+    \repeat unfold 2 {cis:7} \repeat unfold 2 {fis:7.13-} \break
+    \repeat unfold 2 {b:min7} \repeat unfold 2 {b:7} \break
+  }
 }
 
 \score {
@@ -154,9 +254,9 @@ theChords = \chordmode {
     \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
     \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
     \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+    % #(layout-set-staff-size 25)
   }
   \midi {
     \tempo 4 = 120
   }
-
 }
