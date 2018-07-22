@@ -60,6 +60,7 @@ realBookTitle = \markup {
 
 \header {
   title = \realBookTitle
+  subtitle = "(Joe Ferrell Solo)"
   tagline = ##t
   copyright = \copyright
 }
@@ -78,12 +79,12 @@ theNotes = \relative c''' {
 
   r8 e \noBeam cis bes e4-- cis8 bes |
   e4-- \noBeam  cis8 bes e cis r4 |
-  r8 e cis bes e4-- cis8 b |
+  r8 e \noBeam cis bes e4-- cis8 b |
   e cis bes cis r cis a4( | \break
   
   a4) r a8 bes a aes |
   g a b d fis a b, g |
-  e'4-. r r8 bes16( a) \noBeam bes8 c |
+  e'4-. r r8 bes16[( a)] \noBeam bes8 c |
   des ees f g aes bes,4-- gis8 | \break
 
   a8 aes g f fis a cis e |
@@ -141,7 +142,7 @@ theNotes = \relative c''' {
   a aes g fis r fis e4 | \break
   \ottava #0
 
-  r2 r4 r8 bes16( a |
+  r2 r4 r8 bes16( aes |
   ges8) aes bes des ges aes bes des |
   ges-> des r4 r2 |
   r1 | \break
@@ -153,18 +154,18 @@ theNotes = \relative c''' {
   d4-. b-. bes-. r |
   bes8 ges des bes r2 | \break
 
-  bes8 gis \noBeam a g'~ \tuplet 3/2 {g8 fis4-.} r4 |
+  bes8[ gis] \noBeam a g'~ \tuplet 3/2 {g8 fis4-.} r4 |
   fis8 a cis e cis d b g |
   fis8 e a g fis e d bes |
   a g d e fis4-- r4 | \break
 
   r4 r8 g cis, d aes' g |
   ees8 ges aes b f aes bes d |
-  aes8 b d g bes, cis d e |
+  aes8 b d g b, cis \override NoteHead.style = #'cross d \revert NoteHead.style e |
   b4-- r r2 | \break
 
-  r8 a( \noBreak b e fis) a->( b a) |
-  fis'4. a8 r e8 b4-- |
+  r8 a( \noBeam b e fis) a->( b a) |
+  fis'4.^\markup { \with-color #red {F\sharp} } a8^\markup { \with-color #red {A} } r e8 b4-- |
   \repeat unfold 2 {r1} | \break
 
   \pageBreak
@@ -180,21 +181,21 @@ theNotes = \relative c''' {
   r1 | \break
 
   e8 cis b cis d b g c |
-  cis8 a e bes' b g e gis |
+  cis8 a \override NoteHead.style = #'cross e \revert NoteHead.style bes' b g e gis |
   a8 fis d b g'2~ |
   g4. fis16( e d8 e bes'16 a8.) | \break
 
   r2 a8 b cis a |
   d8 b r e r cis \noBeam a fis |
-  g8 b d fis a4-^ r |
+  g8 b d fis a4-^^\markup{\with-color #red {A}} r |
   r1 | \break
 
-  r2 r8 aes,,8 bes des |
-  f aes bes des f des r4 |
+  r2 r8 aes,,8 \noBeam bes des |
+  f aes bes des f^\markup{\with-color #red {F}} des r4 |
   r4 r8 d, d, g a c |
-  d g a c g' c, g' c, | \break
+  d g a c g'^\markup{\with-color #red {G}} c, g' c, | \break
              
-  r2 fis8 b, cis b |
+  r2 fis8 b, cis b~ |
   b4 fis'8 b, b2 |
   fis'8 b, fis' b, fis' b,4-- b8 |
   fis'8 b, r4 r2 | \break
@@ -222,7 +223,7 @@ theNotes = \relative c''' {
   b4-- d-. d-. r | \break
 
   cis4-. b-. bes-. a-. |
-  aes4-. g8 fis r f r e |
+  aes4-. g8 fis r f r \override NoteHead.style = #'cross e \revert NoteHead.style |
   r1 |
   r2 r4 b8 d | \break
 
