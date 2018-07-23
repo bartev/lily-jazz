@@ -29,8 +29,8 @@
 
 title = #"Spain"
 composer = #"Chick Corea"
-meter = #""
-copyright = #"Spain"
+meter = #"96-116"
+copyright = #""
 
 realBookTitle = \markup {
   \score {
@@ -39,11 +39,11 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
+          \fontsize #1 \lower #1 \rotate #7 \concat {\note #"2" #1 " = " #meter }
           \fontsize #8
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger \larger #title
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
@@ -53,19 +53,37 @@ realBookTitle = \markup {
       \omit Staff.TimeSignature
       \omit Staff.KeySignature
       ragged-right = ##f
+      % \override TextScript.font-name = #"Pea Missy with a Marker"
     }
   }
 }
 
+% \markup { \fontsize #1 (For \concat { E { \raise #0.5 \teeny \flat } } instruments.) }
 
 \header {
   title = \realBookTitle
   subtitle = "(Joe Ferrell Solo)"
-  tagline = ##t
+  % tagline = \markup{ Flute }
+  tagline = ##f
   copyright = \copyright
 }
 
+% other functions
+cross-note = 
+#(define-music-function (parser location my-music)
+  (ly:music?)
+  #{
+  \override NoteHead.style = #'cross
+  #my-music
+  \revert NoteHead.style
+  #}
+)
+
+fall = \bendAfter #-4
+scoop = \bendAfter #+4
+
 theNotes = \relative c''' {
+  \set Staff.midiInstrument = "flute"
   \key c \major
   \time 2/2
   \set Score.markFormatter = #format-mark-box-numbers
@@ -82,7 +100,7 @@ theNotes = \relative c''' {
   r8 e \noBeam cis bes e4-- cis8 b |
   e cis bes cis r cis a4( | \break
   
-  a4) r a8 bes a aes |
+  a4)\fall r a8 bes a aes |
   g a b d fis a b, g |
   e'4-. r r8 bes16[( a)] \noBeam bes8 c |
   des ees f g aes bes,4-- gis8 | \break
@@ -92,7 +110,7 @@ theNotes = \relative c''' {
   c8 bes b a' g4-. r |
   c,8 bes b a' g4-. r | \break
 
-  cis,4-. aes8 bes r bes \noBeam aes bes |
+  cis,4-. aes8 bes r bes? \noBeam aes? bes |
   r bes \noBeam aes bes r bes \noBeam aes c |
   r c \noBeam g c( c2) |
   r2 r8 b8 \noBeam e fis | \break
@@ -160,8 +178,8 @@ theNotes = \relative c''' {
   a g d e fis4-- r4 | \break
 
   r4 r8 g cis, d aes' g |
-  ees8 ges aes b f aes bes d |
-  aes8 b d g b, cis \override NoteHead.style = #'cross d \revert NoteHead.style e |
+  ees8 ges aes b f aes? b d |
+  aes8 b d g b, cis \cross-note d e |
   b4-- r r2 | \break
 
   r8 a( \noBeam b e fis) a->( b a) |
@@ -181,13 +199,13 @@ theNotes = \relative c''' {
   r1 | \break
 
   e8 cis b cis d b g c |
-  cis8 a \override NoteHead.style = #'cross e \revert NoteHead.style bes' b g e gis |
+  cis8 a \cross-note e bes' b g e gis |
   a8 fis d b g'2~ |
   g4. fis16( e d8 e bes'16 a8.) | \break
 
   r2 a8 b cis a |
   d8 b r e r cis \noBeam a fis |
-  g8 b d fis a4-^^\markup{\with-color #red {A}} r |
+  g8 b d fis^\markup { \with-color #red {F \sharp } } a4-^^\markup{\with-color #red {A}} r |
   r1 | \break
 
   r2 r8 aes,,8 \noBeam bes des |
@@ -223,14 +241,14 @@ theNotes = \relative c''' {
   b4-- d-. d-. r | \break
 
   cis4-. b-. bes-. a-. |
-  aes4-. g8 fis r f r \override NoteHead.style = #'cross e \revert NoteHead.style |
+  aes4-. g8 fis r f r \cross-note e |
   r1 |
   r2 r4 b8 d | \break
 
   e4-. r8 d e e-. r d |
   e4-- \breathe d8 e~ e2 |
   r1 |
-  fis4-. r8 c r4 fis-. | \break
+  fis4-. r8 c r4 fis-. \bar "||" \break
 
 }
 
@@ -258,6 +276,6 @@ theChords = \chordmode {
     % #(layout-set-staff-size 25)
   }
   \midi {
-    \tempo 4 = 120
+    \tempo 2 = 106
   }
 }
