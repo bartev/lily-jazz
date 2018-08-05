@@ -16,13 +16,28 @@
 \paper {
   #(define fonts
     (set-global-fonts
-    #:music "lilyjazz"
-    #:brace "lilyjazz"
-    #:roman "lilyjazz-text"
-    #:sans "lilyjazz-chord"
-    #:factor (/ staff-height pt 20)
-  ))
-  print-page-number = ##f
+     #:music "lilyjazz"
+     #:brace "lilyjazz"
+     #:roman "lilyjazz-text"
+     #:sans "lilyjazz-chord"
+     #:factor (/ staff-height pt 20)
+   ))
+  #(set-paper-size "letter")
+  between-system-space = 2.5\cm
+  between-system-padding = #0
+  indent = 0\mm
+  markup-system-spacing = #'((basic-distance . 23)
+                             (minimum-distance . 8)
+                             (padding . 1))
+  page-breaking = #ly:minimal-breaking
+  print-all-headers = ##f
+  print-page-number = ##t
+  print-first-page-number = ##f
+  %%set to ##t if your score is less than one page:
+  ragged-last-bottom = ##f
+  ragged-bottom = ##f
+  % system-system-spacing.basic-distance = #12
+
 }
 
 \layout {
