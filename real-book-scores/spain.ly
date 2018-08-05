@@ -9,26 +9,32 @@
 \include "../stylesheets/jazzextras.ily"
 
 \paper {
-  #(set-paper-size "letter")
-  between-system-space = 2.5\cm
-  between-system-padding = #0
-  indent = 0\mm
-  markup-system-spacing = #'((basic-distance . 23)
-                             (minimum-distance . 8)
-                             (padding . 1))
-  page-breaking = #ly:minimal-breaking
-  print-all-headers = ##f
-  print-page-number = ##t
-  print-first-page-number = ##f
-  %%set to ##t if your score is less than one page:
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  % system-system-spacing.basic-distance = #12
-
+  % #(set-paper-size "letter")
+  % between-system-space = 2.5\cm
+  % between-system-padding = #0
+  % indent = 0\mm
+  % markup-system-spacing = #'((basic-distance . 23)
+  %                            (minimum-distance . 8)
+  %                            (padding . 1))
+  % page-breaking = #ly:minimal-breaking
+  % print-all-headers = ##t
+  % print-page-number = ##t
+  % print-first-page-number = ##f
+  % %%set to ##t if your score is less than one page:
+  % ragged-last-bottom = ##f
+  % ragged-bottom = ##f
+  % % system-system-spacing.basic-distance = #12
+  oddFooterMarkup = \markup {#not-part-first-page "Spain"}
+  evenFooterMarkup = "Spain"
+  oddHeaderMarkup = "Spain"
+  evenHeaderMarkup = "Spain"
 }
 
 title = #"Spain"
+piece = #"Spain"
 composer = #"Chick Corea"
+subtitle = "(Joe Ferrell Flute Solo)"
+
 meter = #"96-116"
 copyright = #""
 
@@ -39,12 +45,15 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #1 \rotate #7 \concat {\note #"2" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"2" #1 " = " #meter }
           \fontsize #8
           \override #'(offset . 7)
           \override #'(thickness . 6)
           \underline \larger \larger #title
-          \fontsize #1 \lower #1 \concat { #composer " " }
+          \column {
+            \fontsize #1 \lower #1 \concat { #composer " " }
+            \smaller \lower #0.5 #"transcribed by Kaz Takasugi"
+          }
         }
       }
     }
@@ -53,7 +62,7 @@ realBookTitle = \markup {
       \omit Staff.TimeSignature
       \omit Staff.KeySignature
       ragged-right = ##f
-      % \override TextScript.font-name = #"Pea Missy with a Marker"
+                                % \override TextScript.font-name = #"Pea Missy with a Marker"
     }
   }
 }
@@ -62,7 +71,7 @@ realBookTitle = \markup {
 
 \header {
   title = \realBookTitle
-  subtitle = "(Joe Ferrell Solo)"
+  subtitle = \subtitle
   % tagline = \markup{ Flute }
   tagline = ##f
   copyright = \copyright
@@ -82,7 +91,7 @@ cross-note =
 fall = \bendAfter #-4
 scoop = \bendAfter #+4
 
-theNotes = \relative c''' {
+fluteSolo = \relative c''' {
   \set Staff.midiInstrument = "flute"
   \key c \major
   \time 2/2
@@ -267,7 +276,7 @@ theChords = \chordmode {
 \score {
   <<
     \new ChordNames \theChords
-    \new Voice = soloist \theNotes
+    \new Voice = soloist \fluteSolo
   >>
   \layout {
     \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
@@ -278,4 +287,7 @@ theChords = \chordmode {
   \midi {
     \tempo 2 = 106
   }
+  \header {
+    piece = "Spain"
+    }
 }
