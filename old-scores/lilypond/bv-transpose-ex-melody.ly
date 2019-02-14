@@ -1,7 +1,7 @@
 % Melody for c instrument
 % Include key signature here
 
-melody =  \relative c'' {
+melody = \relative c'' {
   \key c \major
   \time 4/4
     c4 d e f | g a b c | \bar "|."
@@ -16,16 +16,16 @@ piano  = {
   >>
 }
 
+soprano = {
+  \set Staff.instrumentName = #"Soprano Sax"
+  \clef treble
+  \transpose bes c \melody
+}
+
 alto =  {
   \set Staff.instrumentName = #"Alto Sax"
   \clef treble
   \transpose es c \melody 
-}
-
-bari =  {
-  \set Staff.instrumentName = #"Bari Sax"
-  \clef bass
-  \transpose es c,, \melody
 }
 
 tenor = {
@@ -34,10 +34,10 @@ tenor = {
   \transpose bes c' \melody
 }
 
-soprano = \transpose bes c {
-  \set Staff.instrumentName = #"Soprano Sax"
-  \clef treble
-  \melody
+bari =  {
+  \set Staff.instrumentName = #"Bari Sax"
+  \clef bass
+  \transpose es c,, \melody
 }
 
 

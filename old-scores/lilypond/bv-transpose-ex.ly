@@ -55,7 +55,7 @@ keyTime = { \key c \minor
 \score {
 
 % For C instrument
-  \relative c'' {
+  \relative c {
   % \keyTime
     % c1 | d | e | f \bar "|."
   \piano
@@ -63,12 +63,31 @@ keyTime = { \key c \minor
 }
 
 % transpose for E flat instrument
-\relative c'' {
+\relative c {
+  \mark \markup {transpose for E\flat instrument "\\transpose es c"}
   \transpose es c \piano
 }
+
+% transpose for B flat instrument
+\relative c {
+  \mark \markup {transpose for B\flat instrument "\\transpose bes c"}
+  \transpose bes c \piano
+}
+\relative c {
+  \mark \markup {transpose for B\flat instrument "\\transpose bes c'"}
+  \transpose bes c' \piano
+}
+
+% transpose down a major fifth
+\relative c {
+  \mark \markup {"down a major fifth \\transpose g c"
+               }
+  \transpose g c \piano
+}
+
  
 text = \lyricmode {
-  do re me fa | so la ti do |
+  do 4 re me fa | so la ti do |
 }
 
 \score {
