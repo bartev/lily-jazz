@@ -135,11 +135,65 @@ transChordsPlusEighth = \transpose c bes, \theChordsPlusEighth
 transBassLine = \transpose c es \transpose c bes,  \theBassLine
 
 
+firstTime = \relative c' {
+  \key bes \major
+  \partial 8 f8 |
+  \showStartRepeatBar \bar "[|:"
+
+  \mark \markup { A 0:28 }
+  des'8 bes4. ~ bes2 ~ |
+  bes2 r4 r8 f8 |
+  des'4. bes8 ~ bes2 ~ | \break
+
+  bes2 r4 r8 des8 |
+  es8 bes4. ~ bes2 ~ |
+  bes2 r4 r8 f8 | \break
+
+  des'8 bes4. ~ bes2 ~ |
+  bes4 r4 bes16 des r8 r4 |
+  r8 c8 ~ c4 c4 c | \break
+
+  c4. bes8 des bes des4 |
+  bes4. bes8 ~ bes4 bes4 ~ |
+  bes2 r4 r8 g8 \bar ":|]" \break
+}
+secondTime = \relative c'' {
+  \mark \markup { B 0:52 }
+  des4. bes8 r2 |
+  r2 r4 r8 f16 f |
+  des'8 bes8 ~ bes2 bes16 c r8 | \break
+
+  r2 r4 r8 des8 |
+  es8 bes4. ~ bes2 ~ |
+  bes2 c8 g8 r8 f8 | \break
+
+  des'8 bes4. ~ bes4. r8 |
+  bes8 f r4 r2 |
+  r8 c'8 ~ c4 c4 c | \break
+
+  c4. bes8 des bes des4 |
+  bes4. bes8 ~ bes4 bes4 |
+  r4 f'8 aes8 ~ aes4 \tuplet 3/2 { f8 es8 des8 }  | \break
+}
+thirdTime = \relative c'' {
+  \mark \markup { C 1:16 }
+  bes4 ~ bes8 bes8 ~ bes4 r4 |
+  r4 f16 bes bes4. bes4 |
+  bes8 r8 r4 r4 r8 f' | \break
+
+  \tuplet 3/2 { bes8 aes bes ~ } bes4 r2 |
+  \repeat unfold 8 { s1 }
+}
+
+emptyLines = { 
+  \repeat unfold 12 { s1 }
+}
+
 \book {
   \score {
     <<
       \new ChordNames \transChordsPlusEighth
-      \new Voice = soloist \transNotes
+      \new Voice = soloist \firstTime
       \new ChordNames \transpose c es \transChordsPlusEighth
       \new Voice = soloist \transBassLine
     >>
@@ -151,14 +205,31 @@ transBassLine = \transpose c es \transpose c bes,  \theBassLine
   }
   \pageBreak
   \score {
-    \repeat unfold 4 <<
+    <<
       \new ChordNames \transChords
-      \transHeadNotes
+      \secondTime
     >>
-  %   \layout {
-  %     \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
-  %     \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
-  %     \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
-    % }   
   }
+  \markup { \draw-hline }
+  \score {
+    <<
+      \new ChordNames \transChords
+      \thirdTime
+    >>
+  }
+  \pageBreak
+  \score {
+    <<
+      \new ChordNames \transChords
+      \emptyLines
+    >>
+  }
+  \markup { \draw-hline }
+  \score {
+    <<
+      \new ChordNames \transChords
+      \emptyLines
+    >>
+  }
+
 }
