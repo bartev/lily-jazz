@@ -14,7 +14,7 @@
 
   opus = "Trans by Larry Teal"
   arranger = "Music Autography by Elaine Zajac"
-  % meter = "Allegretto"
+  meter = "Allegretto"
 
   tagline = "Typeset by Bartev using Lilypond"
   copyright = "&copyright Copyright 1976 by Etolis Quality Music, Bloomington, Indiana"
