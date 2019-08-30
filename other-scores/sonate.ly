@@ -35,12 +35,8 @@
 }
 
 \include "sonate-movement-1.ly"
+\include "sonate-movement-2.ly"
 
-movementII =  \relative c' { 
-  \key c \minor
-  \time 4/4
-  c8 d e f g a b c ||
-}
 
 \book {
   \paper {
@@ -102,7 +98,7 @@ movementII =  \relative c' {
     
     \header {
       piece = \markup { \fontsize #5 "Movement II" }
-      meter = "Adagio"
+      meter = "Allegro animato"
     }
     \layout {}
     \midi {}
