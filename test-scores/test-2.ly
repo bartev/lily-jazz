@@ -1,6 +1,6 @@
-\version "2.19.80"
+\version "2.18.2"
 
-\include "../stylesheets/jazzextras.ily"
+\include "jazzextras.ily"
 
 \paper {
   #(define fonts

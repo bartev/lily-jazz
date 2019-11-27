@@ -1,4 +1,4 @@
-\version "2.19.80"
+\version "2.18.2"
 
 \paper {
   #(define fonts
@@ -7,7 +7,7 @@
       #:brace "lilyjazz"
       #:roman "lilyjazz-text"
       #:sans "lilyjazz-chord"
-      #:factor (/ staff-height pt 20)
+      #:factor (/ staff-height pt 15)
       ))
 }
 
