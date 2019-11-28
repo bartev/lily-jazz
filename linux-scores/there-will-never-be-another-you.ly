@@ -58,6 +58,12 @@ realBookTitle = \markup {
   copyright = \copyright
 }
 
+global = {
+  \numericTimeSignature
+  \time 4/4
+  \tempo 4=210
+}
+
 chords_twnbay = \chordmode {
   \partial 4 r4 | 
   ees1:maj7 | ees1:maj7 | d:m7.5- | g:7.9- |
@@ -78,6 +84,7 @@ chords_twnbay = \chordmode {
 }
 
 head_twnbay = \relative c' {
+  \global
   \key ees \major
   \partial 4 bes4 |
 
@@ -132,7 +139,9 @@ head_twnbay = \relative c' {
 }
 
 eflat_head_twnbay_konitz = \relative c'' {
+  \global
   \key c \major
+
   \partial 4 r4 |
   \bar ".|"
   g8 a b4 c d
@@ -157,16 +166,16 @@ eflat_head_twnbay_konitz = \relative c'' {
 
 % E flat instruments
 
-\score {
+eflat_konitz = \score {
   <<
   \new ChordNames \transpose ees, c \chords_twnbay
   \new Staff \eflat_head_twnbay_konitz
    >>
 }
 
-\pageBreak
+% \pageBreak
 
-\score {
+eflat_konitz_plus_rb = \score {
   <<
   \new ChordNames \transpose ees, c \chords_twnbay
   \new Voice = soloist \eflat_head_twnbay_konitz
@@ -175,45 +184,59 @@ eflat_head_twnbay_konitz = \relative c'' {
    >>
 }
 
-\pageBreak
+% \pageBreak
 
-\score {
+eflat_rb = \score {
   <<
   \new ChordNames \transpose ees, c \chords_twnbay
   \new Staff \transpose ees, c \head_twnbay
    >>
 }
 
-\pageBreak
+% \pageBreak
 
 % C instruments
 
-\score {
+rb = \score {
   <<
   \new ChordNames \chords_twnbay
   \new Staff \head_twnbay
   >>
 }
 
-\pageBreak
+% \pageBreak
 
 % chords only
 
-\score {
+rb_chords = \score {
   <<
   \new ChordNames \chords_twnbay
   \new Staff \chords_twnbay
   >>
 }
 
-
-\pageBreak
+% \pageBreak
 
 % E flat instruments
 
-\score {
+eflat_chords = \score {
   <<
   \new ChordNames \transpose ees, c \chords_twnbay
   \new Staff \transpose ees c \chords_twnbay
    >>
 }
+
+% Just choose 1 style to print
+
+\rb
+\pageBreak
+
+% \rb_chords
+
+% \eflat_chords
+
+% \eflat_rb
+
+% \eflat_konitz_plus_rb
+
+\eflat_konitz
