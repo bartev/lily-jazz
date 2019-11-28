@@ -1,6 +1,6 @@
 \version "2.18.2"
 
-#(set-global-staff-size 20)
+#(set-global-staff-size 22)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -33,7 +33,7 @@ realBookTitle = \markup {
       s^\markup{
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
-          \fontsize #8
+          \fontsize #7
             \override #'(offset . 7)
             \override #'(thickness . 6)
             \underline \larger #title
@@ -131,13 +131,55 @@ head_twnbay = \relative c' {
   \bar "|."
 }
 
-eflat_chords_twnbay = \transpose ees c \chords_twnbay
+eflat_head_twnbay_konitz = \relative c'' {
+  \key c \major
+  \partial 4 r4 |
+  \bar ".|"
+  g8 a b4 c d
+  d4 g d8 r r c
+  d1 ~
+  d4 r8 ees e ees d4
+  \break
+
+  r4 r c8 d e g
+  a4 c a4. g8
+  a1 ~
+  a4. e8 f e ees e
+  \break
+
+  c'2 a8 g f e~
+  e8 d e2 f8 g
+  g2 e8 d c b~
+  b8 a b4 c8 b a gis 
+  a8
+}
+                  
 
 % E flat instruments
 
 \score {
   <<
-  \new ChordNames \eflat_chords_twnbay
+  \new ChordNames \transpose ees, c \chords_twnbay
+  \new Staff \eflat_head_twnbay_konitz
+   >>
+}
+
+\pageBreak
+
+\score {
+  <<
+  \new ChordNames \transpose ees, c \chords_twnbay
+  \new Voice = soloist \eflat_head_twnbay_konitz
+  \new Voice = soloist \transpose ees, c \head_twnbay
+  \new Staff \transpose ees c \chords_twnbay
+   >>
+}
+
+\pageBreak
+
+\score {
+  <<
+  \new ChordNames \transpose ees, c \chords_twnbay
   \new Staff \transpose ees, c \head_twnbay
    >>
 }
@@ -171,7 +213,7 @@ eflat_chords_twnbay = \transpose ees c \chords_twnbay
 
 \score {
   <<
-  \new ChordNames \eflat_chords_twnbay
-  \new Staff \eflat_chords_twnbay
+  \new ChordNames \transpose ees, c \chords_twnbay
+  \new Staff \transpose ees c \chords_twnbay
    >>
 }
