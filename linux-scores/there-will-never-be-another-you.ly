@@ -145,7 +145,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   \partial 4 r4 |
   \bar ".|"
   g8 a b4 c d
-  d4 g d8 r r c
+  e4-. g-- d8 r r c
   d1 ~
   d4 r8 ees e ees d4
   \break
@@ -167,10 +167,15 @@ eflat_head_twnbay_konitz = \relative c'' {
 % E flat instruments
 
 eflat_konitz = \score {
-  <<
-  \new ChordNames \transpose ees, c \chords_twnbay
-  \new Staff \eflat_head_twnbay_konitz
+ << 
+ \new ChordNames \transpose ees, c \chords_twnbay
+  \new Staff \with {
+    instrumentName = "Alto"
+    midiInstrument = "alto sax"
+  } \eflat_head_twnbay_konitz
    >>
+   \layout {}
+   \midi {}
 }
 
 % \pageBreak
@@ -228,8 +233,8 @@ eflat_chords = \score {
 
 % Just choose 1 style to print
 
-\rb
-\pageBreak
+% \rb
+% \pageBreak
 
 % \rb_chords
 
