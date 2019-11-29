@@ -5,6 +5,11 @@
 % jazzhchords defines m7 flat 5, so it doesn't
 % come up as half diminished
 
+\header {
+  copyright = "lesson 2019-11-25"
+  tagline = # #f
+}
+
 \paper {
   #(define fonts
      (set-global-fonts
@@ -12,7 +17,7 @@
       #:brace "lilyjazz"
       #:roman "lilyjazz-text"
       #:sans "lilyjazz-chord"
-      #:factor (/ staff-height pt 20)
+      #:factor (/ staff-height pt 18)
       ))
 }
 
@@ -89,7 +94,7 @@ chordNames_v_i = \chordmode { e1:7.9- | a:m7 }
 
 chordNames_two = \chordmode {
   g2:m7  c:7 |
-  f:maj7 |
+  f1:maj7
 }
 
 melody_two = \relative c'' {
@@ -110,7 +115,7 @@ melody_two = \relative c'' {
 
 chordNames_three = \chordmode {
   b2:m7.5-  e:7.9- |
-  a:m7 |
+  a1:m7 |
 }
 
 melody_three = \relative c'' {
