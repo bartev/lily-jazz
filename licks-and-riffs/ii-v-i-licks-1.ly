@@ -26,6 +26,7 @@ maj_ii_v_i = \chordmode {
   d1:m7 | g:7 | c:maj7
 }
 
+
 \score {
   <<
   \new ChordNames \maj_ii_v_i
@@ -72,7 +73,7 @@ chordNames_v_i = \chordmode { e1:7.9- | a:m7 }
   >>
   \header {
     piece="ii-v-i lick 1"
-  } 
+  }
 }
 
 
@@ -87,7 +88,7 @@ chordNames_v_i = \chordmode { e1:7.9- | a:m7 }
   >>
   \header {
     piece="V7-I lick 1"
-  } 
+  }
 }
 
 % ii-v-i
@@ -110,7 +111,7 @@ melody_two = \relative c'' {
   >>
   \header {
     piece="ii-v-i lick 2"
-  } 
+  }
 }
 
 chordNames_three = \chordmode {
@@ -131,5 +132,5 @@ melody_three = \relative c'' {
   >>
   \header {
     piece="ii-v-i lick 3"
-  } 
+  }
 }
