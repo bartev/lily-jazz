@@ -7,8 +7,6 @@
 
 \paper {
   #(set-paper-size "letter")
-%  paper-height = 11\in
-%  paper-width = 8.5\in
   indent = 0\mm
   between-system-space = 2.5\cm
   between-system-padding = #0
@@ -65,7 +63,7 @@ global = {
 }
 
 chords_twnbay = \chordmode {
-  \partial 4 r4 | 
+  \partial 4 s4 | 
   ees1:maj7 | ees1:maj7 | d:m7.5- | g:7.9- |
   \break
   c:m7 | c:m7 | bes:m7 | ees:7 | 
