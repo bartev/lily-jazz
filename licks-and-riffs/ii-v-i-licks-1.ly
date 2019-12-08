@@ -12,14 +12,14 @@
 
 \paper {
   #(define fonts
-     (set-global-fonts
+    (set-global-fonts
       #:music "lilyjazz"
       #:brace "lilyjazz"
       #:roman "lilyjazz-text"
       #:sans "lilyjazz-chord"
       #:factor (/ staff-height pt 18)
       ))
-}
+    }
 
 
 maj_ii_v_i = \chordmode {
