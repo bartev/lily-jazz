@@ -8,8 +8,6 @@
 
 \paper {
   #(set-paper-size "letter")
-%  paper-height = 11\in
-%  paper-width = 8.5\in
   indent = 0\mm
   between-system-space = 2.5\cm
   between-system-padding = #0
