@@ -1,6 +1,6 @@
 \version "2.18.2"
 
-#(set-global-staff-size 26)
+#(set-global-staff-size 25)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -198,7 +198,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   b8 a g c~ c4 b8 a 
   g e c a gis'4~ gis8 g
   gis8 g~ g4 r2
-  r4 r r8 e8 d c~
+  r2 r8 e8 d c~
   \break
 
   % top
