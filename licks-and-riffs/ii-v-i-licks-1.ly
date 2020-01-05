@@ -26,6 +26,7 @@
       ))
   ragged-last-bottom = ##t
   ragged-bottom = ##t
+  indent = 0\cm
     }
 
 
@@ -404,3 +405,4 @@ c_maj_ii_V_I_two_measure = \chordmode {d2:m7 g:7 | c1:7}
   >>
   \header { piece="lick 12" }
 }
+
