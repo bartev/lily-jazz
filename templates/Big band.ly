@@ -27,77 +27,77 @@ scoreBreaks = {
 
 altoIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 altoIIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 tenorIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 tenorIIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 bariSaxMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 trumpetIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 trumpetIIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 trumpetIIIMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 trumpetIVMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 tromboneIMusic = {
   \clef bass
-  R1*16
+  s1*16
 }
 
 tromboneIIMusic = {
   \clef bass
-  R1*16
+  s1*16
 }
 
 tromboneIIIMusic = {
   \clef bass
-  R1*16
+  s1*16
 }
 
 bassTromboneMusic = {
   \clef bass
-  R1*16
+  s1*16
 }
 
 guitarMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 pianoRHMusic = {
   \clef treble
-  R1*16
+  s1*16
 }
 
 pianoDynamics = {
@@ -106,17 +106,17 @@ pianoDynamics = {
 
 pianoLHMusic = {
   \clef bass
-  R1*16
+  s1*16
 }
 
 bassGuitarMusic = {
   \clef bass
-  R1*16
+  s1*16
 }
 
 drumSetMusic = {
   \clef percussion
-  R1*16
+  s1*16
 }
 
 \score {
