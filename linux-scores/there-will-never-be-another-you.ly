@@ -7,7 +7,7 @@
 
 \paper {
   #(set-paper-size "letter")
-  indent = 0\mm
+  indent = 15\mm
   between-system-space = 2.5\cm
   between-system-padding = #0
   %%set to ##t if your score is less than one page:
@@ -259,23 +259,36 @@ eflat_head_twnbay_konitz = \relative c'' {
 
 eflat_konitz = \score {
  << 
- \new ChordNames \transpose ees, c \chords_twnbay
+ \new ChordNames \transpose ees, c {
+   \chords_twnbay_partial
+   \chords_twnbay 
+   \chords_twnbay}
   \new Staff \with {
-    instrumentName = "Alto"
+    instrumentName = "Alto-Konitz"
     midiInstrument = "alto sax"
   } \eflat_head_twnbay_konitz
    >>
    \layout {}
-   \midi {}
+   % \midi {}
 }
 
 % \pageBreak
 
 eflat_konitz_plus_rb = \score {
   <<
-  \new ChordNames \transpose ees, c {\chords_twnbay_partial \chords_twnbay \chords_twnbay}
-  \new Voice = soloist \eflat_head_twnbay_konitz
-  \new Voice = soloist \transpose ees, c \head_twnbay
+  \new ChordNames \transpose ees, c {
+    \chords_twnbay_partial 
+    \chords_twnbay 
+    \chords_twnbay
+  }
+  \new Staff \with {
+    instrumentName = \markup {\column {"Alto"
+      \line {"Konitz"}}}
+  } \eflat_head_twnbay_konitz
+  \new Staff \with {
+    instrumentName = \markup { \column {"Alto"
+      \line {"Real Book"}}}
+  } \transpose ees, c \head_twnbay
   % \new Staff \transpose ees c \chords_twnbay
    >>
 }
@@ -284,9 +297,14 @@ eflat_konitz_plus_rb = \score {
 
 eflat_rb = \score {
   <<
-  \new ChordNames \transpose ees, c \chords_twnbay
-  \new Staff \transpose ees, c \head_twnbay
-   >>
+  \new ChordNames \transpose ees, c {
+    \chords_twnbay_partial
+    \chords_twnbay
+  }
+  \new Staff \with {
+    instrumentName = \markup {"RB-E" \smaller \flat}
+  } \transpose ees, c \head_twnbay
+  >>
 }
 
 % \pageBreak
@@ -295,8 +313,10 @@ eflat_rb = \score {
 
 rb = \score {
   <<
-  \new ChordNames \chords_twnbay
-  \new Staff \head_twnbay
+  \new ChordNames {\chords_twnbay_partial \chords_twnbay}
+  \new Staff \with {
+    instrumentName = "Real Book-C"
+  } \head_twnbay
   >>
 }
 
@@ -306,8 +326,10 @@ rb = \score {
 
 rb_chords = \score {
   <<
-  \new ChordNames \chords_twnbay
-  \new Staff \chords_twnbay
+  \new ChordNames {\chords_twnbay_partial \chords_twnbay}
+  \new Staff \with {
+    instrumentName = "C instr"
+  } {\chords_twnbay_partial \chords_twnbay}
   >>
 }
 
@@ -317,23 +339,24 @@ rb_chords = \score {
 
 eflat_chords = \score {
   <<
-  \new ChordNames \transpose ees, c \chords_twnbay
-  \new Staff \transpose ees c \chords_twnbay
-   >>
+  \new ChordNames \transpose ees, c {
+    \chords_twnbay_partial 
+    \chords_twnbay
+  }
+  \new Staff \with {
+    instrumentName = \markup {"E" \smaller \flat "instr"}
+  } \transpose ees c {\chords_twnbay_partial \chords_twnbay}
+  >>
 }
 
 % Just choose 1 style to print
 
 % \rb
 % \pageBreak
-
 % \rb_chords
-
 % \eflat_chords
+
 % \pageBreak
-
 % \eflat_rb
-
 % \eflat_konitz_plus_rb
-
 % \eflat_konitz
