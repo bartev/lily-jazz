@@ -208,25 +208,27 @@ eflat_head_twnbay_konitz = \relative c'' {
   c4 r4 r4 r8 c8
   e8 c d c a c e g
   d8 dis e c b a g a 
-  ais8 e~ e2 s4
+  ais8 e~ e2 r4
 
   \mark \markup{\small \with-color #red "~39sec"}
-  s1
-  s1
-  s1
-  s1
+  r1
+  r4 r8 e'8 dis e g r8 
+  bes4 r4 r8 e,8 d e 
+  d8 ees e c a c e g
 
-  \mark \markup{\small \with-color #red "~43sec"}
-  s1
-  s1
-  s1
+  \mark \markup{\small \with-color #red "~44sec"}
+  a8 bes c4 d8 e d8 c8~
+  \mark \markup{\small \with-color #red "~45sec"}
+  c4 g8 fis f g e d16 e 
+  d8 s8 s4 s2
   s1
 
   \mark \markup{\small \with-color #red "~47sec"}
   s1
-  s1
-  s1
-  s1
+  r4 r4 r8 b8 c cis |
+  d8 cis d e   f e f fis |
+  g8 fis f e   f fis g r8 |
+
 
   \mark \markup{\small \with-color #red "~51sec"}
   s1
