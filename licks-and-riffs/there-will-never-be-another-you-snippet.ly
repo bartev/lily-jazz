@@ -75,7 +75,7 @@ snippetAltoThirteen = \relative c'' {
 
   \override Score.BarNumber.stencil 
             = #(make-stencil-boxer 0.1 0.25 ly:text-interface::print)
-  \set Score.barNumberVisability = #all-bar-numbers-visible
+  % \set Score.barNumberVisability = #all-bar-numbers-visible
   \set Score.currentBarNumber = #13
 
   s1 |
@@ -128,6 +128,30 @@ scoreSnippetAltoThirteen = \score {
 }
 
 \scoreSnippetAltoThirteen
+
+scoreLickI = \score {
+  <<
+  \new ChordNames \chordmode {
+    c1:maj7 | c1:maj7 | b1:min7.5- | e1:7.9-
+  }
+  \new Staff \relative c'' {
+    \global
+    \key c \major
+
+    \override Score.BarNumber.stencil 
+            = #(make-stencil-boxer 0.1 0.25 ly:text-interface::print)
+    % \set Score.barNumberVisability = #all-bar-numbers-visible
+    \set Score.currentBarNumber = #1
+
+  r8 a c d e dis c4
+  r8 c e g a g e4
+  r8 d f a c b a g
+  gis4 r4 r2
+  }
+  >> 
+}
+
+\scoreLickI
 
 blankStaves = \score {
   {
