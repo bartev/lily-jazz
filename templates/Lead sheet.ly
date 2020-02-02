@@ -26,7 +26,7 @@ scoreBreaks = {
 }
 
 leadMusic = {
-  R1*32 \bar "|."
+  s1*32 \bar "|."
 }
 
 \score {

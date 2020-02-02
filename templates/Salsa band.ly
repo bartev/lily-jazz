@@ -26,7 +26,7 @@ scoreBreaks = {
   s1*8 \bar "|."
 }
 
-filler = { R1*16 }
+filler = { s1*16 }
 
 fluteSaxMusic = {
   \clef treble

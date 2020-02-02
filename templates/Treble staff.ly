@@ -21,17 +21,17 @@
 }
 
 scoreBreaks = {
-  \repeat unfold 9 { s1*10 \break }
+  \repeat unfold 9 { s1 \break }
 }
 
 trebleMusic = {
-  R1*90 \bar "|."
+  s1*90 \bar "|."
 }
 
 \score {
   \new Staff <<
     \scoreBreaks
-    \trebleMusic
+    % \trebleMusic
   >>
   \layout {
     indent = 0

@@ -26,7 +26,7 @@ scoreBreaks = {
 
 voiceMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 voiceLyrics = \lyricmode {
@@ -35,7 +35,7 @@ voiceLyrics = \lyricmode {
 
 altoMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 altoLyrics = \lyricmode {
@@ -44,7 +44,7 @@ altoLyrics = \lyricmode {
 
 tenorMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 tenorLyrics = \lyricmode {
@@ -53,32 +53,32 @@ tenorLyrics = \lyricmode {
 
 trumpetMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 tromboneMusic = {
   \clef bass
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 leadGuitarMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 rhythmGuitarMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 bassGuitarMusic = {
   \clef bass
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 pianoRHMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 pianoDynamics = {
@@ -87,12 +87,12 @@ pianoDynamics = {
 
 pianoLHMusic = {
   \clef bass
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 drumSetMusic = {
   \clef percussion
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 \score {
