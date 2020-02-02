@@ -70,8 +70,11 @@ global = {
     
 }
 
-chords_tingl = \chordmode {
+chords_tingl_partial = \chordmode {
   \partial 4*3 s2. | 
+}
+
+chords_tingl = \chordmode {
   bes1:maj7 | ees:7 | aes:7 | g:7 |
   \break
   c:7 | c:7 | f:7 | f:7 |
@@ -90,11 +93,13 @@ chords_tingl = \chordmode {
 
 }
 
-head_tingl = \relative c'' {
+head_tingl_partial = \relative c'' {
   \global
   \key bes \major
   \partial 4*3 a4 bes c |
+}
 
+head_tingl = \relative c'' {
   % measure 1
   \bar ".|"
   bes4 a g4. d8 |
@@ -164,11 +169,18 @@ head_tingl = \relative c'' {
 
 rb = \score {
   <<
-  \new ChordNames \chords_tingl
+  \new ChordNames {
+    \chords_tingl_partial
+    \chords_tingl
+  }
+
   \new Staff \with {
     instrumentName = "piano"
     midiInstrument = "piano"
-    } \head_tingl
+    } {
+    \head_tingl_partial
+    \head_tingl
+    }
   >>
   \layout {}
   \midi {}
@@ -176,10 +188,16 @@ rb = \score {
 
 rb_chords = \score {
   <<
-  \new ChordNames \chords_tingl
+  \new ChordNames {
+    \chords_tingl_partial
+    \chords_tingl
+  }
   \new Staff \with {
     instrumentName = "piano"
-    } \chords_tingl
+    } {
+    \chords_tingl_partial
+    \chords_tingl
+  }
   >>
 }
 
@@ -187,14 +205,20 @@ rb_chords = \score {
 
 eflat_rb = \score {
   <<
-  \new ChordNames \transpose ees, c \chords_tingl
+  \new ChordNames \transpose ees, c {
+    \chords_tingl_partial
+    \chords_tingl
+  }
   \new Staff \with {
     instrumentName = "Alto"
     midiInstrument = "alto sax"
-    } \transpose ees, c \head_tingl
+    } \transpose ees, c {
+      \head_tingl_partial
+      \head_tingl
+    }
    >>
    \layout {}
-   \midi {}
+   % \midi {}
 }
 
 eflat_chords = \score {
@@ -216,9 +240,7 @@ eflat_chords = \score {
 % alto
 % \eflat_rb
 % \pageBreak
-\eflat_chords
+% \eflat_chords
 
 
-% \eflat_konitz_plus_rb
 
-% \eflat_konitz
