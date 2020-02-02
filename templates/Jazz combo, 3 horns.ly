@@ -29,27 +29,27 @@ scoreBreaks = {
 
 hornIMusic = {
   \clef treble
-  R1*18
+  s1*18
 }
 
 hornIIMusic = {
   \clef treble
-  R1*18
+  s1*18
 }
 
 hornIIIMusic = {
   \clef bass
-  R1*18
+  s1*18
 }
 
 guitarMusic = {
   \clef treble
-  R1*18
+  s1*18
 }
 
 pianoRHMusic = {
   \clef treble
-  R1*18
+  s1*18
 }
 
 pianoDynamics = {
@@ -58,17 +58,17 @@ pianoDynamics = {
 
 pianoLHMusic = {
   \clef bass
-  R1*18
+  s1*18
 }
 
 electricBassMusic = {
   \clef bass
-  R1*18
+  s1*18
 }
 
 drumSetMusic = {
   \clef percussion
-  R1*18
+  s1*18
 }
 
 \score {

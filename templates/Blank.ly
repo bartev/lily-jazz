@@ -7,25 +7,20 @@
 
 \paper {
   #(set-paper-size "letter")
-  left-margin = 0.75\in
-  right-margin = 0.75\in
-  top-margin = 0.75\in
-  bottom-margin = 0.5\in
-  % markup-system-spacing = #'((padding . 10))
-  % last-bottom-spacing = #'((padding . 5))
-  % ragged-bottom = ##f
-  % ragged-last = ##f
+  left-margin = 0.5\in
+  right-margin = 0.5\in
+  top-margin = 0.25\in
+  bottom-margin = 0.25\in
   ragged-last-bottom = ##f
-  % ragged-right = ##f
 }
 
 \header {
-  % title = "Blank Template"
   copyright = "Staff paper by Bartev"
+  copyright = ##f
   tagline = ##f
 }
 
-blankStaves = \score {
+\score {
   {
     \repeat unfold 10 { s1 \break }
   }
@@ -43,5 +38,3 @@ blankStaves = \score {
     }
   }
 }
-
-\blankStaves

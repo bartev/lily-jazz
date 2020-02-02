@@ -26,7 +26,7 @@ scoreBreaks = {
 
 leadVocalsMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 leadVocalsLyrics = \lyricmode {
@@ -35,7 +35,7 @@ leadVocalsLyrics = \lyricmode {
 
 backingVocalsMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 backingVocalsLyrics = \lyricmode {
@@ -44,22 +44,22 @@ backingVocalsLyrics = \lyricmode {
 
 leadGuitarMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 rhythmGuitarMusic = {
   \clef treble
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 bassGuitarMusic = {
   \clef bass
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 drumSetMusic = {
   \clef percussion
-  R1*16 \bar "|."
+  s1*16 \bar "|."
 }
 
 \score {

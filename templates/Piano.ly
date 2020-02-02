@@ -26,7 +26,7 @@ scoreBreaks = {
 
 pianoRHMusic = {
   \clef treble
-  R1*60 \bar "|."
+  s1*60 \bar "|."
 }
 
 pianoDynamics = {
@@ -35,7 +35,7 @@ pianoDynamics = {
 
 pianoLHMusic = {
   \clef bass
-  R1*60 \bar "|."
+  s1*60 \bar "|."
 }
 
 \score {

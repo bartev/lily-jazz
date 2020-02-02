@@ -26,7 +26,7 @@ scoreBreaks = {
 
 bassMusic = {
   \clef bass
-  R1*90 \bar "|."
+  s1*90 \bar "|."
 }
 
 \score {
