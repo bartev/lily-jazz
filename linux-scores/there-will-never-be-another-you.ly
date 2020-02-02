@@ -56,6 +56,9 @@ realBookTitle = \markup {
   copyright = \copyright
 }
 
+quest = \mark \markup {\small \with-color #red "questionable"}
+q_three = \mark \markup{\small \with-color #red "???"}
+
 global = {
   \numericTimeSignature
   \time 4/4
@@ -148,7 +151,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   g8-- a-. r8 b c d r4 |
   e4-. g-- d8 r r c
   d1 ~
-  d4 r8 ees e ees d4
+  d4 r8 dis e dis d4
   \break
 
   \mark \markup{\small \with-color #red "4sec"}
@@ -219,40 +222,89 @@ eflat_head_twnbay_konitz = \relative c'' {
   \mark \markup{\small \with-color #red "~44sec"}
   a8 bes c4 d8 e d8 c8~
   \mark \markup{\small \with-color #red "~45sec"}
-  c4 g8 fis f g e d16 e 
-  d8 s8 s4 s2
-  s1
+  c4 aes8 g f fis g f 
+  \tuplet 3/2 {e8 f e} d8 c8 b\quest c e g
+  b8 c16 b a8 b~ b4 g8 e~ 
 
-  \mark \markup{\small \with-color #red "~47sec"}
-  s1
+  \mark \markup{\small \with-color #red "~49sec"}
+  e4. r8 r4 r4
   r4 r4 r8 b8 c cis |
   d8 cis d e   f e f fis |
   g8 fis f e   f fis g r8 |
 
 
-  \mark \markup{\small \with-color #red "~51sec"}
-  s1
-  s1
-  s1
-  s1
+  \mark \markup{\small \with-color #red "~53sec"}
+  bes2 a8 bes? a8 gis8
+  g8 e c a gis' e c a
+  e'2 r4 r4 
+  r4 r8 c8 d c d c 
 
-  \mark \markup{\small \with-color #red "~55sec"}
-  s1
-  s1
-  s1
-  s1
 
-  \mark \markup{\small \with-color #red "~59sec"}
-  s1
-  s1
-  s1
-  s1
+  \mark \markup{\small \with-color #red "~57sec"}
+  e8 c d c d c r4
+  r2 r8 b8 c b
+  c8 r8 c4 r2
+  r4 g8 bes \tuplet 3/2 {c8 e g} c4
 
-  \mark \markup{\small \with-color #red "~63sec"}
+  \mark \markup{\small \with-color #red "~62sec"}
+  a8 g f e g f e d~
+  d4 c8 \quest d e g a4~
+  a4 r4 r8 g e d
+  b'4 c8 b a b a g~
+
+  \mark \markup{\small \with-color #red "~66sec"}
+  g4 a8 g f g f e~
+  e4 f8 e d cis d e
+  f8 a, c b~ b4 e8 d
+  c8 a c d16 c b8 c e8 f16 e
+
+
+  % \mark "Top"
+  \mark \markup{\small \with-color #red "~1:11"}
+  d8 e8 s4 s2
   s1
   s1
   s1
-  s1
+  \break
+
+  \mark \markup{\small \with-color #red "~1:15"}
+  r4 r r r8 a8
+  \mark \markup{\small \with-color #red "this may be off a measure"}
+  c8 a d a c g e c
+  \mark \markup{\small \with-color #red "~1:17"}
+  d8 e f fis g e d c
+  d8 e d c \q_three r4  d4~
+  \break
+
+  \mark \markup{\small \with-color #red "~1:19"}
+  d2 r2
+  s1 s1 s1 \break
+
+  \mark \markup{\small \with-color #red "~1:24"}
+  s1 s1 s1 s1 \break
+
+  \mark \markup{\small \with-color #red "~1:29"}
+  s1 s1 
+  \mark \markup{\small \with-color #red "get this"}
+  r4 r8 g8 a16 b32 a g8~ g4 
+  r2 r4 r8 a8 
+  \break
+
+  \mark \markup{\small \with-color #red "~1:32"}
+  gis8 e g e fis e f e
+  d8 dis e d c4 d8 c
+  b8 c b g a r8 d8 b
+  g8 r8 r4 r2
+
+   \break
+
+  \mark \markup{\small \with-color #red "~1:37"}
+  c8 b c a8~ a r8 d8 c 
+  d8 b~ b r8 r2
+  s1 s1 \break
+
+  \mark \markup{\small \with-color #red "~1:41"}
+  s1 s1 s1 s1
 
 }
                   
@@ -264,6 +316,7 @@ eflat_konitz = \score {
  \new ChordNames \transpose ees, c {
    \chords_twnbay_partial
    \chords_twnbay 
+   \chords_twnbay
    \chords_twnbay}
   \new Staff \with {
     instrumentName = "Alto-Konitz"
@@ -281,6 +334,9 @@ eflat_konitz_plus_rb = \score {
   \new ChordNames \transpose ees, c {
     \chords_twnbay_partial 
     \chords_twnbay 
+    \pageBreak
+    \chords_twnbay
+    \pageBreak
     \chords_twnbay
   }
   \new Staff \with {
