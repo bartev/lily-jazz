@@ -47,8 +47,33 @@
       }
     }
 
+    % scoreTitleMarkup = \markup {
+    %   \score {
+    %     {
+    %       \override TextScript.extra.offset = #'(0 . -4.5)
+    %       s4
+    %       s^\markup {
+    %         \fill-line {
+    %           \fontsize #1 \lower #1 \rotate #7 \concat { " " \fromproperty #'header:meter }
+    %           \fontsize #7
+    %           \override #'(offset . 7)
+    %           \override #'(thickness . 6)              
+    %           \underline \larger \fromproperty #'header:title
+    %           \fontsize #1 \lower #1 \fromproperty #'header:composer
+    %         }
+    %       }
+    %     }
+    %   }
+    % }
+
+    %   \layout {
+    %     % \omit Staff.Cleff
+    %     % \omit Staff.TimeSignature
+    %     % \omit Staff.KeySignature
+    %     ragged-right = ##f        
+    %   }
   }
 
-  \include "all.ly"
+  \include "scores/all.ly"
 
 }
