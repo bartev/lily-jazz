@@ -5,18 +5,6 @@
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
 
-\paper {
-  #(set-paper-size "letter")
-  indent = 15\mm
-  between-system-space = 2.5\cm
-  between-system-padding = #0
-  %%set to ##t if your score is less than one page:
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  markup-system-spacing = #'((basic-distance . 23)
-                             (minimum-distance . 8)
-                             (padding . 1))
-}
 
 title = #"There Will Never Be Another You"
 composer = #"Warren/Gordon"
@@ -31,7 +19,7 @@ realBookTitle = \markup {
       s^\markup{
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
-          \fontsize #7
+          \fontsize #5
             \override #'(offset . 7)
             \override #'(thickness . 6)
             \underline \larger #title
@@ -56,6 +44,23 @@ realBookTitle = \markup {
   copyright = \copyright
 }
 
+\paper {
+  #(set-paper-size "letter")
+  top-margin = 0.5\in
+  bottom-margin = 0.5\in
+  left-margin = 0.5\in
+  right-margin = 0.5\in
+  indent = 15\mm
+  between-system-space = 2.\cm
+  between-system-padding = #0
+  %%set to ##t if your score is less than one page:
+  ragged-last-bottom = ##t
+  ragged-bottom = ##f
+  markup-system-spacing = #'((basic-distance . 23)
+                             (minimum-distance . 8)
+                             (padding . 1))
+}
+
 quest = \mark \markup {\small \with-color #red "questionable"}
 q_three = \mark \markup{\small \with-color #red "???"}
 
@@ -63,6 +68,12 @@ global = {
   \numericTimeSignature
   \time 4/4
   \tempo 4=210
+  % make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  % make only the first time signature visible
+  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  % allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
 }
 
 chords_twnbay_partial = \chordmode {
@@ -409,7 +420,7 @@ eflat_chords = \score {
 
 % Just choose 1 style to print
 
-% \rb
+\rb
 % \pageBreak
 % \rb_chords
 % \eflat_chords
