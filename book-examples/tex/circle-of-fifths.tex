@@ -1,0 +1,89 @@
+% \documentclass[margin=0.5cm]{article}
+
+% \usepackage{musixtex}
+% \usepackage{tikz}
+
+% % \usepackage{musictex}
+
+% \newcommand{\romansub}[2]{\ensuremath{\mbox{\textbf{#1}}_{\mbox{#2}}}}
+% \begin{document}
+
+{\Huge\textbf{Circle of Fifths}}
+\vspace{1cm}
+
+\noindent 
+\begin{tikzpicture}[scale=0.8]
+  
+  \pgfmathsetmacro{\CircROne}{4.}
+  \pgfmathsetmacro{\CircRTwo}{6.5}
+  \pgfmathsetmacro{\CircRThree}{7.75}
+  \pgfmathsetmacro{\CircRFour}{9.}
+  \pgfmathsetmacro{\MusicR}{5.2}
+  \pgfmathsetmacro{\InnerLabelR}{3.2}
+  \pgfmathsetmacro{\OuterLabelR}{7.}
+  \pgfmathsetmacro{\ModeLabelR}{8.3}
+
+  % The Grid
+
+  \draw (0,0) circle (\CircROne);
+  \draw (0,0) circle (\CircRTwo);
+  \draw (0,0) circle (\CircRThree);
+
+  \draw [red, thick,domain=-75:135] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw[thick,red] ([shift=(-30:\CircRFour)]0,0) arc (-1*360/12:5.5*360/12:\CircRFour);
+  
+  \foreach \X in {0, 1, ...,12}
+  {
+    % Draw radial lines from center to edge of \CircRTwo
+    \draw (0,0) --++(75-\X * 360 / 12:\CircRThree);
+  }
+
+  % The Music
+  \foreach \X in {-6,-5,...,5}
+  {
+    \begin{scope}[shift={(90 - \X * 360 / 12: \MusicR)}, xshift=-0.3cm]
+      \clip (-1, -1) rectangle (1.2,1);
+      \draw (0,0) node
+      {
+        \begin{music}
+          \generalsignature{\X}
+          \nostartrule
+          \startextract
+          \notes\en
+          \zendextract
+        \end{music}
+      };
+    \end{scope}
+  }
+
+  % inner labels
+  \foreach \X/\KeyText in {-4/F, -3/C, -2/G, -1/D, 0/A, 1/E, 2/B, 3/F$\sharp$, 4/C$\sharp$}
+  {
+    \draw (90 - \X * 360 / 12 : \InnerLabelR) node {\KeyText~m};
+  }
+
+  \draw (90 - 5 * 360/12:\InnerLabelR) node [align=center] {A$\flat$ m\\ G$\sharp$ m};
+  \draw (90 + 6 * 360/12:\InnerLabelR) node [align=center] {D$\sharp$ m\\ E$\flat$ m};
+  \draw (90 + 5 * 360/12:\InnerLabelR) node [align=center] {A$\sharp$ m\\ B$\flat$ m};
+
+  % outer labels
+  \foreach \X/\KeyText in {-4/A$\flat$, -3/E$\flat$, -2/B$\flat$, -1/F, 0/C, 1/G, 2/D, 3/A}
+  {
+    \draw (90 - \X * 360 / 12 : \OuterLabelR) node {\KeyText};
+  }
+
+  \draw (90 - 4 * 360/12:\OuterLabelR) node [align=center] {E\\F$\flat$};
+  \draw (90 - 5 * 360/12:\OuterLabelR) node [align=center] {B\\C$\flat$};
+  \draw (90 + 5 * 360/12:\OuterLabelR) node [align=center] {D$\flat$\\ C$\sharp$};
+  \draw (90 + 6 * 360/12:\OuterLabelR) node [align=center] {F$\sharp$\\ G$\flat$};
+
+  % modes
+  \foreach \X/\ModeText in {-1/\romansub{IV}{perfect fourth}, 0/\romansub{I}{root}, 
+    1/\romansub{V}{perfect fifth}, 2/\romansub{ii}{second}, 3/\romansub{vi}{sixth}, 4/\romansub{iii}{third}, 5/\romansub{vii}{seventh}}
+  {
+    \draw (90 - \X * 360 /12: \ModeLabelR) node[rotate=(- \X * 360 / 12)] {\ModeText};
+  }
+\end{tikzpicture}
+
+
+% \end{document}
