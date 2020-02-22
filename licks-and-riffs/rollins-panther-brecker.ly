@@ -98,8 +98,12 @@ words = \lyricmode {
     \global
      \relative c''' { 
        \override ParenthesesItem.font-size = #0.5
-       \startParenthesis \parenthesize d4 \endParenthesis \parenthesize d8 c b g f a | 
-       g8 e c a bes4 r4}
+       \startParenthesis \parenthesize d4 \endParenthesis \parenthesize d8 
+       c b g f a | 
+       g8 e c a bes4 r4
+       \bar "||"
+       a'8 c b g r4 f8 a
+       g8 e r4 c8 a bes4}
   }
   >>
 }
