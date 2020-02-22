@@ -9,7 +9,7 @@
 To run
 
 ``` shell
-lilypond-book --output=out --pdf lilybook.lytex
+lilypond-book --output=outbv --pdf bv-lilybook.lytex
 lilypond-book (GNU LilyPond) 2.18.2 
 Reading lilybook.lytex...
 …lots of stuff deleted…
@@ -21,3 +21,11 @@ xpdf lilybook
 (replace xpdf by your favorite PDF viewer)
 
 ```
+
+## Errors
+
+* LaTeX Error: File `tikz.sty' not found.
+  * See https://tex.stackexchange.com/questions/140555/how-to-fix-tikz-sty-problem
+  * added `apt-get install -y texlive-full` to the Docker image
+  * check, does `kpsewhich tikz` at terminal return the path of `tikz`
+  
