@@ -5,11 +5,15 @@
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
 
+MyTranspose = 
+#(define-music-function (parser location m)
+  (ly:music?)
+  #{ \transpose d g $m #})
+% In the previous line the transposition of the whole score is defined
+% (in this case up a 6th from E flat to C).
 
 \paper {
   #(set-paper-size "letter")
-%  paper-height = 11\in
-%  paper-width = 8.5\in
   indent = 0\mm
   between-system-space = 2.5\cm
   between-system-padding = #0
@@ -57,47 +61,94 @@ realBookTitle = \markup {
 }
 
 global = {
+  \numericTimeSignature
   \time 4/4
   \key c \major
   \tempo 4=220
+
+  % make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+
+  % make only the first time signature visible
+  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+
+  % allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
 }
 
+partial_chordNames = \chordmode { \partial 2 s2 }
+partial_melody = \relative c'' { \partial 2 r4 r8 a8 }
+
+% changes from OmniBook??
 chordNames = \chordmode {
-  \global
   d1:7 d1:7 d1:7 d1:7
-  g1:7 g2:7 aes2:dim d1:7 d1:7
+  g1:7 g2:7 gis2:dim d1:7 d1:7
   e1:m7 a1:7 d1:7 a1:7
+}
+
+% changes from iRealPro
+chordNames = \chordmode {
+  d1:7 g1:7 d1:7 a2:m7 d:7
+  g1:7 gis1:dim d1:7 fis2:m7 b:7
+  e1:m7 a1:7 d2:7 b:7 e2:m7 a:7
   
 }
-partial_chordNames = \chordmode { s1 }
-partial_melody = \relative c'' { r2 r4 r8 a8 }
+
 melody = \relative c'' {
-  \global
+  \bar "[|:"
   d8 d e a, d4 r8 a
   d8 d e a, d4 r8 a
   d8 d e a, d8 d e a, 
   d8 d e a, d4 r8 a |
+  \break
   d8 d e a, d g,~ g4
   d'8 d e a, d gis,8~ gis4
   d'8 d e a, d8 d e a,
   d8 d e a, d4 r8 f8~
+  \break
   \tuplet 3/2 {f16 g f} d8 b gis b4 r4
   r8 e8~ e4 d8 e d c
   r8 a r4 a4 r4
   r1
-  
+  \bar "|."  
 }
 
-words = \lyricmode {
-  
-  
+right = {
+  \global
+  \partial_melody
+  \melody
 }
+
+left = {
+  \global
+  \new ChordNames {
+  % http://lilypond.org/doc/v2.18/Documentation/snippets/tweaks-and-overrides
+  \override ChordNames.ChordName.extra-offset = #'(0 . 4.5)
+  \partial_chordNames
+  \chordNames
+  }
+}
+
+% \score {
+%   <<
+%     \new ChordNames{ \partial_chordNames  \chordNames }
+%     \new Staff { \partial_melody \melody }
+%   >>
+%   \layout { }
+% }
+
 
 \score {
-  <<
-    \new ChordNames{ \partial_chordNames  \chordNames }
-    \new Staff { \partial_melody \melody }
+  \new GrandStaff  <<
+    \set GrandStaff.systemStartDelimiter = #'SystemStartBar
+    \new Staff = "right" \MyTranspose { \right } 
+    \new Staff = "left" { \clef bass \MyTranspose { \left } }
   >>
-  \layout { }
-  \midi { }
+  \layout {
+  \context {
+    % http://lilypond.1069038.n5.nabble.com/Fixed-width-measures-td172597.html
+    \Score proportionalNotationDuration = #(ly:make-moment 1/8)
+  }
+  }
 }
+
