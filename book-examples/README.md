@@ -2,6 +2,10 @@
 
 * Example from http://lilypond.org/doc/v2.18/Documentation/usage-big-page.html#running-lilypond
 
+
+* edit `bv-lilybook.lytex`
+* add files to `tex/`
+
 To run
 
 ``` shell
