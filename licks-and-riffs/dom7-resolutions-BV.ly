@@ -19,14 +19,23 @@
   ragged-bottom = ##t
   indent = 0\cm
 }
-
 \header {
   title = "Dominant 7 Resolutions (BV copy)"
 }
 
 global = {
+  \numericTimeSignature
   \time 4/4
   \key c \major
+
+  % make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+
+  % make only the first time signature visible
+  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+
+  % allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
 }
 
 mychords = \chordmode { g1:7 c1 }
@@ -58,9 +67,11 @@ single_transition = \score {
       \transpose g d \mychords
     }
     \new Staff {
+      \global
       \bar "[|:"
-      \repeat unfold #12 \rests 
-      \bar ":|]" }
+      \repeat unfold #12 \rests
+      \bar ":|]"
+    }
   >>
 }
 
@@ -81,9 +92,11 @@ single_transition = \score {
       \transpose g bes \mychords
     }
     \new Staff {
+      \global
       \bar "[|:"
       \repeat unfold #12 \rests
-      \bar ":|]" }
+      \bar ":|]"
+    }
   >>
 }
 
