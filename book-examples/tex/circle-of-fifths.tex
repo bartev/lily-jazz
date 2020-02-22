@@ -8,6 +8,9 @@
 % \newcommand{\romansub}[2]{\ensuremath{\mbox{\textbf{#1}}_{\mbox{#2}}}}
 % \begin{document}
 
+\section{Circle of Fifths}
+\label{sec:circ_fifths}
+
 {\Huge\textbf{Circle of Fifths}}
 \vspace{1cm}
 
@@ -29,7 +32,14 @@
   \draw (0,0) circle (\CircRTwo);
   \draw (0,0) circle (\CircRThree);
 
-  \draw [red, thick,domain=-75:135] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % The Colored lines for Major/Minor/Diminished 
+
+  % each wedge is 30 degrees
+  % measure degrees from x axis, going CCW
+  % \draw [red, thick,domain=-75:135] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  \draw [blue, ultra thick,domain=135:45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  \draw [red, ultra thick,domain=45:-45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  \draw [teal, ultra thick,domain=-45:-75] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
   % \draw[thick,red] ([shift=(-30:\CircRFour)]0,0) arc (-1*360/12:5.5*360/12:\CircRFour);
   
   \foreach \X in {0, 1, ...,12}
