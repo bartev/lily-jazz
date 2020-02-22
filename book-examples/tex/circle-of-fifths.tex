@@ -11,8 +11,8 @@
 \section{Circle of Fifths}
 \label{sec:circ_fifths}
 
-{\Huge\textbf{Circle of Fifths}}
-\vspace{1cm}
+% {\Huge\textbf{Circle of Fifths}}
+% \vspace{1cm}
 
 \noindent 
 \begin{tikzpicture}[scale=0.8]
@@ -20,11 +20,11 @@
   \pgfmathsetmacro{\CircROne}{4.}
   \pgfmathsetmacro{\CircRTwo}{6.5}
   \pgfmathsetmacro{\CircRThree}{7.75}
-  \pgfmathsetmacro{\CircRFour}{9.}
+  \pgfmathsetmacro{\CircRFour}{8.3}
   \pgfmathsetmacro{\MusicR}{5.2}
   \pgfmathsetmacro{\InnerLabelR}{3.2}
   \pgfmathsetmacro{\OuterLabelR}{7.}
-  \pgfmathsetmacro{\ModeLabelR}{8.3}
+  \pgfmathsetmacro{\ModeLabelR}{8.2}
 
   % The Grid
 
@@ -36,12 +36,16 @@
 
   % each wedge is 30 degrees
   % measure degrees from x axis, going CCW
-  % \draw [red, thick,domain=-75:135] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
-  \draw [blue, ultra thick,domain=135:45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
-  \draw [red, ultra thick,domain=45:-45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
-  \draw [teal, ultra thick,domain=-45:-75] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw [blue, ultra thick,domain=135:45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw [red, ultra thick,domain=45:-45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw [teal, ultra thick,domain=-45:-75] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
   % \draw[thick,red] ([shift=(-30:\CircRFour)]0,0) arc (-1*360/12:5.5*360/12:\CircRFour);
-  
+
+  \draw[thick,double=blue!40!white, double distance=1cm, line width=0pt] ([shift=(135:\CircRFour)] 0,0) arc (135:45:\CircRFour);
+  \draw[thick,double=red!40!white, double distance=1cm, line width=0pt] ([shift=(45:\CircRFour)] 0,0) arc (45:-45:\CircRFour);
+  \draw[thick,double=green!40!white, double distance=1cm, line width=0pt] ([shift=(-45:\CircRFour)] 0,0) arc (-45:-75:\CircRFour);
+
+
   \foreach \X in {0, 1, ...,12}
   {
     % Draw radial lines from center to edge of \CircRTwo
@@ -88,8 +92,14 @@
   \draw (90 + 6 * 360/12:\OuterLabelR) node [align=center] {F$\sharp$\\ G$\flat$};
 
   % modes
-  \foreach \X/\ModeText in {-1/\romansub{IV}{perfect fourth}, 0/\romansub{I}{root}, 
-    1/\romansub{V}{perfect fifth}, 2/\romansub{ii}{second}, 3/\romansub{vi}{sixth}, 4/\romansub{iii}{third}, 5/\romansub{vii}{seventh}}
+  \foreach \X/\ModeText in {
+    -1/\romansub{IV}{perfect fourth}, 
+    0/\romansub{I}{root}, 
+    1/\romansub{V}{perfect fifth}, 
+    2/\romansub{ii}{}, 
+    3/\romansub{vi}{}, 
+    4/\romansub{iii}{}, 
+    5/\romansub{vii}{dim}?}
   {
     \draw (90 - \X * 360 /12: \ModeLabelR) node[rotate=(- \X * 360 / 12)] {\ModeText};
   }

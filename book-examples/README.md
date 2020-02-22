@@ -9,13 +9,16 @@
 To run
 
 ``` shell
-lilypond-book --output=outbv --pdf bv-lilybook.lytex
+> lilypond-book --output=outbv --pdf bv-lilybook.lytex
+
 lilypond-book (GNU LilyPond) 2.18.2 
 Reading lilybook.lytex...
 …lots of stuff deleted…
 Compiling lilybook.tex...
 cd out
-pdflatex lilybook
+
+> cd outbv && pdflatex bv-lilybook.tex && cd ..
+
 …lots of stuff deleted…
 xpdf lilybook
 (replace xpdf by your favorite PDF viewer)
