@@ -63,14 +63,12 @@ words = \lyricmode {
 % Blues for Philly Joe (Sonny Rollins)
 \score {
   <<
-    \new ChordNames \chordmode { a1:m7  d1:7 g}
-  
+  \new ChordNames \chordmode { d1:7 g  | a1:m7  d1:7 g}
   { 
     \global
-     \relative c'' {r8   \override ParenthesesItem.font-size = #5
-       \startParenthesis \parenthesize c8 a c e g b g | 
-       r8 \endParenthesis \parenthesize b8 r g a b c d | 
-       b8 g r4 r2 }
+    \relative c''' {r4    r8 g a-5 b c d-1 | b8 g r4 r2 \bar "||" }
+    \relative c'' {r8 c8-3 a-1 c e g b g | 
+                    r8 b8 r8 g a b c d | b8 g r4 r2 }
   }
   >>
 }
@@ -116,7 +114,7 @@ words = \lyricmode {
   { 
     \global
      \relative c' {
-     r4 r8 e8 a b c d
+     r4 r8 e8-5 a-1 b c-3 d
      e8 a, ees' a, d a c a
      b8 a g e~ e4 r4
   }
