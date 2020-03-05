@@ -6,7 +6,7 @@
 \include "jazzextras.ily"
 
 
-title = #"Sugar"
+title = #"Sugar - w/ solo"
 composer = #"Stanley Turrentine"
 meter = \markup{ (Swing) }
 copyright = #"Stanley Turrentine - 'The Baddest Turrentine'"
@@ -105,6 +105,31 @@ chords_sugar = \chordmode {
   }
 }
 
+chords_sugar_head = \chordmode {
+  c1:m7 |
+  d2:m7.5- g2:7.5+ |
+  c1:m7.9 |
+  g1:7.5+ |
+
+  c1:m7
+  c1:m7
+  d1:m7.9
+  g1:7.5+
+
+  c1:m7
+  c1:m7
+  f1:m7.9
+  ees1:7.13
+
+  d1:m7.5-
+  g1:7.5+
+
+  aes1:7.11+ | g1:7.5+
+
+  % c1:m7.9  |des1:maj7
+
+}
+
 
 notes_sugar = \relative c'' {
   \noBreak
@@ -138,6 +163,15 @@ notes_sugar = \relative c'' {
   }
 }
 
+notes_sugar_solo = \relative c'' {
+  \bar ".|"
+  \break \repeat unfold 4 { s1 }
+  \break \repeat unfold 4 { s1 }
+  \break \repeat unfold 4 { s1 }
+  \break \repeat unfold 4 { s1 }
+  \bar "|."
+}
+
 right = {
   \global
   % Music follows here.
@@ -146,13 +180,13 @@ right = {
 }
 
 left = {
-  \global
   % Music follows here
   \new ChordNames {
     %     http://lilypond.org/doc/v2.18/Documentation/snippets/tweaks-and-overrides
-    \override ChordNames.ChordName.extra-offset = #'(0 . 4.5)
+    % \override ChordNames.ChordName.extra-offset = #'(0 . 4.5)
     \chords_sugar_partial
     \chords_sugar
+    \chords_sugar_head
   }
 }
 
@@ -164,15 +198,25 @@ MyTranspose =
 % (in this case up a 6th from E flat to C).
 
 \score {
-  \new GrandStaff  <<
-    \set GrandStaff.systemStartDelimiter = #'SystemStartBar
-    \new Staff = "right" \MyTranspose { \right }
-    \new Staff = "left" { \clef bass \transpose ees, c {  \left } }
-  >>
-  \layout {
-    \context {
-      % http://lilypond.1069038.n5.nabble.com/Fixed-width-measures-td172597.html
-      \Score proportionalNotationDuration = #(ly:make-moment 1/8)
+  <<
+    \MyTranspose { \left }
+    {
+      \MyTranspose { \right }
+      \notes_sugar_solo
     }
-  }
+  >>
 }
+
+% \score {
+%   \new GrandStaff  <<
+%     \set GrandStaff.systemStartDelimiter = #'SystemStartBar
+%     \new Staff = "right" \MyTranspose { \right }
+%     \new Staff = "left" { \clef bass \transpose ees, c {  \left } }
+%   >>
+%   \layout {
+%   \context {
+%     % http://lilypond.1069038.n5.nabble.com/Fixed-width-measures-td172597.html
+%     \Score proportionalNotationDuration = #(ly:make-moment 1/8)
+%   }
+%   }
+% }
