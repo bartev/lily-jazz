@@ -41,15 +41,15 @@ tingl_stitt_music = \relative c''' {
 
   \mark \markup{\small \with-color #red "21sec"}
   e2~ e4 r4
-  e8 fis16 e dis8 e b'4~ b8 a8 
-  fis2 r2 
+  e8 fis16 e dis8 e b'4~ b8 a8
+  fis2 r2
   r8 b16 a g e d b d8   fis,8 g a\break
 
   \mark \markup{\small \with-color #red "28sec"}
-  r8 g4 r8 r8 fis8 e4 
-  r8 b8 d4 r8 des8 c8 d 
+  r8 g4 r8 r8 fis8 e4
+  r8 b8 d4 r8 des8 c8 d
   e8 c b b~ b4 r2
-  r8 b8 d fis8~ fis4 
+  r8 b8 d fis8~ fis4
   d8 f e4~ e s4
 
 
@@ -64,16 +64,16 @@ tingl_stitt_music = \relative c''' {
 
 tingl_stitt_score = \score {
   <<
-  \new ChordNames \transpose ees, c {
-    \chords_tingl_partial
-    \chords_tingl
+    \new ChordNames \transpose ees, c {
+      \chords_tingl_partial
+      \chords_tingl
     }
-  \new Staff \with {
-    instrumentName = "Alto-Stitt"
-  } {
-    \tingl_stitt_music_partial
-    \tingl_stitt_music
-  }
+    \new Staff \with {
+      instrumentName = "Alto-Stitt"
+    } {
+      \tingl_stitt_music_partial
+      \tingl_stitt_music
+    }
   >>
 }
 

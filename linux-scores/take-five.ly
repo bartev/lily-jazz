@@ -34,9 +34,9 @@ realBookTitle = \markup {
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
           \fontsize #8
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger \larger #title
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
@@ -77,7 +77,7 @@ theNotes = \relative c' {
   % middle part
   es'8 ges4 es8 ces4 aes8 bes ces c |
   des8 f4 des8 bes4 ges8 aes a bes |
-  ces8 es4 ces8 aes4 f8 ges aes a | \break 
+  ces8 es4 ces8 aes4 f8 ges aes a | \break
 
   bes8 a bes ces des4 des8 c des d |
   es8 ges4 es8 ces4 aes8 bes ces c |
@@ -101,7 +101,7 @@ theNotes = \relative c' {
   s1
   s2.-\markup{"'Greatest Hits'"}
   s2
-  
+
 }
 
 theChords = \chordmode {
@@ -123,7 +123,7 @@ theChords = \chordmode {
 
   ges2.:maj7 ges2:maj7 |
   ces2.:maj7 aes2:m6 |
-  bes2.:m7 es2:m7 | 
+  bes2.:m7 es2:m7 |
 
   aes2.:m7 des2:7 |
   f2.:m7 bes2:7 |

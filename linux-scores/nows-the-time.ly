@@ -5,10 +5,10 @@
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
 
-MyTranspose = 
+MyTranspose =
 #(define-music-function (parser location m)
-  (ly:music?)
-  #{ \transpose d g $m #})
+   (ly:music?)
+   #{ \transpose d g $m #})
 % In the previous line the transposition of the whole score is defined
 % (in this case up a 6th from E flat to C).
 
@@ -38,9 +38,9 @@ realBookTitle = \markup {
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
           \fontsize #8
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger \larger #title
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
@@ -91,14 +91,14 @@ chordNames = \chordmode {
   d1:7 g1:7 d1:7 a2:m7 d:7
   g1:7 gis1:dim d1:7 fis2:m7 b:7
   e1:m7 a1:7 d2:7 b:7 e2:m7 a:7
-  
+
 }
 
 melody = \relative c'' {
   \bar "[|:"
   d8 d e a, d4 r8 a
   d8 d e a, d4 r8 a
-  d8 d e a, d8 d e a, 
+  d8 d e a, d8 d e a,
   d8 d e a, d4 r8 a |
   \break
   d8 d e a, d g,~ g4
@@ -110,7 +110,7 @@ melody = \relative c'' {
   r8 e8~ e4 d8 e d c
   r8 a r4 a4 r4
   r1
-  \bar "|."  
+  \bar "|."
 }
 
 right = {
@@ -122,10 +122,10 @@ right = {
 left = {
   \global
   \new ChordNames {
-  % http://lilypond.org/doc/v2.18/Documentation/snippets/tweaks-and-overrides
-  \override ChordNames.ChordName.extra-offset = #'(0 . 4.5)
-  \partial_chordNames
-  \chordNames
+    % http://lilypond.org/doc/v2.18/Documentation/snippets/tweaks-and-overrides
+    \override ChordNames.ChordName.extra-offset = #'(0 . 4.5)
+    \partial_chordNames
+    \chordNames
   }
 }
 
@@ -141,14 +141,14 @@ left = {
 \score {
   \new GrandStaff  <<
     \set GrandStaff.systemStartDelimiter = #'SystemStartBar
-    \new Staff = "right" \MyTranspose { \right } 
+    \new Staff = "right" \MyTranspose { \right }
     \new Staff = "left" { \clef bass \MyTranspose { \left } }
   >>
   \layout {
-  \context {
-    % http://lilypond.1069038.n5.nabble.com/Fixed-width-measures-td172597.html
-    \Score proportionalNotationDuration = #(ly:make-moment 1/8)
-  }
+    \context {
+      % http://lilypond.1069038.n5.nabble.com/Fixed-width-measures-td172597.html
+      \Score proportionalNotationDuration = #(ly:make-moment 1/8)
+    }
   }
 }
 

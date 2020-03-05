@@ -62,7 +62,7 @@ realBookTitle = \markup {
       \omit Staff.TimeSignature
       \omit Staff.KeySignature
       ragged-right = ##f
-                                % \override TextScript.font-name = #"Pea Missy with a Marker"
+      % \override TextScript.font-name = #"Pea Missy with a Marker"
     }
   }
 }
@@ -78,15 +78,15 @@ realBookTitle = \markup {
 }
 
 % other functions
-cross-note = 
+cross-note =
 #(define-music-function (parser location my-music)
-  (ly:music?)
-  #{
-  \override NoteHead.style = #'cross
-  #my-music
-  \revert NoteHead.style
-  #}
-)
+   (ly:music?)
+   #{
+     \override NoteHead.style = #'cross
+     #my-music
+     \revert NoteHead.style
+   #}
+   )
 
 fall = \bendAfter #-4
 scoop = \bendAfter #+4
@@ -108,7 +108,7 @@ fluteSolo = \relative c''' {
   e4-- \noBeam  cis8 bes e cis r4 |
   r8 e \noBeam cis bes e4-- cis8 b |
   e cis bes cis r cis a4( | \break
-  
+
   a4)\fall r a8 bes a aes |
   g a b d fis a b, g |
   e'4-. r r8 bes16[( a)] \noBeam bes8 c |
@@ -221,7 +221,7 @@ fluteSolo = \relative c''' {
   f aes bes des f^\markup{\with-color #red {F}} des r4 |
   r4 r8 d, d, g a c |
   d g a c g'^\markup{\with-color #red {G}} c, g' c, | \break
-             
+
   r2 fis8 b, cis b~ |
   b4 fis'8 b, b2 |
   fis'8 b, fis' b, fis' b,4-- b8 |
@@ -289,5 +289,5 @@ theChords = \chordmode {
   }
   \header {
     piece = "Spain"
-    }
+  }
 }

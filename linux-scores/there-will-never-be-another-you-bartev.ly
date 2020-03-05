@@ -30,19 +30,19 @@ global = {
 
 \score {
   <<
-  \new ChordNames \chordmode {
-  c1:maj7 | c1:maj7 | b:m7.5- | e1:7.9-
-  }
-  \new Staff \relative c''' {
-    \global
-    \key c \major
-    \bar ".|"
-    \mark "lick 1"
-    g8 r8 r4 g4 r8 fis8 
-    g2 r4 r8 fis8
-    f2 r2
-    r4 r8 fis8 g fis f4
-  }
+    \new ChordNames \chordmode {
+      c1:maj7 | c1:maj7 | b:m7.5- | e1:7.9-
+    }
+    \new Staff \relative c''' {
+      \global
+      \key c \major
+      \bar ".|"
+      \mark "lick 1"
+      g8 r8 r4 g4 r8 fis8
+      g2 r4 r8 fis8
+      f2 r2
+      r4 r8 fis8 g fis f4
+    }
   >>
 }
 
@@ -50,19 +50,19 @@ global = {
 
 \score {
   <<
-  \new ChordNames \chordmode {
-  c1:maj7 | c1:maj7 | b:m7.5- | e1:7.9-
-  }
-  \new Staff \relative c'' {
-    \global
-    \key c \major
-    \bar ".|"
-    \mark "lick 2"
-    r8 c'8 a bes8 r8 a fis g
-    r8 a8 fis g   r8 fis dis e
-    r8 g8 e f     r8 e cis d
-    r8 b8 ais a   gis4 r4
-  }
+    \new ChordNames \chordmode {
+      c1:maj7 | c1:maj7 | b:m7.5- | e1:7.9-
+    }
+    \new Staff \relative c'' {
+      \global
+      \key c \major
+      \bar ".|"
+      \mark "lick 2"
+      r8 c'8 a bes8 r8 a fis g
+      r8 a8 fis g   r8 fis dis e
+      r8 g8 e f     r8 e cis d
+      r8 b8 ais a   gis4 r4
+    }
   >>
 }
 
@@ -70,18 +70,18 @@ global = {
 
 \score {
   <<
-  \new ChordNames \chordmode {
-  b1:m7.5- | e1:7.9- | a1:min7
-  }
-  \new Staff \relative c'' {
-    \global
-    \key c \major
-    \bar ".|"
-    \mark "lick 3"
-    r1
-    d4 dis e r8 g8 
-    e8 a,4 r8 r2
-  }
+    \new ChordNames \chordmode {
+      b1:m7.5- | e1:7.9- | a1:min7
+    }
+    \new Staff \relative c'' {
+      \global
+      \key c \major
+      \bar ".|"
+      \mark "lick 3"
+      r1
+      d4 dis e r8 g8
+      e8 a,4 r8 r2
+    }
   >>
 }
 
@@ -89,18 +89,17 @@ global = {
 
 \score {
   <<
-  \new ChordNames \chordmode {
-  g1:min7 | c1:7 | f1:maj7
-  }
-  \new Staff \relative c'' {
-    \global
-    \key c \major
-    \bar ".|"
-    \mark "lick 4"
-    r1
-    r4 r8 b8 c b bes4
-    a2 r2
-  }
+    \new ChordNames \chordmode {
+      g1:min7 | c1:7 | f1:maj7
+    }
+    \new Staff \relative c'' {
+      \global
+      \key c \major
+      \bar ".|"
+      \mark "lick 4"
+      r1
+      r4 r8 b8 c b bes4
+      a2 r2
+    }
   >>
 }
-  

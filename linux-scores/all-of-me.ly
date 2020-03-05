@@ -8,8 +8,8 @@
 
 \paper {
   #(set-paper-size "letter")
-%  paper-height = 11\in
-%  paper-width = 8.5\in
+  %  paper-height = 11\in
+  %  paper-width = 8.5\in
   indent = 0\mm
   between-system-space = 2.5\cm
   between-system-padding = #0
@@ -34,9 +34,9 @@ realBookTitle = \markup {
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
           \fontsize #8
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger \larger #title
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
