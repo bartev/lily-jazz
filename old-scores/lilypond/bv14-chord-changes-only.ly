@@ -1,4 +1,4 @@
-\version "2.19.31"
+\version "2.20.0"
 
 chordmusic = \chordmode { c2 c | c c/g | c/g d }
 

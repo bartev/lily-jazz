@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 #(set-global-staff-size 22)
 \include "jazzchords.ily"

@@ -32,4 +32,4 @@ That's it.  For more information, visit http://lilypond.org .
 }
 
 
-\version "2.18.2"  % necessary for upgrading to future LilyPond versions.
+\version "2.20.0"  % necessary for upgrading to future LilyPond versions.

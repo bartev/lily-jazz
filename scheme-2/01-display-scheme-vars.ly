@@ -1,8 +1,8 @@
-\version "2.19.83"
+\version "2.20.0"
 
 % #{ LilyPond code #}
 
-There are some notable differences between the commands:
+% There are some notable differences between the commands:
 
 % display can show any value while ly:message only processes strings (but this can be circumvented using the format procedure)
 % display will not produce a newline, so that should always be done manually (through #(newline))

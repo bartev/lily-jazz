@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % Copy transcription by Kaz Takasugi at
 % https://www.youtube.com/watch?v=sMg161bfeHg
@@ -79,7 +79,7 @@ realBookTitle = \markup {
 
 % other functions
 cross-note =
-#(define-music-function (parser location my-music)
+#(define-music-function (my-music)
    (ly:music?)
    #{
      \override NoteHead.style = #'cross

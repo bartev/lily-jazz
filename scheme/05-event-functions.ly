@@ -1,7 +1,7 @@
-\version "2.18.2"
+\version "2.20.0"
 
 dyn = #(define-event-function 
-    (parser location arg)
+    (arg)
     (markup?)
     (make-dynamic-script arg))
 

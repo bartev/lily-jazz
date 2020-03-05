@@ -1,4 +1,4 @@
-\version "2.19.31"
+\version "2.20.0"
 
 mychords = \chordmode { c4:min f:min7 }
 \chords {

@@ -1,6 +1,6 @@
 % Extra Jazz-related commands that aren't specific to any font
 
-\version "2.19.80"
+\version "2.20.0"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start with a repeat Barline

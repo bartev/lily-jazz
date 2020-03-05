@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 
 #(set-global-staff-size 22)
@@ -59,7 +59,7 @@ realBookTitle = \markup {
 theNotes = \relative c' {
   \time 5/4
   \key ges \major
-  \set Timing.beatStructure = #'(2 3)
+  \set Timing.beatStructure = 2,3
 
   \partial 2 bes8 es ges aes |
   \bar "||"

@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -6,7 +6,7 @@
 \include "jazzextras.ily"
 
 MyTranspose =
-#(define-music-function (parser location m)
+#(define-music-function (m)
    (ly:music?)
    #{ \transpose d g $m #})
 % In the previous line the transposition of the whole score is defined

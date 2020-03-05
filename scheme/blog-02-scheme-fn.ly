@@ -1,4 +1,4 @@
-\version "2.18.0"
+\version "2.20.0"
 
 myFunction = { c2 }
 
@@ -7,7 +7,7 @@ myFunction = { c2 }
 }#
 
 mySchemeFunction =
-#(define-music-function (parser location)()
+#(define-music-function ()()
    #{
      c2
    #})

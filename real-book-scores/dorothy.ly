@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % From https://github.com/s-tilly/scores/blob/master/lilyjazz/examples/dorothy.ly
 
@@ -16,7 +16,7 @@
   tagline = \markup { \fontsize #1 (For \concat { E { \raise #0.5 \teeny \flat } } instruments.) }
 }
 
-vib = \markup \left-align \musicglyph #"scripts.prallprall"
+vib = \markup \left-align \musicglyph "scripts.prallprall"
 
 harmony = \new ChordNames \with {
   \override ChordName #'font-size = #0

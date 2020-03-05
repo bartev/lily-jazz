@@ -1,3 +1,5 @@
+\version "2.20.0"
+
 left = {
   \global
   % Music follows here

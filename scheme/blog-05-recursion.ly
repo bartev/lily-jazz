@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % https://lilypondblog.org/2014/04/music-functions-4-recursion/
 
@@ -31,7 +31,7 @@
 
 
 colorGrob =
-#(define-music-function (parser location my-grob my-color)
+#(define-music-function (my-grob my-color)
    (symbol? color?)
    #{
        \temporary \override #my-grob #'color = #my-color
@@ -39,7 +39,7 @@ colorGrob =
 
 
 uncolorGrob =
-#(define-music-function (parser location my-grob)
+#(define-music-function (my-grob)
    (symbol?)
    #{
      \revert #my-grob #'color
@@ -47,7 +47,7 @@ uncolorGrob =
 
 
 colorGrobs =
-#(define-music-function (parser location my-grob-list my-color)
+#(define-music-function (my-grob-list my-color)
    (symbol-list? color?)
    (if (null? my-grob-list)
        ;; issue an empty music expression
@@ -61,7 +61,7 @@ colorGrobs =
        #}))
 
 uncolorGrobs =
-#(define-music-function (parser location my-grob-list)
+#(define-music-function (my-grob-list)
    (symbol-list?)
    (if (null? my-grob-list)
        ;; issue an empty music expression
@@ -84,7 +84,7 @@ grobs = #'(NoteHead
                       DynamicText
                       Accidental)
 colorMusic =
-#(define-music-function (parser location my-color music)
+#(define-music-function (my-color music)
    (color? ly:music?)
    #{
      \colorGrobs \grobs  #my-color
@@ -119,7 +119,7 @@ allGrobNames = #(map car all-grob-descriptions)
 
 simpleColorMusic =
 #(let ((grob-names (map car all-grob-descriptions)))
-      (define-music-function (parser location my-color music)
+      (define-music-function (my-color music)
         (color? ly:music?)
         #{
           \colorGrobs #grob-names #my-color

@@ -1,3 +1,5 @@
+\version "2.20.0"
+
 downarrow = \markup {
   \with-color #red
   \center-column {

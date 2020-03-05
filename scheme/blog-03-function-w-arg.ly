@@ -1,9 +1,9 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % https://lilypondblog.org/2014/03/music-functions-2-start-doing-something-useful/
 
 makeRedNote =
-#(define-music-function (parser location)()
+#(define-music-function ()()
    #{
      \once \override NoteHead.color = #red
      \once \override Stem.color = #red
@@ -26,7 +26,7 @@ makeRedNote =
 % kind of hard to find
 
 colorNote =
-#(define-music-function (parser location my-color)
+#(define-music-function (my-color)
 (color?)
 #{
   \once \override NoteHead.color = #my-color
@@ -45,7 +45,7 @@ colorNote =
 
 % return the music element
 noOp = 
-#(define-music-function (parser location my-music)
+#(define-music-function (my-music)
 (ly:music?)
 #{
         #my-music
@@ -55,7 +55,7 @@ noOp =
 % can use it directly in the scheme function
 
 noOpTwo = 
-#(define-music-function (parser location my-music)
+#(define-music-function (my-music)
 (ly:music?)
   my-music
 )
@@ -68,7 +68,7 @@ noOpTwo =
 % Coloring arbitrary music with arbitrary colors
 
 colorMusic =
-#(define-music-function (parser location my-color my-music)
+#(define-music-function (my-color my-music)
    (color? ly:music?)
    #{
      \temporary \override NoteHead.color = $my-color
