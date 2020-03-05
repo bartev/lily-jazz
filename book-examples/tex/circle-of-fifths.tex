@@ -21,6 +21,8 @@
   \pgfmathsetmacro{\CircRTwo}{6.5}
   \pgfmathsetmacro{\CircRThree}{7.75}
   \pgfmathsetmacro{\CircRFour}{8.3}
+  \pgfmathsetmacro{\CircRFive}{9.3}
+
   \pgfmathsetmacro{\MusicR}{5.2}
   \pgfmathsetmacro{\InnerLabelR}{3.2}
   \pgfmathsetmacro{\OuterLabelR}{7.}
@@ -55,8 +57,8 @@
   % The Music
   \foreach \X in {-6,-5,...,5}
   {
-    \begin{scope}[shift={(90 - \X * 360 / 12: \MusicR)}, xshift=-0.3cm]
-      \clip (-1, -1) rectangle (1.2,1);
+    \begin{scope}[shift={(90 - \X * 360 / 12: \MusicR)}, xshift=0.1cm]
+      \clip (-1.4, -1) rectangle (0.9,1);
       \draw (0,0) node
       {
         \begin{music}
@@ -99,10 +101,26 @@
     2/\romansub{ii}{}, 
     3/\romansub{vi}{}, 
     4/\romansub{iii}{}, 
-    5/\romansub{vii}{dim}?}
+    5/\romansub{vii}{dim}?
+  }
   {
     \draw (90 - \X * 360 /12: \ModeLabelR) node[rotate=(- \X * 360 / 12)] {\ModeText};
   }
+
+  % names of modes
+  \foreach \X/\ModeText in {
+    -1/lydian,
+    0/ionian (major),
+    1/mixolydian,
+    2/dorian,
+    3/aeolian (natural minor),
+    4/phrygian,
+    5/locrian
+  }
+  {
+    \draw (90 - \X * 360 /12: \CircRFive) node[rotate=(- \X * 360 / 12)] {\ModeText};
+  }
+
 \end{tikzpicture}
 
 
