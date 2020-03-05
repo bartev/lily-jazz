@@ -37,6 +37,7 @@ testchords = \chordmode {
   c:6.9 _"c:6.9"		
   c:5.9 _"c:5.9"
   \break
+
   c:maj _"c:maj" 
   c:maj7.5- _"c:maj7.5-"	
   c:maj7.5+ _"c:maj7.5+" 
@@ -44,6 +45,7 @@ testchords = \chordmode {
   c:maj13 _"c:maj13" 
   c:7 _"c:7"			
   \break
+
   c:9 _"c:9"  
   c:11 _"c:11"			
   c:13 _"c:13" 
@@ -51,6 +53,7 @@ testchords = \chordmode {
   c:m6 _"c:m6" 
   c:m6.9 _"cm:6.9"		
   \break
+
   c:m5.9 _"c:m5.9" 
   c:m7 _"c:m7" 			
   c:m7.11 _"c:m7.11" 
@@ -58,6 +61,7 @@ testchords = \chordmode {
   c:5- _ "c:5-" 
   c:m9 _"c:m9"			
   \break
+
   c:m11 _"c:m11" 
   c:m13 _"c:m13"		
   c:m7+ _"c:m7+" 
@@ -65,6 +69,7 @@ testchords = \chordmode {
   c:m7.5- _"c:m7.5-" 
   c:m9.5- _"c:m9.5-"		
   \break
+
   c:m11.5- _"c:m11.5-"
   c:dim _"c:dim"		
   c:dim7 _"c:dim7"
@@ -72,6 +77,7 @@ testchords = \chordmode {
   c:sus2 _"c:sus2"  
   c:sus4 _"c:sus4"              
   \break
+
   c:sus4.7 _"c:sus4.7"
   c:sus4.7.9 _"c:sus4.7.9"      
   c:sus4.9+ _ "c:sus4.9+"
@@ -79,6 +85,7 @@ testchords = \chordmode {
   c:7.5+ _"c:7.5+"
   c:9- _"c:9-"			
   \break
+
   c:9-.5- _"c:9-.5-"
   c:9-.5+ _"c:9-.5+"		
   c:9+ _"c:9+"
@@ -94,6 +101,7 @@ testchords_no_code = \chordmode {
   c:6.9
   c:5.9
   \break
+
   c:maj
   c:maj7.5-
   c:maj7.5+
@@ -101,6 +109,7 @@ testchords_no_code = \chordmode {
   c:maj13
   c:7
   \break
+
   c:9
   c:11
   c:13
@@ -108,6 +117,7 @@ testchords_no_code = \chordmode {
   c:m6
   c:m6.9
   \break
+
   c:m5.9
   c:m7
   c:m7.11
@@ -115,6 +125,7 @@ testchords_no_code = \chordmode {
   c:5-
   c:m9
   \break
+
   c:m11
   c:m13
   c:m7+
@@ -122,6 +133,7 @@ testchords_no_code = \chordmode {
   c:m7.5-
   c:m9.5-
   \break
+
   c:m11.5-
   c:dim
   c:dim7
@@ -129,6 +141,7 @@ testchords_no_code = \chordmode {
   c:sus2
   c:sus4
   \break
+
   c:sus4.7
   c:sus4.7.9
   c:sus4.9+
@@ -136,7 +149,8 @@ testchords_no_code = \chordmode {
   c:7.5+
   c:9-
   \break
-  c:9-.5-
+ 
+ c:9-.5-
   c:9-.5+
   c:9+
   c:9+.5-

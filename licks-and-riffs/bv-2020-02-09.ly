@@ -17,7 +17,7 @@ endParenthesis = {
 }
 
 \header {
-  title = "Copied licks - Konitz"
+  title = "transcribed licks 2020-02-09"
 }
 
 \paper {
