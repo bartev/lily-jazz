@@ -7,3 +7,8 @@
     \larger \line { foo bar baz }
     }
   }
+
+#(newline)
+#(display "some music")
+\displayScheme
+\score { \relative c'' {c4 d e f} }

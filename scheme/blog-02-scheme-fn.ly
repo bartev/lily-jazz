@@ -4,7 +4,7 @@ myFunction = { c2 }
 
 \relative c' {
   c4 \myFunction c
-}#
+}
 
 mySchemeFunction =
 #(define-music-function ()()

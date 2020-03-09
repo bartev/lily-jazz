@@ -6,5 +6,5 @@ dyn = #(define-event-function
     (make-dynamic-script arg))
 
 \relative c' { 
-  c\dyn pfsss d\dyn "abcd" c-\dyn fff
+  c\dyn pfsss d\dyn abcd c-\dyn pf
 }

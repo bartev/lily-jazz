@@ -8,6 +8,8 @@ displayBarNum =
       #{ \once \override Score.BarNumber.break-visability = ##f #}
       #{#}))
 
+
+
 theNotes = \relative c' {
   \key c \major
   \bar "[|:"
