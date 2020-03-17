@@ -157,24 +157,26 @@ melody = \relative c'' {
 solo = \relative c'' {
   \mark \markup{\small \with-color #red "1:09"}
   e8 r8 r4 r2
-  r4 r8 g,8 c d ees c
-  ees f g8 d ees c8~ c4
-  r2 r8 bes8 c4
+  r8 g,8 a b c b c d 
+  ees f g8 d ees c8~ c4~
+  c4 r4 r4 bes8 c
   \break
 
+  \mark \markup{\small \with-color #red "1:14"}
   d4 r8 ees8 f4 r8 des8~
-  des8 d8~ d e8~e8 r8 r4
-  s1
-  s1
+  des8 d8~ d e8~e8 r8 r8 a,8 
+  c4 d e2
+  r2 r4 a8 c,8
   \break
 
-  s1
-  s1
-  s1
-  s1
+  \mark \markup{\small \with-color #red "1:18"}
+  f8 g a f e d a c
+  b8 d f g aes bes g f
+  e8 c g4 r4 d'8 des
+  c8 d e f g r8 e8 d
   \break
 
-  s1
+  c8 aes g f e r8 r4
   s1
   s1
   s1
