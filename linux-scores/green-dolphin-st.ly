@@ -176,15 +176,17 @@ solo = \relative c'' {
   c8 d e f g r8 e8 d
   \break
 
+  \mark \markup{\small \with-color #red "1:22"}
   c8 aes g f e r8 r4
   s1
   s1
-  s1
+  r8 f'8 a f e d g8 e 
   \break
 
-  s1
-  s1
-  s1
+  \mark \markup{\small \with-color #red "1:26"}
+  d c~ c4 r4 r4
+  r8 c8 d ees-. r8 g-. ees d~
+  d4 r4 r2
   s1
   \break
 
