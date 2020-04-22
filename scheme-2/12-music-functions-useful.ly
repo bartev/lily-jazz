@@ -1,5 +1,7 @@
 \version "2.20.0"
 
+% https://github.com/uliska/scheme-book/blob/master/old-stuff/functions/02.md
+
 makeRedNote = #(define-music-function () ()
             #{ \once \override NoteHead.color = #red
                \once \override Stem.color = #red
@@ -8,6 +10,7 @@ makeRedNote = #(define-music-function () ()
 \relative c' { c4 \makeRedNote c c c }
 
 
+% assign to Lilypond var
 colorNote = #(define-music-function (col) 
             (color?)
             #{ \once \override NoteHead.color = #col
@@ -20,6 +23,18 @@ colorNote = #(define-music-function (col)
              \colorNote #'(0.2 0.7 0) c 
              #(colorNote red) c}
 
+% Assign in Scheme
+#(define colorNote_ii
+         (define-music-function (col) (color?)
+         #{ \once \override NoteHead.color = #col
+            \once \override Stem.color = #col
+         #}))
+
+\relative c' { c4 \colorNote_ii #blue c 
+             \colorNote_ii #green c
+             \colorNote #'(0.5 0.5 0) c 
+             \colorNote #'(0.2 0.7 0) c 
+             #(colorNote red) c}
 
 % Pass a music element
 
