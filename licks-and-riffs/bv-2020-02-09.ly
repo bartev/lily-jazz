@@ -40,18 +40,20 @@ global = {
 
 % 1
 % There will never be another you - Konitz ~50sec
-\score {
+lick_i = \score {
  <<
- \new ChordNames \chordmode { g:7 }
-  \relative c'' { \global r8 d8 b g f r8 r4 }
+ \new ChordNames {\chordmode { g1:7 }}
+ \new Staff \relative c'' { \global r8 d8 b g f r8 r4 }
   >>
 }
+\lick_i
+\transpose c d {\lick_i}
 
 % 2
 \score {
  <<
  \new ChordNames \chordmode { g1:m7 c1:7 f1:7.9 }
-  \relative c'' { \global \repeat unfold #3 { a8 bes c4 a8 g r4} }
+ \new Staff\relative c'' { \global \repeat unfold #3 { a8 bes c4 a8 g r4} }
   >>
 }
 
@@ -59,7 +61,7 @@ global = {
 \score {
  <<
  \new ChordNames \chordmode { bes1:7 bes1:7  bes1:7 f1}
-  \relative c'' { \global \repeat unfold #2
+  \new Staff \relative c'' { \global \repeat unfold #2
   { r2 r4 r8 d8 ees e f e! ees d ees! f} 
   }
   >>
@@ -69,7 +71,7 @@ global = {
 \score {
  <<
  \new ChordNames \chordmode { a1:m7 d1:7 f1:}
-  \relative c'' { \global \repeat unfold #3
+ \new Staff \relative c'' { \global \repeat unfold #3
   { b8 c~ c4 a-. r4 } 
   }
   >>
