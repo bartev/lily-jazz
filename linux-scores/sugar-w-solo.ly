@@ -103,7 +103,7 @@ chords_sugar = \chordmode {
     { aes1:7.11+ | g1:7.5+ }
     { c1:m7.9  |des1:maj7 }
   }
-}
+}       
 
 chords_sugar_head = \chordmode {
   c1:m7 |
@@ -141,25 +141,29 @@ notes_sugar = \relative c'' {
     f4. ees8 \tuplet 3/2 {f16 g f} ees8 c8 ees~
     \noBreak
     ees1~
-    %   \break
+      \break
 
     ees4. c8 ees8 f4 g8~
     g4. f8 \tuplet 3/2 {g16 aes g} f8 ees f~
     f4. g8 \tuplet 3/2 {bes16 c bes} g8 f g~
     g1~
+    \break
 
     g4. g8 bes8 c4 ees8~
     ees4. c8 \tuplet 3/2 {ees16 f ees} c8 bes c~
     c4. bes8 \tuplet 3/2 {c16 d c} bes8 g bes~
     bes4. g8 \tuplet 3/2 {bes16 c bes} g8 f g~
+    \break
 
     g4. f8 \tuplet 3/2 {g16 aes g} f8 ees f~
     f4. ees8 \tuplet 3/2 {f16 g f} ees8 c ees~
     ees4. c8 \tuplet 3/2 {ees16 f ees} c8 bes c
+    \break
   }
   \alternative {
     { c1~  c4. c8 ees8 f4 g8 \bar ":|]"}
     { c1~ c1 \bar "|." }
+    \break
   }
 }
 
@@ -177,9 +181,12 @@ right = {
   % Music follows here.
   \head_sugar_partial
   \notes_sugar
+  \notes_sugar_solo
+  \notes_sugar_solo
 }
 
 left = {
+  \global
   % Music follows here
   \new ChordNames {
     %     http://lilypond.org/doc/v2.18/Documentation/snippets/tweaks-and-overrides
@@ -190,6 +197,7 @@ left = {
   }
 }
 
+
 MyTranspose =
 #(define-music-function (m)
    (ly:music?)
@@ -197,15 +205,15 @@ MyTranspose =
 % In the previous line the transposition of the whole score is defined
 % (in this case up a 6th from E flat to C).
 
-\score {
-  <<
-    \MyTranspose { \left }
-    {
-      \MyTranspose { \right }
-      \notes_sugar_solo
-    }
-  >>
-}
+% \score {
+%   <<
+%     \MyTranspose { \left }
+%     {
+%       \MyTranspose { \right }
+%       \notes_sugar_solo
+%     }
+%   >>
+% }
 
 % \score {
 %   \new GrandStaff  <<
@@ -220,3 +228,14 @@ MyTranspose =
 %   }
 %   }
 % }
+
+\score {
+<<
+\new ChordNames {
+     transpose ees, c { \chords_sugar_head }
+     transpose ees, c { \chords_sugar }
+     transpose ees, c { \chords_sugar_head }
+}
+\new Voice \MyTranspose { \right }
+>>
+}
