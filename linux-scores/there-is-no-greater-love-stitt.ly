@@ -47,16 +47,20 @@ tingl_stitt_music = \relative c''' {
   r8 b16 a g e d b d8   fis,8 g a\break
 
   \mark \markup{\small \with-color #red "28sec"}
-  r8 g4 r8 r8 fis8 e4
-  r8 b8 d4 r8 des8 c8 d
-  e8 c b b~ b4 r4
-  r4 r8 b8 d fis8~ fis4
+  r8 g4 fis8 e4 r8 b8 
+  d4. des8 c8 d e c 
+  \tuplet 3/2 {b4 b b} r2
+  r8 b8 d fis8~ fis4 d8 f
 
 
   \mark \markup{\small \with-color #red "35sec"}
-  d8 f e4~ e r4
-  e8 fis b4~ b8 a8 g4
-  fis8 a g4 
+  e2 r4 e8 fis 
+  b4~ b8 a8 g4 fis8 a 
+  g4 \mark \markup{\small \with-color #red "too low for alto"}
+  \set Staff.ottavation = #"8vb" fis'8 g e d c b d 
+  g,8~ g2 r4
+  \unset Staff.ottavation
+  r1 
 
   s1 s s s \break
   s1 s s s \break
