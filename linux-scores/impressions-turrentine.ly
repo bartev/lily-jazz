@@ -81,74 +81,178 @@ turr_chords = \transpose ees c \chordmode {
 turr_melody =  \relative c'' {
   \set Score.markFormatter = #format-mark-box-alphabet
   {
-   % \bar "[|:"
-   \mark \markup { \with-color #red \box "A" }
+   \bar ".|"
+   \mark \markup { \with-color #red \box "A" \with-color #red "0:10" }
    b1~
-   b2 cis8 e cis b~
+   b2 cis4. b8~
    b1~
-   b4. cis8 d4 e
+   b4 cis-- d-. e-.
    \break
 
-   fis4 a4~ a8 cis,4 b8~
-   b2 gis4 b8 fis~
+   \mark \markup { \with-color #red "0:14" }
+   fis2-- a8-. cis,4 b8~
+   b2 gis4. fis8~
    fis1~
    fis1
    \break
 
-   \mark \markup { \with-color #red \box "A" }
+   \mark \markup { \with-color #red \box "A" \with-color #red "0:18" }
    b1~
    b2 cis8 e cis b~
-   b1~
-   b4. cis8 d4 e
+   b1
+   r8 cis8~ cis4-- d4-. e-.
    \break
 
-   fis4 a4~ a8 cis,4 b8~
+   \mark \markup { \with-color #red "0:23" }
+   fis2-- a8-. cis,4 b8~
    b2 gis4 b8 fis~
    fis1~
-   fis1
+   fis2 r2
    \break
 
    % \bar ":|]"
 
    % \bar ".|"
-   \mark \markup { \with-color #red \box "B" }
+   \mark \markup { \with-color #red \box "B" \with-color #red "0:28" }
    c'1~
-   c4. bes8 ees4 d8 c~
-   c1~
-   c4. d8 ees4 f
+   c2 d4. c8~
+   c1
+   r8 d8~ d4-- ees4-. f-.
    \break
 
-   g4 bes4~ bes8 d,4 c8~
+   \mark \markup { \with-color #red "0:32" }
+   g2-- bes8-. d,4 c8~
    c2 a4 c8 g~
    g1~
-   g1
+   g2 r2
    \bar "|." 
    \break
 
    \bar ".|"
-   \mark \markup { \with-color #red \box "A" }
+   \mark \markup { \with-color #red \box "A" \with-color #red "0:37" }
    b1~
    b2 cis8 e cis b~
-   b1~
-   b4. cis8 d4 e
+   b1
+   r8 cis8~ cis4-- d4-. e-.
    \break
 
-   fis4 a4~ a8 cis,4 b8~
+   \mark \markup { \with-color #red "0:42" }
+   fis2-- a8-. cis,4 b8~
    b2 gis4 b8 fis~
    fis1~
-   fis1
+   fis2 r2
    \bar "|." 
+   \break
+   \pageBreak
   }
  
 }
 
+
+turr_solo = \relative c'' {
+
+   % 2ND TIME (begin solo)
+          
+   \mark \markup { \with-color #red \box "A" \with-color #red "0:46" }
+   r1
+   r4. b8 cis b cis d 
+   cis8 b r8 e8~ e2~ 
+   e4-^ r4 \tuplet 3/2 {cis8 b a} gis8 a 
+   \break
+
+   \mark \markup { \with-color #red "0:50" }
+   fis4. gis8 r2
+   \repeat unfold 3 { s1 } \break
+
+   \mark \markup { \with-color #red "0:55" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:05" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:09" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:13" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:18" }
+   \repeat unfold 4 { s1 } \break
+
+   \pageBreak
+
+
+   % 3RD TIME
+
+   \mark \markup { \with-color #red "1:22" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:27" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:32" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:37" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:45" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:46" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:51" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "1:55" }
+   \repeat unfold 4 { s1 } \break
+   \pageBreak
+
+   % 4TH TIME
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:04" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+
+   \mark \markup { \with-color #red "2:00" }
+   \repeat unfold 4 { s1 } \break
+   \pageBreak
+}
+
 \score {
   <<
-    \new ChordNames { \turr_chords }
+    \new ChordNames { 
+         \turr_chords 
+         \turr_chords 
+         \turr_chords 
+         \turr_chords 
+         }
     \new Staff {
          \eflat_global
          % \eflat_melody
          \turr_melody
+         \turr_solo
     }
   >>
 }
