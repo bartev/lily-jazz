@@ -156,22 +156,37 @@ turr_solo = \relative c'' {
    \mark \markup { \with-color #red \box "A" \with-color #red "0:46" }
    r1
    r4. b8 cis b cis d 
-   cis8 b r8 e8~ e2~ 
+   cis4 b e2~ 
    e4-^ r4 \tuplet 3/2 {cis8 b a} gis8 a 
    \break
 
    \mark \markup { \with-color #red "0:50" }
-   fis4. gis8 r2
-   \repeat unfold 3 { s1 } \break
+   fis2 gis4 f8 fis
+   % gis8 f fis 
+   r8  gis8 fis8 a e' r8 \tuplet 3/2 {cis8 d cis}
+   b8 cis a gis fis r r4
+   r1
+   \break
 
    \mark \markup { \with-color #red "0:55" }
-   \repeat unfold 4 { s1 } \break
+   b4-^ fis'8-- e-. r2
+   cis4-- e8-- d~ d4 r4
+   r8 gis8-^ f-^ fis-^ d-^ r8 r4
+   gis8 a~ a4 gis4 b8 gis~ 
+   \break
 
    \mark \markup { \with-color #red "1:00" }
-   \repeat unfold 4 { s1 } \break
+   gis4 e8 fis8~ fis4 d8 e8~ 
+   e4 cis8 d~ d4 b8 cis8~
+   \mark \markup { \with-color #red "wrong - figure this out" }
+   cis4 a8 b8~ b4 gis8 e 
+   fis8 r8 r4 r2
+   \break
 
    \mark \markup { \with-color #red "1:05" }
-   \repeat unfold 4 { s1 } \break
+   bes8 c d d bes r8 d4(
+   f8) r8 f4( g8) r8 r4
+   \repeat unfold 2 { s1 } \break
 
    \mark \markup { \with-color #red "1:09" }
    \repeat unfold 4 { s1 } \break
