@@ -241,6 +241,3 @@ eflat_chords = \score {
 \eflat_rb
 % \pageBreak
 % \eflat_chords
-
-
-
