@@ -61,6 +61,8 @@ realBookTitle = \markup {
 }
 
 Chords = \chordmode {
+       % s1 s1 s1 s1
+       % a1*4:7
        a1:7 a:7 a:7 a:7
        d1:7 d:7 a:7 a:7
        b1:m7 e:7 a:7 e:7
@@ -80,6 +82,7 @@ Tune = \relative c'' {
   \time 4/4
   \key a \minor
 
+  % \inlineMMR{r1 r1 r1} r2 r4 r8 a8
   e4. d16 cis d8 e r8 a, |
   e'8 e~ e d16 cis d8 e r8 a, |
   e'4. d16 cis d8 cis a g~ |
