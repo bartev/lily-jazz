@@ -80,7 +80,7 @@ global = {
 % \chords { … } is a shortcut notation for \new ChordNames \chordmode { … }.
 % http://lilypond.org/doc/v2.19/Documentation/notation/displaying-chords
 
-ysChords = \chords {
+ysChords = \chordmode {
 
   \mark \default
   a1
@@ -225,7 +225,7 @@ ysArpeg = {
   \break
 }
 
-ysHead = {
+ysHead = \relative c''' {
   r8 a4.-1 e4-5 fis-7
   g4.-4 f8~-3 f c-7 d-1 e-2~
   e2-5 e4.-5 cis8-3~
@@ -258,7 +258,7 @@ ysHead = {
 
   fis4.-5 fis'8-5 r8 cis8-2 d-3 e-4
   r8 e4.-3      d8-6 cis-5 b-4 ais-3
-  cis8-2 fis,8-5 r8 cis'8~-2 cis4.-2 fis,8-5
+  cis8-2 fis,8-5 r8 cis'8 cis4.-2 fis,8-5
   b8-1 cis-2 d-3 e-4 r2
   \break
 
@@ -275,31 +275,53 @@ ysHead = {
   \break
 
   e8 cis r4 r2
+  \repeat unfold 3 s1
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
+
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
 
 }
 
-\score {
+% \score {
+%   <<
+%   % \new Lyrics \analysis
+%   \ysChords
+%   \new Staff \relative c'' {
+%     \global
+%     \ysArpeg
+%     }
+%   >>
+% }
+
+% \pageBreak
+
+% % Head
+
+% \score {
+%   <<
+%   % \repeat unfold 2 { \new Lyrics \analysis }
+%   \repeat unfold 2 { \ysChords }
+%   \new Staff \relative c''' {
+%     \global
+%     \ysHead
+%     }
+%   >>
+% }
+
+  \score {
   <<
-  % \new Lyrics \analysis
-  \ysChords
-  \new Staff \relative c'' {
-    \global
-    \ysArpeg
-    }
-  >>
-}
-
-\pageBreak
-
-% Head
-
-\score {
-  <<
-  % \repeat unfold 2 { \new Lyrics \analysis }
-  \repeat unfold 2 { \ysChords }
-  \new Staff \relative c''' {
+    \new ChordNames {
+          \ysChords
+      \ysChords
+      }
     \global
     \ysHead
-    }
-  >>
+    >>
+
 }
+
