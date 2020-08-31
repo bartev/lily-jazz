@@ -1,6 +1,10 @@
 \version "2.20.0"
 
-#(set-global-staff-size 26)
+% all the source for yardbird suite
+% Called by yardbird-suite-arpeggios.ly and yardbird-suite.ly
+
+% set to 18 to fit entire head and title on 1 page
+#(set-global-staff-size 18)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -82,20 +86,20 @@ global = {
 
 ysChords = \chordmode {
 
-  \mark \default
+  \mark #1
   a1
   d2:min g2:7 a2:7 g2:7 fis1:7
   \break
   b1:7 e1:7 cis2:min fis2:7 b2:min e2:7
   \break
 
-  \mark #1  
+  \mark #1
   a1 d2:min g2:7 a2:7 g2:7 fis1:7
   \break
   b1:7 e1:7 a1:7 a2 aes2:7+9
   \break
 
-  \mark \default
+  \mark #2
   cis1:min dis2:m7.5- gis2:7 cis1:min fis1:7
   \break
   b1:min cis2:m7.5- fis2:7 b1:7 b2:7 bes2:7
@@ -166,18 +170,18 @@ analysis = \lyricmode {
 
 }
 
-ysArpeg = {
+ysArpeg = \relative c'' {
   % \mark \default
   \bar ".|"
   a8 cis e gis~ gis2
-  d8 f a c    g,8 b d f
+  d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
   \break
 
   b8 dis fis a~ a2
-  e8 gis b d~ d2
-  cis,8 e gis b  fis,8 ais cis! e
+  e,8 gis b d~ d2
+  cis8 e gis b  fis,8 ais cis! e
   b8 dis fis a  e8 gis b d
   \bar "||"
   \break
@@ -194,7 +198,8 @@ ysArpeg = {
   a8 cis e g~ g2
   a,8 cis e gis  aes,8 c ees g
   \bar "||"
-  \pageBreak
+  % \pageBreak
+  \break
 
   % \mark \default
   cis,8 e gis b~ b2
@@ -212,15 +217,15 @@ ysArpeg = {
 
   % \mark #1
   a,8 cis e gis~ gis2
-  d8 f a c    g,8 b d f
+  d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
   \break
 
   b8 dis fis a~ a2
-  e8 gis b d~ d2
-  cis,8 e gis b  fis,8 ais cis! e
-  b8 dis fis a  e8 gis b d
+  e,8 gis b d~ d2
+  cis8 e gis b  fis,8 ais cis! e
+  b8 dis fis a  e,8 gis b d
   \bar "|."
   \break
 }
@@ -273,55 +278,51 @@ ysHead = \relative c''' {
   a2~-6 a4-3 r4
   r4 r8 c16-7 cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
   \break
+  \pageBreak
 
-  e8 cis r4 r2
-  \repeat unfold 3 s1
-  \repeat unfold 4 s1
-  \repeat unfold 4 s1
-  \repeat unfold 4 s1
-
-  \repeat unfold 4 s1
+  e8-5 cis-3 r4 r8 b'16-2 bes-2 a8-1 e-5
+  g8-4 a16-5 g-4 fis8-3 f-3 s2
+  \repeat unfold 2 s1
   \repeat unfold 4 s1
   \repeat unfold 4 s1
   \repeat unfold 4 s1
 
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
+  \repeat unfold 4 s1
 }
 
-% \score {
-%   <<
-%   % \new Lyrics \analysis
-%   \ysChords
-%   \new Staff \relative c'' {
-%     \global
-%     \ysArpeg
-%     }
-%   >>
-% }
 
-% \pageBreak
+% This setup will print the chord analysis on top,
+% Then the chords
+% 1st chorus is arpeggios
+% 2nd chorus is the head
+% 3rd chorus is the solo
 
-% % Head
-
-% \score {
-%   <<
-%   % \repeat unfold 2 { \new Lyrics \analysis }
-%   \repeat unfold 2 { \ysChords }
-%   \new Staff \relative c''' {
-%     \global
-%     \ysHead
-%     }
-%   >>
-% }
-
-  \score {
+headAndSolo = \score {
   <<
+    % \new Lyrics \repeat unfold 3 { \analysis }
+    \new Lyrics \repeat unfold 2 { \analysis }
     \new ChordNames {
-          \ysChords
-      \ysChords
-      }
+      % \repeat unfold 3 \ysChords
+      \repeat unfold 2 \ysChords
+    }
     \global
-    \ysHead
-    >>
-
+    {
+      % \ysArpeg
+      \pageBreak
+      \ysHead
+    }
+  >>
 }
 
+
+arpeggios = \score {
+  <<
+    \new Lyrics \analysis 
+    \new ChordNames \ysChords
+    \global
+    \ysArpeg
+  >>
+}
