@@ -1,6 +1,6 @@
 \version "2.20.0"
 
-#(set-global-staff-size 25)
+#(set-global-staff-size 26)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -37,6 +37,23 @@ realBookTitle = \markup {
   }
 }
 
+global = {
+  \numericTimeSignature
+  \time 4/4
+  % \tempo 4=224
+
+  % make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+
+  % make only the first time signature visible
+  % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+
+  % allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
+
+  \set Score.markFormatter = #format-mark-box-alphabet
+}
+
 \header {
   title = \realBookTitle
   tagline = ##f
@@ -65,18 +82,30 @@ realBookTitle = \markup {
 
 ysChords = \chords {
 
+  \mark \default
   a1
   d2:min g2:7 a2:7 g2:7 fis1:7
+  \break
   b1:7 e1:7 cis2:min fis2:7 b2:min e2:7
+  \break
 
+  \mark #1  
   a1 d2:min g2:7 a2:7 g2:7 fis1:7
+  \break
   b1:7 e1:7 a1:7 a2 aes2:7+9
+  \break
 
+  \mark \default
   cis1:min dis2:m7.5- gis2:7 cis1:min fis1:7
+  \break
   b1:min cis2:m7.5- fis2:7 b1:7 b2:7 bes2:7
+  \break
 
+  \mark #1
   a1 d2:min g2:7 a2:7 g2:7 fis1:7
+  \break
   b1:7 e1:7 cis2:min fis2:7 b2:min e2:7
+  \break
 
 }
 
@@ -137,31 +166,140 @@ analysis = \lyricmode {
 
 }
 
-ysMelody = \relative c'' {
-  \bar "[|:"
+ysArpeg = {
+  % \mark \default
+  \bar ".|"
   a8 cis e gis~ gis2
-  \repeat unfold 3 {s1} \break
-  \repeat unfold 4 {s1} \break
-  \bar "||"
+  d8 f a c    g,8 b d f
+  a,8 cis e g  g,8 b d f
+  fis,8 ais cis e~ e2
+  \break
 
-  \repeat unfold 4 {s1} \break
-  \repeat unfold 4 {s1} \break
+  b8 dis fis a~ a2
+  e8 gis b d~ d2
+  cis,8 e gis b  fis,8 ais cis! e
+  b8 dis fis a  e8 gis b d
   \bar "||"
+  \break
 
-  \repeat unfold 4 {s1} \break
-  \repeat unfold 4 {s1} \break
+  % \mark #1
+  a,8 cis e gis~ gis2
+  d8 f a c    g,8 b d f
+  a,8 cis e g  g,8 b d f
+  fis,8 ais cis e~ e2
+  \break
+
+  b8 dis fis a~ a2
+  e,8 gis b d~ d2
+  a8 cis e g~ g2
+  a,8 cis e gis  aes,8 c ees g
   \bar "||"
+  \pageBreak
 
-  \repeat unfold 4 {s1} \break
-  \repeat unfold 4 {s1} \break
-  \bar ":|]"
+  % \mark \default
+  cis,8 e gis b~ b2
+  dis,8 fis a cis  gis,8 bis dis! fis!
+  cis8 e gis b~ b2
+  fis,8 ais cis e~ e2
+  \break
+
+  b8 d fis a~ a2
+  cis,8 e g b   fis,8 ais cis! e
+  b8 dis fis a~ a2
+  b,8 dis fis a bes,8 d f aes
+  \bar "||"
+  \break
+
+  % \mark #1
+  a,8 cis e gis~ gis2
+  d8 f a c    g,8 b d f
+  a,8 cis e g  g,8 b d f
+  fis,8 ais cis e~ e2
+  \break
+
+  b8 dis fis a~ a2
+  e8 gis b d~ d2
+  cis,8 e gis b  fis,8 ais cis! e
+  b8 dis fis a  e8 gis b d
+  \bar "|."
+  \break
 }
 
+ysHead = {
+  r8 a4.-1 e4-5 fis-7
+  g4.-4 f8~-3 f c-7 d-1 e-2~
+  e2-5 e4.-5 cis8-3~
+  cis4.-5 cis8-5 d-6 cis-5 d-6 e-7
+  \break
+
+  cis8-2 a-7 r8 a8-7~ a2-7
+  r4 r8 b8-5 r8 cis-6 d-7 e-1~
+  e4.-3 fis8~ fis-1 cis-5 d-6 e~-7
+  e2~-4 e4-1 r4
+  \break
+
+  r8 a4.-1 e4-5 fis-7
+  g4.-4 f8~-3 f-7 c-4 d-5 e-6~
+  e2-5 e4.-5 cis8-3~
+  cis4.-5 cis8-5 d-6 cis-5 d-6 e-7
+  \break
+
+  cis8-2 a-7 r8 a8-7~ a2-7
+  r4 r8 a8-4 cis-6 a-4 cis-6 a~-4
+  a1-1
+  r2 r4 \tuplet 3/2 { e'16 fis e } ees8-5
+  \break
+
+  cis4.-1 dis8-2 e-3 cis?4-1 fis8-6
+  r8 fis8-3 fis4-3~ fis2-7
+  e8-3 fis-4 e-3 dis-2 cis-1 gis-5 a-6 ais~-6
+  ais2-3 r4 r8 g8
+  \break
+
+  fis4.-5 fis'8-5 r8 cis8-2 d-3 e-4
+  r8 e4.-3      d8-6 cis-5 b-4 ais-3
+  cis8-2 fis,8-5 r8 cis'8~-2 cis4.-2 fis,8-5
+  b8-1 cis-2 d-3 e-4 r2
+  \break
+
+  r8 a4.-1 e4-5 fis-7
+  g4.-4 f8~-3 f c-7 d-1 e-2~
+  e2-5 e4.-5 cis8-3~
+  cis4-5 cis8-5 d-6  r8 c8-5 cis-5 fis-1
+  \break
+
+  r8 fis8~-5 fis2.-5
+  r8 fis,8-2  \tuplet 3/2 { gis8-3 a-4 b-5 }  cis4-6 e,8-1 a~-4
+  a2~-6 a4-3 r4
+  r4 r8 c16-7 cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
+  \break
+
+  e8 cis r4 r2
+
+}
 
 \score {
   <<
-  \new Lyrics \analysis
+  % \new Lyrics \analysis
   \ysChords
-  \new Staff \ysMelody
+  \new Staff \relative c'' {
+    \global
+    \ysArpeg
+    }
+  >>
+}
+
+\pageBreak
+
+% Head
+
+\score {
+  <<
+  % \repeat unfold 2 { \new Lyrics \analysis }
+  \repeat unfold 2 { \ysChords }
+  \new Staff \relative c''' {
+    \global
+    \ysHead
+    }
   >>
 }
