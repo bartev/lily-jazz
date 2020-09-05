@@ -42,8 +42,8 @@ realBookTitle = \markup {
 }
 
 global = {
-  \numericTimeSignature
   \time 4/4
+  \key a \minor
   % \tempo 4=224
 
   % make only the first clef visible
@@ -87,16 +87,16 @@ global = {
 ysChords = \chordmode {
 
   \mark #1
-  a1
+  a1:6
   d2:min g2:7 a2:7 g2:7 fis1:7
   \break
   b1:7 e1:7 cis2:min fis2:7 b2:min e2:7
   \break
 
   \mark #1
-  a1 d2:min g2:7 a2:7 g2:7 fis1:7
+  a1:6 d2:min g2:7 a2:7 g2:7 fis1:7
   \break
-  b1:7 e1:7 a1:7 a2 aes2:7+9
+  b1:7 e1:7 a1:6 a2 aes2:7+9
   \break
 
   \mark #2
@@ -106,7 +106,7 @@ ysChords = \chordmode {
   \break
 
   \mark #1
-  a1 d2:min g2:7 a2:7 g2:7 fis1:7
+  a1:6 d2:min g2:7 a2:7 g2:7 fis1:7
   \break
   b1:7 e1:7 cis2:min fis2:7 b2:min e2:7
   \break
@@ -118,23 +118,23 @@ ysChords = \chordmode {
 analysis = \lyricmode {
   \override LyricText #'font-name = #"serif"
   \set stanza = \markup \keyIndication { A }
-  \markup \rN { I }1
-  \markup \rN { iv - }2
-  \markup \rN { flatvii 7 }2
-  \markup \rN { I 7 }2 \markup \rN { flatvii 7 }2
+  \markup \rN { I 6 }1
+  \markup \rN { iv - 7 }2
+  \markup \rN { flatVII 7 }2
+  \markup \rN { I 7 }2 \markup \rN { flatVII 7 }2
   \markup \rN { VI 7 }1
   \markup \rN { ii 7 }1
   \markup \rN { V 7 }1
   \markup \rN { iii - }2
   \markup \rN { VI 7 }2
-  \markup \rN { ii - }2
+  \markup \rN { ii - 7 }2
   \markup \rN { V 7 }2
 
   \set stanza = \markup \keyIndication { A }
   \markup \rN { I }1
-  \markup \rN { iv - }2
-  \markup \rN { flatvii 7 }2
-  \markup \rN { I 7 }2 \markup \rN { flatvii 7 }2
+  \markup \rN { iv - 7 }2
+  \markup \rN { flatVII 7 }2
+  \markup \rN { I 7 }2 \markup \rN { flatVII 7 }2
   \markup \rN { VI 7 }1
   \markup \rN { ii 7 }1
   \markup \rN { V 7 }1
@@ -148,24 +148,24 @@ analysis = \lyricmode {
   \markup \rN { V 7+9 }2
   \markup \rN { I - }1
   \markup \rN { IV 7 }1
-  \markup \rN { vii - }1
+  \markup \rN { vii - 7 }1
   \markup \rN { I h }2
   \markup \rN { IV 7 }2
-  \markup \rN { vii 7 }1
-  \markup \rN { vii 7 }2
-  \markup \rN { fvii 7 }2
+  \markup \rN { VII 7 }1
+  \markup \rN { VII 7 }2
+  \markup \rN { fVII 7 }2
 
   \set stanza = \markup \keyIndication { A }
   \markup \rN { I }1
-  \markup \rN { iv - }2
-  \markup \rN { flatvii 7 }2
-  \markup \rN { I 7 }2 \markup \rN { flatvii 7 }2
+  \markup \rN { iv - 7 }2
+  \markup \rN { flatVII 7 }2
+  \markup \rN { I 7 }2 \markup \rN { flatVII 7 }2
   \markup \rN { VI 7 }1
   \markup \rN { ii 7 }1
   \markup \rN { V 7 }1
-  \markup \rN { iii - }2
+  \markup \rN { iii - 7 }2
   \markup \rN { VI 7 }2
-  \markup \rN { ii - }2
+  \markup \rN { ii - 7 }2
   \markup \rN { V 7 }2
 
 }
@@ -173,7 +173,7 @@ analysis = \lyricmode {
 ysArpeg = \relative c'' {
   % \mark \default
   \bar ".|"
-  a8 cis e gis~ gis2
+  a8 cis e gis~ fis2
   d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
@@ -187,7 +187,7 @@ ysArpeg = \relative c'' {
   \break
 
   % \mark #1
-  a,8 cis e gis~ gis2
+  a,8 cis e gis~ fis2
   d8 f a c    g,8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
@@ -195,7 +195,7 @@ ysArpeg = \relative c'' {
 
   b8 dis fis a~ a2
   e,8 gis b d~ d2
-  a8 cis e g~ g2
+  a8 cis e g~ fis2
   a,8 cis e gis  aes,8 c ees g
   \bar "||"
   % \pageBreak
@@ -216,7 +216,7 @@ ysArpeg = \relative c'' {
   \break
 
   % \mark #1
-  a,8 cis e gis~ gis2
+  a,8 cis e gis~ fis2
   d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
@@ -231,9 +231,10 @@ ysArpeg = \relative c'' {
 }
 
 ysHead = \relative c''' {
-  r8 a4.-1 e4-5 fis-7
-  g4.-4 f8~-3 f c-7 d-1 e-2~
-  e2-5 e4.-5 cis8-3~
+  % A
+  r8 a4.-1 e4-5 fis-6
+  g4.-4 f8~-3 f-7 c-4 d-5 e-6~
+  e2-5 e4.-6 cis8-4~
   cis4.-5 cis8-5 d-6 cis-5 d-6 e-7
   \break
 
@@ -243,6 +244,7 @@ ysHead = \relative c''' {
   e2~-4 e4-1 r4
   \break
 
+  % A
   r8 a4.-1 e4-5 fis-7
   g4.-4 f8~-3 f-7 c-4 d-5 e-6~
   e2-5 e4.-5 cis8-3~
@@ -252,9 +254,10 @@ ysHead = \relative c''' {
   cis8-2 a-7 r8 a8-7~ a2-7
   r4 r8 a8-4 cis-6 a-4 cis-6 a~-4
   a1-1
-  r2 r4 \tuplet 3/2 { e'16 fis e } ees8-5
+  r2 r4 \tuplet 3/2 { e'16-5 fis-6 e-5 } ees8-5
   \break
 
+  % B
   cis4.-1 dis8-2 e-3 cis?4-1 fis8-6
   r8 fis8-3 fis4-3~ fis2-7
   e8-3 fis-4 e-3 dis-2 cis-1 gis-5 a-6 ais~-6
@@ -263,10 +266,11 @@ ysHead = \relative c''' {
 
   fis4.-5 fis'8-5 r8 cis8-2 d-3 e-4
   r8 e4.-3      d8-6 cis-5 b-4 ais-3
-  cis8-2 fis,8-5 r8 cis'8 cis4.-2 fis,8-5
+  cis8-2 fis,8-5 r8 cis'8~-2 cis4. fis,8-5
   b8-1 cis-2 d-3 e-4 r2
   \break
 
+  % A
   r8 a4.-1 e4-5 fis-7
   g4.-4 f8~-3 f c-7 d-1 e-2~
   e2-5 e4.-5 cis8-3~
@@ -274,16 +278,23 @@ ysHead = \relative c''' {
   \break
 
   r8 fis8~-5 fis2.-5
-  r8 fis,8-2  \tuplet 3/2 { gis8-3 a-4 b-5 }  cis4-6 e,8-1 a~-4
+  r8 fis,8-2  \tupletDown \tuplet 3/2 { gis8-3 a-4 b-5 }  cis4-6 e,8-1 a~-4
   a2~-6 a4-3 r4
-  r4 r8 c16-7 cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
+  r4 r8 c16-6 cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
   \break
   \pageBreak
 
+  % Solo
+  % A
   e8-5 cis-3 r4 r8 b'16-2 bes-2 a8-1 e-5
-  g8-4 a16-5 g-4 fis8-3 f-3 s2
+  g8-4 a16-5 g-4 fis8-3 f-3~ f8-7 d-5 c-4 a-2
+  \tuplet 3/2 { e'16-5 fis-6 e-5 } d8-4 cis8-3 fis,-6 g-1 b-3 d-5 e-6
+  cis8-5 b-4 \tuplet 3/2 { ais8-3 cis?-5 e-7 } g8-9 a16-3 g-2 fis8-1 e-7
+
+  dis8 b \tuplet 3/2 { a16 b a } fis8  cis'2
+  r1
   \repeat unfold 2 s1
-  \repeat unfold 4 s1
+
   \repeat unfold 4 s1
   \repeat unfold 4 s1
 
@@ -293,6 +304,16 @@ ysHead = \relative c''' {
   \repeat unfold 4 s1
 }
 
+ysScaleDegrees = \lyrics {
+  \markup \rN { "" }8
+  \markup \rN { 1 }4.
+  \markup \rN { 5 }4
+  \markup \rN { 6 }4
+  \markup \rN { 4 }4.
+  \markup \rN { f3 }8
+  \markup \rN { f7 }
+
+}
 
 % This setup will print the chord analysis on top,
 % Then the chords
@@ -308,21 +329,24 @@ headAndSolo = \score {
       % \repeat unfold 3 \ysChords
       \repeat unfold 2 \ysChords
     }
-    \global
     {
-      % \ysArpeg
-      \pageBreak
+      \global
+      \numericTimeSignature
       \ysHead
     }
+    % \new Lyrics \ysScaleDegrees
   >>
 }
 
 
 arpeggios = \score {
   <<
-    \new Lyrics \analysis 
+    \new Lyrics \analysis
     \new ChordNames \ysChords
-    \global
-    \ysArpeg
+    {
+      \global
+      \numericTimeSignature
+      \ysArpeg
+    }
   >>
 }
