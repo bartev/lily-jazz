@@ -79,6 +79,22 @@ global = {
   markup-system-spacing = #'((basic-distance . 23)
                              (minimum-distance . 8)
                              (padding . 1))
+  % oddHeaderMarkup = "Yardird Suite"
+  % evenHeaderMarkup = "Yardbird Suite"
+  oddHeaderMarkup = \markup
+    \fill-line {
+      \title
+      \on-the-fly #print-page-number-check-first
+      \fromproperty #'page:page-number-string
+    }
+  evenHeaderMarkup = \markup
+    \fill-line {
+      \on-the-fly #print-page-number-check-first
+      \fromproperty #'page:page-number-string " "
+      \title
+    }
+
+
 }
 
 % \chords { … } is a shortcut notation for \new ChordNames \chordmode { … }.
@@ -232,6 +248,7 @@ ysArpeg = \relative c'' {
 
 ysHead = \relative c''' {
   % A
+  \bar ".|"
   r8 a4.-1 e4-5 fis-6
   g4.-4 f8~-3 f-7 c-4 d-5 e-6~
   e2-5 e4.-6 cis8-4~
@@ -243,6 +260,7 @@ ysHead = \relative c''' {
   e4.-3 fis8~ fis-1 cis-5 d-6 e~-7
   e2~-4 e4-1 r4
   \break
+  \bar "||"
 
   % A
   r8 a4.-1 e4-5 fis-7
@@ -256,6 +274,7 @@ ysHead = \relative c''' {
   a1-1
   r2 r4 \tuplet 3/2 { e'16-5 fis-6 e-5 } ees8-5
   \break
+  \bar "||"
 
   % B
   cis4.-1 dis8-2 e-3 cis?4-1 fis8-6
@@ -269,6 +288,7 @@ ysHead = \relative c''' {
   cis8-2 fis,8-5 r8 cis'8~-2 cis4. fis,8-5
   b8-1 cis-2 d-3 e-4 r2
   \break
+  \bar "||"
 
   % A
   r8 a4.-1 e4-5 fis-7
@@ -282,11 +302,13 @@ ysHead = \relative c''' {
   a2~-6 a4-3 r4
   r4 r8 c16-6 \mark \markup{\small \with-color #red "Begin Solo"}
    cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
+  \bar "|."
   \break
   \pageBreak
 
   % Solo
   % A
+  \bar ".|"
   e8-5 cis-3 r4 r8 b'16-2 bes-2 a8-1 e-5
   g8-4 a16-5 g-4 fis8-3 f-3~ f8-7 d-5 c-4 a-2
   \tuplet 3/2 { e'16-5 fis-6 e-5 } d8-4 cis8-3 fis,-6 g-1 b-3 d-5 e-6
@@ -297,6 +319,7 @@ ysHead = \relative c''' {
   \mark \markup{\small \with-color #red "0:52"}
   e4-3 cis8-1 d-2 e-7 a-3 gis-2 fis-1 
   e8-4 d-3 b-1 fis-7  cis'4-6 e8-1 b~-5
+  \bar "||"
 
   b4-2 r4 r4 r8 fis'8-6 \mark \markup{\small \with-color #red "0:56"}
   g8-4 fis-3 f-3 d-1 c-4 a-2 e'-6 d-5
@@ -307,28 +330,31 @@ ysHead = \relative c''' {
   gis8-3 fis~-2 fis4 r4 r8. e16
   a8-1 e8~-5 e2 r4
   r1
+  \bar "||"
 
-  r4 gis8 ais16 c cis8 dis e fis
-  g16 gis8.~ gis4   r4  a8 b16 a
-  gis8 e cis gis \tuplet 3/2 { dis'8 e f } fis8 dis
-  e8 cis~ cis4 r2
+  r4 gis8-5 ais16-6 c-1 cis8-1 dis-2 e-3 fis-4
+  g16-4 gis8.~-4 gis4   r4  a8-2 b16-3 a-2
+  gis8-5 e-3 cis-1 gis-5 \tuplet 3/2 { dis'8-2 e-3 f-4 } fis8-4 dis-2
+  e8-7 cis~-3 cis4 r2
 
-  r8 \tuplet 3/2 { fis,16 gis ais } b8 cis d e fis g~
-  g8 \tuplet 3/2 { a16 g fis } e8 d cis b ais gis'~
-  \tuplet 3/2 { gis16 a gis } fis8 e ees d fis, a cis
-  b8 fis a fis? gis f'! d dis
+  r8 \tuplet 3/2 { fis,16-5 gis-6 ais-7 } b8-1 cis-2 d-3 e-4 fis-5 g~-6
+  g8-5 \tuplet 3/2 { a16-6 g-5 fis-4 } e8-3 d-2 cis-5 b-4 ais-3 gis'~-2
+  \tuplet 3/2 { gis16-6 a-7 gis-6 } fis8-5 e-4 ees-4 d-3 fis,-15 a-7 cis-2
+  b8-1 fis-5 a-7 fis?-5 gis-6 f'!-5 d-3 dis-3
+  \bar "||"
 
-  e4 r4 r8 b'8 a e
-  g8 fis r8 f8 r8 d8 b a
-  e'4 r8 g,16 b d8 e cis b
-  ais8 cis e gis~ gis4 fis
+  e4-5 r4 r8 b'8-2 a-1 e-5
+  g8-4 fis-3 r8 f8-3 r8 d8-5 b-3 a-2
+  e'4-5 r8 g,16-1 b-3 d8-5 e-6 cis-4 b-3
+  ais8-3 cis-5 e-7 gis~-2 gis4-2 fis-1
 
-  gis8 cis,~ cis4 r2
-  r2 a'4 a8 a~
-  a4 r4 g8 a16 g e8 fis
-  e8 d c a b4 a8 e~
+  gis8-6 cis,~-2 cis4 r2
+  r2 a'4-4 a8 a~
+  a4-6 r4 g8-2 a16-3 g-2 e8-7 fis-1
+  e8-4 d-3 c-2 a-7 b4-5 a8-4 e~-1
+  \bar "|."
 
-  e4 r4 r2
+  e4-3 r4 r2
 }
 
 ysScaleDegrees = \lyrics {
@@ -358,6 +384,7 @@ headAndSolo = \score {
     }
     {
       \global
+      \bar ".|"
       \numericTimeSignature
       \ysHead
     }
