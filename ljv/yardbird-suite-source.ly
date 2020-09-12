@@ -173,7 +173,7 @@ analysis = \lyricmode {
 ysArpeg = \relative c'' {
   % \mark \default
   \bar ".|"
-  a8 cis e gis~ fis2
+  a8 cis e fis~ fis2
   d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
@@ -187,7 +187,7 @@ ysArpeg = \relative c'' {
   \break
 
   % \mark #1
-  a,8 cis e gis~ fis2
+  a,8 cis e fis~ fis2
   d8 f a c    g,8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
@@ -195,7 +195,7 @@ ysArpeg = \relative c'' {
 
   b8 dis fis a~ a2
   e,8 gis b d~ d2
-  a8 cis e g~ fis2
+  a8 cis e fis~ fis2
   a,8 cis e gis  aes,8 c ees g
   \bar "||"
   % \pageBreak
@@ -216,7 +216,7 @@ ysArpeg = \relative c'' {
   \break
 
   % \mark #1
-  a,8 cis e gis~ fis2
+  a,8 cis e fis~ fis2
   d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
   fis,8 ais cis e~ e2
@@ -280,7 +280,8 @@ ysHead = \relative c''' {
   r8 fis8~-5 fis2.-5
   r8 fis,8-2  \tupletDown \tuplet 3/2 { gis8-3 a-4 b-5 }  cis4-6 e,8-1 a~-4
   a2~-6 a4-3 r4
-  r4 r8 c16-6 cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
+  r4 r8 c16-6 \mark \markup{\small \with-color #red "Begin Solo"}
+   cis d8-7 g-3 \tuplet 3/2 { f16-2 g-3 f-2 } dis8-7
   \break
   \pageBreak
 
@@ -291,17 +292,43 @@ ysHead = \relative c''' {
   \tuplet 3/2 { e'16-5 fis-6 e-5 } d8-4 cis8-3 fis,-6 g-1 b-3 d-5 e-6
   cis8-5 b-4 \tuplet 3/2 { ais8-3 cis?-5 e-7 } g8-9 a16-3 g-2 fis8-1 e-7
 
-  dis8 b \tuplet 3/2 { a16 b a } fis8  cis'2
+  dis8-3 b-1 \tuplet 3/2 { a16-7 b-1 a-7 } fis8-5  cis'2-2
   r1
-  \repeat unfold 2 s1
+  \mark \markup{\small \with-color #red "0:52"}
+  e4-3 cis8-1 d-2 e-7 a-3 gis-2 fis-1 
+  e8-4 d-3 b-1 fis-7  cis'4-6 e8-1 b~-5
 
-  \repeat unfold 4 s1
-  \repeat unfold 4 s1
+  b4-2 r4 r4 r8 fis'8-6 \mark \markup{\small \with-color #red "0:56"}
+  g8-4 fis-3 f-3 d-1 c-4 a-2 e'-6 d-5
+  cis8-3 g-7 r8 b8-2 d-5 e-6 cis?-4 b-3
+  ais8-3 cis-5 g-2 f-1   fis-1 d'-6 cis?-5 a-3
 
-  \repeat unfold 4 s1
-  \repeat unfold 4 s1
-  \repeat unfold 4 s1
-  \repeat unfold 4 s1
+  b8-1 gis-6 a-7 b~-1 b gis!-6 a-7 b-1 
+  gis8-3 fis~-2 fis4 r4 r8. e16
+  a8-1 e8~-5 e2 r4
+  r1
+
+  r4 gis8 ais16 c cis8 dis e fis
+  g16 gis8.~ gis4   r4  a8 b16 a
+  gis8 e cis gis \tuplet 3/2 { dis'8 e f } fis8 dis
+  e8 cis~ cis4 r2
+
+  r8 \tuplet 3/2 { fis,16 gis ais } b8 cis d e fis g~
+  g8 \tuplet 3/2 { a16 g fis } e8 d cis b ais gis'~
+  \tuplet 3/2 { gis16 a gis } fis8 e ees d fis, a cis
+  b8 fis a fis? gis f'! d dis
+
+  e4 r4 r8 b'8 a e
+  g8 fis r8 f8 r8 d8 b a
+  e'4 r8 g,16 b d8 e cis b
+  ais8 cis e gis~ gis4 fis
+
+  gis8 cis,~ cis4 r2
+  r2 a'4 a8 a~
+  a4 r4 g8 a16 g e8 fis
+  e8 d c a b4 a8 e~
+
+  e4 r4 r2
 }
 
 ysScaleDegrees = \lyrics {
