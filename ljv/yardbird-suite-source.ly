@@ -317,7 +317,7 @@ ysHead = \relative c''' {
   dis8-3 b-1 \tuplet 3/2 { a16-7 b-1 a-7 } fis8-5  cis'2-2
   r1
   \mark \markup{\small \with-color #red "0:52"}
-  e4-3 cis8-1 d-2 e-7 a-3 gis-2 fis-1 
+  e4-3 cis8-1 d-2 e-7 a-3 gis-2 fis-1
   e8-4 d-3 b-1 fis-7  cis'4-6 e8-1 b~-5
   \bar "||"
 
@@ -326,7 +326,7 @@ ysHead = \relative c''' {
   cis8-3 g-7 r8 b8-2 d-5 e-6 cis?-4 b-3
   ais8-3 cis-5 g-2 f-1   fis-1 d'-6 cis?-5 a-3
 
-  b8-1 gis-6 a-7 b~-1 b gis!-6 a-7 b-1 
+  b8-1 gis-6 a-7 b~-1 b gis!-6 a-7 b-1
   gis8-3 fis~-2 fis4 r4 r8. e16
   a8-1 e8~-5 e2 r4
   r1
