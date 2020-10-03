@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % WHY DOESN'T THIS WORK?
 
@@ -20,21 +20,21 @@
      out))
 
 colorGrob =
-#(define-music-function (parser location my-grob my-color)
+#(define-music-function (my-grob my-color)
 (symbol? color?)
 #{
  \temporary \override #my-grob #'color = #my-color
 #})
 
 uncolorGrob = 
-#(define-music-function (parser location my-grob)
+#(define-music-function (my-grob)
 (symbol?)
 #{
 \revert #my-grob #'color
 #})
 
 colorGrobs = 
-#(define-music-function (parser location grobs color)
+#(define-music-function (grobs color)
 (symbol-list? color?)
 (wrap-music-list
   (map 
@@ -42,7 +42,7 @@ colorGrobs =
      grobs)))
 
 uncolorGrobs = 
-#(define-music-function (parser location grobs)
+#(define-music-function (grobs)
 (symbol-list?)
 (wrap-music-list
   (map

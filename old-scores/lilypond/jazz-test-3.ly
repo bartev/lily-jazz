@@ -1,4 +1,4 @@
-\version "2.16.1"
+\version "2.20.0"
 
 \include "LilyJAZZ.ily"
 
@@ -13,7 +13,7 @@
   \tempo "Medium Swing"
    r8 es4->\mf f8-. g--  as4-^ bes8-^  |
    r4. b8\trill\fff ~ b2 |
-   bes?16-> r as4\mp r8 g4( \times 2/3 { es8 f e\pp ~ } |
+   bes?16-> r as4\mp r8 g4( \tuplet 3/2 { es8 f e\pp ~ } |
    e1) \fermata |
    \bar "||"
    \mark \markup \jazzglyph #"scripts.varsegnojazz" 
@@ -31,13 +31,13 @@
       \clef treble
       \numericTimeSignature
       \time 4/4
-      r8 a \times 2/3 { r e' cis } a2 |
-      r8 b \times 2/3 { r a' fis } d2 |
-      r8 e \times 2/3 { r d' b } g2 |
-      r4 \times 2/3 { r8 b d } \times 2/3 { a' fis d ~ } d4 |
-      r4 \times 2/3 { r8 e, g } \times 2/3 { d' b c ~ } c4 |
+      r8 a \tuplet 3/2 { r e' cis } a2 |
+      r8 b \tuplet 3/2 { r a' fis } d2 |
+      r8 e \tuplet 3/2 { r d' b } g2 |
+      r4 \tuplet 3/2 { r8 b d } \tuplet 3/2 { a' fis d ~ } d4 |
+      r4 \tuplet 3/2 { r8 e, g } \tuplet 3/2 { d' b c ~ } c4 |
       r4 r16 d, fis a c8 a bes bes, ~ |
-      \times 2/3 { bes8 fis' a } fis g ~ g g, ~ \times 2/3 { g d' f } |
+      \tuplet 3/2 { bes8 fis' a } fis g ~ g g, ~ \tuplet 3/2 { g d' f } |
       d8 es ~ es16 es, g d' b?8 c4. | \bar "||"
     }
     \new Staff \relative c {

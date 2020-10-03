@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 \displayScheme
 \markup {
@@ -7,3 +7,8 @@
     \larger \line { foo bar baz }
     }
   }
+
+#(newline)
+#(display "some music")
+\displayScheme
+\score { \relative c'' {c4 d e f} }

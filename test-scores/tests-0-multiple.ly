@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 #(set-global-staff-size 24)
 \include "jazzchords.ily"
@@ -309,7 +309,7 @@ ExampleMusic = {
 %--------------------
 % \fermata
 % \bar "||"
-% \mark \markup \musicglyph #"scripts.segno"  -- D.S.
+% \mark \markup \musicglyph "scripts.segno"  -- D.S.
 % geses,4_"Various Accidentals" -- Text below g double flat quarter note
 %--------------------
   
@@ -327,7 +327,7 @@ ExampleMusic = {
      bes?16-> r as4\mp r8 g4( \tuplet 3/2 { es8 f e\pp ~ } |
      e1) \fermata |
      \bar "||"
-     \mark \markup \musicglyph #"scripts.segno" 
+     \mark \markup \musicglyph "scripts.segno" 
      \clef bass
      \time 5/4
      \key g \major
@@ -390,7 +390,7 @@ testchords = \chordmode {
   bes _"bes"			
   c:6 _"c:6"
   c:6.9 _"c:6.9"		
-  c:5.9 _"c:5.9"
+  c:3.5.9 _"c:3.5.9"
   \break
   c:maj _"c:maj" 
   c:maj7.5- _"c:maj7.5-"	

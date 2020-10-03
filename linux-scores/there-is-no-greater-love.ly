@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 #(set-global-staff-size 26)
 \include "jazzchords.ily"
@@ -33,9 +33,9 @@ realBookTitle = \markup {
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
           \fontsize #7
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger #title
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
@@ -67,11 +67,11 @@ global = {
   \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
   % allow single-staff system bars
   \override Score.SystemStartBar #'collapse-height = #1
-    
+
 }
 
 chords_tingl_partial = \chordmode {
-  \partial 4*3 s2. | 
+  \partial 4*3 s2. |
 }
 
 chords_tingl = \chordmode {
@@ -83,7 +83,7 @@ chords_tingl = \chordmode {
   \break
   c:7 | c2:m7 f:7 | bes1 | bes |
   \break
-  a2:m7.5- d:7 | g1:m | a2:m7.5- d:7 | g1:m | 
+  a2:m7.5- d:7 | g1:m | a2:m7.5- d:7 | g1:m |
   \break
   a2:m7.5- d:7 | g1:m |  c:7 | f:7 |
   \break
@@ -109,7 +109,7 @@ head_tingl = \relative c'' {
   \break
 
   % measure 5
-  g1 ~ | 
+  g1 ~ |
   g4 g d' des |
   c1 |
   r4 a bes c |
@@ -169,17 +169,17 @@ head_tingl = \relative c'' {
 
 rb = \score {
   <<
-  \new ChordNames {
-    \chords_tingl_partial
-    \chords_tingl
-  }
+    \new ChordNames {
+      \chords_tingl_partial
+      \chords_tingl
+    }
 
-  \new Staff \with {
-    instrumentName = "piano"
-    midiInstrument = "piano"
+    \new Staff \with {
+      instrumentName = "piano"
+      midiInstrument = "piano"
     } {
-    \head_tingl_partial
-    \head_tingl
+      \head_tingl_partial
+      \head_tingl
     }
   >>
   \layout {}
@@ -188,16 +188,16 @@ rb = \score {
 
 rb_chords = \score {
   <<
-  \new ChordNames {
-    \chords_tingl_partial
-    \chords_tingl
-  }
-  \new Staff \with {
-    instrumentName = "piano"
+    \new ChordNames {
+      \chords_tingl_partial
+      \chords_tingl
+    }
+    \new Staff \with {
+      instrumentName = "piano"
     } {
-    \chords_tingl_partial
-    \chords_tingl
-  }
+      \chords_tingl_partial
+      \chords_tingl
+    }
   >>
 }
 
@@ -205,29 +205,29 @@ rb_chords = \score {
 
 eflat_rb = \score {
   <<
-  \new ChordNames \transpose ees, c {
-    \chords_tingl_partial
-    \chords_tingl
-  }
-  \new Staff \with {
-    instrumentName = "Alto"
-    midiInstrument = "alto sax"
+    \new ChordNames \transpose ees, c {
+      \chords_tingl_partial
+      \chords_tingl
+    }
+    \new Staff \with {
+      instrumentName = "Alto"
+      midiInstrument = "alto sax"
     } \transpose ees, c {
       \head_tingl_partial
       \head_tingl
     }
-   >>
-   \layout {}
-   % \midi {}
+  >>
+  \layout {}
+  % \midi {}
 }
 
 eflat_chords = \score {
   <<
-  \new ChordNames \transpose ees, c \chords_tingl
-  \new Staff \with {
-    instrumentName = "Alto"
+    \new ChordNames \transpose ees, c \chords_tingl
+    \new Staff \with {
+      instrumentName = "Alto"
     } \transpose ees c \chords_tingl
-   >>
+  >>
 }
 
 % Just choose 1 style to print
@@ -241,6 +241,3 @@ eflat_chords = \score {
 % \eflat_rb
 % \pageBreak
 % \eflat_chords
-
-
-

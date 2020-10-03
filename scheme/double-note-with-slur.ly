@@ -1,10 +1,10 @@
-\version "2.18.2"
+\version "2.20.0"
 
 \displayMusic{ a'( a') }
 
 \displayMusic a'
 
-doubleSlur = #(define-music-function (parser location note) (ly:music?)
+doubleSlur = #(define-music-function (note) (ly:music?)
   "Return: { note ( note ) }.
   `note' is supposed to be a single note."
   (let ((note2 (ly:music-deep-copy note)))

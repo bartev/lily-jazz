@@ -1,8 +1,8 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % #{ LilyPond code #}
 
-ritpp = #(define-event-function (parser location) ()
+ritpp = #(define-event-function () ()
       #{ ^"rit." \pp #}
 )
 

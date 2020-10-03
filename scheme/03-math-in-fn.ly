@@ -1,8 +1,8 @@
-\version "2.18.2"
+\version "2.20.0"
 
 AltOn =
 #(define-music-function
-  (parser location mag)
+  (mag)
   (number?)
   #{
     \override Stem.length = #(* 7.0 mag)
@@ -24,7 +24,7 @@ AltOff = {
 
 withAlt =
 #(define-music-function
-     (parser location mag music)
+     (mag music)
      (number? ly:music?)
    #{
      \override Stem.length = #(* 7.0 mag)

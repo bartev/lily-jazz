@@ -1,8 +1,8 @@
-\version "2.18.2"
+\version "2.20.0"
 
 manualBeam = 
 #(define-music-function
-  (parser location beg-end)
+  (beg-end)
   (pair?)
   #{
     \once \override Beam.positions = #beg-end

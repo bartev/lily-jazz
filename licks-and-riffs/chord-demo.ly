@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % Part of tests-0-multiple.ly
 
@@ -35,7 +35,7 @@ testchords = \chordmode {
   bes _"bes"			
   c:6 _"c:6"
   c:6.9 _"c:6.9"		
-  c:5.9 _"c:5.9"
+  c:3.5.9 _"c:3.5.9"
   \break
   c:maj _"c:maj" 
   c:maj7.5- _"c:maj7.5-"	

@@ -3,7 +3,7 @@
 % ****************************************************************
 \sourcefilename "/home/gub/NewGub/gub/target/linux-x86/src/lilypond-git.sv.gnu.org--lilypond.git-stable-2.20/input/regression/accidental-cautionary.ly"
 \sourcefileline 0
-\version "2.17.6"
+\version "2.20.0"
 \header {
 
 texidoc = "Cautionary accidentals may be indicated using either

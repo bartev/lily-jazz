@@ -1,22 +1,9 @@
-\version "2.18.2"
+\version "2.20.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
-
-\paper {
-  #(set-paper-size "letter")
-  indent = 15\mm
-  between-system-space = 2.5\cm
-  between-system-padding = #0
-  %%set to ##t if your score is less than one page:
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  markup-system-spacing = #'((basic-distance . 23)
-                             (minimum-distance . 8)
-                             (padding . 1))
-}
 
 title = #"There Will Never Be Another You"
 composer = #"Warren/Gordon"
@@ -31,10 +18,10 @@ realBookTitle = \markup {
       s^\markup{
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
-          \fontsize #7
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger #title
+          \fontsize #5
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
@@ -49,11 +36,27 @@ realBookTitle = \markup {
   }
 }
 
-
 \header {
   title = \realBookTitle
   tagline = ##f
   copyright = \copyright
+}
+
+\paper {
+  #(set-paper-size "letter")
+  top-margin = 0.5\in
+  bottom-margin = 0.5\in
+  left-margin = 0.5\in
+  right-margin = 0.5\in
+  indent = 15\mm
+  between-system-space = 2.\cm
+  between-system-padding = #0
+  %%set to ##t if your score is less than one page:
+  ragged-last-bottom = ##t
+  ragged-bottom = ##f
+  markup-system-spacing = #'((basic-distance . 23)
+                             (minimum-distance . 8)
+                             (padding . 1))
 }
 
 quest = \mark \markup {\small \with-color #red "questionable"}
@@ -63,16 +66,22 @@ global = {
   \numericTimeSignature
   \time 4/4
   \tempo 4=210
+  % make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  % make only the first time signature visible
+  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  % allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
 }
 
 chords_twnbay_partial = \chordmode {
-  \partial 4 s4 | 
+  \partial 4 s4 |
 }
 
 chords_twnbay = \chordmode {
   ees1:maj7 | ees1:maj7 | d:m7.5- | g:7.9- |
   \break
-  c:m7 | c:m7 | bes:m7 | ees:7 | 
+  c:m7 | c:m7 | bes:m7 | ees:7 |
   \break
   aes:maj7 | f2:m7.5- bes:7 | ees1:maj7 | c:m7 |
   \break
@@ -80,7 +89,7 @@ chords_twnbay = \chordmode {
   \break
   ees:maj7 | ees:maj7 | d:m7.5- | g:7.9- |
   \break
-  c:m7 | c:m7 | bes:m7 | ees:7 | 
+  c:m7 | c:m7 | bes:m7 | ees:7 |
   \break
   aes:maj7 | f2:m7.5- bes:7 | ees1:maj7 | g2:m7 c:7 |
   \break
@@ -167,7 +176,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   e8 d e2 r8 f8
   \mark \markup{\small \with-color #red "11sec"}
   g8 r8 g4 e8 d c b~
-  b8 a b4 c8 b a gis 
+  b8 a b4 c8 b a gis
   \break
 
   \mark \markup{\small \with-color #red "13sec"}
@@ -184,7 +193,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   \break
 
   c4 r4 r2
-  \tuplet 6/2 {r8 c8 d e8 g a} c8 a r8 c8 a8 r8 
+  \tuplet 6/2 {r8 c8 d e8 g a} c8 a r8 c8 a8 r8
   \mark \markup{\small \with-color #red "24sec"}
   c2. r8 g,8
   \tuplet 3/2 {bes8 d f} bes8 g a fis g e
@@ -193,12 +202,12 @@ eflat_head_twnbay_konitz = \relative c'' {
   \tuplet 3/2 {d16 e d} c8~ c4 r2
   \mark \markup{\small \with-color #red "27sec"}
   r4 r8 d8 ees d c a
-  d8 c~ c8 r8 r8 fis8 g8 fis 
+  d8 c~ c8 r8 r8 fis8 g8 fis
   b8 a fis2 r4
   \break
 
   \mark \markup{\small \with-color #red "31sec"}
-  b8 a g c~ c4 b8 a 
+  b8 a g c~ c4 b8 a
   g e c a gis'4~ gis8 g
   gis8 g~ g4 r2
   r2 r8 e8 d c~
@@ -210,21 +219,21 @@ eflat_head_twnbay_konitz = \relative c'' {
   \mark \markup{\small \with-color #red "35sec"}
   c4 r4 r4 r8 c8
   e8 c d c a c e g
-  d8 dis e c b a g a 
+  d8 dis e c b a g a
   ais8 e~ e2 r4
 
   \mark \markup{\small \with-color #red "~39sec"}
   r1
-  r4 r8 e'8 dis e g r8 
-  bes4 r4 r8 e,8 d e 
+  r4 r8 e'8 dis e g r8
+  bes4 r4 r8 e,8 d e
   d8 ees e c a c e g
 
   \mark \markup{\small \with-color #red "~44sec"}
   a8 bes c4 d8 e d8 c8~
   \mark \markup{\small \with-color #red "~45sec"}
-  c4 aes8 g f fis g f 
+  c4 aes8 g f fis g f
   \tuplet 3/2 {e8 f e} d8 c8 b\quest c e g
-  b8 c16 b a8 b~ b4 g8 e~ 
+  b8 c16 b a8 b~ b4 g8 e~
 
   \mark \markup{\small \with-color #red "~49sec"}
   e4. r8 r4 r4
@@ -236,8 +245,8 @@ eflat_head_twnbay_konitz = \relative c'' {
   \mark \markup{\small \with-color #red "~53sec"}
   bes2 a8 bes? a8 gis8
   g8 e c a gis' e c a
-  e'2 r4 r4 
-  r4 r8 c8 d c d c 
+  e'2 r4 r4
+  r4 r8 c8 d c d c
 
 
   \mark \markup{\small \with-color #red "~57sec"}
@@ -284,10 +293,10 @@ eflat_head_twnbay_konitz = \relative c'' {
   s1 s1 s1 s1 \break
 
   \mark \markup{\small \with-color #red "~1:29"}
-  s1 s1 
+  s1 s1
   \mark \markup{\small \with-color #red "get this"}
-  r4 r8 g8 a16 b32 a g8~ g4 
-  r2 r4 r8 a8 
+  r4 r8 g8 a16 b32 a g8~ g4
+  r2 r4 r8 a8
   \break
 
   \mark \markup{\small \with-color #red "~1:32"}
@@ -296,10 +305,10 @@ eflat_head_twnbay_konitz = \relative c'' {
   b8 c b g a r8 d8 b
   g8 r8 r4 r2
 
-   \break
+  \break
 
   \mark \markup{\small \with-color #red "~1:37"}
-  c8 b c a8~ a r8 d8 c 
+  c8 b c a8~ a r8 d8 c
   d8 b~ b r8 r2
   s1 s1 \break
 
@@ -307,61 +316,70 @@ eflat_head_twnbay_konitz = \relative c'' {
   s1 s1 s1 s1
 
 }
-                  
+
 
 % E flat instruments
 
 eflat_konitz = \score {
- << 
- \new ChordNames \transpose ees, c {
-   \chords_twnbay_partial
-   \chords_twnbay 
-   \chords_twnbay
-   \chords_twnbay}
-  \new Staff \with {
-    instrumentName = "Alto-Konitz"
-    midiInstrument = "alto sax"
-  } \eflat_head_twnbay_konitz
-   >>
-   \layout {}
-   % \midi {}
+  <<
+    \new ChordNames \transpose ees, c {
+      \chords_twnbay_partial
+      \chords_twnbay
+      \chords_twnbay
+      \chords_twnbay
+    }
+    \new Staff \with {
+      instrumentName = "Alto-Konitz"
+      midiInstrument = "alto sax"
+    } \eflat_head_twnbay_konitz
+  >>
+  \layout {}
+  % \midi {}
 }
 
 % \pageBreak
 
 eflat_konitz_plus_rb = \score {
   <<
-  \new ChordNames \transpose ees, c {
-    \chords_twnbay_partial 
-    \chords_twnbay 
-    \pageBreak
-    \chords_twnbay
-    \pageBreak
-    \chords_twnbay
-  }
-  \new Staff \with {
-    instrumentName = \markup {\column {"Alto"
-      \line {"Konitz"}}}
-  } \eflat_head_twnbay_konitz
-  \new Staff \with {
-    instrumentName = \markup { \column {"Alto"
-      \line {"Real Book"}}}
-  } \transpose ees, c \head_twnbay
-  % \new Staff \transpose ees c \chords_twnbay
-   >>
+    \new ChordNames \transpose ees, c {
+      \chords_twnbay_partial
+      \chords_twnbay
+      \pageBreak
+      \chords_twnbay
+      \pageBreak
+      \chords_twnbay
+    }
+    \new Staff \with {
+      instrumentName = \markup {
+        \column {
+          "Alto"
+          \line {"Konitz"}
+        }
+      }
+    } \eflat_head_twnbay_konitz
+    \new Staff \with {
+      instrumentName = \markup {
+        \column {
+          "Alto"
+          \line {"Real Book"}
+        }
+      }
+    } \transpose ees, c \head_twnbay
+    % \new Staff \transpose ees c \chords_twnbay
+  >>
 }
 
 % \pageBreak
 
 eflat_rb = \score {
   <<
-  \new ChordNames \transpose ees, c {
-    \chords_twnbay_partial
-    \chords_twnbay
-  }
-  \new Staff \with {
-    instrumentName = \markup {"RB-E" \smaller \flat}
-  } \transpose ees, c \head_twnbay
+    \new ChordNames \transpose ees, c {
+      \chords_twnbay_partial
+      \chords_twnbay
+    }
+    \new Staff \with {
+      instrumentName = \markup {"RB-E" \smaller \flat}
+    } \transpose ees, c \head_twnbay
   >>
 }
 
@@ -371,10 +389,10 @@ eflat_rb = \score {
 
 rb = \score {
   <<
-  \new ChordNames {\chords_twnbay_partial \chords_twnbay}
-  \new Staff \with {
-    instrumentName = "Real Book-C"
-  } \head_twnbay
+    \new ChordNames {\chords_twnbay_partial \chords_twnbay}
+    \new Staff \with {
+      instrumentName = "Real Book-C"
+    } \head_twnbay
   >>
 }
 
@@ -384,10 +402,10 @@ rb = \score {
 
 rb_chords = \score {
   <<
-  \new ChordNames {\chords_twnbay_partial \chords_twnbay}
-  \new Staff \with {
-    instrumentName = "C instr"
-  } {\chords_twnbay_partial \chords_twnbay}
+    \new ChordNames {\chords_twnbay_partial \chords_twnbay}
+    \new Staff \with {
+      instrumentName = "C instr"
+    } {\chords_twnbay_partial \chords_twnbay}
   >>
 }
 
@@ -397,19 +415,19 @@ rb_chords = \score {
 
 eflat_chords = \score {
   <<
-  \new ChordNames \transpose ees, c {
-    \chords_twnbay_partial 
-    \chords_twnbay
-  }
-  \new Staff \with {
-    instrumentName = \markup {"E" \smaller \flat "instr"}
-  } \transpose ees c {\chords_twnbay_partial \chords_twnbay}
+    \new ChordNames \transpose ees, c {
+      \chords_twnbay_partial
+      \chords_twnbay
+    }
+    \new Staff \with {
+      instrumentName = \markup {"E" \smaller \flat "instr"}
+    } \transpose ees c {\chords_twnbay_partial \chords_twnbay}
   >>
 }
 
 % Just choose 1 style to print
 
-% \rb
+\rb
 % \pageBreak
 % \rb_chords
 % \eflat_chords

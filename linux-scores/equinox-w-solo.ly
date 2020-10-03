@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 #(set-global-staff-size 24)
 \include "jazzchords.ily"
@@ -7,8 +7,8 @@
 
 \paper {
   #(set-paper-size "letter")
-%  paper-height = 11\in
-%  paper-width = 8.5\in
+  %  paper-height = 11\in
+  %  paper-width = 8.5\in
   indent = 0\mm
   between-system-space = 2.5\cm
   between-system-padding = #0
@@ -34,9 +34,9 @@ realBookTitle = \markup {
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
           \fontsize #8
-            \override #'(offset . 7)
-            \override #'(thickness . 6)
-            \underline \larger \larger #title
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger \larger #title
           \fontsize #1 \lower #1 \concat { #composer " " }
         }
       }
@@ -82,7 +82,7 @@ theNotes = \relative c'' {
   \showStartRepeatBar \bar "[|:"
   \mark \default
   \headNotesOnly
- }
+}
 
 theBassLine = \relative c {
   \clef bass
@@ -100,7 +100,7 @@ theBassLine = \relative c {
   c4. c8 ~ c4 c4 ~ |
   c1 |
   aes1 | \break
-  
+
   g1 |
   c4. c8 ~ c4 c4 ~ |
   c2 g4 bes | \break
@@ -117,7 +117,7 @@ theChords = \chordmode {
   f1:m7 | \break
   c1:m7 |
   c1:m7 |
-  aes:7 | \break  
+  aes:7 | \break
   g1:7  |
   c1:m7 |
   c1:m7 | \break
@@ -185,7 +185,7 @@ thirdTime = \relative c'' {
   \repeat unfold 8 { s1 }
 }
 
-emptyLines = { 
+emptyLines = {
   \repeat unfold 12 { s1 }
 }
 
@@ -201,7 +201,7 @@ emptyLines = {
       \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
       \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
       \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
-    }   
+    }
   }
   \pageBreak
   \score {

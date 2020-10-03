@@ -1,7 +1,10 @@
-\documentclass[a4paper]{article}
+\documentclass[letterpaper]{article}
+
+\usepackage[margin=0.5in]{geometry}
 
 \begin{document}
 
+\noindent
 Documents for \verb+lilypond-book+ may freely mix music and text.
 For example,
 
@@ -11,8 +14,10 @@ For example,
 }
 \end{lilypond}
 
-Options are put in brackets.
+\noindent
+Options are put in square brackets.
 
+\noindent
 \begin{lilypond}[fragment,quote,staffsize=26,verbatim]
   c'4 f16
 \end{lilypond}
@@ -20,9 +25,60 @@ Options are put in brackets.
 Larger examples can be put into a separate file, and introduced with
 \verb+\lilypondfile+.
 
-\lilypondfile[quote,noindent]{screech-and-boink.ly}
+
+% \newpage
+% \newgeometry{
+%   left=0.5in,
+%   top=0.25in,
+%   right=0.5in,
+%   bottom=0.35in
+% }
+% \noindent
+% \lilypondfile[noindent]{there-will-never-be-another-you.ly}
+% \restoregeometry
+
+% \newpage
+% \newgeometry{
+%   left=0.5in,
+%   top=0.25in,
+%   right=0.5in,
+%   bottom=0.35in
+% }
+% \noindent
+% \lilypondfile[noindent]{sugar.ly}
+% \restoregeometry
 
 (If needed, replace @file{screech-and-boink.ly} by any @file{.ly} file
 you put in the same directory as this file.)
+
+\noindent
+A silly snippet
+% \lilypond[quote, fragment, staffsize=11]{ d8 b c4 e g } 
+
+% \begin{lilypond}[fragment]
+%   \relative c'' { d8 b c4 e g } 
+% \end{lilypond}
+
+\noindent
+A book part
+
+\begin{lilypond}
+  \book{
+    \header{
+      title = "A scale in LilyPond"
+    }
+    \relative c' {
+      c d e f g a b c
+    }
+  }
+\end{lilypond}
+
+
+\def\betweenLilyPondSystem#1{\endinput}
+
+\begin{lilypond}[fragment, ragged-right]
+  c'1\( e'( c'~ \break c' d) e f\)
+\end{lilypond}
+
 
 \end{document}

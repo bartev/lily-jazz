@@ -1,12 +1,14 @@
-\version "2.18.2"
+\version "2.20.0"
 
 displayBarNum =
 #(define-music-function
-  (parser location)
+  ()
   ()
   (if (eq? #t (ly:get-option 'display-bar-numbers))
       #{ \once \override Score.BarNumber.break-visability = ##f #}
       #{#}))
+
+
 
 theNotes = \relative c' {
   \key c \major

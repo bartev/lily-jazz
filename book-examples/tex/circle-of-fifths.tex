@@ -1,0 +1,127 @@
+% \documentclass[margin=0.5cm]{article}
+
+% \usepackage{musixtex}
+% \usepackage{tikz}
+
+% % \usepackage{musictex}
+
+% \newcommand{\romansub}[2]{\ensuremath{\mbox{\textbf{#1}}_{\mbox{#2}}}}
+% \begin{document}
+
+\section{Circle of Fifths}
+\label{sec:circ_fifths}
+
+% {\Huge\textbf{Circle of Fifths}}
+% \vspace{1cm}
+
+\noindent 
+\begin{tikzpicture}[scale=0.8]
+  
+  \pgfmathsetmacro{\CircROne}{4.}
+  \pgfmathsetmacro{\CircRTwo}{6.5}
+  \pgfmathsetmacro{\CircRThree}{7.75}
+  \pgfmathsetmacro{\CircRFour}{8.3}
+  \pgfmathsetmacro{\CircRFive}{9.3}
+
+  \pgfmathsetmacro{\MusicR}{5.2}
+  \pgfmathsetmacro{\InnerLabelR}{3.2}
+  \pgfmathsetmacro{\OuterLabelR}{7.}
+  \pgfmathsetmacro{\ModeLabelR}{8.2}
+
+  % The Grid
+
+  \draw (0,0) circle (\CircROne);
+  \draw (0,0) circle (\CircRTwo);
+  \draw (0,0) circle (\CircRThree);
+
+  % The Colored lines for Major/Minor/Diminished 
+
+  % each wedge is 30 degrees
+  % measure degrees from x axis, going CCW
+  % \draw [blue, ultra thick,domain=135:45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw [red, ultra thick,domain=45:-45] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw [teal, ultra thick,domain=-45:-75] plot ({cos(\x)*\CircRFour}, {sin(\x)*\CircRFour});
+  % \draw[thick,red] ([shift=(-30:\CircRFour)]0,0) arc (-1*360/12:5.5*360/12:\CircRFour);
+
+  \draw[thick,double=blue!40!white, double distance=1cm, line width=0pt] ([shift=(135:\CircRFour)] 0,0) arc (135:45:\CircRFour);
+  \draw[thick,double=red!40!white, double distance=1cm, line width=0pt] ([shift=(45:\CircRFour)] 0,0) arc (45:-45:\CircRFour);
+  \draw[thick,double=green!40!white, double distance=1cm, line width=0pt] ([shift=(-45:\CircRFour)] 0,0) arc (-45:-75:\CircRFour);
+
+
+  \foreach \X in {0, 1, ...,12}
+  {
+    % Draw radial lines from center to edge of \CircRTwo
+    \draw (0,0) --++(75-\X * 360 / 12:\CircRThree);
+  }
+
+  % The Music
+  \foreach \X in {-6,-5,...,5}
+  {
+    \begin{scope}[shift={(90 - \X * 360 / 12: \MusicR)}, xshift=0.1cm]
+      \clip (-1.4, -1) rectangle (0.9,1);
+      \draw (0,0) node
+      {
+        \begin{music}
+          \generalsignature{\X}
+          \nostartrule
+          \startextract
+          \notes\en
+          \zendextract
+        \end{music}
+      };
+    \end{scope}
+  }
+
+  % inner labels
+  \foreach \X/\KeyText in {-4/F, -3/C, -2/G, -1/D, 0/A, 1/E, 2/B, 3/F$\sharp$, 4/C$\sharp$}
+  {
+    \draw (90 - \X * 360 / 12 : \InnerLabelR) node {\KeyText~m};
+  }
+
+  \draw (90 - 5 * 360/12:\InnerLabelR) node [align=center] {A$\flat$ m\\ G$\sharp$ m};
+  \draw (90 + 6 * 360/12:\InnerLabelR) node [align=center] {D$\sharp$ m\\ E$\flat$ m};
+  \draw (90 + 5 * 360/12:\InnerLabelR) node [align=center] {A$\sharp$ m\\ B$\flat$ m};
+
+  % outer labels
+  \foreach \X/\KeyText in {-4/A$\flat$, -3/E$\flat$, -2/B$\flat$, -1/F, 0/C, 1/G, 2/D, 3/A}
+  {
+    \draw (90 - \X * 360 / 12 : \OuterLabelR) node {\KeyText};
+  }
+
+  \draw (90 - 4 * 360/12:\OuterLabelR) node [align=center] {E\\F$\flat$};
+  \draw (90 - 5 * 360/12:\OuterLabelR) node [align=center] {B\\C$\flat$};
+  \draw (90 + 5 * 360/12:\OuterLabelR) node [align=center] {D$\flat$\\ C$\sharp$};
+  \draw (90 + 6 * 360/12:\OuterLabelR) node [align=center] {F$\sharp$\\ G$\flat$};
+
+  % modes
+  \foreach \X/\ModeText in {
+    -1/\romansub{IV}{perfect fourth}, 
+    0/\romansub{I}{root}, 
+    1/\romansub{V}{perfect fifth}, 
+    2/\romansub{ii}{}, 
+    3/\romansub{vi}{}, 
+    4/\romansub{iii}{}, 
+    5/\romansub{vii}{dim}?
+  }
+  {
+    \draw (90 - \X * 360 /12: \ModeLabelR) node[rotate=(- \X * 360 / 12)] {\ModeText};
+  }
+
+  % names of modes
+  \foreach \X/\ModeText in {
+    -1/lydian,
+    0/ionian (major),
+    1/mixolydian,
+    2/dorian,
+    3/aeolian (natural minor),
+    4/phrygian,
+    5/locrian
+  }
+  {
+    \draw (90 - \X * 360 /12: \CircRFive) node[rotate=(- \X * 360 / 12)] {\ModeText};
+  }
+
+\end{tikzpicture}
+
+
+% \end{document}

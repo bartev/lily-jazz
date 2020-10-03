@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.20.0"
 
 % https://lilypondblog.org/2014/04/music-functions-3-reusing-code/
 
@@ -12,21 +12,21 @@
 
 
 colorGrob =
-#(define-music-function (parser location my-grob my-color)
+#(define-music-function (my-grob my-color)
 (symbol? color?)
 #{
  \temporary \override #my-grob #'color = #my-color
 #})
 
 uncolorGrob = 
-#(define-music-function (parser location my-grob)
+#(define-music-function (my-grob)
 (symbol?)
 #{
 \revert #my-grob #'color
 #})
 
 colorMusic =
-#(define-music-function (parser location my-color music)
+#(define-music-function (my-color music)
    (color? ly:music?)
    #{
      \colorGrob NoteHead #my-color
@@ -86,7 +86,7 @@ music = \relative c' {
 % so, we'll need to use recursion
 
 % colorGrobs = 
-% #(define-music-function (parser location my-grob-list my-color)
+% #(define-music-function (my-grob-list my-color)
 %  (symbol-list? color?)
 %  #{
 
