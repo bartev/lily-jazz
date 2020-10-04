@@ -11,7 +11,7 @@
 \include "roman_numeral_analysis_tool.ily"
 
 title = #"Yardbird Suite"
-composer = #"Charlie Prker"
+composer = #"Charlie Parker"
 meter = "224"
 copyright = #""
 
