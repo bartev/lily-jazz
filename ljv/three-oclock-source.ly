@@ -106,9 +106,9 @@ ysChords = \chordmode {
   fis1:m7 b1:7 e1:m7 a1:7
 
   \repeat unfold 4 { d1:6 }
-  d1:6 d1:7+ \repeat unfold 2 { g1:6 }
-  g2:maj7 g2:7 gis1:dim d1:7
-  fis2:m7 b:7 e1:m7 a1:7.9 d1:6
+  d1:6 d1:7.5+ \repeat unfold 2 { g1:6 }
+  g2:maj7 g2:7 gis1:dim d1:7 fis2:m7 b:7
+  e1:m7 a1:7.9- d1:6 d1:6
 }
 
 % #(define-markup-command (rN2 layout props symbols) (markup-list?) (rN symbols))
@@ -228,28 +228,89 @@ ysArpeg = \relative c'' {
   \break
 }
 
-ysHead = \relative c''' {
+ysHead = \relative c' {
   % Head
   \bar ".|"
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \bar "||"
+  \set Score.currentBarNumber = #1
+  d4 r4 r4 c8 d~
+  d2 fis4 a
+  e'2. ees8 d~
+  d4 r4 r2
+  \break
 
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
+  c8 d8-- r4 r4 b8 a~
+  a2 r4 c,8 cis~
+  cis2 r2
+  r2 r4 a'8 e~
+  \break
+
+  e4 r4 r4 dis8 e~
+  e2 g4 b
+  fis'8 fis4.~ fis4 f8 e~
+  e4 r4 r2
+  \break
+
+  r4 r8 d8 cis4  e
+  d8 d4.~ d4 b8 a
+  r8 a8~ a4 r4 a8 b
+  d8 c~ c4 a8 g~ g4
+  \bar "||"
+  \break
+
+  % 2nd 16
+  d4 r4 r4 cis8 d~
+  d4. r8 fis4 a
+  e'2. ees8 d~
+  d2 r2
+  \break
+
+  r4 r8 d8 cis4 d
+  e4 d ais4. b8~
+  b4 r8 fis16 a gis8 b,~ b4
+  r1
+  \break
+
+  b'4. ais8 b4 cis8 d~
+  d2~ \tuplet 3/2 { d4 cis b }
+  d8 d4.~ d4 a8 fis~
+  fis2 r8 g r8 a8
+  \break
+
+  \override Glissando.style = #'zigzag
+  fis'8 fis4.~ fis2 \glissando
+  cis1
+  fis2 d2
+  e2 a,2
+  \break
   \bar "|."
+  \pageBreak
 
   % Solo - chorus 1
   \bar ".|"
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
+  d8 d d d d d r4
+  d4 r8 d8 \tuplet 3/2 { cis4 b cis }
+  d8 a r8 a8 a2
+  r2 r4 r8 a8
+  \break
+
+  d8 e fis g a fis g( a16 g
+  fis8 ) d b g gis f' e d
+  \tuplet 3/2 { cis16 d cis } b8 a aes g b, d fis
+  r8 e4. r4 e8 fis
+  \break
+
+  \tuplet 3/2 { g8 a fis } \tuplet 3/2 { g8 e4 } e4 r4  
+  r8 a8 r8 b8 cis d b cis
+  a8 a r4 r4 e'8 fis
+  g8 b, d fis e d cis b
+  \break
+
+  \grace { cis16 } d4 b8 g fis e~ e4
+  d'4 bes8 a g a bes d
+  cis8 a b cis a fis~ fis4
+  r4 e16 g b d a'8 fis~ fis4
   \bar "||"
+  \break
 
   \repeat unfold 4 { s1 } \break
   \repeat unfold 4 { s1 } \break
@@ -281,12 +342,14 @@ headAndSolo = \score {
     % \new Lyrics \repeat unfold 2 { \analysis }
 
     \new ChordNames {
-      % \repeat unfold 4 { s1 }
       \new ChordNames { s1*4 }
+
       \repeat unfold 2 \ysChords
     }
 
     {
+      \tempo "Swing" 4 = 146
+
       \global
       \numericTimeSignature
       \override Score.MultiMeasureRest.expand-limit = 1
