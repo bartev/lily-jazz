@@ -4,7 +4,7 @@
 % Dexter Gordon
 
 % set to 18 to fit entire head and title on 1 page
-#(set-global-staff-size 18)
+#(set-global-staff-size 19)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -60,7 +60,8 @@ global = {
 
 \header {
   title = \realBookTitle
-  tagline = ##f
+  % tagline = ##f
+  tagline = "Transposed by Bartev"
   copyright = \copyright
 }
 
@@ -98,7 +99,7 @@ global = {
 % \chords { … } is a shortcut notation for \new ChordNames \chordmode { … }.
 % http://lilypond.org/doc/v2.19/Documentation/notation/displaying-chords
 
-ysChords = \chordmode {
+tocmChords = \chordmode {
   % \mark #1
   \repeat unfold 4 { d1:6 }
   d1:6 fis2:m7 b:7 e1:m7 a1:7
@@ -115,56 +116,48 @@ ysChords = \chordmode {
 
 analysis = \lyricmode {
   \override LyricText #'font-name = #"serif"
-  \set stanza = \markup \keyIndication { A }
+  \set stanza = \markup \keyIndication { D }
   \markup \rN { I 6 }1
-  \markup \rN { iv - 7 }2
-  \markup \rN { flatVII 7 }2
-  \markup \rN { I 7 }2 \markup \rN { flatVII 7 }2
-  \markup \rN { VI 7 }1
-  \markup \rN { ii 7 }1
-  \markup \rN { V 7 }1
-  \markup \rN { iii - }2
-  \markup \rN { VI 7 }2
-  \markup \rN { ii - 7 }2
-  \markup \rN { V 7 }2
+  \markup \rN { I 6 }1
+  \markup \rN { I 6 }1
+  \markup \rN { I 6 }1
 
-  \set stanza = \markup \keyIndication { A }
-  \markup \rN { I }1
-  \markup \rN { iv - 7 }2
-  \markup \rN { flatVII 7 }2
-  \markup \rN { I 7 }2 \markup \rN { flatVII 7 }2
-  \markup \rN { VI 7 }1
-  \markup \rN { ii 7 }1
+  \markup \rN { I 6 }1
+  \markup \rN { iii - 7 }2 \markup \rN { VI 7 }2
+  \markup \rN { ii - 7 }1
   \markup \rN { V 7 }1
-  \markup \rN { I 7 }
-  \markup \rN { I }2
-  \markup \rN { flatI 7+9 }2
 
-  \set stanza = \markup \keyIndication { C-sharp }
-  \markup \rN { I - }1
-  \markup \rN { ii h }2
-  \markup \rN { V 7+9 }2
-  \markup \rN { I - }1
-  \markup \rN { IV 7 }1
-  \markup \rN { vii - 7 }1
-  \markup \rN { I h }2
-  \markup \rN { IV 7 }2
-  \markup \rN { VII 7 }1
-  \markup \rN { VII 7 }2
-  \markup \rN { fVII 7 }2
-
-  \set stanza = \markup \keyIndication { A }
-  \markup \rN { I }1
-  \markup \rN { iv - 7 }2
-  \markup \rN { flatVII 7 }2
-  \markup \rN { I 7 }2 \markup \rN { flatVII 7 }2
-  \markup \rN { VI 7 }1
-  \markup \rN { ii 7 }1
+  \markup \rN { ii - 7 }1
   \markup \rN { V 7 }1
-  \markup \rN { iii - 7 }2
-  \markup \rN { VI 7 }2
-  \markup \rN { ii - 7 }2
-  \markup \rN { V 7 }2
+  \markup \rN { ii - 7 }1
+  \markup \rN { V 7 }1
+
+  \markup \rN { iii - 7 }1
+  \markup \rN { VI 7 }1
+  \markup \rN { ii - 7 }1
+  \markup \rN { V 7 }1
+
+
+  \set stanza = \markup \keyIndication { D }
+  \markup \rN { I 6 }1
+  \markup \rN { I 6 }1
+  \markup \rN { I 6 }1
+  \markup \rN { I 6 }1
+
+  \markup \rN { I 6 }1
+  \markup \rN { I 7+5 }1
+  \markup \rN { IV 6 }1
+  \markup \rN { IV 6 }1
+
+  \markup \rN { IV maj7 }2  \markup \rN { IV 7 }2
+  \markup \rN { sIV dim }1
+  \markup \rN { I 7 }1
+  \markup \rN { iii - 7 }2 \markup \rN { VI 7 }2
+
+  \markup \rN { ii - 7 }1
+  \markup \rN { V 7 }1
+  \markup \rN { I 6 }1
+  \markup \rN { I 6 }1
 
 }
 
@@ -228,23 +221,23 @@ ysArpeg = \relative c'' {
   \break
 }
 
-ysHead = \relative c' {
+tocmHead = \relative c' {
   % Head
   \bar ".|"
   \set Score.currentBarNumber = #1
-  d4 r4 r4 c8 d~
+  d4 r4 r4 cis8 d~
   d2 fis4 a
   e'2. ees8 d~
   d4 r4 r2
   \break
 
-  c8 d8-- r4 r4 b8 a~
+  cis8 d8-- r4 r4 b8 a~
   a2 r4 c,8 cis~
   cis2 r2
   r2 r4 a'8 e~
   \break
 
-  e4 r4 r4 dis8 e~
+  e2 r4 dis8 e~
   e2 g4 b
   fis'8 fis4.~ fis4 f8 e~
   e4 r4 r2
@@ -266,7 +259,7 @@ ysHead = \relative c' {
 
   r4 r8 d8 cis4 d
   e4 d ais4. b8~
-  b4 r8 fis16 a gis8 b,~ b4
+  b4 r8 fis16 a g8 b,~ b4
   r1
   \break
 
@@ -287,9 +280,10 @@ ysHead = \relative c' {
 
   % Solo - chorus 1
   \bar ".|"
+  \mark \markup{\small \with-color #red "1:00"}
   d8 d d d d d r4
-  d4 r8 d8 \tuplet 3/2 { cis4 b cis }
-  d8 a r8 a8 a2
+  d4 r8 d8 \tuplet 3/2 { cis4( b ) cis }
+  d8( a ) r8 a8 a2
   r2 r4 r8 a8
   \break
 
@@ -312,22 +306,71 @@ ysHead = \relative c' {
   \bar "||"
   \break
 
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
+  cis4. b8 cis b r8 e~
+  e4. d8 cis d e fis
+  d8 a g f fis d'~ d4
+  r2 r4 r8 b
+  \break
+
+  d8 b e f fis d a g
+  fis8 d'~ d4 c4 a8 c
+  b8 bes a aes g d cis? c
+  b8 g'~ g4 r4 r8 g
+  \break
+
+  bes8 b c cis d b g e
+  d'2  b8 gis f d
+  fis a b cis e8 d \tuplet 3/2 { cis16 d cis } b8
+  d4 b8 g cis4 r8 fis,8
+  \break
+
+  cis'8 b cis b fis e fis \xNote { e }
+  c'8 bes c bes f ees f \xNote { ees }
+  b'4. a8 b a e e~
+  e4 r4 r8 e4.
   \bar "|."
+  \pageBreak
+
+  % % Solo - chorus 2
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break
+
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break
 
 }
 
-ysScaleDegrees = \lyrics {
-  \markup \rN { "" }8
+tocmScaleDegrees = \lyrics {
+  % "" * 4
+  \markup \rN { 1 }4
+  "" ""
+  \markup \rN { f7 }8
+  \markup \rN { 1 }
+  ""2
+  \markup \rN { 3 }4
+  \markup \rN { 5 }
+  
+  \markup \rN { 2 }2.
+  \markup \rN { f2 }8
   \markup \rN { 1 }4.
-  \markup \rN { 5 }4
-  \markup \rN { 6 }4
-  \markup \rN { 4 }4.
-  \markup \rN { f3 }8
-  \markup \rN { f7 }
+  ""2.
+  \markup \rN { 7 }8
+  \markup \rN { 1 }
+  ""2
+  \markup \rN { 6 }8
+  \markup \rN { 5 }
+
+  \markup \rN { 3 }2
+  ""4
+  \markup \rN { f2 }8
+  \markup \rN { 2 }8
+
+  \markup \rN { 6 }2
+  ""2
 
 }
 
@@ -339,12 +382,12 @@ ysScaleDegrees = \lyrics {
 
 headAndSolo = \score {
   <<
-    % \new Lyrics \repeat unfold 2 { \analysis }
+    \new Lyrics { R1*4 \repeat unfold 2 { \analysis } }
 
     \new ChordNames {
       \new ChordNames { s1*4 }
 
-      \repeat unfold 2 \ysChords
+      \repeat unfold 3 \tocmChords
     }
 
     {
@@ -357,9 +400,9 @@ headAndSolo = \score {
       \inlineMMR R1*4
 
       \bar ".|"
-      \ysHead
+      \tocmHead
     }
-    % \new Lyrics \ysScaleDegrees
+    \new Lyrics { R1*4 \tocmScaleDegrees }
   >>
 }
 
