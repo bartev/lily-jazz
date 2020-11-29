@@ -44,16 +44,16 @@ global = {
 
 rhythmA = \chordmode {
     % \mark "A"
-    bes2:6 g:min7
+    bes2 g:7
     c:min7 f:7
-    d:min7  g:min7
+    bes:min7  g:min7
     c:min7 f:7 
     \break
     
     bes1:7
-    ees2:7 e2:dim7
-    bes2:6 f:7
-    bes:6 f:7
+    g1:7
+    c2:min7 f:7
+    bes1
     \break
 }
 rhythmB = \chordmode { 
@@ -70,16 +70,16 @@ rhythmB = \chordmode {
 analysisA = \lyricmode {
   \override LyricText #'font-name = #"serif"
   \set stanza = \markup \keyIndication { I }
-  \markup \rN { I 6 }2 \markup \rN { vi - 7 }2
+  \markup \rN { I }2 \markup \rN { VI 7 }2
   \markup \rN { ii - 7 }2 \markup \rN { V 7 }2
-  \markup \rN { iii - 7 }2 \markup \rN { vi - 7 }2
+  \markup \rN { I }2 \markup \rN { VI 7 }2
   \markup \rN { ii - 7 }2 \markup \rN { V 7 }2
 
 
   \markup \rN { I 7 }1
-  \markup \rN { IV 7 }2 \markup \rN { sharpIV dim 7 }2
-  \markup \rN { I 6 }2 \markup \rN { V 7 }2
-  \markup \rN { I 6 }2 \markup \rN { V 7 }2
+  \markup \rN { IV 7 }1
+  \markup \rN { ii - 7 }2 \markup \rN { V 7 }2
+  \markup \rN { I }1
 }
 
 analysisB = \lyricmode {

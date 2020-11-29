@@ -9,10 +9,11 @@
 \include "jazzextras.ily"
 \include "roman_numeral_analysis_tool.ily"
 
-\include "rhythm-changes-source.ly"
+\include "rhythm-changes-source-alt.ly"
 
 title = #"Shoe Shine Boy"
 composer = #"Lester Young"
+arranger = "Trans by Bartev (corr. Mollick)"
 meter = "250"
 copyright = #"Bartev 2020-11"
 
@@ -24,6 +25,7 @@ realBookTitle = \markup {
       s^\markup{
         \fill-line {
           \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #1 \concat { #arranger " " }
           \fontsize #5
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -59,12 +61,12 @@ soloShoeShine = \relative c'' {
     d4 bes d bes
     \mark \markup{\small \with-color #red "0:46"}
     a8 d r8 a8 d4 fis8 e
-    d8 b g e  fis e fis4
+    d8 b g e  fis4. d8
     % \break
 
     % 5
     \mark \markup{\small \with-color #red "0:48"}
-    d8 e fis a cis4 r8 b
+    b8 d fis a cis4 r8 b
     a8 fis dis b g' dis? g d
 
     \mark \markup{\small \with-color #red "0:50"}
@@ -83,7 +85,7 @@ soloShoeShine = \relative c'' {
 
     % 13
     \mark \markup{\small \with-color #red "0:56"}
-    d8 e fis a cis b a fis
+    b8 d fis a cis b a fis
     d8 b cis dis fis4 r4
     \mark \markup{\small \with-color #red "0:58"}
     a8 d r8 a8 d4 bes
@@ -98,7 +100,7 @@ soloShoeShine = \relative c'' {
     \mark \markup{\small \with-color #red "1:02"}
     fis4 r4 b8 cis d e16 d
     cis8 b fis d b4 gis'~
- 
+
     % 21
     \mark \markup{\small \with-color #red "1:04"}
     gis4 r b8 cis \tuplet 3/2 {d8 e d}
@@ -106,7 +108,7 @@ soloShoeShine = \relative c'' {
 
     \mark \markup{\small \with-color #red "1:06"}
     gis4 r4 a8 cis e a
-    fis8 d b g e cis d fis
+    fis8 d b g e b d fis
 
     % A
     % 25
