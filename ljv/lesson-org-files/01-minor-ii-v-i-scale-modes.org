@@ -1,0 +1,276 @@
+#+title: Minor scales and modes for ii-v-i progressions
+#+date: 2020-12-28
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+#+LaTeX_HEADER: \documentclass{article}
+#+LaTeX_HEADER: \addtolength{\voffset}{-2.25cm}
+#+LaTeX_HEADER: \usepackage[document]{ragged2e}
+#+LaTeX_HEADER: \usepackage{fancyhdr}
+#+LaTeX_HEADER: \pagestyle{fancy}
+#+LaTeX_HEADER: \fancyhf{}
+#+LaTeX_HEADER: \lhead{Minor scales and modes for ii-v-i progressions}
+#+LaTeX_HEADER: \rhead{Bartev - 2020-12-28}
+#+LaTeX_HEADER: \cfoot{\thepage}
+
+* Comments
+
+These are some scales from the 12-2020 Chad lesson.
+
+* COMMENT Setup
+
+To get a nice pdf, copy the code below into each code block (don't need the version)
+
+Generate the pdf with =C-c C-e l o=
+
+#+name: version-and-paper()
+#+begin_src emacs-lisp :exports none :noweb tangle
+\version "2.20.0"
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+#+end_src
+
+
+* Major scale
+
+The C major scale (Ionian mode)
+
+#+begin_src lilypond :exports results :file c_major.pdf :noweb yes
+
+#(set-global-staff-size 25)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d e f  g a b c
+    d c b a   g f e d
+    c1
+    }
+  >>
+}
+#+end_src
+
+* Natural minor scale (Aeolian mode)
+
+
+The A natural minor is built off the 6th degree of its relative major (C).
+
+It has a $\flat{3}$, $\flat{6}$  and $\flat{7}$  relative to the A major scale.
+
+#+begin_src lilypond :exports results :file a_natural_minor.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    a8 b c  d e f  g a
+    b a g f e d c b
+    a1
+    }
+  >>
+}
+#+end_src
+* Harmonic minor scale (Aeolian $\sharp{7}$)
+
+The A harmonic minor is built off the 6th degree of its relative major (C).
+
+Relative to the A major scale, it has a $\flat{3}$ and $\flat{6}$.
+
+Relative to the A natural minor scale, it has a $\sharp{7}$.
+
+#+begin_src lilypond :exports results :file a_harmonic_minor.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    a8 b c  d e f  gis a
+    b a gis f e d c b
+    a1
+    }
+  >>
+}
+#+end_src
+
+* Melodic minor scale
+
+The A melodic minor is built off the 6th degree of its relative major (C).
+On the way up, it has a $\flat{3}$ relative to the major key, but on the way down it is the same as the natural minor.
+
+Relative to the A major scale, it has a $\flat{3}$ while ascending, and a $\flat{3}$, $\flat{6}$  and $\flat{7}$ while descending
+
+Relative to the A natural minor scale, it has a $\sharp{6}$ and $\sharp{7}$ while ascending only.
+
+#+begin_src lilypond :exports results :file a_melodic_minor.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    a8 b c  d e fis  gis a
+    b a g f e d c b
+    a1
+    }
+  >>
+}
+#+end_src
+* Phrygian mode (natural minor + $\flat{2}$)
+
+The Phrygian mode essentially adds 4 flats.
+
+Relative to the major key, it has a $\flat{2}$, $\flat{3}$, $\flat{6}$  and $\flat{7}$.
+
+Relative to the natural minor, it has a $\flat{2}$.
+
+** Chords
+
+Use with a sus$4\flat{9}$
+
+#+begin_src lilypond :exports results :file a_phrygian_mode.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    a8 bes c  d e f  g a
+    b a g f e d c bes
+    a1
+    }
+  >>
+}
+#+end_src
+* Phrygian dominant (aka Spanish gypsy scale)
+
+The Phrygian dominant has a $\sharp{3}$ relative to the Phrygian mode
+
+Relative to the major key, it has a $\flat{2}$, $\flat{6}$  and $\flat{7}$.
+
+Relative to the natural minor, it has a $\flat{2}$ and $\sharp{3}$.
+
+
+#+begin_src lilypond :exports results :file a_phrygian_dominant.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    a8 bes cis  d e f g a
+    b a g f e d cis bes
+    a1
+    }
+  >>
+}
+#+end_src
+* Locrian
+
+The Locrian mode has 5 flats relative to the major scale.
+
+It has a key signature of a 1/2 step up.
+
+Relative to the major key, it has a $\flat{2}$, $\flat{3}$, $\flat{5}$, $\flat{6}$  and $\flat{7}$.
+
+Relative to the natural minor, it has a $\flat{2}$ and $\flat{5}$.
+
+
+#+begin_src lilypond :exports results :file c_locrian.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    c8 des ees f ges aes bes c
+    des c bes aes ges f ees des
+    c1
+    }
+  >>
+}
+#+end_src
+* Locrian nat 2
+
+The Locrian nat 2 scale is similar to the Locrian mode, but with a raised 2nd.
+
+Relative to the Locrian mode, it has a $\sharp{2}$.
+
+
+#+begin_src lilypond :exports results :file c_locrian_nat_2.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c'' {
+    c8 d ees f ges aes bes c
+    d c bes aes ges f ees d
+    c1
+    }
+  >>
+}
+#+end_src
