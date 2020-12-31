@@ -1,8 +1,11 @@
 #+title: Scale Reference
+#+author: Bartev J. Vartanian
 #+date: 2020-12-31
 #+OPTIONS: timestamp:nil num:nil toc:nil 
-#+LaTeX_HEADER: \documentclass{article}
-#+LaTeX_HEADER: \addtolength{\voffset}{-2.25cm}
+#+LaTeX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letter, 11pt, twoside, twocolumn]
+#+LaTeX_HEADER: \usepackage{geometry}
+#+LaTeX_HEADER: \geometry{margin=1in}
 #+LaTeX_HEADER: \usepackage[document]{ragged2e}
 #+LaTeX_HEADER: \usepackage{fancyhdr}
 #+LaTeX_HEADER: \pagestyle{fancy}
@@ -10,6 +13,16 @@
 #+LaTeX_HEADER: \lhead{Minor scales and modes for ii-v-i progressions}
 #+LaTeX_HEADER: \rhead{Bartev - 2020-12-28}
 #+LaTeX_HEADER: \cfoot{\thepage}
+
+#+begin_src emacs-lisp :exports results :results none :eval export
+
+  ;; https://emacs.stackexchange.com/questions/47347/customizing-org-latex-title-command-to-edit-title-page
+
+
+
+  (make-variable-buffer-local 'org-latex-title-command)
+  (setq org-latex-title-command nil)
+#+end_src
 
 * COMMENT Setup
 
@@ -21,7 +34,7 @@ Generate the pdf with =C-c C-e l o=
 #+begin_src emacs-lisp :exports none :noweb tangle
 \version "2.20.0"
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
@@ -60,10 +73,9 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_natural_minor.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 15)
 
 \paper {
-#(set-paper-size "letter")
 tagline = ##f
 ragged-last-bottom = ##t
 ragged-bottom = ##t
@@ -83,7 +95,7 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_harmonic_minor.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
@@ -107,7 +119,7 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_melodic_minor.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
@@ -130,7 +142,7 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_major_pentatonic.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
@@ -152,7 +164,7 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_minor_pentatonic.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
@@ -174,7 +186,7 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_blues.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
@@ -196,7 +208,7 @@ ragged-bottom = ##t
 
 #+begin_src lilypond :exports results :file c_b_whole_tone.pdf :noweb yes
 
-#(set-global-staff-size 30)
+#(set-global-staff-size 25)
 
 \paper {
 #(set-paper-size "letter")
