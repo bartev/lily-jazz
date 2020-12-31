@@ -1,0 +1,216 @@
+#+title: Scale Reference
+#+date: 2020-12-31
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+#+LaTeX_HEADER: \documentclass{article}
+#+LaTeX_HEADER: \addtolength{\voffset}{-2.25cm}
+#+LaTeX_HEADER: \usepackage[document]{ragged2e}
+#+LaTeX_HEADER: \usepackage{fancyhdr}
+#+LaTeX_HEADER: \pagestyle{fancy}
+#+LaTeX_HEADER: \fancyhf{}
+#+LaTeX_HEADER: \lhead{Minor scales and modes for ii-v-i progressions}
+#+LaTeX_HEADER: \rhead{Bartev - 2020-12-28}
+#+LaTeX_HEADER: \cfoot{\thepage}
+
+* COMMENT Setup
+
+To get a nice pdf, copy the code below into each code block (don't need the version)
+
+Generate the pdf with =C-c C-e l o=
+
+#+name: version-and-paper()
+#+begin_src emacs-lisp :exports none :noweb tangle
+\version "2.20.0"
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+#+end_src
+
+* C Major scale (Ionian mode)
+
+#+begin_src lilypond :exports results :file c_major.pdf :noweb yes
+
+#(set-global-staff-size 25)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d e f  g a b c
+    d c b a   g f e d
+    c2 r2
+    }
+  >>
+}
+#+end_src
+
+* C Natural minor scale (Aeolian mode)
+
+#+begin_src lilypond :exports results :file c_natural_minor.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d ees f g aes bes c
+    d c bes aes g f ees d
+    c2 r2
+    }
+  >>
+}
+#+end_src
+* C Harmonic minor scale
+
+#+begin_src lilypond :exports results :file c_harmonic_minor.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d ees f g aes b c
+    d c b aes g f ees d
+    c2 r2
+    }
+  >>
+}
+#+end_src
+
+* C Melodic minor scale
+
+#+begin_src lilypond :exports results :file c_melodic_minor.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d ees f g a b c
+    d c bes aes g f ees d
+    c2 r2
+    }
+  >>
+}
+#+end_src
+* C major pentatonic
+
+#+begin_src lilypond :exports results :file c_major_pentatonic.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d e g a c r4
+    c8 a g e d c r4
+    }
+  >>
+}
+#+end_src
+* C minor pentatonic
+
+#+begin_src lilypond :exports results :file c_minor_pentatonic.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 ees f g bes c r4
+    c8 bes g f ees c r4
+    }
+  >>
+}
+#+end_src
+* C blues
+
+#+begin_src lilypond :exports results :file c_blues.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 ees f fis g bes c4
+    c8 bes g fis f ees c4
+    }
+  >>
+}
+#+end_src
+* C, B whole tone
+
+#+begin_src lilypond :exports results :file c_b_whole_tone.pdf :noweb yes
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+\score {
+  <<
+  \new Staff \relative c' {
+    c8 d e fis gis ais c4
+    b,8 des ees f g a b4
+    }
+  >>
+}
+#+end_src
