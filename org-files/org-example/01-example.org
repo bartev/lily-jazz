@@ -1,0 +1,35 @@
+#+TITLE: My Title
+#+DATE: 2020-12-31
+#+AUTHOR: Bartev
+
+
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+#+LaTeX_HEADER: \usepackage[cm]{fullpage}
+
+** Pitches
+
+   - Pitch: =a b c d e f g=
+     - Flat: Using English note names, =af bf= etc.
+     - Sharp: Using English note names, =cs ds= etc. 
+
+#+LaTeX: \linebreak
+# #+LaTeX: \begin{center}  %comment
+#+begin_src lilypond :exports both :file pitches.pdf
+ :noweb yes
+  <<version-and-paper>>
+  \include "english.ly"
+  #(set-global-staff-size 14)
+  { c' e' g' fs' a' c'' ef'' d' }
+#+end_src
+
+** Rhythms
+
+#+name: version-and-paper()
+#+begin_src org :exports none
+\version "2.18.2"
+\paper {
+  oddFooterMarkup=##f
+  scoreTitleMarkup=##f
+  indent = 4\cm
+}
+#+end_src

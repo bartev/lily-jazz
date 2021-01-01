@@ -1,0 +1,36 @@
+#+title: My Title
+#+BIND: org-latex-listings-options (("basicstyle" 
+"\\ttfamily\\scriptsize") ("captionpos" "b") ("tabsize" "3")) 
+#+PROPERTY: header-args:lilypond :prologue \header{tagline=##f} 
+#+LATEX_HEADER: \newcommand{\inpcode}[1]{\texttt{#1}} 
+#+LATEX_HEADER: \usepackage{listings} 
+
+#+begin_src emacs-lisp :exports results :results none :eval export
+
+  ;; https://emacs.stackexchange.com/questions/47347/customizing-org-latex-title-command-to-edit-title-page
+
+
+
+  (make-variable-buffer-local 'org-latex-title-command)
+  (setq org-latex-title-command nil)
+#+end_src
+
+(Also customized org-latex-listings to "use listings.") 
+
+Then: 
+
+* Pitches 
+    - Pitch: @@latex:\inpcode{a b c d e f g}@@ 
+      - Flat: Using English note names, @@latex:\inpcode{af bf}@@ etc. 
+      - Sharp: Using English note names, @@latex:\inpcode{cs ds}@@ etc. 
+
+#+name: pitches 
+#+begin_src lilypond -i :exports both :file pitches.pdf
+\include "english.ly" 
+{ c' e' g' fs' a' c'' ef'' d' } 
+#+end_src 
+
+
+* Source
+
+[[http://lilypond.1069038.n5.nabble.com/org-babel-lilypond-export-automatic-image-trimming-td153351.html]]
