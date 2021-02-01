@@ -1,16 +1,17 @@
 \version "2.20.0"
 
+                                % size = 28 -> 10 staves
 #(set-global-staff-size 28)
 
-% Create blank staves
-% http://lilypond.org/doc/v2.19/Documentation/snippets/staff-notation#staff-notation-creating-blank-staves
+                                % Create blank staves
+                                % http://lilypond.org/doc/v2.19/Documentation/snippets/staff-notation#staff-notation-creating-blank-staves
 
 \paper {
   #(set-paper-size "letter")
-  left-margin = 0.5\in
-  right-margin = 0.5\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
+  left-margin = 0.75\in
+  right-margin = 0.75\in
+  top-margin = 1\in
+  bottom-margin = 0.75\in
   ragged-last-bottom = ##f
 }
 
@@ -22,7 +23,7 @@
 
 \score {
   {
-    \repeat unfold 10 { s1 \break }
+    \repeat unfold 12 { s1 \break }
   }
   \layout {
     indent = 0\in
