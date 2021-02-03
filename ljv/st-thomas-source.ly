@@ -112,11 +112,55 @@ myChordAnalysis = \lyricmode {
 mySolo = \relative c'' {
                                 % A
                                 % 1
-    \mark \markup{\small \with-color #red "0:44"}
-    s1 * 4
-    s1 * 4
-    s1 * 4
-    s1 * 4
+  \mark \markup{\small \with-color #red "1st Chorus - 0:56"}
+  r4 r8 e8 a, r8 r4
+  r4 r8 e'8 ais,8 r8 r4
+  r8 e'8 b e r2
+  r8 e8 b e a, e' b e
+
+  \mark \markup{\small \with-color #red "1:00"}
+  a,4 r4 r8 e'8 b4
+  r8 e8 cis r8 r8 e8 ais,8 r8
+  r8 e'8 a,8 r8 r8 e'8 b e
+  a,8 r8 r8 e'8 b e b e
+
+  \mark \markup{\small \with-color #red "1:04"}
+  a,8 r8 r4 r8 e'8 cis e
+  gis8 b d ais cis g e f
+  fis?8 d b e cis d fis a
+  cis?8 d, fis a c g fis ees
+
+  \mark \markup{\small \with-color #red "1:09"}
+  e8 a, a r8 r8 cis' cis, r8
+  r8 e8 d r8 r8 fis dis r8
+  r4 r8 e8 r4 r8 e8
+  r4 r8 e8 r8 e b e
+
+  \pageBreak
+  
+  \mark \markup{\small \with-color #red "2nd Chorus - 1:14"}
+  a,8 r8 r8 e' a, r r e'
+  a,8 r r e' ais, r r4
+  r8 e'8 a, r r e' ais, e'
+  a,8 r r e' d r r fis
+
+  \mark \markup{\small \with-color #red "1:19"}
+  e8 a, r4 r8 gis'8 ais d
+  s1 * 3
+
+  \mark \markup{\small \with-color #red "x:xx"}
+  s1 * 4
+  \mark \markup{\small \with-color #red "x:xx"}
+  s1 * 4
+
+  \mark \markup{\small \with-color #red "3rd Chorus - x:xx"}
+  s1 * 4
+  \mark \markup{\small \with-color #red "x:xx"}
+  s1 * 4
+  \mark \markup{\small \with-color #red "x:xx"}
+  s1 * 4
+  \mark \markup{\small \with-color #red "x:xx"}
+  s1 * 4
 }
 
 myScaleDegrees = \lyrics {
@@ -144,7 +188,7 @@ myChordAnalysisArpeg = {
 myFullScore = \score {
   <<
     \new Lyrics { \myChordAnalysis}
-    \new ChordNames \repeat unfold 2 { \myChords }
+    \new ChordNames \repeat unfold 3 { \myChords }
     {
                                 % \tempo 4=150
       \global
