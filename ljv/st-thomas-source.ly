@@ -66,7 +66,7 @@ global = {
   \override Score.SystemStartBar #'collapse-height = #1
 
   \set Score.markFormatter = #format-mark-box-alphabet
-  
+
 }
 
                                 % AABA
@@ -137,7 +137,7 @@ mySolo = \relative c'' {
   r4 r8 e8 r8 e b e
 
   \pageBreak
-  
+
   \mark \markup{\small \with-color #red "2nd Chorus - 1:14"}
   a,8 r8 r8 e' a, r r e'
   a,8 r r e' ais, r r4
@@ -149,27 +149,41 @@ mySolo = \relative c'' {
   b8 bis cis16 d cis b ais8 g fis e
   cis8 d fis a cis e, gis? b
   a8 e cis4 r8 fis4 r8
-  
+
   \mark \markup{\small \with-color #red "1:23"}
   r4 r8 e gis b d b
   cis8 b \tuplet 3/2 {ais8 cis e} a8 g \tuplet 3/2 {dis8 e f}
   fis8 d cis b fis'16 g fis e d8 cis
   b8 a gis b d fis e d
-  
+
   \mark \markup{\small \with-color #red "1:28"}
   cis8 e, g e b' a g! f
   fis8 a b cis e d cis b
   a'8^\markup {\with-color #red "up 8va to hit final note"} fis e d cis e b e
-  a,4 r4 r2
+  a,4 r4 r8 e8 gis a
 
-  \mark \markup{\small \with-color #red "3rd Chorus - x:xx"}
-  s1 * 4
-  \mark \markup{\small \with-color #red "x:xx"}
-  s1 * 4
-  \mark \markup{\small \with-color #red "x:xx"}
-  s1 * 4
-  \mark \markup{\small \with-color #red "x:xx"}
-  s1 * 4
+  \mark \markup{\small \with-color #red "3rd Chorus - 1.32"}
+  d8 cis a e gis a r4
+  r4 r8 gis'8~ gis4~ gis8 fis8
+  e8 a, r4 r2
+  \override Glissando.style = #'zigzag
+  r4 r8 a16 \glissando e' dis4 e4~
+
+  \mark \markup{\small \with-color #red "1:37"}
+  e8 r8 r8 dis8~ dis4. e8~
+  e8 r8 r4 r8 a,8 e'4
+  fis2 e4 d8 cis~
+  cis8 r8 r4 r2
+
+  \mark \markup{\small \with-color #red "1:41"}
+  r4 gis'4 cis, cis'~
+  cis8 b8~ b8 ais8~ ais8 r8 r4
+  r1
+  b4 a8 fis gis fis e d
+
+  \mark \markup{\small \with-color #red "1:46"}
+  cis8 e b bes a gis g f
+  s1 * 3
 }
 
 myScaleDegrees = \lyrics {
@@ -207,7 +221,7 @@ myFullScore = \score {
                                 % \inlineMMR R1*4
 
                                 % \bar ".|"
-      \mySolo 
+      \mySolo
     }
     \new Lyrics { \myScaleDegrees }
   >>
