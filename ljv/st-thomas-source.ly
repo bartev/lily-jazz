@@ -128,7 +128,7 @@ mySolo = \relative c'' {
   a,8 r8 r4 r8 e'8 cis e
   gis8 b d ais cis g e f
   fis?8 d b e cis d fis a
-  cis?8 d, fis a c g fis ees
+  cis?8 d, fis a c g f ees
 
   \mark \markup{\small \with-color #red "1:09"}
   e8 a, a r8 r8 cis' cis, r8
@@ -145,13 +145,22 @@ mySolo = \relative c'' {
   a,8 r r e' d r r fis
 
   \mark \markup{\small \with-color #red "1:19"}
-  e8 a, r4 r8 gis'8 ais d
-  s1 * 3
-
-  \mark \markup{\small \with-color #red "x:xx"}
-  s1 * 4
-  \mark \markup{\small \with-color #red "x:xx"}
-  s1 * 4
+  e8 a, r4 r8 gis?8 ais d
+  b8 bis cis16 d cis b ais8 g fis e
+  cis8 d fis a cis e, gis? b
+  a8 e cis4 r8 fis4 r8
+  
+  \mark \markup{\small \with-color #red "1:23"}
+  r4 r8 e gis b d b
+  cis8 b \tuplet 3/2 {ais8 cis e} a8 g \tuplet 3/2 {dis8 e f}
+  fis8 d cis b fis'16 g fis e d8 cis
+  b8 a gis b d fis e d
+  
+  \mark \markup{\small \with-color #red "1:28"}
+  cis8 e, g e b' a g! f
+  fis8 a b cis e d cis b
+  a'8^\markup {\with-color #red "up 8va to hit final note"} fis e d cis e b e
+  a,4 r4 r2
 
   \mark \markup{\small \with-color #red "3rd Chorus - x:xx"}
   s1 * 4
