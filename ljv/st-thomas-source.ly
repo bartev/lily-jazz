@@ -148,7 +148,7 @@ mySolo = \relative c'' {
   e8 a, r4 r8 gis?8 ais d
   b8 bis cis16 d cis b ais8 g fis e
   cis8 d fis a cis e, gis? b
-  a8 e cis4 r8 fis4 r8
+  a8 e cis8 fis8~ fis8 r8 r4
 
   \mark \markup{\small \with-color #red "1:23"}
   r4 r8 e gis b d b
@@ -183,7 +183,19 @@ mySolo = \relative c'' {
 
   \mark \markup{\small \with-color #red "1:46"}
   cis8 e b bes a gis g f
+  fis8 d cis b f' ees e d
+  cis8 e fis a b gis a a
+  gis a cis e gis fis e gis,
+
+
+  \mark \markup{\small \with-color #red "1:50"}
+  a8 d cis s8 s2
   s1 * 3
+
+  s1 * 4
+  s1 * 4
+  s1 * 4
+  
 }
 
 myScaleDegrees = \lyrics {
@@ -211,7 +223,7 @@ myChordAnalysisArpeg = {
 myFullScore = \score {
   <<
     \new Lyrics { \myChordAnalysis}
-    \new ChordNames \repeat unfold 3 { \myChords }
+    \new ChordNames \repeat unfold 4 { \myChords }
     {
                                 % \tempo 4=150
       \global
