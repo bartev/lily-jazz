@@ -1,6 +1,9 @@
 \version "2.20.0"
 \include "lilyjazz.ily"
 
+#(set-global-staff-size 28)
+\include "lilyjazz.ily"  % use jazz fonts for cleff and text
+
 \paper {
   #(set-paper-size "letter")
   left-margin = 0.75\in
@@ -16,8 +19,8 @@
 }
 
 \header {
-  title = "Lead Sheet Template"
-  copyright = "Copyright ©"
+  title = ""
+  copyright = ""
   tagline = ##f
 }
 
@@ -30,13 +33,15 @@ leadMusic = {
 }
 
 \score {
-  \new Staff <<
+	
+  \new Staff <<		
     \scoreBreaks
     \leadMusic
   >>
   \layout {
     indent = 0
     \omit Staff.TimeSignature
+		\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
     \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
   }
   %\midi {}  % uncomment for midi output
