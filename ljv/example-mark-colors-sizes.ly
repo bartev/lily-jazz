@@ -104,7 +104,7 @@ global = {
 	%% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
 	\override Score.RehearsalMark.color = #darkred
 	%% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
-	\override Score.RehearsalMark.font-size = 6
+	\override Score.RehearsalMark.font-size = 8
 
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
 	%% \compressFullBarRests
@@ -130,7 +130,7 @@ markBlue = #(define-music-function
 						 (parser location string)
 						 (string?)
 						 "blue markup string"
-						 #{ <>\mark \markup \fontsize #-6 \with-color #blue #string #})
+						 #{ <>\mark \markup \with-color #blue #string #})
 
 %%%%%%%%%%%%%%%%%%%% Begin music
 
@@ -148,18 +148,62 @@ chordNamesHead = \chordmode {
 leadMusic= \relative c'' {
 	\bar ".|"
 	\mark \default
-  c4 d
-	\mark \default
-	e f
+  c4 d e f
+	\once \override Score.RehearsalMark.font-size = 0 
 	\mark "A"
 	c4 d
-	\markManualBox "A"
+	\markmanualbox "A"
 	e f
-	\mark \default
+	\once \override Score.RehearsalMark.font-size = 4
+	\mark \markup \with-color #(x11-color "LimeGreen") \box C
+	%% \mark \markup \with-color #(x11-color "LimeGreen") \fontsize #3 \box C 
 	c4 d e f
-	\markManualBox "A"
+	\once \override Score.RehearsalMark.font-size = 8
+	\mark \markup \with-color #(x11-color "LimeGreen") \box D 
 	c4 d e f
 	\bar "|."
+	
+	\mark \markup \with-color #darkred \box A
+  c4 d e f
+	\once \override Score.RehearsalMark.font-size = #0 
+	\mark \markup \fontsize #3 \box B
+	c4 d e f
+	\once \override Score.RehearsalMark.font-size = #4
+	\mark \markup \with-color #(x11-color "LimeGreen") \box C 
+	c4 d e f
+	\once \override Score.RehearsalMark.font-size = #8
+	\mark \markup \with-color #(x11-color "LimeGreen") \box D 
+	c4 d e f
+	\bar "|."
+
+	\override Score.RehearsalMark.font-size = 4
+	\mark \markup \with-color #darkred \box A
+  c4 d e f
+	\once \override Score.RehearsalMark.font-size = #0 
+	\mark \markup \fontsize #3 \box B
+	c4 d e f
+	\once \override Score.RehearsalMark.font-size = #4
+	\mark \markup \with-color #(x11-color "LimeGreen") \box C 
+	c4 d e f
+	\once \override Score.RehearsalMark.font-size = #8
+	\mark \markup \with-color #(x11-color "LimeGreen") \box D 
+	c4 d e f
+	\bar "|."
+
+	\override Score.RehearsalMark.font-size = 8
+	\mark \markup \with-color #darkred \box A
+  c4 d e f
+	\once \override Score.RehearsalMark.font-size = #0 
+	\mark \markup \fontsize #3 \box B
+	c4 d e f
+	\once \override Score.RehearsalMark.font-size = #4
+	\mark \markup \with-color #(x11-color "LimeGreen") \box C 
+	c4 d e f
+	\once \override Score.RehearsalMark.font-size = #8
+	\mark \markup \with-color #(x11-color "LimeGreen") \box D 
+	c4 d e f
+	\bar "|."
+
 	\inlineMMR R1*4
 }
 solo = \relative c'' {
@@ -176,17 +220,9 @@ solo = \relative c'' {
 		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
 	}	
 	r8 e8 g c bes g e c
-	\mark \markup \left-column {
-		\box B
-		\small \with-color #blue "markBlue test"
-	}
-	
 	\override Glissando.style = #'zigzag
 	\timestop "0:11"
-	bes4 \glissando g'
-	\markBlue "My Blue Text"
-	bes e
-	c d e f
+	bes4 \glissando g' bes e 
 	\inlineMMR R1*2 
 	\bar "|."
 	\timestop "0.08"
@@ -240,7 +276,7 @@ templateScore = \score {
 				\leadMusic
 			>>
 			%% Start the solo on a new page 
-			%% \pageBreak
+			\pageBreak
 			<<
 				\scoreBreaks
 				\solo
@@ -253,7 +289,8 @@ templateScore = \score {
 	}
 }
 
-																% \chordsAnalysisArpeg
-																% \pageBreak
+\chordsAnalysisArpeg
+
+\pageBreak
 
 \templateScore
