@@ -251,12 +251,42 @@ solo = \relative c'' {
 																% }
 	\markManualBox "A"
 	<>^\markup { \raise #4 \with-color #blue \small "Begin solo" }
-	s1*8
+	\timestop "0:45"
+	r4 r8 g a g fis g
+	c8 ees d cis d c^\markup { \raise #4 \with-color #blue \small "(hard to hear - OmniBook)" } \tuplet 3/2 { b8 d fis }
+	g4 d e2
+	r1
+
+	\timestop "0.50"
+	r2 a8 aes g f
+	e8 d c a g' ees c a
+	b8 g fis g a g fis g~
+	g2 r2
+	
 	\markManualBox "A"
-	s1*8
+	\timestop "0:54"
+	r8 cis \tuplet 3/2 { d8 g b } d4 c8 a~
+	a2 r2
+	r8 b16 a g8 fis e ees d des
+	c8 g e g bes b g e
+
+	\timestop "0.59"
+	a8 aes g fis f4 g'8 f
+	e8 d c a \tuplet 3/2 { g'16 a g } ees8 c g
+	b8 d~ d2 r4
+	r1
+
 	\markManualBox "B"
-	s1*8
+	\timestop "1:04"
+	r8 fis, \tuplet 3/2  { a cis e } gis4 \tuplet 3/2 { f8 cis a }
+	gis'8-- f8 r4 r8 b, \tuplet 3/2 { d fis a }
+	cis8 c16 b ais4 r2
+	r1
+
+	s1*4
+	
 	\markManualBox "A"
+	\timestop "1:09"
 	s1*8
 
 	\bar "|."
@@ -360,6 +390,7 @@ mooseScore = \score {
 			>>
 			%% Start the solo on a new page
 			\pageBreak
+			
 			<<
 				\scoreBreaks
 				\solo
