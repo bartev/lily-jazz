@@ -128,6 +128,11 @@ markBlue = #(define-music-function
 						 "blue markup string"
 						 #{ <>\mark \markup \fontsize #-6 \with-color #blue #string #})
 
+																% scd = #(define-music-function
+																% 				(parser location string num)
+																% 				(string? number?)
+																% 				#{ \markup \scaleDegree{#1}#0 })
+
 %%%%%%%%%%%%%%%%%%%% Begin music
 
 %% Define line breaks globally
@@ -267,7 +272,7 @@ solo = \relative c'' {
 	\timestop "0:54"
 	r8 cis \tuplet 3/2 { d8 g b } d4 c8 a~
 	a2 r2
-	r8 b16 a g8 fis e ees d des
+	r8 b16 a g8 fis e dis d cis
 	c8 g e g bes b g e
 
 	\timestop "0.59"
@@ -281,9 +286,11 @@ solo = \relative c'' {
 	r8 fis, \tuplet 3/2  { a cis e } gis4 \tuplet 3/2 { f8 cis a }
 	gis'8-- f8 r4 r8 b, \tuplet 3/2 { d fis a }
 	cis8 c16 b ais4 r2
-	r1
+	r2 \tuplet 3/2 { a16 ais a } gis8 g f 
 
-	s1*4
+	e8 d cis a b g e fis 
+	s1*3
+	
 	
 	\markManualBox "A"
 	\timestop "1:09"
@@ -295,8 +302,96 @@ solo = \relative c'' {
 
 %% Add scale tones over each note
 scaleDegrees = \lyrics {
-	\markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
-}
+	""4. \markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 4 }8 \markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 2 } \markup \scaleDegree { f3 }8
+	
+	\markup \scaleDegree { f3 }8 \markup \scaleDegree { f5 }
+	\markup \scaleDegree { 4 }8 \markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { f7 }8
+	\tuplet 3/2 { \markup \scaleDegree { 6 }8 \markup \scaleDegree { 1 }8 \markup \scaleDegree { 3 } }
+
+	\markup \scaleDegree { f6 }4 \markup \scaleDegree { f3 }4
+	\markup \scaleDegree { 1 }2 
+	""1
+	
+	""2
+	\markup \scaleDegree { 2 }8 \markup \scaleDegree { f2 }8
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { f7 }8
+	
+	\markup \scaleDegree { 3 }8 \markup \scaleDegree { 2 }8
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 2 }8 \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 3 }8
+
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { f6 }8 
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { f6 }8 
+	\markup \scaleDegree { 4 }8 \markup \scaleDegree { f3 }8 
+	\markup \scaleDegree { f2 }8 \markup \scaleDegree { f3 }8 
+
+	\markup \scaleDegree { f7 }2 
+	""2
+
+	%% A
+	
+	""8 \markup \scaleDegree { s4 }8
+	\tuplet 3/2 { \markup \scaleDegree { 5 }8 \markup \scaleDegree { 1 }8 \markup \scaleDegree { 3 }8 }
+	\markup \scaleDegree { f7 }4
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { 4 }8
+
+	\markup \scaleDegree { 1 }2 ""2
+
+	""8 \markup \scaleDegree { 1 }16 \markup \scaleDegree { f7 }16
+	\markup \scaleDegree { f6 }8 \markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 7 }8
+	\markup \scaleDegree { f7 }8 \markup \scaleDegree { 6 }8
+
+	\markup \scaleDegree { f3 }8 \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { f6 }8 \markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 4 }8 \markup \scaleDegree { 2 }8
+
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { f5 }8
+	\markup \scaleDegree { 3 }8 \markup \scaleDegree { 2 }8
+	\markup \scaleDegree { f7 }4
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { f7 }8
+
+	\markup \scaleDegree { 3 }8 \markup \scaleDegree { 2 }
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 6 }8
+	\tuplet 3/2 {\markup \scaleDegree { 2  }16 \markup \scaleDegree { 3 } \markup \scaleDegree { 2 } } \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 2 }8
+
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 3 }4.
+	\markup \scaleDegree { f7 }4 ""4
+
+	""1
+
+	%% B
+
+	""8 \markup \scaleDegree { 5 }8
+	\tuplet 3/2 { \markup \scaleDegree { f7 }8 \markup \scaleDegree { 2 }8 \markup \scaleDegree { 4 }8  }
+	\markup \scaleDegree { 6 }4
+	\tuplet 3/2 { \markup \scaleDegree { 5 }8 \markup \scaleDegree { 2 }8 \markup \scaleDegree { f7 }8  }
+
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { f5 }8
+	""4. \markup \scaleDegree { 1 }8
+	\tuplet 3/2 { \markup \scaleDegree { 3 }8 \markup \scaleDegree { 3 }8 \markup \scaleDegree { f7 }8  }
+
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { f6 }16 \markup \scaleDegree { 5 }16
+	\markup \scaleDegree { 4 }4
+	""2
+
+	""2
+	\tuplet 3/2 { \markup \scaleDegree { f7 }16 \markup \scaleDegree { 7 }16 \markup \scaleDegree { f7 }16 }
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { f3 }8 \markup \scaleDegree { f2 }8
+
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 3 }8 \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { 2 }8 \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 6 }8
+
+	}
 
 %% Add harmonic analysis (chords)
 harmonicAnalysis = \lyricmode {
@@ -394,6 +489,7 @@ mooseScore = \score {
 			<<
 				\scoreBreaks
 				\solo
+				\scaleDegrees
 			>>
 		}
 																% \new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
