@@ -13,7 +13,7 @@
 %% set up title, compser, meter, copyright
 title = #"Moose The Mooche"
 composer = #"Charlie Parker"
-meter = "224"
+meter = "212"
 copyright = #"Bartev 2021-02-28"
 tagline = "Awsome transcription by Bartev"
 
@@ -147,7 +147,7 @@ scoreBreaks = {
 chordNamesHead = \chordmode {
 	%% A
 	%% \mark \markup \with-color #(x11-color 'NavyBlue) \fontsize #1 \box A
-	\mark \default
+	\markManualBox "A"
 	g2:maj7 e:7
 	a2:m7 d:7
 	b2:m7 e:7
@@ -172,7 +172,7 @@ chordNamesHead = \chordmode {
 	g1:6
 
 	%% B
-	\mark \default
+	\markManualBox "B"
 	b1:7 b1:7
 	e1:7 e1:7
 
@@ -258,7 +258,7 @@ solo = \relative c'' {
 	<>^\markup { \raise #4 \with-color #blue \small "Begin solo" }
 	\timestop "0:45"
 	r4 r8 g a g fis g
-	c8 ees d cis d c^\markup { \raise #4 \with-color #blue \small "(hard to hear - OmniBook)" } \tuplet 3/2 { b8 d fis }
+	c8 ees c cis d c^\markup { \raise #4 \with-color #blue \small "(hard to hear - OmniBook)" } \tuplet 3/2 { b8 d fis }
 	g4 d e2
 	r1
 
@@ -283,21 +283,38 @@ solo = \relative c'' {
 
 	\markManualBox "B"
 	\timestop "1:04"
-	r8 fis, \tuplet 3/2  { a cis e } gis4 \tuplet 3/2 { f8 cis a }
-	gis'8-- f8 r4 r8 b, \tuplet 3/2 { d fis a }
+	r8 fis, \tuplet 3/2  { a cis e } gis4 \tuplet 3/2 { f8 cis? a }
+	gis'8-- f?8 r4 r8 b, \tuplet 3/2 { d fis a }
 	cis8 c16 b ais4 r2
 	r2 \tuplet 3/2 { a16 ais a } gis8 g f 
 
-	e8 d cis a b g e fis 
-	s1*3
-	
+	\timestop "1:08"
+	e8 d cis a b g e fis
+	a8 fis \tuplet 3/2 { g a cis } fis d cis?-- a
+	d8 a b c?~ c2
+	r2 r8 d'8 d d 
 	
 	\markManualBox "A"
-	\timestop "1:09"
-	s1*8
+	\timestop "1:12"
+	d8-- c-. r4 r8 d4.
+	b4 d8 a~ a4 r8 fis8
+	a8 fis r4 r8 gis \tuplet 3/2 { f8^\markup { \raise #4 \with-color #blue \small {"(B" \flat "arpeg)"} } des bes }
+	g'8 a16 g fis8 e d c b a
+
+	\timestop "1:17"
+	g8 fis f g g'8 f e d
+	c8 g a bes~ bes4 r4
+	r2 r8 g8 bes b
+	fis8 g a g fis ees' c cis
 
 	\bar "|."
 
+	d8 b8~ b4 r2
+	s1*3 \break
+	s1*4 \break
+	s1*4 \break
+	s1*4 \break
+	s1*4
 }
 
 %% Add scale tones over each note
@@ -391,7 +408,44 @@ scaleDegrees = \lyrics {
   \markup \scaleDegree { 2 }8 \markup \scaleDegree { f7 }8
 	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 6 }8
 
-	}
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 6 }8
+	\tuplet 3/2 { \markup \scaleDegree { f7 }8 \markup \scaleDegree { 1 }8 \markup \scaleDegree { 3 }8 }
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 3 }8 \markup \scaleDegree { 1 }8
+
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { f7 }8 ""2
+
+	""2 ""8 \markup \scaleDegree { 1 }8 \markup \scaleDegree { 1 }8 \markup \scaleDegree { 1 }8
+
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 4 }8 ""4. \markup \scaleDegree { f7 }4.
+
+	\markup \scaleDegree { 2 }4 \markup \scaleDegree { 4 }8 \markup \scaleDegree { f3 }8
+	\markup \scaleDegree { f7 }4 ""8 \markup \scaleDegree { 3 }8
+
+	\markup \scaleDegree { f7 }8 \markup \scaleDegree { 5 }8 ""4.
+	\markup \scaleDegree { 3 }8 \tuplet 3/2 { \markup \scaleDegree { f2 }8 \markup \scaleDegree { ff7 }8 \markup \scaleDegree { ff5 }8 }
+
+	\markup \scaleDegree { f7 }8 \markup \scaleDegree { 1 }16 \markup \scaleDegree { f7 }16
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 6 }8 \markup \scaleDegree { 5 }8
+
+	\markup \scaleDegree { 4 }8 \markup \scaleDegree { 3 }8 \markup \scaleDegree { f3 }8 \markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { f7 }8 \markup \scaleDegree { 6 }8 \markup \scaleDegree { 5 }8
+
+	\markup \scaleDegree { 1 }8 \markup \scaleDegree { 5 }8 \markup \scaleDegree { 6 }8 \markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 4 }4 ""4
+
+	""2 ""8 \markup \scaleDegree { 4 }8 \markup \scaleDegree { f6 }8 \markup \scaleDegree { 6 }8
+
+	\markup \scaleDegree { 7 }8 \markup \scaleDegree { 1 }8 \markup \scaleDegree { 2 }8 \markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 7 }8 \markup \scaleDegree { f6 }8 \markup \scaleDegree { 4 }8 \markup \scaleDegree { s4 }8
+
+	\markup \scaleDegree { 5 }8 \markup \scaleDegree { 3 }4. 
+	
+	
+}
 
 %% Add harmonic analysis (chords)
 harmonicAnalysis = \lyricmode {
@@ -473,7 +527,7 @@ mooseScore = \score {
 		\new Lyrics { s1*8
 									\harmonicAnalysis }  % add the harmonic harmonicAnalysis above the chord names
 		\new ChordNames { s1*8
-											\repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
+											\repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
 		\new Staff {
 			\global
 			%% the head
