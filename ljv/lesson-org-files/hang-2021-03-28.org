@@ -1,0 +1,82 @@
+#+title: Minor scales and modes for ii-v-i progressions
+#+date: 2021-03-28
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+#+LaTeX_HEADER: \documentclass{article}
+#+LaTeX_HEADER: \addtolength{\voffset}{-2.25cm}
+#+LaTeX_HEADER: \usepackage[document]{ragged2e}
+#+LaTeX_HEADER: \usepackage{fancyhdr}
+#+LaTeX_HEADER: \pagestyle{fancy}
+#+LaTeX_HEADER: \fancyhf{}
+#+LaTeX_HEADER: \lhead{Minor scales and modes for ii-v-i progressions}
+#+LaTeX_HEADER: \rhead{Bartev - 2020-12-28}
+
+
+* Minor ii-v's in Bb
+
+See Softly in the Morning Sunrise for an example
+
+ii-7b5 (C half diminished)
+
+Pianists may voice this differently (below)
+
+Maybe a natural 9 on top (debate about this)
+
+#+begin_src lilypond :exports results :file min_ii_v_Bb.pdf :noweb yes
+
+  #(set-global-staff-size 30)
+
+  \paper {
+          #(set-paper-size "letter")
+          tagline = ##f
+          ragged-last-bottom = ##t
+          ragged-bottom = ##t
+  }
+
+  \score {
+          <<
+                  \new Staff\relative c' {
+                          <c ees ges bes>1
+                          < c bes' ees ges des' >1
+                          c8^"Locrian scale"
+                          des ees f ges aes bes r
+
+                          c,8^"Locrian nat 2 scale"
+                          d  ees f ges aes bes r
+
+                  }
+          >>
+  }
+#+end_src
+
+* Dominant chord (V7b9)
+
+Will typically play a b13 (b6), in this case the Db
+
+So, the nat 9 from Cm7b5 -> Db adds chromatic motion
+
+#+begin_src lilypond :exports results :file min_ii_v_Bb-dom.pdf :noweb yes
+
+  #(set-global-staff-size 30)
+
+  \paper {
+    #(set-paper-size "letter")
+    tagline = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+  }
+
+  \score {
+          <<
+      \new Staff\relative c' {
+f8^"mixolydian?" ges aes a ces des ees r
+\break
+
+f,8^"Same but 4 double flat instead of nat 3" ges aes beses ces des ees r
+\break
+f,8^"whole-half diminished?" a c ees ges b d r
+\break
+f,,^"Phrygian Dominant" ges a bes c des ees r 
+                  }
+          >>
+  }
+#+end_src
