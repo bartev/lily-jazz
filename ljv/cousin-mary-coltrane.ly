@@ -166,6 +166,27 @@ leadMusicC = \relative c'' {
 	r4 ees ges4. ees8~
 	ees1
 }
+
+leadMusicLeadInC = \relative c'' {
+	\bar ".|"
+	%% \mark \default
+	\markManualBox "Head"
+	r4 ees ges4. ees8~
+	ees1
+	r4 ees ges4. ees8~
+	ees1
+
+	r4 ees ges4. aes8~
+	aes1
+	r4 ees ges4. ees8~
+	ees1
+
+	r8 aes ges aes~ aes4 ges8 aes~
+	aes4. ges8 ees4 des
+	r4 ees ges4. ees8~
+	ees2~ ees8 ges aes bes~
+}
+
 solo = \relative c''' {
 	\bar ".|"
 
@@ -194,48 +215,76 @@ solo = \relative c''' {
 	g bes g ees r8 ees c r
 	
 	\timestop "0:35"
-	ees8 c g4 b2
+	dis8 c g4 b2
 	c8 bes aes g~ g2
 	bes8 c~ c2 r4
-	r4 r8 aes'8~ aes4. bes8
+	r4 r8 a'8~ a4. bes8
 
 	\markManualBox "2"
 	\timestop "0:39"
 	a8 f r ees~ ees g~ g4~
 	g4 f8 d bes r r4
-	r4 r8 f'~ f4~ f8 e
+	r4 r8 f'~ f4~ f8 e!
 	ees8 f g bes a g f e
 
 	\timestop "0.44"
 	ees8 c bes a aes bes c ees
-	g8 bes a g r f d bes
-	c bes c d ees f g f~
-	f2 s2
+	g8 bes a g r f c bes
+	c b c d ees f g f~
+	f4.ees8 c c g r
 
 	\timestop "0.48"
-	s1*4
-
+	f'2~ f8 ees f f~
+	f4 ees8 f ees4 c8 ees
+	c8 bes aes g r2
+	r2 a4 \tuplet 3/2 {c8 ees f}
+	
 	\pageBreak
 	
 	\markManualBox "3"
-	\timestop "0.53"
-	s1*4
+	\timestop "0.52"
+	g1~
+	g4 f8 g f ees f g
+	r8 g~ g2 f8 g
+	f8 ees c bes \markBlue "G?" d8 bes g ees
+	
 	\timestop "0.57"
-	s1*4
-	\timestop "1:01"
-	s1*4
-
+	\tuplet 3/2 {a8 bes c} \tuplet 3/2 {cis8 d ees} f16 g a bes a8 g~
+	g4. ees8 c4 aes8 g~
+	g2 a8 c r4
+	r2 r8 ees d des
+	
+	\timestop "1:02"
+	c aes \markBlue "A?" f ees \markBlue "D?" g4. f8
+	\markBlue "not sure of this" g8 a bes c r d f g~
+	g4. f8 a8 c~ c4~
+	c2 r2
+	
 	\markManualBox "4"
-	s1*4
-	s1*4
-	s1*4
+	\timestop "1:06"
+	r4 c8 aes~ aes2~
+	aes8 g aes g~ g8 f g f~
+	f8 ees f ees~ ees8 c ees d~
+	d4. c8 f cis a f
 
+	\timestop "1:10"
+	d'4. c8 ees c e c
+	f8 s8 s2.
+	s1*2
+	
+	\timestop "1:14"
+	s1*4
+	
 	\markManualBox "5"
-	s1*4
-	s1*4
+	\timestop "1:19"
 	s1*4
 
-}
+	\timestop "1:23"
+	s1*4
+	\timestop "1:27"
+	s1*4
+
+	}
 
 %% Add scale tones over each note
 scaleDegrees = \lyrics {
@@ -244,7 +293,7 @@ scaleDegrees = \lyrics {
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-	\override LyricText #'font-name = #"serif"
+	\override LyricText #'font-name = #"serif"	
 	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
 	\markup \rN { V 7 / I }1
 	\markup \rN { V 7 / ii }1
@@ -272,19 +321,19 @@ chordsAnalysisArpeg= {
 templateScore = \score {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames { \repeat unfold 2 \chordNamesHead}  % add the Chord Names above the staff
+		\new ChordNames { \repeat unfold 4 \chordNamesHead}  % add the Chord Names above the staff
 		\new Staff {
 			\global
 			%% the head 
 			<<
 				\scoreBreaks
 				
-				\transpose ees c \leadMusicC
+				\transpose ees c \leadMusicLeadInC
 			>>
 			%% Start the solo on a new page 
 			%% \pageBreak
 			<<
-				\repeat unfold 4 \scoreBreaks
+				\repeat unfold 5 \scoreBreaks
 				%%				\new ChordNames { \repeat unfold 2 \chordNamesHead }
 				\solo
 			>>
