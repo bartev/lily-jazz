@@ -269,18 +269,28 @@ solo = \relative c''' {
 
 	\timestop "1:10"
 	d'4. c8 ees c e c
-	f8 s8 s2.
-	s1*2
+	f8 d bes \markBlue "G? F?" g \markBlue "A? Ab?" a c~ c4~
+	c4 g8 ees f g~ g4~
+	g4 r r2
 	
 	\timestop "1:14"
-	s1*4
+	\tuplet 3/2 {c,8 ees f} \tuplet 3/2 {g a c} \tuplet 3/2 {ees f g} a4
+	\tuplet 3/2 {c,,8 ees f} \tuplet 3/2 {g a c} \tuplet 3/2 {ees f g~} g8 r8
+	r8 ees,8 \tuplet 3/2 {f8 g a} c16 ees f g a4~
+	a4. bes8 a f r4
 	
 	\markManualBox "5"
 	\timestop "1:19"
-	s1*4
-
+	r8 bes a g f e ees a
+	d,8 c \markBlue "Hard to hear" r4 f8 d c a
+	d4. ees8 d des c bes
+	g8 ees d c f4 r4
+	
 	\timestop "1:23"
-	s1*4
+	r8 f8 g bes c d ees f
+	g bes aes f~ f c aes4
+	s1*2
+	
 	\timestop "1:27"
 	s1*4
 
@@ -321,7 +331,7 @@ chordsAnalysisArpeg= {
 templateScore = \score {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames { \repeat unfold 4 \chordNamesHead}  % add the Chord Names above the staff
+		\new ChordNames { \repeat unfold 5 \chordNamesHead}  % add the Chord Names above the staff
 		\new Staff {
 			\global
 			%% the head 
