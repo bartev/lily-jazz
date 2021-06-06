@@ -281,20 +281,24 @@ solo = \relative c''' {
 	
 	\markManualBox "5"
 	\timestop "1:19"
-	r8 bes a g f e ees a
-	d,8 c \markBlue "Hard to hear" r4 f8 d c a
+	r8 bes a g f e ees g
+	d8 c \markBlue "Hard to hear" r4 f8 d c a
 	d4. ees8 d des c bes
 	g8 ees d c f4 r4
 	
 	\timestop "1:23"
 	r8 f8 g bes c d ees f
-	g bes aes f~ f c aes4
-	s1*2
+	g bes aes f~ f c aes f
+	c'8 b c d ees d ees f
+	g8 c g ees r ees c \markBlue "Ab or G?" g
 	
 	\timestop "1:27"
-	s1*4
+	ees'8 c ees f r f g4
+	r4 c,8 ees~ees ees f4
+	r8 c ees f r g r g~
+	g4 r8 f a c~ c4 
 
-	}
+}
 
 %% Add scale tones over each note
 scaleDegrees = \lyrics {
