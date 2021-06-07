@@ -11,10 +11,10 @@
 \include "roman_numeral_analysis_tool.ily"
 
 %% set up title, compser, meter, copyright
-title = #"SET MY TITLE"
-composer = #"SET COMPOSER"
+title = #"Spontaneous Combustion"
+composer = #"Cannonball Adderly"
 meter = "SET METER"
-copyright = #"Bartev 2021-02"
+copyright = #"Bartev 2021-06"
 tagline = "Awesome transcription by Bartev"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
@@ -137,7 +137,7 @@ markBlue = #(define-music-function
 %% Define line breaks globally
 %% OPTIONAL, but can set all lines to be 4 bars wide
 scoreBreaks = {
-  \repeat unfold 2 { s1*4 \break }
+  \repeat unfold 3 { s1*4 \break }
 }
 
 %% Define the chords here. The same chords will be used for chord names and notes
@@ -162,7 +162,13 @@ leadMusic= \relative c'' {
 	\bar "|."
 	\inlineMMR R1*4
 }
-solo = \relative c'' {
+
+intro_partial = \relative c''' {
+	\timestop "1:24"
+	\partial 1 r8 g-> r8 d fis g a4
+}
+
+solo = \relative c''' {
 	\bar ".|"
 
 	%% do this to have multiple rehearsal marks in the same location
@@ -174,26 +180,35 @@ solo = \relative c'' {
 		\box A
 		%% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
 		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
-	}	
-	r8 e8 g c bes g e c
-	\mark \markup \left-column {
-		\box B
-		\small \with-color #blue "markBlue test"
 	}
-	
-	\override Glissando.style = #'zigzag
-	\timestop "0:11"
-	bes4 \glissando g'
-	\markBlue "My Blue Text"
-	bes e
-	c d e f
-	\inlineMMR R1*2 
-	\bar "|."
-	\timestop "0.08"
-	%% \mark \markup{\small \with-color #red "0:08"}
-	\inlineMMR R1*4
-	\inlineMMR R1*2
 
+	
+	\bar ".|"
+	\timestop "1:26"
+	g4 r4 r4 r8 g~
+	g4 r8 e c d e4
+	d2 r4 r8 c'~
+	c4 a f8 g a4
+	\break
+	
+	\timestop "1:31"
+	g2 r4 r8 cis8~
+	cis4 \tuplet 3/2 {c8 cis c} bes8 g f16 d c g
+	b2 f
+	\tuplet 3/2 {r8 bes a} aes8 cis, d f e d
+	\break
+	
+	\timestop "1:31"
+	es8 r \tuplet 3/2 {d'8 ( c ) f (} \tuplet 3/2 {es8 ) aes ( fis)} \tuplet 3/2 { b8 (a) d~}
+	d4 \tuplet 3/2 {c8 d c} bes8 g es16 d c g
+	b8 d e d~ d2
+	r4 g, b8-- c-. r8 d8
+	\bar "|."
+	\break
+	
+	%% \override Glissando.style = #'zigzag
+	%% bes4 \glissando g'
+	
 }
 
 %% Add scale tones over each note
@@ -228,32 +243,26 @@ chordsAnalysisArpeg= {
 	>>
 }
 
-templateScore = \score {
+spontCombustScore = \score {
 	<<
-		\new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
+		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+		%% \new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
+		
 		\new Staff {
+			
 			\global
 			%% the head 
+			\intro_partial
 			<<
-				\repeat unfold 2 \scoreBreaks				
-				\leadMusic
-			>>
-			%% Start the solo on a new page 
-			%% \pageBreak
-			<<
-				\scoreBreaks
+				\repeat unfold 3 \scoreBreaks
 				\solo
 			>>
 		}
-		\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
+		%% \new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
 	>>
 	\layout {
 		indent = 0
 	}
 }
 
-																% \chordsAnalysisArpeg
-																% \pageBreak
-
-\templateScore
+\spontCombustScore
