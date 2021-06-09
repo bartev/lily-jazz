@@ -13,7 +13,7 @@
 %% set up title, compser, meter, copyright
 title = #"Spontaneous Combustion"
 composer = #"Cannonball Adderly"
-meter = "SET METER"
+meter = "180"
 copyright = #"Bartev 2021-06"
 tagline = "Awesome transcription by Bartev"
 
@@ -142,73 +142,112 @@ scoreBreaks = {
 
 %% Define the chords here. The same chords will be used for chord names and notes
 chordNamesHead = \chordmode {
-  c1:m7 f:7 bes bes
+  bes1:7
+  ees:7
+  bes:7
+  f2:m7 bes:7
+
+  ees1:7
+  e:dim
+  bes:7
+  d2:m7 g:7
+
+  c1:m7
+  f:7
+  d2:m7 g:7
+  c2:7 f:7
+  
 }
 
 leadMusic= \relative c'' {
-	\bar ".|"
-	\mark \default
+  \bar ".|"
+  \mark \default
   c4 d
-	\mark \default
-	e f
-	\mark "A"
-	c4 d
-	\markManualBox "A"
-	e f
-	\mark \default
-	c4 d e f
-	\markManualBox "A"
-	c4 d e f
-	\bar "|."
-	\inlineMMR R1*4
+  \mark \default
+  e f
+  \mark "A"
+  c4 d
+  \markManualBox "A"
+  e f
+  \mark \default
+  c4 d e f
+  \markManualBox "A"
+  c4 d e f
+  \bar "|."
+  \inlineMMR R1*4
 }
 
 intro_partial = \relative c''' {
-	\timestop "1:24"
-	\partial 1 r8 g-> r8 d fis g a4
+  \timestop "1:24"
+  \partial 1 r8 g-> r8 d fis-- g-. a4--
 }
 
 solo = \relative c''' {
-	\bar ".|"
+  \bar ".|"
 
-	%% do this to have multiple rehearsal marks in the same location
-	%% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
-	
-	\once \override Score.RehearsalMark.extra-offset = #' (0 . 1)
-	%% \once \override Score.RehearsalMark.baseline-skip = #9
-	\mark \markup \center-column {
-		\box A
-		%% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
-		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
-	}
+  %% do this to have multiple rehearsal marks in the same location
+  %% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
+  
+  \once \override Score.RehearsalMark.extra-offset = #' (0 . 1)
+  %% \once \override Score.RehearsalMark.baseline-skip = #9
+  \mark \markup \center-column {
+    \box 1
+    %% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
+    { \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
+  }
 
 	
-	\bar ".|"
-	\timestop "1:26"
-	g4 r4 r4 r8 g~
-	g4 r8 e c d e4
-	d2 r4 r8 c'~
-	c4 a f8 g a4
-	\break
-	
-	\timestop "1:31"
-	g2 r4 r8 cis8~
-	cis4 \tuplet 3/2 {c8 cis c} bes8 g f16 d c g
-	b2 f
-	\tuplet 3/2 {r8 bes a} aes8 cis, d f e d
-	\break
-	
-	\timestop "1:31"
-	es8 r \tuplet 3/2 {d'8 ( c ) f (} \tuplet 3/2 {es8 ) aes ( fis)} \tuplet 3/2 { b8 (a) d~}
-	d4 \tuplet 3/2 {c8 d c} bes8 g es16 d c g
-	b8 d e d~ d2
-	r4 g, b8-- c-. r8 d8
-	\bar "|."
-	\break
-	
-	%% \override Glissando.style = #'zigzag
-	%% bes4 \glissando g'
-	
+  \bar ".|"
+  \timestop "1:26"
+  g4 r r g~\mf
+  g4 r8 e\mp\< c d e4\mf
+  \override Glissando.style = #'zigzag
+  %% bes4 \glissando g'
+  d2\mp r4 \glissando c'~\f
+  c4 a-.\mf f8\mp\< g a4
+  \break
+  
+  \timestop "1:31"
+  g2\mf r4 r8 cis8~\f
+  cis4 \tuplet 3/2 {c8 cis c} bes8\> g f16 d c g
+  b2\mp f\p\<
+  \tuplet 3/2 {r8\mp bes a} aes8 cis, d\p\< f e d\!
+  \break
+  
+  \timestop "1:37"
+  \mark \markup { \raise #2 \small \with-color #blue "Whole-half dim" }
+  es8\< r \tuplet 3/2 {d'8 ( c ) f (} \tuplet 3/2 {es8 ) aes ( fis)} \tuplet 3/2 { b8 (a) d~}
+  d4\f \tuplet 3/2 {c8 d c} bes8 g es16\> d c g
+  b8\< d e d~ d2\mf
+  r4 g,\mf b8-- c-. r8 d8
+  \bar "|."
+  \break
+
+  \markManualBox "2"
+  \timestop "1:43"
+  r1
+  d2~ d8 f, c' g
+  bes4-- c-. r2
+  r4 g4-> bes8-- c-. r des
+  \break
+
+  \timestop "1:49"
+  r4 r8 g,-. bes-. c-. d-. e-.
+  f8-. fis-. a( aes16 g) f8 d bes8( g)
+  d'8-- d-. r4 r2
+  r8. fis,16 a c a bes b2
+  \break
+
+  \timestop "1:55"
+  r8 e,8~ e16 g b e s2
+  s1
+  s1
+  s1
+  
+  \markManualBox "3"
+  %% \override Glissando.style = #'zigzag
+  %% bes4 \glissando g'
+  
 }
 
 %% Add scale tones over each note
@@ -246,12 +285,12 @@ chordsAnalysisArpeg= {
 spontCombustScore = \score {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		%% \new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
+	  \new ChordNames \transpose bes g { s1 \repeat unfold 3 \chordNamesHead }  % add the Chord Names above the staff
 		
-		\new Staff {
-			
-			\global
-			%% the head 
+	  \new Staff {
+	    
+	    \global
+	    %% the head 
 			\intro_partial
 			<<
 				\repeat unfold 3 \scoreBreaks
