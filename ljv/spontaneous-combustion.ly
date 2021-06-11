@@ -15,7 +15,7 @@ title = #"Spontaneous Combustion"
 composer = #"Cannonball Adderly"
 meter = "180"
 copyright = #"Bartev 2021-06"
-tagline = "Awesome transcription by Bartev"
+tagline = "Awesome transcription by Bartev - Blues for Alice iRealPro"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
@@ -121,10 +121,10 @@ timestop = #(define-music-function
 						 #{ <>^\markup \large \with-color #red #string #})
 
 markManualBox = #(define-music-function
-									(parser location string)
-									(string?)
-									"manually set a box mark that matches current color/size"
-									#{ <>\mark \markup \box #string #})
+		  (parser location string)
+		  (string?)
+		  "manually set a box mark that matches current color/size"
+		  #{ <>\mark \markup \box #string #})
 
 markBlue = #(define-music-function
 						 (parser location string)
@@ -141,6 +141,7 @@ scoreBreaks = {
 }
 
 %% Define the chords here. The same chords will be used for chord names and notes
+%% These are the chords for C-instruments
 chordNamesHead = \chordmode {
   bes1:7
   ees:7
@@ -153,7 +154,7 @@ chordNamesHead = \chordmode {
   d2:m7 g:7
 
   c1:m7
-  f:7
+  f:7.9-
   d2:m7 g:7
   c2:7 f:7
   
@@ -209,44 +210,49 @@ solo = \relative c''' {
   
   \timestop "1:31"
   g2\mf r4 r8 cis8~\f
-  cis4 \tuplet 3/2 {c8 cis c} bes8\> g f16 d c g
+  cis4 \tuplet 3/2 {c8( cis c)} bes8\> g f16 d c g
   b2\mp f\p\<
-  \tuplet 3/2 {r8\mp bes a} aes8 cis, d\p\< f e d\!
+  \tuplet 3/2 {r8\mp( bes a)} aes8 cis, d\p\< f e d\!
   \break
   
   \timestop "1:37"
-  \mark \markup { \raise #2 \small \with-color #blue "Whole-half dim" }
+				% \mark \markup { \raise #2 \small \with-color #blue "Whole-half dim" }
+  \markBlue "Whole-half dim (Co7?)"
   es8\< r \tuplet 3/2 {d'8 ( c ) f (} \tuplet 3/2 {es8 ) aes ( fis)} \tuplet 3/2 { b8 (a) d~}
-  d4\f \tuplet 3/2 {c8 d c} bes8 g es16\> d c g
+  d4\f \markBlue "phryg dom" \tuplet 3/2 {c8( d c)} bes8 g es16\>( d c g)
   b8\< d e d~ d2\mf
   r4 g,\mf b8-- c-. r8 d8
   \bar "|."
   \break
 
   \markManualBox "2"
-  \timestop "1:43"
+  \timestop "1:42"
   r1
-  d2~ d8 f, c' g
+  d2~ d8 g, c g
   bes4-- c-. r2
   r4 g4-> bes8-- c-. r des
   \break
 
-  \timestop "1:49"
+  \timestop "1:48"
   r4 r8 g,-. bes-. c-. d-. e-.
-  f8-. fis-. a( aes16 g) f8 d bes8( g)
+  f8-. fis-. a( aes16 g) fis?8 d ais8( g)
   d'8-- d-. r4 r2
-  r8. fis,16 a c a bes b2
+  r8 fis,( a16 c a bes b2)
   \break
 
-  \timestop "1:55"
-  r8 e,8~ e16 g b e s2
-  s1
-  s1
-  s1
+  \timestop "1:53"
+  r8 e,8~ e16 g b e g,8 a16 b \glissando g8( \markBlue "Encl-3-1" f
+  fis8 d') r4 e8 g b a
+  g8 e c( \markBlue "Encl" a) b-- b-. r4
+  r4 r8 d( e) g e4
+
+  \pageBreak
   
   \markManualBox "3"
   %% \override Glissando.style = #'zigzag
   %% bes4 \glissando g'
+  bes4-> a g r4
+  s1 * 3
   
 }
 
@@ -275,8 +281,8 @@ chordsAnalysisArpeg= {
 		\new Staff {
 			\global
 			<<
-				\scoreBreaks
-				\chordNamesHead
+			  \scoreBreaks
+			  \chordNamesHead
 			>>
 		}
 	>>
@@ -285,7 +291,7 @@ chordsAnalysisArpeg= {
 spontCombustScore = \score {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-	  \new ChordNames \transpose bes g { s1 \repeat unfold 3 \chordNamesHead }  % add the Chord Names above the staff
+	  \new ChordNames \transpose bes g { s1 \repeat unfold 4 \chordNamesHead }  % add the Chord Names above the staff
 		
 	  \new Staff {
 	    
@@ -293,8 +299,8 @@ spontCombustScore = \score {
 	    %% the head 
 			\intro_partial
 			<<
-				\repeat unfold 3 \scoreBreaks
-				\solo
+			  \repeat unfold 4 \scoreBreaks
+			  \solo
 			>>
 		}
 		%% \new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
