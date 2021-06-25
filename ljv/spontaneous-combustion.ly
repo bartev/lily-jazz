@@ -249,10 +249,32 @@ solo = \relative c''' {
   \pageBreak
   
   \markManualBox "3"
+  \timestop "1:58"
   %% \override Glissando.style = #'zigzag
   %% bes4 \glissando g'
   bes4-> a g r4
-  s1 * 3
+  r8 d' r dis e g e d
+  bes4->( a) g-- f--
+  r8 g' r gis a c d ees~
+  \break
+
+  \timestop "2:04"
+  ees8 c4-- a4-- g8 ees16( f ees d)
+  c8 a g f e c' a a(
+  bes4 a g) d
+  \tuplet 3/2 {r8 b' a} \tuplet 3/2 {gis8 b d} f8 e d \parenthesize \xNote b
+
+  \timestop "2:09"
+  c8 e,~ e16 g b d b8 c e g
+  b4 c8 b16 bes a8 g \tuplet 3/2 {fis8 e fis!~}
+  fis4 r r8 fis16 g a8 aes
+  g8 fis e ees d des c b
+
+  \markManualBox "4"
+  \timestop "2:13"
+  a8 g fis g a fis g a
+  b8 d r8 a r4 s4
+  s1 * 2
   
 }
 
