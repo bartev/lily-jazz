@@ -1,0 +1,199 @@
+#+title: The Alt Scale
+#+date: 2021-10-23
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+#+LaTeX_HEADER: \documentclass{article}
+#+LaTeX_HEADER: \addtolength{\voffset}{-2.25cm}
+#+LaTeX_HEADER: \usepackage[document]{ragged2e}
+#+LaTeX_HEADER: \usepackage{fancyhdr}
+#+LaTeX_HEADER: \pagestyle{fancy}
+#+LaTeX_HEADER: \fancyhf{}
+#+LaTeX_HEADER: \lhead{Minor scales and modes for ii-v-i progressions}
+#+LaTeX_HEADER: \rhead{Bartev - 2020-12-28}
+#+LaTeX_HEADER: \cfoot{\thepage}
+
+* Comments
+
+These notes are from youtube [[https://www.youtube.com/watch?v=GYiTohpjdRw]] Jayden Clark.
+
+* COMMENT Setup
+
+To get a nice pdf, copy the code below into each code block (don't need the version)
+
+Generate the pdf with =C-c C-e l o=
+
+#+name: version-and-paper()
+#+begin_src emacs-lisp :exports none :noweb tangle
+\version "2.20.0"
+
+#(set-global-staff-size 30)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+#+end_src
+
+* Altered Dominant
+
+The alt (altered dominant) scale is a 7-note dominant scale where all non-essential tones have been altered. So, it has the root, major 3rd, and minor 7th. All other tones have been altered (wikipedia)
+
+It has a $\flat{2}$, $\sharp{2}$, $\flat{5}$, $\sharp{5}$ and $\flat{7}$.
+
+You can also think of the $11$ being altered to $\sharp{11}$ (same as $\flat{5}$) and the $13$ being altered to a $\flat{13}$ (same as $\sharp{5}$)
+
+#+name: alt-chord-c
+#+begin_src lilypond :exports results :file alt_chord_c.pdf :noweb yes
+  
+  #(set-global-staff-size 20)
+  
+  \paper {
+  #(set-paper-size "letter")
+  tagline = ##f
+  ragged-last-bottom = ##t
+  ragged-bottom = ##t
+  }
+  
+  \score {
+    <<
+    \new Staff \relative c' { c4 e aes bes dis }
+    >>
+  }
+#+end_src
+
+
+#+name: alt-scale-c
+#+begin_src lilypond :exports results :file alt_scale.pdf :noweb yes
+    
+    #(set-global-staff-size 20)
+    
+    \paper {
+    #(set-paper-size "letter")
+    tagline = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+    }
+    
+    \score {
+      <<
+      \new Staff \relative c' { c8 des ees e fis aes bes c }
+      \new Staff \relative c' { c8 des dis e fis gis bes c }
+      >>
+    }
+#+end_src
+
+You can also think of this as the 7th mode of the melodic minor. (i.e., start from the 7th of the melodic minor)
+(Melodic minor has a $\flat{3}$.
+
+#+name: melodic-minor-d
+#+begin_src lilypond :exports results :file melodic_minor_d.pdf :noweb yes
+    
+    #(set-global-staff-size 20)
+    
+    \paper {
+    #(set-paper-size "letter")
+    tagline = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+    }
+    
+    \score {
+      <<
+      \new Staff \relative c' { des8 ees fes ges aes bes c des8 }
+      \new Staff \relative c' { des8 dis e fis gis bes c des8 }
+      \new Staff \relative c' { c8 des dis e fis gis bes c }
+      >>
+    }
+#+end_src
+
+* Altered scale diatonic exercise
+
+#+name: alt-diatonic-ex
+#+begin_src lilypond :exports results :file alt_diatonic_ex.pdf :noweb yes
+  
+  #(set-global-staff-size 20)
+  
+  \paper {
+          #(set-paper-size "letter")
+          tagline = ##f
+          ragged-last-bottom = ##t
+          ragged-bottom = ##t
+  }
+  
+  \score {
+    <<
+                  \new Staff \relative c' {
+                          d8 ees f aes ges f ees! d
+                          ees f ges bes aes ges f ees
+                          f ges aes c bes aes ges f
+                          ges aes bes d c bes aes ges
+                          aes bes c ees d c bes aes
+                          bes c d f ees d c bes
+                          c d ees ges f ees d c
+                          d2 r2
+                  }
+    >>
+  }
+#+end_src
+
+* Apply to a minor ii-v-i phrase
+
+#+name: alt_ii_v_i
+#+begin_src lilypond :exports results :file alt_ii_v_i_phrase.pdf :noweb yes
+  
+  #(set-global-staff-size 20)
+  
+  \paper {
+  #(set-paper-size "letter")
+  tagline = ##f
+  ragged-last-bottom = ##t
+  ragged-bottom = ##t
+  }
+  
+  \score {
+    <<
+                  \new Staff \relative c'' {
+                          a8 fis g a bes c ees d
+                          des ees \tuplet 3/2 {g bes c} ees d des b
+                          c a f g bes gis a16 bes a g
+                          f8 d r4 r2
+                  }
+          >>
+  }
+#+end_src
+
+* Michael Brecker altered scale phrase
+
+From Confirmation (measures 120-122) with Chick Corea.
+
+#+name: brecker_alt_phrase
+#+begin_src lilypond :exports results :file brecker_alt_phrase.pdf :noweb yes
+  
+  #(set-global-staff-size 20)
+  
+  \paper {
+  #(set-paper-size "letter")
+  tagline = ##f
+  ragged-last-bottom = ##t
+  ragged-bottom = ##t
+  }
+  
+  \score {
+    <<
+                  \new Staff \relative c'' {
+                          bes8 c d f d ees \tuplet 3/2 {g bes d}
+                          f ees d cis c fis, f ees
+                          d d' r4 r2
+                  }
+          >>
+  }
+#+end_src
+
+* Altered scale vs phrygian dominant on a dominant chord
+2021-10-24 - Chad in hangout
+
+Altered scale is a good way to add some tension, and darken up the sound.
+
+Phrygian dominant is normally used in the context of a minor ii-v-i progression.
