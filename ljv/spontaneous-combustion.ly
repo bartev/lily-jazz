@@ -48,12 +48,12 @@ realBookTitle = \markup {
   title = \realBookTitle
   copyright = \copyright
   %% tagline = ##f  % Remove default LilyPond tagline
-	tagline = \tagline
+  tagline = \tagline
 }
 
 \paper {
   #(set-paper-size "letter")
-	top-margin = 0.5\in
+  top-margin = 0.5\in
   bottom-margin = 0.5\in
   left-margin = 0.5\in
   right-margin = 0.5\in
@@ -65,60 +65,60 @@ realBookTitle = \markup {
   %%set to ##t if your score is less than one page:
   ragged-last-bottom = ##t
   ragged-bottom = ##f
-	ragged-right = ##f
+  ragged-right = ##f
 
-	markup-system-spacing = #'((basic-distance . 23)
+  markup-system-spacing = #'((basic-distance . 23)
                              (minimum-distance . 8)
                              (padding . 1))
 
   oddHeaderMarkup = \markup
-	\fill-line {
-		%% If not using the realBookTitle, can use
-		%% \fromproperty #'header:title " "
-		\title
-		\on-the-fly #print-page-number-check-first
-		\fromproperty #'page:page-number-string
-	}
+  \fill-line {
+    %% If not using the realBookTitle, can use
+    %% \fromproperty #'header:title " "
+    \title
+    \on-the-fly #print-page-number-check-first
+    \fromproperty #'page:page-number-string
+  }
   evenHeaderMarkup = \markup
-	\fill-line {
-		\on-the-fly #print-page-number-check-first
-		\fromproperty #'page:page-number-string " "
-		\title
-	}
+  \fill-line {
+    \on-the-fly #print-page-number-check-first
+    \fromproperty #'page:page-number-string " "
+    \title
+  }
 }
 
 global = {
   \numericTimeSignature
   \time 4/4
   \key c \major
-	%% \tempo 4=224  % this would be over the clef on the first line
+  %% \tempo 4=224 % this would be over the clef on the first line
 
-	\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-	\override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
-	\override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
-	\override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
-	\override Score.MultiMeasureRest.expand-limit = 1
+  \override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
+  \override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
+  \override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
+  \override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
+  \override Score.MultiMeasureRest.expand-limit = 1
 
-	%% See here for using colors
-	%% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
-	%% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
-	\override Score.RehearsalMark.color = #darkred
-	%% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
-	\override Score.RehearsalMark.font-size = 6
+  %% See here for using colors
+  %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+  %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+  \override Score.RehearsalMark.color = #darkred
+  %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+  \override Score.RehearsalMark.font-size = 6
 
-	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-	%% \compressFullBarRests
-	
-	\set Score.markFormatter = #format-mark-box-alphabet
+  %% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
+  %% \compressFullBarRests
+  
+  \set Score.markFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Functions
 
 timestop = #(define-music-function
-						 (parser location string)
-						 (string?)
-						 "colored markup (for timestamps)"
-						 #{ <>^\markup \large \with-color #red #string #})
+	     (parser location string)
+	     (string?)
+	     "colored markup (for timestamps)"
+	     #{ <>^\markup \large \with-color #red #string #})
 
 markManualBox = #(define-music-function
 		  (parser location string)
@@ -127,10 +127,10 @@ markManualBox = #(define-music-function
 		  #{ <>\mark \markup \box #string #})
 
 markBlue = #(define-music-function
-						 (parser location string)
-						 (string?)
-						 "blue markup string"
-						 #{ <>\mark \markup \fontsize #-6 \with-color #blue #string #})
+	     (parser location string)
+	     (string?)
+	     "blue markup string"
+	     #{ <>\mark \markup \fontsize #-6 \with-color #blue #string #})
 
 %%%%%%%%%%%%%%%%%%%% Begin music
 
@@ -197,7 +197,7 @@ solo = \relative c''' {
     { \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
   }
 
-	
+  
   \bar ".|"
   \timestop "1:26"
   g4 r r g~\mf
@@ -211,7 +211,7 @@ solo = \relative c''' {
   \timestop "1:31"
   g2\mf r4 r8 cis8~\f
   cis4 \tuplet 3/2 {c8( cis c)} bes8\> g f16 d c g
-  b2\mp f\p\<
+  b4.\mp f8~ f2\p\<
   \tuplet 3/2 {r8\mp( bes a)} aes8 cis, d\p\< f e d\!
   \break
   
@@ -273,63 +273,87 @@ solo = \relative c''' {
   \markManualBox "4"
   \timestop "2:13"
   a8 g fis g a fis g a
-  b8 d r8 a r4 s4
-  s1 * 2
+  b8 d r8 a r4 r8 a8
+  fis8 g a fis g a b d
+  ees8 f16 ees b8 aes( g) ges( f) des
+  \break
+
+  e8 c' a bes d f a c~
+  c4 r r2
+  r8 b16 c d8 g,16 a b8 fis16 g a g fis e
+  d4 fis16 d bes fis   bes fis des' c   b g e d
+
+  c4 b'8. gis16 a16 b c d e c a e
+  g16 f fis d'~ d4 b'4. a8
+  \tuplet 3/2 {fis8 g a} \tuplet 3/2 {fis8 g a} d,8 d r4
+  r8 g r8 g fis g a4-.
+
+  \markManualBox "5"
+  g4-. r8 g, b d r8 c
+  s1
+  s1
+  s1
+  \break
+
+  s1 * 4
+  \break
+  s1 * 4
+  
   
 }
 
 %% Add scale tones over each note
 scaleDegrees = \lyrics {
-	\markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
+  \markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
 }
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-	\override LyricText #'font-name = #"serif"
-	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
-	\markup \rN { V 7 / I }1
-	\markup \rN { V 7 / ii }1
-	\set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
-	\markup \rN { V 7 }1
-	\markup \rN { V 7 }1
+  \override LyricText #'font-name = #"serif"
+  \set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
+  \markup \rN { V 7 / I }1
+  \markup \rN { V 7 / ii }1
+  \set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
+  \markup \rN { V 7 }1
+  \markup \rN { V 7 }1
 }
 
 
 %% Chord names, chord tones, and harmonic analysis only 
 chordsAnalysisArpeg= {
-	<<
-		\new Lyrics \harmonicAnalysis
-		\new ChordNames { \chordNamesHead }
-		\new Staff {
-			\global
-			<<
-			  \scoreBreaks
-			  \chordNamesHead
-			>>
-		}
-	>>
+  <<
+    \new Lyrics \harmonicAnalysis
+    \new ChordNames { \chordNamesHead }
+    \new Staff {
+      \global
+      <<
+	\scoreBreaks
+	\chordNamesHead
+      >>
+    }
+  >>
 }
 
 spontCombustScore = \score {
-	<<
-		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-	  \new ChordNames \transpose bes g { s1 \repeat unfold 4 \chordNamesHead }  % add the Chord Names above the staff
-		
-	  \new Staff {
-	    
-	    \global
-	    %% the head 
-			\intro_partial
-			<<
-			  \repeat unfold 4 \scoreBreaks
-			  \solo
-			>>
-		}
-		%% \new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
-	>>
-	\layout {
-		indent = 0
-	}
+  <<
+    %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+    \new ChordNames \transpose bes g { s1 \repeat unfold 4 \chordNamesHead }  % add the Chord Names above the staff
+    
+    \new Staff {
+      
+      \global
+      %% the head 
+      \intro_partial
+      <<
+	\repeat unfold 4 \scoreBreaks
+	\solo
+      >>
+    }
+    %% \new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
+  >>
+  \layout {
+    indent = 0
+  }
 }
 
 \spontCombustScore
