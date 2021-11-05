@@ -260,56 +260,98 @@ tingl_stitt_music = \relative c''' {
   g4 \markBlue "too low for alto"
   \set Staff.ottavation = #"8vb" fis'8 g e c \tuplet 3/2 {b16 c b} a8
   d8 g,~ g4 r4 \unset Staff.ottavation c8 b~
-  
+
+  \timestop "42 sec"
   b4 dis-. fis-. a8 gis16 g
   fis8 g~ g4 r2
   r8 dis fis a~ a c~ c b~
   b2 r2
 
+  \timestop "49 sec"
   b,4-> dis8 fis~ fis4 a8 g~
   g4 fis8 e~ e4 b8 a~
   a1
   r8 b~ b4~ b4. d,8
 
+  \timestop "57 sec"
   \tuplet 3/2 {g4 g g} e4. b8
   d4. cis8 c d e c
   b8 b~ b b~ b4 r4
   r8 \markBlue "check notes C B?" d16 c \markBlue "check notes  Bb B?" b8 d f4 f8 e~
 
+  \timestop "1:04"
   e2 r8 e f4
   b2 g4 r4
   b8 b \tuplet 3/2 {g8 e g} b8 b \tuplet 3/2 {g8 e g}
   b8 b \tuplet 3/2 {g8 e g} b8 d c b
-  \break
-
+  \pageBreak
+  
+  
   \markManualBox "A"
-  g4 e-. b' \tuplet 3/2 {g8 e \markBlue "B?" d}
+  g4
+  \timestop "1:11"
+  e-. b' \tuplet 3/2 {g8 e \markBlue "B?" d}
   c4-. r8 g' a b c d
   b4 r8 f a c \tuplet 3/2 {b16 c b} a8
   gis8 b, d e f \tuplet 3/2 {e16 f e} d8 c
   \break
-  
+
+  \timestop "1:19"
   cis8  a'~ a4 r2
-  s1 s s \break
+  r8 e16 fis g8. b16 fis'16 e \tuplet 3/2 {d16 e d} b16 a g e
+  f16 e d cis  c b' \tuplet 3/2 {r16 g e}  a16 e g e  fis a c e~
+  e8 b16 d c a gis b a e g e fis e d c
+  \break
   
   \markManualBox "A"
-  s1 s s s \break
-  s1 s s s \break
+  b16
+  \timestop "1:26"
+  d e g r e g8 r2
+  r8 \tuplet 3/2 {d16 e g} bes16 g r bes r2
+  r8 b~ b4~ b8 a f g
+  a8 b a g gis f \tuplet 3/2 {e16 f e} d8
+  \break
+  
+  \timestop "1:33"
+  cis8 b'~ b4 r2
+  d8 cis16 c b4 g8 d fis g~
+  g4 \markBlue "too low for alto"
+  \set Staff.ottavation = #"8vb" fis'8 g e c \tuplet 3/2 {b16 c b} a8
+  d8 g, r4 r r8 b
+  \break
 
   \markManualBox "B"
-  s1 s s s \break
-  s1 s s s \break
-  \markManualBox "A"
-  s1 s s s \break
-  s1 s s s \break
+  a8 \timestop "1:40"
+  b c d dis fis a fis
+  g4 \unset Staff.ottavation r r8 b,,~ b g'
+  fis4 cis8 e dis b'~ b16 c b a
+  g8 e~ e4 r b'8 g'
+  \break
   
+  \timestop "1:47"
+  fis4 cis8 e \tuplet 3/2 {dis16 e dis} c8 b a
+  g8 b, fis' e~ e b \tuplet 3/2 {d16 e d} b8
+  cis8 a'~ a4 r e8 g
+  fis8 a c e \tuplet 3/2 {d16 e d} g,8 b4
+  \break
+  
+  \markManualBox "A"
+  g4 \timestop "1:54"
+  r g'4. bes,8
+  a4 r r8 e16 g e'4~
+  e2 s2
+  s1
+  \break
+
+  \timestop "2:01"
+  s1 s s s
 }
 
 tingl_stitt_score = \score {
   <<
     \new ChordNames \transpose ees, c {
       \chords_tingl_partial
-      \chords_tingl
+      \repeat unfold 2 {\chords_tingl}
     }
     \new Staff \with {
       instrumentName = "Alto"
