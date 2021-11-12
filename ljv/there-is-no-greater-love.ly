@@ -299,7 +299,7 @@ tingl_stitt_music = \relative c''' {
   \timestop "1:19"
   cis8  a'~ a4 r2
   r8 e16 fis g8. b16 fis'16 e \tuplet 3/2 {d16 e d} b16 a g e
-  f16 e d cis  c b' \tuplet 3/2 {r16 g e}  a16 e g e  fis a c e~
+  fis16 e d cis  c b' \tuplet 3/2 {r16 g e}  a16 e g e  fis a c e~
   e8 b16 d c a gis b a e g e fis e d c
   \break
   
@@ -339,12 +339,16 @@ tingl_stitt_music = \relative c''' {
   g4 \timestop "1:54"
   r g'4. bes,8
   a4 r r8 e16 g e'4~
-  e2 s2
-  s1
+  e2 r8 d16 e f e d c
+  b16 a fis! g gis b f ees e8 e'~ e c
   \break
 
   \timestop "2:01"
-  s1 s s s
+  b8 b~ b4 r8 dis \tuplet 3/2 {e8 g b}
+  d8 cis16 c b4 g8 d fis g~
+  g4 r8 e16 ees d8 d, g b
+  c8 d b4 g8 d~ d4
+  d8 g~ g4 r2
 }
 
 tingl_stitt_score = \score {
