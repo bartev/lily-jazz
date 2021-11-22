@@ -159,9 +159,10 @@ scaleTones = \relative c' {
 }
 
 justTheScales = \score {
+	\header { piece = "Scales" subtitle = ##f }
 	<<
 		\new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
-		\new Staff { \mark "Scales" \global \scaleTones \bar "|."}
+		\new Staff { \global \scaleTones \bar "|."}
 	>>
 	\layout {
 		indent = 0
@@ -184,9 +185,10 @@ firstSet = \relative c'' {
 }
 
 firstSetScore = \score {
+	\header { piece = "First Set" subtitle = ##f subsubtitle = ##f }
 	<<
 		\new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
-		\new Staff { \mark "First Set" \global \firstSet \bar "|."}
+		\new Staff { \global \firstSet \bar "|."}
 	>>
 	\layout {
 		indent = 0
@@ -210,9 +212,10 @@ secondSet = \relative c'' {
 }
 
 secondSetScore = \score {
+	\header { piece = "Second Set"  subtile = ##f }
 	<<
 		\new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
-		\new Staff { \mark "Second Set" \global \secondSet \bar "|."}
+		\new Staff { \global \secondSet \bar "|."}
 	>>
 	\layout {
 		indent = 0
@@ -224,10 +227,10 @@ secondSetScore = \score {
 thirdSet = \relative c' { s1 \break s1 }
 
 thirdSetScore = \score {
+	\header { piece = "Third Set" subtitle = ##f }
 	<<
 		%% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
-		\new Staff { % \mark "Third Set"
-			\global \thirdSet \bar "|."}
+		\new Staff { \global \thirdSet \bar "|." }
 	>>
 	\layout {
 		indent = 0
@@ -240,10 +243,10 @@ thirdSetScore = \score {
 fourthSet = \relative c' { s1 \break s1 }
 
 fourthSetScore = \score {
+	\header { piece = "Fourth Set" subtitle = ##f }
 	<<
 		%% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
-		\new Staff { % \mark "Fourth Set"
-			\global \fourthSet \bar "|."}
+		\new Staff { \global \fourthSet \bar "|." }
 	>>
 	\layout {
 		indent = 0
