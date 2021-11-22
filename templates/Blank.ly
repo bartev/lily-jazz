@@ -1,10 +1,11 @@
 \version "2.20.0"
 
-                                % size = 28 -> 10 staves
+%% These settings give 2 pages of 12 staves each
+%% size = 28 -> 10 staves
 #(set-global-staff-size 28)
 
-                                % Create blank staves
-                                % http://lilypond.org/doc/v2.19/Documentation/snippets/staff-notation#staff-notation-creating-blank-staves
+%% Create blank staves
+%% http://lilypond.org/doc/v2.19/Documentation/snippets/staff-notation#staff-notation-creating-blank-staves
 
 \paper {
   #(set-paper-size "letter")
@@ -13,18 +14,18 @@
   top-margin = 1\in
   bottom-margin = 0.75\in
   ragged-last-bottom = ##f
+  print-page-number = ##f
 }
 
 \header {
-  copyright = "Staff paper by Bartev"
+  %% tagline= "Staff paper by Bartev"
   copyright = ##f
   tagline = ##f
 }
 
+emptymusic = \repeat unfold 12 { s1 \break }
+
 \score {
-  {
-    \repeat unfold 12 { s1 \break }
-  }
   \layout {
     indent = 0\in
     \context {
@@ -38,4 +39,13 @@
       \remove "Bar_number_engraver"
     }
   }
+  {
+    %% put a pageBreak after each 12 staves to force them all to be on one page
+    
+    \emptymusic
+    \pageBreak
+    \emptymusic
+  }
+  
 }
+
