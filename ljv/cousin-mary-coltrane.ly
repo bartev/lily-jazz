@@ -130,7 +130,7 @@ markBlue = #(define-music-function
 						 (parser location string)
 						 (string?)
 						 "blue markup string"
-						 #{ <>\mark \markup \fontsize #-6 \with-color #blue #string #})
+						 #{ <>\mark \markup \override #'(font-name . "lilyjazz-chord") \fontsize #-6 \with-color #blue #string #})
 
 %%%%%%%%%%%%%%%%%%%% Begin music
 
