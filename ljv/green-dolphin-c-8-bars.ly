@@ -11,8 +11,8 @@
 \include "roman_numeral_analysis_tool.ily"
 
 %% set up title, compser, meter, copyright
-title = #"Green Dolphin St - write out 8 bars"
-composer = #"SET COMPOSER"
+title = #"Green Dolphin St - write out C-8 bars"
+composer = #"C - last 8 bars"
 meter = "SET METER"
 copyright = #"Bartev 2021-11 Green Dolphin St"
 %% tagline = "Awesome transcription by Bartev"
@@ -130,7 +130,7 @@ markBlue = #(define-music-function
 						 (parser location string)
 						 (string?)
 						 "blue markup string"
-						 #{ <>\mark \markup \fontsize #-6 \with-color #blue #string #})
+						 #{ <>\mark \markup \override #'(font-name . "lilyjazz-chord") \fontsize #-6 \with-color #blue #string #})
 
 %%%%%%%%%%%%%%%%%%%% Begin music
 
@@ -142,20 +142,20 @@ scoreBreaks = {
 
 %% Define the chords here. The same chords will be used for chord names and notes
 chordNamesHead = \chordmode {
-	d1:m7 g:9+.5- c:maj7 c:maj7
-	f1:m7 bes:9+.5- ees:maj7 ees:maj7
+	d1:m7 b2:m7.5- e2:7.9- a1:m7 f2:m7.5- b2:7.9-
+	e2:m7 a:7 d:m7 g:7 c1:6 d2:m7 g:7
 }
 
 scaleTones = \relative c' {
 	d8 e f g a b c d
-	g, aes ais b cis dis f? g
-	c,, d e f g a b c
-	s1
+	b,16 \markBlue "Loc Nat 9" cis d e f g a b e,16 \markBlue "Mix -9 -13" f gis a b c d e
+	a,8 b c d e fis g a
+	fis,16 \markBlue "Loc Nat 9" gis a b c d e fis b,16 \markBlue "Mix -9 -13" c dis e fis g a b 
 	\break
-	f,8 g aes bes c d ees f
-	bes, ces cis d e? fis aes bes
-	ees,, f g aes bes c d ees
-	s1
+	e,,16 fis g a b cis d e a,16 b cis d e fis g a
+	d,,16 e f g a b c d g,16 a b c d e f g
+	c,,8 d e f g a b c
+	d,16 e f g a b c d g,16 a b c d e f g 
 }
 
 justTheScales = \score {
@@ -171,23 +171,12 @@ justTheScales = \score {
 
 \justTheScales
 
-firstSet = \relative c'' {
-	d4. c8 d4. c8
-	cis8 dis f aes ais aes f dis?
-	e8 g, r4 g4. r8
-	r2 r8 g a b
-	\break
-
-	c d ees f aes f ees c
-	d fis aes b~ b bes aes fis
-	g4. bes,8 ees g, r4
-	r8 a c d f4. r8
-}
+firstSet = \relative c' { s1 \break s1 } 
 
 firstSetScore = \score {
 	\header { piece = "First Set" subtitle = ##f subsubtitle = ##f }
 	<<
-		\new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
+		%% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
 		\new Staff { \global \firstSet \bar "|."}
 	>>
 	\layout {
@@ -197,24 +186,13 @@ firstSetScore = \score {
 
 \firstSetScore
 
+secondSet = \relative c' { s1 \break s1 }
 
-secondSet = \relative c'' {
-	r8 c d e f g b a
-	aes ais g f dis 4 r8 b
-	c e g b d c~ c b
-	c8 b g e b g e b
-	\break
-
-	c8 ees f aes~ aes g f ees
-	fis aes b fis' e d~ d r
-	ees g ees bes g ees~ ees r
-	d8 e f g r g a b
-}
 
 secondSetScore = \score {
 	\header { piece = "Second Set"  subtile = ##f }
 	<<
-		\new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
+		%% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
 		\new Staff { \global \secondSet \bar "|."}
 	>>
 	\layout {
