@@ -94,7 +94,7 @@ markManualBox = #(define-music-function
 		  (parser location string)
 		  (string?)
 		  "manually set a box mark that matches current color/size"
-		  #{ <>\mark \markup \box #string #})
+		  #{ <>\mark \markup \with-color #darkred \box \sans \normalsize  #string #})
 
 markBlue = #(define-music-function
 	     (parser location string)
@@ -148,9 +148,98 @@ markBlue = #(define-music-function
 	  (ly:music?)
 	  (naturalize m))
 
+	%% Start with blank staves
+	blankStaves= \score {
+	  {
+	    \repeat unfold 11 { s1 \break }
+	  }
+	  \layout {
+	    #(layout-set-staff-size 28)
+	    indent = 0\in
+	    \context {
+	      \Staff
+	      \remove "Time_signature_engraver"
+	      \remove "Clef_engraver"
+	      \remove "Bar_engraver"
+	    }
+	    \context {
+	      \Score
+	      \remove "Bar_number_engraver"
+	    }
+	  }
+	}
+
+	\blankStaves
+	\pageBreak
 
 
-        %% Measure 1-2
+	%% H/W diminished scales
+
+	dimScaleTones_c = \relative c' {
+	  c8 des ees fes ges g a bes
+	  c,8 cis dis e fis g a ais
+	  \bar "||"
+	  \break
+	}
+	dimScaleDegrees = \lyrics {
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { f2 }8
+	  \markup \scaleDegree { f3 }8
+	  \markup \scaleDegree { f4 }8
+	  \markup \scaleDegree { f5 }8
+	  \markup \scaleDegree { n5 }8
+	  \markup \scaleDegree { 6 }8
+	  \markup \scaleDegree { f7 }8
+
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { s1 }8
+	  \markup \scaleDegree { s2 }8
+	  \markup \scaleDegree { 3 }8
+	  \markup \scaleDegree { s4 }8
+	  \markup \scaleDegree { 5 }8
+	  \markup \scaleDegree { 6 }8
+	  \markup \scaleDegree { s6 }8
+	}
+	\score {
+	  \header { piece = "H/W dim scale (play on V7b9 after half-dim)"}
+	  <<
+	    \new Staff {
+              \markManualBox "C"
+              \dimScaleTones_c
+	      \markManualBox "C#/Db"
+              \naturalizeMusic \transpose c cis \dimScaleTones_c
+	      \naturalizeMusic \transpose c des \dimScaleTones_c
+	      \markManualBox "D"
+	      \naturalizeMusic \transpose c d \dimScaleTones_c
+	      \markManualBox "D#/Eb"
+              \naturalizeMusic \transpose c dis \dimScaleTones_c
+	      \naturalizeMusic \transpose c ees \dimScaleTones_c
+	      \markManualBox "E"
+	      \naturalizeMusic \transpose c e \dimScaleTones_c
+	      \markManualBox "F"
+	      \naturalizeMusic \transpose c f \dimScaleTones_c
+	      \markManualBox "F#/Gb"
+              \naturalizeMusic \transpose c fis \dimScaleTones_c
+	      \naturalizeMusic \transpose c ges \dimScaleTones_c
+	      \markManualBox "G"
+	      \naturalizeMusic \transpose c g \dimScaleTones_c
+	      \markManualBox "G#/Ab"
+              \naturalizeMusic \transpose c gis \dimScaleTones_c
+	      \naturalizeMusic \transpose c aes \dimScaleTones_c
+	      \markManualBox "A"
+	      \naturalizeMusic \transpose c a \dimScaleTones_c
+	      \markManualBox "A#/Bb"
+              \naturalizeMusic \transpose c ais \dimScaleTones_c
+              \naturalizeMusic \transpose c bes \dimScaleTones_c
+	      \markManualBox "B"
+	      \naturalizeMusic \transpose c b \dimScaleTones_c
+	      \pageBreak
+	    }
+	    \dimScaleDegrees
+	  >>
+	}
+	
+	%% Measure 1-2
 	
 	measI_notes = \relative c'' {
 	  \key d \major
@@ -204,7 +293,7 @@ markBlue = #(define-music-function
 	  \key d \major
 	  r2 r4. cis8
 	  ais8 fis g a ais cis e a
-	  fis4 e8 d8 d4 r4
+	  fis4 e8 d8~ d4 r4
 	  \bar "||"
 	  \break
 	}
@@ -232,7 +321,7 @@ markBlue = #(define-music-function
 	measII_chordAnalysis = \new Lyrics \lyricmode {
 	  \markup \rN { I maj 7 }1
 	  \markup \rN { vii h }2 
-	  \markup \rN { III 7 f9 }2
+	  \markup \rN { III 7(f9) }2
 	  \markup \rN { vi m 7 }2
 	  \markup \rN { II 7 }2 
 	}
@@ -240,7 +329,7 @@ markBlue = #(define-music-function
 	measII_chord_names= \chordmode {
 	  d1:maj7
 	  cis2:m7.5-
-	  fis:7.9
+	  fis:7.9-
 	  b:m7
 	  e:7
 	}
@@ -308,7 +397,7 @@ markBlue = #(define-music-function
 	    }
 	    \measXII_degrees
 	  >>
-}
+	}
 	
 	%% Measure 21-23
 	
@@ -372,6 +461,188 @@ markBlue = #(define-music-function
 	    }
 	    \measXXII_degrees
 	  >>
-	  
 	}
 	
+	\pageBreak
+
+	%% Measure 26-28
+	
+	measXXVI_notes = \relative c'' {
+	  \key d \major
+	  \partial 8 { cis8 }
+	  d8 c cis b ais g fis e
+	  d4 r4 r2
+	  \bar "||"
+	  \break
+	}
+	
+	measXXVI_degrees= \lyrics {
+	  \markup \scaleDegree { 1 }8
+
+	  \markup \scaleDegree { f2 }8
+	  \markup \scaleDegree { f1 }8
+	  \markup \scaleDegree { n1 }8
+	  \markup \scaleDegree { f7 }8
+	  \markup \scaleDegree { 3 }8
+	  \markup \scaleDegree { f2 }8
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { f7 }8
+
+	  \markup \scaleDegree { f3 }4
+	}
+
+	measXXVI_chordAnalysis = \new Lyrics \lyricmode {
+	  8
+	  \markup \rN { vii h }2
+	  \markup \rN { III 7(f9) }2
+	  \markup \rN { vi m 7 }2
+	  \markup \rN { II 7 }2 
+	}
+
+	measXXVI_chord_names= \chordmode { s8 cis2:m7.5- fis:7.9 b:m7 e:7 }
+
+	\score {
+	  \header { piece = "Measure 26" }
+	  <<
+	    \measXXVI_chordAnalysis
+	    \new ChordNames {
+              \measXXVI_chord_names
+              \transpose d g \measXXVI_chord_names
+              \transpose d c \measXXVI_chord_names
+              \transpose d a \measXXVI_chord_names
+	    }
+	    \new Staff {
+	      \markManualBox "minor ii-v"
+	      \measXXVI_notes
+	      \naturalizeMusic \transpose d g \measXXVI_notes
+              \naturalizeMusic \transpose d c \measXXVI_notes
+              \naturalizeMusic \transpose d a \measXXVI_notes
+	      \break
+	    }
+	    \measXXVI_degrees
+	  >>
+	  
+	}
+
+	%% Measure 37 (repeats in multiple places)
+	
+	measXXXVII_notes = \relative c' {
+	  \key d \major
+          r2 fis8 a c e
+	  d4 r4 r2
+	  \bar "||"
+	}
+	
+	measXXXVII_degrees= \lyrics {
+	  2
+	  \markup \scaleDegree { 3 }8
+	  \markup \scaleDegree { 5 }8
+	  \markup \scaleDegree { f7 }8
+	  \markup \scaleDegree { 9 }8
+
+	  \markup \scaleDegree { 5 }4
+	  4 2
+	}
+
+	measXXXVII_chordAnalysis = \new Lyrics \lyricmode {
+	  \markup \rN { V 7 }1
+	  \markup \rN { I }1
+	}
+
+	measXXXVII_chord_names= \chordmode { d1:7 g: }
+
+	\score {
+	  \header { piece = "Measure 37 (I see this pattern in several places)" }
+	  <<
+	    \measXXXVII_chordAnalysis
+	    \new ChordNames {
+              \transpose d a \measXXXVII_chord_names
+	      \measXXXVII_chord_names
+              \transpose d g \measXXXVII_chord_names
+              \transpose d c \measXXXVII_chord_names
+              
+	    }
+	    \new Staff {
+	      \markManualBox "V7-I"
+	      \naturalizeMusic \transpose d a \measXXXVII_notes
+	      \measXXXVII_notes
+	      \naturalizeMusic \transpose d g \measXXXVII_notes
+              \naturalizeMusic \transpose d c \measXXXVII_notes
+              
+	      \break
+	    }
+	    \measXXXVII_degrees
+	  >>
+	}
+
+	%% Measure 42
+	
+	measXLII_notes = \relative c''' {
+	  \key d \major
+          ais8 a g eis fis e d c
+	  cis? b ais cis e g fis e
+	  d4 b2 r4
+	  \bar "||"
+	  \break
+	}
+	
+	measXLII_degrees= \lyrics {
+	  \markup \scaleDegree { s5 }8
+	  \markup \scaleDegree { n5 }8
+	  \markup \scaleDegree { 4 }8
+	  \markup \scaleDegree { s2 }8
+	  \markup \scaleDegree { 3 }8
+	  \markup \scaleDegree { n2 }8
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { f7 }8
+
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { f7 }8
+	  \markup \scaleDegree { 6 }8
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { f7 }8
+	  \markup \scaleDegree { f9 }8
+	  \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { f7 }8
+
+	  \markup \scaleDegree { f3 }4
+	  \markup \scaleDegree { 1 }2 
+	}
+
+	measXLII_chordAnalysis = \new Lyrics \lyricmode {
+	  \markup \rN { I maj 7 }1
+	  \markup \rN { vii h }2 
+	  \markup \rN { III 7(f9) }2
+	  \markup \rN { vi m 7 }2
+	  \markup \rN { II 7 }2 
+	}
+
+	measXLII_chord_names= \chordmode {
+	  d1:maj7
+	  cis2:m7.5-
+	  fis:7.9-
+	  b:m7
+	  e:7
+	}
+
+	\score {
+	  \header { piece = "Measure 42-44" }
+	  <<
+	    \measXLII_chordAnalysis
+	    \new ChordNames {
+              \measXLII_chord_names
+              \transpose d g \measXLII_chord_names
+	      \transpose d c \measXLII_chord_names
+	    }
+	    \new Staff \relative c'' {
+	      \markManualBox "minor ii-v-i"
+	      \measXLII_notes
+	      \naturalizeMusic \transpose d g \measXLII_notes
+	      \naturalizeMusic \transpose d c \measXLII_notes
+	    }
+	    \measXLII_degrees
+	  >>
+	}
+
+        \blankStaves
+	\blankStaves
