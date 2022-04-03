@@ -273,8 +273,8 @@ markBlue = #(define-music-function
           \timestop "0:33"
 	  g4 a2 g4
 	  r2 fis'4 r4
-	  d4 r8 fis16 e d8 b a g
-	  fis8 a cis fis f a, cis e
+	  d4 r8 fis16 e dis8 c b a
+	  gis8 b d fis f a, cis e
 	  \bar "||"
 	  \pageBreak
 	} 
@@ -363,13 +363,14 @@ markBlue = #(define-music-function
 	  \break
 
 	  \markManualBox "A"
-	  \timestop "1:14"
+          \timestop "1:14"
 	  fis4 r8 e d a eis fis
 	  a8 d cis e d b gis f
 	  e8 fis g4 a8 a4.
 	  r1
 	  \break
 
+	  \timestop "1:18"
 	  e8 fis g4 a2
 	  r8 fis'4. e8 d cis e
 	  d8 bes a g fis a b d~
@@ -378,12 +379,14 @@ markBlue = #(define-music-function
 	  \break
 
 	  \markManualBox "B"
+	  \timestop "1:21"
 	  b8 r d d c c d4
 	  fis4. d8 c c d4~
 	  d8 b r b d d b4
 	  f'4. e8 d b g4~
 	  \break
-          
+
+          \timestop "1:25"
 	  g4 r fis'8 g fis e
 	  dis8 fis, a b \tuplet 3/2 {c8 d c} b8 a
 	  gis8 b d fis cis d16 dis e8 cis
@@ -392,13 +395,16 @@ markBlue = #(define-music-function
 	  \break
 	  
 	  \markManualBox "A"
+	  \timestop "1:29"
 	  a4. d8~ d4 r4
 	  r8 f4( d8 ) e d r4
 	  r8 g, r4 d' r4
 	  r8 aes'4 f8 g f? r4
 	  \break
 
+          \timestop "1:33"
 	  r2 r8 b4 bes8
+	  \markBlue "Ab?"
 	  a8 g f d c a g gis
           a8 d, g gis a8 d, g gis
 	  a8 d, g gis a8 d, g gis
@@ -407,39 +413,80 @@ markBlue = #(define-music-function
 
 	  %% 3rd chorus 
           \markManualBox "A"
-          \timestop "0:37"
+          \timestop "1:36"
 	  a4 d,8 e fis a b a
 	  d8 cis e d cis e d cis
 	  d8 b g fis e fis g gis
 	  a8 a4. r8 dis, \tuplet 3/2 { e8 g b }
 	  \break
 
+	  \timestop "1:40"
 	  d8 fis, \tuplet 3/2 { g b d } fis a, \tuplet 3/2 { b d fis }
-	  a4 r4 s2
-	  \repeat unfold 2 { s1 }
+	  a4 r4 r8 c r b
+	  a8 g fis e dis c b a
+	  gis b d fis \tuplet 3/2 {f d a} \tuplet 3/2 {bis cis e}
 	  \bar "||"
           \break
 	  
 	  \markManualBox "A"
-	  \timestop "0:45"
-	  \repeat unfold 4 { s1 } \break
-	  \repeat unfold 4 { s1 }
+	  \timestop "1:44"
+	  d2 b'4. a8~
+	  a4 r4 r2
+	  r8 d, r4 \tuplet 3/2 {b4 b' a~}
+	  a4 r4 r4 b8 bes
+	  \break
+
+	  \timestop "1:47"
+	  a8 fis f e b bes a g
+	  f8 d \markBlue "Too Low" s4 s2
+	  b8 e eis fis a ais b e
+	  eis fis a ais b4 b8 bes
 	  \bar "||"
 	  \break
           
 	  \markManualBox "B"
-	  \timestop "0:55"
-	  \repeat unfold 4 { s1 } \break
-	  \repeat unfold 4 { s1 }
+          \timestop "1:50"
+	  a8 fis f e~ e4 r4
+	  r8 fis4 a8 fis e d cis
+	  e8 d cis d~ d4 r4
+	  e8 f d bes g4 r4
+	  \break
+
+	  \timestop "1:54"
+	  dis'8 e cis a fis a cis e
+	  dis4 fis,8 a b c b a
+	  ais e a bes b e ees d
+	  cis b a aes g a b cis
 	  \bar "||"
 	  \break
           
-	  \markManualBox "A"
-	  \timestop "1:03"
-	  \repeat unfold 4 { s1 } \break
-	  \repeat unfold 4 { s1 }
+          \markManualBox "A"
+          \timestop "1:58"
+	  d8 cis b bes a d, e eis
+	  fis8 a b d~ d4 r4
+	  r8 d4.~ d4. b8
+	  d4. b8 d4 r4
+	  \break
+
+          \timestop "2:01"
+	  r1
+	  r8 d4 b8 d8 b g d
+	  d'2 d
+	  d2 d
 	  \bar "||"
           \pageBreak
+
+          \markManualBox "A"
+          \timestop "2:05"
+	  d4 d d d
+	  d4 d8 d fis e d4~
+	  d8 d4. d2
+	  d4 d8 d b g fis e
+	  \break
+
+	  \timestop "2:08"
+	  a8 a4. r2
+          \repeat unfold 11 { s1 \break }
 
 	}
 
