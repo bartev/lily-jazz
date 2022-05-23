@@ -19,14 +19,14 @@ realBookTitle = \markup {
       \override TextScript.extra-offset = #'(0 . -4.5)
       s4
       s^\markup{
-        \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
-          \fontsize #5
-          \override #'(offset . 7)
-          \override #'(thickness . 6)
-          \underline \larger #title
-          \fontsize #1 \lower #1 \concat { #composer " " }
-        }
+	\fill-line {
+	  \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+	  \fontsize #5
+	  \override #'(offset . 7)
+	  \override #'(thickness . 6)
+	  \underline \larger #title
+	  \fontsize #1 \lower #1 \concat { #composer " " }
+	}
       }
       s
     }
@@ -71,7 +71,7 @@ realBookTitle = \markup {
   %%set to ##t if your score is less than one page:
   ragged-last-bottom = ##t
   ragged-bottom = ##t
-  
+
   %% markup-system-spacing = #'((basic-distance . 23)
 %%                            (minimum-distance . 8)
 %%                            (padding . 1))
@@ -215,7 +215,7 @@ markBlue = #(define-music-function
 
 	want_happy_head_eb = \relative c' {
 	  \markManualBox "A"
-	  \timestop "0:07" 
+	  \timestop "0:07"
 	  fis4 a2 fis4
 	  a4. a8 fis fis a4
 	  g4 a2 g4
@@ -227,9 +227,9 @@ markBlue = #(define-music-function
 	  fis'4 r fis r8 d~
 	  d4 r r r8 fis16 e
 	  d8 b a g fis a4.~
-          \bar "||"
+	  \bar "||"
 	  \break
-	  
+
 	  \markManualBox "A"
 	  \timestop "0:15"
 	  a8 a fis4 a4. a8
@@ -238,7 +238,7 @@ markBlue = #(define-music-function
 	  a2 g8 g a4
 	  \break
 
-          \timestop "0:19"
+	  \timestop "0:19"
 	  g4 a~ a8 a g4
 	  fis'4. a16 g fis8 d b a
 	  cis8 d r4 r2
@@ -247,48 +247,48 @@ markBlue = #(define-music-function
 	  \break
 
 	  \markManualBox "B"
-          \timestop "0:22"
+	  \timestop "0:22"
 	  c2 d4 a
 	  c4. d8~ d2
 	  b2 d4 b8 g~
 	  g4 r4 r2
-          \break
+	  \break
 
-          \timestop "0:26"
+	  \timestop "0:26"
 	  r8 fis4. a4 fis
 	  a2 b4. e,8~
 	  e2 r2
 	  r8 a r a gis gis g4
-	  \bar "||"          
+	  \bar "||"
 	  \break
-	  
-          \markManualBox "A"
+
+	  \markManualBox "A"
 	  \timestop "0:30"
 	  fis4 a2 fis4
 	  a4. a8 fis fis a4
 	  g4 a2 g4
 	  a4. a8 fis fis a a
 	  \break
-          
-          \timestop "0:33"
+
+	  \timestop "0:33"
 	  g4 a2 g4
 	  r2 fis'4 r4
 	  d4 r8 fis16 e dis8 c b a
 	  gis8 b d fis f a, cis e
 	  \bar "||"
 	  \pageBreak
-	} 
+	}
 
-        want_happy_solo_eb =  \relative c'' {
-          %% 1st chorus 
-          \markManualBox "A"
-          \timestop "0:37"
+	want_happy_solo_eb =  \relative c'' {
+	  %% 1st chorus
+	  \markManualBox "A"
+	  \timestop "0:37"
 	  d4. a8 fis a4.~
 	  a2 fis8 fis a4
 	  g4. e8 g4 a~
 	  a2 r2
 	  \break
-	  
+
 	  \timestop "0:41"
 	  a4 a8 a g g e r
 	  a4 r8 a g g e4
@@ -304,13 +304,13 @@ markBlue = #(define-music-function
 	  r8 a r a g g e4
 	  g4. a8 r4 fis'~
 	  \break
-	  
-          \timestop "0:49"
+
+	  \timestop "0:49"
 	  fis4 r d8 b~ b g~
 	  g4 r fis'4. d8~
 	  d2 r2
 	  f8 fis ees b d e r4
-	  \bar "||"
+          \bar "||"
 	  \break
 
 	  \markManualBox "B"
@@ -331,7 +331,7 @@ markBlue = #(define-music-function
 
 	  \markManualBox "A"
 	  \timestop "1:00"
-	  a1 
+	  a1
 	  d'4. b8~ b4 r
 	  r8 d4. b8 g fis f
 	  e4. a8~ a4 r
@@ -345,9 +345,9 @@ markBlue = #(define-music-function
 	  \bar "||"
 	  \pageBreak
 
-          %% 2nd chorus
+	  %% 2nd chorus
 	  \markManualBox "A"
-          \timestop "1:07"
+	  \timestop "1:07"
 	  f8 fis d b dis e cis a
 	  cis8 d cis b a fis dis fis
 	  e8 dis e fis g a b cis
@@ -363,7 +363,7 @@ markBlue = #(define-music-function
 	  \break
 
 	  \markManualBox "A"
-          \timestop "1:14"
+	  \timestop "1:14"
 	  fis4 r8 e d a eis fis
 	  a8 d cis e d b gis f
 	  e8 fis g4 a8 a4.
@@ -386,14 +386,14 @@ markBlue = #(define-music-function
 	  f'4. e8 d b g4~
 	  \break
 
-          \timestop "1:25"
+	  \timestop "1:25"
 	  g4 r fis'8 g fis e
 	  dis8 fis, a b \tuplet 3/2 {c8 d c} b8 a
 	  gis8 b d fis cis d16 dis e8 cis
 	  d8 b gis e c' b bes a~
-          \bar "||"
+	  \bar "||"
 	  \break
-	  
+
 	  \markManualBox "A"
 	  \timestop "1:29"
 	  a4. d8~ d4 r4
@@ -402,18 +402,17 @@ markBlue = #(define-music-function
 	  r8 aes'4 f8 g f? r4
 	  \break
 
-          \timestop "1:33"
+	  \timestop "1:33"
 	  r2 r8 b4 bes8
-	  \markBlue "Ab?"
 	  a8 g f d c a g gis
-          a8 d, g gis a8 d, g gis
+	  a8 d, g gis a8 d, g gis
 	  a8 d, g gis a8 d, g gis
 	  \bar "||"
 	  \pageBreak
 
-	  %% 3rd chorus 
-          \markManualBox "A"
-          \timestop "1:36"
+          %% 3rd chorus
+	  \markManualBox "A"
+	  \timestop "1:36"
 	  a4 d,8 e fis a b a
 	  d8 cis e d cis e d cis
 	  d8 b g fis e fis g gis
@@ -426,8 +425,8 @@ markBlue = #(define-music-function
 	  a8 g fis e dis c b a
 	  gis b d fis \tuplet 3/2 {f d a} \tuplet 3/2 {bis cis e}
 	  \bar "||"
-          \break
-	  
+	  \break
+
 	  \markManualBox "A"
 	  \timestop "1:44"
 	  d2 b'4. a8~
@@ -437,15 +436,15 @@ markBlue = #(define-music-function
 	  \break
 
 	  \timestop "1:47"
-	  a8 fis f e b bes a g
-	  f8 d \markBlue "Too Low" s4 s2
+	  a8 fis f e b bes a fis
+	  f8 e \timestop "Too Low" \rs \rs \rs
 	  b8 e eis fis a ais b e
 	  eis fis a ais b4 b8 bes
 	  \bar "||"
 	  \break
-          
+
 	  \markManualBox "B"
-          \timestop "1:50"
+	  \timestop "1:50"
 	  a8 fis f e~ e4 r4
 	  r8 fis4 a8 fis e d cis
 	  e8 d cis d~ d4 r4
@@ -455,27 +454,28 @@ markBlue = #(define-music-function
 	  \timestop "1:54"
 	  dis'8 e cis a fis a cis e
 	  dis4 fis,8 a b c b a
-	  ais e a bes b e ees d
+	  gis8 e a bes b e ees d
 	  cis b a aes g a b cis
 	  \bar "||"
 	  \break
-          
-          \markManualBox "A"
-          \timestop "1:58"
+
+	  \markManualBox "A"
+	  \timestop "1:58"
 	  d8 cis b bes a d, e eis
 	  fis8 a b d~ d4 r4
 	  r8 d4.~ d4. b8
 	  d4. b8 d4 r4
 	  \break
 
-          \timestop "2:01"
+	  \timestop "2:01"
 	  r1
 	  r8 d4 b8 d8 b g d
 	  d'2 d
 	  d2 d
 	  \bar "||"
-          \pageBreak
+	  \pageBreak
 
+	  %% 4th chorus
           \markManualBox "A"
           \timestop "2:05"
 	  d4 d d d
@@ -486,14 +486,68 @@ markBlue = #(define-music-function
 
 	  \timestop "2:08"
 	  a8 a4. r2
-          \repeat unfold 11 { s1 \break }
+	  r8 dis, \tuplet 3/2 {e8 g b} cis8 d cis b
+	  a8 fis f e dis b cis dis
+	  e fis gis e fis g gis a~
+	  \bar "||"
+	  \break
 
+	  \markManualBox "A"
+	  \timestop "2:12"
+	  a4. fis8 d fis a b
+	  d2 \tuplet 3/2 {r4 b' gis}
+	  \tuplet 3/2 {f4 d b} gis4 r
+	  r1
+	  \break
+
+	  \timestop "2:16"
+	  g4 b8 d e fis r fis~
+	  fis4 \tuplet 3/2 {e8 fis e} d8 bes g d
+	  fis8 d g gis a d4.~
+	  d1~
+	  \bar "||"
+	  \break
+
+	  \markManualBox "B"
+	  \timestop "2:19"
+	  d2 b4 a
+	  b8 d r b~ b4 r8 d~
+	  d2 b4 a
+	  fis4 f8 e~ e4 r
+	  \break
+
+	  \timestop "2:23"
+	  r8 d cis d fis a b a
+	  c4 e,8 d dis c' b a
+	  bes4 d,8 bes cis e \tuplet 3/2 {fis8 g b}
+	  a2 r
+	  \bar "||"
+	  \break
+
+	  \markManualBox "A"
+	  \timestop "2:27"
+	  r8 d, e eis fis a b a
+	  d8 cis e d cis e d cis
+	  d8 b g fis e fis g gis
+	  a8 a4. r4 r8 a8
+	  \break
+
+	  \timestop "2:31"
+	  a4 a8 a g g e4
+	  a4. a8 g g e4
+	  r8 a r a fis fis dis4
+	  a'4. a8 g g e4
+	  \bar "||"
+          
+	  d2 r2
+	  %% s1 s1 s1
+	  \pageBreak
 	}
 
 	i_want_head_scale_degrees = \lyrics { \repeat unfold 32 { ""1 } }
 	i_want_solo_scale_degrees = \lyrics {
-	  
-          \repeat unfold 15 { ""1 }
+
+	  \repeat unfold 15 { ""1 }
 
 	  %% m48
 	  \markup \scaleDegree { f3 }8
@@ -503,7 +557,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { 1 }8
 	  \markup \scaleDegree { 2 }8
 	  ""4
-	  
+
 	  %% 0:52
 	  %% m49
 	  ""4
@@ -512,7 +566,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { 1 }8
 	  \markup \scaleDegree { 7 }8
 	  \markup \scaleDegree { f7 }8
-	  \markup \scaleDegree { 6 }8 
+	  \markup \scaleDegree { 6 }8
 
 	  %% m50
 	  ""4.
@@ -557,7 +611,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { f3 }8
 	  \markup \scaleDegree { f7 }8
 	  \markup \scaleDegree { f5 }8
-	  
+
 	  \markup \scaleDegree { 3 }8
 	  \markup \scaleDegree { 2 }8
 	  \markup \scaleDegree { 1 }8
@@ -578,23 +632,23 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { 5 }8
 	  %% triplet
 	  \tuplet 3/2 {
-	   
+
 	    \markup \scaleDegree { f3 }8
 	    \markup \scaleDegree { 2 }
 	    \markup \scaleDegree { f2 }
 	  }
-	  
+
 	  \markup \scaleDegree { 1 }8
 	  \markup \scaleDegree { s5 }8
 	  \markup \scaleDegree { f3 }8
-	  \markup \scaleDegree { f2 }8 
+	  \markup \scaleDegree { f2 }8
 
 	  %% m57
 	  \markup \scaleDegree { 5 }1
 
 	  %% m58
 	  \markup \scaleDegree { 6 }4.
-          \markup \scaleDegree { 1 }8
+	  \markup \scaleDegree { 1 }8
 	  \markup \scaleDegree { 1 }4
 	  ""4
 
@@ -603,7 +657,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { f7 }4.
 	  \markup \scaleDegree { 5 }8
 	  \markup \scaleDegree { f3 }8
-          \markup \scaleDegree { 2 }8
+	  \markup \scaleDegree { 2 }8
 	  \markup \scaleDegree { f2 }8
 
 	  %% m60
@@ -637,7 +691,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { s5 }8
 	  \markup \scaleDegree { 6 }8
 	  ""4
-	  
+
 				% \repeat unfold 4 { ""1 }
 
 	  %% 2nd chorus
@@ -667,7 +721,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { n7 }8
 	  \markup \scaleDegree { 1 }8
 	  \markup \scaleDegree { 2 }8
-	  
+
 	  \markup \scaleDegree { f3 }8
 	  \markup \scaleDegree { 4 }8
 	  \markup \scaleDegree { 5 }8
@@ -699,7 +753,7 @@ markBlue = #(define-music-function
 	  \markup \scaleDegree { f7 }8
 	  \markup \scaleDegree { s4 }8
 	  \markup \scaleDegree { 5 }8
-	  
+
 	  \markup \scaleDegree { 6 }8
 	  \markup \scaleDegree { f7 }8
 	  \markup \scaleDegree { 6 }8
@@ -707,7 +761,7 @@ markBlue = #(define-music-function
 
 	  %% m71
 	  \markup \scaleDegree { 3 }4.
-          ""8
+	  ""8
 	  \markup \scaleDegree { 4 }8
 	  \markup \scaleDegree { 1 }16
 	  \markup \scaleDegree { f1 }16
@@ -748,9 +802,9 @@ markBlue = #(define-music-function
 
 	  %% m76
 	  ""1
-	  
+
 	}
-	
+
 	dimScaleDegrees = \lyrics {
 	  \markup \scaleDegree { 1 }8
 	  \markup \scaleDegree { f2 }8
@@ -791,11 +845,11 @@ markBlue = #(define-music-function
 
 	  e1:m7
 	  a1:7
-          d1
+	  d1
 	  d1
 
 	  %% B
-          d1:7
+	  d1:7
 	  d1:7
 	  g1:6
 	  c1:9
@@ -804,7 +858,7 @@ markBlue = #(define-music-function
 	  fis2:m7 b:7
 	  e1:9-.5-
 	  a1:7.5+
-	  
+
 	  %% A
 	  d2 g:maj7
 	  fis2:m7 b:7.9-
@@ -816,7 +870,7 @@ markBlue = #(define-music-function
 	  d2 b:m7
 	  e2:m7 a:7
 	}
-        
+
 	stella_chordAnalysis= \new Lyrics \lyricmode {
 	  \partial 4 {""4}
 
@@ -838,16 +892,16 @@ markBlue = #(define-music-function
 	  \markup \rN { V maj 7 }1
 	  \markup \rN { siv - 7f5 }1
 	  \markup \rN { IV maj 7(s11) }1
-	  \markup \rN { III 7f9 }1 
-	  
+	  \markup \rN { III 7f9 }1
+
 	}
-	
+
 	\score {
 	  %% \header { piece = "H/W dim scale (play on V7b9 after half-dim)"}
 	  <<
 	    %% \stella_chordAnalysis
-            \new ChordNames {
-	      \repeat unfold 4 {\want_happy_chordNames \pageBreak}
+	    \new ChordNames {
+	      \repeat unfold 5 {\want_happy_chordNames}
 	    }
 	    \new Staff {
 	      \global
@@ -864,4 +918,3 @@ markBlue = #(define-music-function
 	}
 	\pageBreak
 	\blankStaves
-	
