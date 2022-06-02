@@ -19,14 +19,14 @@ realBookTitle = \markup {
       \override TextScript.extra-offset = #'(0 . -4.5)
       s4
       s^\markup{
-	\fill-line {
-	  \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
-	  \fontsize #5
-	  \override #'(offset . 7)
-	  \override #'(thickness . 6)
-	  \underline \larger #title
-	  \fontsize #1 \lower #1 \concat { #composer " " }
-	}
+        \fill-line {
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #5
+          \override #'(offset . 7)
+          \override #'(thickness . 6)
+          \underline \larger #title
+          \fontsize #1 \lower #1 \concat { #composer " " }
+        }
       }
       s
     }
@@ -35,7 +35,7 @@ realBookTitle = \markup {
       \omit Staff.TimeSignature
       \omit Staff.KeySignature
       ragged-right = ##f
-      ragged-bottom = ##t
+      ragged-bottom = ##f
       last-ragged-bottom = ##t
     }
   }
@@ -102,8 +102,8 @@ global = {
   \numericTimeSignature
   %% http://lilypond.org/doc/v2.18/Documentation/notation/displaying-rhythms#time-signature
   \key c \major
-				% %% beam across 4 eighth notes
-				% \time #'(4) 2/4
+                                % %% beam across 4 eighth notes
+                                % \time #'(4) 2/4
 
   %% make only the first clef visible
   \override Score.Clef #'break-visibility = #'#(#f #f #f)
@@ -123,25 +123,25 @@ global = {
 %%%%%%%%%%%%%%%%%%%% Functions
 
 timestop = #(define-music-function
-	     (parser location string)
-	     (string?)
-	     "colored markup (for timestamps)"
-	     #{ <>^\markup \large \with-color #red #string #})
+             (parser location string)
+             (string?)
+             "colored markup (for timestamps)"
+             #{ <>^\markup \large \with-color #red #string #})
 
 markManualBox = #(define-music-function
-		  (parser location string)
-		  (string?)
-		  "manually set a box mark that matches current color/size"
-		  #{ <>\mark \markup \with-color #darkred \box \sans \normalsize  #string #})
+                  (parser location string)
+                  (string?)
+                  "manually set a box mark that matches current color/size"
+                  #{ <>\mark \markup \with-color #darkred \box \sans \normalsize  #string #})
 
 markBlue = #(define-music-function
-	     (parser location string)
-	     (string?)
-	     "blue markup string"
-	     #{ <>\mark \markup \override
-	     #'(font-name . "lilyjazz-chord")
-		\fontsize #-6
-		\with-color #blue #string #})
+             (parser location string)
+             (string?)
+             "blue markup string"
+             #{ <>\mark \markup \override
+             #'(font-name . "lilyjazz-chord")
+                \fontsize #-6
+                \with-color #blue #string #})
 
 crossNote = 
 #(define-music-function (parser location my-music)
@@ -153,12 +153,42 @@ crossNote =
   #}
 )
 
+blueChord =
+#(define-music-function (parser location my-music)
+  (ly:music?)
+  #{
+  \override ChordName.color = #darkblue
+  #my-music
+  \revert ChordName.color
+  #}
+  )
+
+redChord =
+#(define-music-function (parser location my-music)
+  (ly:music?)
+  #{
+  \override ChordName.color = #darkred
+  #my-music
+  \revert ChordName.color
+  #}
+  )
+
+greenChord =
+#(define-music-function (parser location my-music)
+  (ly:music?)
+  #{
+  \override ChordName.color = #darkgreen
+  #my-music
+  \revert ChordName.color
+  #}
+  )
+
 #(define (naturalize-pitch p)
   (let ((o (ly:pitch-octave p))
-	(a (* 4 (ly:pitch-alteration p)))
-	;; alteration, a, in quarter tone steps,
-	;; for historical reasons
-	(n (ly:pitch-notename p)))
+        (a (* 4 (ly:pitch-alteration p)))
+        ;; alteration, a, in quarter tone steps,
+        ;; for historical reasons
+        (n (ly:pitch-notename p)))
    (cond
     ((and (> a 1) (or (eqv? n 6) (eqv? n 2)))
      (set! a (- a 2))
@@ -173,201 +203,628 @@ crossNote =
    (if (> n 6) (begin (set! o (+ o 1)) (set! n (- n 7))))
    (ly:make-pitch o n (/ a 4))))
 
-	#(define (naturalize music)
-	  (let ((es (ly:music-property music 'elements))
-		(e (ly:music-property music 'element))
-		(p (ly:music-property music 'pitch)))
-	   (if (pair? es)
-	    (ly:music-set-property!
-	     music 'elements
-	     (map naturalize es)))
-	   (if (ly:music? e)
-	    (ly:music-set-property!
-	     music 'element
-	     (naturalize e)))
-	   (if (ly:pitch? p)
-	    (begin
-	     (set! p (naturalize-pitch p))
-	     (ly:music-set-property! music 'pitch p)))
-	   music))
+        #(define (naturalize music)
+          (let ((es (ly:music-property music 'elements))
+                (e (ly:music-property music 'element))
+                (p (ly:music-property music 'pitch)))
+           (if (pair? es)
+            (ly:music-set-property!
+             music 'elements
+             (map naturalize es)))
+           (if (ly:music? e)
+            (ly:music-set-property!
+             music 'element
+             (naturalize e)))
+           (if (ly:pitch? p)
+            (begin
+             (set! p (naturalize-pitch p))
+             (ly:music-set-property! music 'pitch p)))
+           music))
 
-	naturalizeMusic =
-	#(define-music-function (m)
-	  (ly:music?)
-	  (naturalize m))
+        naturalizeMusic =
+        #(define-music-function (m)
+          (ly:music?)
+          (naturalize m))
 
-	%% Start with blank staves
-	blankStaves= \score {
-	  {
-	    \repeat unfold 11 { s1 \break }
-	  }
-	  \layout {
-	    #(layout-set-staff-size 28)
-	    indent = 0\in
-	    \context {
-	      \Staff
-	      \remove "Time_signature_engraver"
-	      \remove "Clef_engraver"
-	      \remove "Bar_engraver"
-	    }
-	    \context {
-	      \Score
-	      \remove "Bar_number_engraver"
-	    }
-	  }
-	}
+        %% Start with blank staves
+        blankStaves= \score {
+          {
+            \repeat unfold 11 { s1 \break }
+          }
+          \layout {
+            #(layout-set-staff-size 28)
+            indent = 0\in
+            \context {
+              \Staff
+              \remove "Time_signature_engraver"
+              \remove "Clef_engraver"
+              \remove "Bar_engraver"
+            }
+            \context {
+              \Score
+              \remove "Bar_number_engraver"
+            }
+          }
+        }
 
-	%% \blankStaves
-	%% \pageBreak
+        %% \blankStaves
+        %% \pageBreak
 
 
-	%% Head
-	giant_steps =  \relative c'' {
-	  %% Head
-	  \markManualBox "Head"
-	  \timestop "0:37"
-    ees2 b
-    gis2 e4. g8~
-    g2. r4
-    gis4. fis8~ fis2
-    \break
+        %% Head
+        giant_steps =  \relative c'' {
+          %% Head
+          \markManualBox "Head"
+          \timestop "0:00"
+          ees2 b
+          gis2 e4. g8~
+          g2. r4
+          gis4. fis8~ fis2
+          \break
 
-    b2 g
-    e2 c4. ees8~
-    ees2 r2
-    e?2 d4. g8~
-    \break
-    
-    g1
-    gis2 fis4. b8~
-    b2 r
-    c2 c4. ees8~
-    \break
-    
-    ees1
-    e?2 e4. g8~
-    g1
-    ees4. ees8~ ees r r4
-    \bar "||"
-    \break
+          b2 g
+          e2 c4. ees8~
+          ees2 r2
+          e?2 d4. g8~
+          \break
+          
+          g1
+          gis2 fis4. b8~
+          b2 r
+          c2 c4. ees8~
+          \break
+          
+          ees1
+          e?2 e4. g8~
+          g1
+          ees4. ees8~ ees r r4
+          \bar "||"
+          \break
 
-	  \markManualBox "A (Head again)"
-	  \timestop "0:37"    
-    ees2 b
-    gis2 e4. g8~
-    g2. r4
-    gis4. fis8~ fis2
-    \break
+          \markManualBox "A (Head again)"
+          \timestop "0:13"    
+          ees2 b
+          gis2 e4. g8~
+          g2. r4
+          gis4. fis8~ fis2
+          \break
 
-    b2 g
-    e2 c4. ees8~
-    ees2 r2
-    e?2 d4. g8~
-    \break
-    
-    g2. r4
-    gis2 fis4. b8~
-    b2 r
-    c2 c4. ees8~
-    \break
-    
-    ees1
-    e?2 e4. g8~
-    g2. r4
-    bes,8 des f aes g4. f8
-    \bar "||"
-    \pageBreak
-    
-	  \markManualBox "B (Start solo)"
-	  \timestop "0:37"
-    ees8 c aes4 b8 cis dis fis
-    e8 b gis \crossNote dis a' f e d
-    c8 d e f g a b d
-    cis8 a fis e dis c' b a
-    \break
-    
-    gis8 b e gis b, d f? a
-    c,8 d e g des f g bes
-    g4 f8 ees~ ees4 r
-    g8 fis f e d c b a
-    \break
+          b2 g
+          e2 c4. ees8~
+          ees2 r2
+          e?2 d4. g8~
+          \break
+          
+          g2. r4
+          gis2 fis4. b8~
+          b2 r
+          c2 c4. ees8~
+          \break
+          
+          ees1
+          e?2 e4. g8~
+          g2. r4
+          bes,8 des f aes g4. f8
+          \bar "||"
+          \pageBreak
+          
+          \markManualBox "B (Start solo)"
+          \timestop "0:27"
+          ees8 c aes4 b8 cis dis fis
+          e8 b gis \crossNote dis a' f e d
+          c8 d e f g a b d
+          cis8 a fis e dis c' b a
+          \break
 
-    g8 f' e b d c b d
-    cis8 a fis cis e \crossNote cis! dis c'
-    b8 a gis fis e fis? g b
-    c8 bes aes g~ g ees f g
-    \break
+          \timestop "0:30"
+          gis8 b e gis b, d f? a
+          c,8 d e g des f g bes
+          g4 f8 ees~ ees4 r
+          g8 fis f e d c b a
+          \break
 
-    aes8 bes c ees g fis f e
-    d4 r e16 f \crossNote e8 d8 b
-    c8 d \crossNote e g c4 g
-    r4 g8 aes g4. ees8
-    \bar "||"
-    \break
-    
-    \repeat unfold 4 { \repeat unfold 4 s1 \break }
-    
-	}
+          \timestop "0:33"
+          g8 f' e b d c b d
+          cis8 a fis cis e \crossNote cis! dis c'
+          b8 a gis fis e fis? gis? b
+          c8 bes aes g~ g ees f g
+          \break
 
-	giant_steps_head_scale_degrees = \lyrics { \repeat unfold 32 { ""1 } }
-	giant_steps_solo_scale_degrees = \lyrics {
+          \timestop "0:37"
+          aes8 bes c ees g fis f e
+          d4 r f8 e d b
+          c8 d \crossNote e g c4-- g-.
+          r4 g8 aes g4. ees8
+          \bar "||"
+          \break
 
-	  \repeat unfold 15 { ""1 }
+          \markManualBox "C"
+          \timestop "0:40"
+          b'2.~ b8 bes16 a
+          gis8 b, e gis? g fis f a
+          g8 e d c e c r4
+          b'4. g?8~ g dis b4
+          \break
 
-	  %% m48
-	  \markup \scaleDegree { f3 }8
-	  \markup \scaleDegree { 3 }8
-	  \markup \scaleDegree { f2 }8
-	  \markup \scaleDegree { 6 }8
-	  \markup \scaleDegree { 1 }8
-	  \markup \scaleDegree { 2 }8
-	  ""4
+          \timestop "0:43"
+          r8 b e gis b, d f a
+          c,8 d e g des \crossNote ees f g
+          ees4. c8 bes a aes ees
+          a8 b c a e' d b a
+          \break
 
-	}
+          \timestop "0:47"
+          g4 r8 f' e c r4
+          r8 fis, \crossNote { \tuplet 3/2 { a8 cis e } } gis8 fis dis cis!
+          \markBlue "1-2-3-5 of B7"
+          b8 cis dis fis e fis? gis g~
+          g4 aes 2.
+          \break
 
-	giant_steps_chordNames = \chordmode {
-	  %% A
-    aes2 b:7
-    e2 g:7
-    c1
-    fis2:m7 b:7
-    
-    e2 g:7
-    c2 ees:7
-    aes1
-    d2:m7 g:7
-    
-    c1
-    fis2:m7 b:7
-    e1
-    bes2:m7 ees:7
-    
-    aes1
-    d2:m7 g:7
-    c1
-    bes2:m7 ees:7
-	}
+          \timestop "0:50"
+          g8 ees f g ees! c bes aes
+          a8 b c \crossNote a e' d b a
+          g4. e'8~ e r r4
+          r8 bes \tuplet 3/2 { des8 f aes } ees8 f g bes
+          \break
+          
+          \markManualBox "D"
+          \timestop "0:53?"
+          aes8 bes, c ees b cis dis fis
+          e8 b gis \crossNote \markBlue "1-3-5-1 of D-7" e a f e d
+          c8 d e f g a b d
+          cis8 a \crossNote { e' cis } gis' \crossNote b, cis? dis
+          \break
 
-	%% giant_steps_chordAnalysis= \new Lyrics \lyricmode { }
+          \timestop "0:xx"
+          e8 fis gis b f a g f
+          e8 c d e des \crossNote ees f g
+          bes4 g8 f ees c r4
+          r2 b4. a16 aes
+          \break
+          
+          \repeat unfold 4 { \repeat unfold 4 s1 \break }
+          
+        }
 
-	\score {
-	  <<
-	    %% \giant_steps_chordAnalysis
-	    \new ChordNames {
-	      \repeat unfold 4 {\giant_steps_chordNames}
-	    }
-	    \new Staff {
-	      \global
-	      \giant_steps
-	      %% \pageBreak
-	    }
-	    %% {
-	    %%   \i_want_head_scale_degrees
-	    %%   \i_want_solo_scale_degrees
-	    %% }
-	    %% \dimScaleDegrees
-	  >>
-	}
+        giant_steps_head_scale_degrees = \lyrics {
+          \markup \scaleDegree { 3 }2
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }1
+          \markup \scaleDegree { 2 }2
+          \markup \scaleDegree { 5 }2
+          
+          \markup \scaleDegree { 3 }2
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 5 }
+          ""2
+          \markup \scaleDegree { 2 }2
+          \markup \scaleDegree { 5 }
 
-%%	\pageBreak
-%%	\blankStaves
+          \markup \scaleDegree { 5 }1
+          \markup \scaleDegree { 2 }2
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }1
+          \markup \scaleDegree { 4 }2
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 5 }1
+          \markup \scaleDegree { 2 }2
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }1
+          \markup \scaleDegree { 4 }2
+          \markup \scaleDegree { 1 } 
+
+          %% head, repeated
+                    \markup \scaleDegree { 3 }2
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }1
+          \markup \scaleDegree { 2 }2
+          \markup \scaleDegree { 5 }2
+
+          \repeat unfold 11 { ""1 }
+        }
+        giant_steps_solo_scale_degrees = \lyrics {
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f3 }8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 2 }8
+
+          %% B start solo
+          %% m33
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8 
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 7 }8 
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 5 }8 
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 4 }8 
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 9 }8 
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { f3 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f7 }8 
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { f9 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f7 }8 
+
+          %% m37
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 3 }8 
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 9 }8 
+          
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8 
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8 
+          
+          \markup \scaleDegree { 7 }4
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 5 }4.
+          ""4
+          
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { f3 }8
+          \markup \scaleDegree { 2 }8 
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }8 
+
+          %% m41
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 7 }8 
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 2 }8 
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { f3 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 5 }8 
+          \markup \scaleDegree { 4 }8
+          ""8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { f9 }8
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }8 
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8 
+
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 6 }8 
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8 
+
+          %% m45
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8 
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { s6 }8
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { s5 }8 
+
+          \markup \scaleDegree { 1 }4
+          ""4
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }8
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }8
+          ""8
+          \markup \scaleDegree { 5 }8 
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 5 }4
+
+          ""4
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8 
+
+          %% m49
+          \markup \scaleDegree { s9 }2.
+          ""8
+          \markup \scaleDegree { 2 }16
+          \markup \scaleDegree { s1 }16
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 9 }8
+          
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }8
+          ""4
+
+          \markup \scaleDegree { 4 }4.
+          ""8
+          \markup \scaleDegree { s5 }8
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }4
+
+          %% m53
+          ""8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 8 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+
+          \markup \scaleDegree { 5 }4.
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { s1 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          %% m57
+          \markup \scaleDegree { 5 }4
+          ""8
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          ""4
+
+          ""8
+          \markup \scaleDegree { 1 }8
+          \tuplet 3/2 {
+            \markup \scaleDegree { f3 }8
+            \markup \scaleDegree { 5 }
+            \markup \scaleDegree { f7 }
+          }
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f3 }
+
+          \markup \scaleDegree { 6 }4
+          \markup \scaleDegree { f7 }2.
+
+          %% m61
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          \markup \scaleDegree { 5 }4.
+          \markup \scaleDegree { 3 }8
+          ""2
+
+          ""8
+          \markup \scaleDegree { 1 }8
+          \tuplet 3/2 {
+            \markup \scaleDegree { f3 }8
+            \markup \scaleDegree { 5 }
+            \markup \scaleDegree { f7 }
+          }
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+
+          %% m65
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+
+          %% m68
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 4 }
+
+          \markup \scaleDegree { 2 }4
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          ""4
+
+          ""2
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 2 }16
+          \markup \scaleDegree { f2 }
+          
+          
+        }
+        
+
+        %% blue:  E
+        %% red:   C
+        %% green: Ab
+        giant_steps_chordNames = \chordmode {
+          %% A
+          \greenChord aes2:maj7 \blueChord { b:7
+          e2:maj7 } \redChord { g:7
+          c1:maj7 }
+          \blueChord { fis2:m7 b:7
+          
+          e2:maj7 } \redChord { g:7
+          c2:maj7 } \greenChord { ees:7
+          aes1:maj7 }
+          \redChord { d2:m7 g:7
+          
+          c1:maj7 }
+          \blueChord { fis2:m7 b:7
+          e1:maj7 }
+          \greenChord { bes2:m7 ees:7
+          
+          aes1:maj7 }
+          \redChord { d2:m7 g:7
+          c1:maj7 }
+          \greenChord { bes2:m7 ees:7 }
+        }
+
+        %% giant_steps_chordAnalysis= \new Lyrics \lyricmode { }
+
+        \score {
+          <<
+            %% \giant_steps_chordAnalysis
+            \new ChordNames {
+              \repeat unfold 5 {\giant_steps_chordNames}
+            }
+            \new Staff {
+              \global
+              \giant_steps
+              %% \pageBreak
+            }
+            {
+              \giant_steps_head_scale_degrees
+              \giant_steps_solo_scale_degrees
+            }
+          >>
+        }
+
+        %%	\pageBreak
+        %%	\blankStaves
