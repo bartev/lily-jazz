@@ -366,6 +366,7 @@ greenChord =
           a8 b c \crossNote a e' d b a
           g4. e'8~ e r r4
           r8 bes \tuplet 3/2 { des8 f aes } ees8 f g bes
+          \bar "||"
           \break
           
           \markManualBox "D"
@@ -380,10 +381,96 @@ greenChord =
           e8 fis gis b f a g f
           e8 c d e des \crossNote ees f g
           bes4 g8 f ees c r4
-          r2 b4. a16 aes
+          r2 b'4. a16 aes
+          \break
+
+          \timestop "0:xx"
+          ges8 f e d c d e g
+          b2.~ b8 ais16 a
+          gis8 dis fis dis! e b gis \crossNote e
+          c'8 aes g ees f ees! f g
+          \break
+
+          \timestop "0:xx"
+          aes8 bes c \crossNote ees g ees! c aes!
+          fis'4. e8 d c b a!
+          g8 f e d c \crossNote d \crossNote ees g
+          c4 r r2
+          \bar "||"
+          \break
+
+          \timestop "0:xx"
+          \markManualBox "E"
+          r8 ees,8 aes c b cis dis fis
+          e8 b gis e a f e d
+          c8 d e f g a b d
+          cis8 eis \crossNote e \crossNote c gis' b, cis fis
+          \break
+
+          \timestop "0:xx"
+          e8 fis gis a b, d f a
+          c,8 d e \crossNote e r2
+          ees4 c8 bes aes bes! c ees!
+          g8 fis f e d c b a
+          \break
+
+          \timestop "0:xx"
+          g8 f' e b d c b d
+          cis8 a fis \crossNote cis e4. \crossNote dis8
+          b'4 r gis'4 r
+          r8 bes, \tuplet 3/2 { des8 f aes } g4 bes
           \break
           
-          \repeat unfold 4 { \repeat unfold 4 s1 \break }
+          \timestop "0:xx"
+          b!4. g8 ees c r4
+          b'2 g8 f e d
+          c8 d e g c4 r4
+          r8 c8 bes aes g4. ees8
+          \bar "||"
+          \break
+
+          \markManualBox "F"
+          \timestop "0:xx"
+          b'2.~ b8 ais16 a
+          gis8 b, e gis g fis f a
+          g8 e d c e g4 c8~
+          c8 b,4 gis'8 fis4 r4
+          \break
+
+          \timestop "0:xx"
+          r8 b, e gis b, d f a
+          c,8 \crossNote { d e } g c4 bes8 aes
+          g8 f ees des c bes aes \crossNote e
+          a8 b c d e d b a
+          \break
+
+          \timestop "0:xx"
+          g8 f' e b d c b a
+          fis'8 e4 \crossNote { b16 e } gis4 e8 g~
+          g4. e8 gis b r4
+          r8 bes, \tuplet 3/2 { des8 f aes } g8 bes4.~
+          \break
+
+          \timestop "0:xx"
+          bes4 g8 f ees c aes4
+          b'4. a16 aes g8 f e d
+          c d e g c4 r
+          r4 bes~ bes4. g8
+          \bar "||"
+          \break
+          
+          \markManualBox "G"
+          \timestop "0:xx"
+
+          % \markManualBox "H"
+          % \markManualBox "I"
+          % \markManualBox "J"
+          % \markManualBox "K"
+          % \markManualBox "L"
+          
+          \repeat unfold 7 {
+            \repeat unfold 4 { s1 } \break
+            }
           
         }
 
@@ -812,7 +899,7 @@ greenChord =
           <<
             %% \giant_steps_chordAnalysis
             \new ChordNames {
-              \repeat unfold 5 {\giant_steps_chordNames}
+              \repeat unfold 7 {\giant_steps_chordNames}
             }
             \new Staff {
               \global
