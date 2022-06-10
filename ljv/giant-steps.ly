@@ -370,36 +370,36 @@ greenChord =
           \break
           
           \markManualBox "D"
-          \timestop "0:53?"
+          \timestop "0:53"
           aes8 bes, c ees b cis dis fis
           e8 b gis \crossNote \markBlue "1-3-5-1 of D-7" e a f e d
           c8 d e f g a b d
           cis8 a \crossNote { e' cis } gis' \crossNote b, cis? dis
           \break
 
-          \timestop "0:xx"
+          \timestop "0:57"
           e8 fis gis b f a g f
           e8 c d e des \crossNote ees f g
           bes4 g8 f ees c r4
           r2 b'4. a16 aes
           \break
 
-          \timestop "0:xx"
-          ges8 f e d c d e g
+          \timestop "1:00"
+          g8 f e d c d e g
           b2.~ b8 ais16 a
           gis8 dis fis dis! e b gis \crossNote e
           c'8 aes g ees f ees! f g
           \break
 
-          \timestop "0:xx"
+          \timestop "1:03"
           aes8 bes c \crossNote ees g ees! c aes!
-          fis'4. e8 d c b a!
+          f'4. e16 ees d8 c b a!
           g8 f e d c \crossNote d \crossNote ees g
           c4 r r2
           \bar "||"
           \break
 
-          \timestop "0:xx"
+          \timestop "1:06"
           \markManualBox "E"
           r8 ees,8 aes c b cis dis fis
           e8 b gis e a f e d
@@ -407,22 +407,22 @@ greenChord =
           cis8 eis \crossNote e \crossNote c gis' b, cis fis
           \break
 
-          \timestop "0:xx"
+          \timestop "1:10"
           e8 fis gis a b, d f a
           c,8 d e \crossNote e r2
           ees4 c8 bes aes bes! c ees!
           g8 fis f e d c b a
           \break
 
-          \timestop "0:xx"
+          \timestop "1:13"
           g8 f' e b d c b d
           cis8 a fis \crossNote cis e4. \crossNote dis8
           b'4 r gis'4 r
           r8 bes, \tuplet 3/2 { des8 f aes } g4 bes
           \break
           
-          \timestop "0:xx"
-          b!4. g8 ees c r4
+          \timestop "1:16"
+          bes4. g8 ees c r4
           b'2 g8 f e d
           c8 d e g c4 r4
           r8 c8 bes aes g4. ees8
@@ -430,28 +430,28 @@ greenChord =
           \break
 
           \markManualBox "F"
-          \timestop "0:xx"
+          \timestop "1:20"
           b'2.~ b8 ais16 a
           gis8 b, e gis g fis f a
           g8 e d c e g4 c8~
           c8 b,4 gis'8 fis4 r4
           \break
 
-          \timestop "0:xx"
+          \timestop "1:23"
           r8 b, e gis b, d f a
           c,8 \crossNote { d e } g c4 bes8 aes
-          g8 f ees des c bes aes \crossNote e
+          g8 f ees des c bes aes \crossNote g
           a8 b c d e d b a
           \break
 
-          \timestop "0:xx"
+          \timestop "1:26"
           g8 f' e b d c b a
-          fis'8 e4 \crossNote { b16 e } gis4 e8 g~
-          g4. e8 gis b r4
+          fis'8 e4 \crossNote { b16 e } gis4 e8 gis!~
+          gis4. e8 gis b r4
           r8 bes, \tuplet 3/2 { des8 f aes } g8 bes4.~
           \break
 
-          \timestop "0:xx"
+          \timestop "1:30"
           bes4 g8 f ees c aes4
           b'4. a16 aes g8 f e d
           c d e g c4 r
@@ -663,6 +663,7 @@ greenChord =
           \markup \scaleDegree { 3 }4.
           \markup \scaleDegree { 1 }8 
 
+          %% C
           %% m49
           \markup \scaleDegree { s9 }2.
           ""8
@@ -795,6 +796,7 @@ greenChord =
           \markup \scaleDegree { 3 }
           \markup \scaleDegree { 5 }
 
+          %% D
           %% m65
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 2 }
@@ -832,7 +834,7 @@ greenChord =
           \markup \scaleDegree { 2 }
           \markup \scaleDegree { 3 }
 
-          %% m68
+          %% m69
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 2 }
           \markup \scaleDegree { 3 }
@@ -862,7 +864,332 @@ greenChord =
           \markup \scaleDegree { 3 }4.
           \markup \scaleDegree { 2 }16
           \markup \scaleDegree { f2 }
+
+          %% m73
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
           
+          \markup \scaleDegree { 4 }2
+          \markup \scaleDegree { 1 }4.
+          \markup \scaleDegree { 7 }16
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 } 
+          
+          %% m77
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { f3 }4.
+          \markup \scaleDegree { 2 }16
+          \markup \scaleDegree { f2 }
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 9 }4
+          ""2.
+
+          %% E
+          %% m81
+          ""8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { f5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 5 }
+
+          %% m85
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 3 }
+          ""2
+
+          \markup \scaleDegree { 5 }4
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          %% m89
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 4 }4.
+          \markup \scaleDegree { 3 }8
+
+          \markup \scaleDegree { 5 }4
+          ""
+          \markup \scaleDegree { 3 }
+          ""
+          
+          ""8
+          \markup \scaleDegree { 1 }8
+          \tuplet 3/2 {
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 7 }
+          }
+          \markup \scaleDegree { 6 }4
+          \markup \scaleDegree { 1 } 
+
+          %% m93
+          \markup \scaleDegree { 9 }4.
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          ""4
+
+          \markup \scaleDegree { 6 }2
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }4
+          ""4
+
+          ""8
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8
+
+          %% F
+          %% m97
+          \markup \scaleDegree { s9 }2.
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 7 }16
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }4
+          \markup \scaleDegree { 1 }8
+
+          \markup \scaleDegree { f5 }8
+          \markup \scaleDegree { 4 }4
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 5 }4
+          ""4
+
+          %% m101
+          ""8
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }4
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          %% m105
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f7 }4
+          \markup \scaleDegree { 4 }16
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }4
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          ""4
+
+          ""8
+          \markup \scaleDegree { 1 }8
+          \tuplet 3/2 {
+            \markup \scaleDegree { f3 }8
+            \markup \scaleDegree { 5 }
+            \markup \scaleDegree { f7 }
+          }
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 1 }4.
+
+          %% m109
+          \markup \scaleDegree { 9 }4
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }4
+
+          \markup \scaleDegree { 6 }4.
+          \markup \scaleDegree { 5 }16
+          \markup \scaleDegree { f5 }
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+
+          
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }4
+          ""4
+
+          ""4
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 5 }4.
+          \markup \scaleDegree { 3 }8 
+          
+          
+          
+
           
         }
         
