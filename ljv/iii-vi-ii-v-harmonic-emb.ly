@@ -21,18 +21,49 @@
   indent = 0\cm
 }
 
-\header {
-                                % title = "ii-V-I chord progressions"
-}
+%% https://lilypond.org/doc/v2.23/Documentation/extending/new-markup-command-definition#a-complete-example
+%% These are modifiers for `\markup`, and are used as: `\markup \blue-left "some text"`.
+%% It can be above or below the staff.
+#(define-markup-command (blue-left layout props text) (markup?)
+  "Draw left aligned blue markup text"
+  (interpret-markup layout props
+   #{\markup \override #'(font-name . "lilyjazz-chord") \with-color #blue { \left-align #text }#}))
 
-markBlue = #(define-music-function
-             (parser location string)
+#(define-markup-command (red-left layout props text) (markup?)
+  "Draw left aligned blue markup text"
+  (interpret-markup layout props
+   #{\markup \override #'(font-name . "lilyjazz-chord") \with-color #red { \left-align #text }#}))
+
+
+oldmarkBlue = #(define-music-function
+             (parser location my-string)
              (string?)
              "blue markup string"
              #{ <>\mark \markup \override
              #'(font-name . "lilyjazz-chord")
                 \fontsize #-2
-                \with-color #blue #string #})
+                \with-color #blue \right-align { #my-string } #})
+
+
+%% These functions can be used like `\markBlue "some text"` to create markup text above the staff
+markBlue = #(define-music-function
+             (parser location my-string)
+             (string?)
+             "red markup string"
+             #{ <>\mark \markup \blue-left \fontsize #-1 #my-string #})
+
+markRed = #(define-music-function
+             (parser location my-string)
+             (string?)
+             "red markup string"
+             #{ <>\mark \markup \red-left \fontsize #-1 #my-string #})
+
+
+markManualBox = #(define-music-function
+                  (parser location string)
+                  (string?)
+                  "manually set a box mark that matches current color/size"
+                  #{ <>\mark \markup \with-color #darkred \box \sans \normalsize  #string #})
 
 global = {
   \numericTimeSignature
@@ -51,8 +82,8 @@ global = {
 
 myChords = \chordmode { e1:m7 a:7 d1:m7 \break
                         g:7 
-                        e1:m7 a:7 d1:m7 g:7
-                        c1:maj \break } 
+                        e1:m7 a:7  % d1:m7 g:7
+                        \break } 
 
 scaleDegreesC = \lyrics {
   "" 8
@@ -118,45 +149,62 @@ scaleDegreesC = \lyrics {
 }
 
 phraseC = \relative c' {
+  \markManualBox "C maj"
   r8 fis \tuplet 3/2 { b8 d fis } \markBlue "encl" ees8 e d \markBlue "encl" c
-  cis8 c' \tuplet 3/2 { bes8 \markBlue "Alt triplet b9-#5-3" f cis } c8 b ais \markBlue "encl" gis
+  cis8 c' \tuplet 3/2 { bes8 f cis } \markBlue "Alt triplet b9-#5-3" c8 b ais \markBlue "encl" gis
   a8 ees e g16 \markBlue "embellishment" ges f8 g a c
-  e8 ees d des c a f ees
-  e8 g d b c f g16 f d8
+  e8 ees d des c a f \markBlue "encl" ees
+  e8 g d \markBlue "encl" b c f g16 f d8
   e1
-  s1 s1 s1
+  \bar "|." 
   \break
 }
 
 phraseF = \relative c' {
+  \markManualBox "F maj"
   r8 b \tuplet 3/2 { e g b } aes a g f
   fis8 f' \tuplet 3/2 { ees ais, fis } f' e dis cis
   d8 aes a c16 ces bes8 c d f
   a8 aes g ges f d bes aes
-  a8 c g d f bes c16 bes g8
+  a8 c g e f bes c16 bes! g8
   a1
-  s1 s1 s1
+  \bar "|." 
   \break
 }
 
 phraseG = \relative c' {
+  \markManualBox "G maj"
   r8 cis \tuplet 3/2 { fis a cis } bes b a g
   gis8 g' \tuplet 3/2 { f bis, gis } g' fis eis dis
   e8 bes b d16 des c8 d e g
   b8 bes a aes g e c bes
-  b8 d a e g c dis16 d b8
-  a1
-  s1 s1 s1
+  b8 d a fis g c d16 c a8
+  b1
+  \bar "|." 
   \break
 }
 
+global = {
+  \key c \major
+  \numericTimeSignature
+  %% make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
 
+  %% allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
+
+}
+
+\header {
+  title = \markup \override #'(font-name . "lilyjazz-chord") "iii-vi-ii-v Harmonic embellishment phrase"
+  composer = "JLV lesson 14 May/June 2022"
+}
 
 
 \score {
   <<
     \new ChordNames { \myChords }
-    \new Staff { \bar ".|" \phraseC \bar "|." }
+    \new Staff { \global \phraseC }
     \scaleDegreesC
   >>
   %% \header { piece = "C" }
@@ -165,7 +213,7 @@ phraseG = \relative c' {
 \score {
   <<
     \transpose c f { \new ChordNames { \myChords } }
-    \new Staff { \bar ".|" \phraseF \bar "|." }
+    \new Staff { \transpose c f \global \phraseF }
     \scaleDegreesC
   >>
   %% \header { piece = "F" }
@@ -174,7 +222,7 @@ phraseG = \relative c' {
 \score {
   <<
     \transpose c g { \new ChordNames { \myChords } }
-    \new Staff { \bar ".|" \phraseG \bar "|." }
+    \new Staff { \transpose c g \global \phraseG  }
     \scaleDegreesC
   >>
   %% \header { piece = "F" }
@@ -182,6 +230,7 @@ phraseG = \relative c' {
 
 \score {
   \new Staff {
+    \global
     \repeat unfold 7 {
       \repeat unfold 3 { s1 }
       \break
