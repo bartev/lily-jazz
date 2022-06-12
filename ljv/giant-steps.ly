@@ -143,16 +143,6 @@ markBlue = #(define-music-function
                 \fontsize #-6
                 \with-color #blue #string #})
 
-crossNote = 
-#(define-music-function (parser location my-music)
-  (ly:music?)
-  #{
-  \override NoteHead.style = #'cross
-  #my-music
-  \revert NoteHead.style
-  #}
-)
-
 blueChord =
 #(define-music-function (parser location my-music)
   (ly:music?)
@@ -311,7 +301,7 @@ greenChord =
           \markManualBox "B (Start solo)"
           \timestop "0:27"
           ees8 c aes4 b8 cis dis fis
-          e8 b gis \crossNote dis a' f e d
+          e8 b gis \xNote dis a' f e d
           c8 d e f g a b d
           cis8 a fis e dis c' b a
           \break
@@ -325,7 +315,7 @@ greenChord =
 
           \timestop "0:33"
           g8 f' e b d c b d
-          cis8 a fis cis e \crossNote cis! dis c'
+          cis8 a fis cis e \xNote cis! dis c'
           b8 a gis fis e fis? gis? b
           c8 bes aes g~ g ees f g
           \break
@@ -333,7 +323,7 @@ greenChord =
           \timestop "0:37"
           aes8 bes c ees g fis f e
           d4 r f8 e d b
-          c8 d \crossNote e g c4-- g-.
+          c8 d \xNote e g c4-- g-.
           r4 g8 aes g4. ees8
           \bar "||"
           \break
@@ -348,14 +338,14 @@ greenChord =
 
           \timestop "0:43"
           r8 b e gis b, d f a
-          c,8 d e g des \crossNote ees f g
+          c,8 d e g des \xNote ees f g
           ees4. c8 bes a aes ees
           a8 b c a e' d b a
           \break
 
           \timestop "0:47"
           g4 r8 f' e c r4
-          r8 fis, \crossNote { \tuplet 3/2 { a8 cis e } } gis8 fis dis cis!
+          r8 fis, \xNote { \tuplet 3/2 { a8 cis e } } gis8 fis dis cis!
           \markBlue "1-2-3-5 of B7"
           b8 cis dis fis e fis! gis g~
           g4 aes 2.
@@ -363,7 +353,7 @@ greenChord =
 
           \timestop "0:50"
           g8 ees f g ees! c bes aes
-          a8 b c \crossNote a e' d b a
+          a8 b c \xNote a e' d b a
           g4. e'8~ e r r4
           r8 bes \tuplet 3/2 { des8 f aes } ees8 f g bes
           \bar "||"
@@ -372,14 +362,14 @@ greenChord =
           \markManualBox "D"
           \timestop "0:53"
           aes8 bes, c ees b cis dis fis
-          e8 b gis \crossNote \markBlue "1-3-5-1 of D-7" e a f e d
+          e8 b gis \xNote \markBlue "1-3-5-1 of D-7" e a f e d
           c8 d e f g a b d
-          cis8 a \crossNote { e' cis } gis' \crossNote b, cis! dis
+          cis8 a \xNote { e' cis } gis' \xNote b, cis! dis
           \break
 
           \timestop "0:57"
           e8 fis gis b f a g f
-          e8 c d e des \crossNote ees f g
+          e8 c d e des \xNote ees f g
           bes4 g8 f ees c r4
           r2 b'4. a16 aes
           \break
@@ -387,14 +377,14 @@ greenChord =
           \timestop "1:00"
           g8 f e d c d e g
           b2.~ b8 ais16 a
-          gis8 dis fis dis! e b gis \crossNote e
+          gis8 dis fis dis! e b gis \xNote e
           c'8 aes g ees f ees! f g
           \break
 
           \timestop "1:03"
-          aes8 bes c \crossNote ees g ees! c aes!
+          aes8 bes c \xNote ees g ees! c aes!
           f'4. e16 ees d8 c b a!
-          g8 f e d c \crossNote d \crossNote ees g
+          g8 f e d c \xNote d \xNote ees g
           c4 r r2
           \bar "||"
           \break
@@ -404,19 +394,19 @@ greenChord =
           r8 ees,8 aes c b cis dis fis
           e8 b gis e a f e d
           c8 d e f g a b d
-          cis8 eis \crossNote e \crossNote c gis' b, cis fis
+          cis8 eis \xNote e \xNote c gis' b, cis fis
           \break
 
           \timestop "1:10"
           e8 fis gis a b, d f a
-          c,8 d e \crossNote e r2
+          c,8 d e \xNote e r2
           ees4 c8 bes aes bes! c ees!
           g8 fis f e d c b a
           \break
 
           \timestop "1:13"
           g8 f' e b d c b d
-          cis8 a fis \crossNote cis e4. \crossNote dis8
+          cis8 a fis \xNote cis e4. \xNote dis8
           b'4 r gis'4 r
           r8 bes, \tuplet 3/2 { des8 f aes } g4 bes
           \break
@@ -439,14 +429,14 @@ greenChord =
 
           \timestop "1:23"
           r8 b, e gis b, d f a
-          c,8 \crossNote { d e } g c4 bes8 aes
-          g8 f ees des c bes aes \crossNote g
+          c,8 \xNote { d e } g c4 bes8 aes
+          g8 f ees des c bes aes \xNote g
           a8 b c d e d b a
           \break
 
           \timestop "1:26"
           g8 f' e b d c b a
-          fis'8 e4 \crossNote { b16 e } gis4 e8 gis!~
+          fis'8 e4 \xNote { b16 e } gis4 e8 gis!~
           gis4. e8 gis b r4
           r8 bes, \tuplet 3/2 { des8 f aes } g8 bes4.~
           \break
@@ -463,14 +453,14 @@ greenChord =
           \timestop "1:33"
           f8 ees c aes b cis dis fis
           e8 b gis e a c b a
-          g8 a b d c d \crossNote e g
+          g8 a b d c d \xNote e g
           gis8 fis e dis~ dis4 r
           \break
 
           \timestop "1:36"
           r8 b e gis b, d f a
           c,8 d e g des f g bes
-          g8 f g \crossNote ees g fis f e
+          g8 f g \xNote ees g fis f e
           d8 c b a g f e d
           \break
 
@@ -485,14 +475,14 @@ greenChord =
           bes4. g8 ees c r4
           r4 b'4 g8 f e d
           c8 b d b c d e g
-          c,8 aes f \crossNote des g ees \crossNote {f g}
+          c,8 aes f \xNote des g ees \xNote {f g}
           \bar "||"
           \break
           
           \markManualBox "H"
           \timestop "1:47"
-          aes8 \crossNote { bes c } ees b cis dis fis
-          e8 b gis \crossNote e a c b a
+          aes8 \xNote { bes c } ees b cis dis fis
+          e8 b gis \xNote e a c b a
           g8 e' r4 r r8 e8~
           e4. cis8 dis e fis gis
           \break
@@ -500,13 +490,13 @@ greenChord =
           \timestop "1:50"
           e8 e r gis16 b f8 a g f
           e8 c d e des ees f g
-          bes4 g8 f ees c aes \crossNote e!
+          bes4 g8 f ees c aes \xNote e!
           a8 b c d e d b a
           \break
           
           \timestop "1:53"
           g8 f' e b d c b d
-          cis8 a fis \crossNote e b'4. a8
+          cis8 a fis \xNote e b'4. a8
           gis8 b cis dis~ dis4 r
           r8 bes \tuplet 3/2 { des f aes } g4 ees
           \break
@@ -522,7 +512,7 @@ greenChord =
           \markManualBox "I"
           \timestop "1:59"
           g4. ees8 b' a4 fis8~
-          fis8 a gis \crossNote b, e gis~ gis fis
+          fis8 a gis \xNote b, e gis~ gis fis
           f!8 a g e d c e g
           cis,4 r gis'8 fis dis c
           \break
@@ -530,20 +520,20 @@ greenChord =
           \timestop "2:02"
           b8 cis dis fis b, d f a
           c,8 d e g des ees f g
-          bes4 g8 f ees c aes \crossNote e
+          bes4 g8 f ees c aes \xNote e
           e'8 f e d16 c b8 a g f
           \break
 
           \timestop "2:06"
           e8 g a b d c e e
-          r2 e8 \crossNote cis dis fis
+          r2 e8 \xNote cis dis fis
           e8 b gis e b'4 r
-          c4 aes8 \crossNote ees g4. ees8
+          c4 aes8 \xNote ees g4. ees8
           \break
 
           \timestop "2:10"
           aes8 bes c ees g fis f e
-          d e f d g dis b \crossNote g
+          d e f d g dis b \xNote g
           e'8 c b d c4 r
           r4 r8 ees~ ees2
           \bar "||"
@@ -554,20 +544,20 @@ greenChord =
           aes,8 bes c ees b cis dis fis
           b,4. e16 gis f4 \grace g16 a8 g~
           g4. e8 d c r4
-          r4 bis8 \crossNote { cis16 e } gis4 b,
+          r4 bis8 \xNote { cis16 e } gis4 b,
           \break
           
           \timestop "2:16"
           e8 fis gis a16 gis g8 fis f a
           g8 e d c des ees f g
-          bes8 g f ees c bes aes \crossNote e
+          bes8 g f ees c bes aes \xNote e
           a8 b c e d4 r4
           \break
           
           \timestop "2:20"
-          r8 f e b d c b \crossNote a
-          cis8 e r \crossNote cis gis' fis dis cis
-          b8 cis dis fis e b gis \crossNote e
+          r8 f e b d c b \xNote a
+          cis8 e r \xNote cis gis' fis dis cis
+          b8 cis dis fis e b gis \xNote e
           c'8 r r4 c4. g8~
           \break
 
@@ -575,7 +565,7 @@ greenChord =
           g4. ees8 aes bes c ees
           g8 fis f e d c b a
           g8 f' e c d c b a
-          c aes f \crossNote des g4. ees8
+          c aes f \xNote des g4. ees8
           \break
           \bar "||"
 
@@ -590,19 +580,19 @@ greenChord =
           \timestop "2:30"
           gis8 b, e gis f a g f
           c4 r des8 ees f g
-          bes8 g f ees c c aes \crossNote ees
-          c'8 d e \crossNote c g' dis b a
+          bes8 g f ees c c aes \xNote ees
+          c'8 d e \xNote c g' dis b a
           \break
 
           \timestop "2:33"
           g8 e' f d c d e g
           gis8 fis e dis~ dis cis b a
-          gis8 b e fis gis \crossNote b, e gis!
+          gis8 b e fis gis \xNote b, e gis!
           g!4 r bes2
           \break
 
           \timestop "2:36"
-          g4. bes8 g ees c \crossNote aes
+          g4. bes8 g ees c \xNote aes
           a8 b c d e d b a
           g8 c \xNote e g c4 g8 a~
           a8 g4.~ g4 r
