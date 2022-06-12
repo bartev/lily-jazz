@@ -413,7 +413,7 @@ greenChord =
           ees4 c8 bes aes bes! c ees!
           g8 fis f e d c b a
           \break
-
+}
           \timestop "1:13"
           g8 f' e b d c b d
           cis8 a fis \crossNote cis e4. \crossNote dis8
