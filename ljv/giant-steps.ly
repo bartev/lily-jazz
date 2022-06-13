@@ -256,13 +256,13 @@ greenChord =
           ees2 r2
           e?2 d4. g8~
           \break
-          
+
           g1
           gis2 fis4. b8~
           b2 r
           c2 c4. ees8~
           \break
-          
+
           ees1
           e?2 e4. g8~
           g1
@@ -271,7 +271,7 @@ greenChord =
           \break
 
           \markManualBox "A (Head again)"
-          \timestop "0:13"    
+          \timestop "0:13"
           ees2 b
           gis2 e4. g8~
           g2. r4
@@ -283,20 +283,20 @@ greenChord =
           ees2 r2
           e?2 d4. g8~
           \break
-          
+
           g2. r4
           gis2 fis4. b8~
           b2 r
           c2 c4. ees8~
           \break
-          
+
           ees1
           e?2 e4. g8~
           g2. r4
           bes,8 des f aes g4. f8
           \bar "||"
           \pageBreak
-          
+
           \markManualBox "B (Start solo)"
           \timestop "0:27"
           ees8 c aes4 b8 cis dis fis
@@ -357,7 +357,7 @@ greenChord =
           r8 bes \tuplet 3/2 { des8 f aes } ees8 f g bes
           \bar "||"
           \break
-          
+
           \markManualBox "D"
           \timestop "0:53"
           aes8 bes, c ees b cis dis fis
@@ -409,7 +409,7 @@ greenChord =
           b'4 r gis'4 r
           r8 bes, \tuplet 3/2 { des8 f aes } g4 bes
           \break
-          
+
           \timestop "1:16"
           bes4. g8 ees c r4
           b'2 g8 f e d
@@ -447,7 +447,7 @@ greenChord =
           r4 bes~ bes4. g8
           \bar "||"
           \break
-          
+
           \markManualBox "G"
           \timestop "1:33"
           f8 ees c aes b cis dis fis
@@ -477,7 +477,7 @@ greenChord =
           c,8 aes f \xNote des g ees \xNote {f g}
           \bar "||"
           \break
-          
+
           \markManualBox "H"
           \timestop "1:47"
           aes8 \xNote { bes c } ees b cis dis fis
@@ -492,14 +492,14 @@ greenChord =
           bes4 g8 f ees c aes \xNote e!
           a8 b c d e d b a
           \break
-          
+
           \timestop "1:53"
           g8 f' e b d c b d
           cis8 a fis \xNote e b'4. a8
           gis8 b cis dis~ dis4 r
           r8 bes \tuplet 3/2 { des f aes } g4 ees
           \break
-          
+
           \timestop "1:56"
           ees4. c8 bes4 aes
           a8 b c a e' d b a
@@ -507,7 +507,7 @@ greenChord =
           r2 r8 g4.~
           \bar "||"
           \break
-          
+
           \markManualBox "I"
           \timestop "1:59"
           g4. ees8 b' a4 fis8~
@@ -515,7 +515,7 @@ greenChord =
           f!8 a g e d c e g
           cis,4 r gis'8 fis dis c
           \break
-          
+
           \timestop "2:02"
           b8 cis dis fis b, d f a
           c,8 d e g des ees f g
@@ -545,14 +545,14 @@ greenChord =
           g4. e8 d c r4
           r4 bis8 \xNote { cis16 e } gis4 b,
           \break
-          
+
           \timestop "2:16"
           e8 fis gis a16 gis g8 fis f a
           g8 e d c des ees f g
           bes8 g f ees c bes aes \xNote e
           a8 b c e d4 r4
           \break
-          
+
           \timestop "2:20"
           r8 f e b d c b \xNote a
           cis8 e r \xNote cis gis' fis dis cis
@@ -597,7 +597,7 @@ greenChord =
           a8 g4.~ g4 r
           \bar "||"
           \break
-          
+
           \markManualBox "L"
           \timestop "2:40"
           r4 bes4 b4. gis8~
@@ -634,7 +634,7 @@ greenChord =
           gis2 \xNote { g4. e8~ }
           \xNote e4 r r2
           \break
-          
+
         }
 
         giant_steps_head_scale_degrees = \lyrics {
@@ -645,7 +645,7 @@ greenChord =
           \markup \scaleDegree { 5 }1
           \markup \scaleDegree { 2 }2
           \markup \scaleDegree { 5 }2
-          
+
           \markup \scaleDegree { 3 }2
           \markup \scaleDegree { 1 }
           \markup \scaleDegree { 3 }
@@ -667,7 +667,7 @@ greenChord =
           \markup \scaleDegree { 6 }
           \markup \scaleDegree { 5 }1
           \markup \scaleDegree { 4 }2
-          \markup \scaleDegree { 1 } 
+          \markup \scaleDegree { 1 }
 
           %% head, repeated
           \markup \scaleDegree { 3 }2
@@ -697,82 +697,82 @@ greenChord =
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }8
           \markup \with-color #darkred \scaleDegree { 3 }8
-          \markup \with-color #darkred \scaleDegree { 5 }8 
+          \markup \with-color #darkred \scaleDegree { 5 }8
 
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 3 }8
-          \markup \scaleDegree { 7 }8 
+          \markup \scaleDegree { 7 }8
           \markup \scaleDegree { 9 }8
           \markup \scaleDegree { f7 }8
           \markup \scaleDegree { 6 }8
-          \markup \scaleDegree { 5 }8 
+          \markup \scaleDegree { 5 }8
 
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 2 }8
           \markup \scaleDegree { 3 }8
-          \markup \scaleDegree { 4 }8 
+          \markup \scaleDegree { 4 }8
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 6 }8
           \markup \scaleDegree { 7 }8
-          \markup \scaleDegree { 9 }8 
+          \markup \scaleDegree { 9 }8
 
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { f3 }8
           \markup \scaleDegree { 1 }8
-          \markup \scaleDegree { f7 }8 
+          \markup \scaleDegree { f7 }8
           \markup \scaleDegree { 3 }8
           \markup \scaleDegree { f9 }8
           \markup \scaleDegree { 1 }8
-          \markup \scaleDegree { f7 }8 
+          \markup \scaleDegree { f7 }8
 
           %% m37
           \markup \scaleDegree { 3 }8
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 1 }8
-          \markup \scaleDegree { 3 }8 
+          \markup \scaleDegree { 3 }8
           \markup \scaleDegree { 3 }8
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { f7 }8
-          \markup \scaleDegree { 9 }8 
-          
+          \markup \scaleDegree { 9 }8
+
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }8
           \markup \with-color #darkred \scaleDegree { 3 }8
-          \markup \with-color #darkred \scaleDegree { 5 }8 
+          \markup \with-color #darkred \scaleDegree { 5 }8
           \markup \scaleDegree { f7 }8
           \markup \scaleDegree { 2 }8
           \markup \scaleDegree { 3 }8
-          \markup \scaleDegree { 5 }8 
-          
+          \markup \scaleDegree { 5 }8
+
           \markup \scaleDegree { 7 }4
           \markup \scaleDegree { 6 }8
           \markup \scaleDegree { 5 }4.
           ""4
-          
+
           \markup \scaleDegree { 4 }8
           \markup \scaleDegree { 3 }8
           \markup \scaleDegree { f3 }8
-          \markup \scaleDegree { 2 }8 
+          \markup \scaleDegree { 2 }8
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 4 }8
           \markup \scaleDegree { 3 }8
-          \markup \scaleDegree { 2 }8 
+          \markup \scaleDegree { 2 }8
 
           %% m41
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 4 }8
           \markup \scaleDegree { 3 }8
-          \markup \scaleDegree { 7 }8 
+          \markup \scaleDegree { 7 }8
           \markup \scaleDegree { 2 }8
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 7 }8
-          \markup \scaleDegree { 2 }8 
+          \markup \scaleDegree { 2 }8
 
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { f3 }8
           \markup \scaleDegree { 1 }8
-          \markup \scaleDegree { 5 }8 
+          \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 4 }8
           ""8
           \markup \scaleDegree { 3 }8
@@ -781,30 +781,30 @@ greenChord =
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 4 }8
           \markup \scaleDegree { 3 }8
-          \markup \scaleDegree { 2 }8 
+          \markup \scaleDegree { 2 }8
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }8
           \markup \with-color #darkred \scaleDegree { 3 }8
-          \markup \with-color #darkred \scaleDegree { 5 }8 
+          \markup \with-color #darkred \scaleDegree { 5 }8
 
           \markup \scaleDegree { 2 }8
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { f7 }8
-          \markup \scaleDegree { 6 }8 
+          \markup \scaleDegree { 6 }8
           \markup \scaleDegree { 3 }8
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 2 }8
-          \markup \scaleDegree { 3 }8 
+          \markup \scaleDegree { 3 }8
 
           %% m45
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }8
           \markup \with-color #darkred \scaleDegree { 3 }8
-          \markup \with-color #darkred \scaleDegree { 5 }8 
+          \markup \with-color #darkred \scaleDegree { 5 }8
           \markup \scaleDegree { 7 }8
           \markup \scaleDegree { s6 }8
           \markup \scaleDegree { 6 }8
-          \markup \scaleDegree { s5 }8 
+          \markup \scaleDegree { s5 }8
 
           \markup \scaleDegree { 1 }4
           ""4
@@ -816,7 +816,7 @@ greenChord =
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }8
           ""8
-          \markup \with-color #darkred \scaleDegree { 5 }8 
+          \markup \with-color #darkred \scaleDegree { 5 }8
           \markup \scaleDegree { 1 }4
           \markup \scaleDegree { 5 }4
 
@@ -824,7 +824,7 @@ greenChord =
           \markup \scaleDegree { 6 }8
           \markup \scaleDegree { f7 }8
           \markup \scaleDegree { 3 }4.
-          \markup \scaleDegree { 1 }8 
+          \markup \scaleDegree { 1 }8
 
           %% C
           %% m49
@@ -841,7 +841,7 @@ greenChord =
           \markup \scaleDegree { 7 }8
           \markup \scaleDegree { f7 }8
           \markup \scaleDegree { 9 }8
-          
+
 
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 3 }8
@@ -1037,7 +1037,7 @@ greenChord =
           \markup \with-color #darkred \scaleDegree { 2 }
           \markup \with-color #darkred \scaleDegree { 3 }
           \markup \with-color #darkred \scaleDegree { 5 }
-          
+
           \markup \scaleDegree { 4 }2
           \markup \scaleDegree { 1 }4.
           \markup \scaleDegree { 7 }16
@@ -1059,8 +1059,8 @@ greenChord =
           \markup \scaleDegree { 2 }
           \markup \scaleDegree { 1 }
           \markup \scaleDegree { 2 }
-          \markup \scaleDegree { 3 } 
-          
+          \markup \scaleDegree { 3 }
+
           %% m77
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }
@@ -1078,7 +1078,7 @@ greenChord =
           \markup \scaleDegree { 4 }
           \markup \scaleDegree { 3 }
           \markup \scaleDegree { 2 }
-          
+
           \markup \scaleDegree { 5 }8
           \markup \scaleDegree { 4 }
           \markup \scaleDegree { 3 }
@@ -1183,7 +1183,7 @@ greenChord =
           ""
           \markup \scaleDegree { 3 }
           ""
-          
+
           ""8
           \markup \scaleDegree { 1 }8
           \tuplet 3/2 {
@@ -1192,7 +1192,7 @@ greenChord =
             \markup \scaleDegree { 7 }
           }
           \markup \scaleDegree { 6 }4
-          \markup \scaleDegree { 1 } 
+          \markup \scaleDegree { 1 }
 
           %% m93
           \markup \scaleDegree { 9 }4.
@@ -1337,7 +1337,7 @@ greenChord =
           \markup \scaleDegree { 6 }
           \markup \scaleDegree { 5 }
 
-          
+
           \markup \with-color #darkred \scaleDegree { 1 }8
           \markup \with-color #darkred \scaleDegree { 2 }
           \markup \with-color #darkred \scaleDegree { 3 }
@@ -1348,8 +1348,8 @@ greenChord =
           ""4
           \markup \scaleDegree { 1 }4
           \markup \scaleDegree { 5 }4.
-          \markup \scaleDegree { 3 }8 
-          
+          \markup \scaleDegree { 3 }8
+
           %% G
           %% m113
           \markup \scaleDegree { 6 }8
@@ -1360,7 +1360,7 @@ greenChord =
           \markup \with-color #darkred \scaleDegree { 2 }
           \markup \with-color #darkred \scaleDegree { 3 }
           \markup \with-color #darkred \scaleDegree { 5 }
-          
+
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 5 }
           \markup \scaleDegree { 3 }
@@ -1377,7 +1377,7 @@ greenChord =
           \markup \with-color #darkred \scaleDegree { 1 }
           \markup \with-color #darkred \scaleDegree { 2 }
           \markup \with-color #darkred \scaleDegree { 3 }
-          \markup \with-color #darkred \scaleDegree { 5 } 
+          \markup \with-color #darkred \scaleDegree { 5 }
 
           \markup \scaleDegree { 9 }8
           \markup \scaleDegree { 1 }
@@ -1408,7 +1408,7 @@ greenChord =
           \markup \scaleDegree { 7 }8
           \markup \scaleDegree { 6 }
           \markup \scaleDegree { 7 }
-          \markup \scaleDegree { 5 } 
+          \markup \scaleDegree { 5 }
           \markup \scaleDegree { 7 }
           \markup \scaleDegree { s6 }
           \markup \scaleDegree { 6 }
@@ -1489,7 +1489,7 @@ greenChord =
           \markup \scaleDegree { 2 }
           \markup \scaleDegree { 3 }
           \markup \scaleDegree { 5 }
-          
+
           \markup \scaleDegree { 9 }8
           \markup \scaleDegree { f7 }
           \markup \scaleDegree { 5 }
@@ -1626,10 +1626,396 @@ greenChord =
 
           ""2
           ""8
-          \markup \scaleDegree { 3 }4. 
+          \markup \scaleDegree { 3 }4.
 
+          %% I
+          %% m145
+          \markup \scaleDegree { 7 }4.
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }4
+          \markup \scaleDegree { 5 }8
+
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 7 }8
+
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 5 }4
+          ""4
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f2 }
+
+          %% m149
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+
+          \markup \scaleDegree { 9 }4
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }16
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+
+          %% m153
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }4
+
+          ""2
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }4
+          ""4
+
+          \markup \scaleDegree { 2 }4
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8
+
+          %% m157
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { s6 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { s5 }
+
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { s5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }4
+          ""4
+
+          ""2
+          \markup \scaleDegree { 1 }2
+
+          %% J
+          %% m161
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+
+          \markup \scaleDegree { 5 }4.
+          \markup \scaleDegree { 1 }16
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f7 }4
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 5 }4.
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          ""4
+          ""4
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 5 }16
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }4
+          \markup \scaleDegree { 1 }
+
+          %% m165
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 4 }16
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 2 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { 5 }4
+          ""4
+
+          %% m169
+          ""8
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { f7 }
+          ""8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 2 }
+          ""8
+          ""4
+          \markup \scaleDegree { 6 }4.
+          \markup \scaleDegree { 3 }8
+
+          %% m175
+          \markup \scaleDegree { 7 }4.
+          \markup \scaleDegree { 5 }8
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+
+          \markup \scaleDegree { 4 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8
+
+
+          %% K
+          %% m177
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+
+          \markup \scaleDegree { 1 }8
+          ""8
+          ""4
+          \markup \scaleDegree { 3 }2
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+
+          \markup \scaleDegree { 5 }4
+          ""4
+          \markup \scaleDegree { 1 }4.
+          \markup \scaleDegree { 7 }16
+          \markup \scaleDegree { f7 }8
+
+          %%m181
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 1 }4
+          ""4
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          %% m185
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+
+          \markup \scaleDegree { 6 }4
+          ""4
+          \markup \scaleDegree { 5 }2
+
+          %% m 189
+          \markup \scaleDegree { 7 }4.
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 6 }4.
+          \markup \scaleDegree { 3 }4
+          ""4
         }
-        
 
         %% blue:  E
         %% red:   C
