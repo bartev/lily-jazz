@@ -695,9 +695,9 @@ greenChord =
           \markup \scaleDegree { 3 }8
           \markup \scaleDegree { 1 }4
           \markup \with-color #darkred \scaleDegree { 1 }8
-          \markup \with-color #darkred \scaleDegree { 2 }8
-          \markup \with-color #darkred \scaleDegree { 3 }8
-          \markup \with-color #darkred \scaleDegree { 5 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
 
           \markup \scaleDegree { 1 }8
           \markup \scaleDegree { 5 }8
@@ -2015,6 +2015,146 @@ greenChord =
           \markup \scaleDegree { 6 }4.
           \markup \scaleDegree { 3 }4
           ""4
+
+          %% L
+          %% m193
+          ""4
+          \markup \scaleDegree { 2 }4
+          \markup \scaleDegree { 1 }4.
+          \markup \scaleDegree { 6 }8
+
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+          \markup \scaleDegree { 1 }4
+
+          ""2
+          \markup \scaleDegree { 7 }2
+
+          \markup \scaleDegree { f9 }8
+          \markup \scaleDegree { f7 }8
+          \markup \scaleDegree { f5 }4
+          \markup \scaleDegree { 1 }2
+
+          %% m197
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }2
+
+          \markup \scaleDegree { 3 }4
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 6 }4
+          \tuplet 3/2 {
+            \markup \scaleDegree { 6 }8
+            \markup \scaleDegree { 5 }
+            \markup \scaleDegree { f5 }  
+          }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+
+
+          %% m201
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { f5 }
+          \markup \scaleDegree { 1 }4.
+          \markup \scaleDegree { 7 }8
+          
+          \markup \scaleDegree { 3 }4
+          \markup \scaleDegree { 7 }8
+          \markup \scaleDegree { 2 }4
+          \markup \scaleDegree { 2 }8
+          \markup \scaleDegree { 1 }4
+
+          ""4
+          ""8
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8
+
+
+          %% m205
+          \markup \scaleDegree { 6 }8
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }4
+          \markup \scaleDegree { 3 }8
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { s5 }
+
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 2 }
+          
+          \markup \scaleDegree { 5 }8
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 7 }
+          \markup \scaleDegree { 9 }
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+
+          \markup \scaleDegree { 9 }8
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 3 }4.
+          \markup \scaleDegree { 1 }8
+
+          %% M
+          %% m209
+          \markup \with-color #darkred \scaleDegree { 1 }8
+          \markup \with-color #darkred \scaleDegree { 2 }
+          \markup \with-color #darkred \scaleDegree { 3 }
+          \markup \with-color #darkred \scaleDegree { 5 }
+          \markup \scaleDegree { 1 }
+          \markup \scaleDegree { f7 }
+          \markup \scaleDegree { 6 }
+          \markup \scaleDegree { 1 }
+
+          \markup \scaleDegree { 3 }2
+          \markup \scaleDegree { 1 }4.
+          \markup \scaleDegree { 6 }8
+
+          \markup \scaleDegree { 5 }4 
         }
 
         %% blue:  E
