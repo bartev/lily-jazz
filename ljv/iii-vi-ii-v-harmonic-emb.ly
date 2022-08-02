@@ -151,7 +151,7 @@ scaleDegreesC = \lyrics {
 phraseC = \relative c' {
   \markManualBox "C maj"
   r8 fis \tuplet 3/2 { b8 d fis } \markBlue "encl" ees8 e d \markBlue "encl" c
-  cis8 c' \tuplet 3/2 { bes8 f cis } \markBlue "Alt triplet b9-#5-3" c8 b ais \markBlue "encl" gis
+  cis8 c' \tuplet 3/2 { bes8 eis, cis! } \markBlue "Alt triplet b9-#5-3" c8 b ais \markBlue "encl" gis
   a8 ees e g16 \markBlue "embellishment" ges f8 g a c
   e8 ees d des c a f \markBlue "encl" ees
   e8 g d \markBlue "encl" b c f g16 f d8
@@ -166,7 +166,7 @@ phraseF = \relative c' {
   fis8 f' \tuplet 3/2 { ees ais, fis } f' e dis cis
   d8 aes a c16 ces bes8 c d f
   a8 aes g ges f d bes aes
-  a8 c g e f bes c16 bes! g8
+  a8 c g e f bes! c16 bes! g8
   a1
   \bar "|." 
   \break
@@ -175,11 +175,37 @@ phraseF = \relative c' {
 phraseG = \relative c' {
   \markManualBox "G maj"
   r8 cis \tuplet 3/2 { fis a cis } bes b a g
-  gis8 g' \tuplet 3/2 { f bis, gis } g' fis eis dis
+  gis8 g' \tuplet 3/2 { f bis, gis! } g' fis eis dis
   e8 bes b d16 des c8 d e g
   b8 bes a aes g e c bes
   b8 d a fis g c d16 c a8
   b1
+  \bar "|." 
+  \break
+}
+
+
+phraseD = \relative c'' {
+  \markManualBox "D maj"
+  r8 gis \tuplet 3/2 { cis e gis } f fis e d
+  dis8 d' \tuplet 3/2 { c fis, dis! } d' cis bis ais
+  b8 f fis a16 aes g8 a b d
+  fis,8 f e ees d b g f
+  fis8 a e cis d g a16 g e8
+  fis1
+  \bar "|." 
+  \break
+}
+
+
+phraseA = \relative c' {
+  \markManualBox "A maj"
+  r8 dis \tuplet 3/2 { gis b dis } c cis b a
+  eis8 e' \tuplet 3/2 { g cisis, ais! } a' gis g eis
+  fis8 c b e16 ees d8 e fis a
+  cis8 c b bes a fis d c
+  cis8 e b gis a d e16 d b8
+  cis1
   \bar "|." 
   \break
 }
@@ -210,19 +236,42 @@ global = {
   %% \header { piece = "C" }
 }
 
-\score {
-  <<
-    \transpose c f { \new ChordNames { \myChords } }
-    \new Staff { \transpose c f \global \phraseF }
-    \scaleDegreesC
-  >>
-  %% \header { piece = "F" }
-}
 
 \score {
   <<
     \transpose c g { \new ChordNames { \myChords } }
     \new Staff { \transpose c g \global \phraseG  }
+    \scaleDegreesC
+  >>
+  %% \header { piece = "F" }
+}
+
+
+\score {
+  <<
+    \transpose c d { \new ChordNames { \myChords } }
+    \new Staff { \transpose c d \global \phraseD  }
+    \scaleDegreesC
+  >>
+  %% \header { piece = "F" }
+}
+
+
+\score {
+  <<
+    \transpose c a { \new ChordNames { \myChords } }
+    \new Staff { \transpose c a \global \phraseA  }
+    \scaleDegreesC
+  >>
+  %% \header { piece = "F" }
+}
+
+\pageBreak
+
+\score {
+  <<
+    \transpose c f { \new ChordNames { \myChords } }
+    \new Staff { \transpose c f \global \phraseF }
     \scaleDegreesC
   >>
   %% \header { piece = "F" }
