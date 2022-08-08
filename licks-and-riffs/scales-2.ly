@@ -28,7 +28,6 @@
     }
 
 
-\markup {"C major markup"}
 \score {
   <<
   \new Staff \relative c' {

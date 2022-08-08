@@ -3,6 +3,10 @@
 
 %% https://lilypond.org/doc/v2.23/Documentation/notation/expressive-marks-attached-to-notes
 
+\header {
+  pdftitle = "bartev expressive marks"
+}
+
 %% stacatto, mordent, turn
 \relative {
   c''4\staccato c\mordent b2\turn
