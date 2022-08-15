@@ -282,11 +282,11 @@ templateScore = \score {
   \score {
     \header { piece = "Parenthesis, xNote, grace notes, triplets" }
     \relative c'' {
-      \tuplet 3/2 {r8 b a} \tuplet 3/2 {gis8 b d} f8 e d \parenthesize \xNote b
-      \grace \parenthesize {c16 ais }
-      \tuplet 3/2 { b8 d f} d4 b a8 g |
+      \tuplet 3/2 {r8 b a}  \tuplet 3/2 {gis8 b d} f8 e \xNote d \parenthesize \xNote b
+      \parenthesize c4 \parenthesize d e \parenthesize f
+      \grace {c16 ais } \tuplet 3/2 { b8 d f} d4 b a8 g |
       \grace { c16 ais } b1
-      \parenthesize { \grace { c16 ais } b1 }
+      \grace { c16 ais } b1 
       gis4 r4 r4 r4
     }
 

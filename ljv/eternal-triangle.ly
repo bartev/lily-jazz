@@ -8,10 +8,11 @@
 \include "bv_definitions.ily"
 
 title = "The Eternal Triangle"
-composer = "E-flat transcription"
+% composer = "E-flat transcription"
+composer = \markup \with-color #blue "Alto Sax"
 arranger = ""
 tagline = ""
-meter = "Fast"
+meter = "240"
 copyright = "Sonny Rollins solo - Transcribed by Jazz Music Lab"
 
 realBookTitle = \markup {
@@ -46,6 +47,9 @@ realBookTitle = \markup {
   title = \realBookTitle
   tagline = ##f
   copyright = \copyright
+  %% The following fields are evenly spread on one line
+  %% the field "instrument" also appears on following pages
+  %% instrument = \markup \with-color #blue "Alto Sax"
 }
 
 \paper {
@@ -163,7 +167,14 @@ eternal_triangle_chord_names = \chordmode {
   c2 f:7
   a2:min d:7
   g2 d:7
-  
+
+}
+
+empty_bars = {
+  \repeat unfold 4 {
+    \repeat unfold 4 { s1 } \break
+    \repeat unfold 4 { s1 } \bar "||" \break
+  }
 }
 
 eternal_triangle = \relative c' {
@@ -199,7 +210,7 @@ eternal_triangle = \relative c' {
   fis8 g b d fis e r4
   \bar "||"
   \break
-  
+
   %% B
   \timestop "0:52"
   r1
@@ -223,7 +234,7 @@ eternal_triangle = \relative c' {
   g8 \parenthesize d g b gis e r4
   \grace b'8 c2 a8 fis g a
   \break
-  
+
   \timestop "1:02"
   c8 e d4 r2
   r2 r4 r8 d8
@@ -293,7 +304,7 @@ eternal_triangle = \relative c' {
   \bar "||"
   \break
 
-  
+
   \markManualBox "3"
   \timestop "1:02"
   cis8 d \tuplet 3/2 { cis d cis } d8 b g e
@@ -445,7 +456,7 @@ scaleDegrees = \lyrics {
   ""4
 
   ""1
-  
+
   ""2
   \markup \scaleDegree { 4 }8
   \markup \scaleDegree { 2 }
@@ -495,9 +506,8 @@ scaleDegrees = \lyrics {
   \markup \scaleDegree { 1 }
   \markup \scaleDegree { 3 }4.
   ""8
-  
-}
 
+}
 
 \score {
   <<
