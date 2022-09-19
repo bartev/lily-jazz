@@ -1,13 +1,27 @@
 * Documentation
+
 ** Manuals
 1. [NR] Notation reference
 2. other
 3. third
 4. AU [Application Usage] http://lilypond.org/doc/v2.18/Documentation/usage-big-page.html
 
+** Setup macOS
+     [[https://sourabhbajaj.com/mac-setup/]]
+
+* Install lilypond using Homebrew
+
+[[https://formulae.brew.sh/formula/lilypond]]
+
+#+begin_src shell
+  brew install lilypond
+#+end_src
+
 * Interesting git repos
 
-** see for code examples. git@github.com:jasonflatley/lilypond_for_jazz_musicians.git
+** see for code examples.
+git@github.com:jasonflatley/lilypond_for_jazz_musicians.git
+
 ** uses only guile/lilypond
    1. creates book from list of files
    2. this looks interesting
@@ -18,6 +32,33 @@
 
 *** Text fonts
 
+#+begin_src shell
+  curl -LO http://www.gust.org.pl/projects/e-foundry/tex-gyre/whole/tg2_501otf.zip
+  unzip tg2_501otf.zip
+  mv tg2_501otf/*.otf /Libraries/Fonts/
+#+end_src
+
 *** Dependencies from homebrew
-- mactex
-- guile (sadhen)
+
+**** Install MacTex
+
+#+begin_src shell
+  brew install --cask mactex
+#+end_src
+
+**** COMMENT Install =guile=
+I'm not sure if I need to do all this if I install =lilypond= using =homebrew=
+guile (sadhen)
+
+  #+begin_src shell
+    brew tap sadhen/sadhen
+    brew install bison gcc guile@1.8 ghostscript fontconfig freetype \
+         pango t1utils fontforge texinfo gettext poppler gnu-sed
+  #+end_src
+
+Finally, it may be necessary to get Homebrew to symlink some of these libraries/resources to common areas:
+
+brew link fontforge
+brew link gettext --force
+
+*** Install fonts
