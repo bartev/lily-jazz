@@ -1,0 +1,352 @@
+#+title: readme - tutorial series
+#+author: Bartev
+#+date: 2022-09-18
+
+[[https://www.youtube.com/watch?v=tclwyZr08bE&list=PLHi8BvxILUV6x9FqEmZiYrEj6VMGmTKjt&index=1]]
+
+* Tutorial 1 - basic score
+
+** Header
+Every score needs a =\version= statement at the top of the file
+
+Header declares what version style the file is written in.
+
+* Tutorial 2 - Support
+
+** Getting support
+
+*** Mailing list.
+Click on communitiy > contact > lilypond user and info?
+
+* Tutorial 3 - Frescobaldi
+
+
+* Tutorial 4 - Entering music files
+
+** Whitespace insensitive
+
+** Expressions
+All expressions muste be between curly braces
+
+** Comments
+
+|-----------+-------------|
+| ={ ... }=   | Single line |
+| =%{ ... %}= | Block       |
+
+
+** Case sensitive
+
+** Note durations
+| Duration   | Input |
+|------------+-------|
+| whole note |     1 |
+| half note  |     2 |
+| etc.       |       |
+|            |       |
+
+** Accidentals
+
+To use English notation, include =\language "english"= in the header
+
+| Accidental   | Default | English |
+|--------------+---------+---------|
+| sharp        | is      | s       |
+| flat         | es      | f       |
+| double sharp | isis    | ss      |
+| double flat  | eses    | ff      |
+
+
+** Other
+
+| Item           | Command               |
+|----------------+-----------------------|
+| Time signature | =\time 4/4=             |
+| Tempo          | =\tempo "Andante"=      |
+| Tempo          | =\tempo "Presto" 4=120= |
+| Cleff          | =\clef bass=            |
+| Key signature  | =\key d \major=         |
+
+** Relative mode
+Octave is chose automatically.
+
+* Tutorial 5 - Setting up score title and composer, bar checks, beaming
+
+** Manual beams
+
+
+#+begin_src lilypond
+\relative c'
+{
+  cs4 d8[ ef f g] a4
+  f1 g a e a4 d f
+  \time 3/2
+  e2 b f
+  \clef alto
+  \numericTimeSignature \time 4/4
+  c1
+}
+#+end_src
+
+** Header
+
+#+begin_src lilypond
+  \header {
+    title = "My Score"
+    composer = "Composer"
+    subtitle = "for solo viola"
+  }
+#+end_src
+
+* Tutorial 6 - How to add articulations and dynamics to your score
+
+Add some articulations and dynamics.
+
+#+begin_src lilypond :file xxx.pdf
+  \relative c'
+  {
+    cs4\pp-3 d8\<([ ef f) g->-.] a4
+    f8\!\startTrillSpan g\stopTrillSpan a e a4 d f
+    \time 3/2
+    e2\ff b\pp f
+    \clef alto
+    \numericTimeSignature \time 4/4
+    c1
+  }
+#+end_src
+
+* Tutorial 7 - Add text and chords
+
+#+begin_src lilypond :file xxx.pdf
+  \relative c'
+  {
+    cs4\pp d8([ ef f) g] a4
+    f8 g a e a4 d f
+    \time 3/2
+    e2\ff^"Intense" b f
+    \clef alto
+    \numericTimeSignature \time 4/4
+    < c e>1
+  }
+#+end_src
+
+* Tutorial 8 - New score from scratch (Frescobaldi wizard)
+
+* Tutorial 9 - Graphic notation, score manipulation (SVG export)
+Try using =inkscape= to open an SVG file.
+
+#+begin_src shell
+  brew install --cask inkscape
+#+end_src
+
+* Tutorial 10 - How to use variables and tuplets
+- Name of variable must contain alphabetic characters only (no numbers, underscores or dashes)
+- Must define variable before use.
+
+
+Example
+
+#+begin_src lilypond :file xxx.pdf
+  variable = { music goes here }
+#+end_src
+
+
+** Tuplets
+
+#+begin_src lilypond :file xxx.pdf
+  \tuplet fraction { music }
+#+end_src
+
+* Tutorial 11 - Multiple voices per staff
+
+Combine voices simultaneously with angle brackets and separate them using 2 backslashes.
+
+#+begin_src lilypond :file xxx.pdf
+  << { ... } \\ { ... } >>
+#+end_src
+
+#+begin_src lilypond :file xxx.pdf
+  \relative c'
+  {
+    \tuplet 5/4 { e4 g c a fs } | %m1
+  
+    % Voice "1"
+    << { g4 b8( g) a4 g } \\ { e4 c c8 f e4 } >> | %m2
+  }
+#+end_src
+
+* Tutorial 12 - Add lyrics
+
+Don't forget to use double brackets =<< ... >>= to indicate the music and lyrics occur at the same time.
+
+Use keyword
+#+begin_src lilypond :file xxx.pdf
+\addlyrics { ... }
+#+end_src
+
+#+begin_src lilypond :file xxx.pdf
+  << 
+    \relative c'
+    { \time 6/4
+      c4. d8 e4 f g2 }
+
+    \addlyrics { Hi my name is Ben }
+  >>
+#+end_src
+
+* Tutorial 13 - relative mode
+
+* Tutorial 14 - Create staves with instrument names
+
+You can also include the info in the score block(?)
+#+begin_src lilypond :file xxx.pdf
+  \relative c'
+  {
+    <<
+      \new Staff \with { instrumentName = "Sop" }
+      { \clef "treble" \time 5/4 c2.( d4 e) }
+      \new Staff \with { instrumentName = "Viola" }
+      { \clef "alto" \time 5/4 c2.( d4 e) }
+      \new Staff \with { instrumentName = "Cello" }
+      { \clef "bass" \time 5/4 c2.( d4 e) }
+    >>
+  }
+#+end_src
+
+* Tutorial 15 - Top 4 Frescobaldi features you should be using.
+
+** Snippets
+
+** Folding
+
+** Line numbers
+
+** Magnification
+
+* Tutorial 16 - Frescobaldi engraving tips
+
+** Snapshot
+=Ctrl= + Click and drag in score.
+
+** Edit in place
+
+** Documentation browser
+Tools > Viewers > Documentation Browser
+
+** Search and replace
+
+** Convert relative pitch -> absolute mode
+Tools > Musical Transformations > pitch > convert relative to absolute
+
+** Remove articulations
+Tools > Quick Remove > Remove Articulations
+
+* Tutorial 17 - Writing for percussion
+
+=\drums { ... }= command
+
+* Tutorial 18 - Input harmonics and Bartok Pizzicato
+
+Harmonics can be notated with a diamond note head, or a normal note head with a small circle above it.
+#+begin_src lilypond :file xxx.pdf
+  \language "english"
+
+  <<
+    \new Staff \with { instrumentName = "Violin I" } \relative c'' {
+      \numericTimeSignature \time 4/4
+      c\snappizzicato4 d8[ e\harmonic f g ] a4 | %m1
+    } 
+    \new Staff \with {instrumentName = "Violin II" } \relative c' {
+      \numericTimeSignature \time 4/4
+      < d g\flageolet>2 e_\flageolet | %m1
+      }
+    >>
+#+end_src
+
+* Tutorial 19 - Format your score (page layout)
+Using the =\paper{ ... }= block.
+
+=#(set-paper-size "")= function
+
+#+begin_src lilypond :file xxx.pdf
+  \paper {
+  %   #(set-paper-size "tabloid")
+  %   #(set-paper-size "legal")
+     #(set-paper-size "letter" 'landscape)
+  }
+
+  { f g a b }
+#+end_src
+
+* Tutorial 20 - New LilyPond Updates (Changelog)
+This doesn't look the same as in the video...
+[[https://code.google.com/p/lilypond/issues/list]]
+
+* Tutorial 21 - Begin first score - the Global Block
+
+=\global = { ... }= can contain
+- Custom markups
+- Overrides
+- Time signatures
+- Key signatures
+- ...
+
+
+* Tutorial 22 - Update LilyPond and Frescobaldi
+
+* Tutorial 23 - The =\score= block
+
+** What is it?
+- The place in your input file where you put everything related to your score.
+- The section related to the musical score. (What's on the paper).
+- Each =\score= block corresponds to one score in the output.
+- A =\score= block is essentiall a top-level expression, like =\book= or =\paper=
+- Treat it like it's your "output".
+- Keep your variables separate from your score.
+- Must contain a single music expression which is surrounded by curly brackets.
+  There must only be one outer music expression in your =\score= block.
+  The expression can be any size, anything from a few notes to an entire opera.
+*** Basic structure of input files
+- Version statemenet
+- Header (title, composer, etc)
+- [Optional] Tweaks
+- =\paper= block
+- Definitions
+- =\score= block (Compound music expression -> call/place your variables here for output)
+  - =\layout= block
+  - =\midi= block
+  - =\new Staff= with instrument name
+- 
+
+** What it isn't
+- A place to put code that is unrelated to the score itself.
+
+** Why you need it.
+- We haven't explicitly included a =\score= block, but LilyPond provides one behind the scenes.
+
+  #+begin_src lilypond :file xxx.pdf
+    \relative c'' { c4 a b c }
+  #+end_src
+
+  is shorthand for:
+
+  #+begin_src lilypond :file xxx.pdf
+    \book {
+      \score {
+        \new Staff {
+          \new Voice {
+            \relative c'' { c4 a b c }
+          }
+        }
+        \layout {}
+      }
+    }
+  #+end_src
+
+  - for anything more complicated than a scratch file, you should have a  =\score= block
+
+* Tutorial 24 - Extracting parts - using the =\include= command
+- Make separate files for instrument definitions
+  Combine with =\include= commands.
+- Includes an ENTIRE COPY of the file.
+  
