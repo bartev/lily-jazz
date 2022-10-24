@@ -35,7 +35,7 @@ git@github.com:jasonflatley/lilypond_for_jazz_musicians.git
 
 **  http://danieljohnson.name/blog/installing-lilypond-on-macos
 
-*** Text fonts
+** Text fonts
 
 #+begin_src shell
   curl -LO http://www.gust.org.pl/projects/e-foundry/tex-gyre/whole/tg2_501otf.zip
@@ -43,15 +43,15 @@ git@github.com:jasonflatley/lilypond_for_jazz_musicians.git
   mv tg2_501otf/*.otf /Libraries/Fonts/
 #+end_src
 
-*** Dependencies from homebrew
+** Dependencies from homebrew
 
-**** Install MacTex
+*** Install MacTex
 
 #+begin_src shell
   brew install --cask mactex
 #+end_src
 
-**** COMMENT Install =guile=
+*** COMMENT Install =guile=
 I'm not sure if I need to do all this if I install =lilypond= using =homebrew=
 guile (sadhen)
 
@@ -66,4 +66,14 @@ Finally, it may be necessary to get Homebrew to symlink some of these libraries/
 brew link fontforge
 brew link gettext --force
 
-*** Install fonts
+** Install fonts
+
+* Copy pdfs to iCloud
+
+iCloud files are stored in =~/Documents/ljv-pdfs=
+
+To copy files to iCloud.
+
+#+begin_src shell
+  lilypond eternal-triangle.ly && cp eternal-triangle.pdf ~/Documents/ljv-pdfs/
+#+end_src
