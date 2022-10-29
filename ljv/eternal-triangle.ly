@@ -97,8 +97,13 @@ realBookTitle = \markup {
 }
 
 \layout {
+  \context { \Lyrics \override LyricText.font-name = #"serif" }
   \context {
-    \Lyrics \override LyricText.font-name = #"serif"
+    \Voice
+    \consists "Horizontal_bracket_engraver"
+    \override HorizontalBracket.direction = #UP
+    \override HorizontalBracket.thickness = 3.0
+    \override HorizontalBracket.color = #red
   }
   \numericTimeSignature
 }
@@ -177,13 +182,13 @@ eternal_triangle = \relative c' {
   \markManualBox "1"
   \timestop "0:38"
   r1
-  r4. d8 g b d4~
+  r4. d8\startGroup g b d4~
   d2 b8 d c g
-  b8 g a bes fis ees d c
+  b8 g a bes fis ees d c\stopGroup
   \break
 
   %% m5
-  \timestop "0:41"
+  \timestop "0:42"
   b8 d e f a4 fis8 d
   g8 f \tuplet 3/2 {e8 g b} d c g c
   b8 g d b \glissando fis'4. g8~
@@ -196,12 +201,12 @@ eternal_triangle = \relative c' {
   \timestop "0:45"
   r4 << g8 g,8 >> d' g \xNote g d' g~
   g8 g cis,4~ cis2
-  e8 cis d b g e c'4~
-  c4 b8 g bes fis r4
+  e8\startGroup cis d b g e c'4~
+  c4\stopGroup b8 g bes fis r4
   \break
 
   %% m13
-  \timestop "0:48"
+  \timestop "0:49"
   r2 r8 e8 g16 a b c
   e4. b8 d b \tuplet 3/2 {c d c}
   a8 bes g ees d c b a'
@@ -239,8 +244,8 @@ eternal_triangle = \relative c' {
   %% m29
   \timestop "1:02"
   c8 e d4 r2
-  r2 r4 r8 d8
-  g8 d fis e d b \tuplet 3/2 { c d c }
+  r2 r4 r8 d8\startGroup
+  g8 d fis e d b \tuplet 3/2 { c\stopGroup d c }
   ais8 b g d bes b d \xNote b
   \bar "||"
   \break
@@ -251,11 +256,11 @@ eternal_triangle = \relative c' {
   g'4 r4 \acciaccatura ais8 b4 g
   c4 g8 cis~ cis g d'4~
   d2 b4 d8 cis
-  c?8 b a g fis ees d c
+  c?8\startGroup b a g fis ees d c\stopGroup
   \break
 
   %% m37
-  \timestop "1:08"
+  \timestop "1:09"
   b8 d fis a f fis g f
   e8 g a b d4 r4
   r1
@@ -290,10 +295,10 @@ eternal_triangle = \relative c' {
 
   %% m53
   \timestop "1:22"
-  cis8 a fis cis gis' eis fis gis
+  cis8\startGroup a fis \markBlue "PRACTICE" cis gis' eis fis gis
   g?8 e f g aes bes c d
   dis8 cis d b g e cis'? bes
-  fis8 dis bis' a? ais fis dis? cis
+  fis8 dis bis' a? ais fis dis? cis\stopGroup
   \bar "||"
   \break
 
@@ -306,7 +311,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m61
-  \timestop "1:28 ?"
+  \timestop "1:28"
   c'8 b g e f4 e'8 d
   c8 fis, g a bes g e ees
   d8 c' a bes b4 r4
@@ -316,15 +321,15 @@ eternal_triangle = \relative c' {
 
   %% m65
   \markManualBox "3"
-  \timestop "1:32 ?"
-  cis8 d \tuplet 3/2 { cis d cis } d8 b g e
+  \timestop "1:32"
+  cis8 \markBlue "horns" d \tuplet 3/2 { cis d cis } d8 b g e
   c'8 g cis4~ cis e8 cis
   d4 r4 r2
   r4 f4~ f d
   \break
 
   %% m69
-  \timestop "1:35 ?"
+  \timestop "1:35"
   r8 f4 r8 r2
   r2 ees4 b'8 a
   g8 ees d c b a g e?
@@ -333,7 +338,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m73
-  \timestop "1:38 ?"
+  \timestop "1:38"
   b4 r4 r2
   r2 r4 r8 d'~
   d8 g4 d8 g4-. d-.
@@ -341,7 +346,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m77
-  \timestop "1:41 ?"
+  \timestop "1:42"
   d8 b g e f4 r4
   r2 r4 r8 d'8
   g8 d fis e d b \tuplet 3/2 { c d c }
@@ -350,15 +355,15 @@ eternal_triangle = \relative c' {
   \break
 
   %% m81
-  \timestop "1:45 ?"
+  \timestop "1:45"
   r2 ais'4 gis8 fis
-  eis8 dis cis c b4 a'4
-  g2 d8 f e c
+  eis8 dis cis c b4 a'8 \markBlue "feels behind" g8~
+  g4. d8 f e c d~
   d4. bes8 g e c' cis~
   \break
 
   %% m85
-  \timestop "1:48 ?"
+  \timestop "1:48"
   cis4 a gis fis
   c'4. aes8 g4 f
   b4 g fis e8 ais~
@@ -367,6 +372,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m89
+  \markBlue "horns"
   \timestop "1:51 ?"
   r2 \tuplet 3/2 { r8 d e } fis8 a
   fis8 g b d fis e d b
@@ -375,7 +381,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m93
-  \timestop "1:54 ?"
+  \timestop "1:54"
   a'8 aes g e g \xNote f \tuplet 3/2 { e8 g b }
   d8 c g e ais cis~ cis4
   r1
@@ -385,7 +391,7 @@ eternal_triangle = \relative c' {
 
   %% m97
   \markManualBox "4"
-  \timestop "1:57 ?"
+  \timestop "1:57"
   f8 d r4 r2
   f8 d4 f d d8
   f4 d8 d f d r f~
@@ -393,7 +399,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m101
-  \timestop "2:00 ?"
+  \timestop "2:00"
   f4 d8 d f d r c~
   c8 g4-. g-> c-. cis8~
   cis8 e4-. cis-. d-. b8~
@@ -402,7 +408,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m105
-  \timestop "2:04 ?"
+  \timestop "2:04"
   r8 a r fis r g r b
   r8 d r fis~ fis2~
   fis2 r4 r8 e
@@ -410,7 +416,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m109
-  \timestop "2:07 ?"
+  \timestop "2:07"
   d4 r fis'8 dis b gis
   f'4-^ bes,8 g ees c a'4
   r2 fis8 g b d
@@ -419,7 +425,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m113
-  \timestop "2:10 ?"
+  \timestop "2:10"
   r4 r8 dis,8~ dis4 fis8 dis
   eis8 gis b dis ais4 r
   r8 fis g16 bes d f a2
@@ -427,7 +433,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m117
-  \timestop "2:14 ?"
+  \timestop "2:14"
   cis8 a fis cis gis' e \xNote eis fis
   f8 g aes bes c ees d c
   d8 b g e cis'4 e8 f
@@ -436,7 +442,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m121
-  \timestop "2:17 ?"
+  \timestop "2:17"
   r2 fis8 g b d
   fis8 e d b \tuplet 3/2 { c8 d c } b8 a
   g4 r g'4. d8
@@ -444,7 +450,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m125
-  \timestop "2:20 ?"
+  \timestop "2:20"
   g4 f8 g a c e d
   c8 fis, g a bes g e ees
   d4 g'4( d b-.)
@@ -454,7 +460,7 @@ eternal_triangle = \relative c' {
 
   %% m129
   \markManualBox "5"
-  \timestop "2:24 ?"
+  \timestop "2:24"
   g2 d'
   c2 e4 r
   r4 d g r8 a
@@ -462,7 +468,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m133
-  \timestop "2:27 ?"
+  \timestop "2:27"
   ais'4 gis8 fis eis dis cis4
   f4 r8 ees d4. c8
   b4 r r2
@@ -471,7 +477,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m137
-  \timestop "2:30 ?"
+  \timestop "2:30"
   g8 d b c d g r4
   r2 r8 fis \tuplet 3/2 { g8 b d }
   fis8 d4 f8~ \tuplet 3/2 { f8 e dis } e4 ~
@@ -479,7 +485,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m141
-  \timestop "2:34 ?"
+  \timestop "2:34"
   c'8 b g e g f \tuplet 3/2 { e8 g b }
   d8 c g e ees cis d c
   b8 a' r4 r2
@@ -488,7 +494,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m145
-  \timestop "2:37 ?"
+  \timestop "2:37"
   \tuplet 3/2 { dis8 e dis } b8 ais gis d dis g~
   g4. dis8 fis dis eis gis
   b8 cis d bes g d f d
@@ -496,7 +502,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m149
-  \timestop "2:40 ?"
+  \timestop "2:40"
   a4 gis' \tuplet 3/2 { fis8 e dis } r8 g~
   g4~ \tuplet 3/2 { g8 f ees } d4 r
   fis4~ \tuplet 3/2 { fis8 e d } cis8 d e eis~
@@ -505,7 +511,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m153
-  \timestop "2:44 ?"
+  \timestop "2:44"
   r2 \tuplet 3/2 { fis,8 g b } \tuplet 3/2 { d8 fis a }
   fis2. a8 fis~
   fis4 a8 fis~ fis4 g8 e~
@@ -513,7 +519,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m157
-  \timestop "2:47 ?"
+  \timestop "2:47"
   b4 d8 b c4 r
   r2 r4 dis8 \xNote g
   b8 a g ees d des c b
@@ -523,7 +529,7 @@ eternal_triangle = \relative c' {
 
   %% m161
   \markManualBox "5"
-  \timestop "2:50 ?"
+  \timestop "2:50"
   b4( d-.) g-. g~
   g4->~ g g g->~
   g4 g4~ g4->~ g4
@@ -531,7 +537,7 @@ eternal_triangle = \relative c' {
   \break
 
   %% m165
-  \timestop "2:50 ?"
+  \timestop "2:50"
   \repeat unfold 4 r1
   \break
 
@@ -541,7 +547,7 @@ scaleDegrees = \lyrics {
   %% m1
   ""1
   ""4.
-  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 1 }8
   \markup \scaleDegree { 4 }
   \markup \scaleDegree { 6 }
   \markup \scaleDegree { 1 }4
@@ -549,13 +555,13 @@ scaleDegrees = \lyrics {
   \markup \scaleDegree { f3 }2
   \markup \scaleDegree { 5 }8
   \markup \scaleDegree { f7 }
-  \markup \scaleDegree { 6 }
-  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { f3 }
 
   \markup \scaleDegree { 2 }8
   \markup \scaleDegree { f7 }
   \markup \scaleDegree { 1 }
-  \markup \scaleDegree { f8 }
+  \markup \scaleDegree { f9 }
   \markup \scaleDegree { 3 }
   \markup \scaleDegree { f9 }
   \markup \scaleDegree { 1 }
@@ -581,10 +587,10 @@ scaleDegrees = \lyrics {
   \markup \scaleDegree { 5 }
 
   \markup \scaleDegree { 1 }8
-  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f6 }
   \markup \scaleDegree { f3 }
   \markup \scaleDegree { 1 }
-  \markup \scaleDegree { 2 }4.
+  \markup \scaleDegree { 9 }4.
   \markup \scaleDegree { f3 }8
 
   \markup \scaleDegree { f7 }2.
@@ -605,10 +611,10 @@ scaleDegrees = \lyrics {
 
   \markup \scaleDegree { 4 }8
   \markup \scaleDegree { 2 }
-  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { f3 }
   \markup \scaleDegree { 1 }
-  \markup \scaleDegree { 6 }
-  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 1 }
   \markup \scaleDegree { f6 }4
 
   \markup \scaleDegree { f3 }4
@@ -749,7 +755,7 @@ scaleDegrees = \lyrics {
 
   %%
   \markup \scaleDegree { f7 }8
-  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 4 }
   \markup \scaleDegree { 6 }
   \markup \scaleDegree { 5 }
   \markup \scaleDegree { 1 }
@@ -1015,7 +1021,7 @@ scaleDegrees = \lyrics {
   %% m61
   \markup \scaleDegree { f7 }8
   \markup \scaleDegree { 6 }
-  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { s4 }
   \markup \scaleDegree { 2 }
   \markup \scaleDegree { f7 }4
   \markup \scaleDegree { 6 }8
@@ -1153,5 +1159,5 @@ scoreWithScaleDegrees = \score {
   >>
 }
 
-\scoreOneChorusPerPage
-%% \scoreWithScaleDegrees
+% \scoreOneChorusPerPage
+\scoreWithScaleDegrees
