@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.22.2"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -9,13 +9,24 @@
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
 \include "roman_numeral_analysis_tool.ily"
+\include "bv_definitions.ily"
+
+%% bv_definitions is in plugins/bv-lilyjazz/stylesheets.
+%% It contains some useful functions such as:
+%%   timestop
+%%   markManualBox
+%%   markBlue
+%%   blueChord
+%%   redChord
+%%   greenChord
 
 %% set up title, compser, meter, copyright
 title = #"SET MY TITLE"
 composer = #"SET COMPOSER"
-meter = "SET METER"
-copyright = #"Bartev 2021-02"
+arranger = #"SET ARRANGER"
 tagline = "Awesome transcription by Bartev"
+meter = "SET METER"
+copyright = #"Bartev 2022"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
@@ -24,15 +35,16 @@ realBookTitle = \markup {
     {
       \override TextScript.extra-offset = #'(0 . -4.5)
       s4
-      s^\markup{
-        \fill-line {
-          \fontsize #1 \lower #1 \rotate #7 \concat { \note #"4" #1 " = " #meter }
-          \fontsize #7
-          \override #'(offset . 7)
-          \override #'(thickness . 6)
-          \underline \larger #title
-          \fontsize #1 \lower #1 \concat { #composer " " }
-        }
+      s^\markup
+      \fill-line {
+        %% meter
+        \fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }
+        %% title
+        \fontsize #5
+        \override #'(offset . 7) \override #'(thickness . 6)
+        \underline \larger #title
+        %% composer
+        \fontsize #2 \lower #1 \concat { #composer " " }
       }
       s
     }
@@ -40,27 +52,41 @@ realBookTitle = \markup {
       \omit Staff.Clef
       \omit Staff.TimeSignature
       \omit Staff.KeySignature
+      ragged-right = ##f
+      ragged-bottom = ##f
+      last-ragged-bottom = ##t
     }
   }
 }
 
 \header {
   title = \realBookTitle
+  tagline = \tagline
   copyright = \copyright
-  %% tagline = ##f  % Remove default LilyPond tagline
-	tagline = \tagline
+  %% The following fields are evenly spread on one line
+  %% the field "instrument" also appears on following pages
+  %% instrument = \markup \with-color #blue "Alto Sax"
 }
 
 \paper {
   #(set-paper-size "letter")
+  #(define fonts
+    (set-global-fonts
+     #:music "lilyjazz"
+     #:brace "lilyjazz"
+     #:roman "lilyjazz-text"
+     #:sans "lilyjazz-chord"
+     #:factor (/ staff-height pt 18)
+   ))
+
 	top-margin = 0.5\in
   bottom-margin = 0.5\in
   left-margin = 0.5\in
   right-margin = 0.5\in
   indent = 0\mm
 
-  between-system-space = 2.5\cm
-  between-system-padding = #0
+  %% between-system-space = 2.\cm
+  %% between-system-padding = #0
 
   %%set to ##t if your score is less than one page:
   ragged-last-bottom = ##t
@@ -87,16 +113,40 @@ realBookTitle = \markup {
 	}
 }
 
+
+\layout {
+  %% This affects horizontal brackets that I'm using to highlight phrases.
+  \context { \Lyrics \override LyricText.font-name = #"serif" }
+  \context {
+    \Voice
+    \consists "Horizontal_bracket_engraver"
+    \override HorizontalBracket.direction = #UP
+    \override HorizontalBracket.thickness = 3.0
+    \override HorizontalBracket.color = #red
+  }
+  \numericTimeSignature
+}
+
 global = {
   \numericTimeSignature
   \time 4/4
   \key c \major
 	%% \tempo 4=224  % this would be over the clef on the first line
 
-	\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-	\override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
-	\override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
-	\override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
+  %% make only the first clef visible
+  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+
+  %% make only the first time signature visible
+  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+
+  %% allow single-staff system bars
+  \override Score.SystemStartBar #'collapse-height = #1
+
+  \set Score.markFormatter = #format-mark-box-alphabet
+
+  %% left justify rehearsal marks (centered by default)
+  \override Score.RehearsalMark.self-alignment-X = #LEFT
+  
 	\override Score.MultiMeasureRest.expand-limit = 1
 
 	%% See here for using colors
@@ -112,27 +162,26 @@ global = {
 	\set Score.markFormatter = #format-mark-box-alphabet
 }
 
-%%%%%%%%%%%%%%%%%%%% Functions
-
-timestop = #(define-music-function
-						 (parser location string)
-						 (string?)
-						 "colored markup (for timestamps)"
-						 #{ <>^\markup \large \with-color #red #string #})
-
-markManualBox = #(define-music-function
-									(parser location string)
-									(string?)
-									"manually set a box mark that matches current color/size"
-									#{ <>\mark \markup \box #string #})
-
-markBlue = #(define-music-function
-						 (parser location string)
-						 (string?)
-						 "blue markup string"
-						 #{ <>\mark \markup \override #'(font-name . "lilyjazz-chord") \fontsize #-6 \with-color #blue #string #})
-
 %%%%%%%%%%%%%%%%%%%% Begin music
+
+%% General structure:
+%%
+%% chordNames = \chordmode ...
+%% notesMelody = ...
+%% scaleDegrees = \lyrics ...
+%%
+%% Put it all together
+%%
+%% \score {
+%%   <<
+%%     \new ChordNames \chordNames
+%%     \new Staff {
+%%       \global
+%%       \notesMelody
+%%     }
+%%     \scaleDegrees
+%%   >>
+%% }
 
 %% Define line breaks globally
 %% OPTIONAL, but can set all lines to be 4 bars wide
@@ -253,7 +302,7 @@ templateScore = \score {
 	}
 }
 
-																% \chordsAnalysisArpeg
-																% \pageBreak
+%% \chordsAnalysisArpeg
+%% \pageBreak
 
 \templateScore
