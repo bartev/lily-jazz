@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -26,7 +26,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #1 \rotate #7 \concat { \note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #1 \rotate #7 \concat { \note {4} #1 " = " #meter }
           \fontsize #7
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -76,12 +76,12 @@ realBookTitle = \markup {
 		%% If not using the realBookTitle, can use
 		%% \fromproperty #'header:title " "
 		\title
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string
 	}
   evenHeaderMarkup = \markup
 	\fill-line {
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string " "
 		\title
 	}
@@ -93,9 +93,9 @@ global = {
   \key f \major
 	%% \tempo 4=224  % this would be over the clef on the first line
 
-	\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-	\override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
-	\override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
+	\override Score.Clef.break-visibility = #'#(#f #f #f) % make only the first clef visible
+	\override Score.KeySignature.break-visibility = #'#(#f #f #f) % make only the first time signature visible
+	\override Score.SystemStartBar.collapse-height = #1 % allow single-staff system bars
 	\override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
 	\override Score.MultiMeasureRest.expand-limit = 1
 
@@ -107,9 +107,9 @@ global = {
 	\override Score.RehearsalMark.font-size = 6
 
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-	%% \compressFullBarRests
+	%% \compressEmptyMeasures
 	
-	\set Score.markFormatter = #format-mark-box-alphabet
+	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Functions
@@ -148,7 +148,7 @@ chordNamesHead = \chordmode {
 }
 
 leadMusicC = \relative c'' {
-	\bar ".|"
+	\bar ".|-|"
 	%% \mark \default
 	\markManualBox "Head"
   r4 ees ges4. ees8~
@@ -168,7 +168,7 @@ leadMusicC = \relative c'' {
 }
 
 leadMusicLeadInC = \relative c'' {
-	\bar ".|"
+	\bar ".|-|"
 	%% \mark \default
 	\markManualBox "Head"
 	r4 ees ges4. ees8~
@@ -188,7 +188,7 @@ leadMusicLeadInC = \relative c'' {
 }
 
 solo = \relative c''' {
-	\bar ".|"
+	\bar ".|-|"
 
 	%% do this to have multiple rehearsal marks in the same location
 	%% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
@@ -307,7 +307,7 @@ scaleDegrees = \lyrics {
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-	\override LyricText #'font-name = #"serif"	
+	\override LyricText.font-name = #"serif"	
 	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
 	\markup \rN { V 7 / I }1
 	\markup \rN { V 7 / ii }1

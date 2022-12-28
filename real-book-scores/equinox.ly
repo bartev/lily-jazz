@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 24)
 \include "../stylesheets/jazzchords.ily"
@@ -61,7 +61,7 @@ realBookTitle = \markup {
 theNotes = \relative c'' {
   \key c \major
   \partial 8 g8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   ees'4. c8 ~ c2 ~ |
   c2. ~c8 g8 |
   ees'8 c8 ~ c2 ~ c8 g8 | \break
@@ -83,7 +83,7 @@ theBassLine = \relative c {
   \clef bass
   \key c \major
   \partial 8 r8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   c4. c8 ~ c4 c4 ~ |
   c2 g4 bes4 |
   c4. c8 ~ c4 c4 ~ | \break
@@ -126,8 +126,8 @@ theChords = \chordmode {
     \new Voice = soloist \theBassLine
   >>
   \layout {
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
-    \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+    \override Score.Clef.break-visibility = #'#(#f #f #f)  % make only the first clef visible
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)  % make only the first time signature visible
+    \override Score.SystemStartBar.collapse-height = #1  % allow single-staff system bars
   }
 }   

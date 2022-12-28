@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 16)
 \include "jazzextras.ily"
@@ -71,13 +71,13 @@ global = {
   \key c \major
 
 	%% make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
 	%% make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
 	%% allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 myChords = \chordmode { e1:m7 a:7 d1:m7 \break
@@ -214,10 +214,10 @@ global = {
   \key c \major
   \numericTimeSignature
   %% make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   %% allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
 }
 

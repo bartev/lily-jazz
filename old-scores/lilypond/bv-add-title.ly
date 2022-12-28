@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 \paper {
   #(define fonts
     (set-global-fonts
@@ -19,6 +19,6 @@
 
 
 \relative c'' {
-\bar ".|"
+\bar ".|-|"
  c4 d e f | g a b c \bar "|."
 }

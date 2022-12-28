@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 22)
 \include "jazzchords.ily"
@@ -88,7 +88,7 @@ head_twnbay = \relative c' {
   \key ees \major
   \partial 4 bes4 |
 
-  \bar ".|"
+  \bar ".|-|"
   c d ees f |
   g bes f ees |
   f1 ~ |
@@ -143,7 +143,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   \key c \major
 
   \partial 4 r4 |
-  \bar ".|"
+  \bar ".|-|"
   g8 a b4 c d
   e4-. g-- d8 r r c
   d1 ~

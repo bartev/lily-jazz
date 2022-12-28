@@ -1,3 +1,4 @@
+\version "2.24.0"
 \score {
   {
     \repeat unfold 5 { s1 \break }

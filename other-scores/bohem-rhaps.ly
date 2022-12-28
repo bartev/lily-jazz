@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 \include "extras.ly"
 
@@ -64,7 +64,7 @@ theBassLine = \relative c {
   \clef bass
   \key c \major
   \partial 8 r8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   c4. c8 ~ c4 c4 ~ |
   c2 g4 bes4 |
   c4. c8 ~ c4 c4 ~ | \break
@@ -93,7 +93,7 @@ theChordsC = \chordmode {
 melodyPartOne = \relative c'' {
   \key bes \major
   \time 4/4
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   r8 bes bes bes bes4 bes |
   r8 bes bes bes bes bes g4 |
   \time 5/4
@@ -169,8 +169,8 @@ trombone = {
     >>
   >>
   \layout {
-    % \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
-    % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
-    \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+    % \override Score.Clef.break-visibility = #'#(#f #f #f)  % make only the first clef visible
+    % \override Score.KeySignature.break-visibility = #'#(#f #f #f)  % make only the first time signature visible
+    \override Score.SystemStartBar.collapse-height = #1  % allow single-staff system bars
   }
 }   

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -31,7 +31,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
 	\fill-line {
-	  \fontsize #1 \lower #1 \rotate #7 \concat { \note #"8" #1 " = " #meter }
+	  \fontsize #1 \lower #1 \rotate #7 \concat { \note {8} #1 " = " #meter }
 	  \fontsize #7
 	  \override #'(offset . 7)
 	  \override #'(thickness . 6)
@@ -55,9 +55,9 @@ global = {
   \key c \major
   %% \tempo 4=224  % this would be over the clef on the first line
 
-  \override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
-  \override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
+  \override Score.Clef.break-visibility = #'#(#f #f #f) % make only the first clef visible
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f) % make only the first time signature visible
+  \override Score.SystemStartBar.collapse-height = #1 % allow single-staff system bars
   \override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
   \override Score.MultiMeasureRest.expand-limit = 1
 
@@ -69,9 +69,9 @@ global = {
   \override Score.RehearsalMark.font-size = 6
 
   %% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-  \compressFullBarRests
+  \compressEmptyMeasures
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Functions
@@ -101,7 +101,7 @@ scoop = \bendAfter #+4
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-  \override LyricText #'font-name = #"serif"
+  \override LyricText.font-name = #"serif"
   \set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
   \markup \rN { V 7 / I }1
   \markup \rN { V 7 / ii }1
@@ -189,11 +189,11 @@ templateScore = \score {
       \global
       {
 	<<
-	  %% { \once \compressFullBarRests s1*8 \scoreBreaks	}
+	  %% { \once \compressEmptyMeasures s1*8 \scoreBreaks	}
 	  \relative c'' {
 	    <>^\markup "Piano"
-	    \once \compressFullBarRests \inlineMMR R1*8
-	    \bar ".|"
+	    \once \compressEmptyMeasures \inlineMMR R1*8
+	    \bar ".|-|"
 	    { s1 s1 s1}
 	    \bar "|."
 	    {
@@ -241,12 +241,12 @@ templateScore = \score {
       piece = "Repeat bar lines"
     }
     \relative c {
-      f'1 \bar ".|:"
+      f'1 \bar ".|:-|"
       g1 \bar ":..:"
       a1 \bar ":|.|:"
       b1 \bar ":|.:"
       c1 \bar ":.|.:"
-      d1 \bar "[|:"
+      d1 \bar "[|:-|"
       e1 \bar ":|][|:"
       f1 \bar ":|]"
       g1 \bar ":|."
@@ -267,7 +267,7 @@ templateScore = \score {
 	%% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
 	{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
       }
-      \bar ".|"
+      \bar ".|-|"
       \timestop "1:24"
       g4 r r g~\mf
       g4 r8 e\mp\< c d e4\mf

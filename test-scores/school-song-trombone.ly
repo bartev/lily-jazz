@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 26)
 \include "../stylesheets/lilyjazz.ily"
@@ -23,14 +23,14 @@
 % layout can be at the doc level, or at the score level
   \layout {
     % make only the first clef visible
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)
+    \override Score.Clef.break-visibility = #'#(#f #f #f)
 
     % make only the first time signature visible
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
     % allow single-staff system bars
     % remove vertical bar at left of staff
-    % \override Score.SystemStartBar #'collapse-height = #1
+    % \override Score.SystemStartBar.collapse-height = #1
   }
 
 

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % define-music-function <argument-list> <argument-predicates> <body>
 

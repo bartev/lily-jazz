@@ -1,4 +1,4 @@
-\version "2.16.0"
+\version "2.24.0"
 
 % preliminary LilyJAZZ version for testing purposes
 
@@ -328,99 +328,99 @@ makeUnpurePureContainer =
 
 
 jazzOn = {
-  \override Staff.Clef #'stencil = #jazz-clef
-  \override Score.BarNumber #'stencil = ##f
+  \override Staff.Clef.stencil = #jazz-clef
+  \override Score.BarNumber.stencil = ##f
   
-  \override Staff.KeySignature #'stencil = #jazz-keysig
-  \override Staff.KeyCancellation #'stencil = #jazz-keysig
+  \override Staff.KeySignature.stencil = #jazz-keysig
+  \override Staff.KeyCancellation.stencil = #jazz-keysig
 
-  \override Staff.TimeSignature #'stencil = #jazz-timesig
+  \override Staff.TimeSignature.stencil = #jazz-timesig
   
-  \override Staff.NoteHead #'stencil = #jazz-notehead  
-  \override Staff.NoteHead #'Y-extent = \makeUnpurePureContainer
+  \override Staff.NoteHead.stencil = #jazz-notehead  
+  \override Staff.NoteHead.Y-extent = \makeUnpurePureContainer
   
-  \override Staff.Stem #'thickness = #2
-  \override Staff.Beam #'beam-thickness = #0.55
-  \override Staff.Flag #'stencil = #jazz-flag
-  \override Staff.Flag #'Y-extent = \makeUnpurePureContainer
+  \override Staff.Stem.thickness = #2
+  \override Staff.Beam.beam-thickness = #0.55
+  \override Staff.Flag.stencil = #jazz-flag
+  \override Staff.Flag.Y-extent = \makeUnpurePureContainer
 
-  \override Staff.Dots #'stencil = #jazz-dots
-  \override Staff.Accidental #'stencil = #jazz-accidental
-  \override Staff.Accidental #'Y-extent = \makeUnpurePureContainer
+  \override Staff.Dots.stencil = #jazz-dots
+  \override Staff.Accidental.stencil = #jazz-accidental
+  \override Staff.Accidental.Y-extent = \makeUnpurePureContainer
   
-  \override Staff.AccidentalCautionary #'stencil = #jazz-accidental-cautionary
-  \override Staff.AccidentalCautionary #'Y-extent = \makeUnpurePureContainer
+  \override Staff.AccidentalCautionary.stencil = #jazz-accidental-cautionary
+  \override Staff.AccidentalCautionary.Y-extent = \makeUnpurePureContainer
 
-  \override Staff.AccidentalSuggestion #'stencil = #jazz-accidental
-  \override Staff.AccidentalSuggestion #'Y-extent = \makeUnpurePureContainer
+  \override Staff.AccidentalSuggestion.stencil = #jazz-accidental
+  \override Staff.AccidentalSuggestion.Y-extent = \makeUnpurePureContainer
         
-  \override Staff.Script #'stencil = #jazz-articulation        
+  \override Staff.Script.stencil = #jazz-articulation        
   
-  \override Staff.Rest #'stencil = #jazz-rest
-  \override Staff.Slur #'thickness = #2.5
-  \override Staff.Tie #'thickness = #2.5
-  \override Staff.BarLine #'hair-thickness = #3  
-  \override Score.BarNumber #'font-name = #"LilyJAZZ Text"
+  \override Staff.Rest.stencil = #jazz-rest
+  \override Staff.Slur.thickness = #2.5
+  \override Staff.Tie.thickness = #2.5
+  \override Staff.BarLine.hair-thickness = #3  
+  \override Score.BarNumber.font-name = #"LilyJAZZ Text"
 
-  \override Staff.TimeSignature #'font-name = #"LilyJAZZ"
-  \override Staff.TimeSignature #'font-size = #5
+  \override Staff.TimeSignature.font-name = #"LilyJAZZ"
+  \override Staff.TimeSignature.font-size = #5
   
-  \override Staff.DynamicText #'font-name = #"LilyJAZZ"
-  \override Staff.DynamicText #'font-size = #6
+  \override Staff.DynamicText.font-name = #"LilyJAZZ"
+  \override Staff.DynamicText.font-size = #6
 
-  \override Score.RehearsalMark #'font-name = #"LilyJAZZ Text"
-  \override Score.MetronomeMark #'font-name = #"LilyJAZZ Text"
+  \override Score.RehearsalMark.font-name = #"LilyJAZZ Text"
+  \override Score.MetronomeMark.font-name = #"LilyJAZZ Text"
 
-  \override Staff.TextScript #'font-name = #"LilyJAZZ Text"   
-  \override Staff.TextScript #'font-size = #1
+  \override Staff.TextScript.font-name = #"LilyJAZZ Text"   
+  \override Staff.TextScript.font-size = #1
 
-  \override Staff.InstrumentName #'font-name = #"LilyJAZZ Text"   
+  \override Staff.InstrumentName.font-name = #"LilyJAZZ Text"   
   
-  \override Staff.TupletNumber #'font-name = "LilyJAZZ Text"
-  \override Staff.TupletBracket #'thickness = #1.5
+  \override Staff.TupletNumber.font-name = "LilyJAZZ Text"
+  \override Staff.TupletBracket.thickness = #1.5
   
-  \override Score.VoltaBracket #'font-name = #"LilyJAZZ Text"
-  \override Score.VoltaBracket #'font-size = #0
-  \override Score.VoltaBracket #'thickness = #2
+  \override Score.VoltaBracket.font-name = #"LilyJAZZ Text"
+  \override Score.VoltaBracket.font-size = #0
+  \override Score.VoltaBracket.thickness = #2
 }
 
 jazzOff = {
-  \revert Staff.Clef #'stencil
+  \revert Staff.Clef.stencil
   
-  \revert Staff.KeySignature #'stencil
-  \revert Staff.KeyCancellation #'stenci
+  \revert Staff.KeySignature.stencil
+  \revert Staff.KeyCancellation.stenci
   
-  \revert Staff.TimeSignature #'stencil
+  \revert Staff.TimeSignature.stencil
 
-  \revert Staff.NoteHead #'stencil
-  \revert Staff.NoteHead #'Y-extent
-  \revert Staff.Stem #'thickness
-  \revert Staff.Beam #'beam-thickness
-  \revert Staff.Flag #'stencil
-  \revert Staff.Dots #'stencil
-  \revert Staff.Accidental #'stencil
-  \revert Staff.AccidentalCautionary #'stencil
-  \revert Staff.AccidentalSuggestion #'stencil
-  \revert Staff.Script #'stencil 
-  \revert Staff.Rest #'stencil
-  \revert Staff.Slur #'thickness 
-  \revert Staff.Tie #'thickness
-  \revert Staff.BarLine #'hair-thickness
-  \revert Score.BarNumber #'font-name
-  \revert Staff.TimeSignature #'font-name
-  \revert Staff.TimeSignature #'font-size
-  \revert Staff.DynamicText #'font-name
-  \revert Staff.DynamicText #'font-size
-  \revert Score.RehearsalMark #'font-name
-  \revert Score.MetronomeMark #'font-name
-  \revert Staff.TextScript #'font-name  
-  \revert Staff.TextScript #'font-size
-  \revert Staff.InstrumentName #'font-name   
-  \revert Staff.TupletNumber #'font-name
-  \revert Staff.TupletBracket #'thickness
-  \revert Score.VoltaBracket #'font-name
-  \revert Score.VoltaBracket #'font-size
-  \revert Score.VoltaBracket #'thickness
+  \revert Staff.NoteHead.stencil
+  \revert Staff.NoteHead.Y-extent
+  \revert Staff.Stem.thickness
+  \revert Staff.Beam.beam-thickness
+  \revert Staff.Flag.stencil
+  \revert Staff.Dots.stencil
+  \revert Staff.Accidental.stencil
+  \revert Staff.AccidentalCautionary.stencil
+  \revert Staff.AccidentalSuggestion.stencil
+  \revert Staff.Script.stencil 
+  \revert Staff.Rest.stencil
+  \revert Staff.Slur.thickness 
+  \revert Staff.Tie.thickness
+  \revert Staff.BarLine.hair-thickness
+  \revert Score.BarNumber.font-name
+  \revert Staff.TimeSignature.font-name
+  \revert Staff.TimeSignature.font-size
+  \revert Staff.DynamicText.font-name
+  \revert Staff.DynamicText.font-size
+  \revert Score.RehearsalMark.font-name
+  \revert Score.MetronomeMark.font-name
+  \revert Staff.TextScript.font-name  
+  \revert Staff.TextScript.font-size
+  \revert Staff.InstrumentName.font-name   
+  \revert Staff.TupletNumber.font-name
+  \revert Staff.TupletBracket.thickness
+  \revert Score.VoltaBracket.font-name
+  \revert Score.VoltaBracket.font-size
+  \revert Score.VoltaBracket.thickness
 }
 
 

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 24)
 \include "../stylesheets/jazzchords.ily"
@@ -132,9 +132,9 @@ Tune = \relative f' {
     \new Voice \Tune
   >>
   \layout {
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
-    \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+    \override Score.Clef.break-visibility = #'#(#f #f #f)  % make only the first clef visible
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)  % make only the first time signature visible
+    \override Score.SystemStartBar.collapse-height = #1  % allow single-staff system bars
   }
 }
 % \midi { \tempo 4 = 160 }

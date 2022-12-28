@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % Rhythm changes
 
@@ -24,7 +24,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note {4} #1 " = " #meter }
           \fontsize #1 \lower #1 \concat { #arranger " " }
           \fontsize #5
           \override #'(offset . 7)
@@ -145,10 +145,10 @@ scoreShoeShine = \score {
     \global
     % \numericTimeSignature
     % \override Score.MultiMeasureRest.expand-limit = 1
-    % \compressFullBarRests
+    % \compressEmptyMeasures
     % \inlineMMR R1*4
 
-    % \bar ".|"
+    % \bar ".|-|"
     \soloShoeShine
   }
   \new Lyrics { \ssbScaleDegrees }

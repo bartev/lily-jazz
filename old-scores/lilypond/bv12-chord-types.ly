@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 chordmusic = \chordmode { 
 	c1 	| c:maj | 

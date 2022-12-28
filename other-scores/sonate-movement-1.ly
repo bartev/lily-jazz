@@ -1,11 +1,11 @@
-\version "2.20.0"
+\version "2.24.0"
 
 \include "extras.ly"
 
 movementI =  \relative c' { 
   \key f \major
   \time 12/8
-  \set Score.markFormatter = #format-mark-box-numbers
+  \set Score.rehearsalMarkFormatter = #format-mark-box-numbers
   \tempo 4. = 76
 
   % \mark \markup { Allegretto }

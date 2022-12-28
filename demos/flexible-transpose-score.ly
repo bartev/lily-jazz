@@ -1,3 +1,4 @@
+\version "2.24.0"
 %% http://lsr.di.unimi.it/LSR/Item?id=787
 %% see also http://lilypond.org/doc/v2.18/Documentation/notation/changing-multiple-pitches#transpose
 
@@ -20,7 +21,7 @@ global = {
 }
 
 MyTranspose = 
-#(define-music-function (parser location m)
+#(define-music-function (m)
   (ly:music?)
   #{ \transpose f d $m #})
 % In the previous line the transposition of the whole score is defined

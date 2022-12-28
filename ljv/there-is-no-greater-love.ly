@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 %% See transcription at https://www.youtube.com/watch?v=X3qb_JO4Al8
 
@@ -24,7 +24,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-	  \fontsize #1 \lower #1 \rotate #7 \concat { \note #"4" #1 " = " #meter }
+	  \fontsize #1 \lower #1 \rotate #7 \concat { \note {4} #1 " = " #meter }
           %% \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
           \fontsize #7
           \override #'(offset . 7)
@@ -73,12 +73,12 @@ realBookTitle = \markup {
     %% If not using the realBookTitle, can use
     %% \fromproperty #'header:title " "
     \title
-    \on-the-fly #print-page-number-check-first
+    \if \should-print-page-number
     \fromproperty #'page:page-number-string
   }
   evenHeaderMarkup = \markup
   \fill-line {
-    \on-the-fly #print-page-number-check-first
+    \if \should-print-page-number
     \fromproperty #'page:page-number-string " "
     \title
   }
@@ -90,10 +90,10 @@ global = {
   %% \tempo 4=130 % this would be over the clef on the first line
 
   %% make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
+  \override Score.Clef.break-visibility = #'#(#f #f #f) % make only the first clef visible
 
-  %% \override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
-  \override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
+  %% \override Score.KeySignature.break-visibility = #'#(#f #f #f) % make only the first time signature visible
+  \override Score.SystemStartBar.collapse-height = #1 % allow single-staff system bars
   \override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
   \override Score.MultiMeasureRest.expand-limit = 1
 
@@ -101,9 +101,9 @@ global = {
   \override Score.RehearsalMark.font-size = 6
 
   %% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-  \compressFullBarRests
+  \compressEmptyMeasures
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Functions
@@ -160,7 +160,7 @@ head_tingl_partial = \relative c'' {
 
 head_tingl = \relative c'' {
 				% measure 1
-  \bar ".|"
+  \bar ".|-|"
   bes4 a g4. d8 |
   f4 fes ees bes |
   d1 ~ |
@@ -234,7 +234,7 @@ tingl_stitt_music = \relative c''' {
   %% \global
   %% measure 1
 
-  \bar ".|"
+  \bar ".|-|"
   \timestop "14 sec"
   g4  fis e b
   d4 des c g8 b~

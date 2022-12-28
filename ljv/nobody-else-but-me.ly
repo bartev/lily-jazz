@@ -1,4 +1,4 @@
-\version "2.22.2"
+\version "2.24.0"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -77,7 +77,9 @@ realBookTitle = \markup {
     (set-global-fonts
      #:music "lilyjazz"
      #:brace "lilyjazz"
-     #:roman "lilyjazz-chord"
+     %% use lilyjazz-chord instead of lilyjazz-text for roman font so the
+     %% keyIndication better differentiates I vs i.
+     #:roman "lilyjazz-chord" 
      #:sans "lilyjazz-chord"
      #:factor (/ staff-height pt 18)
    ))
@@ -105,12 +107,12 @@ realBookTitle = \markup {
 		%% If not using the realBookTitle, can use
 		%% \fromproperty #'header:title " "
 		\title
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string
 	}
   evenHeaderMarkup = \markup
 	\fill-line {
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string " "
 		\title
 	}
@@ -137,15 +139,15 @@ global = {
 	%% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   %% make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   %% allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 
   %% left justify rehearsal marks (centered by default)
   \override Score.RehearsalMark.self-alignment-X = #LEFT
@@ -162,7 +164,7 @@ global = {
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
 	\compressEmptyMeasures
 	
-	\set Score.markFormatter = #format-mark-box-alphabet
+	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Begin music
@@ -254,7 +256,7 @@ chordNamesHead = \chordmode {
 intro = { \compressMMRests R1*8 }
 leadMusic= \relative c'' {
   
-	\bar ".|"
+	\bar ".|-|"
   \markManualBox "A"
   %% m1
   b8 a b4 r \tuplet 3/2 { r8 a b }
@@ -301,10 +303,10 @@ leadMusic= \relative c'' {
 	
 }
 
-% intro = { \once \compressFullBarRests \inlineMMR R1*8 \bar ".|" }
+% intro = { \once \compressFullBarRests \inlineMMR R1*8 \bar ".|-|" }
 
 solo = \relative c'' {
-	\bar ".|"
+	\bar ".|-|"
   
   % \markManualBox A
 	%% do this to have multiple rehearsal marks in the same location
@@ -345,9 +347,9 @@ scaleDegrees = \lyrics {
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-	\override LyricText #'font-name = #"serif"
+	\override LyricText.font-name = #"serif"
   
-  %% \override MarkupText #'font-name = #"serif"
+  %% \override MarkupText.font-name = #"serif"
   %% A
 	\set stanza = \markup \with-color #red  \fontsize #2 \keyIndication { I }
 	\markup \rN { I }2 \markup \rN { IV 7}2

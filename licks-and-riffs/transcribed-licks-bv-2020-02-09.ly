@@ -1,18 +1,18 @@
-\version "2.20.0"
+\version "2.24.0"
 
 \include "jazzextras.ily"
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 
 startParenthesis = {
-  \once \override ParenthesesItem.stencils = #(lambda (grob)
-                                                (let ((par-list (parentheses-item::calc-parenthesis-stencils grob)))
+  \once \override Parentheses.stencils = #(lambda (grob)
+                                                (let ((par-list (parentheses-interface::calc-parenthesis-stencils grob)))
                                                   (list (car par-list) point-stencil )))
 }
 
 endParenthesis = {
-  \once \override ParenthesesItem.stencils = #(lambda (grob)
-                                                (let ((par-list (parentheses-item::calc-parenthesis-stencils grob)))
+  \once \override Parentheses.stencils = #(lambda (grob)
+                                                (let ((par-list (parentheses-interface::calc-parenthesis-stencils grob)))
                                                   (list point-stencil (cadr par-list))))
 }
 
@@ -29,13 +29,13 @@ global = {
   \key c \major
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 % 1

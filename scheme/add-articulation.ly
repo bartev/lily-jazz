@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 music = \relative c' { c4 d e f }
 
@@ -10,7 +10,7 @@ music = \relative c' { c4 d e f }
   (set! (ly:music-property note-event 'articulations)
         (cons (make-music 'ArticulationEvent
                           'articulation-type 
-                          "accent")
+                          'accent)
               (ly:music-property note-event 'articulations)))
   note-event)
 

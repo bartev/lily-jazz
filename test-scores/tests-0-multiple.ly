@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 24)
 \include "jazzchords.ily"
@@ -183,7 +183,7 @@ realBookTitle = \markup {
       \mark \markup "(Bright Latin)"
       \numericTimeSignature
       \set fingeringOrientations = #'(left)
-      \bar "[|:"
+      \bar "[|:-|"
       \improvisationOn
       \override Voice.Stem.stencil = ##f
       \repeat volta 2 {
@@ -219,15 +219,15 @@ realBookTitle = \markup {
 %---------- Begin 3rd example -- Rests (number above the line)
 %--------------------
 % \time 2/2 (written as cut time unless use \numericTimeSignature)
-% \override MultiMeasureRest #'expand-limit = #1  -- expand out the rest instead of using 
+% \override MultiMeasureRest.expand-limit = #1  -- expand out the rest instead of using 
 %   combinatins of breve rests
 %   http://lilypond.org/doc/v2.18/Documentation/notation/writing-rests
 %--------------------
 \relative c'' {
   \time 2/2
-  \compressFullBarRests
+  \compressEmptyMeasures
   R1*2 | R1*5 | R1*9 \break
-  \override MultiMeasureRest #'expand-limit = #1
+  \override MultiMeasureRest.expand-limit = #1
   R1*2 | R1*5 | R1*9
 }
 
@@ -445,9 +445,9 @@ testchords = \chordmode {
   <<
     \new ChordNames \testchords
     \new Staff\testchords
-    \override Score.SystemStartBar #'collapse-height = #1   % allow a system bracket on a single staff
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)	 % just the first clef
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)	% just the first time signature
+    \override Score.SystemStartBar.collapse-height = #1   % allow a system bracket on a single staff
+    \override Score.Clef.break-visibility = #'#(#f #f #f)	 % just the first clef
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)	% just the first time signature
   >>
   \header {
     piece ="Jazz Chords Demo"

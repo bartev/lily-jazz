@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -26,7 +26,7 @@ realBookTitle = \markup {
 			s4
 			s^\markup{
 				\fill-line {
-					\fontsize #1 \lower #1 \rotate #7 \concat { \note #"4" #1 " = " #meter }
+					\fontsize #1 \lower #1 \rotate #7 \concat { \note {4} #1 " = " #meter }
 					\fontsize #7
 					\override #'(offset . 7)
 					\override #'(thickness . 6)
@@ -76,12 +76,12 @@ realBookTitle = \markup {
 		%% If not using the realBookTitle, can use
 		%% \fromproperty #'header:title " "
 		\title
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string
 	}
 	evenHeaderMarkup = \markup
 	\fill-line {
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string " "
 		\title
 	}
@@ -93,9 +93,9 @@ global = {
 	\key g \major
 	%% \tempo 4=224  % this would be over the clef on the first line
 
-	\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-	%% \override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
-	\override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
+	\override Score.Clef.break-visibility = #'#(#f #f #f) % make only the first clef visible
+	%% \override Score.KeySignature.break-visibility = #'#(#f #f #f) % make only the first time signature visible
+	\override Score.SystemStartBar.collapse-height = #1 % allow single-staff system bars
 	\override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
 	\override Score.MultiMeasureRest.expand-limit = 1
 
@@ -103,9 +103,9 @@ global = {
 	\override Score.RehearsalMark.font-size = 6
 
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-	%% \compressFullBarRests
+	%% \compressEmptyMeasures
 
-	\set Score.markFormatter = #format-mark-box-alphabet
+	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Functions
@@ -195,7 +195,7 @@ chordNamesHead = \chordmode {
 
 
 solo = \relative c'' {
-	\bar ".|"
+	\bar ".|-|"
 
 	\once \override Score.RehearsalMark.extra-offset = #' (0 . 1)
 
@@ -261,7 +261,7 @@ solo = \relative c'' {
 
 %% Add harmonic analysis (chords)
 harmonicAnalysis = \lyricmode {
-	\override LyricText #'font-name = #"serif"
+	\override LyricText.font-name = #"serif"
 
 	%% A
 	\markup \rN { I }2 \markup \rN { VI7 }2

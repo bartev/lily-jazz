@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -67,13 +67,13 @@ global = {
   \tempo 4=220
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 partial_chordNames = \chordmode { \partial 2 s2 }
@@ -95,7 +95,7 @@ chordNames = \chordmode {
 }
 
 melody = \relative c'' {
-  \bar "[|:"
+  \bar "[|:-|"
   d8 d e a, d4 r8 a
   d8 d e a, d4 r8 a
   d8 d e a, d8 d e a,

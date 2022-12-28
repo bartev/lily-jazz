@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 
                                 % set to 18 to fit entire head and title on 1 page
@@ -24,7 +24,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note {4} #1 " = " #meter }
           \fontsize #5
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -58,15 +58,15 @@ global = {
                                 % \tempo 4=224
 
                                 % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
                                 % make only the first time signature visible
-                                % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+                                % \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
                                 % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 
 }
 
@@ -82,7 +82,7 @@ myChords = \chordmode {
 }
 
 myChordAnalysis = \lyricmode {
-  \override LyricText #'font-name = #"serif"
+  \override LyricText.font-name = #"serif"
   \set stanza = \markup \keyIndication { I }
 
                                 % \markup \rN { I 6 }2 \markup \rN { vi - 7 }2
@@ -214,7 +214,7 @@ myChordAnalysisArpeg = {
     }
     \new Staff {
       \global
-      \bar ".|"
+      \bar ".|-|"
       \numericTimeSignature
       \myChords
     }
@@ -230,10 +230,10 @@ myFullScore = \score {
       \global
                                 % \numericTimeSignature
                                 % \override Score.MultiMeasureRest.expand-limit = 1
-                                % \compressFullBarRests
+                                % \compressEmptyMeasures
                                 % \inlineMMR R1*4
 
-                                % \bar ".|"
+                                % \bar ".|-|"
       \mySolo
     }
     \new Lyrics { \myScaleDegrees }

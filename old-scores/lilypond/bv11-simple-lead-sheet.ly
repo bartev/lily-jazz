@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 mychords = \chordmode { c2 g:sus4 f:maj e:min7 }
 mynotes = \relative c'' {

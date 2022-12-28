@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % Copy transcription by Kaz Takasugi at
 % https://www.youtube.com/watch?v=sMg161bfeHg
@@ -45,7 +45,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"2" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note {2} #1 " = " #meter }
           \fontsize #8
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -95,9 +95,9 @@ fluteSolo = \relative c''' {
   \set Staff.midiInstrument = "flute"
   \key c \major
   \time 2/2
-  \set Score.markFormatter = #format-mark-box-numbers
+  \set Score.rehearsalMarkFormatter = #format-mark-box-numbers
   % \partial 8 g8 |
-  % \showStartRepeatBar \bar "[|:"
+  % \showStartRepeatBar \bar "[|:-|"
   \mark \default
   r8 c \noBeam b a g es4-- c8 |
   b a g d e4-- fis8 a |
@@ -279,9 +279,9 @@ theChords = \chordmode {
     \new Voice = soloist \fluteSolo
   >>
   \layout {
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
-    \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+    \override Score.Clef.break-visibility = #'#(#f #f #f)  % make only the first clef visible
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)  % make only the first time signature visible
+    \override Score.SystemStartBar.collapse-height = #1  % allow single-staff system bars
     % #(layout-set-staff-size 25)
   }
   \midi {

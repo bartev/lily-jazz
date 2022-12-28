@@ -1,4 +1,4 @@
-\version "2.22.2"
+\version "2.24.0"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -102,12 +102,12 @@ realBookTitle = \markup {
 		%% If not using the realBookTitle, can use
 		%% \fromproperty #'header:title " "
 		\title
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string
 	}
   evenHeaderMarkup = \markup
 	\fill-line {
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string " "
 		\title
 	}
@@ -134,15 +134,15 @@ global = {
 	%% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   %% make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   %% allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 
   %% left justify rehearsal marks (centered by default)
   \override Score.RehearsalMark.self-alignment-X = #LEFT
@@ -159,7 +159,7 @@ global = {
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
 	%% \compressFullBarRests
 	
-	\set Score.markFormatter = #format-mark-box-alphabet
+	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Begin music
@@ -195,7 +195,7 @@ chordNamesHead = \chordmode {
 }
 
 leadMusic= \relative c'' {
-	\bar ".|"
+	\bar ".|-|"
 	\mark \default
   c4 d
 	\mark \default
@@ -212,7 +212,7 @@ leadMusic= \relative c'' {
 	\inlineMMR R1*4
 }
 solo = \relative c'' {
-	\bar ".|"
+	\bar ".|-|"
 
 	%% do this to have multiple rehearsal marks in the same location
 	%% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
@@ -252,7 +252,7 @@ scaleDegrees = \lyrics {
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-	\override LyricText #'font-name = #"serif"
+	\override LyricText.font-name = #"serif"
 	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
 	\markup \rN { V 7 / I }1
 	\markup \rN { V 7 / ii }1

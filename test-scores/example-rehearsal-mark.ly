@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % See http://lilypond.org/doc/v2.15/Documentation/notation/bars.html#rehearsal-marks
 
@@ -24,15 +24,15 @@ downarrow = \markup {
      (1- mark)))))
 
 melody = \relative c'' { 
-  c1 \set Score.markFormatter = #bjv-format-mark-boxed-letters \mark \default
+  c1 \set Score.rehearsalMarkFormatter = #bjv-format-mark-boxed-letters \mark \default
   d 
-  d \set Score.markFormatter = #format-mark-numbers \mark \default
+  d \set Score.rehearsalMarkFormatter = #format-mark-numbers \mark \default
   e \mark \default
   f
-  g \set Score.markFormatter = #format-mark-letters \mark \default
-  f \set Score.markFormatter = #format-mark-box-numbers \mark \default
-  g \set Score.markFormatter = #format-mark-circle-numbers \mark \default
-  a \set Score.markFormatter = #format-mark-circle-letters \mark \default
+  g \set Score.rehearsalMarkFormatter = #format-mark-letters \mark \default
+  f \set Score.rehearsalMarkFormatter = #format-mark-box-numbers \mark \default
+  g \set Score.rehearsalMarkFormatter = #format-mark-circle-numbers \mark \default
+  a \set Score.rehearsalMarkFormatter = #format-mark-circle-letters \mark \default
   b \mark "A1"
   c
   

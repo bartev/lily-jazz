@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 displayBarNum =
 #(define-music-function
@@ -12,7 +12,7 @@ displayBarNum =
 
 theNotes = \relative c' {
   \key c \major
-  \bar "[|:"
+  \bar "[|:-|"
     c'4 g8 e ~ e2 ~ |
     e2 \tuplet 3/2 { c'4 d c } |
     b4 gis8 e ~ e2 ~ |

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % all the source for Three O'Clock in the Morning
 % Dexter Gordon
@@ -22,7 +22,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note {4} #1 " = " #meter }
           \fontsize #5
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -47,15 +47,15 @@ global = {
   % \tempo 4=146
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  % \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 \header {
@@ -85,12 +85,12 @@ global = {
   oddHeaderMarkup = \markup
     \fill-line {
       \title
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string
     }
   evenHeaderMarkup = \markup
     \fill-line {
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string " "
       \title
     }
@@ -115,7 +115,7 @@ tocmChords = \chordmode {
 % #(define-markup-command (rN2 layout props symbols) (markup-list?) (rN symbols))
 
 analysis = \lyricmode {
-  \override LyricText #'font-name = #"serif"
+  \override LyricText.font-name = #"serif"
   \set stanza = \markup \keyIndication { D }
   \markup \rN { I 6 }1
   \markup \rN { I 6 }1
@@ -163,7 +163,7 @@ analysis = \lyricmode {
 
 ysArpeg = \relative c'' {
   % \mark \default
-  \bar ".|"
+  \bar ".|-|"
   a8 cis e fis~ fis2
   d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
@@ -223,7 +223,7 @@ ysArpeg = \relative c'' {
 
 tocmHead = \relative c' {
   % Head
-  \bar ".|"
+  \bar ".|-|"
   \set Score.currentBarNumber = #1
   d4 r4 r4 cis8 d~
   d2 fis4 a
@@ -279,7 +279,7 @@ tocmHead = \relative c' {
   \pageBreak
 
   % Solo - chorus 1
-  \bar ".|"
+  \bar ".|-|"
   \mark \markup{\small \with-color #red "1:00"}
   d8 d d d d d r4
   d4 r8 d8 \tuplet 3/2 { cis4( b ) cis }
@@ -396,10 +396,10 @@ headAndSolo = \score {
       \global
       \numericTimeSignature
       \override Score.MultiMeasureRest.expand-limit = 1
-      \compressFullBarRests
+      \compressEmptyMeasures
       \inlineMMR R1*4
 
-      \bar ".|"
+      \bar ".|-|"
       \tocmHead
     }
     \new Lyrics { R1*4 \tocmScaleDegrees }

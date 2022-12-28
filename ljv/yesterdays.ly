@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -26,7 +26,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #1 \rotate #7 \concat { \note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #1 \rotate #7 \concat { \note {4} #1 " = " #meter }
           \fontsize #7
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -76,12 +76,12 @@ realBookTitle = \markup {
 		%% If not using the realBookTitle, can use
 		%% \fromproperty #'header:title " "
 		\title
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string
 	}
   evenHeaderMarkup = \markup
 	\fill-line {
-		\on-the-fly #print-page-number-check-first
+		\if \should-print-page-number
 		\fromproperty #'page:page-number-string " "
 		\title
 	}
@@ -94,11 +94,11 @@ global = {
 	%% \tempo 4=224  % this would be over the clef on the first line
 
 	\override Glissando.style = #'zigzag
-	\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-	\override Score.KeySignature #'break-visibility = #'#(#f #f #f) % make only the first time signature visible
+	\override Score.Clef.break-visibility = #'#(#f #f #f) % make only the first clef visible
+	\override Score.KeySignature.break-visibility = #'#(#f #f #f) % make only the first time signature visible
 	\override Score.MultiMeasureRest.expand-limit = 1
 	\override Score.RehearsalMark.self-alignment-X = #LEFT  % left justify rehearsal marks (centered by default)
-	\override Score.SystemStartBar #'collapse-height = #1 % allow single-staff system bars
+	\override Score.SystemStartBar.collapse-height = #1 % allow single-staff system bars
 
 	%% See here for using colors
 	%% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
@@ -108,9 +108,9 @@ global = {
 	\override Score.RehearsalMark.font-size = 6
 
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-	%% \compressFullBarRests
+	%% \compressEmptyMeasures
 	
-	\set Score.markFormatter = #format-mark-box-alphabet
+	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Functions
@@ -165,7 +165,7 @@ chordNamesHead = \chordmode {
 }
 
 leadMusic= \relative c'' {
-																% \bar ".|"
+																% \bar ".|-|"
 																% \mark \default
 																% c4 d
 																% \mark \default
@@ -182,7 +182,7 @@ leadMusic= \relative c'' {
 																% \inlineMMR R1*4
 }
 arpeg = \relative c' {
-	\bar ".|"
+	\bar ".|-|"
 	d8 f a c r2
 	e,8 g bes d  a cis e g
 	d,8 f a c r2
@@ -206,7 +206,7 @@ arpeg = \relative c' {
 }
 
 leading = \relative c''' {
-	\bar ".|"
+	\bar ".|-|"
 	g8 e  f r r4 a8 fis
 	g8 r8 b gis a r8 r4
 	c8 a f d c e g c
@@ -257,7 +257,7 @@ scaleDegrees = \lyrics {
 
 %% Add harmonic analysis
 harmonicAnalysis = \lyricmode {
-																% \override LyricText #'font-name = #"serif"
+																% \override LyricText.font-name = #"serif"
 																% \set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
 																% \markup \rN { V 7 / I }1
 																% \markup \rN { V 7 / ii }1

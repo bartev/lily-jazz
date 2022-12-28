@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 singleNote = c''1
 #(display-scheme-music singleNote)

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % all the source for yardbird suite
 % Called by yardbird-suite-arpeggios.ly and yardbird-suite.ly
@@ -22,7 +22,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note {4} #1 " = " #meter }
           \fontsize #5
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -47,15 +47,15 @@ global = {
   % \tempo 4=224
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  % \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 \header {
@@ -84,12 +84,12 @@ global = {
   oddHeaderMarkup = \markup
     \fill-line {
       \title
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string
     }
   evenHeaderMarkup = \markup
     \fill-line {
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string " "
       \title
     }
@@ -132,7 +132,7 @@ ysChords = \chordmode {
 % #(define-markup-command (rN2 layout props symbols) (markup-list?) (rN symbols))
 
 analysis = \lyricmode {
-  \override LyricText #'font-name = #"serif"
+  \override LyricText.font-name = #"serif"
   \set stanza = \markup \keyIndication { A }
   \markup \rN { I 6 }1
   \markup \rN { iv - 7 }2
@@ -188,7 +188,7 @@ analysis = \lyricmode {
 
 ysArpeg = \relative c'' {
   % \mark \default
-  \bar ".|"
+  \bar ".|-|"
   a8 cis e fis~ fis2
   d,8 f a c    g8 b d f
   a,8 cis e g  g,8 b d f
@@ -248,7 +248,7 @@ ysArpeg = \relative c'' {
 
 ysHead = \relative c''' {
   % A
-  \bar ".|"
+  \bar ".|-|"
   r8 a4.-1 e4-5 fis-6
   g4.-4 f8~-3 f-7 c-4 d-5 e-6~
   e2-5 e4.-6 cis8-4~
@@ -308,7 +308,7 @@ ysHead = \relative c''' {
 
   % Solo
   % A
-  \bar ".|"
+  \bar ".|-|"
   e8-5 cis-3 r4 r8 b'16-2 bes-2 a8-1 e-5
   g8-4 a16-5 g-4 fis8-3 f-3~ f8-7 d-5 c-4 a-2
   \tuplet 3/2 { e'16-5 fis-6 e-5 } d8-4 cis8-3 fis,-6 g-1 b-3 d-5 e-6
@@ -384,7 +384,7 @@ headAndSolo = \score {
     }
     {
       \global
-      \bar ".|"
+      \bar ".|-|"
       \numericTimeSignature
       \ysHead
     }

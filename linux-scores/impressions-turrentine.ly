@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -79,9 +79,9 @@ turr_chords = \transpose ees c \chordmode {
 
 
 turr_melody =  \relative c'' {
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
   {
-   \bar ".|"
+   \bar ".|-|"
    \mark \markup { \with-color #red \box "A" \with-color #red "0:10" }
    b1~
    b2 cis4. b8~
@@ -112,7 +112,7 @@ turr_melody =  \relative c'' {
 
    % \bar ":|]"
 
-   % \bar ".|"
+   % \bar ".|-|"
    \mark \markup { \with-color #red \box "B" \with-color #red "0:28" }
    c'1~
    c2 d4. c8~
@@ -128,7 +128,7 @@ turr_melody =  \relative c'' {
    \bar "|." 
    \break
 
-   \bar ".|"
+   \bar ".|-|"
    \mark \markup { \with-color #red \box "A" \with-color #red "0:37" }
    b1~
    b2 cis8 e cis b~

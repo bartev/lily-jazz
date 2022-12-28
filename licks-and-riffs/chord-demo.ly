@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % Part of tests-0-multiple.ly
 
@@ -90,9 +90,9 @@ testchords = \chordmode {
   <<
     \new ChordNames \testchords
     \new Staff\testchords
-    \override Score.SystemStartBar #'collapse-height = #1   % allow a system bracket on a single staff
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)	 % just the first clef
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)	% just the first time signature
+    \override Score.SystemStartBar.collapse-height = #1   % allow a system bracket on a single staff
+    \override Score.Clef.break-visibility = #'#(#f #f #f)	 % just the first clef
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)	% just the first time signature
   >>
   \header {
     piece ="Jazz Chords Demo"

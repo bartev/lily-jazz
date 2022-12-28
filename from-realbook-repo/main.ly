@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % \require "lilyjazz"
 \include "jazzchords.ily"
@@ -14,9 +14,9 @@
   ragged-right = ##f
 
   % \override Score.TextScript.font-name = #"LilyJAZZ Text"
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
+  \override Score.SystemStartBar.collapse-height = #1
   
   \numericTimeSignature
   % \jazzOn

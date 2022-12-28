@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 24)
 \include "../stylesheets/jazzchords.ily"
@@ -79,7 +79,7 @@ headNotesOnly = \relative c' {
 theNotes = \relative c'' {
   \key c \major
   \partial 8 g8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   \mark \default
   \headNotesOnly
  }
@@ -88,7 +88,7 @@ theBassLine = \relative c {
   \clef bass
   \key c \major
   \partial 8 r8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   c4. c8 ~ c4 c4 ~ |
   c2 g4 bes4 |
   c4. c8 ~ c4 c4 ~ | \break
@@ -138,7 +138,7 @@ transBassLine = \transpose c es \transpose c bes,  \theBassLine
 firstTime = \relative c' {
   \key bes \major
   \partial 8 f8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
 
   \mark \markup { A 0:28 }
   des'8 bes4. ~ bes2 ~ |
@@ -198,9 +198,9 @@ emptyLines = {
       \new Voice = soloist \transBassLine
     >>
     \layout {
-      \override Score.Clef #'break-visibility = #'#(#f #f #f)  % make only the first clef visible
-      \override Score.KeySignature #'break-visibility = #'#(#f #f #f)  % make only the first time signature visible
-      \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+      \override Score.Clef.break-visibility = #'#(#f #f #f)  % make only the first clef visible
+      \override Score.KeySignature.break-visibility = #'#(#f #f #f)  % make only the first time signature visible
+      \override Score.SystemStartBar.collapse-height = #1  % allow single-staff system bars
     }   
   }
   \pageBreak

@@ -1,6 +1,6 @@
 % Extra Jazz-related commands that aren't specific to any font
 
-\version "2.19.80"
+\version "2.24.0"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start with a repeat Barline
@@ -48,7 +48,7 @@ inlineMMR = {
 
 % Macro to print single slash
 rs = {
-  \once \override Rest.stencil = #ly:percent-repeat-item-interface::beat-slash
+  \once \override Rest.stencil = #ly:percent-repeat-interface::beat-slash
   \once \override Rest.thickness = #0.48
   \once \override Rest.slope = #1.7
   r4
@@ -57,7 +57,7 @@ rs = {
 % Function to print a specified number of slashes
 comp = #(define-music-function (parser location count) (integer?)
   #{
-    \override Rest.stencil = #ly:percent-repeat-item-interface::beat-slash
+    \override Rest.stencil = #ly:percent-repeat-interface::beat-slash
     \override Rest.thickness = #0.48
     \override Rest.slope = #1.7
     \repeat unfold $count { r4 }

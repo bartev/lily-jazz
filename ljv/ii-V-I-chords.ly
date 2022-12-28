@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 22)
 \include "jazzextras.ily"
@@ -30,13 +30,13 @@ global = {
   \key c \major
 
 	%% make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
 	%% make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
 	%% allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 myChords = \chordmode { d1:m7 g:7 c:maj7 e2:dim7 a:7 \break }
@@ -63,7 +63,7 @@ spaces = { \repeat unfold 4 { s1 } }
 		}
 		\new Staff {
 			\global
-			\bar ".|"
+			\bar ".|-|"
 			%% \repeat unfold 48 \rests
 			\repeat unfold 12 \spaces
 			\bar "|."
@@ -92,7 +92,7 @@ spaces = { \repeat unfold 4 { s1 } }
 		}
 		\new Staff {
 			\global
-			\bar ".|"
+			\bar ".|-|"
 			%% \repeat unfold 48 \rests
 			\repeat unfold 12 \spaces
 			\bar "|."
@@ -121,7 +121,7 @@ spaces = { \repeat unfold 4 { s1 } }
 		}
 		\new Staff {
 			\global
-			\bar ".|"
+			\bar ".|-|"
 			%% \repeat unfold 48 \rests
 			\repeat unfold 12 \spaces
 			\bar "|."

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 \include "jazzextras.ily"
 
@@ -32,12 +32,12 @@
   oddHeaderMarkup = \markup
     \fill-line {
       \fromproperty #'header:title " " 
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string
     }
   evenHeaderMarkup = \markup
     \fill-line {
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string " "
       \fromproperty #'header:title
     }

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 22)
 \include "jazzextras.ily"
@@ -23,13 +23,13 @@
   %     \fromproperty #'header:title " " % This will make sure that the header is never completely empty, to
   %     % avoid some layout problems. Also, moving it in between the title and
   %     % the page number, makes these be typeset left and right aligned, respectively.
-  %     \on-the-fly #print-page-number-check-first
+  %     \if \should-print-page-number
   %     \fromproperty #'page:page-number-string
   %   }
 
   % evenHeaderMarkup = \markup
   %   \fill-line {
-  %     \on-the-fly #print-page-number-check-first
+  %     \if \should-print-page-number
   %     \fromproperty #'page:page-number-string " "
   %     \fromproperty #'header:title
   %   }
@@ -44,13 +44,13 @@ global = {
   \key c \major
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 mychords = \chordmode { g1:7 c1 }
@@ -188,7 +188,7 @@ res_twelve = \relative c'' {
     }
     \new Staff {
       \global
-      \bar "[|:"
+      \bar "[|:-|"
       \repeat unfold #12 \rests
       \bar ":|]"
     }
@@ -215,7 +215,7 @@ res_twelve = \relative c'' {
     }
     \new Staff {
       \global
-      \bar "[|:"
+      \bar "[|:-|"
       \repeat unfold #12 \rests
       \bar ":|]"
     }

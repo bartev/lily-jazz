@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % map
 
@@ -15,7 +15,7 @@
 %   (avoid-slur . inside) 
 %   (extra-spacing-width -0.2 . 0.0) 
 %   (glyph-name . #<procedure accidental-interface::glyph-name (grob)>) 
-%   (glyph-name-alist (0 . "accidentals.natural") 
+%   (alteration-glyph-name-alist (0 . "accidentals.natural") 
 %                     (-1/2 . "accidentals.flat") 
 %                     (1/2 . "accidentals.sharp") 
 %                     (1 . "accidentals.doublesharp") 

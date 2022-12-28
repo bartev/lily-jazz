@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % Voice leading exercise over Pfrancing (LB Blues)
 
@@ -21,7 +21,7 @@ realBookTitle = \markup {
       s4
       s^\markup{
         \fill-line {
-          \fontsize #1 \lower #2 \rotate #7 \concat {\note #"4" #1 " = " #meter }
+          \fontsize #1 \lower #2 \rotate #7 \concat {\note {4} #1 " = " #meter }
           \fontsize #5
           \override #'(offset . 7)
           \override #'(thickness . 6)
@@ -47,15 +47,15 @@ global = {
   % \tempo 4=146
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  % \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 
@@ -77,12 +77,12 @@ global = {
   oddHeaderMarkup = \markup
     \fill-line {
       \title
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string
     }
   evenHeaderMarkup = \markup
     \fill-line {
-      \on-the-fly #print-page-number-check-first
+      \if \should-print-page-number
       \fromproperty #'page:page-number-string " "
       \title
     }

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 
 \header {
@@ -47,7 +47,7 @@
     % evenHeaderMarkup = \markup \null
     % oddFooterMarkup = \markup {
     %   \fill-line {
-    %     \on-the-fly \print-page-number-check-first
+    %     \if \should-print-page-number
     %     \fromproperty #'page:page-number-string
     %   }
     % }
@@ -74,7 +74,7 @@
     \new Staff \with { midiInstrument = #"alto sax" } {
       \accidentalStyle modern-cautionary
       \new Voice { 
-        \compressFullBarRests
+        \compressEmptyMeasures
         \override MultiMeasureRest.expand-limit = #1
         \movementI
       }

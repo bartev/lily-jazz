@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 \include "./stylesheets/lilyjazz.ily"
 \include "./stylesheets/jazzchords.ily"
 % \include "../shared/LilyJAZZ.ily"
@@ -11,8 +11,8 @@
 }
 
 harmony = \new ChordNames \with {
-  \override ChordName #'font-size = #0
-  \override ChordName #'font-name = #"lilyjazzchord"
+  \override ChordName.font-size = #0
+  \override ChordName.font-name = #"lilyjazzchord"
 } \chordmode {
 
   e2:m7 a2:7 e2:m7 a2:7 fs:m7 b2:7 fs2:m7 b2:7
@@ -35,7 +35,7 @@ melody = \relative c'' {
   \key d \major
   \time 4/4
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 
   % A
   \mark \default

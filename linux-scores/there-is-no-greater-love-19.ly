@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 26)
 \include "jazzchords.ily"
@@ -62,11 +62,11 @@ global = {
   \time 4/4
   \tempo 4=130
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
 }
 
@@ -101,7 +101,7 @@ head_tingl_partial = \relative c'' {
 
 head_tingl = \relative c'' {
   % measure 1
-  \bar ".|"
+  \bar ".|-|"
   bes4 a g4. d8 |
   f4 fes ees bes |
   d1 ~ |

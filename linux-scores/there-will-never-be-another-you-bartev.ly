@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % #(set-global-staff-size 26)
 \include "jazzchords.ily"
@@ -36,7 +36,7 @@ global = {
     \new Staff \relative c''' {
       \global
       \key c \major
-      \bar ".|"
+      \bar ".|-|"
       \mark "lick 1"
       g8 r8 r4 g4 r8 fis8
       g2 r4 r8 fis8
@@ -56,7 +56,7 @@ global = {
     \new Staff \relative c'' {
       \global
       \key c \major
-      \bar ".|"
+      \bar ".|-|"
       \mark "lick 2"
       r8 c'8 a bes8 r8 a fis g
       r8 a8 fis g   r8 fis dis e
@@ -76,7 +76,7 @@ global = {
     \new Staff \relative c'' {
       \global
       \key c \major
-      \bar ".|"
+      \bar ".|-|"
       \mark "lick 3"
       r1
       d4 dis e r8 g8
@@ -95,7 +95,7 @@ global = {
     \new Staff \relative c'' {
       \global
       \key c \major
-      \bar ".|"
+      \bar ".|-|"
       \mark "lick 4"
       r1
       r4 r8 b8 c b bes4

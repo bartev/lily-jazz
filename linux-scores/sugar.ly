@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -69,13 +69,13 @@ global = {
   \tempo  4=100
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 chords_sugar_partial =\chordmode {  \partial 2. s4 s2 }
@@ -109,7 +109,7 @@ chords_sugar = \chordmode {
 notes_sugar = \relative c'' {
   \noBreak
 
-  \bar "[|:"
+  \bar "[|:-|"
   \repeat volta 2 {
     g4. f8 \tuplet 3/2 {g16 aes g} f8 ees8 f8~
     \noBreak

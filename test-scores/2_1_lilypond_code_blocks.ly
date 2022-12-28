@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % 2.1 LilyPond code blocks
 

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 \include "./font-stylesheets/lilyjazz.ily"
 \include "./font-stylesheets/jazzchords.ily"
@@ -11,8 +11,8 @@
 }
 
 mychords  = \new ChordNames \with {
-  \override ChordName #'font-size = #0
-  \override ChordName #'font-name = #"lilyjazz-chord"
+  \override ChordName.font-size = #0
+  \override ChordName.font-name = #"lilyjazz-chord"
 } \chordmode {
   c1:maj7 | c1:maj7 | e:7 | e:7 | 
   a:7 | a:7 | d:min7 | d:min7 | 

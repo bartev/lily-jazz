@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 
 #(set-global-staff-size 22)
@@ -151,11 +151,11 @@ bv-take-five =
   >>
   \layout {
     % make only the first clef visible
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)
+    \override Score.Clef.break-visibility = #'#(#f #f #f)
     % make only the first time signature visible
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)
     % allow single-staff system bars
-    \override Score.SystemStartBar #'collapse-height = #1
+    \override Score.SystemStartBar.collapse-height = #1
     \override LyricHyphen.thickness = #4
     \override Score.VoltaBracket.font-name = #"Pea Missy with a Marker"
   }

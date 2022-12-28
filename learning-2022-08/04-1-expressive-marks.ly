@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 %% \include "lilypond-book-preamble.ly"
 
 %% https://lilypond.org/doc/v2.23/Documentation/notation/expressive-marks-attached-to-notes

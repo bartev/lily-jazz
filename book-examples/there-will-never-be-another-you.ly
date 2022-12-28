@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.24.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -69,11 +69,11 @@ global = {
   \time 4/4
   \tempo 4=210
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 }
 
 chords_twnbay_partial = \chordmode {
@@ -103,7 +103,7 @@ head_twnbay = \relative c' {
   \key ees \major
   \partial 4 bes4 |
 
-  \bar ".|"
+  \bar ".|-|"
   c d ees f |
   g bes f ees |
   f1 ~ |
@@ -158,7 +158,7 @@ eflat_head_twnbay_konitz = \relative c'' {
   \key c \major
 
   \partial 4 r4 |
-  \bar ".|"
+  \bar ".|-|"
   g8-- a-. r8 b c d r4 |
   e4-. g-- d8 r r c
   d1 ~

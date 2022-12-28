@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 
 #(set-global-staff-size 18)
@@ -59,7 +59,7 @@ realBookTitle = \markup {
 theNotes = \relative c' {
   % \set Staff.midiInstrument = "flute"
   \key c \major
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   \repeat volta 2 {
     c'4 g8 e ~ e2 ~ |
     e2 \tuplet 3/2 { c'4 d c } |
@@ -169,11 +169,11 @@ theWords = \lyricmode {
   >>
   \layout {
     % make only the first clef visible
-    \override Score.Clef #'break-visibility = #'#(#f #f #f)
+    \override Score.Clef.break-visibility = #'#(#f #f #f)
     % make only the first time signature visible
-    \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)
     % allow single-staff system bars
-    \override Score.SystemStartBar #'collapse-height = #1
+    \override Score.SystemStartBar.collapse-height = #1
     \override LyricHyphen.thickness = #4
     \override Score.VoltaBracket.font-name = #"Pea Missy with a Marker"
   }

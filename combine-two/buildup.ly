@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % http://lilypond.org/doc/v2.18/Documentation/notation/file-structure
 
@@ -30,7 +30,7 @@
 equinoxNotes = \relative c'' {
   \key c \major
   \partial 8 g8 |
-  \showStartRepeatBar \bar "[|:"
+  \showStartRepeatBar \bar "[|:-|"
   ees'4. c8 ~ c2 ~ |
   c2. ~c8 g8 |
   ees'8 c8 ~ c2 ~ c8 g8 | \break

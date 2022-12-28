@@ -1,5 +1,5 @@
 
-\version "2.20.0"
+\version "2.24.0"
 
 % Rhythm changes
 
@@ -17,20 +17,20 @@ global = {
   % \tempo 4=224
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  % \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  % \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
   
 }
 
 % rhythmAnalysis = \lyricmode {
-% \override LyricText #'font-name = #"serif"
+% \override LyricText.font-name = #"serif"
 % \markup \rN { I6 }2 \markup \rn { vi-7 }2
 % \markup \rN { ii-7 }2 \markup \rn { V7 }2
 % \markup \rN { iii-7 }2 \markup \rn { vi-7 }2
@@ -68,7 +68,7 @@ rhythmB = \chordmode {
 }
 
 analysisA = \lyricmode {
-  \override LyricText #'font-name = #"serif"
+  \override LyricText.font-name = #"serif"
   \set stanza = \markup \keyIndication { I }
   \markup \rN { I 6 }2 \markup \rN { vi - 7 }2
   \markup \rN { ii - 7 }2 \markup \rN { V 7 }2
@@ -83,7 +83,7 @@ analysisA = \lyricmode {
 }
 
 analysisB = \lyricmode {
-  \override LyricText #'font-name = #"serif"
+  \override LyricText.font-name = #"serif"
   \set stanza = \markup \keyIndication { VI }
   \markup \rN { V 7 }1
   \markup \rN { V 7 }1
@@ -121,7 +121,7 @@ chordsAnalysisArpeg = {
       }
     \new Staff {
       \global
-      \bar ".|"
+      \bar ".|-|"
       \numericTimeSignature
       \chordsRhythm
     }

@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 % From https://github.com/s-tilly/scores/blob/master/lilyjazz/examples/dorothy.ly
 
@@ -19,7 +19,7 @@
 vib = \markup \left-align \musicglyph "scripts.prallprall"
 
 harmony = \new ChordNames \with {
-  \override ChordName #'font-size = #0
+  \override ChordName.font-size = #0
 } \chordmode {
 
   e2:m7 a2:7 e2:m7 a2:7 fs:m7 b2:7 fs2:m7 b2:7
@@ -41,7 +41,7 @@ melody = \relative c'' {
   \key d \major
   \time 4/4
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 
   % A
   \mark \default

@@ -1,4 +1,4 @@
-\version "2.18.2"
+\version "2.24.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -72,11 +72,11 @@ global = {
   \key es \major
   \tempo  4=100
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
 }
 
@@ -111,7 +111,7 @@ chords_sugar = \chordmode {
 notes_sugar = \relative c'' {
   \noBreak
 
-  \bar "[|:"
+  \bar "[|:-|"
   \repeat volta 2 {
     g4. f8 \tuplet 3/2 {g16 aes g} f8 ees8 f8~
     \noBreak
@@ -159,7 +159,7 @@ left = {
 }
 
 MyTranspose = 
-#(define-music-function (parser location m)
+#(define-music-function (m)
   (ly:music?)
   #{ \transpose ees, c $m #})
 % In the previous line the transposition of the whole score is defined

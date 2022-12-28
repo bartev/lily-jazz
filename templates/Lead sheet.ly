@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 \include "lilyjazz.ily"
 
 #(set-global-staff-size 28)
@@ -41,8 +41,8 @@ leadMusic = {
   \layout {
     indent = 0
     \omit Staff.TimeSignature
-		\override Score.Clef #'break-visibility = #'#(#f #f #f) % make only the first clef visible
-    \override Score.SystemStartBar #'collapse-height = #1  % allow single-staff system bars
+		\override Score.Clef.break-visibility = #'#(#f #f #f) % make only the first clef visible
+    \override Score.SystemStartBar.collapse-height = #1  % allow single-staff system bars
   }
   %\midi {}  % uncomment for midi output
 }

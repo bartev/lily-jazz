@@ -1,9 +1,9 @@
-\version "2.20.0"
+\version "2.24.0"
 
 movementII =  \relative c' { 
   \key bes \major
   \time 2/2
-  \set Score.markFormatter = #format-mark-box-numbers
+  \set Score.rehearsalMarkFormatter = #format-mark-box-numbers
 
   \partial 2 f'8( bes ) d,( f ) |
 

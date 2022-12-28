@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 #(set-global-staff-size 25)
 \include "jazzchords.ily"
@@ -63,15 +63,15 @@ rbGlobal = {
   \tempo 4=100
 
   % make only the first clef visible
-  \override Score.Clef #'break-visibility = #'#(#f #f #f)
+  \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   % make only the first time signature visible
-  \override Score.KeySignature #'break-visibility = #'#(#f #f #f)
+  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   % allow single-staff system bars
-  \override Score.SystemStartBar #'collapse-height = #1
+  \override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.markFormatter = #format-mark-box-alphabet
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 rbChordNames = \chordmode {
@@ -87,7 +87,7 @@ rbMelody = \relative c'' {
 
   {
    \mark \markup{\small \with-color #red "1:09"} 
-   \bar "[|:"
+   \bar "[|:-|"
    d1~
    d2 e8 g e d~
    d1~
@@ -101,7 +101,7 @@ rbMelody = \relative c'' {
    \break
    \bar ":|]"
 
-   % \bar ".|"
+   % \bar ".|-|"
    es'1~
    es4. des8 ges4 f8 es~
    es1~
@@ -115,7 +115,7 @@ rbMelody = \relative c'' {
    \bar "|." 
    \break
 
-   \bar ".|"
+   \bar ".|-|"
    d1~
    d2 e8 g e d~
    d1~

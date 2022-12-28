@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.0"
 
 \layout {
 % Don't justify the output
@@ -59,6 +59,6 @@ $(make-sequential-music newLa)
   (ly:stencil-combine-at-edge (ly:note-head::print grob) 0 -1 
    (grob-interpret-markup grob (markup #:with-dimensions '(0 . 0) '(0 . 0) 
      #:translate '( -2 . -2) #:musicglyph "brackettips.up" )) 0 0 )) 
-scoop = \once \override NoteHead #'stencil = #scoop-stencil 
+scoop = \once \override NoteHead.stencil = #scoop-stencil 
 
 \score { c4\scoop d e f }
