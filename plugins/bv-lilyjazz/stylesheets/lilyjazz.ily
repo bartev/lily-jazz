@@ -11,9 +11,9 @@
 %%%%
 %%%% Copyright (C) 2014-2016 Abraham Lee (tisimst.lilypond@gmail.com)
 
-% \version "2.19.80"
-% BJV 2019-11-27 change version to hopefully run with 2.18.2
-\version "2.18.2"
+%%% BJV 2019-11-27 change version to hopefully run with 2.18.2
+%% BJV 2022-12-27 run `convert-ly -e jazzchords.ily` to upgrade to 2.24.0
+\version "2.24.0"
 
 \paper {
   #(define fonts

@@ -2,8 +2,12 @@
 
 # Copy relevant files to correct location
 
-LILY_INSTALL_DIR=/usr/local/Cellar/lilypond/2.22.2_1/share/lilypond/2.22.2
-# LILY_INSTALL_DIR=/Users/bartev/dev/throwaway/lily-test-install
+# For Homebrew installed Lilypond
+LILY_APP_DIR=$(readlink -f $(brew --prefix lilypond))
+LILY_VERSION=$(basename $LILY_APP_DIR)
+LILY_INSTALL_DIR=$LILY_APP_DIR/share/lilypond/$LILY_VERSION
+
+# LILY_INSTALL_DIR=/usr/local/Cellar/lilypond/2.22.2_1/share/lilypond/2.22.2
 
 # Roman numeral analysis
 cp lilypond-roman-numeral-tool/roman_numeral_analysis_tool.ily $LILY_INSTALL_DIR/ly/

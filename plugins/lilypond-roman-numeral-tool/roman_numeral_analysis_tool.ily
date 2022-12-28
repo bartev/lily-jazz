@@ -1,4 +1,4 @@
-\version "2.18"
+\version "2.24.0"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% A function to create Roman numerals for harmonic analysis.
@@ -25,8 +25,8 @@
 %% and "f" for flat.  Other indications are possible such as combinations of "M"
 %% and "m" (M, m, MM7, Mm, mm, Mmm9, etc.); add, add6, etc.
 %%
-%% To scale all numerals: \override  LyricText #'font-size = #2
-%% or \override  TextScript #'font-size = #2
+%% To scale all numerals: \override  LyricText.font-size = #2
+%% or \override  TextScript.font-size = #2
 %% To scale individual numerals: \markup \override #'(font-size . 2) \rN { ... }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

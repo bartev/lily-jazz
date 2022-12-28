@@ -36,3 +36,43 @@ Add custom =*.ily= files to [[file:bv-lilyjazz/stylesheets/]].
 Then run the setup script ([[file:setup-custom-lily-files.sh]])
 This will install the files in the current install location.
 (Note: Current install is via homebrew - 2022-10-23)
+
+
+* Get path to current version of Lilypond (installed with homebrew)
+
+#+begin_src bash :results verbatim
+  p1=$(readlink -f $(brew --prefix lilypond))
+  echo $p1
+#+end_src
+
+#+RESULTS:
+: /usr/local/Cellar/lilypond/2.24.0
+
+#+begin_src bash :results verbatim
+  v=$(brew list --versions lilypond)
+  echo $v
+
+  p1=$(readlink -f $(brew --prefix lilypond))
+  echo $(basename $p1)
+  echo $p1
+  #+end_src
+
+#+RESULTS:
+: lilypond 2.24.0
+: 2.24.0
+: /usr/local/Cellar/lilypond/2.24.0
+
+#+begin_src bash :results verbatim
+  LILY_APP_DIR=$(readlink -f $(brew --prefix lilypond))
+  LILY_VERSION=$(basename $LILY_APP_DIR)
+  LILY_INSTALL_DIR=$LILY_APP_DIR/lilypond/$LILY_VERSION
+
+  echo $LILY_APP_DIR
+  echo $LILY_VERSION
+  echo $LILY_INSTALL_DIR
+#+end_src
+
+#+RESULTS:
+: /usr/local/Cellar/lilypond/2.24.0
+: 2.24.0
+: /usr/local/Cellar/lilypond/2.24.0/lilypond/2.24.0
