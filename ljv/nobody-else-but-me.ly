@@ -73,12 +73,12 @@ realBookTitle = \markup {
 %% #:roman "lilyjazz-text"
 \paper {
   #(set-paper-size "letter")
+  %% use lilyjazz-chord instead of lilyjazz-text for roman font below
+  %% so the keyIndication better differentiates I vs i.
   #(define fonts
     (set-global-fonts
      #:music "lilyjazz"
      #:brace "lilyjazz"
-     %% use lilyjazz-chord instead of lilyjazz-text for roman font so the
-     %% keyIndication better differentiates I vs i.
      #:roman "lilyjazz-chord" 
      #:sans "lilyjazz-chord"
      #:factor (/ staff-height pt 18)
@@ -258,49 +258,105 @@ leadMusic= \relative c'' {
   
 	\bar ".|-|"
   \markManualBox "A"
+  \timestop "0:14"
   %% m1
   b8 a b4 r \tuplet 3/2 { r8 a b }
-  fis4 \markBlue "D?" fis r2
-  r4 b b8 a b f \markBlue "C?"
-  r8 f4.~ f2
+  d4 d r2
+  r4 b b8 a b cis
+  r8 cis4.~ cis2
   \break
 
   %% m5
+  \timestop "0:22"
   r8 b b e, cis'4. r8
   r8 bes bes f c'4. aes8
   f1
-  ees'8 fes \tuplet 3/2 { f8 ges f } f2
+  ees'8 fes \tuplet 3/2 { f8 ges f~ } f2
   \break
   \bar "|."
   
   %% m9
   \markManualBox "B"
-  r4 cis cis8 b cis g
-  r8 g r4 r2
-  r4 cis8 c cis gis gis4
-  r8 gis8~ gis2.
+  \timestop "0:29"
+  r4 cis cis8 b cis dis,
+  r8 dis r4 r2
+  r4 cis8 bis cis f f4
+  r8 f8~ f2.
   \break
 
   %% m13
-  r4 r8 fis cis'4 cis
-  cis8 fis, e' cis~ cis2
-  \tuplet 3/2 { r4 d b~ } b4. a8
+  \timestop "0:36"
+  r4 r8 \parenthesize fis cis'4 cis
+  cis8 \parenthesize fis, e' cis~ cis2
+  \tuplet 3/2 { r4 c b~ } b4. a8
   \tuplet 3/2 { b8 a b~ } b4~ b2
   \bar "|."
   \break
   
   \markManualBox "A"
-  \repeat unfold 2 { s1*4 \break }
+  \timestop "0:43"
+  b'4 r4 r8 a8 \grace eis8 fis4
+  d4 d r2
+  r2 b'8 a b cis,
+  r8 cis r4 r2
+  \break
+
+  \timestop "0:50"
+  r8 b8~ \tuplet 3/2 { b8 b g } cis2
+  d4 d ees2
+  r8 e4. e8 d e fis,~
+  fis1
+  \bar "|."
+  \break
+  
+  \markManualBox "C"
+  \timestop "0.57"
+  r4 fis'4 e8 d a4
+  \tuplet 3/2 { g8 a g~ } g2.
+  fis8 r r d a' r r fis
+  cis'2. r8 c8
+  \break
+
+  \timestop "1:03"
+  b4 b2 r8 a8~
+  \tuplet 3/2 { a8 b a } b2 a4~
+  \tuplet 3/2 { a8 b a } b4~ b8 a4.~
+  a8 b4.~ b2
+  \break
+
+  \timestop "1:10"
+  r8 b4. r8 cis 4.
+  d2 e4. d8~
+  d2 a'8 g f d
+  bes4 a8 g c b a g
+  \break
+  \bar "|."
+
+  \markManualBox "A - 2nd chorus"
+  \grace eis8 fis4 r4 r2
+  r2 \tuplet 3/2 { a8 d fis } g8 fis
+  d8 b d4 r4 \tuplet 3/2 { r8 b bes }
+  \tuplet 3/2 { a8 a' r } a2.
+  \break
+
+  \repeat unfold 1 { s1*4 \break }
+  \bar "|."
+  
+  \markManualBox "B"
+  \repeat unfold 1 { s1*4 \break }
+  \repeat unfold 1 { s1*4 \break }
+  \bar "|."
+  
+  \markManualBox "A"
+  \repeat unfold 1 { s1*4 \break }
+  \repeat unfold 1 { s1*4 \break }
   \bar "|."
   
   \markManualBox "C"
-  \repeat unfold 3 { s1*4 \break }
+  \repeat unfold 1 { s1*4 \break }
+  \repeat unfold 1 { s1*4 \break }
+  \repeat unfold 1 { s1*4 \break }
   \bar "|."
-  
-
-  
-	
-	
 }
 
 % intro = { \once \compressFullBarRests \inlineMMR R1*8 \bar ".|-|" }
@@ -438,7 +494,7 @@ transcribedScore = \score {
     % Add the Chord Names above the staff
 		\new ChordNames {
       %% \introChords
-      \repeat unfold 1 \chordNamesHead
+      \repeat unfold 2 \chordNamesHead
     }  
     %% Create a staff for the music
 		\new Staff {
