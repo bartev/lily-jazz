@@ -207,6 +207,7 @@ chordNamesHead = \chordmode {
 
   e2:m7 a:7
   ees2:m7 aes:7
+  %% dis2:m7 gis:7
   cis1:maj7
   gis2:m7 cis:7
 
@@ -261,14 +262,14 @@ leadMusic= \relative c'' {
   \timestop "0:14"
   %% m1
   b8 a b4 r \tuplet 3/2 { r8 a b }
-  d4 d r2
-  r4 b b8 a b cis
+  d,4 d r2
+  r4 b' b8 a b cis,
   r8 cis4.~ cis2
   \break
 
   %% m5
   \timestop "0:22"
-  r8 b b e, cis'4. r8
+  r8 b' b e, cis'4. r8
   r8 bes bes f c'4. aes8
   f1
   ees'8 fes \tuplet 3/2 { f8 ges f~ } f2
@@ -280,7 +281,7 @@ leadMusic= \relative c'' {
   \timestop "0:29"
   r4 cis cis8 b cis dis,
   r8 dis r4 r2
-  r4 cis8 bis cis f f4
+  r4 cis'8 bis cis f, f4
   r8 f8~ f2.
   \break
 
@@ -333,29 +334,75 @@ leadMusic= \relative c'' {
   \bar "|."
 
   \markManualBox "A - 2nd chorus"
+  \timestop "1:18"
   \grace eis8 fis4 r4 r2
   r2 \tuplet 3/2 { a8 d fis } g8 fis
   d8 b d4 r4 \tuplet 3/2 { r8 b bes }
   \tuplet 3/2 { a8 a' r } a2.
   \break
 
-  \repeat unfold 1 { s1*4 \break }
+  \timestop "1:25"
+  r1
+  r8 f ees des c bes aes ges
+  %% r8 eis dis cis bis ais gis fis
+  eis8 eis~ eis2 r8 gis8~
+  \tuplet 3/2 { gis8 cis dis } cis2.
+  \break
   \bar "|."
   
   \markManualBox "B"
-  \repeat unfold 1 { s1*4 \break }
-  \repeat unfold 1 { s1*4 \break }
+  \timestop "1:33"
+    cis8 cis, cis4 cis r4
+  r1
+  r2 \tuplet 3/2 { r8 bis'4 } \tuplet 3/2 { cis4 dis8~ }
+  \tuplet 3/2 { dis8 eis fis } eis? dis  \tuplet 3/2 { cis8 bis b } \tuplet 3/2 { cis8 d e }
+  \break
+
+  \timestop "1:40"
+  \tuplet 3/2 { fis8 r fis~ } fis4 fis8 e dis cis~
+  \tuplet 3/2 { cis8 e4~ } e2~ \tuplet 3/2 { e8 dis cis }
+  d8 g, g2 r4
+  \tuplet 3/2 { r4 f' e } ees16 bes g f ees4
+  \break
   \bar "|."
   
   \markManualBox "A"
-  \repeat unfold 1 { s1*4 \break }
-  \repeat unfold 1 { s1*4 \break }
+  \timestop "1:47"
+  d4 \tuplet 3/2 { e8 fis a } \tuplet 3/2 { r8 cis d } cis8 c~
+  c2 b8 c b4
+  r8 bes4. bes8 c bes a
+  r8 a4. r2
+  \break
+
+  \timestop "1:54"
+  r1
+  r4 eis''16 fis eis dis~ dis cis8 bis16 \tuplet 5/4 { ais16 gis g eis dis }
+  e16 d' cis b    c e, gis b    \tuplet 3/2 { a16 b a } e16 f    r16 fis r8
+  \tuplet 3/2 { r8 bes c } \tuplet 3/2 { bes8 aes f } f16 ees d c bes fis f ees
+  \break
   \bar "|."
   
   \markManualBox "C"
-  \repeat unfold 1 { s1*4 \break }
-  \repeat unfold 1 { s1*4 \break }
-  \repeat unfold 1 { s1*4 \break }
+  \timestop "2:01"
+  d8 fis' \xNote b,4 e8 d a4
+  g8 a g4 r2
+  r2 fis'8 fis, \tuplet 3/2 { b8 d e }
+  \tuplet 3/2 { d8 e d } cis8 c r bes a g
+  \break
+  
+  \timestop "2:08"
+  fis4 fis2~ \tuplet 3/2 { fis8 g a }
+  b8 c b fis~ fis4 r
+  r4 \tuplet 3/2 { r8 a aes } g8 a \tuplet 3/2 { c8 ees r }
+  \tuplet 3/2 { r8 fis g } \tuplet 3/2 { f8 ees cis } \tuplet 3/2 { c8 bes a~ } \tuplet 3/2 { a?8 bes c? }
+  \break
+  
+  \timestop "2:15"
+  \tuplet 3/2 { dis8 ees4 } g,8 a b cis d fis,
+  g8 a bes c r8 b4 g8
+  \grace eis8 fis4 b,4 d8 b~ b4
+  r2 r4 \grace ees8 fis4
+  \break
   \bar "|."
 }
 
