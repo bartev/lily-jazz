@@ -226,6 +226,7 @@ chordNamesAsingle = \chordmode {
 
 intro_partial = \relative c'' {
   \partial 1
+  \timestop "0:00"
   r8 d b c ees g b d~
 }
 
@@ -273,12 +274,14 @@ head= \relative c''' {
   \repeat volta 2
   {
     \bar "[|:-|"
+    \timestop "0:09"
     d1
     r4 c8 bes c ees c bes
     g8 ees e f r2
     r4 g8 f g f ees c~
     \break
 
+    \timestop "0:05, 0:13"
     c1
     r8 ees c bes~ bes g bes b~
     b1    
@@ -293,19 +296,22 @@ head= \relative c''' {
   }
 
   %% B
+  \timestop "0:17"
   c2~ c8 c c c->
   r4 r8 ees8-^~ ees c4-^ bes8-^
   c2. g8 f->
   r2 r8 aes,8 bes bes'~
   \break
-  
+
+  \timestop "0:21"
   bes2~ bes8 bes bes bes->
   r4 r8 cis8->~ cis bes4-^ g8-^
   bes2 g8 f ees g
   r8 d b c ees g b d~
   \bar "||"
   \break
-  
+
+  \timestop "0:25"
   d1
   r4 c8 bes c ees c bes
   g ees e f r2
@@ -313,33 +319,49 @@ head= \relative c''' {
   \bar "||"
   \break
 
+  \timestop "0:29"
   c1~
   c8 ees c bes~ bes g bes b->
   r1
   r4 g'8 f~ f bes aes g->~
   \break
-  
+
+  \timestop "0:33"
   g4. g8-> r8 f ees d->~
   d4. d8-> r c bes a~
-  a8 ees' d f ees d c b
-  r1
+  a8 ees' d f ees? d c b?
+  r4 r8 cis \tuplet 3/2 { b8 c cis } aes'8 f
   \bar "||"
   \break
 }
 
-solo = \relative c'' {
+solo = \relative c''' {
   %% 1st chorus
+  \markManualBox "1st Chorus"
   \bar ".|"
+  \timestop "0:37"
   \section
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  g8 d' r a bes g r f
+  r8 c' r a bes ees, r4
+  r4 d8 b c ees g bes
+  c8 b bes s8 s2
+  \break
+  \timestop "0:41"
   \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "0:45"
+  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "0:53"
+  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "1:01"
+  \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "1:05"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \pageBreak
   
   %% 2nd chorus
+  \markManualBox "2nd Chorus"
   \section
+  \timestop "1:13"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
