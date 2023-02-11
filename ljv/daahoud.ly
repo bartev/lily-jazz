@@ -330,7 +330,7 @@ head= \relative c''' {
   g4. g8-> r8 f ees d->~
   d4. d8-> r c bes a~
   a8 ees' d f ees? d c b?
-  r4 r8 cis \tuplet 3/2 { b8 c cis } aes'8 f
+  r4 r8 d \tuplet 3/2 { c8 cis d } aes'8 f
   \bar "||"
   \break
 }
@@ -344,7 +344,7 @@ solo = \relative c''' {
   g8 d' r a bes g r f
   r8 c' r a bes ees, r4
   r4 d8 b c ees g bes
-  c8 b bes s8 s2
+  c8 b bes c ees c d4
   \break
   \timestop "0:41"
   \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."

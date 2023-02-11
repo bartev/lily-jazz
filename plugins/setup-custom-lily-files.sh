@@ -5,7 +5,8 @@
 # For Homebrew installed Lilypond
 LILY_APP_DIR=$(readlink -f $(brew --prefix lilypond))
 LILY_VERSION=$(basename $LILY_APP_DIR)
-LILY_INSTALL_DIR=$LILY_APP_DIR/share/lilypond/$LILY_VERSION
+# LILY_INSTALL_DIR=$LILY_APP_DIR/share/lilypond/$LILY_VERSION
+LILY_INSTALL_DIR=$LILY_APP_DIR/share/lilypond/**/
 
 # LILY_INSTALL_DIR=/usr/local/Cellar/lilypond/2.22.2_1/share/lilypond/2.22.2
 
