@@ -259,6 +259,8 @@ chordNamesBC = \chordmode {
   c1:maj7
 }
 
+chordNamesIntroPartial = \chordmode { c1:m7+ }
+
 chordNamesVolta = {
   \chordNamesAvolta
   \chordNamesBC
@@ -305,7 +307,7 @@ head= \relative c''' {
 
   \timestop "0:21"
   bes2~ bes8 bes bes bes->
-  r4 r8 cis8->~ cis bes4-^ g8-^
+  r4 r8 des8->~ des bes4-^ g8-^
   bes2 g8 f ees g
   r8 d b c ees g b d~
   \bar "||"
@@ -330,7 +332,7 @@ head= \relative c''' {
   g4. g8-> r8 f ees d->~
   d4. d8-> r c bes a~
   a8 ees' d f ees? d c b?
-  r4 r8 d \tuplet 3/2 { c8 cis d } aes'8 f
+  r4 r8 d \tuplet 3/2 { c8 cis d } aes'8 ges
   \bar "||"
   \break
 }
@@ -344,10 +346,11 @@ solo = \relative c''' {
   g8 d' r a bes g r f
   r8 c' r a bes ees, r4
   r4 d8 b c ees g bes
-  c8 b bes c ees c d4
+  c8 b bes c ees c d b
   \break
   \timestop "0:41"
-  \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."
+  ees4 s4 s2
+  \repeat unfold 1 { \repeat unfold 3 {s1} \break} \bar "|."
   \timestop "0:45"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \timestop "0:53"
@@ -370,22 +373,257 @@ solo = \relative c''' {
   \fine
 }
 
-%% Add scale tones over each note
-scaleDegrees = \lyrics {
-	\markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
+%% Add scale tones below each note
+
+scaleDegreesHead = \lyrics {
+  ""8
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 9 }
+
+  \repeat volta 2 {
+    %% m1
+    \markup \scaleDegree { 1 }1
+    
+    ""4
+    \markup \scaleDegree { 2 }8
+    \markup \scaleDegree { 1 }
+    \markup \scaleDegree { 6 }
+    \markup \scaleDegree { 1 }
+    \markup \scaleDegree { 6 }
+    \markup \scaleDegree { 5 }
+
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 5 }
+    \markup \scaleDegree { s5 }
+    \markup \scaleDegree { 6 }
+    ""2
+
+    ""4
+    \markup \scaleDegree { 4 }8
+    \markup \scaleDegree { f3 }
+    \markup \scaleDegree { 1 }
+    \markup \scaleDegree { f7 }
+    \markup \scaleDegree { f6 }
+    \markup \scaleDegree { 2 }
+
+    %% m5
+    \markup \scaleDegree { 1 }1
+
+    ""8
+    \markup \scaleDegree { 5 }
+    \markup \scaleDegree { 3 }
+    \markup \scaleDegree { 2 }
+    \markup \scaleDegree { f3 }
+    \markup \scaleDegree { 1 }
+    \markup \scaleDegree { f3 }
+    \markup \scaleDegree { 3 }
+
+    \markup \scaleDegree { 7 }1 
+
+    \alternative {
+      {
+        ""8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 7 }
+        \markup \scaleDegree { 1 }
+        \markup \scaleDegree { f3 }
+        \markup \scaleDegree { 5 }
+        \markup \scaleDegree { 7 }
+        \markup \scaleDegree { 9 }
+      }
+      {
+        ""2 ""8
+        \markup \scaleDegree { 7 }8
+        \markup \scaleDegree { 1 }
+        \markup \scaleDegree { 1 }
+      }
+    }
+  }
+
+  %% m10
+  \markup \scaleDegree { 4 }2
+  ""8
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 4 }
+
+  ""4.
+  \markup \scaleDegree { f3 }4
+  \markup \scaleDegree { 1 }4
+  \markup \scaleDegree { f7 }8
+
+  \markup \scaleDegree { 5 }2.
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { 1 }
+
+  ""2 ""8
+  \markup \scaleDegree { f3 }8
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 4 }
+
+  %% m14
+  \markup \scaleDegree { 4 }2
+  ""8
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 4 }8
+
+  ""4.
+  \markup \scaleDegree { f3 }4
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 6 }8
+
+  \markup \scaleDegree { 5 }2
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 3 }
+
+  ""8
+  \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 5 }
+
+  %% m18
+  \markup \scaleDegree { 2 }1
+
+  ""4
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 5 }
+
+  \markup \scaleDegree { 7 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { s5 }
+  \markup \scaleDegree { 6 }
+  ""2
+
+  ""4
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 4 }
+
+  %% m22
+  \markup \scaleDegree { 1 }1
+
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 3 }
+
+  ""1
+
+  ""4
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 6 }
+
+  %% m26
+  \markup \scaleDegree { 2 }4.
+  \markup \scaleDegree { 2 }8
+  ""8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 6 }
+
+  \markup \scaleDegree { 2 }4.
+  \markup \scaleDegree { 2 }8
+  ""8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 3 }
+
+  \markup \scaleDegree { s1 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f6 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 3 }
+
+  %% Solo begins 1 bar early
+  ""4.
+  \markup \scaleDegree { 2 }8
+  \tuplet 3/2 { \markup \scaleDegree { 1 }8
+                 \markup \scaleDegree { s1 }
+                 \markup \scaleDegree { 2 } }
+  \markup \scaleDegree { f6 }8
+  \markup \scaleDegree { f5 }
+
+  %% 1st solo chorus
+  %% m30
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { 9 }
+  ""8
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 2 }
+  ""8
+  \markup \scaleDegree { 1 }
+
+  ""8
+  \markup \scaleDegree { 2 }8
+  ""8
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 1 }
+  ""4
+
+  ""4
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 9 }
+
+  \markup \scaleDegree { f7 }8
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 3 }
+
+  %% m34
+  \markup \scaleDegree { f3 }4 
+  
 }
 
-%% Add harmonic analysis
-harmonicAnalysis = \lyricmode {
-	\override LyricText.font-name = #"serif"
-	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
-	\markup \rN { V 7 / I }1
-	\markup \rN { V 7 / ii }1
-	\set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
-	\markup \rN { V 7 }1
-	\markup \rN { V 7 }1
-}
-
+%% %% Add harmonic analysis
+%% harmonicAnalysis = \lyricmode {
+%% 	\override LyricText.font-name = #"serif"
+%% 	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
+%% 	\markup \rN { V 7 / I }1
+%% 	\markup \rN { V 7 / ii }1
+%% 	\set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
+%% 	\markup \rN { V 7 }1
+%% 	\markup \rN { V 7 }1
+%% }
 
 %% Chord names, chord tones, and harmonic analysis only 
 %% chordsAnalysisArpeg= {
@@ -407,7 +645,7 @@ templateScore = \score {
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
 		\new ChordNames {
       % add the Chord Names above the staff
-      s1 % for intro_partial
+      \chordNamesIntroPartial % for intro_partial
       \chordNamesVolta
 
       \repeat unfold 2 { \chordNamesNoVolta }
@@ -417,10 +655,13 @@ templateScore = \score {
 			%% the head
       \intro_partial
       \head
-      \pageBreak
+      %% \pageBreak
       \solo
 		}
-		%% \new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
+    %% add the scaleDegrees below the staff
+		\new Lyrics { 
+      \scaleDegreesHead
+    }
 	>>
 	\layout {
 		indent = 0
