@@ -43,7 +43,7 @@ realBookTitle = \markup {
         %% title
         \fontsize #5
         \override #'(offset . 7) \override #'(thickness . 6)
-       \underline \larger #title
+        \underline \larger #title
         %% composer
         \fontsize #2 \lower #1 \concat { #composer " " }
       }
@@ -66,7 +66,7 @@ realBookTitle = \markup {
   copyright = \copyright
   %% The following fields are evenly spread on one line
   %% the field "instrument" also appears on following pages
-  instrument = \markup \with-color #blue "Alto Sax"
+  %% instrument = \markup \with-color #blue "Alto Sax"
 }
 
 %% Changed
@@ -198,16 +198,16 @@ scoreBreaks = {
 
 chordNamesAvolta = \chordmode {
   \repeat volta 2 {
-  %% A
-  c2:m7 f:7
-  bes2:m7 ees:7
-  aes1:maj7
-  d2:m7 g:7
+    %% A
+    c2:m7 f:7
+    bes2:m7 ees:7
+    aes1:maj7
+    d2:m7 g:7
 
-  c1:6
-  aes2:7 g:7
-  c1:m7+
-}
+    c1:6
+    aes2:7 g:7
+    c1:m7+
+  }
   \alternative {{c1:m7+} {c1:m7+}}
 }
 
@@ -568,8 +568,8 @@ scaleDegreesHead = \lyrics {
   ""4.
   \markup \scaleDegree { 2 }8
   \tuplet 3/2 { \markup \scaleDegree { 1 }8
-                 \markup \scaleDegree { s1 }
-                 \markup \scaleDegree { 2 } }
+                \markup \scaleDegree { s1 }
+                \markup \scaleDegree { 2 } }
   \markup \scaleDegree { f6 }8
   \markup \scaleDegree { f5 }
 
@@ -640,7 +640,7 @@ scaleDegreesHead = \lyrics {
 %% 	>>
 %% }
 
-templateScore = \score {
+eFlatScore = \score {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
 		\new ChordNames {
@@ -668,7 +668,35 @@ templateScore = \score {
 	}
 }
 
-%% \chordsAnalysisArpeg
-%% \pageBreak
+transposedScore = \score {
+  \transpose ees c {
+	<<
+		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+		\new ChordNames {
+      % add the Chord Names above the staff
+      \chordNamesIntroPartial % for intro_partial
+      \chordNamesVolta
 
-\templateScore
+      \repeat unfold 2 { \chordNamesNoVolta }
+    } 
+		\new Staff {
+			\global
+			%% the head
+      \intro_partial
+      \head
+      %% \pageBreak
+      \solo
+		}
+    %% add the scaleDegrees below the staff
+		\new Lyrics { 
+      \scaleDegreesHead
+    }
+	>>
+  }
+	\layout {
+		indent = 0
+	}
+}
+
+%% \eFlatScore
+%% \transposedScore
