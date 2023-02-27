@@ -16,12 +16,12 @@
 
 \header {
   title = \realBookTitle
-  tagline = "Awesome transcription by Bartev (Concert Key)"
+  tagline = "Awesome transcription by Bartev (Soprano)"
   copyright = \copyright
   %% The following fields are evenly spread on one line
   %% the field "instrument" also appears on following pages
-  instrument = \markup \with-color #blue "Concert Key"
+  instrument = \markup \with-color #blue "Soprano (B♭)"
 }
 
 %% Concert key
-\cScore
+\sopScore

@@ -139,10 +139,10 @@ global = {
 	%% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
-  \override Score.Clef.break-visibility = #'#(#f #f #f)
+  %% \override Score.Clef.break-visibility = #'#(#f #f #f)
 
   %% make only the first time signature visible
-  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
+  %% \override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
   %% allow single-staff system bars
   \override Score.SystemStartBar.collapse-height = #1
@@ -224,7 +224,7 @@ chordNamesAsingle = \chordmode {
   c1:m7+
 }
 
-intro_partial = \relative c'' {
+intro_partial = \relative c' {
   \partial 1
   \timestop "0:00"
   r8 d b c ees g b d~
@@ -272,7 +272,7 @@ chordNamesNoVolta = {
   \chordNamesBC
 }
 
-head= \relative c''' {
+head= \relative c'' {
   \repeat volta 2
   {
     \bar "[|:-|"
@@ -302,7 +302,7 @@ head= \relative c''' {
   c2~ c8 c c c->
   r4 r8 ees8-^~ ees c4-^ bes8-^
   c2. g8 f->
-  r2 r8 aes,8 bes bes'~
+  r2 r8 a,8 bes bes'~
   \break
 
   \timestop "0:21"
@@ -332,33 +332,63 @@ head= \relative c''' {
   g4. g8-> r8 f ees d->~
   d4. d8-> r c bes a~
   a8 ees' d f ees? d c b?
-  r4 r8 d \tuplet 3/2 { c8 cis d } aes'8 ges
+  r4 r8 ais \tuplet 3/2 { b8 d f } aes8 fis
   \bar "||"
   \break
 }
 
-solo = \relative c''' {
+solo = \relative c'' {
   %% 1st chorus
   \markManualBox "1st Chorus"
   \bar ".|"
   \timestop "0:37"
   \section
-  g8 d' r a bes g r f
-  r8 c' r a bes ees, r4
-  r4 d8 b c ees g bes
-  c8 b bes c ees c d b
+  g8 d' r b c g r f
+  r8 c' r a bes des, r4
+  r4 ees8 des c ees? f g
+  bes8 a aes bes? b cis dis b
   \break
+  
   \timestop "0:41"
-  ees4 s4 s2
-  \repeat unfold 1 { \repeat unfold 3 {s1} \break} \bar "|."
+  d4 c8 g ees c  bes aes
+  f'8 ges8~ ges4 f8 ees c g
+  b8 c e c d g r4
+  r2 r8 \grace fis8 g4 f8
+  \break
+  
   \timestop "0:45"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  d8 ees b d c d ees? f
+  ges8 ees f des c bes ees? des?
+  bes8 b c ees f g bes a
+  aes8 bes b cis dis b bes aes?
+  \break
+
+  \timestop "0:49"
+  f8 fis a fis? g f d dis
+  e8 g, a b d b c d
+  e8 f g a \tuplet 3/2 { b8 c cis } d g,
+  r2 r4 r8 \grace fis'8 g8
+  \break
+  \bar "|."
+  
   \timestop "0:53"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  r8 a8 r f e d c b
+  bes8 d a aes g f e d
+  \tuplet 3/2 { c8 d c } a8 c f c4 r8
+  r1
+  \break
+  \repeat unfold 4 {s1} \break
+  \bar "|."
+
   \timestop "1:01"
-  \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."
+  \repeat unfold 4 {s1} \break
+  \bar "|."
+
   \timestop "1:05"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  \repeat unfold 4 {s1} \break
+  \repeat unfold 4 {s1} \break
+  \bar "|."
+
   \pageBreak
   
   %% 2nd chorus
@@ -366,9 +396,13 @@ solo = \relative c''' {
   \section
   \timestop "1:13"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "1:21"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "1:29"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "1:37"
   \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."
+  \timestop "1:41"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \fine
 }
@@ -557,7 +591,7 @@ scaleDegreesHead = \lyrics {
 
   \markup \scaleDegree { s1 }8
   \markup \scaleDegree { 5 }
-  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { s4 }
   \markup \scaleDegree { 6 }
   \markup \scaleDegree { f6 }8
   \markup \scaleDegree { 5 }
@@ -566,20 +600,20 @@ scaleDegreesHead = \lyrics {
 
   %% Solo begins 1 bar early
   ""4.
-  \markup \scaleDegree { 2 }8
-  \tuplet 3/2 { \markup \scaleDegree { 1 }8
-                \markup \scaleDegree { s1 }
-                \markup \scaleDegree { 2 } }
+  \markup \scaleDegree { s6 }8
+  \tuplet 3/2 { \markup \scaleDegree { f7 }8
+                \markup \scaleDegree { 2 }
+                \markup \scaleDegree { 4 } }
   \markup \scaleDegree { f6 }8
-  \markup \scaleDegree { f5 }
+  \markup \scaleDegree { s4 }
 
   %% 1st solo chorus
   %% m30
   \markup \scaleDegree { 5 }8
   \markup \scaleDegree { 9 }
   ""8
-  \markup \scaleDegree { 3 }8
-  \markup \scaleDegree { 4 }
+  ""8
+  \markup \scaleDegree { 5 }8
   \markup \scaleDegree { 2 }
   ""8
   \markup \scaleDegree { 1 }
@@ -587,30 +621,166 @@ scaleDegreesHead = \lyrics {
   ""8
   \markup \scaleDegree { 2 }8
   ""8
-  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { n7 }
   \markup \scaleDegree { 5 }
-  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f7 }
   ""4
 
   ""4
-  \markup \scaleDegree { 4 }8
-  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { 4 }
   \markup \scaleDegree { 3 }
   \markup \scaleDegree { 5 }
-  \markup \scaleDegree { 7 }
-  \markup \scaleDegree { 9 }
-
-  \markup \scaleDegree { f7 }8
   \markup \scaleDegree { 6 }
-  \markup \scaleDegree { f6 }
-  \markup \scaleDegree { f7 }
-  \markup \scaleDegree { f6 }
-  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 7 }
+
+  \markup \scaleDegree { f6 }8
   \markup \scaleDegree { 5 }
+  \markup \scaleDegree { f5 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { s5 }
   \markup \scaleDegree { 3 }
 
   %% m34
-  \markup \scaleDegree { f3 }4 
+  \markup \scaleDegree { 9 }4
+  \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+
+  \markup \scaleDegree { 6 }8
+  \markup \scaleDegree { f7 }4.
+  \markup \scaleDegree { f7 }8
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 1 }
+
+  \markup \scaleDegree { 7 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { n3 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 5 }
+  ""4
+
+  ""2
+  ""8
+  \markup \scaleDegree { 5 }4
+  \markup \scaleDegree { 4 }8
+
+  %% m38
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { n7 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 1 }
+
+  \markup \scaleDegree { f6 }8
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f7 }
+
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { s2 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 9 }
+  \markup \scaleDegree { 8 }
+
+  \markup \scaleDegree { f5 }8
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { n7 }
+  \markup \scaleDegree { s5 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { f9 }
+
+  %% m42
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { n4 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { s2 }
+
+  \markup \scaleDegree { s5 }8
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { s1 }
+  \markup \scaleDegree { s2 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 5 }
+
+  \markup \scaleDegree { n3 }8
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \tuplet 3/2 {
+    \markup \scaleDegree { n7 }8
+    \markup \scaleDegree { 1 }
+    \markup \scaleDegree { s1 }    
+  }
+  \markup \scaleDegree { 9 }8
+  \markup \scaleDegree { 5 }
+
+  ""2.
+  ""8
+  \markup \scaleDegree { 5 }8
+
+  %% m46
+  ""8
+  \markup \scaleDegree { 9 }8
+  ""8
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 3 }
+
+  \markup \scaleDegree { f7 }8
+  \markup \scaleDegree { 9 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 2 }
+
+  \tuplet 3/2 {
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 6 }
+    \markup \scaleDegree { 5 }
+  }
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 5 }4
+  ""8
+
+  ""1
+
+  %% m50
+
+  
+
+  
   
 }
 
@@ -668,8 +838,8 @@ eFlatScore = \score {
 	}
 }
 
-transposedScore = \score {
-  \transpose ees c {
+cScore= \score {
+  \transpose c ees {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
 		\new ChordNames {
@@ -697,6 +867,37 @@ transposedScore = \score {
 		indent = 0
 	}
 }
+
+sopScore= \score {
+  \transpose bes ees' {
+	<<
+		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+		\new ChordNames {
+      % add the Chord Names above the staff
+      \chordNamesIntroPartial % for intro_partial
+      \chordNamesVolta
+
+      \repeat unfold 2 { \chordNamesNoVolta }
+    } 
+		\new Staff {
+			\global
+			%% the head
+      \intro_partial
+      \head
+      %% \pageBreak
+      \solo
+		}
+    %% add the scaleDegrees below the staff
+		\new Lyrics { 
+      \scaleDegreesHead
+    }
+	>>
+  }
+	\layout {
+		indent = 0
+	}
+}
+
 
 %% \eFlatScore
 %% \transposedScore
