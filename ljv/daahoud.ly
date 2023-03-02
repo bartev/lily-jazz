@@ -1,5 +1,9 @@
 \version "2.24.0"
 
+%% Transcription help from https://www.youtube.com/watch?v=jVlnkapGspw
+%% and https://theotherjocko.com/blogs/latest-news/posts/3741496/clifford-brown-daahoud-and-ears
+
+
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
 
@@ -224,13 +228,13 @@ chordNamesAsingle = \chordmode {
   c1:m7+
 }
 
-intro_partial = \relative c' {
+intro_partial = \relative c'' {
   \partial 1
   \timestop "0:00"
   r8 d b c ees g b d~
 }
 
-chordNamesBC = \chordmode {
+chordNamesB = \chordmode  {
   %% B
   g1:m7
   c1:7
@@ -241,7 +245,9 @@ chordNamesBC = \chordmode {
   bes1:7
   ees1:maj7
   d2:m7 g:7
+}
 
+chordNamesCinterlude = \chordmode {
   %% C
   c2:m7 f:7
   bes2:m7 ees:7
@@ -259,20 +265,36 @@ chordNamesBC = \chordmode {
   c1:maj7
 }
 
+
+chordNamesC = \chordmode {
+  %% C
+  c2:m7 f:7
+  bes2:m7 ees:7
+  aes1:maj7
+  d2:m7 g:7
+
+  c1:6
+  aes2:7 g:7
+  c1:m7+
+  c1:m7+
+}
+
 chordNamesIntroPartial = \chordmode { c1:m7+ }
 
 chordNamesVolta = {
   \chordNamesAvolta
-  \chordNamesBC
+  \chordNamesB
+  \chordNamesCinterlude
 }
 
 chordNamesNoVolta = {
   \chordNamesAsingle
   \chordNamesAsingle
-  \chordNamesBC
+  \chordNamesB
+  \chordNamesC
 }
 
-head= \relative c'' {
+head= \relative c''' {
   \repeat volta 2
   {
     \bar "[|:-|"
@@ -307,7 +329,7 @@ head= \relative c'' {
 
   \timestop "0:21"
   bes2~ bes8 bes bes bes->
-  r4 r8 des8->~ des bes4-^ g8-^
+  r4 r8 des8->~ des bes4-^ aes8-^
   bes2 g8 f ees g
   r8 d b c ees g b d~
   \bar "||"
@@ -318,7 +340,6 @@ head= \relative c'' {
   r4 c8 bes c ees c bes
   g ees e f r2
   r4 g8 f g f ees c~
-  \bar "||"
   \break
 
   \timestop "0:29"
@@ -337,7 +358,7 @@ head= \relative c'' {
   \break
 }
 
-solo = \relative c'' {
+solo = \relative c''' {
   %% 1st chorus
   \markManualBox "1st Chorus"
   \bar ".|"
@@ -354,6 +375,7 @@ solo = \relative c'' {
   f'8 ges8~ ges4 f8 ees c g
   b8 c e c d g r4
   r2 r8 \grace fis8 g4 f8
+  \bar "||"
   \break
   
   \timestop "0:45"
@@ -361,6 +383,7 @@ solo = \relative c'' {
   ges8 ees f des c bes ees? des?
   bes8 b c ees f g bes a
   aes8 bes b cis dis b bes aes?
+  %% \repeat unfold 4 {s1}
   \break
 
   \timestop "0:49"
@@ -368,6 +391,7 @@ solo = \relative c'' {
   e8 g, a b d b c d
   e8 f g a \tuplet 3/2 { b8 c cis } d g,
   r2 r4 r8 \grace fis'8 g8
+  %% \repeat unfold 4 {s1}
   \break
   \bar "|."
   
@@ -376,17 +400,33 @@ solo = \relative c'' {
   bes8 d a aes g f e d
   \tuplet 3/2 { c8 d c } a8 c f c4 r8
   r1
+  %% \repeat unfold 4 {s1}
   \break
-  \repeat unfold 4 {s1} \break
+
+  \timestop "0:57"
+  r8 g''16 fis f8 c aes f e c
+  ees8 c d f aes b aes? a
+  bes8 aes f fis g r8 r4
+  r4 ees8 c d c b d
+  %% \repeat unfold 4 {s1}
+  \break
   \bar "|."
 
   \timestop "1:01"
-  \repeat unfold 4 {s1} \break
-  \bar "|."
-
+  c8 g c d ees f fis e
+  f8 des c bes ees des? bes? b
+  c8 ees f g bes a aes bes?
+  b8 cis dis b bes aes f fis
+  %% \repeat unfold 4 {s1}
+  \break
+  
   \timestop "1:05"
-  \repeat unfold 4 {s1} \break
-  \repeat unfold 4 {s1} \break
+  a8 fis g a ais b d b
+  c8 a f fis g4 r4
+  r2 fis'8 g4.
+  fis8 g4. fis8 g4.
+  %% \repeat unfold 4 {s1}
+  \break
   \bar "|."
 
   \pageBreak
@@ -401,8 +441,6 @@ solo = \relative c'' {
   \timestop "1:29"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \timestop "1:37"
-  \repeat unfold 1 { \repeat unfold 4 {s1} \break} \bar "|."
-  \timestop "1:41"
   \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
   \fine
 }
@@ -839,7 +877,7 @@ eFlatScore = \score {
 }
 
 cScore= \score {
-  \transpose c ees {
+  \transpose c' ees {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
 		\new ChordNames {
@@ -869,7 +907,7 @@ cScore= \score {
 }
 
 sopScore= \score {
-  \transpose bes ees' {
+  \transpose bes ees {
 	<<
 		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
 		\new ChordNames {
