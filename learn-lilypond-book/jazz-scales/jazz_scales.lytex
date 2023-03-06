@@ -1,0 +1,205 @@
+\documentclass[]{article}
+%% Default options for `article' class
+%% letterpaper,10pt,oneside,onecolumn,final
+%% https://www.overleaf.com/learn/latex/Headers_and_footers
+
+\usepackage{geometry}
+\geometry{
+  left=0.5in,
+  right=0.5in,
+  top=0.5in,
+  bottom=0.75in
+}
+
+\newcommand{\spaceBtw}{\vspace{0.75cm}}
+
+%% page style
+%% plain - default for article
+%% no page headers, footers consist of centered page numbers
+
+\makeatletter
+\renewcommand\maketitle{
+  {
+    \begin{center}
+      {\Huge \bfseries \@title} \\[1em]
+      {\Large \@author \hspace{1em} \@date}
+    \end{center}
+
+  }
+}
+\makeatother
+
+\title{Scales for Jazz Improvization}
+\author{Bartev}
+%% \subtitle{Bartev's version}
+
+\begin{document}
+
+\maketitle
+
+Common scales for major, dominant and minor chords.
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1 c1:7 c1:m7 }
+    \relative c' {
+      c8_\markup "Major (Ionian)"  d e f g a b c 
+      c,8_\markup "Dominant (Mixolydian)" d e f g a bes c
+      c,8_\markup "Minor (Dorian)" d ees f g a bes c
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+Scales for half diminished chords.
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:m7.5- c1:m7.5- }
+    \relative c' {
+      c8_\markup "Locrian"  des ees f ges aes bes c 
+      c,8_\markup "Locrian nat 2" d ees f ges aes bes c 
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+Two ways of looking at the half/whole diminished. It contains the
+chord tones for a half diminished chord.
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c4:7.9- c:7.9+ }
+    \relative c' {
+      c8_\markup "Half/Whole Diminished" cis dis e fis g a bes
+      c,8_\markup "Half/Whole Diminished" des ees fes ges g a bes
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+Scales for diminished chords. (2 ways of looking at it.)
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:dim7 c1:dim7 }
+    \relative c' {
+      c8_\markup "Whole/Half Diminished" d ees f ges aes beses ces
+      c,8_\markup "Whole/Half Diminished" d ees f fis gis a b
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+The Lydian scale has a raised 4th (11th). (4th mode of major scale)
+
+Dominant indicates a lowered 7th.
+
+Augmented indicates a raised 5th.
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:maj7.11+ c1:7.11+ c1:aug7 }
+    \relative c' {
+      c8_\markup "Lydian" d e fis g a b c
+      c,8_\markup {"Lydian Dominant"} d e fis g a bes c
+      c,8_\markup "Lydian Augmented" d e fis gis a b c
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+Three ways of looking at the altered scale.
+It is very similar to the half/whole diminished.
+
+You can also look at it as having the notes of the scale a 1/2 step lower.
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:7.13-.9+ }
+    \relative c' {
+      c8_\markup "Altered Scale - Diminished whole tone" cis dis e fis gis bes c
+      c,8 des ees fes ges aes bes c
+      c,8_\markup {"C alt has C + notes of B maj (C" \flat ")"} cis dis e fis gis ais c
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+The Phrygian (Spanish) dominant scale is the 5th mode of the Harmonic minor scale.
+It has an exotic sound.
+
+\nopagebreak
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:7.13- c1:7.9-}
+    \relative c' {
+      c8_\markup {"Mixolydian" \flat"6"} d e f g aes bes c
+      c,8_\markup {"Phrygian (Spanish) Dominant "} des e f g aes bes c
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:7.11+ }
+    \relative c' {
+      c8_\markup {"Lydian Dominant"} d e fis g a bes c
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+\spaceBtw
+
+There are only 2 whole tone scales. (Both given below.)
+
+\begin{lilypond}[noragged-right]
+  \score{
+    <<
+    \new ChordNames \chordmode{ c1:7.5+ cis1:7.5+ }
+    \relative c' {
+      c8_\markup {"Whole Tone Scale"} d e fis gis bes c4
+      cis,8_\markup {"Whole Tone Scale"} dis f g a b cis4
+    }
+    %%     \new Lyrics {}
+    >>
+  }
+\end{lilypond}
+
+
+
+\end{document}
+
