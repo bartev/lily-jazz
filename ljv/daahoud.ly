@@ -353,7 +353,7 @@ head= \relative c''' {
   g4. g8-> r8 f ees d->~
   d4. d8-> r c bes a~
   a8 ees' d f ees? d c b?
-  r4 r8 ais \tuplet 3/2 { b8 d f } aes8 fis
+  r4 r8 bes \tuplet 3/2 { b8 d f } aes8 fis
   \bar "||"
   \break
 }
@@ -388,16 +388,17 @@ solo = \relative c''' {
 
   \timestop "0:49"
   f8 fis a fis? g f d dis
+  \markBlue "Ab7 alt like Gmaj7?"
   e8 g, a b d b c d
   e8 f g a \tuplet 3/2 { b8 c cis } d g,
-  r2 r4 r8 \grace fis'8 g8
+  r2 r4 r8 \grace fis'8 \markBlue "G" g8
   %% \repeat unfold 4 {s1}
   \break
   \bar "|."
   
   \timestop "0:53"
-  r8 a8 r f e d c b
-  bes8 d a aes g f e d
+  r8 \markBlue "A" a8 r f e d c b
+  bes8 d a \markBlue "Leads to 5" aes g f e d
   \tuplet 3/2 { c8 d c } a8 c f c4 r8
   r1
   %% \repeat unfold 4 {s1}
@@ -405,7 +406,7 @@ solo = \relative c''' {
 
   \timestop "0:57"
   r8 g''16 fis f8 c aes f e c
-  ees8 c d f aes b aes? a
+  ees8 c d f aes ces aes? a
   bes8 aes f fis g r8 r4
   r4 ees8 c d c b d
   %% \repeat unfold 4 {s1}
@@ -423,13 +424,13 @@ solo = \relative c''' {
   \timestop "1:05"
   a8 fis g a ais b d b
   c8 a f fis g4 r4
-  r2 fis'8 g4.
+  r2 \markBlue "F♯" fis'8 \markBlue "G" g4.
   fis8 g4. fis8 g4.
   %% \repeat unfold 4 {s1}
   \break
   \bar "|."
 
-  \pageBreak
+  %% \pageBreak
   
   %% 2nd chorus
   \markManualBox "2nd Chorus"
@@ -638,8 +639,8 @@ scaleDegreesHead = \lyrics {
 
   %% Solo begins 1 bar early
   ""4.
-  \markup \scaleDegree { s6 }8
-  \tuplet 3/2 { \markup \scaleDegree { f7 }8
+  \markup \scaleDegree { f7 }8
+  \tuplet 3/2 { \markup \scaleDegree { n7 }8
                 \markup \scaleDegree { 2 }
                 \markup \scaleDegree { 4 } }
   \markup \scaleDegree { f6 }8
@@ -736,7 +737,7 @@ scaleDegreesHead = \lyrics {
   \markup \scaleDegree { 6 }
   \markup \scaleDegree { 7 }
   \markup \scaleDegree { 9 }
-  \markup \scaleDegree { 8 }
+  \markup \scaleDegree { s8 }
 
   \markup \scaleDegree { f5 }8
   \markup \scaleDegree { f6 }
@@ -815,6 +816,41 @@ scaleDegreesHead = \lyrics {
   ""1
 
   %% m50
+  ""8
+  \markup \scaleDegree { 2 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 5 }
+
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { f9 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { n7 }
+
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { s2 }
+  \markup \scaleDegree { 3 }
+  ""4.
+
+  ""4
+  \markup \scaleDegree { f2 }8
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 5 }
+
+  %% m54
+  
 
   
 
