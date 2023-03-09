@@ -59,7 +59,7 @@ realBookTitle = \markup {
       \omit Staff.KeySignature
       ragged-right = ##f
       ragged-bottom = ##f
-      last-ragged-bottom = ##t
+      ragged-last-bottom = ##t
     }
   }
 }
@@ -98,7 +98,7 @@ realBookTitle = \markup {
   %% between-system-padding = #0
 
   %%set to ##t if your score is less than one page:
-  ragged-last-bottom = ##f
+  ragged-last-bottom = ##t
   ragged-bottom = ##f
 	ragged-right = ##f
 
@@ -374,7 +374,7 @@ solo = \relative c''' {
   d4 c8 g ees c  bes aes
   f'8 ges8~ ges4 f8 ees c g
   b8 c e c d g r4
-  r2 r8 \grace fis8 g4 f8
+  r2 r8 \grace fis8 4 f8
   \bar "||"
   \break
   
@@ -391,13 +391,19 @@ solo = \relative c''' {
   \markBlue "Ab7 alt like Gmaj7?"
   e8 g, a b d b c d
   e8 f g a \tuplet 3/2 { b8 c cis } d g,
-  r2 r4 r8 \grace fis'8 \markBlue "G" g8
+  r2 r4 r8 
+  \override Staff.OttavaBracket.font-series = #'medium
+  \set Staff.ottavationMarkups = #ottavation-simple-ordinals
+  \ottava #1
+  \grace fis'8 g8
   %% \repeat unfold 4 {s1}
   \break
   \bar "|."
   
   \timestop "0:53"
-  r8 \markBlue "A" a8 r f e d c b
+  r8 a8
+  \ottava #0
+  r f e d c b
   bes8 d a \markBlue "Leads to 5" aes g f e d
   \tuplet 3/2 { c8 d c } a8 c f c4 r8
   r1
@@ -423,10 +429,13 @@ solo = \relative c''' {
   
   \timestop "1:05"
   a8 fis g a ais b d b
-  c8 a f fis g4 r4
-  r2 \markBlue "F♯" fis'8 \markBlue "G" g4.
+  c8 a f ges g4 r4
+  r2
+  \override Staff.OttavaBracket.font-series = #'medium
+  \set Staff.ottavationMarkups = #ottavation-simple-ordinals
+  \ottava #1
+  fis'8  g4.
   fis8 g4. fis8 g4.
-  %% \repeat unfold 4 {s1}
   \break
   \bar "|."
 
@@ -436,14 +445,47 @@ solo = \relative c''' {
   \markManualBox "2nd Chorus"
   \section
   \timestop "1:13"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  g4. ees16 c b4 c
+  \ottava #0
+  f4. des16 bes a4 bes!
+  ees4. bes16 aes g4 aes!
+  ees'4. bes16 aes g4 aes!
+  \break
+
+  \timestop "1:17"
+  r1
+  \override Staff.OttavaBracket.font-series = #'medium
+  \set Staff.ottavationMarkups = #ottavation-simple-ordinals
+  \ottava #1
+  r8 g aes8 bes c d e f
+  g8 a g4 e r4
+  r2 r8 gis8 a4
+  \break
+  \bar "|."
+  
   \timestop "1:21"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  g4 f8 ees d c bes r
+  \ottava #0
+  f'4 r ees r8 des
+  r4 c8 bes a4. g8
+  aes8 bes b cis~ cis b bes aes
+  \break
+  
   \timestop "1:29"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
+  g8 g, c d ees f fis e
+  f8 d ees b c d e f
+  g8 a b g a4 r
+  r2 r4 r8 \grace cis8 d8~
+  \break
+  
+  d4 s2.
+  s1 s1 s1
+  \break
+  \bar "|."
+  
   \timestop "1:37"
-  \repeat unfold 2 { \repeat unfold 4 {s1} \break} \bar "|."
-  \fine
+  \repeat unfold 3 { \repeat unfold 4 {s1} \break} \bar "|."
+  %% \fine
 }
 
 %% Add scale tones below each note
@@ -850,12 +892,189 @@ scaleDegreesHead = \lyrics {
   \markup \scaleDegree { 5 }
 
   %% m54
+  \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { f7 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { s1 }
+  \markup \scaleDegree { n7 }
+
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { s5 }
+
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 9 }
+  \markup \scaleDegree { s8 }
+  \markup \scaleDegree { 8 }
+  \markup \scaleDegree { 9 }
+
+  \markup \scaleDegree { 6 }8
+  \markup \scaleDegree { n7 }
+  \markup \scaleDegree { s8 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f3 }8
+  \markup \scaleDegree { f2 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { n7 }
+
+  %% m58
+  \markup \scaleDegree { 6 }8
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { s6 }8
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 9 }
+  \markup \scaleDegree { 7 }
+
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { s1 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 1 }4
+  ""4
+
+  ""2
+  ""8
+  \markup \scaleDegree { 5 }4. 
+
+  ""8
+  \markup \scaleDegree { 5 }4.
+  ""8
+  \markup \scaleDegree { 5 }4.
+
+  %% 2nd chorus
+  %% m62
+  \markup \scaleDegree { 5 }4.
+  \markup \scaleDegree { f3 }16
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { s4 }4
+  \markup \scaleDegree { 5 }
+
+  \markup \scaleDegree { 5 }4.
+  \markup \scaleDegree { f3 }16
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { s4 }4
+  \markup \scaleDegree { 5 }
+
+  \markup \scaleDegree { 5 }4.
+  \markup \scaleDegree { 2 }16
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 7 }4
+  \markup \scaleDegree { 1 }
+
+  \markup \scaleDegree { f9 }4.
+  \markup \scaleDegree { f6 }16
+  \markup \scaleDegree { f5 }
+  \markup \scaleDegree { 1 }4
+  \markup \scaleDegree { f2 }
+
+  %% m66
+  ""1
+
+  ""8
+  \markup \scaleDegree { 7 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f7 }
+
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 5 }4
+  \markup \scaleDegree { n3 }
+  ""4
+
+  ""2
+  ""8
+  \markup \scaleDegree { s5 }8
+  \markup \scaleDegree { 6 }4 
   
+  %% m70
+  \markup \scaleDegree { 5 }4
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 6 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  ""8
+
+  \markup \scaleDegree { 5 }4
+  ""4
+  \markup \scaleDegree { 1 }4
+  ""8
+  \markup \scaleDegree { f7 }8
+
+  ""4
+  \markup \scaleDegree { 3 }8
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { s1 }4.
+  \markup \scaleDegree { 7 }8
+
+  \markup \scaleDegree { f5 }8
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { n6 }
+  \markup \scaleDegree { n7 }
+  \markup \scaleDegree { s4 }8 
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 2 }
+  
+  %% m74
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { n3 }
+
+  \markup \scaleDegree { 6 }8
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { s2 }
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { f7 }
+
+  \markup \scaleDegree { 5 }8
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 6 }4
+  ""4
+
+  ""2..
+  \markup \scaleDegree { 2 }8
+  
+  %% m78
+  \markup \scaleDegree { 5 }4
 
   
+  %% m82
+  %% m86
+  %% m90
+  
+  
+  
+  
 
-  
-  
+
 }
 
 %% %% Add harmonic analysis

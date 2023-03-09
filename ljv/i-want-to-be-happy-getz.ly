@@ -36,7 +36,7 @@ realBookTitle = \markup {
       \omit Staff.KeySignature
       ragged-right = ##f
       ragged-bottom = ##t
-      last-ragged-bottom = ##t
+      ragged-last-bottom = ##t
     }
   }
 }
