@@ -83,12 +83,12 @@ realBookTitle = \markup {
     (set-global-fonts
      #:music "lilyjazz"
      #:brace "lilyjazz"
-     #:roman "lilyjazz-chord" 
+     #:roman "lilyjazz-chord"
      #:sans "lilyjazz-chord"
      #:factor (/ staff-height pt 18)
    ))
 
-	top-margin = 0.5\in
+  top-margin = 0.5\in
   bottom-margin = 0.5\in
   left-margin = 0.5\in
   right-margin = 0.5\in
@@ -100,26 +100,26 @@ realBookTitle = \markup {
   %%set to ##t if your score is less than one page:
   ragged-last-bottom = ##t
   ragged-bottom = ##f
-	ragged-right = ##f
+  ragged-right = ##f
 
-	markup-system-spacing = #'((basic-distance . 23)
+  markup-system-spacing = #'((basic-distance . 23)
                              (minimum-distance . 8)
                              (padding . 1))
 
   oddHeaderMarkup = \markup
-	\fill-line {
-		%% If not using the realBookTitle, can use
-		%% \fromproperty #'header:title " "
-		\title
-		\if \should-print-page-number
-		\fromproperty #'page:page-number-string
-	}
+  \fill-line {
+    %% If not using the realBookTitle, can use
+    %% \fromproperty #'header:title " "
+    \title
+    \if \should-print-page-number
+    \fromproperty #'page:page-number-string
+  }
   evenHeaderMarkup = \markup
-	\fill-line {
-		\if \should-print-page-number
-		\fromproperty #'page:page-number-string " "
-		\title
-	}
+  \fill-line {
+    \if \should-print-page-number
+    \fromproperty #'page:page-number-string " "
+    \title
+  }
 }
 
 
@@ -140,7 +140,7 @@ global = {
   \numericTimeSignature
   \time 4/4
   \key c \major
-	%% \tempo 4=224  % this would be over the clef on the first line
+  %% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
   %% \override Score.Clef.break-visibility = #'#(#f #f #f)
@@ -155,20 +155,20 @@ global = {
 
   %% left justify rehearsal marks (centered by default)
   \override Score.RehearsalMark.self-alignment-X = #LEFT
-  
-	\override Score.MultiMeasureRest.expand-limit = 1
 
-	%% See here for using colors
-	%% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
-	%% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
-	\override Score.RehearsalMark.color = #darkred
-	%% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
-	\override Score.RehearsalMark.font-size = 6
+  \override Score.MultiMeasureRest.expand-limit = 1
 
-	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
-	\compressEmptyMeasures
-	
-	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  %% See here for using colors
+  %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+  %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+  \override Score.RehearsalMark.color = #darkred
+  %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+  \override Score.RehearsalMark.font-size = 6
+
+  %% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
+  \compressEmptyMeasures
+
+  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
 %%%%%%%%%%%%%%%%%%%% Begin music
@@ -308,7 +308,7 @@ head= \relative c''' {
     \timestop "0:05, 0:13"
     c1
     r8 ees c bes~ bes g bes b~
-    b1    
+    b1
   }
   \alternative {
     { r8 d b c ees g b d \bar ":|]"}
@@ -369,15 +369,15 @@ solo = \relative c''' {
   r4 ees8 des c ees? f g
   bes8 a aes bes? b cis dis b
   \break
-  
+
   \timestop "0:41"
   d4 c8 g ees c  bes aes
   f'8 ges8~ ges4 f8 ees c g
   b8 c e c d g r4
-  r2 r8 \grace fis8 4 f8
+  r2 r8 \grace fis8 g4 f8
   \bar "||"
   \break
-  
+
   \timestop "0:45"
   d8 ees b d c d ees? f
   ges8 ees f des c bes ees? des?
@@ -388,10 +388,10 @@ solo = \relative c''' {
 
   \timestop "0:49"
   f8 fis a fis? g f d dis
-  \markBlue "Ab7 alt like Gmaj7?"
-  e8 g, a b d b c d
+  e8 ^\markup \fontsize #-2 \with-color #blue {"A" \flat "7alt like Gmaj7"}
+  g, a b d b c d
   e8 f g a \tuplet 3/2 { b8 c cis } d g,
-  r2 r4 r8 
+  r2 r4 r8
   \override Staff.OttavaBracket.font-series = #'medium
   \set Staff.ottavationMarkups = #ottavation-simple-ordinals
   \ottava #1
@@ -399,7 +399,7 @@ solo = \relative c''' {
   %% \repeat unfold 4 {s1}
   \break
   \bar "|."
-  
+
   \timestop "0:53"
   r8 a8
   \ottava #0
@@ -426,7 +426,7 @@ solo = \relative c''' {
   b8 cis dis b bes aes f fis
   %% \repeat unfold 4 {s1}
   \break
-  
+
   \timestop "1:05"
   a8 fis g a ais b d b
   c8 a f ges g4 r4
@@ -440,11 +440,11 @@ solo = \relative c''' {
   \bar "|."
 
   %% \pageBreak
-  
+
   %% 2nd chorus
   \markManualBox "2nd Chorus"
   \section
-  \timestop "1:13"
+  \timestop "1:09"
   g4. ees16 c b4 c
   \ottava #0
   f4. des16 bes a4 bes!
@@ -452,7 +452,7 @@ solo = \relative c''' {
   ees'4. bes16 aes g4 aes!
   \break
 
-  \timestop "1:17"
+  \timestop "1:13"
   r1
   \override Staff.OttavaBracket.font-series = #'medium
   \set Staff.ottavationMarkups = #ottavation-simple-ordinals
@@ -462,30 +462,49 @@ solo = \relative c''' {
   r2 r8 gis8 a4
   \break
   \bar "|."
-  
-  \timestop "1:21"
+
+  \timestop "1:17"
   g4 f8 ees d c bes r
   \ottava #0
   f'4 r ees r8 des
   r4 c8 bes a4. g8
   aes8 bes b cis~ cis b bes aes
   \break
-  
-  \timestop "1:29"
+
+  \timestop "1:21"
   g8 g, c d ees f fis e
   f8 d ees b c d e f
   g8 a b g a4 r
   r2 r4 r8 \grace cis8 d8~
   \break
-  
-  d4 s2.
-  s1 s1 s1
+  \bar "|."
+
+  \timestop "1:25"
+  d4 bes8 a g r8 r4
+  cis,8
+  ^\markup \fontsize #-2 \with-color #blue {"Alt scale? (notes of scale 1/2 step lower)"}
+  dis e fis gis e dis? cis?
+  c4 d8 e f g a bes
+  c4 a r2
+  \break
+
+  \timestop "1:29"
+  r8 \grace b8 c4. aes8 f e c
+  ees aes, bes ces des d e8 r
+  r8 d ees f  g aes bes g
+  aes8 fis g fis? ees d des b
   \break
   \bar "|."
-  
+
+  \timestop "1:33"
+  s1 s1 s1 s1
+  \break
+
   \timestop "1:37"
-  \repeat unfold 3 { \repeat unfold 4 {s1} \break} \bar "|."
-  %% \fine
+  s1 s1 s1 s1
+  \break
+  \bar "|."
+  \fine
 }
 
 %% Add scale tones below each note
@@ -503,7 +522,7 @@ scaleDegreesHead = \lyrics {
   \repeat volta 2 {
     %% m1
     \markup \scaleDegree { 1 }1
-    
+
     ""4
     \markup \scaleDegree { 2 }8
     \markup \scaleDegree { 1 }
@@ -538,7 +557,7 @@ scaleDegreesHead = \lyrics {
     \markup \scaleDegree { f3 }
     \markup \scaleDegree { 3 }
 
-    \markup \scaleDegree { 7 }1 
+    \markup \scaleDegree { 7 }1
 
     \alternative {
       {
@@ -816,7 +835,7 @@ scaleDegreesHead = \lyrics {
   \tuplet 3/2 {
     \markup \scaleDegree { n7 }8
     \markup \scaleDegree { 1 }
-    \markup \scaleDegree { s1 }    
+    \markup \scaleDegree { s1 }
   }
   \markup \scaleDegree { 9 }8
   \markup \scaleDegree { 5 }
@@ -947,7 +966,7 @@ scaleDegreesHead = \lyrics {
 
   ""2
   ""8
-  \markup \scaleDegree { 5 }4. 
+  \markup \scaleDegree { 5 }4.
 
   ""8
   \markup \scaleDegree { 5 }4.
@@ -1001,8 +1020,8 @@ scaleDegreesHead = \lyrics {
   ""2
   ""8
   \markup \scaleDegree { s5 }8
-  \markup \scaleDegree { 6 }4 
-  
+  \markup \scaleDegree { 6 }4
+
   %% m70
   \markup \scaleDegree { 5 }4
   \markup \scaleDegree { 4 }8
@@ -1028,11 +1047,11 @@ scaleDegreesHead = \lyrics {
   \markup \scaleDegree { f6 }
   \markup \scaleDegree { n6 }
   \markup \scaleDegree { n7 }
-  \markup \scaleDegree { s4 }8 
+  \markup \scaleDegree { s4 }8
   \markup \scaleDegree { 3 }
   \markup \scaleDegree { f3 }
   \markup \scaleDegree { 2 }
-  
+
   %% m74
   \markup \scaleDegree { 5 }8
   \markup \scaleDegree { 5 }
@@ -1061,134 +1080,164 @@ scaleDegreesHead = \lyrics {
 
   ""2..
   \markup \scaleDegree { 2 }8
-  
+
   %% m78
   \markup \scaleDegree { 5 }4
+  \markup \scaleDegree { f3 }8
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 1 }
+  ""4.
 
-  
+  \markup \scaleDegree { s1 }8
+  \markup \scaleDegree { s2 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { s4 }
+  \markup \scaleDegree { s5 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { s2 }
+  \markup \scaleDegree { s1 }
+
+  \markup \scaleDegree { 5 }4
+  \markup \scaleDegree { g }8
+  \markup \scaleDegree { 7 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 4 }
+
+  \markup \scaleDegree { 5 }4
+  \markup \scaleDegree { 3 }
+  ""2
+
+  %% m82
+  ""8
+  \markup \scaleDegree { 5 }4.
+
+
+
   %% m82
   %% m86
   %% m90
-  
-  
-  
-  
+
+
+
+
 
 
 }
 
 %% %% Add harmonic analysis
 %% harmonicAnalysis = \lyricmode {
-%% 	\override LyricText.font-name = #"serif"
-%% 	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
-%% 	\markup \rN { V 7 / I }1
-%% 	\markup \rN { V 7 / ii }1
-%% 	\set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
-%% 	\markup \rN { V 7 }1
-%% 	\markup \rN { V 7 }1
+%%  \override LyricText.font-name = #"serif"
+%%  \set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
+%%  \markup \rN { V 7 / I }1
+%%  \markup \rN { V 7 / ii }1
+%%  \set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
+%%  \markup \rN { V 7 }1
+%%  \markup \rN { V 7 }1
 %% }
 
-%% Chord names, chord tones, and harmonic analysis only 
+%% Chord names, chord tones, and harmonic analysis only
 %% chordsAnalysisArpeg= {
-%% 	<<
-%% 		\new Lyrics \harmonicAnalysis
-%% 		\new ChordNames { \chordNamesHead }
-%% 		\new Staff {
-%% 			\global
-%% 			<<
-%% 				\scoreBreaks
-%% 				\chordNamesHead
-%% 			>>
-%% 		}
-%% 	>>
+%%  <<
+%%    \new Lyrics \harmonicAnalysis
+%%    \new ChordNames { \chordNamesHead }
+%%    \new Staff {
+%%      \global
+%%      <<
+%%        \scoreBreaks
+%%        \chordNamesHead
+%%      >>
+%%    }
+%%  >>
 %% }
 
 eFlatScore = \score {
-	<<
-		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames {
+  <<
+    %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+    \new ChordNames {
       % add the Chord Names above the staff
       \chordNamesIntroPartial % for intro_partial
       \chordNamesVolta
 
       \repeat unfold 2 { \chordNamesNoVolta }
-    } 
-		\new Staff {
-			\global
-			%% the head
+    }
+    \new Staff {
+      \global
+      %% the head
       \intro_partial
       \head
       %% \pageBreak
       \solo
-		}
+    }
     %% add the scaleDegrees below the staff
-		\new Lyrics { 
+    \new Lyrics {
       \scaleDegreesHead
     }
-	>>
-	\layout {
-		indent = 0
-	}
+  >>
+  \layout {
+    indent = 0
+  }
 }
 
 cScore= \score {
   \transpose c' ees {
-	<<
-		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames {
+  <<
+    %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+    \new ChordNames {
       % add the Chord Names above the staff
       \chordNamesIntroPartial % for intro_partial
       \chordNamesVolta
 
       \repeat unfold 2 { \chordNamesNoVolta }
-    } 
-		\new Staff {
-			\global
-			%% the head
+    }
+    \new Staff {
+      \global
+      %% the head
       \intro_partial
       \head
       %% \pageBreak
       \solo
-		}
+    }
     %% add the scaleDegrees below the staff
-		\new Lyrics { 
+    \new Lyrics {
       \scaleDegreesHead
     }
-	>>
+  >>
   }
-	\layout {
-		indent = 0
-	}
+  \layout {
+    indent = 0
+  }
 }
 
 sopScore= \score {
   \transpose bes ees {
-	<<
-		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames {
+  <<
+    %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+    \new ChordNames {
       % add the Chord Names above the staff
       \chordNamesIntroPartial % for intro_partial
       \chordNamesVolta
 
       \repeat unfold 2 { \chordNamesNoVolta }
-    } 
-		\new Staff {
-			\global
-			%% the head
+    }
+    \new Staff {
+      \global
+      %% the head
       \intro_partial
       \head
       %% \pageBreak
       \solo
-		}
+    }
     %% add the scaleDegrees below the staff
-		\new Lyrics { 
+    \new Lyrics {
       \scaleDegreesHead
     }
-	>>
+  >>
   }
-	\layout {
-		indent = 0
-	}
+  \layout {
+    indent = 0
+  }
 }
 
 
