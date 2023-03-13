@@ -490,14 +490,19 @@ solo = \relative c''' {
 
   \timestop "1:29"
   r8 \grace b8 c4. aes8 f e c
-  ees aes, bes ces des d e8 r
+  ees
+  ^\markup \fontsize #-2 \with-color #blue {"Alt scale?"}
+  aes, bes b des d e8 r
   r8 d ees f  g aes bes g
-  aes8 fis g fis? ees d des b
+  aes8 fis g f ees d des b
   \break
   \bar "|."
 
   \timestop "1:33"
-  s1 s1 s1 s1
+  c8 d ees f ges ees? f d
+  ees8 des d c \tuplet 3/2 { b8 d f } aes8 f
+  g8 fis f e ees des bes c
+  r8 g' bes aes g f ees d
   \break
 
   \timestop "1:37"
@@ -1088,17 +1093,17 @@ scaleDegreesHead = \lyrics {
   \markup \scaleDegree { 1 }
   ""4.
 
-  \markup \scaleDegree { s1 }8
-  \markup \scaleDegree { s2 }
-  \markup \scaleDegree { 3 }
-  \markup \scaleDegree { s4 }
-  \markup \scaleDegree { s5 }
-  \markup \scaleDegree { 3 }
-  \markup \scaleDegree { s2 }
-  \markup \scaleDegree { s1 }
+  \markup \scaleDegree { f2 }8
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { f4 }
+  \markup \scaleDegree { f5 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { f4 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { f2 }
 
   \markup \scaleDegree { 5 }4
-  \markup \scaleDegree { g }8
+  \markup \scaleDegree { 6 }8
   \markup \scaleDegree { 7 }
   \markup \scaleDegree { 1 }
   \markup \scaleDegree { 2 }
@@ -1112,17 +1117,79 @@ scaleDegreesHead = \lyrics {
   %% m82
   ""8
   \markup \scaleDegree { 5 }4.
+  \markup \scaleDegree { f3 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { n7 }
+  \markup \scaleDegree { 5 }
 
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { f2 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { f4 }
+  \markup \scaleDegree { f5 }
+  ""8
 
+  ""8
+  \markup \scaleDegree { 7 }8
+  \markup \scaleDegree { 1 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 3 }
 
-  %% m82
+  \markup \scaleDegree { f5 }8
+  \markup \scaleDegree { 3 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { f6 }8
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { f5 }
+  \markup \scaleDegree { 3 }
+
   %% m86
+  \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { f9 }8
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { 8 }
+  \markup \scaleDegree { 6 }
+
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { f3 }
+  \markup \scaleDegree { n3 }
+  \markup \scaleDegree { 2 }
+  \tuplet 3/2 {
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 7 }
+    \markup \scaleDegree { 9 }
+  }
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { 2 }
+
+  \markup \scaleDegree { 7 }8
+  \markup \scaleDegree { s6 }
+  \markup \scaleDegree { 6 }
+  \markup \scaleDegree { s5 }
+  \markup \scaleDegree { 5 }
+  \markup \scaleDegree { 4 }
+  \markup \scaleDegree { 2 }
+  \markup \scaleDegree { 3 }
+
+  ""8
+  \markup \scaleDegree { 4 }8
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { f5 }
+  \markup \scaleDegree { 1 }8
+  \markup \scaleDegree { f7 }
+  \markup \scaleDegree { f6 }
+  \markup \scaleDegree { 5 }
+
   %% m90
-
-
-
-
-
 
 }
 
