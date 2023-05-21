@@ -6,18 +6,21 @@
 
 %%%%%%%%%%%%%%%%%%%% Functions
 
+%% Set fontsize in markupt https://lilypond.org/doc/v2.23/Documentation/notation/formatting-text
 timestop = #(define-music-function
              (parser location string)
              (string?)
              "colored markup (for timestamps)"
-             #{ <>^\markup \large \with-color #red #string #})
+             #{ <>^\markup \halign #3 \fontsize #-3 \with-color #red #string #})
 
 markManualBox = #(define-music-function
                   (parser location string)
                   (string?)
                   "manually set a box mark that matches current color/size"
-                  #{ <>\mark \markup \with-color #darkred \box \sans \normalsize  #string #})
+                  #{ <>\mark \markup \with-color #darkred \box \sans \small #string #})
 
+%% maybe use \textMark instead of \mark \markup
+%% https://lilypond.org/doc/v2.23/Documentation/notation/writing-text#text-marks
 markBlue = #(define-music-function
              (parser location string)
              (string?)
