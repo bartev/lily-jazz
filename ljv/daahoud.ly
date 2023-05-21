@@ -28,7 +28,7 @@
 title = #"Daahoud"
 composer = #"Clifford Brown"
 %% arranger = ##f
-tagline = "Awesome transcription by Bartev (for alto)"
+tagline = "Awesome transcription by Bartev (with checks from https://www.youtube.com/watch?v=jVlnkapGspw)"
 meter = "155"
 %% copyright = #tagline
 copyright = "Bartev 2023"
@@ -412,7 +412,7 @@ solo = \relative c''' {
 
   \timestop "0:57"
   r8 g''16 fis f8 c aes f e c
-  ees8 c d f aes ces aes? a
+  ees8 c d f aes b aes? a
   bes8 aes f fis g r8 r4
   r4 ees8 c d c b d
   %% \repeat unfold 4 {s1}
@@ -506,7 +506,10 @@ solo = \relative c''' {
   \break
 
   \timestop "1:37"
-  s1 s1 s1 s1
+  \tuplet 3/2 { c8 d c } g8 c \tuplet 3/2 { ees8 f ees } c8 ees
+  \tuplet 3/2 {fis8 g fis} ees8 g f4 r4
+  r8 f8 \tuplet 3/2 { g8 bes c } ees8 c d b
+  c8 a f d e g d c
   \break
   \bar "|."
   \fine
