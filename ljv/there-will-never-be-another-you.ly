@@ -41,13 +41,16 @@ realBookTitle = \markup {
       s^\markup
       \fill-line {
         %% meter
-        \fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }
+        \lower #1 
+        \fontsize #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }
         %% title
-        \fontsize #5
+        \raise #0
+        \fontsize #4
         \override #'(offset . 7) \override #'(thickness . 6)
-        \underline \larger #title
+        \underline #title
         %% composer
-        \fontsize #2 \lower #1 \concat { #composer " " }
+        \lower #1
+        \fontsize #0 \concat { #composer " " }
       }
       s
     }
@@ -248,18 +251,21 @@ ebSolo = \relative c'''{
   r4 r8 f e d c a
   \break
 
+  \timestop "1:57"
   d4 d2~ d8 c
   d4 g8 e r d c b
   cis2 d4. bes8~
   bes4. a8 g4 c8 bes
   \break
-  
+
+  \timestop "2:01"
   a8 c e g~ g g f4
   r2 ees8 c aes fis
   g4. f8 e d' r4
   c4 r4 r2
   \break
 
+  \timestop "2:05"
   b'2 gis4 e8 b
   r8 b4 gis8 b e gis a
   gis4. fis8 g fis f gis
@@ -344,7 +350,7 @@ ebSolo = \relative c'''{
   d e f g ees b gis fis
   g8 f' d ees e c a g
   \bar "||"
-  d8 d~ d4 r2
+  d'8 d~ d4 r2
 }
 
 scaleDegrees = \lyrics {
