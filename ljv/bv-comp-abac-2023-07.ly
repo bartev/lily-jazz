@@ -25,7 +25,7 @@ title = #"Bartev's comp - ABAC"
 composer = #"Bartev"
 arranger = #"Bartev"
 tagline = "There Will Never Be Another You changes"
-meter = "SET METER"
+meter = "125"
 copyright = #"Bartev 2023"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
@@ -199,7 +199,7 @@ chordNamesHead = \chordmode {
 
   %% B
   g1:maj7
-  cis1:7.11+
+  c1:7.11+
   d1:maj7
   b1:m7
 
@@ -221,7 +221,7 @@ chordNamesHead = \chordmode {
 
   %% C
   g1:maj7
-  cis1:7.11+
+  c1:7.11+
   d1:maj7
   gis2:m7.5- cis:7
 
@@ -257,7 +257,7 @@ leadMusic= \relative c'' {
   
   r1
   r1
-  r4 r8 g8 fis e fis g
+  r4 r8 g,8 fis e fis g
   r8 a8~ a4~ a8 g4.
   \bar "|."
   \break
@@ -282,11 +282,11 @@ leadMusic= \relative c'' {
   g8 fis a r r2
   fis8 gis~ gis4 r2
   \break
-  
-  s1
-  s1
-  s1
-  s1
+
+  fis8 a cis e r2
+  fis,8 a fis cis' r2
+  g8 b g d' r2
+  fis8 d cis a r2
 	\bar "|."
   \break
 }
