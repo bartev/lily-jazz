@@ -21,11 +21,11 @@
 %%   greenChord
 
 %% set up title, compser, meter, copyright
-title = #"SET MY TITLE"
-composer = #"SET COMPOSER"
+title = #"I've Got You Under My Skin"
+composer = #"Cole Porder"
 arranger = #"SET ARRANGER"
 tagline = "Awesome transcription by Bartev"
-meter = "SET METER"
+meter = "120"
 copyright = #"Bartev 2023"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
@@ -190,60 +190,150 @@ scoreBreaks = {
 }
 
 %% Define the chords here. The same chords will be used for chord names and notes
-chordNamesHead = \chordmode {
-  c1:m7 f:7 bes bes
+chordNamesD =  \chordmode {
+  %% A
+  d1:m7 g:7 c:maj7 a:7
+  d:m7 g:7 c:maj7 a:7
+
+  d:m7 g:7 c:maj7 a:7
+  d:m7 g:7 c:maj7 a:7
+  %% B
+  d:m7 g:7 c:maj7 a:7
+  d:m7.5- g:7.9- c:maj7 c:maj7
+
+  b:m7 e:7 a:maj7 a:maj7
+  d:m7 g:7 c:maj7 c:maj7
+  %% C
+  d:m7 g:7sus c:maj7 a:7.9-
+  d:m7 g:7sus c:maj7 e:7.9-
+  %% D
+  a:m7 d2:m7 g2:7 c1:maj7 a1:m7
+  d:m7 g:7 c:maj7 g2:m7 c2:7
+
+  f1:maj7 bes:7 c:maj7 e2:m7.5- a2:7
+  d1:m7 g:7 c:maj7 c:maj7
 }
+
+chordNamesA = \transpose d a {\chordNamesD}
 
 leadMusic= \relative c'' {
+  \partial 4
+  \timestop "0:00"
+  d4
 	\bar ".|-|"
-	\mark \default
-  c4 d
-	\mark \default
-	e f
-	\mark "A"
-	c4 d
-	\markManualBox "A"
-	e f
-	\mark \default
-	c4 d e f
-	\markManualBox "A"
-	c4 d e f
-	\bar "|."
-	\inlineMMR R1*4
-}
-solo = \relative c'' {
-	\bar ".|-|"
-
-	%% do this to have multiple rehearsal marks in the same location
-	%% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
-	
-	\once \override Score.RehearsalMark.extra-offset = #' (0 . 1)
-	%% \once \override Score.RehearsalMark.baseline-skip = #9
-	\mark \markup \center-column {
+  \mark \markup \center-column {
 		\box A
 		%% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
-		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
-	}	
-	r8 e8 g c bes g e c
-	\mark \markup \left-column {
-		\box B
-		\small \with-color #blue "markBlue test"
+		{ \raise #2 \small \with-color #blue \center-column {"Begin head"} }
 	}
-	
-	\override Glissando.style = #'zigzag
-	\timestop "0:11"
-	bes4 \glissando g'
-	\markBlue "My Blue Text"
-	bes e
-	c d e f
-	\inlineMMR R1*2 
-	\bar "|."
-	\timestop "0.08"
-	%% \mark \markup{\small \with-color #red "0:08"}
-	\inlineMMR R1*4
-	\inlineMMR R1*2
+  %% m1
+  e4 r8 e8~ e2~
+  e2 d4 c4
+  b4 r8 b8~ b2
+  r2 r8 c8 d4
+  \break
 
+  %% m5
+  \timestop "0:04"
+  e4 e e e
+  e2 d4 c4
+  b4( bes) b b~
+  b2 r4 r8 b
+  \break
+
+  %% m9
+  \timestop "0:08"
+  c4 c c c~
+  \tuplet 3/2 { c4~ c b } \tuplet 3/2 { a4 g fis  }
+  \tuplet 3/2 { a2 g4 } e2
+  r2 r4 fis4
+  \break
+
+  %% m13
+  \timestop "0:12"
+  g8 g g2.
+  r2 fis4 e
+  d8 d~ d4~ d2
+  r2 r4 d'
+  \break
+  \bar "||"
+  
+  \markManualBox "B"
+  %% m17
+  \timestop "0:15"
+  e e e2~
+  e4 d c b4
+  b2. g8 e
+  r2 r8 b' c4
+  \break
+
+  \timestop "0:19"
+  ees4 ees ees ees~
+  ees4 d c b8 bes
+  b!2 r2
+  r2 r4 b4
+  \break
+
+  \timestop "0:23"
+  cis4 cis cis cis
+  b a g8 gis r4
+  s1
+  s1
+  \break
+  
+  \repeat unfold 2 { s1*4 \break }
+  \repeat unfold 2 { s1*4 \break }
+  
+  \timestop "0:11"
+  \repeat unfold 2 { s1*4 \break }
+  \repeat unfold 2 { s1*4 \break }
+  \markManualBox "C"
+  \timestop "0:11"
+  \repeat unfold 2 { s1*4 \break }
+  \repeat unfold 2 { s1*4 \break }
+  \markManualBox "D"
+  \timestop "0:11"
+  \repeat unfold 2 { s1*4 \break }
+  \repeat unfold 2 { s1*4 \break }
+    \bar "|."
 }
+
+%% solo = \relative c'' {
+%% 	\bar ".|-|"
+%% 
+%% 	%% do this to have multiple rehearsal marks in the same location
+%% 	%% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
+%% 	
+%% 	\once \override Score.RehearsalMark.extra-offset = #' (0 . 1)
+%% 
+%% }
+
+%% solo = \relative c'' {
+%% 	\bar ".|-|"
+%%   %% \markManualBox "Begin solo (A)"
+%%   \mark \markup \center-column {
+%% 		\box A
+%% 		%% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
+%% 		{ \raise #2 \small \with-color #blue \center-column {"Begin solo"} }
+%% 	}	
+%% 
+%%   \timestop "0:11"
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \markManualBox "B"
+%%   \timestop "0:11"
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \markManualBox "C"
+%%   \timestop "0:11"
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \markManualBox "D"
+%%   \timestop "0:11"
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \repeat unfold 2 { s1*4 \break }
+%%   \bar "|."
+%% }
 
 %% Add scale tones over each note
 scaleDegrees = \lyrics {
@@ -262,40 +352,26 @@ harmonicAnalysis = \lyricmode {
 }
 
 
-%% Chord names, chord tones, and harmonic analysis only 
-chordsAnalysisArpeg= {
-	<<
-		\new Lyrics \harmonicAnalysis
-		\new ChordNames { \chordNamesHead }
-		\new Staff {
-			\global
-			<<
-				\scoreBreaks
-				\chordNamesHead
-			>>
-		}
-	>>
-}
-
 templateScore = \score {
 	<<
-		\new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
+		%% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+		\new ChordNames { \partial 4 s4
+                      \repeat unfold 2 \chordNamesA }  % add the Chord Names above the staff
 		\new Staff {
 			\global
 			%% the head 
 			<<
-				\repeat unfold 2 \scoreBreaks				
+				%% \repeat unfold 2 \scoreBreaks				
 				\leadMusic
 			>>
 			%% Start the solo on a new page 
 			%% \pageBreak
-			<<
-				\scoreBreaks
-				\solo
-			>>
+			%% <<
+			%% 	%% \scoreBreaks
+			%% 	\solo
+			%% >>
 		}
-		\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
+    %%	\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
 	>>
 	\layout {
 		indent = 0
@@ -306,3 +382,4 @@ templateScore = \score {
 %% \pageBreak
 
 \templateScore
+

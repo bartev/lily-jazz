@@ -21,10 +21,10 @@
 %%   greenChord
 
 %% set up title, compser, meter, copyright
-title = #"SET MY TITLE"
-composer = #"SET COMPOSER"
-arranger = #"SET ARRANGER"
-tagline = "Awesome transcription by Bartev"
+title = #"Footprints"
+composer = #"Wayne Shorter"
+arranger = #""
+tagline = "Real Book p.157"
 meter = "SET METER"
 copyright = #"Bartev 2023"
 
@@ -129,8 +129,8 @@ realBookTitle = \markup {
 
 global = {
   \numericTimeSignature
-  \time 4/4
-  \key c \major
+  \time 3/4
+  \key d \minor
 	%% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
