@@ -270,23 +270,25 @@ leadMusic = \relative c'' {
   b4 d,8 fis~ fis4 r4
   r8 g e f g a bes c
   \break
-  s1
-  s1
-  s1
-  s1
+
+  d4 f8 a~ a4 r
+  r8 bes aes g f ees d c
+  ees4 g8 c,~ c4 r
+  bes8 bes a a g g d e
   \break
+
 
   \markManualBox "A"
-  s1
-  s1
-  s1
-  s1
+  fis8 fis r8 b~ b a gis fis
+  g8 g r a~ a g fis e
+  fis fis r d r2
+  g8 g f ees~ ees f g a
   \break
 
-  s1
-  s1
-  s1
-  s1
+  b8 d~ d4 r2
+  c8 e~ e4 d8 fis~ fis4
+  b4 a8 g fis d b g
+  e'8 c a fis g4 r
   \bar "|."
 }
 
