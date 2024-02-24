@@ -225,55 +225,54 @@ leadMusic = \relative c'' {
   b2 r2
   r2 \tuplet 3/2 {a4 gis fis}
   gis2 r2
-  r2 b4 b8 b~
+  r2 b4 b8 gis
   \break
 
   \timestop "0:21"
   b4. b8 b4. r8
-  r4 r8 \appoggiatura { fis16 } a8 \tuplet 3/2 { a4 gis fis! }
-  gis1
+  r4 r4 \appoggiatura { g16 gis } \tuplet 3/2 { a4 gis fis! }
+  gis2 r
   r2 r4 r8 gis8
   \bar "|."
   \break
 
   \timestop "0:25"
   gis4 r4 r4 r8 gis8
-  g?4 r g8 g4 g8
-  fis4 fis fis fis
-  fis4 f8 e~ e4 dis4
+  g?4 r r2
+  r4 r8 fis8 \tuplet 3/2 { fis2 fis4 }
+  \tuplet 3/2 { fis4 f e } \tuplet 3/2 { dis2 cis4 }
   \break
 
   \timestop "0:29"
   cis4 c8 b~ b2~
-  b2 b'8 a gis b~
-  b1
-  b2 b4 b8 b8
+  b2 b'4 a8 gis
+  b4 a8 gis b4 a8 b~
+  b2 b4 a8 gis
   \bar "|."
   \break
 
   \markManualBox "A"
   \timestop "0:34"
-  b1~
-  b2 \appoggiatura g16 \tuplet 3/2 {a4 gis fis}
-  gis1~
-  gis2 b4 b8 b~
+  b2 r
+  r2 \appoggiatura { g16 gis } \tuplet 3/2 {a4 gis fis}
+  gis2 r
+  r4 r8 b8~ b4 b8 b~
   \break
 
   \timestop "0:38"
-  b4 b b b
-
+  b4. b8 b4. b8
   %% b4 a \tuplet 3/2 { a4 gis g }
   \tuplet 3/2 { c4 cis b } \tuplet 3/2 { a4 gis g }
-  gis1~
-  gis2 gis4. gis8
+  g4 gis gis2~
+  gis2 r4 gis8 gis
   \bar "|."
   \break
 
   \timestop "0:42"
-  gis4 gis gis gis
-  g2~ g8 g4 g8
-  fis4 fis fis fis
-  fis4 f8 e~ e4 dis4
+  gis4 r r r8 gis8
+  g2~ g8 r8 r4
+  r4 r8 fis8 fis4. fis8
+  \tuplet 3/2 { fis4 f e }  dis4 cis
   \break
 
   \timestop "0:47"
