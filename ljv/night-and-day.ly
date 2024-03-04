@@ -230,7 +230,7 @@ leadMusic = \relative c'' {
 
   \timestop "0:21"
   b4. b8 b4. r8
-  r4 r4 \appoggiatura { g16 gis } \tuplet 3/2 { a4 gis fis! }
+  r4 r4 \appoggiatura { g16 gis } \tuplet 3/2 { a4 gis! fis! }
   gis2 r
   r2 r4 r8 gis8
   \bar "|."
@@ -247,14 +247,14 @@ leadMusic = \relative c'' {
   cis4 c8 b~ b2~
   b2 b'4 a8 gis
   b4 a8 gis b4 a8 b~
-  b2 b4 a8 gis
+  b2 b4 b8 b~
   \bar "|."
   \break
 
   \markManualBox "A"
   \timestop "0:34"
   b2 r
-  r2 \appoggiatura { g16 gis } \tuplet 3/2 {a4 gis fis}
+  r2 \appoggiatura { g16 gis } \tuplet 3/2 {a4 gis! fis}
   gis2 r
   r4 r8 b8~ b4 b8 b~
   \break
@@ -269,8 +269,8 @@ leadMusic = \relative c'' {
   \break
 
   \timestop "0:42"
-  gis4 r r r8 gis8
-  g2~ g8 r8 r4
+  gis4 r r r8 gis!8
+  g!2~ g8 r8 r4
   r4 r8 fis8 fis4. fis8
   \tuplet 3/2 { fis4 f e }  dis4 cis
   \break
@@ -349,7 +349,13 @@ leadMusic = \relative c'' {
 
   \markManualBox "A"
   \timestop "1:25"
-  \repeat unfold 4 { s1 } \break
+  r4 r8 b8 e g c b~
+  b4 \appoggiatura {bes16 aes} a4 \appoggiatura {gis16 e} gis!8 e dis b
+  cis dis e r e cis' gis b
+  f8 e g fis gis s4.
+
+  \break
+
   \timestop "1:29"
   \repeat unfold 4 { s1 } \break \bar "|."
   \timestop "1:34"
