@@ -1,5 +1,8 @@
 \version "2.24.0"
 
+%% Checked against Bobby Stern Jazz transcription
+%% https://bobbysternjazz.com/uploads/3/4/4/5/34450459/night___day_-_joe_henderson_transcription__bb__bsj.pdf
+
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
 
@@ -312,54 +315,63 @@ leadMusic = \relative c'' {
     { e4 e8 e8~ e1 }
     { b'4 b8 b8~ b1 }
   >>
-  r2 \tuplet 3/2 { b8 a gis } g4
+  r2 \tuplet 3/2 { c8 b a } g4
   \bar "|."
   \break
 
   \bar ".|-|"
   \markManualBox "A"
   \timestop "1:08"
-
   b4. b8~ b2
   r1
   r4 b8 a b4 gis8 fis
-  gis4 a8 gis a4 fis8 e
+  gis4 a8 gis a4 f8 d
   \break
 
   \timestop "1:12"
-  f?4 g8 fis g4 e8 dis
-  e4 e8 d? dis4 dis8 d
-  dis4 dis8 d cis4 dis8 d
-  cis4 cis8 c b4 gis(
+  e4 g8 e g4 e8 cis
+  e4 e8 cis dis4 dis8 b
+  dis4 dis8 b cis4 cis8 gis
+  cis4 cis8 gis c4 gis(
   \break \bar "|."
 
   \timestop "1:16"
-  cis4) r8 c \tuplet 3/2 { cis8 e fis } \tuplet 3/2 { gis8 fis e }
-  c?4 r r8 b16 c e4
-  r4 b gis8 b r4
-  r4 r8 b8 aes b des e~
+  cis4) r8 gis cis16 dis e fis gis16 fis e dis
+  c4 r4 r8 dis16 \tuplet 3/2 { e32 fis g  } gis8 r
+  r8 b,8~ b4 gis8 b r4
+  r4 r8 bes8 g bes des e~
   \break
 
   \timestop "1:21"
   e2 r2
-  e8 fis gis e cis dis e4
+  f8 g a f d f e c
+  %% e8 fis gis e cis dis e4
   r1
   r1
   \break\bar "|."
 
   \markManualBox "A"
   \timestop "1:25"
-  r4 r8 b8 e g c b~
-  b4 \appoggiatura {bes16 aes} a4 \appoggiatura {gis16 e} gis!8 e dis b
-  cis dis e r e cis' gis b
-  f8 e g fis gis s4.
-
+  r4 r8 c8 e g c b~
+  b4 \appoggiatura {bes16 aes} a4 \appoggiatura {gis16 e} gis!8 fis16 e cis8 b
+  e8 d dis fis a cis gis b
+  f8 d a' f g a16 g f8 c
   \break
 
   \timestop "1:29"
-  \repeat unfold 4 { s1 } \break \bar "|."
+  e8 d c g b4 r
+  b8 r r bes ees,4 b'8 gis
+  a4 b8 gis a4 cis8 a
+  c4 dis8 c cis dis e fis
+  \break
+
   \timestop "1:34"
-  \repeat unfold 4 { s1 } \break
+  gis4~ gis16 fis e dis cis8 dis \tuplet 3/2 { e8 fis gis? }
+  fis8 d c a e' c r4
+  s1
+  s1
+  \break
+
   \timestop "1:38"
   \repeat unfold 4 { s1 } \break\bar "|."
 
