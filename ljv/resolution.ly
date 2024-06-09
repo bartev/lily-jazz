@@ -225,25 +225,55 @@ leadMusic = \relative c''' {
   \bar ".|-|"
   \markManualBox "A"
   \timestop "0:22"
-  g8 c~ c4~ c2~
+  \appoggiatura { g8 } c1~
+  %% g8 c~ c4~ c2~
   c2 g8 c bes aes
-  g4. f8 fis2~
+  g4. fis8~ fis2~
   fis2 r4 r8 f16 fis
   \break
 
-  \timestop "0:2x"
-  f1
-  r4 r8 ees d c d c
-  bes8 g ees' c ees ees c4
-  bes8 c~ c4 r2
+  \timestop "0:27"
+  f1~
+  f8 ees d ees d c b g
+  ees'8 \parenthesize c ees ees c4 bes8 c~
+  c2 r2
   \bar "|."
   \break
 
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break
+  \timestop "0:33"
+  \appoggiatura { g'8 } c1~
+  c2 g8 c bes aes
+  g4 bes8 fis~ fis2~
+  fis2 r4 r8 fis8
+    \break
+
+  \timestop "0:38"
+  f16 fis f8~ f4~ f2~
+  f8 ees d ees d c b bes
+  b2 aes8 ees f4~
+  f2 r2
+  \bar "|."
+  \break
+
+  \timestop "0:44"
+  \appoggiatura { g'8 } c1~
+  c2 g8 c bes aes
+  g4 g8 fis~ fis2~
+  fis2 r4 r8 f16 fis
+  \break
+
+  \timestop "0:49"
+  f2~ f8 ees d ees
+  d4~ d8 c b aes bes4~
+  bes4 g8 bes fis4 bes,8 c8~
+  c2 r4 g''8 bes
+  \break
 
   \markManualBox "Bridge"
-  \repeat unfold 4 { s1 } \break
+  \timestop "0:55"
+  bes8 g c r f,4 r
+
+  \repeat unfold 3 { s1 } \break
   \repeat unfold 4 { s1 } \break \bar "|."
   \repeat unfold 4 { s1 } \break
   \repeat unfold 4 { s1 } \break\bar "|."
