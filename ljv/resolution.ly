@@ -3,6 +3,9 @@
 %% Checked against Bobby Stern Jazz transcription
 %% https://bobbysternjazz.com/uploads/3/4/4/5/34450459/night___day_-_joe_henderson_transcription__bb__bsj.pdf
 
+%% Also see youtube transcription (slightly different)
+%% https://www.youtube.com/watch?v=WO7zI-mTtZU
+
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
 
@@ -271,12 +274,31 @@ leadMusic = \relative c''' {
 
   \markManualBox "Bridge"
   \timestop "0:55"
-  bes8 g c r f,4 r
+  bes8 g r c~ c f,8~ f4~
+  f4~ f8 ees d bes8~ bes4
+  r4 r8 bes c ees f aes
+  f8 ees f8 ees~ ees4~ ees8 c16 ees
+  \break
 
-  \repeat unfold 3 { s1 } \break
-  \repeat unfold 4 { s1 } \break \bar "|."
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break\bar "|."
+  \timestop "1:00"
+  c8 bes aes8 ees'~ ees c ees c~
+  c8 bes c bes~ bes4~ bes8 g
+  ees'8 c~ c4 r2
+  r4 r8 g' f4. c8
+  \break \bar "|."
+
+  \timestop "1:05"
+  \tuplet 3/2 { g'4 c c } ees8 f8~ f8 d8~
+  d4~ d8 c8 bes g8~ g4~
+  g8 r r4 r8 bes8 a g
+  ees8 f g8 a f4~ f8 ees
+  \break
+
+  \timestop "1:11"
+  \tuplet 3/2 { c8 g c } \tuplet 3/2 { ees c ees } g4 r4
+
+  \repeat unfold 3 { s1 } \break\bar "|."
+
   \repeat unfold 4 { s1 } \break
   \repeat unfold 4 { s1 } \break \bar "|."
   \repeat unfold 4 { s1 } \break
