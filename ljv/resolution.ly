@@ -200,21 +200,54 @@ scoreBreaks = {
 %% 48 measures (3 x 16)
 chordNamesHead = \chordmode {
   %% A
-  \repeat unfold 3 {
-    \repeat percent 2 { c1:min7 }
-    c2:min7 aes:sus7
+
+  %% 8 bar form ?
+    %% A
+    %% 1-4
+    \repeat percent 2 { c1:min }
+    c2:min aes:sus7
     aes1:sus7
 
-    \repeat percent 2 { d1:7.5+ }
-    d1:sus9-
-    c2:min7 g:7.5+
-  }
+    %% 5-8
+    \repeat percent 2 { d1:7.9+ }
+    c1:min
+    g1:7
 
-  %% B
-  \repeat percent 4 { c1:min7 }
-  \repeat percent 4 { c1:min7 }
-  \repeat percent 4 { c1:min7 }
-  \repeat percent 4 { c1:min7 }
+
+    %% B
+    %% 9-12
+    \repeat percent 2 { c1:min }
+    c2:min aes:sus7
+    aes1:sus7
+
+    %% 13-16
+    \repeat percent 2 { d1:7.9+}
+    \repeat percent 2 { g1:7.9- }
+
+
+    %% C
+    %% 17-20
+    \repeat percent 2 { c1:min }
+    c2:min aes:sus7
+    aes1:sus7
+
+    %% 21-24
+    \repeat percent 2 { d1:7.9+}
+    c1:min7.5-
+    g1:7
+
+    %% Bridge?
+    %% 25-28
+    %% \repeat percent 4 { c1:m9 }
+    \repeat percent 2 { c1:min }
+    c2:min aes:sus7
+    aes1:sus7
+
+    %% 29-32
+    %% \repeat percent 4 { c1:m9 }
+    \repeat percent 2 { d1:7.9+}
+    c1:min7.5-
+    g1:7
 
 }
 
@@ -226,7 +259,7 @@ chordNamesHead = \chordmode {
 
 leadMusic = \relative c''' {
   \bar ".|-|"
-  \markManualBox "A"
+  \markManualBox "Head"
   \timestop "0:22"
   \appoggiatura { g8 } c1~
   %% g8 c~ c4~ c2~
@@ -243,12 +276,13 @@ leadMusic = \relative c''' {
   \bar "|."
   \break
 
+  \markManualBox "A"
   \timestop "0:33"
   \appoggiatura { g'8 } c1~
   c2 g8 c bes aes
   g4 bes8 fis~ fis2~
   fis2 r4 r8 fis8
-    \break
+  \break
 
   \timestop "0:38"
   f16 fis f8~ f4~ f2~
@@ -258,6 +292,7 @@ leadMusic = \relative c''' {
   \bar "|."
   \break
 
+  \markManualBox "A"
   \timestop "0:44"
   \appoggiatura { g'8 } c1~
   c2 g8 c bes aes
@@ -285,8 +320,10 @@ leadMusic = \relative c''' {
   c8 bes c bes~ bes4~ bes8 g
   ees'8 c~ c4 r2
   r4 r8 g' f4. c8
-  \break \bar "|."
+  \pageBreak \bar "|."
 
+
+  \markManualBox "Solo"
   \timestop "1:05"
   \tuplet 3/2 { g'4 c c } ees8 f8~ f8 d8~
   d4~ d8 c8 bes g8~ g4~
@@ -295,14 +332,43 @@ leadMusic = \relative c''' {
   \break
 
   \timestop "1:11"
-  \tuplet 3/2 { c8 g c } \tuplet 3/2 { ees c ees } g4 r4
+  \tuplet 3/2 { c8 g c } \tuplet 3/2 { ees c ees } \tuplet 3/2 { f ees  f} \appoggiatura { ees8 } c4~
+  c4~ c8 \appoggiatura { g16 } ees'8 d c  bes g8
+  d'8 bes g f c4 f8 c8~
+  c4 r4 r4 g''8 g
+  \break \bar "|."
 
-  \repeat unfold 3 { s1 } \break\bar "|."
+  \timestop "1:17"
+  c1~
+  c2 g8 c bes aes
+  g4. f8( fis2~ )
+  fis2 r4 r8 f16 fis
+  \break
 
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break \bar "|."
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break \bar "|."
+  \timestop "1:22"
+  f16 fis f4.~ f2~
+  f8 ees d ees d c b g
+  ees'8 \parenthesize c ees ees c4 bes8 c~
+  c2 r4 g'4
+  \break
+  \bar "|."
+
+  \timestop "1:28"
+  c1~
+  c2 g8 c bes aes
+  g4. fis8~ fis2~
+  fis2 r4 r8 f16 fis
+  \break
+
+  \timestop "1:34"
+  f16[ r f f~ ] f4~ f2~
+  f8 ees d ees d c b bes
+  b2 aes8 ees f4~
+  f2 r2
+  \break
+  \bar "|."
+
+  \timestop "1:40"
   \repeat unfold 4 { s1 } \break
   \repeat unfold 4 { s1 } \break \bar "|."
   \repeat unfold 4 { s1 } \break
@@ -320,7 +386,7 @@ myScore = \score {
     {
       %% \set chordChanges = ##f
       %% \intro_partial_chords
-      \repeat unfold 1 { \chordNamesHead }
+      \repeat unfold 2 { \chordNamesHead }
 
     }
     \new Staff {
