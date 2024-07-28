@@ -31,7 +31,7 @@ title = #"Resolution - A Love Supreme Part II"
 composer = #"John Coltrane"
 arranger = #"E\flat"
 tagline = "John Coltrane transcription 2024-04"
-meter = "120"
+meter = "180"
 copyright = #"Bartev 2024"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
@@ -361,16 +361,47 @@ leadMusic = \relative c''' {
   \break
 
   \timestop "1:34"
-  f16[ r f f~ ] f4~ f2~
+  f16[ f f f~ ] f4~ f2~
   f8 ees d ees d c b bes
   b2 aes8 ees f4~
-  f2 r2
+  \override Glissando.style = #'zigzag
+  f2 aes2 \bendAfter #-6
+  %% \cadenzaOn
+  %% aes4\glissando
+  %% \hideNotes
+  %% c,4
+  %% \unHideNotes
+  %% \cadenzaOff
   \break
   \bar "|."
 
   \timestop "1:40"
+  r4 r8 g'8 c4 g8 c8
+  r16 c c8~ c4 g8 c bes aes
+  g4 bes8 fis~ fis2~
+  fis4 r4 r4 r8 f16 fis
+  \break
+
+  \timestop "1:45"
+  f4 ees8 d~ d2~
+  d8 ees d c b c bes4~
+  bes4 fis8 aes fis2
+  bes,8 c~ c4~ c4 r
+  \pageBreak \bar "|."
+
+
+  \markManualBox "Solo"
+  \timestop "4:39"
+
   \repeat unfold 4 { s1 } \break
   \repeat unfold 4 { s1 } \break \bar "|."
+
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break \bar "|."
+
+  \repeat unfold 4 { s1 } \break
+  \repeat unfold 4 { s1 } \break \bar "|."
+
   \repeat unfold 4 { s1 } \break
   \repeat unfold 4 { s1 } \break \bar "|."
 }
@@ -379,6 +410,7 @@ myScore = \score {
   <<
     %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
     %% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
+    %% \pageBreak
     \new ChordNames \with {
       \consists Percent_repeat_engraver
       \override PercentRepeat.Y-offset = 1
@@ -386,7 +418,7 @@ myScore = \score {
     {
       %% \set chordChanges = ##f
       %% \intro_partial_chords
-      \repeat unfold 2 { \chordNamesHead }
+      \repeat unfold 3 { \chordNamesHead }
 
     }
     \new Staff {
