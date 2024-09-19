@@ -1,10 +1,8 @@
 \version "2.24.0"
 
-%% Checked against Bobby Stern Jazz transcription
-%% https://bobbysternjazz.com/uploads/3/4/4/5/34450459/night___day_-_joe_henderson_transcription__bb__bsj.pdf
-
-%% Also see youtube transcription (slightly different)
-%% https://www.youtube.com/watch?v=WO7zI-mTtZU
+%% Checked against Bob Hartig transcription
+%% https://stormhorn.com/2011/10/12/one-for-daddy-o-a-cannonball-adderley-solo-transcription/
+%% I don't agree with all of his notes.
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -333,19 +331,37 @@ chordsMinorBluesSecondaryDom = \chordmode {
 
 intro_chords = \chordmode { s1 s1 }
 intro_notes = \relative c''' {
-  r8 g16 bes  c d d d  c d d d  c d d d
-  c16 d d d  c d d d  ees d \tuplet 5/2 { c16 bes a aes g } fis8 \tuplet 5/2 { f16 e ees d c }
+  %% m1 (2 measures before chorus)
+  \timestop "0:41"
+  r8 bes16 g  c( d) d d  c( d) d d  c( d) d d
+  c16( d) d d  c( d) d d  ees d \tuplet 5/2 { c16 bes a aes g } fis8 \tuplet 5/2 { f16 e ees d c }
 }
 
 solo = \relative c'' {
   \bar ".|-|"
   %% \markManualBox "Solo"
-  \timestop "0:41"
-  bes4 r4 r8 bes' g16 d bes g \break
-  ees'4. d16 c bes g ees d bes4
-  \repeat unfold 2 { s1 } \break
-  \repeat unfold 4 { s1 } \break
-  \repeat unfold 4 { s1 } \break \bar "|."
+
+  %% m4
+  \timestop "0:46"
+  bes2 r8 bes' g16 d bes g \break
+  ees'4. d16 c bes g ees d bes'4
+  \appoggiatura { gis8 } a4 \appoggiatura { fis8 } g16 ees d c bes4 r4
+  r4   r8 g''16 g    aes g f ees  d c bes aes
+  \break
+
+  %% m7
+  \timestop "0:55"
+  fis8 g aes16 ees d c f8 ees~ ees4
+  r4 \tuplet 3/2 { d'16 ees d } c16 g bes16 g ees c~ c8 d16 a'
+  r8. g16 a f d c bes8 \tuplet 5/2 { d16 e f g a } fis16 g bes d
+  fis8 a16 fis g16 d bes g f'16 d ees f fis16 aes bes des
+  \break
+
+  %% m11
+  \timestop "1:04"
+  bes16 b c b32 bes a16 aes g ges f g aes? g f16 ees bes g
+  e'8 s8 s2.
+  \repeat unfold 2 { s1 } \break \bar "|."
 }
 
 myScore = \score {
