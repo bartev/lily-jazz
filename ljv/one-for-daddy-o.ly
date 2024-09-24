@@ -360,8 +360,15 @@ solo = \relative c'' {
   %% m11
   \timestop "1:04"
   bes16 b c b32 bes a16 aes g ges f g aes? g f16 ees bes g
-  e'8 s8 s2.
-  \repeat unfold 2 { s1 } \break \bar "|."
+  e'8 \tuplet 3/2 { c16 a e } aes16 e' r8 g,16 e f fis f'16 ees d c
+  bes16 d, ees e a8. fis16 g4 r4
+  r16 cis dis ees fis gis ais cis~ cis8. c16 dis8. cis32 bis
+  \break \bar "|."
+
+  bes4 \tuplet 5/2 { a16 bes c bes a } r2
+  \repeat unfold 3 { s1 } \break
+  \repeat unfold 2 { s1*4 \break } \bar "||"
+
 }
 
 myScore = \score {
@@ -376,7 +383,7 @@ myScore = \score {
     {
       %% \set chordChanges = ##f
       \intro_chords
-      \repeat unfold 1 {\chordsMinorBluesBasic }
+      \repeat unfold 2 {\chordsMinorBluesBasic }
       %% \chordsMinorBluesBasic
       %% \chordsMinorBluesTritoneSub
       %% \chordsMinorBluesSecondaryDom
