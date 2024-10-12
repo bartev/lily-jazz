@@ -29,7 +29,7 @@ title = #"One for Daddy-O"
 composer = #"Cannonball Adderly"
 arranger = #"E\flat"
 tagline = "Cannonball transcription 2024-09"
-meter = "142"
+meter = "105"
 copyright = #"Bartev 2024"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
