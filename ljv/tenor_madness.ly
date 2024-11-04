@@ -1,8 +1,6 @@
 \version "2.24.0"
 
-%% Checked against Bob Hartig transcription
-%% https://stormhorn.com/2011/10/12/one-for-daddy-o-a-cannonball-adderley-solo-transcription/
-%% I don't agree with all of his notes.
+
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -134,7 +132,7 @@ realBookTitle = \markup {
 global = {
   \numericTimeSignature
   \time 4/4
-  \key g \minor
+  \key c \major
   %% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -194,172 +192,61 @@ scoreBreaks = {
 }
 
 %% Define the chords here. The same chords will be used for chord names and notes
-
-%% 48 measures (3 x 16)
-chordNamesHead = \chordmode {
-  %% A, A
-
-  %% \repeat unfold 2 {
-  %%   %% m1-4 m13-16
-  %%   g1:min6
-  %%   c1:7
-  %%   g1:min6
-  %%   g2:min6 g:7.9+
-  %%
-  %%   %% m5-8 m17-20
-  %%   c1:7
-  %%   c1:7
-  %%   g1min7
-  %%   f2:min7 bes
-  %%
-  %%   %% m9-12 m21-24
-  %%   ees2 d4:7 ees
-  %%   ees8 d4.:7 ees4 d:7
-  %%   g2:min7 e:7
-  %%   a2:min7 d:7
-  %% }
-  %%
-  %% %% Solo 1st chorus
-  %% g1:min7
-  %% a2:min7.5- d:7.9-
-  %% g1:min7
-  %% aes2:min7 g:7.9+.13-
-  %%
-  %% c1:min7
-  %% c1:min7
-  %% g1:min7
-  %% f2:7 bes:7
-  %%
-  %% ees1:6
-  %% d1:7.9-
-  %% g1:m7
-  %% a2:m7.5- d:7.9-
-  %%
-  %% %% Solo 2nd chorus
-  %% g1:m7
-  %% g1:m7
-  %% g1:m7
-  %% g1:7.9+.13-
-  %%
-  %% c1:m7
-  %% c2:m7 d:7.9-
-  %% g1:m7
-  %% f2:m7 bes:7.9-
-  %%
-  %% ees1:7
-  %% a2:m7 d:7.9-
-  %% g1:m7
-  %% a2:m7.5- d:7
-
-  %% %% Solo 3rd chorus
-  %% g1:m6
-  %% g1:m6
-  %% g1:m6
-  %% g1:7.9+.13-
-  %%
-  %% c1:m7
-  %% c1:m7
-  %% g1:m7
-  %% f2:m7 bes:7
-  %%
-  %% ees1:6
-  %% a2:m7.5- d:7.9-
-  %% g1:m6
-  %% a2:m7.5- d:7
-}
-
-chordsMinorBluesBasic = \chordmode {
+chordsMajorBluesBasic = \chordmode {
   %% Basic 12 bar minor blues
-  c1:m7
-  f1:m7
-  c1:m7
-  c1:m7
-
-  f1:m7
-  f1:m7
-  c1:m7
-  c1:m7
-
-  d1:m7
-  g1:7
-  c1:7
-  g1:7
-}
-
-chordsMinorBluesTritoneSub = \chordmode {
-  %% Basic 12 bar minor blues
-  g1:m7
-  g1:m7
-  g1:m7
-  g1:m7
-
-  c1:m7
-  c1:m7
-  g1:m7
-  g1:m7
-
-  ees1:m7
-  d1:7.9- % V7alt?
-  g1:m7
-  ees2:m7 d2:7.9-
-}
-
-chordsMinorBluesSecondaryDom = \chordmode {
-  %% Basic 12 bar minor blues
-  g1:m7
-  g1:m7
-  g1:m7
-  d2:m7.5- g:7.9-
-
-  c1:m7
-  c1:m7
-  g1:m7
-  g1:m7
-
-  a1:m7
-  d1:7.9- % V7alt?
-  g1:m7
-  a2:m7 d2:7.9-
-}
-
-
-%% intro_partial_chords = \chordmode { s2 }
-%% intro_partial= \relative c'' {
-%%   \partial 2
-%%   r4 g8 c8~
-%% }
-
-intro_chords = \chordmode { s1 s1 }
-intro_notes = \relative c''' {
-  %% m1 (2 measures before chorus)
-  \timestop "2:12"
-
+  g1:7 c1:7 g1:7 g1:7
+  c1:7 c1:7 g1:7 g1:7
+  a1:m7 d1:7 g1:7 d1:7
 }
 
 solo = \relative c'' {
   \bar ".|-|"
-  %% \markManualBox "Solo"
+  \markManualBox "Solo"
 
   %% m4
   \timestop "2:12"
 
+  %% m1
   r2 b4 g4
   b4 g4~ g2
-  b4 g4 b4 g4
-  r2 r4 r8 g16 e
+  b8 g8~ g4 b8 g8~ g4
+  r2 r8 d g bes~
   \break
 
-  bes'8 bes g4 r2
+  %% m5
+  \timestop "2:17"
+  bes8 bes g4 r2
   d'2 c16 bes a g~ g4
   b4 g4 r2
-  r4 r8 a8 g a b d
+  r4 r8 fis8 g b d e
   \break
 
-  fis8 g e c b a s4
+  %% m9
+  \timestop "2:22"
+  fis8 g e c b a d b
+  c8 g e c bes'4 fis8 d
+  a'8 fis d b e4 r4
+  r4 r8 d \xNote b d g b
+  \break \bar "||"
 % \repeat unfold 3 { s1 } \break
 
+  %% \repeat unfold 2 { s1*4 \break } \bar "||"
+  %% m13
+  \timestop "2:28"
+  d8 d r b g4 r8 e'
+  c4. a8 fis d r4
+  r2 r8 f aes c
+  e8 b d dis b aes g f
+  \break
+
+  %% m17
+  \timestop "2:33"
+  e4 g8 bes d bes c4
+  bes8 g d4 d4 e8 cis
+  d4 b r2
+  s1
+  \break
   \repeat unfold 2 { s1*4 \break } \bar "||"
-  \repeat unfold 3 { s1*4 \break } \bar "||"
   \repeat unfold 3 { s1*4 \break } \bar "||"
 
 }
@@ -376,7 +263,7 @@ myScore = \score {
     {
       %% \set chordChanges = ##f
       %% \intro_chords
-      \repeat unfold 3 {\chordsMinorBluesBasic }
+      \repeat unfold 3 {\chordsMajorBluesBasic }
       %% \chordsMinorBluesBasic
       %% \chordsMinorBluesTritoneSub
       %% \chordsMinorBluesSecondaryDom
@@ -384,7 +271,7 @@ myScore = \score {
     \new Staff {
       \global
       %% \intro_notes
-      \markManualBox "Basic minor blues"
+      %% \markManualBox "Basic minor blues"
       \solo
 
       %% \markManualBox "Minor blues, tritone sub"
