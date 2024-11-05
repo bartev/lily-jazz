@@ -24,9 +24,9 @@
 title = #"Viva la Vida"
 composer = #"Coldplay"
 arranger = #"E\flat"
-tagline = "Bartev 2024-10"
+tagline = "Transcribed by Bartev 2024-10 for E♭"
 meter = "130"
-copyright = #"Bartev 2024"
+copyright = #"Transcribed by Bartev 2024-10 for E♭"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
@@ -184,25 +184,25 @@ global = {
 
 %% Define the chords here. The same chords will be used for chord names and notes
 chordNamesIntro = \chordmode {
-  bes1:sus2 c1 f1 d1:m7
-  bes1:sus2 c1 f1 d1:m7
+  bes1:sus2 c1 f1 d1:m7 \break
+  bes1:sus2 c1 f1 d1:m7 \break
 }
 
 chordNamesVerse = \chordmode {
-  bes:maj7 c1:7sus4 f1 d1:m7
-  bes:maj7 c1:7sus4 f1 d1:m7
+  bes:maj7 c1:7sus4 f1 d1:m7 \break
+  bes:maj7 c1:7sus4 f1 d1:m7 \break
 }
 
 chordNamesChorus = \chordmode {
-  bes:maj7 c1:7sus4 f1 d1:m11
-  bes:maj7 c1:7sus4 f1 d1:m11
-  bes:maj7 c:7sus4 f:6 d:m11
-  bes:maj7 c:7 f:maj9 d:m
+  bes:maj7 c1:7sus4 f1 d1:m11 \break
+  bes:maj7 c1:7sus4 f1 d1:m11 \break
+  bes:maj7 c:7sus4 f:6 d:m11 \break
+  bes:maj7 c:7 f:maj9 d:m \break
 }
 
 chordNamesBridge = \chordmode {
-  bes1 d:m bes d:m
-  bes1 d:m c:7sus4 c:7sus4
+  bes1 d:m bes d:m \break
+  bes1 d:m c:7sus4 c:7sus4 \break
 }
 
 verseOne = \lyricmode {
@@ -218,42 +218,42 @@ verseOne = \lyricmode {
   List- en as the crowd would sing
   now the old king is dead! Long live the king!
 
-  One minute I held the key
-  Next the walls were closed on me
-  And I discoverd that my castles stand
-  Upon pollars of salt and pillars of sand
+  One min- ute I held the key
+  next the walls were closed on me
+  And I dis- co- vered that my cast- les stand
+  Up- on pil- lars of salt and pil- lars of sand
 
   %% Chorus
-  I hear Jerusalem bells are ringing
-  Roman Calvary choirs are singing
-  Be my mirror, my sowrd, and shield
-  My missionaries in a foreign field
+  I hear Je- rusa- lem be- ells are ring- ing
+  Ro- man Cal- va- ry choirs are sing- ing
+  Be my mir- ror, my sword, and shie- ld
+  My miss- ion- a- ries in a for- eign fie- ld
 
-  For some reason I can't explain
-  Once you go there was never,
-  never an honest word
+  For some rea- son I can't ex- plain
+  Once you go there was ne- ver,
+  ne- ver an hon- est word
   That was when I ruled the world
 
   %% 8 bar rest
 
-  It was the wicked and wild wind
+  It was the wick- ed and wi- ld wind
   Blew down the doors to let me in
-  Shattered windows and the sound of drums
-  People couldn't believe what I'd become
-  Revolutionaries wait
-  For my head on a silver plate
-  Just a puppet on a lonely string
-  Oh who would ever want to be king?
+  Shatt- ered win- dows and the sound of drums
+  Peo- ple could- n't be- lieve what I'd be- come
+  Re- vo- lu- tion- a- ries wait
+  For my head on a sil- ver plate
+  Just a pup- pet on a lone- ly string
+  Oh who would ev- er want to be king?
 
   %% Chorus
-  I hear Jeruselem bells are ringing
-  Roman Calvary choirs are singing
-  Be my mirror, my sword and shield
-  My missionaries in a foreign field
+  I hear Je- rusa- lem be- ells are ring- ing
+  Ro- man Cal- va- ry choirs are sing- ing
+  Be my mir- ror, my sword, and shie- ld
+  My miss- ion- a- ries in a for- eign fie- ld
 
-  For some reason I can't explain
-  I know Saint Peter will call my name,
-  Never an honest word
+  For some rea- son I can't ex- plain
+  I know Saint Pe- ter will call my name,
+  ne- ver an ho- nest word
   But that was when I ruled the world
 
   %% 8 bar rest
@@ -261,14 +261,14 @@ verseOne = \lyricmode {
   %% 8 bar ohhh
 
   %% Chorus
-  I hear Jeruselem bells are ringing
-  Roman Calvary choirs are singing
-  Be my mirror, my sword and shield
-  My missionaries in a foreign field
+  I hear Je- rusa- lem be- ells are ring- ing
+  Ro- man Cal- va- ry choirs are sing- ing
+  Be my mir- ror, my sword, and shie- ld
+  My miss- ion- a- ries in a for- eign fie- ld
 
-  For some reason I can't explain
-  I know Saint Peter will call my name,
-  Never an honest word
+  For some rea- son I can't ex- plain
+  I know Saint Pe- ter will call my name,
+  ne- ver an ho- nest word
   But that was when I ruled the world
 
   %% 8 bar ohhh
@@ -286,7 +286,7 @@ stringBackground = \relative c' {
   \bar "||"
 }
 
-stringBackgroundTwo = \relative c' {
+stringBackgroundInstrumental = \relative c' {
   \repeat unfold 2 {
     f4 f f f8 g
     r8 g r g g4 g4
@@ -296,50 +296,59 @@ stringBackgroundTwo = \relative c' {
   }
   \bar "||"
 }
+
+noBackground = \relative c' { \repeat unfold 4 { r1 } \break }
+
 strings = \relative c' {
   \bar ".|-|"
-  \timestop "0:00" \stringBackground
-  \timestop "0:07" \stringBackground
-  \timestop "0:14" \stringBackgroundTwo
-  \timestop "0:21" \stringBackground
-  \timestop "0:28" \stringBackground % different
-  \timestop "0:35" \stringBackground
-  \timestop "0:42" \stringBackground
-  \timestop "0:49" \stringBackground
-  \timestop "0:56" \stringBackground
-  \timestop "1:03" \stringBackground
-  \timestop "1:10" \stringBackground
-  \timestop "1:17" \stringBackground
-  \timestop "1:24" \stringBackground
-  \timestop "1:31" \stringBackground
-  \timestop "1:38" \stringBackground % different
-  \timestop "1:45" \stringBackground
-  \timestop "1:52" \stringBackground
-  \timestop "1:59" \stringBackground
-  \timestop "2:06" \stringBackground
-  \timestop "2:13" \stringBackground
-  \timestop "2:20" \stringBackground
-  \timestop "2:27" \stringBackground
-  \timestop "2:34" \stringBackground
-  \timestop "2:41" \stringBackground
-  \timestop "2:48" \stringBackground % instrumental
-  \timestop "2:55" \stringBackground
-  \timestop "3:02" \stringBackground % oh oh
-  \timestop "3:09" \stringBackground % oh oh
-  \timestop "3:16" \stringBackground
-  \timestop "3:23" \stringBackground
-  \timestop "3:30" \stringBackground
-  \timestop "3:37" \stringBackground
-  \timestop "3:44" \stringBackground
-  \timestop "3:51" \stringBackground
-  \timestop "3:58" \stringBackground
+  \timestop "0:00" \stringBackground % intro
+  \timestop "0:14" \stringBackground % verse
+  \timestop "0:28" \stringBackgroundInstrumental
+  \timestop "0:42" \stringBackground % verse
+  \timestop "0:56" \stringBackground % verse
+  \timestop "1:10" \stringBackground % chorus
+  \timestop "1:24" \stringBackground % chorus (still)
+  \timestop "1:38" \stringBackgroundInstrumental
+  \timestop "1:52" \stringBackground % verse
+  \timestop "2:06" \stringBackground % verse
+  \timestop "2:20" \stringBackground % chorus
+  \timestop "2:34" \stringBackground % chorus (still)
+  \timestop "2:48" \stringBackgroundInstrumental
+  \timestop "3:02" \stringBackground % ooh
+  \timestop "3:16" \stringBackground % chorus
+  \timestop "3:30" \stringBackground % chorus (still)
+  \timestop "3:44" \noBackground
+  \timestop "3:51" \noBackground
+  \timestop "3:58" \noBackground
+
+
+  %% \timestop "3:52" \stringBackground
+  %% \timestop "3:59" \stringBackground
+  %% \timestop "3:06" \stringBackground
+  %% \timestop "3:13" \stringBackground
+  %% \timestop "3:20" \stringBackground
+  %% \timestop "3:27" \stringBackground
+  %% \timestop "2:34" \stringBackground
+  %% \timestop "2:41" \stringBackground
+  %% \timestop "2:48" \stringBackground % instrumental
+  %% \timestop "2:55" \stringBackground
+  %% \timestop "3:02" \stringBackground % oh oh
+  %% \timestop "3:09" \stringBackground % oh oh
+  %% \timestop "3:16" \stringBackground
+  %% \timestop "3:23" \stringBackground
+  %% \timestop "3:30" \stringBackground
+  %% \timestop "3:37" \stringBackground
+  %% \timestop "3:44" \stringBackground
+  %% \timestop "3:51" \stringBackground
+  %% \timestop "3:58" \stringBackground
+
 }
 
 vocals = \relative c'' {
   \bar ".|-|"
   \repeat unfold 7 {r1}
   r4. a8 a4 a
-  \break
+
 
   a2. bes8 g~
   g2 r8 g4 f8
@@ -364,13 +373,129 @@ vocals = \relative c'' {
   a2. bes8 g~
   g2 r4 g8 f
   a8 f e d~ d4 a'8 f
-  e8 d~ d4 r8 d'8 d d
+  e8 d~ d8 d'8 d d d4
 
   d2. a8 c~
-  c4 r2.
+  c2 r8 c4 c8
+  c4. bes8 c4 bes
+  a8 a a a a a a a
 
+  a2~a8 bes8~ bes8 g~
+  g2 r8 g8 f4
+  a8 g f f~ f8 f8 a8 g
+  f8 f~ f4 r8 a8 c4
 
-  \repeat unfold 67 { s1*4 \break } \bar "||"
+  %% Chorus
+  %% m41
+  d4 d d8 c d8(c~
+  c4~ c8) g8 a bes~ bes4
+  c4 c c8 bes c a~
+  a4 e8 f~ f a~ a4
+
+  d4 d d8 c d c~
+  c4 g8 a8~ a8 bes8~ bes c
+  c8 c c4 c8 bes c a~
+  a4 e8 f~ f a r4
+
+  d4 d d8 c d8 e
+  r8 e r e8~ e2
+  c4 c c c8 bes
+  c8 a~ a4 c8 a a4
+
+  a2 r8 bes r g~
+  g2 r8 f8 f4
+  e8 e~ e4 a e8 f~
+  f8( e d4) r2
+
+  %% Instrumental
+  \repeat unfold 7 { r1 }
+
+  %% copied - need to check
+  %% r4. a'8 a4 a
+
+  %% a2. bes8 g~
+  %% g2 r8 g4 f8
+  %% g4 g8 f a4 e8 f
+  r8 a'8 a a a a a r
+
+  a2. bes8 g~
+  g2 r8 g g f8
+  g4. g8 a4 e8 f~
+  f4 a8 a a a a a
+
+  a2. bes8 g~
+  g2 r4 g8 g
+  a8 g f f~ f4 f8 a8~
+  a8 f8 f8 r c' c c c
+
+  %% m73
+  d2. a8 c~
+  c2 r4 c8 c
+  c4 c8 bes c4 bes8 a~
+  a8 r a8 a a a a a
+
+  a2~a8 bes8~ bes8 g~
+  g2 r4 f4
+  a8 g f f f8 f8 a8 g(
+  f8 f~) f4 r8 a8 c4
+
+  %% Chorus
+  %% m81
+  d4 d d8 c d8(c~
+  c4~ c8) g8 a bes~ bes4
+  c4 c c8 bes c a~
+  a4 e8 f~ f a~ a4
+
+  %% m85
+  d4 d d8 c d c~
+  c4 g8 a8~ a8 bes8~ bes c
+  c8 c c4 c8 bes c a~
+  a4 e8 f~ f a r4
+
+  %% m89
+  d4 d d8 c d8 e
+  r8 e r e8~ e4. c8
+  c4 c c8 c c8 bes
+  r8 a r a r8 c a a
+
+  %% m93
+  a2 r8 bes r g~
+  g2 r8 f8 f f
+  e8 e~ e4 a e8 f~
+  f8( e d4) r2
+
+  %% instrumental
+  \repeat unfold 8 { s1 }
+
+  %% ooh
+  \repeat unfold 7 { s1 }
+  r2 r8 a'8 c4
+
+  %% Chorus
+  %% m81
+  d4 d d8 c d8(c~
+  c4~ c8) g8 a bes~ bes4
+  c4 c c8 bes c a~
+  a4 e8 f~ f a~ a4
+
+  %% m85
+  d4 d d8 c d c~
+  c4 g8 a8~ a8 bes8~ bes c
+  c8 c c4 c8 bes c a~
+  a4 e8 f~ f a r4
+
+  %% m89
+  d4 d d8 c d8 e
+  r8 e r e8~ e4. c8
+  c4 c c8 c c8 bes
+  r8 a r a r8 c a a
+
+  %% m93
+  a2 r8 bes r g~
+  g2 r8 f8 f f
+  e8 e~ e4 a e8 f~
+  f8( e d4) r2
+
 }
 
 myScore = \score {
@@ -385,25 +510,28 @@ myScore = \score {
     {
       \markManualBox "Intro" \chordNamesIntro
       \markManualBox "Verse" \chordNamesVerse
+      \markManualBox "Instrumental" \chordNamesVerse
       \markManualBox "Verse" \chordNamesVerse
+      \markManualBox "Verse" \chordNamesVerse
+      \markManualBox "Chorus" \chordNamesChorus % 2x as long as verse
+      \markManualBox "Istrumental" \chordNamesVerse
+
       \markManualBox "Verse" \chordNamesVerse
       \markManualBox "Verse" \chordNamesVerse
       \markManualBox "Chorus" \chordNamesChorus
-      \markManualBox "Verse" \chordNamesVerse
-      \markManualBox "Verse" \chordNamesVerse
-      \markManualBox "Verse" \chordNamesVerse
+      \markManualBox "Instrumental" \chordNamesBridge
+      \markManualBox "Ooh" \chordNamesVerse
       \markManualBox "Chorus" \chordNamesChorus
-      \markManualBox "Bridge" \chordNamesBridge
       \markManualBox "Verse" \chordNamesVerse
-      \markManualBox "Verse" \chordNamesVerse
-      \markManualBox "Verse" \chordNamesVerse
-      \markManualBox "Verse" \chordNamesVerse
+
     }
-    \new Staff {
+    \new Staff \with { instrumentName = "strings"} {
       \global
       \new Voice = "strings" { \strings }
     }
-    \new Voice = "vocals" { \vocals }
+    \new Staff \with { instrumentName = "vocals" } {
+      \new Voice = "vocals" { \vocals }
+    }
     \new Lyrics \lyricsto "vocals" { \verseOne }
   >>
   \layout { indent = 0 }
