@@ -232,6 +232,7 @@ solo = \relative c'' {
 
   %% \repeat unfold 2 { s1*4 \break } \bar "||"
   %% m13
+  \markManualBox "Chorus 2"
   \timestop "2:28"
   d8 d r b g4 r8 e'
   c4. a8 fis d r4
@@ -244,8 +245,23 @@ solo = \relative c'' {
   e4 g8 bes d bes c4
   bes8 g d4 d4 e8 cis
   d4 b r2
-  s1
+  r8 e16 f r8 g'8 r f r g
   \break
+
+  e4 d4 e2
+  r8 d,16 ees r8 f' r ees! r f
+  d4 c d2
+  r2 r4 r8 a
+  \break
+
+  %% m25
+  \markManualBox "Chorus 3"
+  d8 g a g e d a4
+  r4 r8 g' e4. d8
+  a4 r r r8 ees
+
+
+
   \repeat unfold 2 { s1*4 \break } \bar "||"
   \repeat unfold 3 { s1*4 \break } \bar "||"
 
