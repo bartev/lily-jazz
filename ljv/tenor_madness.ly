@@ -1,6 +1,7 @@
 \version "2.24.0"
 
-
+%% Checked tenor madness against youtube video here
+%% https://www.youtube.com/watch?v=MnZnZdENBGE
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -248,6 +249,7 @@ solo = \relative c'' {
   r8 e16 f r8 g'8 r f r g
   \break
 
+  \timestop "2:39"
   e4 d4 e2
   r8 d,16 ees r8 f' r ees! r f
   d4 c d2
@@ -256,12 +258,55 @@ solo = \relative c'' {
 
   %% m25
   \markManualBox "Chorus 3"
+  \timestop "2:44"
   d8 g a g e d a4
-  r4 r8 g' e4. d8
-  a4 r r r8 ees
+  r4 r8 \ottava -1 g e4. d8
+  a4 r r r8 f
+  e'8 d a c b bes' aes ees
+  \break
+
+  \timestop "2:50"
+  g8 e \ottava 0 r4 r2
+  r2 r4 r8 g'8
+  r8 g r g g g r g
+  fis a fis e r e d4
+  \break
+
+  \timestop "2:56"
+  g2. g4
+  fis4 fis c e
+  d2 r4 r8 b
+  d8 b c d b g e d
+  \break
+
+  \markManualBox "Chorus 4"
+  \timestop "3:01"
+  a'8 f r4 r8 des e16 g b d
+  c8 g \xNote e g cis d e cis
+  d8 b c c b4 r
+  r2 r4 r8 e
+  \break
+
+  \timestop "3:07"
+  r8 g r e a4 g
+  ees4 b'8 a g ees? d c
+  b8 e g e a g r d
+  cis4 r8 g' a g r cis,?
+  \break
+
+  \timestop "3:12"
+  c2 r
+  b'8 a g16 a g e fis8 e d c
+  b8 a g d fis g r4
+  r2 r8 g \tuplet 6/2 { bes8 b c cis d dis }
+  \break
+
+  \markManualBox "Chorus 5"
+  \timestop "3:18"
+  e8 f~ f4 s2
 
 
-
+  s1*3 \break
   \repeat unfold 2 { s1*4 \break } \bar "||"
   \repeat unfold 3 { s1*4 \break } \bar "||"
 
@@ -279,7 +324,7 @@ myScore = \score {
     {
       %% \set chordChanges = ##f
       %% \intro_chords
-      \repeat unfold 3 {\chordsMajorBluesBasic }
+      \repeat unfold 5 {\chordsMajorBluesBasic }
       %% \chordsMinorBluesBasic
       %% \chordsMinorBluesTritoneSub
       %% \chordsMinorBluesSecondaryDom
