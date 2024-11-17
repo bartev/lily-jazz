@@ -282,7 +282,7 @@ solo = \relative c'' {
   \markManualBox "Chorus 4"
   \timestop "3:01"
   a'8 f r4 r8 des e16 g b d
-  c8 g \xNote e g cis d e cis
+  c8 g \xNote e g cis d e cis?
   d8 b c c b4 r
   r2 r4 r8 e
   \break

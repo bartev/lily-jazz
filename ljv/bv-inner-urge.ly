@@ -227,6 +227,7 @@ solo = \relative c' {
   e,4 gis b dis
   \break
   \bar "||"
+  \pageBreak
   \markManualBox "Solo"
   cis,8 dis e fis gis a b fis'
   dis4. b8 dis dis r4
@@ -239,9 +240,45 @@ solo = \relative c' {
   b4 a8 gis a b fis4
   \break
 
-  s1 s1
-  \repeat unfold 4 { s1*4 \break } \bar "||"
-  \repeat unfold 2 { s1*4 \break } \bar "||"
+  e4. fis8 g a b fis'
+  r8 e4. r4 r
+  e8 g fis d e b a b~
+  b2 r
+  \break
+  \repeat unfold 3{ s1*4 \break } \bar "||"
+
+  \pageBreak
+  fis'8 dis e fis dis cis b cis
+  dis2 r8 b cis dis
+  e8 fis cis' b a4 b8 fis?~
+  fis?2 r8 cis d? e
+  \break
+  fis2 r8 cis d e
+  gis8 cis, d e a cis, d e
+  cis'2 r8 b, cis d
+  fis e b cis e d a b
+  \break
+  c?2 r8 fis e b
+  c8 a b g e' c d b
+  a8 fis g a b cis e4
+  g8 d~ d4 fis8 c~ c4
+  \break
+  r8 b bes c a f g a
+  bes4 c d e8 d~
+  d4 f r2
+  r1
+  \break
+  r1
+  bes8 a e f a4 r
+  r1
+  r1
+  \break
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+  \pageBreak
+
+
+  \repeat unfold 6 { s1*4 \break } \bar "||"
+  %% \repeat unfold 6 { s1*4 \break } \bar "||"
 
 }
 
@@ -255,7 +292,7 @@ myScore = \score {
       \override PercentRepeat.Y-offset = 1
     }
     {
-      \repeat unfold 2 {\chordNames}
+      \repeat unfold 4 {\chordNames}
     }
     \new Staff {
       \global
