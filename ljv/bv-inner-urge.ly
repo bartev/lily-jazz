@@ -30,6 +30,7 @@ copyright = #"Bartev 2024"
 
 title = #"Inner Urge"
 meter = "180"
+%% \concat spaces differently than if I didn't say \concat
 instrument = \markup \with-color "blue" \concat {
   "Alto (E "
   \raise #0.5 \fontsize #-2 \flat ")"

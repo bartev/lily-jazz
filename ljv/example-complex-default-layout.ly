@@ -1,4 +1,4 @@
-\version "2.24.0"
+\version "2.24.2"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -24,7 +24,8 @@ tagline = "tagline goes at the bottom of the last page"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
-realBookTitle = \markup {
+%% Before 2024-12-08
+realBookTitleOlder = \markup {
   \score {
     {
       \override TextScript.extra-offset = #'(0 . -4.5)
@@ -45,6 +46,63 @@ realBookTitle = \markup {
       \omit Staff.Clef
       \omit Staff.TimeSignature
       \omit Staff.KeySignature
+    }
+  }
+}
+
+
+%% Updated 2024-12-08
+%% title = #"Inner Urge"
+%% meter = "180"
+rb_instrument = \markup \with-color "blue" {
+  "Alto (E"
+  \raise #0.5 \fontsize #-2 \flat ")"
+}
+%% composer = #"Joe Henderson"
+arranger = #"Real Book v1, 5th ed p 229"
+
+realBookTitle = \markup {
+  \score {
+    {
+      \override TextScript.extra-offset = #'(0 . -6) % Adjust vertical position (X . Y)
+      s^\markup {
+        \fill-line {
+          %% Left side: Meter and instrument
+          \vcenter { % Center everything vertically
+            \column {
+              %% Meter
+              {\fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }}
+              {\fontsize #1 \rb_instrument}
+            }
+          }
+          %% Center: Title
+          %% Title
+          \vcenter {
+            \fontsize #7 % Bigger number is larger font
+            \override #'(thickness . 6)
+            { \override #'(offset . 18) % Add space above the underline (raises text)
+              \underline
+              #title
+            }
+          }
+          %% Right side: Composer and Arranger
+          \vcenter {
+            \right-column {
+              \fontsize #3 \lower #1 \concat { #composer " " }
+              \fontsize #0 \lower #1 \concat { #arranger " " } 
+            }
+          }
+        }
+      }
+    }
+    \layout {
+      \omit Staff.Clef
+      \omit Staff.TimeSignature
+      \omit Staff.KeySignature
+      ragged-right = ##f
+      ragged-bottom = ##f
+      ragged-last-bottom = ##t
+      \override Score.BarLine.transparent = ##t  % Remove barline at the end of the staff
     }
   }
 }
