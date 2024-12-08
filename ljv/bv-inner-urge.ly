@@ -1,4 +1,4 @@
-\version "2.24.0"
+\version "2.24.2"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -21,32 +21,55 @@
 %%   greenChord
 
 %% set up title, compser, meter, copyright
-title = #"Inner Urge - BV Solo"
-composer = #""
-arranger = #"E\flat"
+
 tagline = "Bartev 2024-10"
-meter = "180"
 copyright = #"Bartev 2024"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
+
+title = #"Inner Urge"
+meter = "180"
+instrument = \markup \with-color "blue" \concat {
+  "Alto (E "
+  \raise #0.5 \fontsize #-2 \flat ")"
+}
+composer = #"Joe Henderson"
+arranger = #"Real Book v1, 5th ed p 229"
+
 realBookTitle = \markup {
   \score {
     {
-      \override TextScript.extra-offset = #'(0 . -4.5)
-      s4
-      s^\markup
-      \fill-line {
-        %% meter
-        \fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }
-        %% title
-        \fontsize #5
-        \override #'(offset . 7) \override #'(thickness . 6)
-        \underline \larger #title
-        %% composer
-        \fontsize #2 \lower #1 \concat { #composer " " }
+      \override TextScript.extra-offset = #'(0 . -6) % Adjust vertical position (X . Y)
+      s^\markup {
+        \fill-line {
+          %% Left side: Meter and instrument
+          \vcenter { % Center everything vertically
+            \column {
+              %% Meter
+              {\fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }}
+              {\fontsize #1 \instrument}
+            }
+          }
+          %% Center: Title
+          %% Title
+          \vcenter {
+            \fontsize #7 % Bigger number is larger font
+            \override #'(thickness . 6)
+            { \override #'(offset . 18) % Add space above the underline (raises text)
+              \underline
+              #title
+            }
+          }
+          %% Right side: Composer and Arranger
+          \vcenter {
+            \right-column {
+              \fontsize #3 \lower #1 \concat { #composer " " }
+              \fontsize #0 \lower #1 \concat { #arranger " " } 
+            }
+          }
+        }
       }
-      s
     }
     \layout {
       \omit Staff.Clef
@@ -55,9 +78,11 @@ realBookTitle = \markup {
       ragged-right = ##f
       ragged-bottom = ##f
       ragged-last-bottom = ##t
+      \override Score.BarLine.transparent = ##t  % Remove barline at the end of the staff
     }
   }
 }
+
 
 \header {
   title = \realBookTitle
@@ -66,6 +91,8 @@ realBookTitle = \markup {
   %% The following fields are evenly spread on one line
   %% the field "instrument" also appears on following pages
   %% instrument = \markup \with-color #blue "Alto Sax"
+  %% arranger = \arranger
+  %% instrument = \instrument
 }
 
 \paper {
@@ -129,7 +156,7 @@ realBookTitle = \markup {
 global = {
   \numericTimeSignature
   \time 4/4
-  \key c \major
+  \key a \major
   %% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -194,8 +221,55 @@ chordNames = \chordmode {
   a1:maj7 fis1:maj7 g1:maj7 e1:maj7
 }
 
+headEb = \relative c'' {
+  \markManualBox "Head"
+  \bar ".|"
+  %% m1
+  r4 r8 dis gis a dis, gis
+  a4. dis,8 gis a r4
+  r4 r8 dis, gis a dis, gis
+  a8 dis,8 gis a r2
+  \break
+
+  %% m5
+  r4 r8 d, gis a d, gis
+  a4. d,8 gis a r4
+  r4 r8 d, gis a d, gis
+  a8 d, gis a r2
+  \break
+
+  %% m9
+  r4 r8 g fis c fis, b
+  c4. fis,8 ais b r4
+  r4 r8 g'8 fis c fis, b
+  c8  fis, ais b~ b d4 e8~
+  \break
+
+  %% m13
+  e4. e8 d a e a
+  bes4. d8 e a4.
+  r4 r8 e d a \ottava 1 e' a
+  bes8 d e a r g4 bis8~
+  \break
+
+  %% m17
+  bis4. ais8 gis fis dis cis
+  c b bes c a c \tuplet 3/2 { d8 f g }
+  ais4. g8 fis4 dis8 fis~
+  fis8 d4. r4 dis4
+  \break
+
+  %% m21
+  g4~ g16 e cis a gis4~ \tuplet 5/4 { gis16 a cis e gis }
+  eis4~ eis16 cis ais eis dis4~ \tuplet 5/4 { dis16 fis ais cis eis }
+  e4~ e16 d a e d4~ \tuplet 5/4 { d16 e a d e }
+  fis4. dis8 fis dis r4
+  \ottava 0
+  \bar "|."
+  \break
+}
+
 solo = \relative c' {
-  \bar ".|-|"
   \markManualBox "Scales"
   dis8 e fis gis a b cis dis
   e dis cis b a gis fis e
@@ -225,9 +299,10 @@ solo = \relative c' {
   fis,4 ais cis eis
   g,4 b d fis
   e,4 gis b dis
-  \break
   \bar "||"
+  \break
   \pageBreak
+  
   \markManualBox "Solo"
   cis,8 dis e fis gis a b fis'
   dis4. b8 dis dis r4
@@ -296,6 +371,7 @@ myScore = \score {
     }
     \new Staff {
       \global
+      \headEb \pageBreak
       \solo
     }
   >>
