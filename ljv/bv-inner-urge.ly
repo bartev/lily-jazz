@@ -255,13 +255,13 @@ headEb = \relative c'' {
 
   %% m17
   bis4. ais8 gis fis dis cis
-  c b bes c a c \tuplet 3/2 { d8 f g }
+  c b bes c? a c? \tuplet 3/2 { d8 f g }
   ais4. g8 fis4 dis8 fis~
   fis8 d4. r4 dis4
   \break
 
   %% m21
-  g4~ g16 e cis a gis4~ \tuplet 5/4 { gis16 a cis e gis }
+  gis4~ g16 e cis a gis4~ \tuplet 5/4 { gis16 a cis e gis }
   eis4~ eis16 cis ais eis dis4~ \tuplet 5/4 { dis16 fis ais cis eis }
   e4~ e16 d a e d4~ \tuplet 5/4 { d16 e a d e }
   fis4. dis8 fis dis r4
