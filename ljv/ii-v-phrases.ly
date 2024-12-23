@@ -136,7 +136,7 @@ global = {
 
 %%%%%%%%%%%%%%%%%%%% Begin music
 
-\markup { "ii-V-I in D maj" }
+\markup { "1) ii-V-I in D maj" }
 \score {
   \new StaffGroup <<
     \new ChordNames { \chordmode { e1:m7 a:7 d:maj7 d:maj7 }}
@@ -169,33 +169,135 @@ global = {
   >>
 }
 
-\markup { "ii-V-i in C-" }
+\markup \concat { "2) ii-V-I in E" \flat " maj" }
 \score {
   \new StaffGroup <<
-%%    \new ChordNames { \chordmode { d1:m7.5- g:7 c:m7 c:m7 }}
+    \new ChordNames { \chordmode { f1:m7 bes:7 ees:maj7 ees:maj7 }}
     \new Staff {
       \global
-      \key c \major
+      \key ees \major
+      \relative c''' {
+        c8 ees d c bes aes f aes~
+        aes8 f ees d ees4 f8 d~
+        d8 ees f aes~ aes g f g~
+        g4 r4 r2
+      }
+    }
+    \lyrics {
+      \markup \scaleDegree { 5 }2
+      \markup \scaleDegree { 4 }4.
+      \markup \scaleDegree { f3 }8
+
+      \markup \scaleDegree { f7 }2
+      \markup \scaleDegree { 4 }4.
+      \markup \scaleDegree { 3 }8
+
+      \markup \scaleDegree { 7 }2
+      \markup \scaleDegree { 4 }4.
+      \markup \scaleDegree { 3 }8
+
+      \markup \scaleDegree { 3 }1
+    }
+  >>
+}
+
+\markup \concat { "3) ii-V-I in A maj" }
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { b2:m7 e:7 a1:maj7 } }
+    \new Staff {
+      \global
+      \key a \major
       \relative c'' {
-        s1 s1 s1 s1
+        r8 fis r e  d b a fis
+        gis4 a8 e~ e4 r
       }
     }
   >>
 }
 
-\markup { "Backdoor dominant C" }
+
+\markup { "4) ii-V-I in G maj" }
 \score {
   \new StaffGroup <<
-  %%  \new ChordNames { \chordmode { f1:m7 bes:7 c:maj7 c:maj7 }}
+    \new ChordNames { \chordmode { s4 a1:m7 d:7 g:maj7 g:maj7 }}
     \new Staff {
       \global
-      \key c \major
+      \key g \major
       \relative c'' {
-        s1 s1 s1 s1
+        \partial 4 { r8 g}
+        \tuplet 3/2 { a8 c e } g8 fis8~ fis e~ e4~
+        e8 d e fis d r r a
+        aes g fis g b fis'~ fis e
+        d b r2.
+      }
+    }
+    \lyrics {
+      s4
+      \markup \scaleDegree { 1 }4
+      \markup \scaleDegree { f7 }4.
+      \markup \scaleDegree { 5 }4.
+      s8
+      \markup \scaleDegree { 1 }4
+      \markup \scaleDegree { 3 }8
+      \markup \scaleDegree { 1 }4.
+      \markup \scaleDegree { 2 }8
+
+      \markup \scaleDegree { f2 }8
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { 7 }8
+      \markup \scaleDegree { 1 }8
+
+      \markup \scaleDegree { 3 }8
+      \markup \scaleDegree { 7 }4
+      \markup \scaleDegree { 5 }8
+
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { 3 }8
+
+    }
+  >>
+}
+
+\markup { "Minor ii-v-i in B" \fontsize #-2 \flat " minor (scales)" }
+\markup {
+  \column {
+    \override #'(font . "Serif")  % Again, set font to basic serif
+    "Think about a locrian or locrian nat 2 for the half dim chord."
+    "The dominant chord may have a b13 (b6), so the nat 2 from the first chord to the b6 adds some chromatic motion."
+  }
+}
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { c1:m7.5- f:7.9- bes:min7 des:maj}}
+    \new Staff {
+      \global
+      \key c \minor
+      \relative c' {
+        c8 des ees f ges aes bes c
+        f,8 ges aes bes c des ees f
+        bes,8 c des ees f ges aes bes
+        des,,8 ees f ges aes bes c des
       }
     }
   >>
 }
+
+\markup { "Minor ii-V-i in C-7" }
+\score {
+  \new StaffGroup <<
+   \new ChordNames { \chordmode { d1:m7.5- g:7.9- c:m7 c:m7 }}
+    \new Staff {
+      \global
+      \key c \minor
+      \relative c''' {
+        b8 a gis f ees4 c8 d
+        s1 s1 s1
+      }
+    }
+  >>
+}
+
 
 \markup { "Tritone substitution D" }
 \score {
@@ -210,3 +312,5 @@ global = {
     }
   >>
 }
+
+\markup { "Backdoor dominant C" }
