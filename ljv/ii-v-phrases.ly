@@ -15,19 +15,21 @@
 
 %% bv_definitions is in plugins/bv-lilyjazz/stylesheets.
 %% It contains some useful functions such as:
+%% date
+%% bvTagline
 %% timestop
-%%   markManualBox
-%%   markBlue
-%%   blueChord
-%%   redChord
-%%   greenChord
+%% markManualBox
+%% markBlue
+%% blueChord
+%% redChord
+%% greenChord
 
 %% set up title, compser, meter, copyright
 
-tagline = "Bartev 2024-12"
+tagline = \bvTagline
 copyright = #"Bartev 2024"
 
-%%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
+%% %%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
 title = #"Compose ii-v-i phrases"
 %% meter = ""
