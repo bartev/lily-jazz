@@ -6,6 +6,14 @@
 
 %%%%%%%%%%%%%%%%%%%% Functions
 
+%% `#` Indicates that what follows is a Scheme expression, as LilyPond uses the Guile dialect of Scheme for scripting
+%% '\date' The backslash is used to reference the date variable in LilyPond
+
+date = #(strftime "%Y-%m-%d" (localtime (current-time)))
+%% tagline = \date
+bvTagline = #(string-append "Bartev - " date)
+
+
 %% Set fontsize in markupt https://lilypond.org/doc/v2.23/Documentation/notation/formatting-text
 timestop = #(define-music-function
              (parser location string)
