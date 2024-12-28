@@ -219,6 +219,42 @@ global = {
 }
 
 
+\markup \concat { "4) ii-V-I in A maj" }
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { b1:m7 e:7 a1:maj7 a1:maj7 }}
+    \new Staff {
+      \global
+      \key a \major
+      \relative c'' {
+        r4 d e fis
+        e fis gis b
+        a2. cis4
+        gis,8 cis e gis~ gis4 e8 cis
+      }
+    }
+  >>
+}
+
+
+\markup \concat { "5) ii-V-I in A maj" }
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { b1:m7 e:7 a1:maj7 a1:maj7 }}
+    \new Staff {
+      \global
+      \key a \major
+      \relative c'' {
+        a2 d
+        d2 gis
+        gis2 cis
+        s1
+      }
+    }
+  >>
+}
+
+
 \markup { "4) ii-V-I in G maj" }
 \score {
   \new StaffGroup <<
