@@ -254,8 +254,25 @@ global = {
   >>
 }
 
+\markup \concat { "6) 1 bar on minor chord (50s into Like someone in love)" }
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { a1:m7 cis1:m7 cis1:m7 cis1:m7 }}
+    \new Staff {
+      \global
+      \key a \major
+      \relative c''' {
+        a8 fis cis e d a cis e
+        b2 r
+        cis8 e b2 r4
+        s1
+      }
+    }
+  >>
+}
 
-\markup { "4) ii-V-I in G maj" }
+
+\markup { "7) ii-V-I in G maj" }
 \score {
   \new StaffGroup <<
     \new ChordNames { \chordmode { s4 a1:m7 d:7 g:maj7 g:maj7 }}
