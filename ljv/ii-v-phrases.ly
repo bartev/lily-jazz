@@ -254,10 +254,11 @@ global = {
   >>
 }
 
+
 \markup \concat { "6) 1 bar on minor chord (50s into Like someone in love)" }
 \score {
   \new StaffGroup <<
-    \new ChordNames { \chordmode { a1:m7 cis1:m7 cis1:m7 cis1:m7 }}
+    \new ChordNames { \chordmode { b1:m7 e:7 a1 a }}
     \new Staff {
       \global
       \key a \major
@@ -271,8 +272,25 @@ global = {
   >>
 }
 
+\markup \concat { "7) 1 bar on minor chord (53s into Like someone in love)" }
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { a1:m7 cis1:m7 cis1:m7 cis1:m7 }}
+    \new Staff {
+      \global
+      \key a \major
+      \relative c''' {
+        b8 a gis f d dis e r
+        b'8 bes a fis cis d fis a
+        e cis b a fis e fis s
+        s1
+      }
+    }
+  >>
+}
 
-\markup { "7) ii-V-I in G maj" }
+
+\markup { "8) ii-V-I in G maj" }
 \score {
   \new StaffGroup <<
     \new ChordNames { \chordmode { s4 a1:m7 d:7 g:maj7 g:maj7 }}
@@ -310,6 +328,22 @@ global = {
       \markup \scaleDegree { 5 }8
       \markup \scaleDegree { 3 }8
 
+    }
+  >>
+}
+\markup \concat { "9) ii-v-i in G" }
+\score {
+  \new StaffGroup <<
+    \new ChordNames { \chordmode { a1:m7 d:7 g g }}
+    \new Staff {
+      \global
+      \key a \major
+      \relative c'' {
+        b8 c e g fis e d c
+        s1
+        s1
+        s1
+      }
     }
   >>
 }
