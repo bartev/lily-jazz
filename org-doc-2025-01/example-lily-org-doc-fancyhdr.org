@@ -176,21 +176,46 @@ Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi.
 Integer accumsan lacus a leo mattis pretium. Proin velit quam,
 vestibulum at porttitor vel, fringilla a est.
 
-#+begin_src lilypond :file dorian.pdf
-    \relative c' {
-      d4 e f g
-      a b c d
-      c b a g
-      f e d e
-      %% \break
-      f g a b
-      c d c b
-      a g f e
-      d1
-    }
+
+#+begin_src  lilypond :file dorian.pdf
+  scaleDegrees = \lyricmode {
+    \markup \scaleDegree { 1 }4
+    \markup \scaleDegree { 2 }
+    \markup \scaleDegree { f3 }
+    \markup \scaleDegree { 4 }
+
+    \markup \scaleDegree { 5 }4
+    \markup \scaleDegree { 6 }
+    \markup \scaleDegree { f7 }
+    \markup \scaleDegree { 8 } 
+  } 
+
+  scale =  \relative c' {
+    d4 e f g
+    a b c d
+    c b a g
+    f e d e
+    %% \break
+    f g a b
+    c d c b
+    a g f e
+    d1
+  }
+
+  \score {
+    <<
+      \new Staff = "staff" {
+        \new Voice \scale
+      }
+      \new Lyrics \with {
+        alignBelowContext = "staff"
+      } \scaleDegrees
+    >>
+  }
+
 #+end_src
 
-#+RESULTS:
+
 
 * Phrygian Mode
 
