@@ -1,0 +1,101 @@
+#+TITLE: Modes of the C Major Scale
+#+AUTHOR: Bartev
+#+OPTIONS: num:nil toc:nil date:nil
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in]{geometry} % Ensure sufficient header space
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{Modes in the Key of C}}
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Your Name}}
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+LATEX_HEADER: \usepackage{tikz}
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results :file modes-c-major.pdf
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+
+xxxx#+LATEX_HEADER: \usepackage{tikz}
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  \paper{
+    indent=0\mm
+    line-width=170\mm
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+#+end_src
+
+* Modes of the C Major Scale
+
+This chart shows the modes of the C Major scale, including the associated mode names and their positions.
+
+#+begin_src lilypond :file modes-c-major.pdf
+  \version "2.24.2"
+
+                                  % Scale annotation
+  \markup {
+    \column {
+      \line { "Chart is based on C Major scale:" }
+    }
+  }
+
+                                  % C Major scale
+  \relative c' {
+    \clef treble
+    \key c \major
+    \time 4/4
+    c4 d e f
+    g a b c
+    d e f g
+    a b c d
+  }
+
+  %% % Overlay TikZ for mode labels and arrows
+  %% \markup \overlay {
+  %%   \line {
+  %%     \with-dimensions #'(0 . 8) #'(0 . 2)
+  %%     \combine
+  %%       \tikz \draw [->] (0, 0) -- (0, 1);
+  %%   }
+  %% }
+
+  %% Overlay TikZ for mode labels and arrows
+  \markup \overlay {
+    \line {
+      \with-dimensions #'(0 . 8) #'(0 . 2)
+      \combine
+      \tikz \draw [->] (0, 0) -- (0, 1);
+    }
+  }
+#+end_src
