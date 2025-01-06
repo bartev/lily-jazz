@@ -8,9 +8,10 @@
 #+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \pagestyle{fancy}
 #+LATEX_HEADER: \fancyhf{}
-#+LATEX_HEADER: \fancyhead[L]{\textbf{\title}} % Use the Org #+TITLE
-#+LATEX_HEADER: \fancyhead[R]{\textbf{\author}} % Use the Org #+AUTHOR
+#+LATEX_HEADER: \fancyhead[L]{\textbf{ii-V-I Snippets}} % Left header with title
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev - Lesson 26 (2024-12)}} % Right header with author
 #+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{Printed \today} % Right footer with today's date
 #+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
 
 #+LATEX_HEADER: \makeatletter
@@ -39,11 +40,11 @@
   #(set-global-staff-size 16)
 
   \paper{
-    indent=0\mm
-    left-margin = 0\in
-    right-margin = 0\in
-
     line-width=7\in
+    indent=0\mm
+    left-margin = 0\mm
+    right-margin = 0\mm
+
     oddFooterMarkup=##f
     oddHeaderMarkup=##f
     bookTitleMarkup=##f
@@ -83,8 +84,95 @@
   }
 
 #+end_src
+
+* Various chord changes
+
+** Major ii-V-I
+#+begin_src lilypond :file major_ii_v_i.pdf
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { d:m7 g:7 c:maj7 c:maj7 }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          d4 f a c
+          g4 b d f
+          c4 e g b
+          s1
+        }
+      }
+    >>
+  }
+
+#+end_src
+** Minor ii-V-I
+
+#+begin_src lilypond :file minor_ii_v_i.pdf
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { d:m7.5- g:7.9- c:m7 c:m7 }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          d4 f aes c
+          g8 b d f aes r4.
+          c,4 ees g bes
+          s1
+        }
+      }
+    >>
+  }
+#+end_src
+
+For the half-dim chord, try the Locrian or Locrian nat 2 scales.
+
+#+begin_src lilypond :file locrian.pdf
+  c_locrian = \relative c' { c8_\markup { Locrian } des ees f ges aes bes c }
+  c_locrian_nat_two = \relative c' { c8_\markup { Locrian nat 2 } d ees f ges aes bes c }
+
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { d:m7.5- }}
+      \new Staff {
+        \global
+        \key d \major
+        \relative d' {
+          \transpose c d \c_locrian
+          \transpose c d \c_locrian_nat_two
+        }
+      }
+    >>
+  }
+#+end_src
+
+For the G7\flat 9, try the Phrygian Dominant or altered scales.
+
+#+begin_src lilypond :file phryg_dom.pdf
+  c_phrygian_dominant = \relative c' { c8_\markup { Phrygian Dominant } des e f g aes bes c }
+  c_alt_dim_whole = \relative c' { c8_\markup { Altered Scale - Diminished Whole Tone} des ees e fis gis bes c }
+
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { g:7.9- }}
+      \new Staff {
+        \global
+        \key g \major
+        \relative c' {
+          \transpose c g \c_phrygian_dominant
+          \transpose c g \c_alt_dim_whole
+        }
+      }
+    >>
+  }
+  #+end_src
 * Basic ii-V-I phrases
 ** In E-flat
+
+Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.
+
+
 #+begin_src lilypond :file e-flat.pdf
   \score {
     \new StaffGroup <<
