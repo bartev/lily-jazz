@@ -85,12 +85,18 @@
 
 #+end_src
 
-* Various chord changes
+* Variations on chord changes
 
 ** Major ii-V-I
 #+begin_src lilypond :file major_ii_v_i.pdf
   \score {
     \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii -7 }1
+        \markup \rN { V 7 }1
+        \markup \rN { I }1
+        \markup \rN { I }1
+      }
       \new ChordNames { \chordmode { d:m7 g:7 c:maj7 c:maj7 }}
       \new Staff {
         \global
@@ -108,9 +114,17 @@
 #+end_src
 ** Minor ii-V-I
 
+Shortcut, think harmonic minor all the way through. (\flat 3 & \flat 6)
+
 #+begin_src lilypond :file minor_ii_v_i.pdf
   \score {
     \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii h 7 }1
+        \markup \rN { V 7(f9) }1
+        \markup \rN { i -7 }1
+        \markup \rN { i -7 }1
+      }
       \new ChordNames { \chordmode { d:m7.5- g:7.9- c:m7 c:m7 }}
       \new Staff {
         \global
@@ -149,10 +163,17 @@ For the half-dim chord, try the Locrian or Locrian nat 2 scales.
 
 For the G7\flat 9, try the Phrygian Dominant or altered scales.
 
+Usually on a Dom7\flat9 there is a \flat13 (\flat6).
+
+We can think of this as the C harmonic minor (\flat 3 \flat 6) starting on the 5th (G).
+
+The G altered scale starts on G, then every other note is lowered a 1/2 step.
+
 #+begin_src lilypond :file phryg_dom.pdf
   c_phrygian_dominant = \relative c' { c8_\markup { Phrygian Dominant } des e f g aes bes c }
   c_alt_dim_whole = \relative c' { c8_\markup { Altered Scale - Diminished Whole Tone} des ees e fis gis bes c }
-
+  c_alt_dim_whole_flats = \relative c' { c8_\markup { Altered Scale (flats) - Dim Whole Tone} des ees fes ges aes bes c }
+  c_alt_dim_whole_sharps = \relative c' { c8_\markup { Altered Scale (sharps) - Dim Whole Tone} cis dis e fis gis ais c }
   \score {
     \new StaffGroup <<
       \new ChordNames { \chordmode { g:7.9- }}
@@ -162,16 +183,202 @@ For the G7\flat 9, try the Phrygian Dominant or altered scales.
         \relative c' {
           \transpose c g \c_phrygian_dominant
           \transpose c g \c_alt_dim_whole
+          \break
+          \transpose c g \c_alt_dim_whole_flats
+          \transpose c g \c_alt_dim_whole_sharps
         }
       }
     >>
   }
   #+end_src
+
+  For the Cm7, use the Dorian or melodic minor scales
+
+  #+begin_src lilypond :file dorian_melodic_minors.pdf
+    c_min_dorian = \relative c' { c8_\markup { Minor (Dorian) } d ees f g a bes c }
+    c_min_melodic = \relative c' { c8_\markup { Minor (Melodic) } d ees f g a b c }
+
+    \score {
+      \new StaffGroup <<
+        \new ChordNames { \chordmode { c:m7 }}
+        \new Staff {
+          \global
+          \key c \minor
+          \relative c' {
+            \c_min_dorian
+            \c_min_melodic
+          }
+        }
+      >>
+    }
+  #+end_src
+
+** iii-VI-ii-V-I
+Can be found in
+- Green Dolphin Street
+- There Will Never Be Another You
+
+#+begin_src lilypond :file iii-vi-ii-v.pdf
+  \score {
+    \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { iii -7 }1
+        \markup \rN { VI 7 }1
+        \markup \rN { ii -7 }1
+        \markup \rN { V 7 }1
+        \markup \rN { I }1
+        \markup \rN { I }1
+      }
+      \new ChordNames { \chordmode { e:m7 a:7 d:m7 g:7 c c }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          e4 g b d
+          a4 cis e g
+          d,4 f a c
+          g4 b d f
+          c,4 e g b
+          s1
+        }
+      }
+    >>
+  }
+#+end_src
+
+** Tritone sub
+Replace the V7 with the V7 a tritone away.
+
+We can also transpose the ii-7 by a tritone.
+
+- A tritone is a dim 5th (3 whole steps).
+
+- It is 1/2 way to the octave.
+
+#+begin_src lilypond :file tritone_sub.pdf
+  \score {
+    \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii -7 }1
+        \markup \rN { flatII 7 }1
+        \markup \rN { I }1
+        \markup \rN { I }1
+        \markup \rN { flatvi -7 }1
+        \markup \rN { flatII 7 }1
+        \markup \rN { I }1
+        \markup \rN { I }1
+      }
+      \new ChordNames { \chordmode {
+        d:m7 des:7 c c
+        aes:m7 des:7 c c
+      }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          d4 f a c
+          des,4 f aes c
+          c,4 e g b
+          s1
+          \bar "||"
+          \break
+          aes4 ces ees ges
+          des,4 f aes c
+          c,4 e g b
+          s1
+          \bar "||"
+        }
+      }
+    >>
+  }
+#+end_src
+
+Common notes in substituted chords
+
+#+begin_src lilypond :file tritone-common-notes.pdf
+
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode {
+        d2:m7 aes:m7
+        d2:m7 aes:m7
+        g2:7 des2:7
+        g2:7 des2:7
+      }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          d8 f a c aes ces ees ges
+          < d f a c >2
+          < aes ces ees ges >2
+          g8 b d f des f aes ces
+          < g b d f >2
+          < des f aes ces >2
+        }
+      }
+    >>
+  }
+
+
+#+end_src
+
+#+RESULTS:
+[[file:tritone-common-notes.pdf]]
+
+** Backdoor Dominant
+
+Can also think of this as a minor 3rd sub.
+
+Replace the ii and V chords with chords a m3 higher
+
+#+begin_src lilypond :file backdoor.pdf
+    \score {
+      \new StaffGroup <<
+        \new Lyrics \lyricmode {
+          \markup \rN { iv -7 }1
+          \markup \rN { flatVII 7 }1
+          \markup \rN { I }1
+          \markup \rN { I }1
+        }
+        \new ChordNames { \chordmode { f:m7 bes:7 c c }}
+        \new Staff {
+          \global
+          \key c \major
+          \relative c' {
+            f4 aes c ees
+            bes,4 d f aes
+            c4 e g b
+            s1
+          }
+        }
+      >>
+    }
+#+end_src
+
+Notice the common notes in the arpeggios
+
+#+begin_src lilypond :file backdoor-common-notes.pdf
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { f:m7 bes:7 c bes2:7 d2:7 }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          f4 aes c ees
+          \xNote {bes,4 d} f aes
+          c4 \xNote{e g b}
+          < bes,, d f a c >2
+          < d fis a c >2
+        }
+      }
+    >>
+  }
+#+end_src
+
 * Basic ii-V-I phrases
 ** In E-flat
-
-Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.
-
 
 #+begin_src lilypond :file e-flat.pdf
   \score {
@@ -199,7 +406,6 @@ Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel t
         \markup \scaleDegree { 7 }2
         \markup \scaleDegree { 4 }4.
         \markup \scaleDegree { 3 }8
-
         \markup \scaleDegree { 3 }1
       }
     >>
@@ -263,6 +469,28 @@ Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel t
           fis4. e8 fis4. e8
           d4. b8 d b a b~
           b2 r2
+          s1
+        }
+      }
+    >>
+  }
+#+end_src
+
+* Tritone sub phrases (Dom chord only)
+
+** Tritone in Cmaj
+#+begin_src lilypond :file tritone-c-maj.pdf
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { d1:m7 cis:7 c:maj7 c:maj7 }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          d8 r r f  a4 r
+          cis,8 r r f  gis4 r
+          c,8 r r e g e c a
+          b g e2 r4
         }
       }
     >>
