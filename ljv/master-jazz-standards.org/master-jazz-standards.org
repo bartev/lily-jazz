@@ -1,0 +1,142 @@
+#+title: master-jazz-standards
+#+author: Bartev
+#+date: 2025-01-06
+#+OPTIONS: num:nil toc:nil
+
+#+BIND: org-latex-image-default-width "0.98\\linewidth"
+
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in, bottom=1in, left=0.75in, right=0.75in]{geometry} % Ensure sufficient header space
+
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{Master Jazz Standards}} % Left header with title
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev -  2025-01}} % Right header with author
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{Printed \today} % Right footer with today's date
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  %% \include "lilyjazz.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  #(set-global-staff-size 16)
+
+  \paper{
+    line-width=7\in
+    indent=0\mm
+    left-margin = 0\mm
+    right-margin = 0\mm
+
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+    ragged-right = ##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+
+  \layout {
+    \omit Staff.TimeSignature
+    \context {
+      \Score
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+
+  global = {
+    \numericTimeSignature
+    \time 4/4
+    %% \tempo 4=224  % this would be over the clef on the first line
+
+    %% See here for using colors
+    %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+    %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+    \override Score.RehearsalMark.color = #darkred
+    %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+    \override Score.RehearsalMark.font-size = 6
+
+    \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  }
+#+end_src
+
+Here are some thoughts from Nathan Graybeal's YouTube post [[https://www.youtube.com/watch?v=qdobZsTTbbw&list=LL][9 Steps to Mastering Any Jazz Standard]].
+* Learn the Melody
+
+Serves as the melodic basis of your solo.
+
+Embellish the melody.
+- Change the rhythm
+- Add repeated notes and accents
+- Add extra notes and pitches
+- Improvise over long notes or rests
+* Learn arpeggios of every chord
+
+#+begin_src lilypond :file arpeggios.pdf
+  chordsNames=\new ChordNames {
+    \chordmode {
+      c:maj7
+      c:7
+      c:m7
+      c:7.5-
+      c:dim7
+
+      c:6
+      c:m6
+      c:sus7
+      c:7.5+
+      c:maj7.11+
+    }
+  }
+  arpeggios=\new Staff {
+    \global
+    \key c \major
+    \relative c' {
+      c8 e g b~ b2
+      c,8 e g bes~ bes2
+      c,8 ees g bes~ bes2
+      c,8 ees ges bes~ bes2
+      c,8 ees ges a~ a2
+      \break
+      %% C6
+      c,8 e g a~ a2
+      c,8 ees g a~ a2
+      c,8 f g bes~ bes2
+      c,8 e gis bes~ bes2
+      c,8 e fis b~ b2
+    }
+  }
+  \score {
+    \new StaffGroup <<
+      \chordsNames
+      \arpeggios
+    >>
+  }
+#+end_src
