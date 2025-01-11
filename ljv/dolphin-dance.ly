@@ -304,15 +304,15 @@ arpeggios= \relative c'' {
   \markManualBox "B"
   %% m17 B section
   e,8 gis b dis~ dis2
-  e,8 gis b d~ d2
+  e,8 a b d~ d2
   fis,8 a cis e~ e2
   b8 dis fis a~ a2
   \break
 
   %% m21
-  d,8 fis g c~ c2
+  d,8 g a c~ c2
   b,8 dis fis ais~ ais2
-  d,8 fis g c~ c2
+  d,8 g a c~ c2
   cis,8 e gis b fis8 ais cis e
 
   \break
@@ -320,12 +320,12 @@ arpeggios= \relative c'' {
   \markManualBox "C"
   %% m25 C section
   c,8 e g bes~ bes2
-  fis,8 ais cis e b8 dis fis a
+  fis,8 a cis e b8 dis fis a
   \break
 
   %% m27
   gis,8 b dis fis~ fis2
-  cis,8 e gis b b d fis a
+  cis,8 eis gis b b d fis a
 
 
   %% m29
@@ -335,10 +335,10 @@ arpeggios= \relative c'' {
 
   \markManualBox "D"
   %% m31 D section
-  b,8 dis fis a~ a2
-  a,8 cis e g~ g2
-  b,8 dis fis a~ a2
-  a,8 cis e g~ g2
+  b,8 dis fis ais~ ais2
+  a,8 cis e gis~ gis2
+  b,8 dis fis ais~ ais2
+  a,8 cis e gis~ gis2
   \break
 
 
