@@ -1,6 +1,6 @@
 #+TITLE: ii-V Snippets
 #+AUTHOR: Bartev
-#+OPTIONS: num:nil toc:nil
+#+OPTIONS: num:t toc:t
 
 #+LATEX_HEADER: \usepackage[cm]{fullpage}
 #+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in, bottom=1in, left=0.75in, right=0.75in]{geometry} % Ensure sufficient header space
@@ -477,6 +477,82 @@ Notice the common notes in the arpeggios
   }
 #+end_src
 
+** Short ii-V-I in Emaj
+#+begin_src lilypond :file short-ii-v-in-Emaj.pdf
+  in_e =  \new StaffGroup <<
+      \new ChordNames { \chordmode { s2 fis2:m7 b:7 e:maj7 }}
+      \new Staff {
+        \global
+        \key e \major
+        \relative c''' {
+          \partial 2 { r8 b a gis }
+          fis gis a b   r dis b a
+          gis8 a b e,~ e4 b8 gis~
+          gis4
+        }
+      }
+      \lyrics {
+        \markup \scaleDegree {  }8
+        \markup \scaleDegree { 4 }8
+
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 2 }8
+
+        \markup \scaleDegree { f7 }8
+        \markup \scaleDegree { 1 }4
+        \markup \scaleDegree { 3 }8
+
+        \markup \scaleDegree { 5 }8
+
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 1 }4.
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 3 }8
+      }
+    >>
+
+  \score { \in_e }
+  \score { \transpose e b, \in_e }
+#+end_src
+
+** Short minor ii-V in Amin
+#+begin_src lilypond :file short-ii-v-in-Amin.pdf
+  in_e =  \new StaffGroup <<
+      \new ChordNames { \chordmode { b2:m7.5- e:7.9- a1:m7 }}
+      \new Staff {
+        \global
+        \key a \minor
+        \relative c'' {
+          f8 d b a  e f gis b
+          a8 gis a c~ c4 r
+        }
+      }
+      \lyrics {
+        \markup \scaleDegree { f5 }8
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { f7 }8
+
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { f2 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 5 }8
+
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 7 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { f3 }8
+      }
+    >>
+
+  \score { \in_e }
+  \score { \transpose a d' \in_e }
+#+end_src
 * Tritone sub phrases (Dom chord only)
 
 ** Tritone in Cmaj

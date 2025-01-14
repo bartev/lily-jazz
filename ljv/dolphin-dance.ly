@@ -345,7 +345,7 @@ arpeggios= \relative c'' {
   %% m35
   bes,8 d f a~ a2
   g,8 b d f aes c ees r
-  f,,8 a cis e~ e2
+  f,,8 a cis? e~ e2
   e8 gis bis d~ d2
   \break
 
