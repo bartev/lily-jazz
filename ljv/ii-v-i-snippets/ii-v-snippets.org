@@ -56,6 +56,7 @@
       (set-global-fonts
        #:music "lilyjazz"
        #:brace "lilyjazz"
+       %% #:roman "lilyjazz-text"
        #:sans "lilyjazz-chord"
        #:factor (/ staff-height pt 18)
      ))
@@ -111,8 +112,8 @@
       }
     >>
   }
-
 #+end_src
+
 ** Minor ii-V-I
 
 Shortcut, think harmonic minor all the way through. (\flat 3 & \flat 6)
@@ -378,7 +379,7 @@ Notice the common notes in the arpeggios
   }
 #+end_src
 
-* Basic ii-V-I phrases
+* Major ii-V-I phrases
 ** In E-flat
 
 #+begin_src lilypond :file e-flat.pdf
@@ -494,19 +495,18 @@ Notice the common notes in the arpeggios
       \lyrics {
         \markup \scaleDegree {  }8
         \markup \scaleDegree { 4 }8
-
         \markup \scaleDegree { f3 }8
         \markup \scaleDegree { 2 }8
+
         \markup \scaleDegree { 1 }8
         \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 4 }4
 
-        \markup \scaleDegree { f7 }8
-        \markup \scaleDegree { 1 }4
         \markup \scaleDegree { 3 }8
-
-        \markup \scaleDegree { 5 }8
-
-        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { f7 }8
+        
         \markup \scaleDegree { 3 }8
         \markup \scaleDegree { 4 }8
         \markup \scaleDegree { 5 }8
@@ -520,6 +520,7 @@ Notice the common notes in the arpeggios
   \score { \transpose e b, \in_e }
 #+end_src
 
+* Minor ii-V-i
 ** Short minor ii-V in Amin
 #+begin_src lilypond :file short-ii-v-in-Amin.pdf
   in_e =  \new StaffGroup <<
@@ -553,6 +554,7 @@ Notice the common notes in the arpeggios
   \score { \in_e }
   \score { \transpose a d' \in_e }
 #+end_src
+* iii-VI-ii-V-I
 * Tritone sub phrases (Dom chord only)
 
 ** Tritone in Cmaj
@@ -565,10 +567,77 @@ Notice the common notes in the arpeggios
         \key c \major
         \relative c'' {
           d8 r r f  a4 r
-          cis,8 r r f  gis4 r
+          cis,8 r r eis gis4 r
           c,8 r r e g e c a
           b g e2 r4
         }
+      }
+      \lyrics {
+        \markup \scaleDegree { 1 }4.
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 5 }2
+      
+        \markup \scaleDegree { 1 }4.
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 5 }2
+      
+        \markup \scaleDegree { 1 }4.
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 6 }8
+
+        \markup \scaleDegree { 7 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 3 }2. 
+      }
+    >>
+  }
+#+end_src
+
+* Backdoor dominant
+
+** Backdoor 1
+#+begin_src lilypond :file backdoor-1.pdf
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { d1:m7 g:7 a:maj7 a:maj7 }}
+      \new Staff {
+        \global
+        \key a \major
+        \relative c'' {
+          f8 r a g  f e d c
+          b8 r d b  a g e f
+          fis8 gis a b   cis e d cis~
+          cis2 r
+        }
+      }
+      \lyrics {
+        \markup \scaleDegree { f3 }4
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { f7 }8
+
+        \markup \scaleDegree { 3 }4
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 6 }8
+        \markup \scaleDegree { f7 }8
+
+        \markup \scaleDegree { 6 }8
+        \markup \scaleDegree { 7 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 3 }8 
       }
     >>
   }
