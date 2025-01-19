@@ -504,7 +504,7 @@ Notice the common notes in the arpeggios
         \markup \scaleDegree { 3 }8
         \markup \scaleDegree { 1 }8
         \markup \scaleDegree { f7 }8
-        
+
         \markup \scaleDegree { 3 }8
         \markup \scaleDegree { 4 }8
         \markup \scaleDegree { 5 }8
@@ -514,6 +514,7 @@ Notice the common notes in the arpeggios
       }
     >>
 
+  \score { \transpose e a, \in_e }
   \score { \in_e }
   \score { \transpose e b, \in_e }
 #+end_src
@@ -593,6 +594,27 @@ Notice the common notes in the arpeggios
     >>
   }
 #+end_src
+** Tritone Dmaj
+#+begin_src lilypond :file tritone-d-maj.pdf
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { e1:m7 ees:7 d:maj7 d:maj7 }}
+      \new Staff {
+        \global
+        \key d \major
+        \relative c''' {
+          b8 a g fis e fis g b
+          bes8 aes g f ees f g bes
+          a8 g fis e d fis cis4
+          s1 \break
+        }
+      }
+      %% \lyrics {
+      %% }
+    >>
+  }
+#+end_src
+
 
 * Backdoor dominant
 
