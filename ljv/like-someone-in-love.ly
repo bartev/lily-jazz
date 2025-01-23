@@ -1,5 +1,8 @@
 \version "2.24.2"
 
+%% See here for a transcription in C
+%% https://www.slideshare.net/slideshow/like-someone-in-love-dick-oatts-standard-time/6431754#3
+
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
 
@@ -22,8 +25,8 @@
 
 %% set up title, compser, meter, copyright
 
-tagline = "Bartev 2024-12"
-copyright = #"Bartev 2024"
+tagline = "Bartev 2025-01"
+copyright = #"Bartev 2025"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
@@ -211,7 +214,7 @@ global = {
 %% }
 
 %% Define the chords here. The same chords will be used for chord names and notes
-chordNames = \chordmode {
+chordNamesAB = \chordmode {
   %% Chorus 1
   c2:maj7 e:7
   a1:m7
@@ -232,7 +235,9 @@ chordNames = \chordmode {
   d1:7
   d1:m7
   g1:7+ % :7+ is augmented 7 chord (flat 7, sharp 5)
+}
 
+chordNamesAC = \chordmode {
   %% Chorus 2 (Different final 8 bars)
   c2:maj7 e:7
   a1:m7
@@ -257,12 +262,68 @@ chordNames = \chordmode {
 }
 
 headEb = \relative c'' {
-  \markManualBox "Head - Chorus 1"
+  \markManualBox "A: Head Chorus 1 (in C)"
+  
   \bar ".|"
   %% m1
-  \repeat unfold 4{ s1*4 \break }
+  r4 cis cis4. b8
+  cis4 r fis8 e cis b~
+  b2 r8 gis'4 e8~
+  e2 r
+  \break
+
+  r1
+  r8 d r a' gis4 fis
+  e4 e e cis'
+  b2 r
+  \break
   \bar "||"
-  \markManualBox "Head - Chorus 2"
+
+  \markManualBox "B"
+  r2 r4 r8 ais8
+  \tuplet 3/2 { cis4 b ais~ } ais4~ \tuplet 3/2 { ais8 gis eis } 
+  \tuplet 3/2 { dis4 gis eis~ } eis2
+  r1
+  \break
+
+  r8 fis r a \tuplet 3/2 { a4 gis b~ }
+  b4 a8 gis~ gis4 fis8 e~
+  e4 d8 a' cis, b r8 g'8~
+  g4 f8 a, e'4 d
+  \break
+  \bar "||"
+
+  \markManualBox "A (modulate key to Eb)"
+  e4 e2 r4
+  r8 a, e' a g4 e
+  c2. r8 b'8
+  g2 r2
+  \break
+
+  r4 r8 f r g a c
+  b4 b2~ b8 a
+  g4. fis8 g4 e'
+  \tuplet 3/2 { d2 c4 } \tuplet 3/2 { bes4 a g }
+  \break
+  \bar "||"
+
+  \markManualBox "C"
+  r4 r8 d' r d cis d
+  \tuplet 3/2 { e4 d cis~ } cis4 b8 e,
+  r8 e r b e4 e
+  fis2 r
+  \break
+  
+  r4 g g g8 e
+  f4 c' b g8 c
+  r8 c4 b16 a g8 e r c
+  d8 fis a fis gis b f dis
+  \break
+  \bar "|."
+  
+  %% \repeat unfold 1{ s1*4 \break }
+  %% \bar "||"
+  \markManualBox "Head - Chorus 2 (back to C)"
   \repeat unfold 4{ s1*4 \break }
   \bar "||"
   \break
@@ -309,7 +370,10 @@ myScore = \score {
       \override PercentRepeat.Y-offset = 1
     }
     {
-      \repeat unfold 1 {\chordNames}
+      \repeat unfold 2 {
+        \transpose ees c { \chordNamesAB }
+        \chordNamesAC
+      }
     }
     \new Staff {
       \global

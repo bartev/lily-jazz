@@ -154,10 +154,10 @@ realBookTitle = \markup {
   \numericTimeSignature
 }
 
-global = {
+globalC =  {
   \numericTimeSignature
   \time 4/4
-  \key a \major
+  \key c \major
   %% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -212,7 +212,7 @@ global = {
 
 %% Define the chords here. The same chords will be used for chord names and notes
 
-chordNamesIntro = \chordmode {
+chordNamesIntroC = \transpose c ees \chordmode {
   %% Intro
   c1:maj7
   bes1:maj7
@@ -220,7 +220,7 @@ chordNamesIntro = \chordmode {
   b2:m7.5- e:7.9-
 }
 
-chordNamesHead = \chordmode {
+chordNamesHeadC = \transpose c ees \chordmode {
   %% A
   a1:m7
   f1:maj7.11+
@@ -267,7 +267,7 @@ chordNamesHead = \chordmode {
   e1:7.5+
 }
 
-arpeggios= \relative c'' {
+arpeggiosC = \transpose c ees \relative c'' {
   \markManualBox "Intro"
   \bar ".|"
 
@@ -396,8 +396,8 @@ headEb = \relative c'' {
   \break
 }
 
-myScore = \score {
-  <<
+%% myScoreC = \score {
+myScoreMusic=  <<
     %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
     %% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
     %% \pageBreak
@@ -407,24 +407,110 @@ myScore = \score {
     }
     {
       %% Arpeggios
-      \chordNamesIntro
-      \chordNamesHead
+      \chordNamesIntroC
+      \chordNamesHeadC
 
       %% Head
-      \chordNamesIntro
-      \chordNamesHead
+      \chordNamesIntroC
+      \chordNamesHeadC
 
     }
     \new Staff {
-      \global
-      \arpeggios
+      \globalC
+      \arpeggiosC
       \pageBreak
       \intro
       \headEb
       %% \solo
     }
   >>
-  \layout { indent = 0 }
+
+%%   \layout { indent = 0 }
+%% }
+
+
+%% \score { \myScoreMusic }
+%% \pageBreak
+%% \score { \transpose c ees, \myScoreMusic }
+%% \pageBreak
+%% \score { \transpose c bes, \myScoreMusic }
+%% \pageBreak
+
+%% myScoreBb = \score { \transpose bes c \myScoreC }
+%% \myScoreBb
+
+iiViAmin = \relative c' {
+  f8 d b a  e f gis b
+  \break
+  a8 gis a c~ c4 r
 }
 
-\myScore
+soloC = \transpose c bes \relative c''' {
+  \markManualBox "Intro"
+  \bar ".|"
+
+  %% m1 - Intro
+  s1 s1 s1
+  bes8 g e d a bes cis e
+  \break
+  
+  \markManualBox "A"
+  d8 cis d f~ f4 r
+  s1
+  s2 r8 e d cis
+  b8 cis d e r gis e d
+  \break
+  \bar "||"
+  
+  %% m5 A section
+  cis8 d e a,~ a4 e8 cis
+  \repeat unfold 1 { s1*3 \break }
+
+  %% m9
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m13
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+
+  \markManualBox "B"
+  %% m17 B section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m21
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+
+  \markManualBox "C"
+  %% m25 C section
+  \repeat unfold 1 { s1*3 \break }
+
+  %% m29
+  \repeat unfold 1 { s1*3 \break } \bar "||"
+
+  \markManualBox "D"
+  %% m31 D section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m35
+  \repeat unfold 1 { s1*4 \break }
+  \bar "|."
+  \break
+}
+
+soloMusic =  <<
+    \new ChordNames \with {
+      \consists Percent_repeat_engraver
+      \override PercentRepeat.Y-offset = 1
+    }
+    {
+      %% Head
+      \chordNamesIntroC
+      \chordNamesHeadC
+
+    }
+    \new Staff {
+      \globalC
+      \soloC
+    }
+  >>
+
+\score { \transpose ees' c \soloMusic }
