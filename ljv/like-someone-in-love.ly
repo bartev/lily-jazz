@@ -316,14 +316,49 @@ headEb = \relative c'' {
   
   r4 g g g8 e
   f4 c' b g8 c
-  r8 c4 b16 a g8 e r c
+  r8 c4 b16 a g8 e d c
   d8 fis a fis gis b f dis
   \break
   \bar "|."
+
+  \markManualBox "Head - Chorus 2 (back to C)"
+  e8 cis r cis cis2
+  r8 b cis a' fis4 cis
+  b4 r r8 cis d cis
+  r8 d e f r e dis e8
+  \break
+  
+  a8 fis r cis e d r a
+  cis4 e b2
+  r2. b'8 bes
+  a8 g b, d fis a e cis
+  \break
+  \bar "||"
+  
+  \markManualBox "B"
+  ais8 gis a g fis e' r cis'
+  r8 b8 ais gis8~ gis4 f8 dis~
+  dis4 gis8 eis4. r4
+  r1
+  \break
+
+  r2 cis'4 gis8 b
+  a8 cis, f gis fis gis a b
+  cis8 d e ees d cis b bes
+  a8 f e d g dis b gis
+  \break
+  \bar "|."
+
+  \markManualBox "A (modulate to Eb)"
+  g8 f' e c d c b c
+  ees8 e g fis f g a b
+  c8 a b d gis,4. fis8
+  g8 e s2.
+  \break
   
   %% \repeat unfold 1{ s1*4 \break }
   %% \bar "||"
-  \markManualBox "Head - Chorus 2 (back to C)"
+  
   \repeat unfold 4{ s1*4 \break }
   \bar "||"
   \break
