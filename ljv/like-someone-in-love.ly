@@ -258,7 +258,6 @@ chordNamesAC = \chordmode {
   d2:m7 g:7
   c1:6 % 1 3 5 6
   d2:7 g:7
-
 }
 
 headEb = \relative c'' {
@@ -266,12 +265,14 @@ headEb = \relative c'' {
   
   \bar ".|"
   %% m1
-  r4 cis cis4. b8
+  r4 cis cis4. bis8
   cis4 r fis8 e cis b~
   b2 r8 gis'4 e8~
   e2 r
   \break
 
+  \timestop "0:07"
+  %% m5
   r1
   r8 d r a' gis4 fis
   e4 e e cis'
@@ -280,12 +281,16 @@ headEb = \relative c'' {
   \bar "||"
 
   \markManualBox "B"
+  \timestop "0:12"
+  %% m9
   r2 r4 r8 ais8
   \tuplet 3/2 { cis4 b ais~ } ais4~ \tuplet 3/2 { ais8 gis eis } 
   \tuplet 3/2 { dis4 gis eis~ } eis2
   r1
   \break
 
+  \timestop "0:17"
+  %% m13
   r8 fis r a \tuplet 3/2 { a4 gis b~ }
   b4 a8 gis~ gis4 fis8 e~
   e4 d8 a' cis, b r8 g'8~
@@ -294,12 +299,16 @@ headEb = \relative c'' {
   \bar "||"
 
   \markManualBox "A (modulate key to Eb)"
+  \timestop "0:22"
+  %% m17
   e4 e2 r4
   r8 a, e' a g4 e
-  c2. r8 b'8
+  c2. r8 c'8
   g2 r2
   \break
 
+  \timestop "0:28"
+  %% m21
   r4 r8 f r g a c
   b4 b2~ b8 a
   g4. fis8 g4 e'
@@ -308,12 +317,16 @@ headEb = \relative c'' {
   \bar "||"
 
   \markManualBox "C"
+  \timestop "0:33"
+  %% m25
   r4 r8 d' r d cis d
   \tuplet 3/2 { e4 d cis~ } cis4 b8 e,
   r8 e r b e4 e
   fis2 r
   \break
-  
+
+  \timestop "0:38"
+  %% m29
   r4 g g g8 e
   f4 c' b g8 c
   r8 c4 b16 a g8 e d c
@@ -322,12 +335,16 @@ headEb = \relative c'' {
   \bar "|."
 
   \markManualBox "Head - Chorus 2 (back to C)"
+  \timestop "0:43"
+  %% m33
   e8 cis r cis cis2
   r8 b cis a' fis4 cis
   b4 r r8 cis d cis
   r8 d e f r e dis e8
   \break
-  
+
+  \timestop "0:49"
+  %% m37
   a8 fis r cis e d r a
   cis4 e b2
   r2. b'8 bes
@@ -336,12 +353,16 @@ headEb = \relative c'' {
   \bar "||"
   
   \markManualBox "B"
+  \timestop "0:54"
+  %% m41
   ais8 gis a g fis e' r cis'
-  r8 b8 ais gis8~ gis4 f8 dis~
+  r8 b8 ais gis8~ gis4 eis8 dis~
   dis4 gis8 eis4. r4
   r1
   \break
 
+  \timestop "0:59"
+  %% m45
   r2 cis'4 gis8 b
   a8 cis, f gis fis gis a b
   cis8 d e ees d cis b bes
@@ -350,14 +371,44 @@ headEb = \relative c'' {
   \bar "|."
 
   \markManualBox "A (modulate to Eb)"
+  \timestop "1:05"
+  %% m49
   g8 f' e c d c b c
   ees8 e g fis f g a b
   c8 a b d gis,4. fis8
-  g8 e s2.
+  g8 e c b bes f'~ f4
   \break
-  
-  %% \repeat unfold 1{ s1*4 \break }
-  %% \bar "||"
+
+  \timestop "1:10"
+  %% m53
+  e4 b a r
+  r2 r8 e \tuplet 3/2 { g8 b e }
+  g8 e f g16 f e8 d c b
+  bes8 c d f a g e c
+  \break
+  \bar "||"
+
+  \markManualBox "C"
+  \timestop "1:16"
+  %% m57
+  g'8 f e f a c r bes
+  b8 a gis b, d f d dis
+  e8 cis b a gis a cis e
+  g8 fis g2 r4
+  \break
+
+  \timestop "1:21"
+  %% m61
+  r8 e4 r8 g e c a
+  d8 e f g e4 e
+  c4 r r8 a \tuplet 3/2 { bes8 c e }
+  g8 e f a r2
+  \break
+  \bar "|."
+
+  \markManualBox "Head - Chorus 3 (back to C)"
+  \repeat unfold 4{ s1*4 \break }
+  \bar "||"
   
   \repeat unfold 4{ s1*4 \break }
   \bar "||"
@@ -405,7 +456,7 @@ myScore = \score {
       \override PercentRepeat.Y-offset = 1
     }
     {
-      \repeat unfold 2 {
+      \repeat unfold 3 {
         \transpose ees c { \chordNamesAB }
         \chordNamesAC
       }

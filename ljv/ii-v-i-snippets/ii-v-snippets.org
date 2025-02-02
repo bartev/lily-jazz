@@ -519,6 +519,48 @@ Notice the common notes in the arpeggios
   \score { \transpose e b, \in_e }
 #+end_src
 
+#+RESULTS:
+
+** ii-V-I in A maj
+These notes are actually just 1-2-3-5-7 from the major scale.
+
+#+begin_src lilypond :file ii-v-in-Amaj.pdf
+  in_a =  \new StaffGroup <<
+      \new ChordNames { \chordmode {b1:m7 e:7 a:maj7 a:maj7 }}
+      \new Staff {
+        \global
+        \key a \major
+        \relative c'' {
+          r4 r8 cis b cis e gis~
+          gis4 r4 r2
+          r8 gis8 r a gis e b cis~
+          cis2 r2
+        }
+      }
+      \lyrics {
+        \markup \scaleDegree {  }4.
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 6 }8
+
+        \markup \scaleDegree { 3 }1
+      
+        \markup \scaleDegree {  }8
+        \markup \scaleDegree { 7 }4
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 7 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 3 }8
+      }
+    >>
+
+  \score { \in_a }
+#+end_src
+
+
 * Minor ii-V-i
 ** Short minor ii-V in Amin
 #+begin_src lilypond :file short-ii-v-in-Amin.pdf
