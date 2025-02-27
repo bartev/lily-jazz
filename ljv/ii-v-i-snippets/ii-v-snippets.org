@@ -546,7 +546,7 @@ These notes are actually just 1-2-3-5-7 from the major scale.
         \markup \scaleDegree { 6 }8
 
         \markup \scaleDegree { 3 }1
-      
+
         \markup \scaleDegree {  }8
         \markup \scaleDegree { 7 }4
         \markup \scaleDegree { 1 }8
@@ -560,7 +560,81 @@ These notes are actually just 1-2-3-5-7 from the major scale.
   \score { \in_a }
 #+end_src
 
+** Dick Oatts - Like someone in Love
+This snippet is from m40 (~0:51)
+Near the beginning of the 2nd chorus
 
+#+begin_src lilypond :file dick_oatts.pdf
+   snippet_d = \new StaffGroup <<
+     \new ChordNames { \chordmode {cis1:m7 e2:m7 a2:7 d1:maj7 d1:maj7 } }
+     \new Staff {
+       \global
+       \key d \major
+       \relative c''' {
+         r2. b8 bes
+         a8 g b, d fis a e cis
+         ais8 gis a g fis e' r4
+         s1
+       }
+     }
+  >>
+  \score { \transpose d a, \snippet_d }
+  \score { \snippet_d }
+  \score { \transpose d c \snippet_d }
+#+end_src
+
+#+RESULTS:
+[[file:dick_oatts.pdf]]
+
+** In G maj
+
+#+begin_src lilypond :file in_g_maj.pdf
+  snippet_g = \new StaffGroup <<
+    \new ChordNames { \chordmode {a1:m7 d:7 g1:maj7 g1:maj7 } }
+    \new Staff {
+      \global
+      \key g \major
+      \relative c''' {
+        g8 g e fis g b a g
+        fis8 d b cis~ cis4 b8 a
+        \tuplet 3/2 { b4 cis d } \tuplet 3/2 { a'4 g fis~ }
+        fis4 r2.
+      }
+    }
+  >>
+  \score { \transpose g d \snippet_g }
+  \score { \snippet_g }
+  \score { \transpose g c \snippet_g }
+
+#+end_src
+** In D maj
+
+#+begin_src lilypond :file in_d_maj.pdf
+  snippet_d = \new StaffGroup <<
+    \new ChordNames { \chordmode {e1:m7 a:7 d1:maj7 d1:maj7 } }
+    \new Staff {
+      \global
+      \key d \major
+      \relative c'' {
+        c8 cis e ees d b d, a'~
+        a8 aes g4-. r8 a8 aes g
+        fis s4. s2
+        s1
+      }
+    }
+    \lyrics{
+      \markup \scaleDegree {  }2
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 4 }8
+    }
+  >>
+  \score { \transpose d a \snippet_d }
+  \score { \snippet_d }
+  \score { \transpose d g \snippet_d }
+
+#+end_src
 * Minor ii-V-i
 ** Short minor ii-V in Amin
 #+begin_src lilypond :file short-ii-v-in-Amin.pdf
@@ -631,7 +705,7 @@ These notes are actually just 1-2-3-5-7 from the major scale.
 
         \markup \scaleDegree { 7 }4
         \markup \scaleDegree { 5 }8
-        \markup \scaleDegree { 3 }2. 
+        \markup \scaleDegree { 3 }2.
       }
     >>
   }
@@ -651,8 +725,33 @@ These notes are actually just 1-2-3-5-7 from the major scale.
           s1 \break
         }
       }
-      %% \lyrics {
-      %% }
+      \lyrics {
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 5 }8
+
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 5 }8
+
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 2 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 3 }8
+        \markup \scaleDegree { 7 }4
+      }
     >>
   }
 #+end_src
@@ -699,7 +798,7 @@ These notes are actually just 1-2-3-5-7 from the major scale.
         \markup \scaleDegree { 3 }8
         \markup \scaleDegree { 5 }8
         \markup \scaleDegree { 4 }8
-        \markup \scaleDegree { 3 }8 
+        \markup \scaleDegree { 3 }8
       }
     >>
   }
