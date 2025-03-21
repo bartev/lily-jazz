@@ -1,0 +1,646 @@
+#+title: master-jazz-standards
+#+author: Bartev
+#+date: 2025-01-06
+#+OPTIONS: num:t toc:t
+
+#+BIND: org-latex-image-default-width "0.98\\linewidth"
+
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in, bottom=1in, left=0.75in, right=0.75in]{geometry} % Ensure sufficient header space
+
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{Master Jazz Standards}} % Left header with title
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev -  2025-01}} % Right header with author
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{Printed \today} % Right footer with today's date
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  %% \include "lilyjazz.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  #(set-global-staff-size 16)
+
+  \paper{
+    line-width=7\in
+    indent=0\mm
+    left-margin = 0\mm
+    right-margin = 0\mm
+
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+    ragged-right = ##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+
+  \layout {
+    \omit Staff.TimeSignature
+    \context {
+      \Score
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+
+  global = {
+    \numericTimeSignature
+    \time 4/4
+    %% \tempo 4=224  % this would be over the clef on the first line
+
+    %% See here for using colors
+    %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+    %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+    \override Score.RehearsalMark.color = #darkred
+    %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+    \override Score.RehearsalMark.font-size = 6
+
+    \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  }
+#+end_src
+
+Here are some thoughts from Nathan Graybeal's YouTube post [[https://www.youtube.com/watch?v=qdobZsTTbbw&list=LL][9 Steps to Mastering Any Jazz Standard]].
+* Learn the Melody
+
+Serves as the melodic basis of your solo.
+
+Embellish the melody.
+- Change the rhythm
+- Add repeated notes and accents
+- Add extra notes and pitches
+- Improvise over long notes or rests
+* Learn arpeggios of every chord
+
+Learn basic 4 note arpeggios for every chord
+
+#+begin_src lilypond :file arpeggios.pdf
+  chordsNames=\new ChordNames {
+    \chordmode {
+      c:maj7
+      c:7
+      c:m7
+      c:m7.5-
+      c:dim7
+
+      c:6
+      c:m6
+      c:sus7
+      c:7.5+
+      c:maj7.11+
+    }
+  }
+
+  arpeggios=\new Staff {
+    \global
+    \key c \major
+    \relative c' {
+      c8 e g b~ b2
+      c,8 e g bes~ bes2
+      c,8 ees g bes~ bes2
+      c,8 ees ges bes~ bes2
+      c,8 ees ges a~ a2
+      \break
+      %% C6
+      c,8 e g a~ a2
+      c,8 ees g a~ a2
+      c,8 f g bes~ bes2
+      c,8 e gis bes~ bes2
+      c,8 e fis b~ b2
+    }
+  }
+
+  scaleDegrees = \new Lyrics \with {
+    alignBelowContext = "staff"
+  } \lyricmode {
+
+    %% Cmaj7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree {  }2
+
+    %% C7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree {  }2
+
+    %% C-7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree {  }2
+
+    %% C halfdim7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree {  }2
+
+    %% Cdim7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { ff7 }8
+    \markup \scaleDegree {  }2
+
+
+    %% C6
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree {  }2
+
+    %% C-6
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree {  }2
+
+    %% Csus7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 4 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree {  }2
+
+    %% C7+5
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { s5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree {  }2
+
+    %% Cmaj7+11 (Clyd)
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { s4 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree {  }2
+  }
+
+  \score {
+    \new StaffGroup <<
+      \chordsNames
+      \arpeggios
+      \scaleDegrees
+    >>
+  }
+#+end_src
+* Try a different permutation
+Rearrange the order of the chord tones.
+
+#+begin_src lilypond :file permute-arpeggio.pdf
+  chordsNames=\new ChordNames {
+    \chordmode {
+      c:maj7
+      c:maj7
+      c:maj7
+      c:maj7
+
+      c:6
+      c:6
+      c:sus7
+      c:sus7
+    }
+  }
+
+  arpeggios=\new Staff {
+    \global
+    \key c \major
+    \relative c''' {
+      g8 e c b'~ b2
+      b8 c, g' e~ e2
+      c8 b' e, g~ g2
+      e8 c b' g~ g2
+      \break
+
+      %% C6
+      e8 c g' a~ a2
+      e8 g c, a'~ a2
+      c,8 g' f bes~ bes2
+      bes8 g c, f~ f2
+    }
+  }
+
+  scaleDegrees = \new Lyrics \with {
+    alignBelowContext = "staff"
+  } \lyricmode {
+
+    %% Cmaj7
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree {  }2
+
+    %% Cmaj'7
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree {  }2
+
+    %% Cmaj'7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree {  }2
+
+    %% Cmaj'7
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree {  }2
+
+
+    %% C6
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree {  }2
+
+    %% C6
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree {  }2
+
+
+
+    %% Csus7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 4 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree {  }2
+
+    %% Csus7
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 4 }8
+    \markup \scaleDegree {  }2
+
+  }
+
+  \score {
+    \new StaffGroup <<
+      \chordsNames
+      \arpeggios
+      \scaleDegrees
+    >>
+  }
+#+end_src
+
+#+RESULTS:
+[[file:permute-arpeggio.pdf]]
+* Add 9th to the arpeggios
+
+Create a constrant stream of 8th notes
+
+#+begin_src lilypond :file arpeggeio-to-9th.pdf
+  chordsNames=\new ChordNames {
+    \chordmode {
+      c:maj7
+      c:7
+      c:7.9-
+      \break
+
+      c:m7
+      c:m7.5-
+      c:dim7
+      \break
+
+      c:6
+      c:7.5+9+
+      c:maj7.11+
+
+    }
+  }
+
+  arpeggios=\new Staff {
+    \global
+    \key c \major
+    \relative c'' {
+      %% maj + dom
+      c8 e g b d b g e
+      c8 e g bes d bes? g e
+      c8 e g bes des bes? g e
+
+      %% minor
+      c8 ees g bes d bes? g ees?
+      c8 ees ges bes d bes? ges? ees?
+      c8 ees ges beses d beses? ges? ees?
+      \break
+
+      %% C6
+      c8 e g a d a g e
+      c8 e gis bes dis bes gis e
+      %% lydian
+      c8 e fis b d b fis e
+
+    }
+  }
+
+  scaleDegrees = \new Lyrics \with {
+    alignBelowContext = "staff"
+  } \lyricmode {
+
+    %% Cmaj7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 9 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+
+    %% C7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 9 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+
+    %% C7-9
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { f9 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+
+
+    %% C-7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 9 }2
+
+    %% C halfdim7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 9 }2
+
+    %% Cdim7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { ff7 }8
+    \markup \scaleDegree { f9 }2
+
+
+    %% C6
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree { 9 }8
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+
+    %% C7alt (+5 +9)
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { s5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { s9 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { s5 }8
+    \markup \scaleDegree { 3 }8
+
+    %% Clyd
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { s4 }8
+    \markup \scaleDegree { 7 }8
+    \markup \scaleDegree { 9 }2
+  }
+
+  \score {
+    \new StaffGroup <<
+      \chordsNames
+      \arpeggios
+      \scaleDegrees
+    >>
+  }
+#+end_src
+** Four Rules to remember
+*** Half dim chord
+- \flat9 is an avoid tone
+- \natural9 is a color tone
+- Just play the root at the top
+
+  So, in a minor ii-v-i, we'd have
+
+  #+begin_src lilypond :file arpeg-9th-half-dim.pdf
+    chordsNames=\new ChordNames {
+      \chordmode {
+        d:m7.5-
+        g:7.9-
+        c:m7
+      }
+    }
+
+    arpeggios=\new Staff {
+      \global
+      \key c \major
+      \relative c'' {
+        d8 f aes c d c aes f
+        g,8 b d f aes f d b
+        c8 ees g bes d bes g ees
+      }
+    }
+
+    scaleDegrees = \new Lyrics \with {
+      alignBelowContext = "staff"
+    } \lyricmode {
+      %% D halfdim 7
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { f3 }8
+      \markup \scaleDegree { f5 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 8 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { f5 }8
+      \markup \scaleDegree { f3 }8
+
+      %% G7b9
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { 3 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { f9 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { 3 }8
+
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { f3 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 9 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { f3 }8
+    }
+
+    \score {
+      \new StaffGroup <<
+        \chordsNames
+        \arpeggios
+        \scaleDegrees
+      >>
+    }
+  #+end_src
+*** Diminished chord
+
+The diminished chord comes from the diminished scale (whole/half dim).
+
+#+begin_src lilypond :file diminished-scale-and-arpeg.pdf
+  chordsNames=\new ChordNames {
+    \chordmode {
+      c:dim7
+    }
+  }
+
+  arpeggios=\new Staff {
+    \global
+    \key c \major
+    \relative c' {
+      c8 ees ges a~ a2
+      c,8 d ees f ges aes a b
+    }
+  }
+
+  scaleDegrees = \new Lyrics \with {
+    alignBelowContext = "staff"
+  } \lyricmode {
+
+    %% Cdim7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { ff7 }8
+    \markup \scaleDegree {  }2
+
+    %% Cdim7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { 2 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { 4 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { f6 }8
+    \markup \scaleDegree { ff7 }8
+    \markup \scaleDegree { 7 }8
+  }
+
+  \score {
+    \new StaffGroup <<
+      \chordsNames
+      \arpeggios
+      \scaleDegrees
+    >>
+  }
+#+end_src
+
+In this case, just go up to the root again.
+
+#+begin_src lilypond :file arpeg-9th-dim.pdf
+  chordsNames=\new ChordNames {
+    \chordmode {
+      c:dim7
+    }
+  }
+
+  arpeggios=\new Staff {
+    \global
+    \key c \major
+    \relative c'' {
+      c8 ees ges beses c beses? ges? ees?
+    }
+  }
+
+  scaleDegrees = \new Lyrics \with {
+    alignBelowContext = "staff"
+  } \lyricmode {
+    %% c halfdim 7
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { ff7 }8
+    \markup \scaleDegree { 8 }8
+    \markup \scaleDegree { ff7 }8
+    \markup \scaleDegree { f5 }8
+    \markup \scaleDegree { f3 }8
+  }
+
+  \score {
+    \new StaffGroup <<
+      \chordsNames
+      \arpeggios
+      \scaleDegrees
+    >>
+  }
+#+end_src
+*** Minor 7 chords that are functioning as iii-7 chords
+- In this case, you should also go up to the root, not the 9th
+*** Chords that only last 2 beats
+- In this case, only arpeggiate up 4 notes since that's all we have time for.
+* Chord scales
+- Play each chord's scale.
+- For chords that last 2 measures, play up to the 9th and come back down
+- For chords that last 2 beats, play double time
+* Voice leading guide tones
+- Guide tones are the 3rds and 7ths
+- Guide tones define the chord /quality/.
+- Guide tones tend to voice lead together.

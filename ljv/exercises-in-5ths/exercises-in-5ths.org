@@ -1,0 +1,143 @@
+#+TITLE: Exercises in 5ths
+#+AUTHOR: Bartev
+#+OPTIONS: num:nil toc:nil
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=0.75in]{geometry} % Ensure sufficient header space
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{Exercises in 5ths}}
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev}}
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  %% \include "lilyjazz.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  \paper{
+    indent=0\mm
+    line-width=170\mm
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+
+  global = {
+    \numericTimeSignature
+    \time 4/4
+    %% \tempo 4=224  % this would be over the clef on the first line
+
+    %% See here for using colors
+    %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+    %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+    \override Score.RehearsalMark.color = #darkred
+    %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+    \override Score.RehearsalMark.font-size = 6
+
+    \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  }
+
+  exercise_one =   \new StaffGroup <<
+    \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          %% Ascending
+          c8 g' e c
+          d a' f d
+          e b' g e
+          f c' a f
+
+          g d' b g
+          a e' c a
+          b f' d b
+          c8 g' e c
+
+          d a' f d
+          e b' g e
+          f c' a f
+          g d' b g
+
+          a e' c a
+          b f' d b
+          c1
+          \break
+          %% Descending
+
+          f8 b, d f
+          e a, c e
+          d g, b d
+          c f, a c
+
+          b e, g b
+          a d, f a
+          g c, e g
+          f b, d f
+
+          e a, c e
+          d g, b d
+          c f, a c
+
+          b e, g b
+          a d, f a
+          g c, e g
+          f b, d f
+        }
+      }
+      \lyrics {
+        \markup \scaleDegree { 1 }1
+        \markup \scaleDegree { 3 }1
+        \markup \scaleDegree { 5 }1
+        \markup \scaleDegree { 7 }1
+        \markup \scaleDegree { 9 }1
+        \markup \scaleDegree { 2 }1
+        \markup \scaleDegree { 4 }1
+      }
+    >>
+
+#+end_src
+* Exercise 1
+** C Major
+
+#+begin_src lilypond :file e1_c_maj.pdf
+  \score { \exercise_one }
+#+end_src
+** C Minor
+
+#+begin_src lilypond :file e-flat.pdf
+  \score { \exercise_one }
+#+end_src
+**  C\sharp    Major
+
+#+begin_src lilypond :file e-flat.pdf
+  \score { \transpose c cis \exercise_one }
+#+end_src

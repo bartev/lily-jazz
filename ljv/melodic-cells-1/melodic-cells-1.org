@@ -1,0 +1,132 @@
+#+TITLE: Melodic Cells 1
+#+AUTHOR: Bartev
+#+OPTIONS: num:t toc:t
+
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in, bottom=1in, left=0.75in, right=0.75in]{geometry} % Ensure sufficient header space
+#+BIND: org-latex-image-default-width ".98\\linewidth"
+
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{ii-V-I Snippets}} % Left header with title
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev - Lesson 26 (2024-12)}} % Right header with author
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{Printed \today} % Right footer with today's date
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  %% \include "lilyjazz.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  #(set-global-staff-size 16)
+
+  \paper{
+    line-width=7\in
+    indent=0\mm
+    left-margin = 0\mm
+    right-margin = 0\mm
+
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+    ragged-right = ##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       %% #:roman "lilyjazz-text"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+
+  \layout {
+    \omit Staff.TimeSignature
+    \context {
+      \Score
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+
+  global = {
+    \numericTimeSignature
+    \time 4/4
+    %% \tempo 4=224  % this would be over the clef on the first line
+
+    %% See here for using colors
+    %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+    %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+    \override Score.RehearsalMark.color = #darkred
+    %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+    \override Score.RehearsalMark.font-size = 6
+
+    \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  }
+
+#+end_src
+* Cell 1
+#+begin_src lilypond :file cell-1.pdf
+  \score {
+      \new StaffGroup <<
+        \new ChordNames { \chordmode { d4:m7 g4:7 b2:m6}}
+        \new Staff {
+          \global
+          \key c \major
+          \relative c'' {
+            d4 f4 a8 f g4
+            s1 s1 s1 \break
+
+            \tuplet 3/2 { d8 e f } \tuplet 3/2 { e8 f g } \tuplet 3/2 { f8 g a } c4
+            s1 s1 s1 \break
+
+            g4 f e8 c a g
+            c4 r2.
+            s1 s1 \break
+
+            a4 c e8 d c a~
+            a4 r2.
+            s1 s1 \break
+
+            f'8 aes b d c b a aes
+            a4 f8 c~ c2
+            s1 s1 \break
+
+            b'8 g a fis g e c b~
+            b4 r2.
+            s1 s1 \break
+
+            a8 gis a b c b c d
+            e4 r2.
+            s1 s1 \break
+
+            r8 d fis a fis c~ c4
+            s1 s1 s1 \break
+          }
+        }
+        %% \lyrics {
+        %% }
+      >>
+    }
+#+end_src

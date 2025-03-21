@@ -22,21 +22,21 @@
 
 %% set up title, compser, meter, copyright
 
-tagline = "Bartev 2024-10"
-copyright = #"Bartev 2024"
+tagline = "Bartev 2025-01"
+copyright = #"Bartev 2025"
 
 %%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
 
 
-title = #"Inner Urge"
-meter = "180"
+title = #"Dolphin Dance"
+meter = "100?"
 %% \concat spaces differently than if I didn't say \concat
 instrument = \markup \with-color "blue" \concat {
   "Alto (E "
   \raise #0.5 \fontsize #-2 \flat ")"
 }
-composer = #"Joe Henderson"
-arranger = #"Real Book v1, 5th ed p 229"
+composer = #"Herbie Hancock"
+arranger = #"Real Book v1, 5th ed p122"
 
 realBookTitle = \markup {
   \score {
@@ -66,7 +66,7 @@ realBookTitle = \markup {
           \vcenter {
             \right-column {
               \fontsize #3 \lower #1 \concat { #composer " " }
-              \fontsize #0 \lower #1 \concat { #arranger " " } 
+              \fontsize #0 \lower #1 \concat { #arranger " " }
             }
           }
         }
@@ -154,10 +154,10 @@ realBookTitle = \markup {
   \numericTimeSignature
 }
 
-global = {
+globalC =  {
   \numericTimeSignature
   \time 4/4
-  \key a \major
+  \key c \major
   %% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -211,155 +211,193 @@ global = {
 %% }
 
 %% Define the chords here. The same chords will be used for chord names and notes
-chordNames = \chordmode {
-  %% A
-  dis1:m7.5- dis1:m7.5- dis1:m7.5- dis1:m7.5-
-  d1:maj7.11+ d1:maj7.11+ d1:maj7.11+ d1:maj7.11+
-  c1:maj7.11+ c1:maj7.11+ c1:maj7.11+ c1:maj7.11+
-  bes1:maj7.11+ bes1:maj7.11+ bes1:maj7.11+ bes1:maj7.11+
-  %% B
-  cis1:maj7.11+ bes1:maj7.11+ b1:maj7.11+ aes1:maj7.11+
-  a1:maj7 fis1:maj7 g1:maj7 e1:maj7
+
+chordNamesIntroC = \transpose c ees \chordmode {
+  %% Intro
+  c1:maj7
+  bes1:maj7
+  c1:maj7
+  b2:m7.5- e:7.9-
 }
 
-headEb = \relative c'' {
-  \markManualBox "Head"
+chordNamesHeadC = \transpose c ees \chordmode {
+  %% A
+  a1:m7
+  f1:maj7.11+
+  a1:m7
+  fis2:m7 b:7
+
+  e1:maj7
+  f:m7
+  d:m7
+  d2:m7  e:7.5+
+
+  \repeat percent 2 a1:m7
+  fis1:m7
+  b1:7
+
+  %% B
+  e1:maj7
+  e1:sus7
+  fis1:m7
+  b1:7
+
+  d1:sus7
+  b1
+  d1:sus7
+  cis2:m7 fis:7
+
+  %% C
+  c1:7
+  fis2:m7 b:7
+  gis1:m7
+  cis2:7 b:m7
+  bes1:m7
+  ees1:7
+
+  %% D
+  b1:maj7
+  a1:maj7
+  b1:maj7
+  a1:maj7
+
+  bes1:maj7
+  g1:13.9-
+  f1:maj7.5+
+  e1:7.5+
+}
+
+arpeggiosC = \transpose c ees \relative c'' {
+  \markManualBox "Intro"
   \bar ".|"
-  %% m1
-  r4 r8 dis gis a dis, gis
-  a4. dis,8 gis a r4
-  r4 r8 dis, gis a dis, gis
-  a8 dis,8 gis a r2
+
+  %% m1 - Intro
+  c8 e g b~ b2
+  bes,8 d f a~ a2
+  c,8 e g b~ b2
+  b,8 d f a e gis b d
+  \bar "||"
   \break
 
-  %% m5
-  r4 r8 d, gis a d, gis
-  a4. d,8 gis a r4
-  r4 r8 d, gis a d, gis
-  a8 d, gis a r2
+  \markManualBox "A"
+  %% m5 A section
+  a,8 c e g~ g2
+  f,8 a b e~ e2
+  a,8 c e g~ g2
+  fis,8 a cis e b dis fis a
   \break
 
   %% m9
-  r4 r8 g fis c fis, b
-  c4. fis,8 ais b r4
-  r4 r8 g'8 fis c fis, b
-  c8  fis, ais b~ b d4 e8~
+  e,8 gis b dis~ dis2
+  f,8 aes c ees~ ees2
+  d,8 f a c~ c2
+  d,8 f a c e gis bis d
   \break
 
   %% m13
-  e4. e8 d a e a
-  bes4. d8 e a4.
-  r4 r8 e d a \ottava 1 e' a
-  bes8 d e a r g4 bis8~
+  a,8 c e g~ g2
+  a,8 c e g~ g2
+  fis,8 a cis e~ e2
+  b8 dis fis a~ a2
   \break
 
-  %% m17
-  bis4. ais8 gis fis dis cis
-  c b bes c? a c? \tuplet 3/2 { d8 f g }
-  ais4. g8 fis4 dis8 fis~
-  fis8 d4. r4 dis4
+  \markManualBox "B"
+  %% m17 B section
+  e,8 gis b dis~ dis2
+  e,8 a b d~ d2
+  fis,8 a cis e~ e2
+  b8 dis fis a~ a2
   \break
 
   %% m21
-  gis4~ gis16 e cis a gis4~ \tuplet 5/4 { gis16 a cis e gis }
-  eis4~ eis16 cis ais eis dis4~ \tuplet 5/4 { dis16 fis ais cis eis }
-  e4~ e16 d a e d4~ \tuplet 5/4 { d16 e a d e }
-  fis4. dis8 fis dis r4
-  \ottava 0
+  d,8 g a c~ c2
+  b,8 dis fis ais~ ais2
+  d,8 g a c~ c2
+  cis,8 e gis b fis8 ais cis e
+
+  \break
+
+  \markManualBox "C"
+  %% m25 C section
+  c,8 e g bes~ bes2
+  fis,8 a cis e b8 dis fis a
+  \break
+
+  %% m27
+  gis,8 b dis fis~ fis2
+  cis,8 eis gis b b d fis a
+
+
+  %% m29
+  bes,8 des f aes~ aes2
+  ees8 g bes des~ des2
+  \break
+
+  \markManualBox "D"
+  %% m31 D section
+  b,8 dis fis ais~ ais2
+  a,8 cis e gis~ gis2
+  b,8 dis fis ais~ ais2
+  a,8 cis e gis~ gis2
+  \break
+
+
+  %% m35
+  bes,8 d f a~ a2
+  g,8 b d f aes c ees r
+  f,,8 a cis? e~ e2
+  e8 gis bis d~ d2
+  \break
+
   \bar "|."
   \break
 }
 
-solo = \relative c' {
-  \markManualBox "Scales"
-  dis8 e fis gis a b cis dis
-  e dis cis b a gis fis e
-  s1
-  s1
-  \break
-  d8 e fis gis a b cis d
-  e d cis b a gis fis e
-  s1 s1
-  \break
-  c8 d e fis g a b c
-  d c b a g fis e d
-  s1
-  s1
-  \break
-  bes8 c d e f g a bes
-  c bes a g f e d c
-  s1
-  s1
-  \break
-  cis'8 dis eis fisis gis ais bis cis
-  bes,8 c d e! f g a bes
-  b,8 cis dis eis fis gis ais b
-  aes,8 bes c d ees f g aes
-  \break
-  a,4 cis e fis
-  fis,4 ais cis eis
-  g,4 b d fis
-  e,4 gis b dis
-  \bar "||"
-  \break
-  \pageBreak
-  
-  \markManualBox "Solo"
-  cis,8 dis e fis gis a b fis'
-  dis4. b8 dis dis r4
-  r2 r4 r8 dis
-  fis8 e dis b a gis fis e
-  \break
-  d4~ d8 e fis a b d~
-  d8 d8~ d4 r2
-  r4 d8 d fis d~ d4
-  b4 a8 gis a b fis4
-  \break
+intro = \relative c'' {
+  \markManualBox "Intro"
+  \bar ".|"
 
-  e4. fis8 g a b fis'
-  r8 e4. r4 r
-  e8 g fis d e b a b~
-  b2 r
-  \break
-  \repeat unfold 3{ s1*4 \break } \bar "||"
-
-  \pageBreak
-  fis'8 dis e fis dis cis b cis
-  dis2 r8 b cis dis
-  e8 fis cis' b a4 b8 fis?~
-  fis?2 r8 cis d? e
-  \break
-  fis2 r8 cis d e
-  gis8 cis, d e a cis, d e
-  cis'2 r8 b, cis d
-  fis e b cis e d a b
-  \break
-  c?2 r8 fis e b
-  c8 a b g e' c d b
-  a8 fis g a b cis e4
-  g8 d~ d4 fis8 c~ c4
-  \break
-  r8 b bes c a f g a
-  bes4 c d e8 d~
-  d4 f r2
-  r1
-  \break
-  r1
-  bes8 a e f a4 r
-  r1
-  r1
-  \break
+  %% m1 - Intro
   \repeat unfold 1 { s1*4 \break } \bar "||"
-  \pageBreak
-
-
-  \repeat unfold 6 { s1*4 \break } \bar "||"
-  %% \repeat unfold 6 { s1*4 \break } \bar "||"
-
 }
 
-myScore = \score {
-  <<
+headEb = \relative c'' {
+  \markManualBox "A"
+  %% m5 A section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m9
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m13
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+
+  \markManualBox "B"
+  %% m17 B section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m21
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+
+  \markManualBox "C"
+  %% m25 C section
+  \repeat unfold 1 { s1*3 \break }
+
+  %% m29
+  \repeat unfold 1 { s1*3 \break } \bar "||"
+
+  \markManualBox "D"
+  %% m31 D section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m35
+  \repeat unfold 1 { s1*4 \break }
+  \bar "|."
+  \break
+}
+
+%% myScoreC = \score {
+myScoreMusic=  <<
     %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
     %% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
     %% \pageBreak
@@ -368,15 +406,111 @@ myScore = \score {
       \override PercentRepeat.Y-offset = 1
     }
     {
-      \repeat unfold 4 {\chordNames}
+      %% Arpeggios
+      \chordNamesIntroC
+      \chordNamesHeadC
+
+      %% Head
+      \chordNamesIntroC
+      \chordNamesHeadC
+
     }
     \new Staff {
-      \global
-      \headEb \pageBreak
-      \solo
+      \globalC
+      \arpeggiosC
+      \pageBreak
+      \intro
+      \headEb
+      %% \solo
     }
   >>
-  \layout { indent = 0 }
+
+%%   \layout { indent = 0 }
+%% }
+
+
+%% \score { \myScoreMusic }
+%% \pageBreak
+%% \score { \transpose c ees, \myScoreMusic }
+%% \pageBreak
+%% \score { \transpose c bes, \myScoreMusic }
+%% \pageBreak
+
+%% myScoreBb = \score { \transpose bes c \myScoreC }
+%% \myScoreBb
+
+iiViAmin = \relative c' {
+  f8 d b a  e f gis b
+  \break
+  a8 gis a c~ c4 r
 }
 
-\myScore
+soloC = \transpose c bes \relative c''' {
+  \markManualBox "Intro"
+  \bar ".|"
+
+  %% m1 - Intro
+  s1 s1 s1
+  bes8 g e d a bes cis e
+  \break
+  
+  \markManualBox "A"
+  d8 cis d f~ f4 r
+  s1
+  s2 r8 e d cis
+  b8 cis d e r gis e d
+  \break
+  \bar "||"
+  
+  %% m5 A section
+  cis8 d e a,~ a4 e8 cis
+  \repeat unfold 1 { s1*3 \break }
+
+  %% m9
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m13
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+
+  \markManualBox "B"
+  %% m17 B section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m21
+  \repeat unfold 1 { s1*4 \break } \bar "||"
+
+  \markManualBox "C"
+  %% m25 C section
+  \repeat unfold 1 { s1*3 \break }
+
+  %% m29
+  \repeat unfold 1 { s1*3 \break } \bar "||"
+
+  \markManualBox "D"
+  %% m31 D section
+  \repeat unfold 1 { s1*4 \break }
+
+  %% m35
+  \repeat unfold 1 { s1*4 \break }
+  \bar "|."
+  \break
+}
+
+soloMusic =  <<
+    \new ChordNames \with {
+      \consists Percent_repeat_engraver
+      \override PercentRepeat.Y-offset = 1
+    }
+    {
+      %% Head
+      \chordNamesIntroC
+      \chordNamesHeadC
+
+    }
+    \new Staff {
+      \globalC
+      \soloC
+    }
+  >>
+
+\score { \transpose ees' c \soloMusic }
