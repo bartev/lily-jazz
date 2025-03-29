@@ -1,0 +1,419 @@
+#+TITLE: bv-scales-for-jazz-improv
+#+DATE: 2025-03-23
+#+AUTHOR: Bartev
+#+OPTIONS: num:t toc:nil
+
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in, bottom=1in, left=0.75in, right=0.75in]{geometry} % Ensure sufficient header space
+#+BIND: org-latex-image-default-width ".98\\linewidth"
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{BV Scales For Jazz Improvization}} % Left header with title
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev}} % Right header with author
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{Printed \today} % Right footer with today's date
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  %% \include "lilyjazz.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  #(set-global-staff-size 16)
+
+  \paper{
+    line-width=7\in
+    indent=0\mm
+    left-margin = 0\mm
+    right-margin = 0\mm
+
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+    ragged-right = ##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       %% #:roman "lilyjazz-text"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+
+  \layout {
+    \omit Staff.TimeSignature
+    \context {
+      \Score
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+
+  global = {
+    \numericTimeSignature
+    \time 4/4
+    %% \tempo 4=224  % this would be over the clef on the first line
+
+    %% See here for using colors
+    %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+    %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+    \override Score.RehearsalMark.color = #darkred
+    %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+    \override Score.RehearsalMark.font-size = 6
+
+    \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  }
+#+end_src
+
+* Common scales for major, dominant and minor chords
+
+#+begin_src lilypond :file maj-myx-dor.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1 c1:7 c1:m7 }
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          c8_\markup "Major (Ionian)"  d e f g a b c
+          c,8_\markup "Dominant (Mixolydian)" d e f g a bes c
+          c,8_\markup "Minor (Dorian)" d ees f g a bes c
+        }
+      }
+    >>
+  }
+#+end_src
+* Scales for half diminished chords
+** Locrian
+Play the scale 1/2 step higher (D\flat) starting on the 7th (C)
+#+begin_src lilypond :file half-dim-chords.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:m7.5- c1:m7.5- }
+      \relative c' {
+        c8_\markup "Locrian"  des ees f ges aes bes c
+        c,8_\markup "Locrian nat 2" d ees f ges aes bes c
+      }
+    >>
+  }
+#+end_src
+** Two ways of looking at the half/whole (H/W) diminished scale.
+
+It contains the chord tones for a half diminished chord. (\flat3, \flat5, \flat7)
+
+It can work for chords like C7(\sharp9), C7(\flat9), C7(13\flat9) = C7(13) = (C7\sharp5)
+
+#+begin_src lilypond :file half-whole-dim.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:7.9+ c2:7.9- c:7.13.9}
+      \relative c' {
+        c8_\markup "Half/Whole Diminished" cis dis e fis g a bes
+        c,8_\markup "Half/Whole Diminished" des ees fes ges g a bes
+      }
+    >>
+  }
+#+end_src
+
+This is the same scale starting on any of the 4 notes C, E\flat, F\sharp, or A.
+
+There are only 3 distinct H/W scales.
+
+#+begin_src lilypond :file half-whole-dim-3.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c4:m7.5- ees:m7.5- fis:m7.5- a:m7.5-
+                                  cis:m7.5- e:m7.5- g:m7.5- bes:m7.5-
+                                  d:m7.5- f:m7.5- aes:m7.5- b:m7.5- }
+      \relative c' {
+        c8_\markup "Half/Whole Diminished" des ees e fis g a bes
+        cis,8 d e f g aes bes b
+        d,8 ees f ges aes a b c
+      }
+    >>
+  }
+#+end_src
+
+** Altered Scale
+Three ways of looking at the altered scale.
+
+It is very similar to the half/whole diminished.
+
+You can also look at it as having the notes of the scale a 1/2 step lower.
+#+begin_src lilypond :file altered.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:7.13-.9+ }
+      \relative c' {
+        c8_\markup "Altered Scale - Diminished whole tone" cis dis e fis gis bes c
+        c,8 des ees fes ges aes bes c
+        c,8_\markup {"C alt has C + notes of B maj (C" \flat ")"} cis dis e fis gis ais c
+      }
+    >>
+  }
+#+end_src
+
+Another way of thinking of it is as the notes of the melodic minor (\flat3) starting 1/2 step up.
+
+#+begin_src lilypond :file altered-as-melodic-minor.pdf
+    \score{
+      <<
+        \new ChordNames \chordmode{ c4:7.13-.9+  c4:7.9+5+ c2:7.5+ des2:maj7.3- }
+        \relative c' {
+          c8_\markup "Altered Scale" cis dis e fis gis bes c
+          des,8_\markup {"D" \flat "Melodic Minor"} ees fes ges aes bes c des
+        }
+      >>
+    }
+#+end_src
+
+* Diminished chords (W/H Dim)
+Two ways of looking at the whole/half diminished.
+
+You can think of this as a diminished chord (C, E\flat, G\flat, B\flat\flat) plus a whole step above each chord tone (D, F, A\flat, C\flat).
+
+#+begin_src lilypond :file whole-half-dim.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:dim7 c1:dim7 }
+      \relative c' {
+        c8_\markup "Whole/Half Diminished" d ees f ges aes beses ces
+        c,8_\markup "Whole/Half Diminished" d ees f fis gis a b
+      }
+    >>
+  }
+#+end_src
+
+There are only 3 distinct W/H scales.
+
+#+begin_src lilypond :file whole-half-dim-3.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c4:dim7 ees:dim7 fis:dim7 a:dim7
+                                  cis4:dim7 e:dim7 g:dim7 bes:dim7
+                                  d4:dim7 f:dim7 aes:dim7 b:dim7 }
+      \relative c' {
+        c8_\markup "Whole/Half Diminished" d ees f ges gis a b
+        cis,8 dis e fis g a bes c
+        d,8 e f g aes ais b cis
+      }
+    >>
+  }
+#+end_src
+
+* Lydian Chords
+The Lydian scale has a raised 4th (11th). (4th mode of major scale)
+
+Dominant indicates a lowered 7th.
+
+Augmented indicates a raised 5th.
+#+begin_src lilypond :file lydian.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:maj7.11+ c1:7.11+ c1:aug7 }
+      \relative c' {
+        c8_\markup "Lydian" d e fis g a b c
+        c,8_\markup {"Lydian Dominant"} d e fis g a bes c
+        c,8_\markup "Lydian Augmented" d e fis gis a b c
+      }
+    >>
+  }
+#+end_src
+
+* Phrygian (Spanish) Dominant
+
+The Phrygian (Spanish) dominant scale is the 5th mode of the Harmonic minor scale (\flat3, \flat6).
+
+It has an exotic sound.
+#+begin_src lilypond :file phrygian.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:7.13- c1:7.9-}
+      \relative c' {
+        c8_\markup {"Mixolydian" \flat"6"} d e f g aes bes c
+        c,8_\markup {"Phrygian (Spanish) Dominant "} des e f g aes bes c
+        f,8_\markup {"F Harmonic minor"} g aes bes c des e f
+      }
+    >>
+  }
+#+end_src
+* Whole tone
+
+There are only 2 whole tone scales. (Both given below.)
+#+begin_src lilypond :file whole-tone.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:7.5+ cis1:7.5+ }
+      \relative c' {
+        c8_\markup {"Whole Tone Scale"} d e fis gis bes c4
+        cis,8_\markup {"Whole Tone Scale"} dis f g a b cis4
+      }
+    >>
+  }
+#+end_src
+* Minor Scales
+Natural Minor: Add 3 \flat's (\flat3, \flat6, \flat7)
+
+Harmonic Minor: \flat3 & \flat6 (natural minor with raised [natural] 7)
+
+Melodic minor: \flat 3 - Classical music has melodic minor rising, and natural descending.
+
+#+begin_src lilypond :file minor-scales.pdf
+  \score{
+    <<
+      \new ChordNames \chordmode{ c1:7.3-}
+      \relative c' {
+        c8_\markup {"Natural minor"} d ees f g aes bes c
+        c,8_\markup {"Harmonic minor"} d ees f g aes b c
+        c,8_\markup {"Melodic minor"} d ees f g a b c
+      }
+    >>
+  }
+#+end_src
+* Pentatonic and Blues
+
+The minor pentatonic has the same notes as the major pentatonic of the relative minor.
+
+C minor pentatonic has same notes as the E\flat  major pentatonic.
+
+The blues scale is like the minor pentatonic with an added "blues" tone (\sharp4)
+
+#+begin_src lilypond :file pent-blues.pdf
+    \score{
+      \new StaffGroup
+      <<
+        \new Staff {
+          \relative c' {
+            \time 5/4
+            c4^\markup {"Major Pentatonic"} d e g a
+            c,4^\markup {"Minor Pentatonic"} ees f g bes
+            \time 6/4
+            c,4^
+            \markup {"Blues"} ees f fis g bes
+          }
+        }
+        \lyrics {
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { s4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+        }
+      >>
+    }
+#+end_src
+* Chord Choices
+
+| Chord                  | Basic          |               |                   | More altered |
+|------------------------+----------------+---------------+-------------------+--------------|
+| maj7                   | Ionian         | Lydian        | Lydian \sharp5    |              |
+| min7                   | Dorian         | Aeolian       | Phrygian          |              |
+| dom7                   | Mixolydian     | Lydian \flat7 | \flat9 diminished | altered      |
+| half-dim (min7 \flat5) | Locrian        | Locrian nat9  |                   |              |
+| minMaj7                | Melodic minor  |               |                   |              |
+| Maj7 \sharp5           | Lydian \sharp5 |               |                   |              |
+| dom7 \sharp11          | Lydian \flat7  |               |                   |              |
+| dom7 \flat9            | Altered        |               |                   |              |
+| dom7 \sharp8 \flat13   | Altered        |               |                   |              |
+| altered dom            | Altered        |               |                   |              |
+
+* Modes of scales
+
+#+LATEX_HEADER: \usepackage{multirow}  % Enables row spanning
+#+LATEX_HEADER: \usepackage{array}     % Allows vertical centering
+#+LATEX_HEADER: \usepackage{booktabs}  % Improves table aesthetics
+
+#+LATEX: \begin{table}[h]
+#+LATEX: \centering
+#+LATEX: \begin{tabular}{|c|c|c|}
+#+LATEX: \hline
+#+LATEX: Mode & Major & Melodic Minor \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{4}{*}{\centering \textbf{1}} & Ionian &  \\
+#+LATEX:  & Major & Minor  \\
+#+LATEX:  &  & \flat 3 \\
+#+LATEX:  &  & Use over minMaj7 \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{3}{*}{\centering \textbf{2}} & Dorian &  Dorian \flat 2\\
+#+LATEX:  &  Minor &  Minor \\
+#+LATEX:  & \flat 3, \flat 7 & \flat 2, \flat 3, \flat 7 \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{5}{*}{\centering \textbf{3}} & Phrygian &  Lydian \sharp5 \\
+#+LATEX:  &  Darker minor &  Major \\
+#+LATEX:  & Add 4 \flat's & \sharp4, \sharp5 \\
+#+LATEX:  &  & Use over Maj7 \sharp5 \\
+#+LATEX:  &  Not the same as Phrygian dom &  \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{5}{*}{\centering \textbf{4}} & Lydian &  Lydian \flat7 \\
+#+LATEX:  &  Major & Major \\
+#+LATEX:  & Add 1 \sharp &  \sharp4, \flat7\\
+#+LATEX:  &  & Use over dom \sharp11 \\
+#+LATEX:  &  Not the same as Phrygian dom &  \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{4}{*}{\centering \textbf{5}} & Mixolydian & Mixolydian \flat6 \\
+#+LATEX:  &  Major & Major \\
+#+LATEX:  & Add 1 \flat &  \flat6, \flat7\\
+#+LATEX:  &  Use over dom 7 &  \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{5}{*}{\centering \textbf{6}} & Aeolian & Locrian nat9 \\
+#+LATEX:  &  Natural minor &  \\
+#+LATEX:  &  \flat3, \flat6, \flat7 &  lower 5th, raise 9th \\
+#+LATEX:  & Add 3 \flat's &  \\
+#+LATEX:  &  & Use over half-dim (min7 \flat5)  \\
+#+LATEX: \hline
+
+#+LATEX: \multirow{8}{*}{\centering \textbf{7}} & Locrian & Altered \\
+#+LATEX:  &  Half-diminished &  \\
+#+LATEX:  &  \flat2, \flat3, \flat5, \flat6, & \\
+#+LATEX:  & Add 5 \flat's &  \\
+#+LATEX:  &  Use over half-dim (min7 \flat5) & Use over altered dom  \\
+#+LATEX:  &  & Use over dom7 \flat9  \\
+#+LATEX:  &  & Use over dom7 \sharp9 \flat13  \\
+#+LATEX:  & Key of scale 1/2 step higher than root & \\
+#+LATEX: \hline
+
+#+LATEX: \end{tabular}
+#+LATEX: \caption{Modes of Scales}
+#+LATEX: \end{table}
