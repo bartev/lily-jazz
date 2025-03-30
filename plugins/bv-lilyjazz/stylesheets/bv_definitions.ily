@@ -21,6 +21,14 @@ timestop = #(define-music-function
              "colored markup (for timestamps)"
              #{ <>^\markup \halign #3 \fontsize #-3 \with-color #red #string #})
 
+%% Use this after \markup
+%% _\markup \marksans ... %% Gives blue markup below the item
+%% _\markup \right-align \marksans ... %% Right align the markup
+marksans = #(define-markup-command (marksans layout props text) (string?)
+             "Sans-serif text in blue, slightly smaller font."
+             (interpret-markup layout props
+              #{ \markup \sans \fontsize #-2 \with-color #blue #text #}))
+
 markManualBox = #(define-music-function
                   (parser location string)
                   (string?)
