@@ -377,8 +377,24 @@ scalesBb = \relative c' {
 soloBb = \relative c'' {
   \markManualBox "Solo"
 
+  d4 r8 d~ d c g ees
+  d'8 d r d~ d c g ees
+  
   %% \markManualBox "A"
-  \repeat unfold 4 { s1*4 \break } \bar "||"
+  f8 f g g aes aes bes bes
+  c4 c'8 g~ g ees c g
+  \break
+  b8 c r4 r4 r8 c
+  b8 c r ees8~ ees c g ees
+  f4. g8~ g4 aes4~
+  aes8 c bes aes g f ees d
+  \break
+  c2 r
+  s1
+  s1
+  s1
+  \break
+  \repeat unfold 1 { s1*4 \break } \bar "||"
   \markManualBox "A"
   \repeat unfold 4 { s1*4 \break } \bar "||"
   \markManualBox "B"
@@ -398,17 +414,41 @@ myScoreBb = \score {
     {
       \partial 4 \introChords
       \chordNamesBbInstr % With repeat
-      \repeat unfold 2 {\chordNamesBbInstrExpanded}
+      \repeat unfold 1 {\chordNamesBbInstrExpanded}
     }
     \new Staff {
       \global
       \partial 4 \introBb
       \headBb \pageBreak
-      \scalesBb \pageBreak
       \soloBb
+      %% \pageBreak \soloBb
     }
   >>
   \layout { indent = 0 }
 }
 
 \myScoreBb
+
+myScalesBb = \score {
+  <<
+    %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+    %% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
+    %% \pageBreak
+    \new ChordNames \with {
+      \consists Percent_repeat_engraver
+      \override PercentRepeat.Y-offset = 1
+    }
+    {
+      %% \partial 4 \introChords
+      \repeat unfold 1 {\chordNamesBbInstrExpanded}
+    }
+    \new Staff {
+      \global
+      %% \partial 4 \introBb
+      \scalesBb
+    }
+  >>
+  \layout { indent = 0 }
+}
+
+\pageBreak \myScalesBb

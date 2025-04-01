@@ -274,15 +274,15 @@ headBb = \relative c'' {
     \break    
   }
   \markManualBox "B"
-  f8 ees4 g8~ g2
+  f8 ees4 g8~ g2~
   g2 r8 g g g
-  g8 f4 a8~ a2
+  g8 f4 a8~ a2~
   a2 r8 f f f
   \break
   
-  f8 ees4 a8~ a2
+  f8 ees4 a8~ a2~
   a4 r bes4. c8~
-  c1
+  c1~
   c2 r
   \break \bar "||"
 }
