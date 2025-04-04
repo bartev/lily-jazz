@@ -259,13 +259,14 @@ headBb = \relative c'' {
     d8 \tuplet 3/2 { ees16 d c } bes8 c~ c \tuplet 3/2 { d16 c bes } g8 bes~
     bes8 \tuplet 3/2 { c16 bes g } f8 g~ g \tuplet 3/2 { a16 g f } d8 f~
     f1~
-    f2. a8 aes
+    f2. \ottava -1 a,8 aes
     \break
     
     %% m5
     
     g8 ees'~ ees2.
-    r4 r8 g,~ g4. a8~
+    \ottava 0
+    r4 r8 g~ g4. a8~
     a1~
     \alternative {
       { a2 r8 d, g bes }
