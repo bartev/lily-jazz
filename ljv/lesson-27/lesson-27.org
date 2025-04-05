@@ -111,6 +111,66 @@ Let's compose 10 ii V lines that specifically use minor major 7 on the ii-7 and 
 * Technique
 Melodic (\flat3) and harmonic (\flat3, \flat6) minor scales
 * Variations on chord changes
+** ii-V-I with minMaj7 -- H/W dim --> Maj7
+
+#+begin_src lilypond :file scales-min-maj-to-maj7.pdf
+  \score {
+    \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 }1
+        \markup \rN { I }1
+        %% \markup \rN { I }1
+      }
+      \new ChordNames { \chordmode
+                        { d1:maj7.3-
+                          g4:7 g8:7.9+ g8:7.9- g4:13- g4:m7.5-
+                          c1:maj7
+                          d4:maj7.3- }}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          d8_\markup {"Melodic minor"} e f g a b cis d
+          g,8_\markup "Half/Whole Diminished" aes bes b des d e f 
+          c,8_\markup "Major (Ionian)" d e f g a b c
+          << d,1 f! a cis >>
+                  }
+      }
+    >>
+  }
+#+end_src
+** ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file scales-min-maj-to-min7.pdf
+  \score {
+    \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 }1
+        \markup \rN { i-7 }1
+        \markup \rN { i-7 }1
+      }
+      \new ChordNames { \chordmode
+                        { d1:maj7.3-
+                          g4:7 g8:7.9+ g8:7.9- g4:13- g4:m7.5-
+                          c1:m7
+                          g2:7.9+ g4:7.9- g4:m7.5-}}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c' {
+          d8_\markup {"Melodic minor"} e f g a b cis d
+          g,8_\markup "Half/Whole Diminished" aes bes b des d e f 
+          c,8_\markup "Dorian minor" d ees f g a bes c
+          << g2 b d f! bes >>
+          << g,4 b d f! aes>>
+          << g,4 bes des f!>>
+        }
+      }
+    >>
+  }
+#+end_src
+
 
 ** Major ii-V-I
 #+begin_src lilypond :file major_ii_v_i.pdf
@@ -136,6 +196,8 @@ Melodic (\flat3) and harmonic (\flat3, \flat6) minor scales
     >>
   }
 #+end_src
+
+
 
 * Understanding the chords in Nica’s Dream
 
