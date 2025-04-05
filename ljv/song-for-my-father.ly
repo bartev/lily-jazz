@@ -288,11 +288,36 @@ headBb = \relative c'' {
   \break \bar "||"
 }
 
-soloBb= \relative c' {
+soloBb= \relative c'' {
   \markManualBox "Solo"
-  \repeat unfold 2 { s1*4 \break } \bar "||"
+  \timestop "3:55"
+  r8 g bes c-. r4 r8 bes
+  c8 bes g-. r r g bes c~
+  c8 bes f c'-. r4 r8 bes
+  c8 bes~ bes4 r8 g bes c~
+  \break
+
+  \timestop "4:02"
+  c8 bes g des'~ des4 r 
+  des8 c des4-. r8 g, bes des~
+  des des4 des bes8 c4
+  des8 bes g d f4. a8~
+  \break \bar "||"
+
   \markManualBox "A"
-  \repeat unfold 2 { s1*4 \break } \bar "||"
+  a4~ a8 d,16 f g8 d16 f g8 d16 f
+  g16 d f8 g d16 f g d f g d f g8
+  d16 f g8  d16 f g8  d16 g a8~ a4
+  r4 r16 a r a bes a bes8 r16 g bes g
+  \break
+  a8. g16 bes g a8 r 
+  s2
+  s1
+  s1
+  s1
+  \break \bar "||"
+  
+  %% \repeat unfold 2 { s1*4 \break } \bar "||"
   \markManualBox "B"
   \repeat unfold 2 { s1*4 \break } \bar "||"
 }
