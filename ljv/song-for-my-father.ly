@@ -33,7 +33,7 @@ copyright = #"Bartev 2025"
 
 
 title = #"Song For My Father"
-meter = "med latin"
+meter = "128"
 %% \concat spaces differently than if I didn't say \concat
 instrument = \markup \with-color "blue" \concat {
   "(sop/ten B"
@@ -310,11 +310,10 @@ soloBb= \relative c'' {
   d16 f g8  d16 f g8  d16 g a8~ a4
   r4 r16 a r a bes a bes8 r16 g bes g
   \break
-  a8. g16 bes g a8 r 
-  s2
-  s1
-  s1
-  s1
+  a8. g16 bes g a8_\markup{"wrong!"} r f a16 g a8
+  r2 r8 g16 bes c cis d f
+  g16 bes c cis   d bes c g   bes f a ees g a f c
+  d4 s2.
   \break \bar "||"
   
   %% \repeat unfold 2 { s1*4 \break } \bar "||"
@@ -339,7 +338,8 @@ myScoreBb = \score {
     \new Staff {
       \global
       \introBb
-      \headBb \pageBreak
+      \headBb
+      %% \pageBreak
       \soloBb \pageBreak
     }
   >>
