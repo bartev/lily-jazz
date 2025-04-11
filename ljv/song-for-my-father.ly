@@ -1,8 +1,9 @@
 \version "2.24.2"
 
-%% See here for a transcription in C
+%% See here for a transcription
+%% https://duckduckgo.com/?q=joe+henderson+on+song+for+my+father+solo+transcription&t=osx&ia=videos&iax=videos&iai=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D34q-8rkMWTg
 %%
-%% Measure numbers are off by xx
+%% Measure numbers in solo are off by 92
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -284,41 +285,87 @@ headBb = \relative c'' {
   f8 ees4 a8~ a2~
   a4 r bes4. c8~
   c1~
-  c2 r
+  c2 r8 \markManualBox "Solo" g bes c-.
   \break \bar "||"
 }
 
+introSolo = \relative c'' {}
+
 soloBb= \relative c'' {
-  \markManualBox "Solo"
+  
+  %% \timestop "3:55"
+  %% r8 g bes c-. r4 r8 bes
+  %% c8 bes g-. r r g bes c~
+  %% c8 bes f c'-. r4 r8 bes
+  %% c8 bes~ bes4 r8 g bes c~
+  %% \break
+  %% 
+  %% \timestop "4:02"
+  %% c8 bes g des'~ des4 r 
+  %% des8 c des4-. r8 g, bes des~
+  %% des des4 des bes8 c4
+  %% des8 bes g d f4. a8~
+  %% \break \bar "||"
+  %% 
+  %% \markManualBox "A"
+  %% a4~ a8 d,16 f g8 d16 f g8 d16 f
+  %% g16 d f8 g d16 f g d f g d f g8
+  %% d16 f g8  d16 f g8  d16 g a8~ a4
+  %% r4 r16 a r a bes a bes8 r16 g bes g
+  %% \break
+  %% a8. g16 bes g a8_\markup{"wrong!"} r f a16 g a8
+  %% r2 r8 g16 bes c cis d f
+  %% g16 bes c cis   d bes c g   bes f a ees g a f c
+  %% d4 s2.
+  %% \break \bar "||"
+
   \timestop "3:55"
-  r8 g bes c-. r4 r8 bes
-  c8 bes g-. r r g bes c~
-  c8 bes f c'-. r4 r8 bes
-  c8 bes~ bes4 r8 g bes c~
+  %% m18
+  r4 r8 bes c bes g-. r
+  r8 g bes c~ c bes f c'-.
+  r4 r8 bes c bes~ bes4
+  r8 g bes c~ c8 bes g des'
   \break
 
   \timestop "4:02"
-  c8 bes g des'~ des4 r 
-  des8 c des4-. r8 g, bes des~
-  des des4 des bes8 c4
-  des8 bes g d f4. a8~
+  %% m22
+  r2  des8 c des4-.
+  r8 g, bes des4 des des8~
+  des8 bes c4 des8 bes g d
+  f4. a2 d,16 f
   \break \bar "||"
 
   \markManualBox "A"
-  a4~ a8 d,16 f g8 d16 f g8 d16 f
-  g16 d f8 g d16 f g d f g d f g8
-  d16 f g8  d16 f g8  d16 g a8~ a4
-  r4 r16 a r a bes a bes8 r16 g bes g
+  \timestop "4:10"
+  %% m26
+  g8 d16 f   g8 d16 f g16 d f8 g d16 f
+  g16 d f g  d f g8 d16 f g8  d16 f g8
+  f16 g a8~   a4   r4   r16 a8 g16
+  bes16 a bes8  r16 g bes g  a8 f16 g bes g a8
   \break
-  a8. g16 bes g a8_\markup{"wrong!"} r f a16 g a8
-  r2 r8 g16 bes c cis d f
-  g16 bes c cis   d bes c g   bes f a ees g a f c
-  d4 s2.
-  \break \bar "||"
+
+  \timestop "4:18"
+  %% m30
+  r8 f a16  aes a8 r2
+  \tuplet 3/2 { r8 g bes } \tuplet 3/2 { c8 cis d }
+  \tuplet 3/2 { f8 g bes } \tuplet 3/2 { c8 cis d }
   
+  \tuplet 3/2 { bes8 c g } \tuplet 3/2 { bes f a }
+  \tuplet 3/2 { f8 g a } \tuplet 3/2 { f8 c d }
+
+  \tuplet 3/2 { bes8 c g } \tuplet 3/2 { bes g a }
+  \tuplet 3/2 { d,8 f d } \tuplet 3/2 { ees8 d f~ }
+  \break \bar "||"
+
   %% \repeat unfold 2 { s1*4 \break } \bar "||"
   \markManualBox "B"
-  \repeat unfold 2 { s1*4 \break } \bar "||"
+  \timestop "4:25"
+  f2 r
+  s1
+  s1
+  s1
+  \break
+  \repeat unfold 1  { s1*4 \break } \bar "||"
 }
 
 myScoreBb = \score {
