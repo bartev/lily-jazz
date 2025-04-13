@@ -332,7 +332,7 @@ soloBb= \relative c'' {
   r2  des8 c des4-.
   r8 g, bes des4 des des8~
   des8 bes c4 des8 bes g d
-  f4. a2 d,16 f
+  f4. a8~ a4~ a8 d,16 f
   \break \bar "||"
 
   \markManualBox "A"
@@ -360,12 +360,33 @@ soloBb= \relative c'' {
   %% \repeat unfold 2 { s1*4 \break } \bar "||"
   \markManualBox "B"
   \timestop "4:25"
+  %% m34
   f2 r
-  s1
+  \tuplet 7/4 { r16 f g a bes c d}   ees16 d c bes a g f e   ees des'8 bes16
+  c16 bes g d bes' g d c bes4 r
+  r2. r16 g' bes c
+  \break
+  
+  \timestop "4:33"
+  %% m38
+  d16 ees f8~ f g~ g bes16 r cis d f8~
+  f2 des8 g,~ g bes16 c
+  bes8 g~ g2.
+  r16 g a c  bes g a c bes g a c bes g a f
+  \break  \bar "||"
+
+  \markManualBox "Chorus 2"
+  \timestop "4:41"
+  %% m42
+  g8. f16 g f r8  r16 d f a f d f a
+  f d f a  f d f8 a2
+ 
   s1
   s1
   \break
+%  \repeat unfold 1  { s1*4 \break }
   \repeat unfold 1  { s1*4 \break } \bar "||"
+  
 }
 
 myScoreBb = \score {
@@ -380,7 +401,7 @@ myScoreBb = \score {
     {
       \partial 2 \introChords
       \chordNamesBbInstrHead % With repeat
-      \repeat unfold 1 { \chordNamesBbInstrExpanded }
+      \repeat unfold 2 { \chordNamesBbInstrExpanded }
     }
     \new Staff {
       \global
