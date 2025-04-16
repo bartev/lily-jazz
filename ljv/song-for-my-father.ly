@@ -9,7 +9,7 @@
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
 
 %% set to 18 to fit entire head and title on 1 page
-#(set-global-staff-size 16)
+#(set-global-staff-size 18)
 \include "jazzchords.ily"
 %% \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -289,36 +289,10 @@ headBb = \relative c'' {
   \break \bar "||"
 }
 
-introSolo = \relative c'' {}
 
 soloBb= \relative c'' {
   
-  %% \timestop "3:55"
-  %% r8 g bes c-. r4 r8 bes
-  %% c8 bes g-. r r g bes c~
-  %% c8 bes f c'-. r4 r8 bes
-  %% c8 bes~ bes4 r8 g bes c~
-  %% \break
-  %% 
-  %% \timestop "4:02"
-  %% c8 bes g des'~ des4 r 
-  %% des8 c des4-. r8 g, bes des~
-  %% des des4 des bes8 c4
-  %% des8 bes g d f4. a8~
-  %% \break \bar "||"
-  %% 
-  %% \markManualBox "A"
-  %% a4~ a8 d,16 f g8 d16 f g8 d16 f
-  %% g16 d f8 g d16 f g d f g d f g8
-  %% d16 f g8  d16 f g8  d16 g a8~ a4
-  %% r4 r16 a r a bes a bes8 r16 g bes g
-  %% \break
-  %% a8. g16 bes g a8_\markup{"wrong!"} r f a16 g a8
-  %% r2 r8 g16 bes c cis d f
-  %% g16 bes c cis   d bes c g   bes f a ees g a f c
-  %% d4 s2.
-  %% \break \bar "||"
-
+  \markManualBox "Solo"
   \timestop "3:55"
   %% m18
   r4 r8 bes c bes g-. r
@@ -373,18 +347,34 @@ soloBb= \relative c'' {
   f2 des8 g,~ g bes16 c
   bes8 g~ g2.
   r16 g a c  bes g a c bes g a c bes g a f
-  \break  \bar "||"
+  \bar "||"
+  \pageBreak
 
   \markManualBox "Chorus 2"
   \timestop "4:41"
   %% m42
-  g8. f16 g f r8  r16 d f a f d f a
-  f d f a  f d f8 a2
- 
+  g8. \markManualBox "A" f16 g f r8  r16 d f a f d f a
+  f d f a  f d f8 g8. f16 g f r8
+  r1
+  \tuplet 3/2 { a16 bes a } f8 \tuplet 3/2 { bes16 c bes } g8  \tuplet 3/2 { ces16  c ces} a8 c8. g16~
+  \break
+  
+  \timestop "4:48"
+  %% m46
+  \tuplet 3/2 { g16 aes g } ees8 \tuplet 3/2 { aes!16 bes aes } f8 \tuplet 3/2 { a16 bes a } g8 bes8. ges16~
+  \tuplet 3/2 { ges16 g ges } d8 \tuplet 3/2 { g16 aes g } ees8 \tuplet 3/2 { aes!16 bes aes } ges8 a8. g16
   s1
   s1
   \break
-%  \repeat unfold 1  { s1*4 \break }
+  \bar "||"
+
+  \markManualBox "A"
+  
+  \repeat unfold 1  { s1*4 \break }
+  \repeat unfold 1  { s1*4 \break } \bar "||"
+
+  \markManualBox "B"
+  \repeat unfold 1  { s1*4 \break }
   \repeat unfold 1  { s1*4 \break } \bar "||"
   
 }
@@ -407,8 +397,8 @@ myScoreBb = \score {
       \global
       \introBb
       \headBb
-      %% \pageBreak
-      \soloBb \pageBreak
+      \pageBreak
+      \soloBb
     }
   >>
   \layout { indent = 0 }
