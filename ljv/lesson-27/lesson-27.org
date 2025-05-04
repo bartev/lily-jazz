@@ -56,7 +56,7 @@
       (set-global-fonts
        #:music "lilyjazz"
        #:brace "lilyjazz"
-       %% #:roman "lilyjazz-text"
+       ; #:roman "lilyjazz-text"
        #:sans "lilyjazz-chord"
        #:factor (/ staff-height pt 18)
      ))
@@ -140,6 +140,7 @@ Melodic (\flat3) and harmonic (\flat3, \flat6) minor scales
     >>
   }
 #+end_src
+
 ** ii-V-I with minMaj7 -- H/W dim --> min7
 #+begin_src lilypond :file scales-min-maj-to-min7.pdf
   \score {
@@ -221,7 +222,7 @@ D7\sharp5\sharp9
 G7\sharp5
 - G altered (A\flat   melodic minor)
 - G H/W diminished (G, A, B\flat, C, C\sharp, D\sharp, E, F\sharp)
-
+  
 ** B section
 
 dom7sus is the same as mixolydian but with more emphasis on the 4th, rather than the third! A nice shortcut you could also use is major pentatonic from the b7. So,
@@ -237,3 +238,66 @@ You are indeed to think of that as a minor ii-V! The C7#5 is the same thing as a
 BV: Then the F#-7 B7 goes into a Bb7sus. What is this?
 
 B7 to Bb7sus is a tritone substitution approach! F7 to Bb7 is what it's swapping with.
+
+* Composition
+
+** C-7 (1) ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file c_min_1.pdf
+  \score {
+    \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 }1
+        \markup \rN { i-7 }1
+        \markup \rN { i-7 }1
+      }
+      \new ChordNames { \chordmode
+                        { d1:maj7.3-
+                          g1:m7.5-
+                          c1:m7
+                          c1:m7}}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          a8 a f g a f~ f4
+          g8 g e f g e~ e4
+          r8 d( ees) f( g) a( bes) c
+          r8 d~ d4 r2
+        }
+      }
+    >>
+  }
+#+end_src
+
+
+** C-7 (2) ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file c_min_2.pdf
+  \score {
+    \new StaffGroup <<
+      \new Lyrics \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 }1
+        \markup \rN { i-7 }1
+        \markup \rN { i-7 }1
+      }
+      \new ChordNames { \chordmode
+                        { d1:maj7.3-
+                          g1:m7.5-
+                          c1:m7
+                          c1:m7}}
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          a8 a f g a f~ f4
+          g8 g e f g e~ e4
+          r8 d( ees) f( g) a( bes) c
+          r8 d~ d4 r2
+        }
+      }
+    >>
+  }
+#+end_src
+
+

@@ -363,15 +363,28 @@ soloBb= \relative c'' {
   %% m46
   \tuplet 3/2 { g16 aes g } ees8 \tuplet 3/2 { aes!16 bes aes } f8 \tuplet 3/2 { a16 bes a } g8 bes8. ges16~
   \tuplet 3/2 { ges16 g ges } d8 \tuplet 3/2 { g16 aes g } ees8 \tuplet 3/2 { aes!16 bes aes } ges8 a8. g16
-  s1
-  s1
+  g16 d bes8 d16 bes g8 c16 bes c bes c bes c bes
+  c16 bes c bes c bes8 g16~ g4 r
   \break
   \bar "||"
 
   \markManualBox "A"
-  
-  \repeat unfold 1  { s1*4 \break }
-  \repeat unfold 1  { s1*4 \break } \bar "||"
+  \timestop "4:55"
+  r16 g' bes c c c r8 r16 g bes c c c r8
+  r16 c c c c c r16 c  c c c c r4 \break
+  r16 g bes c  c c r16 g  bes c c c r16 g bes c
+  c16 g bes c  c g bes c  c g bes c  c c r8
+  \break
+
+  \timestop "5:03"
+  r16 g bes c  c bes c c  c bes c c  c bes c c
+  \tuplet 3/2 { \tuplet 3/2 { c16 d c } bes8 \tuplet 3/2 { c16 d c } bes8 \tuplet 3/2 { c16 d c } bes8 } c16 c c bes \tuplet 3/2 { c16 d c } bes8
+  \break
+  %% \repeat unfold 1  { s1*4 \break }
+  s1
+  s1
+  \break \bar "||"
+  % \repeat unfold 1  { s1*4 \break } \bar "||"
 
   \markManualBox "B"
   \repeat unfold 1  { s1*4 \break }
