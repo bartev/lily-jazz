@@ -247,13 +247,13 @@ B7 to Bb7sus is a tritone substitution approach! F7 to Bb7 is what it's swapping
     \new StaffGroup <<
       \new Lyrics \lyricmode {
         \markup \rN { ii-M7 }1
-        \markup \rN { V 7 }1
+        \markup \rN { V 7 s9}1
         \markup \rN { i-7 }1
         \markup \rN { i-7 }1
       }
       \new ChordNames { \chordmode
                         { d1:maj7.3-
-                          g1:m7.5-
+                          g1:7.9+
                           c1:m7
                           c1:m7}}
       \new Staff {
@@ -271,33 +271,138 @@ B7 to Bb7sus is a tritone substitution approach! F7 to Bb7 is what it's swapping
 #+end_src
 
 
-** C-7 (2) ii-V-I with minMaj7 -- H/W dim --> min7
-#+begin_src lilypond :file c_min_2.pdf
+** D-7 ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file d_min_1.pdf
+  romans = \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 s9}1
+        \markup \rN { i-7 }1
+        \markup \rN { i-7 }1
+      }
+  chordChanges = \chordmode { e1:maj7.3-
+                              a1:7.9+
+                              d1:m7
+                              d1:m7}
   \score {
     \new StaffGroup <<
-      \new Lyrics \lyricmode {
-        \markup \rN { ii-M7 }1
-        \markup \rN { V 7 }1
-        \markup \rN { i-7 }1
-        \markup \rN { i-7 }1
-      }
-      \new ChordNames { \chordmode
-                        { d1:maj7.3-
-                          g1:m7.5-
-                          c1:m7
-                          c1:m7}}
+
+      \new Lyrics \repeat unfold 1 { \romans }
+      \new ChordNames { \repeat unfold 1 { \chordChanges } }
+      
       \new Staff {
         \global
         \key c \major
         \relative c'' {
-          a8 a f g a f~ f4
-          g8 g e f g e~ e4
-          r8 d( ees) f( g) a( bes) c
-          r8 d~ d4 r2
+          r4 r4 r8 b \tuplet 3/2 { cis8 dis e }
+          g8 e cis bes a c ees ges
+          a8 f e g f d~ d4
+          r1
+          \break
         }
       }
     >>
   }
 #+end_src
 
+** D-7 ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file d_min_2.pdf
+  romans = \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 s9}1
+        \markup \rN { i-7 }1
+        \markup \rN { i-7 }1
+      }
+  chordChanges = \chordmode { e1:maj7.3-
+                              a1:7.9+
+                              d1:m7
+                              d1:m7}
+  \score {
+    \new StaffGroup <<
+
+      \new Lyrics \repeat unfold 1 { \romans }
+      \new ChordNames { \repeat unfold 2 { \chordChanges } }
+      
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          b8 a g e~ e4 r
+          bes'8 a g ees~ ees4 r
+          a8 g f d~ d4 r
+          r1
+          \break
+
+          b'8 c b a g e~ e4
+          bes'8 c bes a g ees~ ees4
+          a8 bes a g f c f d~
+          d4 r r2        
+        }
+      }
+    >>
+  }
+#+end_src
+** D-7 ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file d_min_3.pdf
+  romans = \lyricmode {
+        \markup \rN { ii-M7 }1
+        \markup \rN { V 7 s9}1
+        \markup \rN { i-7 }1
+        \markup \rN { i-7 }1
+      }
+  chordChanges = \chordmode { e1:maj7.3-
+                              a1:7.9+
+                              d1:m7
+                              d1:m7}
+  \score {
+    \new StaffGroup <<
+      
+      \new Lyrics \repeat unfold 1 { \romans }
+      \new ChordNames {\repeat unfold 1 { \chordChanges } }
+      
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          r8 cis \tuplet 3/2 { dis8 e g } b4 a
+          \tuplet 3/2 { d4 cis bes~ } bes4 r8 g
+          a8 f d g e c f d
+          b8 e c a d f r4
+          \break
+        }
+      }
+    >>
+  }
+#+end_src
+
+** D-7 ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file d_min_4.pdf
+  romans = \lyricmode {
+    \markup \rN { ii-M7 }1
+    \markup \rN { V 7 s9}1
+    \markup \rN { i-7 }1
+    \markup \rN { i-7 }1
+  }
+  chordChanges = \chordmode { e1:maj7.3-
+                              a1:7.9+
+                              d1:m7
+                              d1:m7}
+  \score {
+    \new StaffGroup <<
+
+      \new Lyrics \repeat unfold 1 { \romans }
+      \new ChordNames {\repeat unfold 1 { \chordChanges }}
+      
+      \new Staff {
+        \global
+        \key c \major
+        \relative c''' {
+          r8 g fis f e4-. r
+          r8 c' b bes a4-. r
+          r8 fis f e d4-. r
+          r1
+        }
+      }
+    >>
+  }
+#+end_src
 
