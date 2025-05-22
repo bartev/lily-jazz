@@ -87,7 +87,7 @@
 
 #+end_src
 
-* Assignment
+* Assignment :noexport:
 
 Hey Bartev,
 
@@ -108,9 +108,9 @@ Let's learn the melody to Nica's Dream by Horace Silver and work on improvising 
 ** Composition
 Let's compose 10 ii V lines that specifically use minor major 7 on the ii-7 and half whole diminished on the V7. Feel free to resolve these to major OR minor resolution chords!
 
-* Technique
+* Technique :noexport:
 Melodic (\flat3) and harmonic (\flat3, \flat6) minor scales
-* Variations on chord changes
+* Variations on chord changes  :noexport:
 ** ii-V-I with minMaj7 -- H/W dim --> Maj7
 
 #+begin_src lilypond :file scales-min-maj-to-maj7.pdf
@@ -200,7 +200,7 @@ Melodic (\flat3) and harmonic (\flat3, \flat6) minor scales
 
 
 
-* Understanding the chords in Nica’s Dream
+* Understanding the chords in Nica’s Dream  :noexport:
 
 ** A section
 
@@ -405,4 +405,42 @@ B7 to Bb7sus is a tritone substitution approach! F7 to Bb7 is what it's swapping
     >>
   }
 #+end_src
+
+#+RESULTS:
+[[file:d_min_4.pdf]]
+
+** C-7 ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file c_min_2.pdf
+  romans = \lyricmode {
+    \markup \rN { ii-M7 }1
+    \markup \rN { V 7 s9}1
+    \markup \rN { i-7 }1
+    \markup \rN { i-7 }1
+  }
+  chordChanges = \chordmode { d1:maj7.3-
+                              g1:7.9+
+                              c1:m7
+                              c1:m7}
+  \score {
+    \new StaffGroup <<
+
+      \new Lyrics \repeat unfold 1 { \romans }
+      \new ChordNames {\repeat unfold 1 { \chordChanges }}
+      
+      \new Staff {
+        \global
+        \key c \major
+        \relative c''' {
+          g8 ees f g aes b cis r
+          r8 c b bes aes g f g
+          r8 c ees d c bes g f
+          g4 bes8 c r2
+        }
+      }
+    >>
+  }
+#+end_src
+
+#+RESULTS:
+[[file:d_min_4.pdf]]
 
