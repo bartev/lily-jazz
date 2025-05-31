@@ -3,6 +3,9 @@
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
 
+%% Transcription
+%% https://saxschoolonline.com/wp-content/uploads/2017/06/DigDistranscription-tenorsaxophone.pdf
+
 %% set to 18 to fit entire head and title on 1 page
 #(set-global-staff-size 16)
 \include "jazzchords.ily"
@@ -19,6 +22,8 @@
 %%   blueChord
 %%   redChord
 %%   greenChord
+
+fall = \bendAfter #-4
 
 %% set up title, compser, meter, copyright
 
@@ -157,7 +162,7 @@ realBookTitle = \markup {
 global = {
   \numericTimeSignature
   \time 4/4
-  \key g \minor
+  \key c \minor
   %% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -212,7 +217,7 @@ global = {
 %% }
 
 %% Define the chords here. The same chords will be used for chord names and notes
-introChords = \chordmode { s4 }
+introChords = \chordmode { \partial 2 s2 }
 chordNamesEbInstr = \chordmode {
   \repeat percent 4 g1:min7 \break
   \repeat percent 2 c1:min7
@@ -222,25 +227,166 @@ chordNamesEbInstr = \chordmode {
   \repeat percent 2 g1:min7 \break
 }
 
-%% introBb = \relative c'' { \markManualBox "Head" g4 }
-headEb = \relative c'' {
-  { s1*4 \break }
-  { s1*4 \break }
-  { s1*4 \break }
-  \bar "||"  
+chordNamesBbInstr = \chordmode {
+  \repeat percent 4 c1:min7 \break
+  \repeat percent 2 f1:min7
+  \repeat percent 2 c1:min7 \break
+  aes1:7
+  g1:7
+  \repeat percent 2 c1:min7 \break
 }
 
-soloEb = \relative c'' {
+introBb = \relative c'' {
+  \markManualBox "Head"
+  \partial 2
+  r8 c ees4
+}
+
+headBb = \relative c''' {
+  %% m1
+  \timestop "0:40"
+  g4 r r ees
+  f8 ees r4 r8 c ees f
+  g4 g \tuplet 3/2 { g8 f ees } c8 c~
+  c4 r4 r8 c ees4
+  \break
+
+  %% m5
+  \timestop "0:47"
+  f4 r r g8 ees
+  f8 f r4 r8 c ees f
+  g4 g \tuplet 3/2 { g8 f ees } c8 c~
+  c4 r4 r8 c ees4
+  \break
+
+  %% m9
+  \timestop "0:53"
+  f4 r r ees
+  f4 r \tuplet 3/2 { f8 ees c } bes4
+  c4 r r r
+  r2 r8 c ees4
+  %% { s1*4 \break }
+  \bar "||"
+
+  \markManualBox "Head (2nd chorus)"
+  %% m13
+  \timestop "1:01"
+  g4 r r ees
+  f8 ees r4 r8 c ees f
+  g4 g \tuplet 3/2 { g8 f ees } c8 c~
+  c4 r4 r8 c ees4
+  \break
+
+  %% 17
+  \timestop "1:07"
+  f4 r r g8 ees
+  f8 f r4 r8 c ees f
+  g4 g \tuplet 3/2 { g8 f ees } c8 c~
+  c4 r4 r8 c ees4
+  \break
+
+  %% m21
+  \timestop "1:14"
+  f4 r r ees
+  f4 r \tuplet 3/2 { f8 ees c } bes4
+  c4 r r r
+  r2 r8 c \tuplet 3/2 { e8 g a }
+  \bar "||"
+  
+  %% { s1*4 \break }
+  %% \bar "||"
+}
+
+soloBb = \relative c''' {
   \markManualBox "Solo"
+  %% m25
+  \timestop "1:21"
+  c4 c8 d  bes g r g
+  a4 c8 aes\fall r2
+  r8 c16 b bes8 a g f e d
+  c8 b bes16 c e g a8 g r4
+  \break
+
+  %% m29
+  \timestop "1:28"
+  r8 c,16 d f8 g aes a bes b
+  c8 a f d ees \fall r8 r4
+  r8 bes'~ bes4 \grace {a16 aes} g8 f e d
+  \tuplet 3/2 { des8 e g } bes a r2
+  \break
+
+  %% m33
+  \timestop "1:34"
+  r8 e' d a e d r4
+  r8 ees'? des aes? ees? des r4
+  r8 d'16 des c8 b bes a g ges
+  f8 c' a f e d r4
+  \break
+  \bar "||"
+
+  \pageBreak
+  
+  \markManualBox "Solo (2nd Chorus)"
+  %% m37
+  \timestop "1:40"
+  r8 c ees f g4 g
+  g4~ \tuplet 3/2 { g8 f ees } c8 ees r4
+  r8 c ees f g2
+  g4~ \tuplet 3/2 { g8 f ees } c8 c r4
+  \break
+
+  %% m41
+  \timestop "1:48"
+  \tuplet 3/2 { r8 a c } \tuplet 3/2 { ees8 g a } \tuplet 3/2 { d4 d d }
+  d4 a8 ees r2
+  r8 c ees f g bes r g
+  \tuplet 3/2 { ges8 f ees } c8 c r2
+  \break
+
+  %% m45
+  \timestop "1:54"
+  r8 des8 d16 e f g a8 d, r4
+  r8 bes8 d16 e f g bes8 ees, r4
+  r8 e~ \tuplet 3/2 { e16 g a } c8 f,4~ \tuplet 3/2 { f16 g a } c8
+  ges4~ \tuplet 3/2 { ges16 g a } c8 g4 c8 d
+  \break
+  \bar "||"
+
+  \markManualBox "Solo (3rd Chorus)"
+  %% m49
+  \timestop "2:00"
+  c4 c2 r8 ees
+  c8 c r4 r a
+  c4 c8-. r r c16 b bes8 a
+  g8 f e16 g bes d c4~ c8 bes
+  \break
+
+  %% m53
+  \timestop "2:08"
+  a4 f8 r r c16 f \tuplet 3/2 { a8 c d }
+  ees4 d8 ees16 d c8 bes g f
+  e4~ e8 c'~ c4 r
+  r8 bes16 a g8 f e d des a
+  \break
+
+  %% m57
+  \timestop "2:15"
+  d4 a' f8 d r a
+  d8 a c4 b~ b8 d16 a'
+  g8 f e d c r r4
+  s1
+  \break
+  \bar "||"
 
   { s1*4 \break }
   { s1*4 \break }
   { s1*4 \break }
   \bar "||"
+
 }
 
 
-myScoreEb = \score {
+myScoreBb = \score {
   <<
     %% \new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
     %% \new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
@@ -250,17 +396,19 @@ myScoreEb = \score {
       \override PercentRepeat.Y-offset = 1
     }
     {
-      \repeat unfold 2\chordNamesEbInstr % With repeat
+      \introChords
+      \repeat unfold 5 \chordNamesBbInstr % With repeat
     }
     \new Staff {
       \global
-      \headEb
-      \soloEb
+      \introBb
+      \headBb
+      \soloBb
       %% \pageBreak \soloEb
     }
   >>
   \layout { indent = 0 }
 }
 
-\myScoreEb
+\myScoreBb
 

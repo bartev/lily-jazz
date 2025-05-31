@@ -410,6 +410,8 @@ B7 to Bb7sus is a tritone substitution approach! F7 to Bb7 is what it's swapping
 [[file:d_min_4.pdf]]
 
 ** C-7 ii-V-I with minMaj7 -- H/W dim --> min7
+Type some stuff here
+
 #+begin_src lilypond :file c_min_2.pdf
   romans = \lyricmode {
     \markup \rN { ii-M7 }1
@@ -441,6 +443,35 @@ B7 to Bb7sus is a tritone substitution approach! F7 to Bb7 is what it's swapping
   }
 #+end_src
 
-#+RESULTS:
-[[file:d_min_4.pdf]]
+** D-7 ii-V-I with minMaj7 -- H/W dim --> min7
+#+begin_src lilypond :file d_min_5.pdf
+  romans = \lyricmode {
+    \markup \rN { ii-M7 }1
+    \markup \rN { V 7 s9}1
+    \markup \rN { i-7 }1
+    \markup \rN { i-7 }1
+  }
+  chordChanges = \chordmode { e1:maj7.3-
+                              a1:7.9+
+                              d1:m7
+                              d1:m7}
+  \score {
+    \new StaffGroup <<
+
+      \new Lyrics \repeat unfold 1 { \romans }
+      \new ChordNames {\repeat unfold 1 { \chordChanges }}
+      
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          r8 e dis e  g e g b~
+          b8 g bes cis  g e cis bes
+          c8 f e d  c a c f
+          r1
+        }
+      }
+    >>
+  }
+#+end_src
 
