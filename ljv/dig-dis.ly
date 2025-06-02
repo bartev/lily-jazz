@@ -372,12 +372,64 @@ soloBb = \relative c''' {
   %% m57
   \timestop "2:15"
   d4 a' f8 d r a
-  d8 a c4 b~ b8 d16 a'
+  des8 a c4 b~ b8 d16 a'
   g8 f e d c r r4
-  s1
+  r4 r8 c f4~ f8 e
   \break
   \bar "||"
 
+  \markManualBox "Solo (4th Chorus)"
+  \timestop "2:22"
+  %% m61
+  c8 c r4 r8 c f \grace { g16 f } e8
+  c8 c r c f e c a
+  c2 r8 c e16 g bes d
+  c8 b bes a g \grace { g16 f } e8 ees des
+  \break
+
+  %% 65
+  \timestop "2:28"
+  \tuplet 3/2 { c8 r c } \tuplet 3/2 { ees c ees } \tuplet 3/2 { g ees g } \tuplet 3/2 { b g b }
+  d4~ d8 \tuplet 3/2 { b16 g ees } b2
+  r4 r8 e32 g b d c8 b a aes
+  g8 f e d des bes'? a e
+  \break
+
+  %% 69
+  \timestop "2:35"
+  g4 a8 f~ f4~ \tuplet 5/2 { f8 e d c a }
+  e'4 f8 d~ d4 r8 a
+  d8 ees16 d a8 g c2
+  r4 a' c8 d c a
+  \break
+  \bar "||"
+
+  \markManualBox "Solo (5th Chorus)"
+  c4 r e, r
+  f4 r ges r
+  s1
+  s1
+  \break
+
+  { s1*4 \break }
+  { s1*4 \break }
+  \bar "||"
+  \pageBreak
+
+
+  \markManualBox "Solo (6th Chorus)"
+  { s1*4 \break }
+  { s1*4 \break }
+  { s1*4 \break }
+  \bar "||"
+
+  \markManualBox "Solo (7th Chorus)"
+  { s1*4 \break }
+  { s1*4 \break }
+  { s1*4 \break }
+  \bar "||"
+
+  \markManualBox "Solo (8th Chorus)"
   { s1*4 \break }
   { s1*4 \break }
   { s1*4 \break }
@@ -397,7 +449,7 @@ myScoreBb = \score {
     }
     {
       \introChords
-      \repeat unfold 5 \chordNamesBbInstr % With repeat
+      \repeat unfold 10 \chordNamesBbInstr % With repeat
     }
     \new Staff {
       \global
