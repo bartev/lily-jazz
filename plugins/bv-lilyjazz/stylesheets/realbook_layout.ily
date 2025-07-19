@@ -2,16 +2,48 @@
 
 \paper {
   #(set-paper-size "letter")
-  indent = 0
-  top-margin = 12\mm
+  #(define fonts
+    (set-global-fonts
+     #:music "lilyjazz"
+     #:brace "lilyjazz"
+     #:roman "lilyjazz-text"
+     #:sans "lilyjazz-chord"
+     %% #:factor (/ staff-height pt 18)
+     #:factor 1.0)
+
+  indent = 0\mm
+  print-page-number = ##t
+  ragged-bottom = ##t
+  %% margins
+  top-margin = 12\mm % or 0.5\in
   bottom-margin = 10\mm
   left-margin = 14\mm
   right-margin = 14\mm
-  print-page-number = ##t
-  ragged-bottom = ##t
-}
 
-\numericTimeSignature
+  %%set to ##t if your score is less than one page:
+  ragged-last-bottom = ##t
+  ragged-bottom = ##f
+  ragged-right = ##f
+
+  markup-system-spacing = #'((basic-distance . 23)
+                             (minimum-distance . 8)
+                             (padding . 1))
+
+  oddHeaderMarkup = \markup
+  \fill-line {
+    %% If not using the realBookTitle, can use
+    %% \fromproperty #'header:title " "
+    \title
+    \if \should-print-page-number
+    \fromproperty #'page:page-number-string
+  }
+  evenHeaderMarkup = \markup
+  \fill-line {
+    \if \should-print-page-number
+    \fromproperty #'page:page-number-string " "
+    \title
+  }
+}
 
 \layout {
   \context { \Lyrics \override LyricText.font-name = #"serif" }
@@ -49,4 +81,62 @@
     chordChanges = ##t %% Only show chord when it changes%}
     \consists "Percent_repeat_engraver"
   }
+}
+
+realBookTitle = \markup {
+  \score {
+    {
+      \override TextScript.extra-offset = #'(0 . -6) % Adjust vertical position (X . Y)
+      s^\markup {
+        \fill-line {
+          %% Left side: Meter and instrument
+          \vcenter { % Center everything vertically
+            \column {
+              %% Meter
+              {\fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }}
+              {\fontsize #1 \instrument}
+            }
+          }
+          %% Center: Title
+          %% Title
+          \vcenter {
+            \fontsize #7 % Bigger number is larger font
+            \override #'(thickness . 6)
+            { \override #'(offset . 18) % Add space above the underline (raises text)
+              \underline
+              #title
+            }
+          }
+          %% Right side: Composer and Arranger
+          \vcenter {
+            \right-column {
+              \fontsize #3 \lower #1 \concat { #composer " " }
+              \fontsize #0 \lower #1 \concat { #arranger " " }
+              \fontsize #0 \lower #1 \concat { #transcribed " " }
+            }
+          }
+        }
+      }
+    }
+    \layout {
+      \omit Staff.Clef
+      \omit Staff.TimeSignature
+      \omit Staff.KeySignature
+      ragged-right = ##f
+      ragged-bottom = ##f
+      ragged-last-bottom = ##t
+      \override Score.BarLine.transparent = ##t  % Remove barline at the end of the staff
+    }
+  }
+}
+
+\header {
+  title = \realBookTitle
+  tagline = \tagline
+  copyright = \copyright
+  %% The following fields are evenly spread on one line
+  %% the field "instrument" also appears on following pages
+  %% instrument = \markup \with-color #blue "Alto Sax"
+  %% arranger = \arranger
+  %% instrument = \instrument
 }
