@@ -10,8 +10,14 @@
 %% '\date' The backslash is used to reference the date variable in LilyPond
 
 date = #(strftime "%Y-%m-%d" (localtime (current-time)))
+dateTime = #(strftime "%Y-%m-%d %H:%M:%S" (localtime (current-time)))
 %% tagline = \date
-bvTagline = #(string-append "Bartev - " date)
+bvTaglineDate = #(string-append "Bartev " date)
+bvTaglineDateTime = #(string-append "Bartev " dateTime)
+
+%% \concat spaces differently than if I didn't say \concat
+instrumentAlto = \markup \with-color "blue" { "Alto E" \super \flat }
+instrumentTenor = \markup \with-color "green" { "Tenor B" \super \flat }
 
 
 %% Set fontsize in markupt https://lilypond.org/doc/v2.23/Documentation/notation/formatting-text
