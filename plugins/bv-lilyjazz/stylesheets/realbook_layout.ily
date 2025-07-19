@@ -8,8 +8,9 @@
      #:brace "lilyjazz"
      #:roman "lilyjazz-text"
      #:sans "lilyjazz-chord"
-     %% #:factor (/ staff-height pt 18)
-     #:factor 1.0)
+     #:factor 1.0
+     ;; #:factor (/ staff-height pt 18)
+   ))
 
   indent = 0\mm
   print-page-number = ##t
@@ -45,10 +46,17 @@
   }
 }
 
+%% #(end-of-line beginning-of-line middle-of-line)
+visibility = #'#(#f #f #t)
+
 \layout {
+  \numericTimeSignature
   \context { \Lyrics \override LyricText.font-name = #"serif" }
   \context {
     \Score
+    %% (end-of-line middle-of-line beginning-of-line)
+    \override BarNumber.break-visibility = \visibility
+    \override BarNumber.font-family = #'jazz
     %% See here for using colors
     %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
     %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
@@ -59,27 +67,31 @@
   }
   \context {
     \Staff
-    %% make only the first clef visible
-    \override Clef.break-visibility = #'#(#f #f #t)
+    \clef treble
+    %% Make only the first clef visible
+    \override Clef.break-visibility = \visibility
 
-    %% make only the first time signature visible --  #'#(#f #f #f)
-    %% Make the signature visible at each line break -- #'#(#f #f #t)
-    \override KeySignature.break-visibility = #'#(#f #f #t)
+    %% Make the signature visible at each line break
+    \override KeySignature.break-visibility = \visibility
 
-    %% allow single-staff system bars
+    %% Allow single-staff system bars
     \override SystemStartBar.collapse-height = #1
 
     \override MultiMeasureRest.expand-limit = 1
 
     %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
 
-    %% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
+    %% Uncomment this to have multibar, jazz style repeats. BUT, bar lines won't
+    %% show when using "s" to fill in blanks
+    %%
     %% \compressFullBarRests
   }
   \context {
     \ChordNames
     chordChanges = ##t %% Only show chord when it changes%}
     \consists "Percent_repeat_engraver"
+    \override ChordName.font-size = #1.5 % slightly larger chord symbols
+    \override ChordName.font-family = #'sans
   }
 }
 
