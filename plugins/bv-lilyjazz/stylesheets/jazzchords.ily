@@ -39,15 +39,17 @@
 % alternative, use lowercase "m"
 % (markup #:small "m" #:super extension)
 
-% for major chords, use "acMaj" to print a small "M"
+% for major chords, use "acMaj" to print "maj", "^" or "M"
 #(define-markup-command (acMaj layout props extension) (string?)
   (interpret-markup layout props
-    (markup "maj" extension)))
-% alternative, use capital "M"
-% (markup #:super "M" #:super extension)
-    %
+   (markup #:small "^" extension)))
+%% Use "maj"
+%% (markup "maj" extension)
+%%
+%% Use capital "M"
+%% (markup #:super "M" #:super extension)
 
-% for chords with up to three alterations, stacked on top of each other
+%% for chords with up to three alterations, stacked on top of each other
 #(define-markup-command (acAlt layout props strA strB strC) (string? string? string?)
   (interpret-markup layout props
     (markup
@@ -61,29 +63,42 @@
   )
 )
 
-% modify the built-in "chordNameExceptions"
-%----- change chord exceptions for jazz notation -----
-%
-%	degrés      markup				% écriture
+%% modify the built-in "chordNameExceptions"
+%% These are templates only. Lilypond will match the pattern to your chord.
+%%
+%% ----- change chord exceptions for jazz notation -----
+%% Each line looks like this (as a template)
+%% <chord notes>duration-\markup { formatting } % comment
+
+%%	degrés      markup				% écriture
 JazzChordsList = {
 % minor third chords - 3 notes
-  <c es ges>1-\markup { \super "dim." } % :dim
+  %% <c es ges>1-\markup { \super "dim." } % :dim
+  <c es ges>1-\markup { \super "o" } % :dim
   <c es g>-\markup { \acMin #"" } % :m
 
   %% BV 2022-01=17 change half-dim and augmented
   %% minor third chords - 4 notes
-  <c es ges beses>-\markup { \super "7dim" } % :dim7
+  %% <c es ges beses>-\markup { \super "7dim" } % :dim7
+  %% <c es ges beses>-\markup { \super "o" "7" }
+  <c es ges beses>-\markup {
+    \super \concat { \fontsize #3.0 "o" "7" }
+  }
   <c es gis>-\markup { \acMin #"aug" } % :m5+ (Ab/C)
   <c es g a>-\markup { \acMin #"6" } % :m6
   %% <c es ges bes>-\markup { \acMin #"7 >5" } % :m7.5-
-  <c es ges bes>-\markup { #"@7" } % :m7.5- (with half dim symbol)
+  %% <c es ges bes>-\markup { #"@7" } % :m7.5- (with half dim symbol)
+  <c es ges bes>-\markup {
+    \concat { \fontsize #0.7 "@" \super "7"}
+  } % :m7.5- (with half dim symbol)
+
   <c es g bes>-\markup { \acMin #"7" } % :m7
   %% <c es gis bes>-\markup { \acMin #"7 <5" } % :m7.5+
   <c es ges bes>-\markup { \acMin #"+" }
   <c es g b>-\markup { \acMin #"M7" } % :m7+
   <c es g d'>-\markup { \acMin #"add9" } % :m5.9
 
-                                % minor third chords - 5+ notes
+  %% minor third chords - 5+ notes
   <c es g a d'>-\markup { \acMin #"6/9" } % :m6.9
   <c es g bes des'>-\markup { \acMin #"7(>9)" } % :m7.9-
   <c es g bes d'>-\markup { \acMin #"9" } % :m9
