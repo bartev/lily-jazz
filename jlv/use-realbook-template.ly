@@ -1,7 +1,5 @@
 \version "2.24.2"
 
-#(set-global-staff-size 16)
-
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -22,7 +20,7 @@ title = #"The Song Is NOT You"
 composer = #"Jerome Kern"
 arranger = #"Alex Hahn solo"
 transcribed = #"Bartev 2025-07"
-meter = "?"
+meter = "(med swing)"
 instrument = \instrumentAlto
 
 tagline = \bvTaglineDateTime
@@ -35,7 +33,9 @@ copyright = #"Bartev 2025"
 
 
 
-global = { }
+global = {
+  \tempo 4=130
+}
 
 
 % Define the chord progression
@@ -81,16 +81,16 @@ slashes = {
   }
 }
 
+melody = \relative c {
+  \global
+  \time 4/4
+  \key bes \major
+  \slashes
+}
+
 \score {
   <<
-    \new ChordNames {
-      \chordChanges
-    }
-    \new Staff {
-      \global
-      \time 4/4
-      \key bes \major
-      \slashes
-    }
+    \new ChordNames \chordChanges
+    \new Voice = soloist \melody
   >>
 }

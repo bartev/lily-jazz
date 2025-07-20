@@ -1,5 +1,7 @@
 %% Default Real Book like paper and layout settings
 
+#(set-global-staff-size 16)
+
 \include "lilyjazz.ily"
 \include "jazzchords.ily"
 \include "jazzextras.ily"
@@ -52,7 +54,11 @@
 }
 
 %% #(end-of-line beginning-of-line middle-of-line)
-visibility = #'#(#f #f #t)
+%% visibility = #'#(#f #f #t)
+%% visibilityFirstOnly = #'#(#f #f #f)
+%% #begin-of-line-visible = #'#(#f #f #t) - at beginning of every line
+%% #all-visible = #'#(#t #t #t) - everywhere
+
 
 \layout {
   \numericTimeSignature
@@ -60,27 +66,31 @@ visibility = #'#(#f #f #t)
   \context {
     \Score
     %% (end-of-line middle-of-line beginning-of-line)
-    \override BarNumber.break-visibility = \visibility
+    \override BarNumber.break-visibility = #begin-of-line-visible
     \override BarNumber.font-family = #'jazz
+
+    %% Make only the first clef visible
+    \override Clef.break-visibility = #'#(#f #f #f)
+
     %% See here for using colors
     %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
     %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
     \override RehearsalMark.color = #red
     \override RehearsalMark.font-family = #'jazz
     \override RehearsalMark.font-size = #6
+
+    %% \override SystemStartBar.break-visibility = #'#(#f #f #t)
+    %% Show barline at beginning of lines
+    \override SystemStartBar.collapse-height = #1
+
     markFormatter = #format-mark-box-alphabet
   }
   \context {
     \Staff
     \clef treble
-    %% Make only the first clef visible
-    \override Clef.break-visibility = \visibility
 
     %% Make the signature visible at each line break
-    \override KeySignature.break-visibility = \visibility
-
-    %% Allow single-staff system bars
-    \override SystemStartBar.collapse-height = #1
+    \override KeySignature.break-visibility = #'#(#f #f #t)
 
     \override MultiMeasureRest.expand-limit = 1
 
@@ -88,7 +98,6 @@ visibility = #'#(#f #f #t)
 
     %% Uncomment this to have multibar, jazz style repeats. BUT, bar lines won't
     %% show when using "s" to fill in blanks
-    %%
     %% \compressFullBarRests
   }
   \context {
@@ -110,8 +119,9 @@ realBookTitle = \markup {
           \vcenter { % Center everything vertically
             \column {
               %% Meter
-              {\fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }}
-              {\fontsize #1 \instrument}
+              %% {\fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }}
+              {\fontsize #1 \lower #1 \rotate #7 \concat { " " #meter } }
+              {\fontsize #3 \rotate #7 \instrument}
             }
           }
           %% Center: Title
@@ -128,8 +138,8 @@ realBookTitle = \markup {
           \vcenter {
             \right-column {
               \fontsize #3 \lower #1 \concat { #composer " " }
-              \fontsize #0 \lower #1 \concat { #arranger " " }
-              \fontsize #0 \lower #1 \concat { #transcribed " " }
+              \fontsize #1 \lower #1 \concat { #arranger " " }
+              \fontsize #1 \lower #1 \concat { #transcribed " " }
             }
           }
         }
