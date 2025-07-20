@@ -1,20 +1,25 @@
 %% Default Real Book like paper and layout settings
 
+\include "lilyjazz.ily"
+\include "jazzchords.ily"
+\include "jazzextras.ily"
+\include "roman_numeral_analysis_tool.ily"
+
 \paper {
   #(set-paper-size "letter")
-  #(define fonts
-    (set-global-fonts
-     #:music "lilyjazz"
-     #:brace "lilyjazz"
-     #:roman "lilyjazz-text"
-     #:sans "lilyjazz-chord"
-     #:factor 1.0
-     ;; #:factor (/ staff-height pt 18)
-   ))
+  %% These are set in lilyjazz.ily
+  %% #(define fonts
+  %%   (set-global-fonts
+  %%    #:music "lilyjazz"
+  %%    #:brace "lilyjazz"
+  %%    #:roman "lilyjazz-text"
+  %%    #:sans "lilyjazz-chord"
+  %%    #:factor 1.0
+  %%    ;; #:factor (/ staff-height pt 18)
+  %%  ))
 
   indent = 0\mm
-  print-page-number = ##t
-  ragged-bottom = ##t
+  %% print-page-number = ##t
   %% margins
   top-margin = 12\mm % or 0.5\in
   bottom-margin = 10\mm
