@@ -63,8 +63,8 @@ chordsB = \chordmode {
 chordChanges = \chordmode {
   \chordsAFirst  % A1 (16 bars)
   \chordsASecond  % A2 (16 bars)
-  \chordsB   % B  (16 bars)
-  \chordsASecond  % A3 (16 bars) - same as A2
+  %% \chordsB   % B  (16 bars)
+  %% \chordsASecond  % A3 (16 bars) - same as A2
 }
 
 % Define slash notation (one slash per beat)
@@ -81,11 +81,39 @@ slashes = {
   }
 }
 
-melody = \relative c {
+fourBars = { s1*4 \break }
+sixteenBars = \repeat unfold 4 \fourBars
+
+fourBarsC = \repeat unfold 16 { c4 }
+sixteenBarsC = {
+  \fourBarsC \break
+  \fourBarsC \break
+  \fourBarsC \break
+  \fourBarsC \break
+}
+
+
+melody = \relative c'' {
   \global
   \time 4/4
   \key bes \major
-  \slashes
+  %% \slashes
+  \mark "A"
+
+  \improvisationOn
+  \override Voice.Stem.stencil = ##f
+  \sixteenBarsC
+  \improvisationOff
+  \revert Voice.Stem.stencil
+
+  %% \mark "A" \sixteenBarsC %%
+  \mark "B"
+  \comp 16 \break
+  \comp 16 \break
+  \comp 16 \break
+  \comp 16 \break
+  \mark "A" \sixteenBars
+  \comp #8
 }
 
 \score {

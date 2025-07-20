@@ -74,7 +74,7 @@
 JazzChordsList = {
 % minor third chords - 3 notes
   %% <c es ges>1-\markup { \super "dim." } % :dim
-  <c es ges>1-\markup { \super "o" } % :dim
+  <c es ges>1-\markup { \super \fontsize #3 "o" } % :dim
   <c es g>-\markup { \acMin #"" } % :m
 
   %% BV 2022-01=17 change half-dim and augmented
@@ -100,22 +100,22 @@ JazzChordsList = {
 
   %% minor third chords - 5+ notes
   <c es g a d'>-\markup { \acMin #"6/9" } % :m6.9
-  <c es g bes des'>-\markup { \acMin #"7(>9)" } % :m7.9-
+  <c es g bes des'>-\markup { \acMin #"7" \super "(>9)" } % :m7.9-
   <c es g bes d'>-\markup { \acMin #"9" } % :m9
-  <c es ges bes d'>-\markup { \acMin #"9(>5)" } % :m9.5-
+  <c es ges bes d'>-\markup { \acMin #"9" \super "(>5)" } % :m9.5-
   <c es g b d'>-\markup { \acMin #"9(M7)" } % :m9.7+
-  <c es g bes dis'>-\markup { \acMin #"7(<9)" } % :m7.9+
-  <c es g bes f'>-\markup { \acMin #"7(add 11)" } % :m7.11
-  <c es g bes a'>-\markup { \acMin #"7(add 13)" } % :m7.13
+  <c es g bes dis'>-\markup { \acMin #"7" \super "(<9)" } % :m7.9+
+  <c es g bes f'>-\markup { \acMin #"7" \super "(add 11)" } % :m7.11
+  <c es g bes a'>-\markup { \acMin #"7" \super "(add 13)" } % :m7.13
   <c es g bes d' f'>-\markup { \acMin #"11" } % :m11
-  <c es ges bes d' f'>-\markup { \acMin #"11(>5)" } % :m11.5-
+  <c es ges bes d' f'>-\markup { \acMin #"11" \super "(>5)" } % :m11.5-
   <c es g bes d' f' a'>-\markup { \acMin #"13" } % :m13
 
-                                % major third chords - 3 notes
+  %% major third chords - 3 notes
   <c e ges>-\markup { \super ">5" } % :5-
   <c e gis>-\markup { \super "aug" } % :aug
 
-                                % major third chords - 4 notes
+  %% major third chords - 4 notes
   <c e g a d'>-\markup {
     \super "6"
     \hspace #-0.5 \raise #0.7 \tiny "/"
@@ -124,11 +124,11 @@ JazzChordsList = {
 % special chords
   <c e g bes c'>-\markup { \super "7(Alt)" } % :c:8
   <c e g b>-\markup { \acMaj #"7" } % :maj
-  <c e ges b>-\markup { \acMaj #"7>5" } % :maj.5-
-  <c e gis b>-\markup { \acMaj #"7<5" } % :maj.5+
+  <c e ges b>-\markup { \acMaj #"7" \super "(>5)" } % :maj.5-
+  <c e gis b>-\markup { \acMaj #"7" \super "(<5)" } % :maj.5+
 
-  <c e ges bes>-\markup { \super "7(>5)" } % :7.5-
-  <c e gis bes>-\markup { \super "7(<5)" } % :7.5+
+  <c e ges bes>-\markup { \super "7" \super "(>5)" } % :7.5-
+  <c e gis bes>-\markup { \super "7" \super "(<5)" } % :7.5+
   <c e g d'>-\markup { \super "add9" } % :5.9
 
 % major third chords - 5+ notes

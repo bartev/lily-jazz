@@ -14,7 +14,7 @@
 \include "bv_definitions.ily"
 
 %% Set up title
-title = #"The Song Is NOT You"
+title = #"The Song Is You"
 composer = #"Jerome Kern"
 arranger = #"Alex Hahn solo"
 transcribed = #"Bartev 2025-07"
@@ -23,10 +23,6 @@ instrument = \instrumentAlto
 
 tagline = \bvTaglineDateTime
 copyright = #"Bartev 2025"
-copyright = \markup { #"C<^ D0 E>@" }
-copyright = \markup {
-  \override #'(font-name . "lilyjazz-chord") "C<^ D0 E>@"
-}
 
 
 %% Paper & Layout settings are in `realbook_layout`
@@ -34,7 +30,9 @@ copyright = \markup {
 %% It defines the realbook title line based on definitions above
 \include "realbook_layout.ily"
 
-
+\paper {
+  ragged-bottom = ##f
+}
 
 global = {
   \tempo 4=130
@@ -73,6 +71,111 @@ chordChanges = \chordmode {
 fourBars = { s1*4 \break }
 sixteenBars = \repeat unfold 4 \fourBars
 
+melody = \relative c''' {
+  \key a \major
+  \mark "A"
+  gis4 a a gis
+  gis4 a a gis
+  d1~
+  d4 fis \tuplet 3/2 { fis4 f e }
+  \break
+
+  gis4 a a gis
+  gis4 a a gis
+  b,1~
+  b4 d \tuplet 3/2 { d4 b cis }
+  \break
+
+  e1~
+  e4 cis d cis
+  e1~
+  e4 b cis b
+  \break
+
+  d1~
+  d4 a b a
+  cis1~
+  cis1
+  \break
+
+  \mark "A"
+  gis4 a a gis
+  gis4 a a gis
+  d1~
+  d4 fis \tuplet 3/2 { fis4 f e }
+  \break
+
+  gis4 a a gis
+  gis4 a a gis
+  b,1~
+  b4 d \tuplet 3/2 { d4 b cis }
+  \break
+
+  e1~
+  e4 cis d cis
+  fis1~
+  fis4 e fis e
+  \break
+
+  a1~
+  a1
+  r1
+  r1
+  \break
+  \pageBreak
+
+  \mark "B"
+  cis4 gis' gis2~
+  gis4 gis gis gis
+  gis4 fis fis2~
+  fis1
+  \break
+
+  cis4 c' c2~
+  c4 c c c
+  c4 ais ais2~
+  ais1
+  \break
+
+  c,4 gis' f2~
+  f4 c \tuplet 3/2 { dis4 d cis }
+  c4 gis' f2~
+  f4 c c c
+  \break
+
+  c4 dis dis2~
+  dis4 dis dis dis
+  f4 gis gis2~
+  gis4 gis gis gis
+  \break
+
+  \mark "A"
+  gis4 a a gis
+  gis4 a a gis
+  d'1~
+  d4 fis, \tuplet 3/2 { fis4 f e }
+  \break
+
+  gis4 a a gis
+  gis4 a a gis
+  a,1~
+  a4 d \tuplet 3/2 { d4 b cis }
+  \break
+
+  e1~
+  e4 cis d cis
+  fis1~
+  fis4 e fis e
+  \break
+
+  a1
+  r1
+  r1
+  r1
+  \break
+
+}
+
 \score {
   <<
     \new ChordNames {
@@ -81,11 +184,7 @@ sixteenBars = \repeat unfold 4 \fourBars
     \new Staff {
       \global
       \time 4/4
-      \key a \major
-      \mark "A" \sixteenBars
-      \mark "A" \sixteenBars
-      \mark "B" \sixteenBars
-      \mark "A" \sixteenBars
+      \melody
     }
   >>
 }
