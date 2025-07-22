@@ -55,10 +55,10 @@ chordsASecond = \chordmode {
 }
 
 chordsB = \chordmode {
-  \repeat percent 2 cis1:maj7 | ees:m7  | aes:7  |
+  \repeat percent 2 cis1:maj7 | dis:m7  | gis:7  |
   \repeat percent 2 cis1:maj7 | g:m7.5- | c:7.9- |
   \repeat percent 2 f1:m7     | \repeat percent 2 bes:7 |
-  \repeat percent 2 ees1:7    | \repeat percent 2 aes:7 |
+  \repeat percent 2 dis1:7    | \repeat percent 2 gis:7 |
 }
 
 chordChanges = \chordmode {
@@ -90,11 +90,11 @@ head = \relative c''' {
   cis,4 gis' gis2~ | gis4 gis gis gis | gis4 fis fis2~| fis1 \break
   cis4 c' c2~ | c4 c c c | c4 ais ais2~ | ais1 \break
   c,4 gis' f2~ | f4 c \tuplet 3/2 { dis4 d cis } | c4 gis' f2~ | f4 c c c \break
-  c4 dis dis2~ | dis4 dis dis dis | f4 gis gis2~ | gis4 gis gis gis \break
+  bis4 dis dis2~ | dis4 dis dis dis | eis4 gis gis2~ | gis4 gis gis gis \break
 
   \mark "A"
   gis4 a a gis | gis4 a a gis | d'1~ | d4 fis, \tuplet 3/2 { fis4 f e } \break
-  gis4 a a gis | gis4 a a gis | a,1~ | a4 d \tuplet 3/2 { d4 b cis } \break
+  gis4 a a gis | gis4 a a gis | a1~ | a4 d, \tuplet 3/2 { d4 b cis } \break
   e1~ | e4 cis d cis | fis1~ | fis4 e fis e \break
   a1 | r1 | r1 | r1 \break
 }
@@ -164,9 +164,9 @@ melody = \relative c''' {
   f4 c c c
   \break
 
-  c4 dis dis2~
+  bis4 dis dis2~
   dis4 dis dis dis
-  f4 gis gis2~
+  eis4 gis gis2~
   gis4 gis gis gis
   \break
 
@@ -179,8 +179,8 @@ melody = \relative c''' {
 
   gis4 a a gis
   gis4 a a gis
-  a,1~
-  a4 d \tuplet 3/2 { d4 b cis }
+  a1~
+  a4 d, \tuplet 3/2 { d4 b cis }
   \break
 
   e1~
@@ -247,6 +247,7 @@ melodyTwo = {
       \override Flag.color = #grey
       \override Accidental.color = #grey
       \override Dots.color = #grey
+      \override KeySignature.color = #grey
     } {
       \global
       \time 4/4
