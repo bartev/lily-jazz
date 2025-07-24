@@ -1,6 +1,6 @@
 %% Default Real Book like paper and layout settings
 
-#(set-global-staff-size 16)
+%% #(set-global-staff-size 16)
 
 \include "lilyjazz.ily"
 \include "jazzchords.ily"

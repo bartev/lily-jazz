@@ -104,24 +104,28 @@ melody = \relative c''' {
   \key a \major
   \mark "A"
   \tempo 4=150
+  %% m1
   gis4 a a gis
   gis4 a a gis
   d4. d8~ d2~
   d4 r4 r2
   \break
 
+  %% m5
   r4 \tuplet 3/2 { fis4 f e } fis4
   e8 e fis4 fis e
   b4. b8~ b2~
   b4 cis8 cis d cis r e~
   \break
 
+  %% m9
   e1~
   e4 cis8 cis d cis r e~
   e1~
   e4 b8 b cis b r d~
   \break
 
+  %% m13
   d1~
   d4 a8 a b a r cis16 e
   cis1
@@ -129,15 +133,18 @@ melody = \relative c''' {
   \break
 
   \mark "A"
+  %% m17
   r1 | r1 | r1 | r1 | \break
   r1 | r1 | r1 | r1 | \break
 
+  %% m25
   r4 cis8 cis d cis r e~
   e2. r4
   r4 cis8 cis d cis r8 fis~
   fis4 e fis e
   \break
 
+  %% m29
   r4 cis, \glissando b'8 a gis a
   cis8 e fis g~ g4 fis8 d
   r8 fis, a cis b fis a b
@@ -146,53 +153,61 @@ melody = \relative c''' {
 
   \mark "B"
   \tempo 2=160
+  %% m33
   r4 cis gis'4. gis8~
   gis2 gis4 gis
   gis8 fis r fis8~ fis2~
   fis2 f8 e ees d
   \break
 
+  %% m37
   cis4 c' c2~
   c2 c4 c
   c8 bes r bes~ bes2~
-  bes1
+  bes2 f8 e ees d
   \break
 
-  c,4 gis' f2~
-  f4 c \tuplet 3/2 { dis4 d cis }
+  %% m41
+  cis4 gis' f2~
+  f4 r ees8 r d cis
   c4 gis' f2~
-  f4 c c c
+  f4 r e8 ees d cis
   \break
 
-  bis4 dis dis2~
+  %% m45
+  c4 dis dis2~
   dis4 dis dis dis
-  eis4 gis gis2~
-  gis4 gis gis gis
+  f4 gis gis2~
+  gis1
   \break
 
+  %% m49
   \mark "A"
   gis4 a a gis
   gis4 a a gis
-  d'1~
-  d4 fis, \tuplet 3/2 { fis4 f e }
+  d'2 d~
+  d4 r fis, f
   \break
 
-  gis4 a a gis
-  gis4 a a gis
-  a1~
-  a4 d, \tuplet 3/2 { d4 b cis }
+  %% m53
+  e4. fis8 fis4 e
+  e4 fis fis8 e ees d
+  a'2 a~
+  a4 cis, d cis
   \break
 
-  e1~
+  %% m57
+  e2 e~
   e4 cis d cis
   fis1~
   fis4 e fis e
   \break
 
+  %% m61
   cis'8 gis f16 dis c'8 bes g ees bes'
-  g8 gis f cis r gis' g fis
-  f4 c8 cis gis4 \comp 1
-  \comp 4
+  g8 gis f cis \tuplet 3/2 { gis'?4 g fis }
+  f4 c8 cis g' f? c bes
+  \comp 2 c8 bes aes ees
   \break
 }
 
