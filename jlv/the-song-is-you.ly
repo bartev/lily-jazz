@@ -105,6 +105,7 @@ melody = \relative c''' {
   \mark "A"
   \tempo 4=150
   %% m1
+  \timestop "0:00"
   gis4 a a gis
   gis4 a a gis
   d4. d8~ d2~
@@ -112,6 +113,7 @@ melody = \relative c''' {
   \break
 
   %% m5
+  \timestop "0.08"
   r4 \tuplet 3/2 { fis4 f e } fis4
   e8 e fis4 fis e
   b4. b8~ b2~
@@ -119,6 +121,7 @@ melody = \relative c''' {
   \break
 
   %% m9
+  \timestop "0:16"
   e1~
   e4 cis8 cis d cis r e~
   e1~
@@ -126,6 +129,7 @@ melody = \relative c''' {
   \break
 
   %% m13
+  \timestop "0:24"
   d1~
   d4 a8 a b a r cis16 e
   cis1
@@ -134,10 +138,13 @@ melody = \relative c''' {
 
   \mark "A"
   %% m17
+  \timestop "0:30"
   r1 | r1 | r1 | r1 | \break
+  \timestop "0:38"
   r1 | r1 | r1 | r1 | \break
 
   %% m25
+  \timestop "0:46"
   r4 cis8 cis d cis r e~
   e2. r4
   r4 cis8 cis d cis r8 fis~
@@ -145,6 +152,7 @@ melody = \relative c''' {
   \break
 
   %% m29
+  \timestop "0:54"
   r4 cis, \glissando b'8 a gis a
   cis8 e fis g~ g4 fis8 d
   r8 fis, a cis b fis a b
@@ -154,6 +162,7 @@ melody = \relative c''' {
   \mark "B"
   \tempo 2=160
   %% m33
+  \timestop "1:01"
   r4 cis gis'4. gis8~
   gis2 gis4 gis
   gis8 fis r fis8~ fis2~
@@ -161,6 +170,7 @@ melody = \relative c''' {
   \break
 
   %% m37
+  \timestop "1:05"
   cis4 c' c2~
   c2 c4 c
   c8 bes r bes~ bes2~
@@ -168,6 +178,7 @@ melody = \relative c''' {
   \break
 
   %% m41
+  \timestop "1:08"
   cis4 gis' f2~
   f4 r ees8 r d cis
   c4 gis' f2~
@@ -175,14 +186,16 @@ melody = \relative c''' {
   \break
 
   %% m45
+  \timestop "1:11"
   c4 dis dis2~
   dis4 dis dis dis
   f4 gis gis2~
   gis1
   \break
 
-  %% m49
   \mark "A"
+  %% m49
+  \timestop "1:15"
   gis4 a a gis
   gis4 a a gis
   d'2 d~
@@ -190,6 +203,7 @@ melody = \relative c''' {
   \break
 
   %% m53
+  \timestop "1:18"
   e4. fis8 fis4 e
   e4 fis fis8 e ees d
   a'2 a~
@@ -197,6 +211,7 @@ melody = \relative c''' {
   \break
 
   %% m57
+  \timestop "1:22"
   e2 e~
   e4 cis d cis
   fis1~
@@ -204,24 +219,76 @@ melody = \relative c''' {
   \break
 
   %% m61
+  \timestop "1:25"
   cis'8 gis f16 dis c'8 bes g ees bes'
   g8 gis f cis \tuplet 3/2 { gis'?4 g fis }
-  f4 c8 cis g' f? c bes
-  \comp 2 c8 bes aes ees
+  f4 c8 cis f ees c bes16 cis
+  c8 ees \comp 1 c8 bes aes ees
   \break
 }
 
-melodyTwo = {
+melodyTwo = \relative c' {
   \mark "A"
-  \comp 16 \break
-  \comp 16 \break
-  \comp 16 \break
-  \comp 16 \break
+  %% m65
+  \timestop "1:28"
+  e4. cis'8~ cis2
+  r1
+  e,4. d'8~ d2
+  r1
+  \break
+
+  %% m69
+  \timestop "1:32"
+  e,4. e'8~ e2
+  r2 e4-- fis-.
+  e4. e,8~ e2
+  r2 e'4-- fis-.
+  \break
+
+  %% m73
+  \timestop "1:35"
+  e4. e,8~ e2
+  g'4-- fis-. e-- g-.
+  fis4. d8~ d2
+  d4-- e-. a-- g-.
+  \break
+
+  %% m77
+  \timestop "1:38"
+  f4. d8~ d2
+  d4-- e-. f-- ees-.
+  e4. e,8~ e2
+  r1
+  \break
 
   \mark "A"
-  \comp 16 \break
-  \comp 16 \break
-  \comp 16 \break
+  %% m81
+  \timestop "1:41"
+  r8 e fis a b a gis a
+  cis8 \xNote c fis \xNote e g4-- fis8-- d-.
+  r8 fis, a cis b fis a b
+  gis4 g4. f8 e d
+  \break
+
+
+  %% m85
+  \timestop "1:45"
+  e8 f e d e f fis a
+  b a gis a cis \xNote c fis \xNote e
+  g4-- fis8-- d4.-- r4
+  r4 r r r8 e8
+  \break
+
+  %% m89
+  r8 e r des e4-. des-.
+  e4-. e'4-. r r8 e,
+  r8 e r des e4-. des-.
+  e4-. cis' b cis8 a~
+  \break
+
+  %% m93%
+  a2 r
+  \comp 12 \break
   \comp 16 \break
 
   \mark "B"
