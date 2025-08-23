@@ -1,6 +1,6 @@
 \version "2.24.0"
 
-#(set-global-staff-size 24)
+#(set-global-staff-size 20)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -152,7 +152,7 @@ realBookTitle = \markup {
     \context { 
       \Score
       % revert Real book options :
-      % \revert Clef.break-visibility	
+      % \revert Clef.break-visibility
       % \revert KeySignature.break-visibility
       % \revert Score.BarNumber.stencil
     }
@@ -385,75 +385,81 @@ ExampleMusic = {
 % \layout { indent = 30 }  -- indents first line
 %--------------------
 testchords = \chordmode {
-  c1 _"c"			
+  c1 _"c"
   fis _"fis"
-  bes _"bes"			
+  bes _"bes"
   c:6 _"c:6"
-  c:6.9 _"c:6.9"		
+  c:6.9 _"c:6.9"
   c:3.5.9 _"c:3.5.9"
   \break
   c:maj _"c:maj" 
-  c:maj7.5- _"c:maj7.5-"	
+  c:maj7.5- _"c:maj7.5-"
   c:maj7.5+ _"c:maj7.5+" 
-  c:maj9 _"c:maj9"		
+  c:maj9 _"c:maj9"
   c:maj13 _"c:maj13" 
-  c:7 _"c:7"			
+  c:7 _"c:7"
   \break
   c:9 _"c:9"  
-  c:11 _"c:11"			
+  c:11 _"c:11"
   c:13 _"c:13" 
   c:m _"c:m" 
   c:m6 _"c:m6" 
-  c:m6.9 _"cm:6.9"		
+  c:m6.9 _"cm:6.9"
   \break
   c:m5.9 _"c:m5.9" 
-  c:m7 _"c:m7" 			
+  c:m7 _"c:m7"
   c:m7.11 _"c:m7.11" 
   c:m7.13 _"c:m7.13"            
   c:5- _ "c:5-" 
-  c:m9 _"c:m9"			
+  c:m9 _"c:m9"
   \break
   c:m11 _"c:m11" 
-  c:m13 _"c:m13"		
+  c:m13 _"c:m13"
   c:m7+ _"c:m7+" 
-  c:m9.7+ _"c:m9.7+"   		
+  c:m9.7+ _"c:m9.7+"
   c:m7.5- _"c:m7.5-" 
-  c:m9.5- _"c:m9.5-"		
+  c:m9.5- _"c:m9.5-"
   \break
   c:m11.5- _"c:m11.5-"
-  c:dim _"c:dim"		
+  c:dim _"c:dim"
   c:dim7 _"c:dim7"
-  c:aug _"c:aug"	        
+  c:aug _"c:aug"
   c:sus2 _"c:sus2"  
   c:sus4 _"c:sus4"              
   \break
   c:sus4.7 _"c:sus4.7"
   c:sus4.7.9 _"c:sus4.7.9"      
   c:sus4.9+ _ "c:sus4.9+"
-  c:7.5-_"c:7.5-"	        
+  c:7.5-_"c:7.5-"
   c:7.5+ _"c:7.5+"
-  c:9- _"c:9-"			
+  c:9- _"c:9-"
   \break
   c:9-.5- _"c:9-.5-"
-  c:9-.5+ _"c:9-.5+"		
+  c:9-.5+ _"c:9-.5+"
   c:9+ _"c:9+"
-  c:9+.5- _"c:9+.5-"		
+  c:9+.5- _"c:9+.5-"
   c:9+.5+ _"c:9+.5+"  
 }
+
+\pageBreak
 
 \score {
   <<
     \new ChordNames \testchords
     \new Staff\testchords
     \override Score.SystemStartBar.collapse-height = #1   % allow a system bracket on a single staff
-    \override Score.Clef.break-visibility = #'#(#f #f #f)	 % just the first clef
-    \override Score.KeySignature.break-visibility = #'#(#f #f #f)	% just the first time signature
+    \override Score.Clef.break-visibility = #'#(#f #f #f)    % just the first clef
+    \override Score.KeySignature.break-visibility = #'#(#f #f #f)   % just the first time signature
   >>
   \header {
     piece ="Jazz Chords Demo"
-    opus = \markup {\override #'(font-name . "lilyjazzchord")
-      "C<^ D0 E>@"  % juste pour voir la notation classique
-    } 	
+    opus = \markup { \override #'(font-name . "lilyjazz-chord") "C<^ D0 E>@" }
   }
-  \layout { indent = 0 }
+  \layout {
+    indent = 0
+    \context {
+      \Staff
+      \omit TimeSignature  % Completely hide time signature
+    }
+  }
 }

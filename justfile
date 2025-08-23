@@ -25,5 +25,9 @@ copy-roman-tool:
 [group: "setup"]
 setup-all: link-styles clean-links copy-fonts copy-roman-tool
 
+# show available fonts
+show-fonts:
+    lilypond -dshow-available-fonts
+
 alias all := setup-all
 alias ls := link-styles

@@ -2,7 +2,8 @@
 
 % Part of tests-0-multiple.ly
 
-#(set-global-staff-size 24)
+#(set-global-staff-size 20)
+
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
@@ -12,14 +13,21 @@
 %  paper-height = 11\in
 %  paper-width = 8.5\in
   indent = 0\mm
-  between-system-space = 2.5\cm
-  between-system-padding = #0
+  %% between-system-space = 2.0\cm
+  %% between-system-padding = #0
   %%set to ##t if your score is less than one page:
   ragged-last-bottom = ##f
   ragged-bottom = ##f
   markup-system-spacing = #'((basic-distance . 23)
                              (minimum-distance . 8)
                              (padding . 1))
+
+  %% margins
+  top-margin = 12\mm % or 0.5\in
+  bottom-margin = 10\mm
+  left-margin = 14\mm
+  right-margin = 14\mm
+
 }
 
 %---------- Begin 10th example -- Chord names, notes, and name in lilypond DSL
@@ -86,6 +94,11 @@ testchords = \chordmode {
   c:9+.5+ _"c:9+.5+"  
 }
 
+\header {
+  title ="Jazz Chords Demo"
+  opus = \markup { \override #'(font-name . "lilyjazz-chord") "C<^ D0 E>@" }
+}
+
 \score {
   <<
     \new ChordNames \testchords
@@ -94,11 +107,5 @@ testchords = \chordmode {
     \override Score.Clef.break-visibility = #'#(#f #f #f)	 % just the first clef
     \override Score.KeySignature.break-visibility = #'#(#f #f #f)	% just the first time signature
   >>
-  \header {
-    piece ="Jazz Chords Demo"
-    opus = \markup {\override #'(font-name . "lilyjazzchord")
-         "C<^ D0 E>@"  % juste pour voir la notation classique
-     } 	
-  }
   \layout { indent = 0 }
 }
