@@ -120,7 +120,7 @@ realBookTitle = \markup {
             \column {
               %% Meter
               %% {\fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }}
-              {\fontsize #1 \lower #1 \rotate #7 \concat { " " #meter } }
+              {\fontsize #1 \lower #1 \rotate #7 \concat { \note { 4 } #1 "=" #meter } }
               {\fontsize #3 \rotate #7 \instrument}
             }
           }
