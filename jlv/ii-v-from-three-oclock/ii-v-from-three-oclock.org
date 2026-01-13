@@ -95,8 +95,24 @@
 * Variations on chord changes
 
 ** Major ii-V-I
+
+Scale degrees are relative to the i chord.
+
 #+begin_src lilypond :file a_min.pdf
 a_min = \new StaffGroup <<
+  \new ChordNames { \chordmode { b2:m7 e2:7 a1:min7 a1:min7 }}
+  \new Staff {
+    \global
+    \key c \major
+    \relative c''' {
+      b8 g e cis c bes'a g
+      fis8 e d cis c e, g b
+      r8 a4. \comp 2
+    }
+  }
+>>
+
+a_min_lyrics = \new StaffGroup <<
   \new Lyrics \lyricmode {
     \markup \rN { ii -7 }2
     \markup \rN { V 7 }2
@@ -108,18 +124,48 @@ a_min = \new StaffGroup <<
     \key c \major
     \relative c''' {
       b8 g e cis c bes'a g
-      fis8 e d des c e, g b
-      a4 \comp 3
+      fis8 e d cis c e, g b
+      r8 a4. \comp 2
     }
+  }
+  \lyrics {
+    \markup \scaleDegree { 9 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { f9 }8
+    \markup \scaleDegree { 1 }8
+    \markup \scaleDegree { f7 }8
+
+    \markup \scaleDegree { 6 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { 4 }8
+    \markup \scaleDegree { 3 }8
+    \markup \scaleDegree { f3 }8
+    \markup \scaleDegree { 5 }8
+    \markup \scaleDegree { f7 }8
+    \markup \scaleDegree { 9 }8
+
+    \markup \scaleDegree { 1 }8
   }
 >>
 
 
-\score { \a_min }
-\score { \transpose a b \a_min }
-\score { \transpose a c' \a_min }
+%% \score { \a_min }
+\score { \transpose a c' \a_min_lyrics }
 \score { \transpose a f \a_min }
 \score { \transpose a bes \a_min }
+\score { \transpose a ees \a_min }
+\score { \transpose a aes \a_min }
+\score { \transpose a cis' \a_min }
+\score { \transpose a fis \a_min }
+\score { \transpose a b \a_min }
+\score { \transpose a e \a_min }
+\score { \a_min }
+\score { \transpose a d' \a_min }
+\score { \transpose a g \a_min }
+
 #+end_src
 
 #+RESULTS:
