@@ -105,6 +105,7 @@ head = \relative c'' {
   %% \comp 16 \break
 }
 
+%% Tenor solo, C7 (not concert key)
 soloC = \relative c'' {
   \mark "Solo"
   \timestop "0:46"
@@ -128,9 +129,36 @@ soloC = \relative c'' {
   g8 e c a d8 g,4.
   \break
 
+  \mark "Chorus 3"
+
+  \timestop "1:02"
+  r4 r8 g c g' r c,
+  f4. c8 ees e r4
+  r2 e8 f fis g~
+  g2 \tuplet 3/2 { f8 ees c } a8 g
+  \break
+
+  \timestop "1:07"
+  a4. c8 f c g' ees
+  r2 r8 f \tuplet 3/2 { g8 c g }
+  e8 f r4 f16 fis f c bes8 a
+  c8 g a bes~ bes b~ b4
+  \break
+
+  \timestop "1:12"
+  c4 cis8 g' r4 r8 fis
+  f8 g, c e d dis e f
+  r2 fis8 g \tuplet 3/2 { f8 e d }
+  c8 g bes g c g c e
+  \break
+
   \mark "Chorus 2"
 
+  \timestop "1:18"
+
+  %% \comp 4
   %% \comp 16 \break
+
   \comp 16 \break
   \comp 16 \break
 }
@@ -164,7 +192,7 @@ headAndSoloC = \score {
   <<
     \new ChordNames {
       \new ChordNames { s8 } % intro
-      \repeat unfold 2 \theChordsC
+      \repeat unfold 4 \theChordsC
     }
 
     \new Staff \with {
