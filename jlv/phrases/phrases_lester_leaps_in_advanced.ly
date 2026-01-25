@@ -60,9 +60,9 @@ makeTransposedPhrase =
 #(define-void-function
    (keyLabel fromPitch toPitch keySig)
    (string? ly:pitch? ly:pitch? ly:music?)
-   (add-text parser #{ \markup \vspace #1 #})
-   (add-text parser #{ \markup \fontsize #2 \bold #keyLabel #})
-   (add-score parser
+   (add-text #{ \markup \vspace #1 #})
+   (add-text #{ \markup \fontsize #2 \bold #keyLabel #})
+   (add-score
      #{
        \score {
          <<
