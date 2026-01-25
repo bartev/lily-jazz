@@ -1,8 +1,7 @@
 \version "2.24.2"
 
 %% SCHEME FUNCTION VERSION: Phrases from "Lester Leaps In" transposed to all 12 keys
-%% Uses a Scheme function to generate scores for each key
-%% This version works reliably without complex Scheme embedding
+%% Uses a Scheme void function to generate scores for each key
 
 #(set-global-staff-size 18)
 \include "jazzchords.ily"
@@ -55,29 +54,29 @@ originalMelody = \relative c' {
   \bar "||"
 }
 
-%%%%%%%%%%%%%%%%%%%% Scheme function to create a transposed score
-%% This function avoids complex Scheme/LilyPond embedding issues
+%%%%%%%%%%%%%%%%%%%% Scheme void function to output a transposed score
 
 makeTransposedPhrase =
-#(define-music-function
+#(define-void-function
    (keyLabel fromPitch toPitch keySig)
    (string? ly:pitch? ly:pitch? ly:music?)
-   #{
-     \markup \vspace #1
-     \markup \fontsize #2 \bold #keyLabel
-     \score {
-       <<
-         \new ChordNames {
-           \transpose #fromPitch #toPitch \originalChords
-         }
-         \new Staff {
-           #keySig
-           \transpose #fromPitch #toPitch \originalMelody
-         }
-       >>
-       \layout { indent = 0 }
-     }
-   #})
+   (add-text parser #{ \markup \vspace #1 #})
+   (add-text parser #{ \markup \fontsize #2 \bold #keyLabel #})
+   (add-score parser
+     #{
+       \score {
+         <<
+           \new ChordNames {
+             \transpose #fromPitch #toPitch \originalChords
+           }
+           \new Staff {
+             #keySig
+             \transpose #fromPitch #toPitch \originalMelody
+           }
+         >>
+         \layout { indent = 0 }
+       }
+     #}))
 
 %%%%%%%%%%%%%%%%%%%% Generate all 12 keys
 
