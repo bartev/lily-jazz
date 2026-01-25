@@ -39,19 +39,11 @@ tagline = "Bartev - Phrase Study"
   indent = 0\mm
   \context {
     \Score
-    \remove "Bar_number_engraver"
+    \numericTimeSignature
+    %% \remove "Bar_number_engraver"
+
+    \omit "TimeSignature"
   }
-}
-
-%%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)
-
-lesterLeapsInChords = \chordmode {
-  bes2:6 g:m7 | c:m7 f:7 |
-}
-
-lesterLeapsInMelody = \relative c' {
-  d4 f bes d | c bes g f |
-  \bar "||"
 }
 
 %%%%%%%%%%%%%%%%%%%% Generic transpose function (low-level)
@@ -88,11 +80,11 @@ transposePhrase =
            \score {
              <<
                \new ChordNames {
-                 \transpose #fromPitch #toPitch #chords
+                 \transpose #fromPitch #toPitch $chords
                }
                \new Staff {
                  #keySig
-                 \transpose #fromPitch #toPitch #melody
+                 \transpose #fromPitch #toPitch $melody
                }
              >>
              \layout { indent = 0 }
@@ -103,10 +95,10 @@ transposePhrase =
            \score {
              <<
                \new ChordNames {
-                 \transpose #fromPitch #toPitch #chords
+                 \transpose #fromPitch #toPitch $chords
                }
                \new Staff {
-                 \transpose #fromPitch #toPitch #melody
+                 \transpose #fromPitch #toPitch $melody
                }
              >>
              \layout { indent = 0 }
@@ -124,28 +116,59 @@ lesterLeapsInPhrase =
    ((scheme?) ly:pitch? ly:pitch? (ly:music?))
    (transposePhrase keyLabel fromPitch toPitch keySig lesterLeapsInChords lesterLeapsInMelody))
 
+
+lesterLeapsInPhraseTwo =
+#(define-void-function
+   (fromPitch toPitch keySig)
+   (ly:pitch? ly:pitch? (ly:music?))
+   (transposePhrase #f fromPitch toPitch keySig lesterLeapsInChords lesterLeapsInMelody))
+
+%%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)
+
+lesterLeapsInChords = \chordmode {
+  bes2:6 g:m7 | c:m7 f:7 |
+}
+
+lesterLeapsInMelody = \relative c' {
+  d4 f bes d | c bes g f |
+  \bar "||"
+}
+
 %%%%%%%%%%%%%%%%%%%% Generate all 12 keys with various label styles
 
 %% Using plain strings
 \lesterLeapsInPhrase "Bb" bes bes  { \key bes \major }
 \lesterLeapsInPhrase "B"  bes b    { \key b \major }
-\lesterLeapsInPhrase "C"  bes c'   { \key c \major }
-
 %% Using markup for flats and sharps
 \lesterLeapsInPhrase \markup { "D" \flat } bes des'  { \key des \major }
-\lesterLeapsInPhrase "D"  bes d'   { \key d \major }
-\lesterLeapsInPhrase \markup { "E" \flat } bes ees'  { \key ees \major }
-\lesterLeapsInPhrase "E"  bes e'   { \key e \major }
-\lesterLeapsInPhrase "F"  bes f'   { \key f \major }
-
 %% No label (just the transposed phrase)
 \lesterLeapsInPhrase ##f bes fis'  { \key fis \major }
 
-\lesterLeapsInPhrase "G"  bes g'   { \key g \major }
-\lesterLeapsInPhrase \markup { "A" \flat } bes aes'  { \key aes \major }
-\lesterLeapsInPhrase "A"  bes a'   { \key a \major }
+%% 3 ways to do the same thing
+\lesterLeapsInPhraseTwo bes c' { \key c \major }
+\transposePhrase \markup { "C" \super \sharp } bes cis' { \key cis \major } \lesterLeapsInChords \lesterLeapsInMelody
+\transposePhrase \markup { "C" \sharp } bes cis' { \key cis \major } \lesterLeapsInChords \lesterLeapsInMelody
+\transposePhrase ##f bes d' { \key d \major } \lesterLeapsInChords \lesterLeapsInMelody
+
+\pageBreak
+
+%% cleanly
+\lesterLeapsInPhraseTwo bes bes  { \key bes \major }
+\lesterLeapsInPhraseTwo bes b    { \key b \major }
+\lesterLeapsInPhraseTwo bes c'   { \key c \major }
+\lesterLeapsInPhraseTwo bes des'  { \key des \major }
+\lesterLeapsInPhraseTwo bes d'   { \key d \major }
+\lesterLeapsInPhraseTwo bes ees'  { \key ees \major }
+\lesterLeapsInPhraseTwo bes e'   { \key e \major }
+\lesterLeapsInPhraseTwo bes f'   { \key f \major }
+\lesterLeapsInPhraseTwo bes fis'  { \key fis \major }
+\lesterLeapsInPhraseTwo bes g'   { \key g \major }
+\lesterLeapsInPhraseTwo bes aes'  { \key aes \major }
+\lesterLeapsInPhraseTwo bes a'   { \key a \major }
 
 %%%%%%%%%%%%%%%%%%%% Example: Create another phrase function
+
+\pageBreak
 
 %% Define another phrase
 myOtherChords = \chordmode {
@@ -157,13 +180,15 @@ myOtherMelody = \relative c'' {
   \bar "||"
 }
 
+
 %% Create a convenience function for this phrase
 myOtherPhrase =
 #(define-void-function
-   (keyLabel fromPitch toPitch keySig)
-   ((scheme?) ly:pitch? ly:pitch? (ly:music?))
-   (transposePhrase keyLabel fromPitch toPitch keySig myOtherChords myOtherMelody))
+   (fromPitch toPitch keySig)
+   (ly:pitch? ly:pitch? (ly:music?))
+   (transposePhrase #f fromPitch toPitch keySig myOtherChords myOtherMelody))
+
 
 %% Example usage (commented out):
-%% \myOtherPhrase "C" c c { \key c \major }
+\myOtherPhrase c c { \key c \major }
 %% \myOtherPhrase "F" c f { \key f \major }
