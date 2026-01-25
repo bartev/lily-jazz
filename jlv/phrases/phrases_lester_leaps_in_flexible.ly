@@ -68,7 +68,7 @@ lesterLeapsInMelody = \relative c' {
 transposePhrase =
 #(define-void-function
    (keyLabel fromPitch toPitch keySig chords melody)
-   ((string-or-markup?) ly:pitch? ly:pitch? (ly:music?) ly:music? ly:music?)
+   ((scheme?) ly:pitch? ly:pitch? (ly:music?) ly:music? ly:music?)
    ;; Add vspace and label only if keyLabel is provided
    (if keyLabel
        (begin
@@ -121,7 +121,7 @@ transposePhrase =
 lesterLeapsInPhrase =
 #(define-void-function
    (keyLabel fromPitch toPitch keySig)
-   ((string-or-markup?) ly:pitch? ly:pitch? (ly:music?))
+   ((scheme?) ly:pitch? ly:pitch? (ly:music?))
    (transposePhrase keyLabel fromPitch toPitch keySig lesterLeapsInChords lesterLeapsInMelody))
 
 %%%%%%%%%%%%%%%%%%%% Generate all 12 keys with various label styles
@@ -161,7 +161,7 @@ myOtherMelody = \relative c'' {
 myOtherPhrase =
 #(define-void-function
    (keyLabel fromPitch toPitch keySig)
-   ((string-or-markup?) ly:pitch? ly:pitch? (ly:music?))
+   ((scheme?) ly:pitch? ly:pitch? (ly:music?))
    (transposePhrase keyLabel fromPitch toPitch keySig myOtherChords myOtherMelody))
 
 %% Example usage (commented out):
