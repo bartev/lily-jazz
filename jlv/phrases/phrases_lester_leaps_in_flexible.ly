@@ -46,69 +46,22 @@ tagline = "Bartev - Phrase Study"
   }
 }
 
-%%%%%%%%%%%%%%%%%%%% Generic transpose function (low-level)
+%%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)
 
-%% This is the flexible base function that takes all parameters
-%% Parameters:
-%%   keyLabel - string, markup, or #f (false) for no label
-%%   fromPitch - original pitch (ly:pitch?)
-%%   toPitch - target pitch (ly:pitch?)
-%%   keySig - key signature music, or #f for no change
-%%   chords - chord progression music
-%%   melody - melody music
+lesterLeapsInChords = \chordmode {
+  bes2:6 g:m7 | c:m7 f:7 |
+}
 
-transposePhrase =
-#(define-void-function
-   (keyLabel fromPitch toPitch keySig chords melody)
-   ((scheme?) ly:pitch? ly:pitch? (ly:music?) ly:music? ly:music?)
-   ;; Add vspace and label only if keyLabel is provided
-   (if keyLabel
-       (begin
-         (add-text #{ \markup \vspace #1 #})
-         (cond
-          ;; If keyLabel is markup, use it directly
-          ((markup? keyLabel)
-           (add-text #{ \markup \fontsize #2 \bold #keyLabel #}))
-          ;; If keyLabel is string, wrap it in markup
-          ((string? keyLabel)
-           (add-text #{ \markup \fontsize #2 \bold #keyLabel #})))))
-   ;; Add the score
-   (add-score
-     (if keySig
-         ;; If keySig provided, include it
-         #{
-           \score {
-             <<
-               \new ChordNames {
-                 \transpose #fromPitch #toPitch $chords
-               }
-               \new Staff {
-                 #keySig
-                 \transpose #fromPitch #toPitch $melody
-               }
-             >>
-             \layout { indent = 0 }
-           }
-         #}
-         ;; If no keySig, omit it
-         #{
-           \score {
-             <<
-               \new ChordNames {
-                 \transpose #fromPitch #toPitch $chords
-               }
-               \new Staff {
-                 \transpose #fromPitch #toPitch $melody
-               }
-             >>
-             \layout { indent = 0 }
-           }
-         #})))
+lesterLeapsInMelody = \relative c' {
+  d4 f bes d | c bes g f |
+  \bar "||"
+}
 
 %%%%%%%%%%%%%%%%%%%% Convenience function for Lester Leaps In phrase
-
+%%
 %% This wrapper makes it easy to transpose the Lester Leaps In phrase
 %% Just pass keyLabel, fromPitch, toPitch, and optionally keySig
+%% Note: transposePhrase is defined in bv_definitions.ily
 
 lesterLeapsInPhrase =
 #(define-void-function
@@ -122,17 +75,6 @@ lesterLeapsInPhraseTwo =
    (fromPitch toPitch keySig)
    (ly:pitch? ly:pitch? (ly:music?))
    (transposePhrase #f fromPitch toPitch keySig lesterLeapsInChords lesterLeapsInMelody))
-
-%%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)
-
-lesterLeapsInChords = \chordmode {
-  bes2:6 g:m7 | c:m7 f:7 |
-}
-
-lesterLeapsInMelody = \relative c' {
-  d4 f bes d | c bes g f |
-  \bar "||"
-}
 
 %%%%%%%%%%%%%%%%%%%% Generate all 12 keys with various label styles
 
