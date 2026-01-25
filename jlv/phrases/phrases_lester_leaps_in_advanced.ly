@@ -1,7 +1,8 @@
 \version "2.24.2"
 
-%% ADVANCED SCHEME VERSION: Automatic iteration through all 12 keys
-%% This version uses Scheme to loop through keys programmatically
+%% SCHEME FUNCTION VERSION: Phrases from "Lester Leaps In" transposed to all 12 keys
+%% Uses a Scheme function to generate scores for each key
+%% This version works reliably without complex Scheme embedding
 
 #(set-global-staff-size 18)
 \include "jazzchords.ily"
@@ -9,7 +10,7 @@
 \include "jazzextras.ily"
 \include "bv_definitions.ily"
 
-title = #"Lester Leaps In - Phrases (Auto-Generated)"
+title = #"Lester Leaps In - Phrases in All Keys"
 composer = #"Lester Young"
 tagline = "Bartev - Phrase Study"
 
@@ -45,8 +46,6 @@ tagline = "Bartev - Phrase Study"
 
 %%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)
 
-originalKey = bes
-
 originalChords = \chordmode {
   bes2:6 g:m7 | c:m7 f:7 |
 }
@@ -57,41 +56,40 @@ originalMelody = \relative c' {
 }
 
 %%%%%%%%%%%%%%%%%%%% Scheme function to create a transposed score
+%% This function avoids complex Scheme/LilyPond embedding issues
 
-makeTransposedScore =
-#(define-scheme-function
-   (fromPitch toPitch keyMusic keyLabel chords melody)
-   (ly:pitch? ly:pitch? ly:music? string? ly:music? ly:music?)
+makeTransposedPhrase =
+#(define-music-function
+   (keyLabel fromPitch toPitch keySig)
+   (string? ly:pitch? ly:pitch? ly:music?)
    #{
      \markup \vspace #1
      \markup \fontsize #2 \bold #keyLabel
      \score {
        <<
          \new ChordNames {
-           \transpose #fromPitch #toPitch #chords
+           \transpose #fromPitch #toPitch \originalChords
          }
          \new Staff {
-           #keyMusic
-           \transpose #fromPitch #toPitch #melody
+           #keySig
+           \transpose #fromPitch #toPitch \originalMelody
          }
        >>
        \layout { indent = 0 }
      }
    #})
 
-%%%%%%%%%%%%%%%%%%%% Generate all 12 keys using the Scheme function
-%% Note: Scheme for-each loops don't work well for generating top-level scores
-%% So we use explicit calls instead (still much cleaner than manual approach)
+%%%%%%%%%%%%%%%%%%%% Generate all 12 keys
 
-\makeTransposedScore \originalKey bes  #{ \key bes \major #}  "Bb"  \originalChords \originalMelody
-\makeTransposedScore \originalKey b    #{ \key b \major #}    "B"   \originalChords \originalMelody
-\makeTransposedScore \originalKey c    #{ \key c \major #}    "C"   \originalChords \originalMelody
-\makeTransposedScore \originalKey des  #{ \key des \major #}  "Db"  \originalChords \originalMelody
-\makeTransposedScore \originalKey d    #{ \key d \major #}    "D"   \originalChords \originalMelody
-\makeTransposedScore \originalKey ees  #{ \key ees \major #}  "Eb"  \originalChords \originalMelody
-\makeTransposedScore \originalKey e    #{ \key e \major #}    "E"   \originalChords \originalMelody
-\makeTransposedScore \originalKey f    #{ \key f \major #}    "F"   \originalChords \originalMelody
-\makeTransposedScore \originalKey ges  #{ \key ges \major #}  "Gb"  \originalChords \originalMelody
-\makeTransposedScore \originalKey g    #{ \key g \major #}    "G"   \originalChords \originalMelody
-\makeTransposedScore \originalKey aes  #{ \key aes \major #}  "Ab"  \originalChords \originalMelody
-\makeTransposedScore \originalKey a    #{ \key a \major #}    "A"   \originalChords \originalMelody
+\makeTransposedPhrase "Bb" bes bes  { \key bes \major }
+\makeTransposedPhrase "B"  bes b    { \key b \major }
+\makeTransposedPhrase "C"  bes c    { \key c \major }
+\makeTransposedPhrase "Db" bes des  { \key des \major }
+\makeTransposedPhrase "D"  bes d    { \key d \major }
+\makeTransposedPhrase "Eb" bes ees  { \key ees \major }
+\makeTransposedPhrase "E"  bes e    { \key e \major }
+\makeTransposedPhrase "F"  bes f    { \key f \major }
+\makeTransposedPhrase "Gb" bes ges  { \key ges \major }
+\makeTransposedPhrase "G"  bes g    { \key g \major }
+\makeTransposedPhrase "Ab" bes aes  { \key aes \major }
+\makeTransposedPhrase "A"  bes a    { \key a \major }
