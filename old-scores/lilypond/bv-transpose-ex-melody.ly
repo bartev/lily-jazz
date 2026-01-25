@@ -36,8 +36,8 @@ tenor = {
 
 bari =  {
   \set Staff.instrumentName = #"Bari Sax"
-  \clef bass
-  \transpose es c,, \melody
+  \transpose es c \melody
+  \clef treble
 }
 
 
