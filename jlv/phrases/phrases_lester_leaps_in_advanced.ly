@@ -79,50 +79,10 @@ makeTransposedScore =
      }
    #})
 
-%%%%%%%%%%%%%%%%%%%% Define all 12 keys with their properties
+%%%%%%%%%%%%%%%%%%%% Generate all 12 keys using the Scheme function
+%% Note: Scheme for-each loops don't work well for generating top-level scores
+%% So we use explicit calls instead (still much cleaner than manual approach)
 
-#(define all-keys
-   (list
-    ;; Each entry: (pitch-name key-signature-music display-label)
-    (list bes  #{ \key bes \major #}  "Bb")
-    (list b    #{ \key b \major #}    "B")
-    (list c    #{ \key c \major #}    "C")
-    (list des  #{ \key des \major #}  "Db")
-    (list d    #{ \key d \major #}    "D")
-    (list ees  #{ \key ees \major #}  "Eb")
-    (list e    #{ \key e \major #}    "E")
-    (list f    #{ \key f \major #}    "F")
-    (list ges  #{ \key ges \major #}  "Gb")
-    (list g    #{ \key g \major #}    "G")
-    (list aes  #{ \key aes \major #}  "Ab")
-    (list a    #{ \key a \major #}    "A")))
-
-%%%%%%%%%%%%%%%%%%%% Generate scores using a loop
-
-#(for-each
-  (lambda (key-data)
-    (let ((target-pitch (list-ref key-data 0))
-          (key-sig (list-ref key-data 1))
-          (key-label (list-ref key-data 2)))
-      ;; Use (display) to output the score at top level
-      (display
-       (make-music 'SequentialMusic
-         'elements (list
-           #{
-             \makeTransposedScore
-               \originalKey
-               #target-pitch
-               #key-sig
-               #key-label
-               \originalChords
-               \originalMelody
-           #})))))
-  all-keys)
-
-%% Alternative simpler approach using explicit calls:
-%% (Uncomment this section and comment out the loop above if the loop doesn't work)
-
-%{
 \makeTransposedScore \originalKey bes  #{ \key bes \major #}  "Bb"  \originalChords \originalMelody
 \makeTransposedScore \originalKey b    #{ \key b \major #}    "B"   \originalChords \originalMelody
 \makeTransposedScore \originalKey c    #{ \key c \major #}    "C"   \originalChords \originalMelody
@@ -135,4 +95,3 @@ makeTransposedScore =
 \makeTransposedScore \originalKey g    #{ \key g \major #}    "G"   \originalChords \originalMelody
 \makeTransposedScore \originalKey aes  #{ \key aes \major #}  "Ab"  \originalChords \originalMelody
 \makeTransposedScore \originalKey a    #{ \key a \major #}    "A"   \originalChords \originalMelody
-%}
