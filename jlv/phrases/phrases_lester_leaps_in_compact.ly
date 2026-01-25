@@ -67,18 +67,24 @@ originalMelody = \relative c' {
       %% All 12 keys concatenated
       \originalChords                           % Bb
       \transpose bes b \originalChords          % B
+      \break
+
       \transpose bes c \originalChords          % C
       \transpose bes des \originalChords        % Db
       \break
 
       \transpose bes d \originalChords          % D
       \transpose bes ees \originalChords        % Eb
+      \break
+
       \transpose bes e \originalChords          % E
       \transpose bes f \originalChords          % F
       \break
 
       \transpose bes ges \originalChords        % Gb
       \transpose bes g \originalChords          % G
+      \break
+
       \transpose bes aes \originalChords        % Ab
       \transpose bes a \originalChords          % A
     }
@@ -89,62 +95,62 @@ originalMelody = \relative c' {
 
       %% Bb
       \mark "Bb"
-      \key bes \major
+      %% \key bes \major
       \transpose bes bes \originalMelody
 
       %% B
       \mark "B"
-      \key b \major
+      %% \key b \major
       \transpose bes b \originalMelody
 
       %% C
       \mark "C"
-      \key c \major
-      \transpose bes c \originalMelody
+      %% \key c \major
+      \transpose bes c' \originalMelody
 
-      %% Db
-      \mark "Db"
-      \key des \major
-      \transpose bes des \originalMelody
+      %% C#
+      \mark "C#"
+      %% \key cis \major
+      \transpose bes cis' \originalMelody
 
       %% D
       \mark "D"
-      \key d \major
-      \transpose bes d \originalMelody
+      %% \key d \major
+      \transpose bes d' \originalMelody
 
       %% Eb
       \mark "Eb"
-      \key ees \major
-      \transpose bes ees \originalMelody
+      %% \key ees \major
+      \transpose bes ees' \originalMelody
 
       %% E
       \mark "E"
-      \key e \major
-      \transpose bes e \originalMelody
+      %% \key e \major
+      \transpose bes e' \originalMelody
 
       %% F
       \mark "F"
-      \key f \major
-      \transpose bes f \originalMelody
+      %% \key f \major
+      \transpose bes f' \originalMelody
 
-      %% Gb
-      \mark "Gb"
-      \key ges \major
-      \transpose bes ges \originalMelody
+      %% F#
+      \mark "F#"
+      %% \key fis \major
+      \transpose bes fis' \originalMelody
 
       %% G
       \mark "G"
-      \key g \major
-      \transpose bes g \originalMelody
+      %% \key g \major
+      \transpose bes g' \originalMelody
 
       %% Ab
       \mark "Ab"
-      \key aes \major
-      \transpose bes aes \originalMelody
+      %% \key aes \major
+      \transpose bes aes' \originalMelody
 
       %% A
       \mark "A"
-      \key a \major
+      %% \key a \major
       \transpose bes a \originalMelody
     }
   >>

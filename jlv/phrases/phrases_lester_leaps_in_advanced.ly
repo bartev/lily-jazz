@@ -82,13 +82,13 @@ makeTransposedPhrase =
 
 \makeTransposedPhrase "Bb" bes bes  { \key bes \major }
 \makeTransposedPhrase "B"  bes b    { \key b \major }
-\makeTransposedPhrase "C"  bes c    { \key c \major }
-\makeTransposedPhrase "Db" bes des  { \key des \major }
-\makeTransposedPhrase "D"  bes d    { \key d \major }
-\makeTransposedPhrase "Eb" bes ees  { \key ees \major }
-\makeTransposedPhrase "E"  bes e    { \key e \major }
-\makeTransposedPhrase "F"  bes f    { \key f \major }
-\makeTransposedPhrase "Gb" bes ges  { \key ges \major }
-\makeTransposedPhrase "G"  bes g    { \key g \major }
-\makeTransposedPhrase "Ab" bes aes  { \key aes \major }
-\makeTransposedPhrase "A"  bes a    { \key a \major }
+\makeTransposedPhrase "C"  bes c'    { \key c \major }
+\makeTransposedPhrase "C#" bes cis'  { \key cis \major }
+\makeTransposedPhrase "D"  bes d'    { \key d \major }
+\makeTransposedPhrase "Eb" bes ees'  { \key ees \major }
+\makeTransposedPhrase "E"  bes e'    { \key e \major }
+\makeTransposedPhrase "F"  bes f'    { \key f \major }
+\makeTransposedPhrase "F#" bes fis'  { \key fis \major }
+\makeTransposedPhrase "G"  bes g'    { \key g \major }
+\makeTransposedPhrase "Ab" bes aes'  { \key aes \major }
+\makeTransposedPhrase "A"  bes a'    { \key a \major }
