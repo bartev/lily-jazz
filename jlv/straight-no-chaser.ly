@@ -129,7 +129,7 @@ soloC = \relative c'' {
   g8 e c a d8 g,4.
   \break
 
-  \mark "Chorus 3"
+  \mark "Chorus 2"
 
   \timestop "1:02"
   r4 r8 g c g' r c,
