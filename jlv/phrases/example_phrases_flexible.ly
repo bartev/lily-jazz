@@ -30,9 +30,19 @@ tagline = "Bartev - Phrase Study"
   ragged-bottom = ##f
   ragged-right = ##f
 
-  system-system-spacing = #'((basic-distance . 15)
+  %% Space between 2 music systems (staff to staff)
+  system-system-spacing = #'((basic-distance . 12)
                              (minimum-distance . 8)
                              (padding . 1))
+
+  %% Space between markup text and teh next music system
+  markup-system-spacing = #'((basic-distance . 3)
+                             (minimum-distance . 2)
+                             (padding . 1))
+
+  %% - score-system-spacing: Space between a score and the next system
+  %% - score-markup-spacing: Space between a score and following markup text
+  %% - markup-markup-spacing: Space between two consecutive markup blocks
 }
 
 \layout {
@@ -78,34 +88,36 @@ lesterLeapsInPhraseTwo =
 
 %%%%%%%%%%%%%%%%%%%% Generate all 12 keys with various label styles
 
-%% Using plain strings
+\markup \fontsize #3 "Using plain strings"
 \lesterLeapsInPhrase "Bb" bes bes  { \key bes \major }
 \lesterLeapsInPhrase "B"  bes b    { \key b \major }
-%% Using markup for flats and sharps
+
+\markup \fontsize #3 "Using markup for flats and sharps"
 \lesterLeapsInPhrase \markup { "D" \flat } bes des'  { \key des \major }
-%% No label (just the transposed phrase)
+
+\markup \fontsize #3 "No label (just the transposed phrase)"
 \lesterLeapsInPhrase ##f bes fis'  { \key fis \major }
 
-%% 3 ways to do the same thing
+\markup \fontsize #3 "3 ways to do the same thing"
 \lesterLeapsInPhraseTwo bes c' { \key c \major }
-\transposePhrase \markup { "C" \super \sharp } bes cis' { \key cis \major } \lesterLeapsInChords \lesterLeapsInMelody
-\transposePhrase \markup { "C" \sharp } bes cis' { \key cis \major } \lesterLeapsInChords \lesterLeapsInMelody
+\transposePhrase \markup { "C" \sharp  "C" \super \sharp} bes cis' { \key cis \major } \lesterLeapsInChords \lesterLeapsInMelody
 \transposePhrase ##f bes d' { \key d \major } \lesterLeapsInChords \lesterLeapsInMelody
 
 \pageBreak
+\markup \fontsize #3 "From Lester Leaps In"
 
 %% cleanly
 \lesterLeapsInPhraseTwo bes bes  { \key bes \major }
 \lesterLeapsInPhraseTwo bes b    { \key b \major }
 \lesterLeapsInPhraseTwo bes c'   { \key c \major }
-\lesterLeapsInPhraseTwo bes des'  { \key des \major }
+\lesterLeapsInPhraseTwo bes des' { \key des \major }
 \lesterLeapsInPhraseTwo bes d'   { \key d \major }
-\lesterLeapsInPhraseTwo bes ees'  { \key ees \major }
+\lesterLeapsInPhraseTwo bes ees' { \key ees \major }
 \lesterLeapsInPhraseTwo bes e'   { \key e \major }
 \lesterLeapsInPhraseTwo bes f'   { \key f \major }
-\lesterLeapsInPhraseTwo bes fis'  { \key fis \major }
+\lesterLeapsInPhraseTwo bes fis' { \key fis \major }
 \lesterLeapsInPhraseTwo bes g'   { \key g \major }
-\lesterLeapsInPhraseTwo bes aes'  { \key aes \major }
+\lesterLeapsInPhraseTwo bes aes' { \key aes \major }
 \lesterLeapsInPhraseTwo bes a'   { \key a \major }
 
 %%%%%%%%%%%%%%%%%%%% Example: Create another phrase function
