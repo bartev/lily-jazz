@@ -1,20 +1,20 @@
-\version "2.24.2"
+\version "2.24.4"
 
 %% FLEXIBLE SCHEME FUNCTION VERSION: Transpose phrases with optional labels and key signatures
 %% Supports markup for flats/sharps, optional labels, and customizable chords/melody
 
-#(set-global-staff-size 18)
+#(set-global-staff-size 16)
 \include "jazzchords.ily"
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
 \include "bv_definitions.ily"
 
-title = #"Lester Leaps In - Phrases in All Keys"
-composer = #"Lester Young"
+title = #"Example Phrases (Flexible)"
+composer = #"Rando"
 tagline = "Bartev - Phrase Study"
 
 \header {
-  title = \markup \fontsize #5 #title
+  title = \markup \fontsize #4 #title
   composer = \composer
   tagline = \tagline
 }
@@ -35,7 +35,7 @@ tagline = "Bartev - Phrase Study"
                              (minimum-distance . 8)
                              (padding . 1))
 
-  %% Space between markup text and teh next music system
+  %% Space between markup text and the next music system
   markup-system-spacing = #'((basic-distance . 3)
                              (minimum-distance . 2)
                              (padding . 1))
@@ -54,6 +54,7 @@ tagline = "Bartev - Phrase Study"
 
     \omit "TimeSignature"
   }
+  \override Score.SystemStartBar.collapse-height = #-inf.0
 }
 
 %%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)

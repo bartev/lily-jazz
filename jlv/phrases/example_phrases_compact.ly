@@ -1,4 +1,4 @@
-\version "2.24.2"
+\version "2.24.4"
 
 %% COMPACT VERSION: Phrases from "Lester Leaps In" transposed to all 12 keys
 %% This version uses a more compact layout with multiple phrases per system
@@ -9,8 +9,8 @@
 \include "jazzextras.ily"
 \include "bv_definitions.ily"
 
-title = #"Lester Leaps In - Phrases (Compact)"
-composer = #"Lester Young"
+title = #"Example Phrases (Compact)"
+composer = #"Rando"
 tagline = "Bartev - Phrase Study"
 
 \header {
@@ -30,18 +30,31 @@ tagline = "Bartev - Phrase Study"
   ragged-bottom = ##f
   ragged-right = ##f
 
+  %% Space between 2 music systems (staff to staff)
   system-system-spacing = #'((basic-distance . 12)
                              (minimum-distance . 8)
                              (padding . 1))
+
+  %% Space between markup text and the next music system
+  markup-system-spacing = #'((basic-distance . 3)
+                             (minimum-distance . 2)
+                             (padding . 1))
+
+  %% - score-system-spacing: Space between a score and the next system
+  %% - score-markup-spacing: Space between a score and following markup text
+  %% - markup-markup-spacing: Space between two consecutive markup blocks
 }
 
 \layout {
   indent = 0\mm
   \context {
     \Score
-    \remove "Bar_number_engraver"
+    \numericTimeSignature
+    %% \remove "Bar_number_engraver"
   }
+  \override Score.SystemStartBar.collapse-height = #-inf.0
 }
+
 
 %%%%%%%%%%%%%%%%%%%% Define the original phrase (in Bb)
 
