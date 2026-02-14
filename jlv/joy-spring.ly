@@ -73,7 +73,8 @@ introTenor = \relative c' {
 }
 melodyTenor = \relative c'' {
   \markRedBox "A"
-  \bar "||"
+  %% \bar "||"
+  \bar "[|:"
   d2~ d8 b \tuplet 3/2 { a16 b a } g8
   a4. b8 r2
   r8 d, g e' d b \tuplet 3/2 { a16 b a } g8
