@@ -16,109 +16,90 @@
 \include "bv_definitions.ily"
 
 %% Set up title
-title = #"The Song Is NOT You"
-composer = #"Jerome Kern"
-arranger = #"Alex Hahn solo"
-transcribed = #"Bartev 2025-07"
-meter = "(med swing)"
-instrument = \instrumentAlto
+title = #"Use Real Book Template"
+composer = #"Composer"
+arranger = #"Soloist"
+transcribed = #"Bartev 2026-02"
+meter = "146 - put something here"
+instrument = \instrumentTenor
 
 tagline = \bvTaglineDateTime
-copyright = #"Bartev 2025"
+copyright = #"Bartev 2026"
 
 %% Paper & Layout settings are in `realbook_layout`
 %% Import AFTER setting `title`
 %% It defines the realbook title line based on definitions above
 \include "realbook_layout.ily"
 
-
-
 global = {
-  \tempo 4=130
+  %% \tempo 4=146
+  \time 4/4
+  \key g \major
 }
-
 
 % Define the chord progression
-chordsAFirst = \chordmode {
-  c1 | a:m | d:m | g |
-  c | a:m | d:m | g |
-  e:m | a:m | d:m | g |
-  c | f | c | g |  % different ending
-}
 
-chordsASecond = \chordmode {
-  c1 | a:m | d:m | g |
-  c | a:m | d:m | g |
-  e:m | a:m | d:m | g |
-  c | f | c2 g | c1 |  % turnaround ending
+chordsIntro = \chordmode { s2 }
+chordsA = \chordmode {
+  g1:maj7| a2:m7 d:7| g1:maj7| c2:m7 f:7
+  b2:m7 bes:7| a2:m7 d:7| g1:maj7| bes2:m7 ees:7
 }
 
 chordsB = \chordmode {
-  e1 | e | a:m | a:m |
-  d | d | g | g |
-  e | e | a:m | a:m |
-  d | d | g | g |
+  aes1:maj7| bes2:m7 ees:7| aes1:maj7| cis2:m7 fis:7
+  c2:m7 b:7| bes2:m7 ees:7| aes1:maj7| b2:m7 e:7
+}
+
+chordsC = \chordmode {
+  a1:maj7| a2:m7 d:7| g1:maj7| g2:m7 c:7
+  f1:maj7| bes2:m7 ees:7| aes1:maj7| a2:m7 d:7
+}
+
+chordsASec = \chordmode {
+  g1:maj7| a2:m7 d:7| g1:maj7| c2:m7 f:7
+  b2:m7 bes:7| a2:m7 d:7| g1:maj7| a2:m7 d:7
 }
 
 chordChanges = \chordmode {
-  \chordsAFirst  % A1 (16 bars)
-  \chordsASecond  % A2 (16 bars)
-  %% \chordsB   % B  (16 bars)
-  %% \chordsASecond  % A3 (16 bars) - same as A2
+  \blueChord { \chordsA}  % A (8 bars)
+  \greenChord {\chordsB}  % B (8 bars)
+  \redChord {\chordsC}  % C (8 bars)
+  \blueChord {\chordsASec}  % A (diff last bar)
 }
 
-% Define slash notation (one slash per beat)
-slashes = {
-  \repeat volta 1 {
-    \mark \default
-    \repeat unfold 16 {
-      \repeat unfold 4 {
-        \once \override NoteHead.style = #'slash
-        \repeat unfold 4 { c'4 }
-      }
-      \break
-    }
-  }
+introTenor = \relative c' {
+  \partial 2
+  r8 d g d'
 }
-
-fourBars = { s1*4 \break }
-sixteenBars = \repeat unfold 4 \fourBars
-
-fourBarsC = \repeat unfold 16 { c4 }
-sixteenBarsC = {
-  \fourBarsC \break
-  \fourBarsC \break
-  \fourBarsC \break
-  \fourBarsC \break
-}
-
-
-melody = \relative c'' {
+melodyTenor = \relative c'' {
   \global
-  \time 4/4
-  \key bes \major
-  %% \slashes
-  \mark "A"
 
-  \improvisationOn
-  \override Voice.Stem.stencil = ##f
-  \sixteenBarsC
-  \improvisationOff
-  \revert Voice.Stem.stencil
+  \markRedBox "A"
+  \comp 16 \break
+  \comp 16 \break
 
-  %% \mark "A" \sixteenBarsC %%
-  \mark "B"
+  \markRedBox "B"
   \comp 16 \break
   \comp 16 \break
+
+  \markRedBox "C"
   \comp 16 \break
   \comp 16 \break
-  \mark "A" \sixteenBars
-  \comp #8
+
+  \markRedBox "A'"
+  \comp 16 \break
+  \comp 16 \break
 }
 
 \score {
   <<
-    \new ChordNames \chordChanges
-    \new Voice = soloist \melody
+    \new ChordNames {
+      \chordsIntro
+      \repeat unfold 1 \chordChanges
+    }
+    \new Voice = soloist {
+      \introTenor
+      \melodyTenor
+    }
   >>
 }
