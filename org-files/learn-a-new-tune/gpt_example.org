@@ -1,0 +1,121 @@
+#+TITLE: My Music Document
+#+AUTHOR: Your Name
+#+OPTIONS: toc:nil
+#+latex_compiler: lualatex
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{lilyglyphs}
+
+#+LaTeX_HEADER: \usepackage{fancyhdr}
+#+LaTeX_HEADER: \pagestyle{fancy}
+#+LaTeX_HEADER: \fancyhf{}
+#+LaTeX_HEADER: \lhead{Example left header}
+#+LaTeX_HEADER: \rhead{Bartev - 2024-12-26}
+#+LaTeX_HEADER: \cfoot{page \thepage}
+
+#+LATEX_HEADER: \usepackage[skip=0pt]{parskip} % Disable extra space between paragraphs
+#+LATEX_HEADER: \setlength{\parskip}{0pt}
+
+
+* Introduction
+This is a demonstration of combining music and text in org-mode.
+
+* COMMENT paper setup
+#+name: paper-setup
+#+begin_src lilypond :tangle no
+  \version "2.24.4"
+
+  #(set-global-staff-size 22)
+
+  \paper {
+    #(set-paper-size "letter")
+    clip-regions = #'()
+    indent = 0 % remove indentation
+    ragged-right = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+    tagline = ##f
+  }
+#+end_src
+
+* Music Example
+Here is a snippet of music:
+
+#+ATTR_LATEX: :float nil
+#+BEGIN_SRC lilypond :file example.png :exports results :noweb yes
+  \version "2.24.4"
+
+  #(set-global-staff-size 22)
+
+  \paper {
+    system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 0))
+    clip-regions = #'()
+    indent = 0 % remove indentation
+    ragged-right = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+    tagline = ##f
+  }
+
+  {
+    c' d' e' f'
+    g' a' b' c''
+    s1
+    s1
+  }
+#+END_SRC
+
+* another Example
+
+#+BEGIN_SRC lilypond :file example-2.pdf :exports results
+  \version "2.24.4"
+
+  #(set-global-staff-size 22)
+
+  \paper {
+    system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 0))
+    clip-regions = #'()
+    clip-regions = #'()
+    indent = 0 % remove indentation
+    ragged-right = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+    tagline = ##f
+  }
+
+  \score {
+    \new Staff \relative c' {
+      c8 d ees f g aes bes c
+      d c bes aes g f ees d
+      c2 r2
+    }
+  }
+#+END_SRC
+
+* Third Example
+
+#+BEGIN_SRC lilypond :file example-3.pdf :exports results
+  \version "2.24.4"
+
+  #(set-global-staff-size 22)
+
+  \paper {
+    system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 0))
+    clip-regions = #'()
+    indent = 0 % remove indentation
+    ragged-right = ##f
+    ragged-last-bottom = ##t
+    ragged-bottom = ##t
+    tagline = ##f
+  }
+
+  \score {
+    \new Staff \relative c' {
+      c4 d ees f
+      g aes bes c
+      d8 c bes aes g f ees d
+      c2 r2
+    }
+  }
+#+END_SRC
+
