@@ -41,6 +41,18 @@ markManualBox = #(define-music-function
                   "manually set a box mark that matches current color/size"
                   #{ <>\mark \markup \with-color #darkred \box \sans \small #string #})
 
+markRedBox = #(define-music-function
+                  (parser location string)
+                  (string?)
+                  "manually set a box mark that matches current color/size"
+                  #{ <>\mark \markup \with-color #darkred \box \sans \small #string #})
+
+markBlueBox = #(define-music-function
+                  (parser location string)
+                  (string?)
+                  "manually set a box mark that matches current color/size"
+                  #{ <>\mark \markup \with-color #blue \box \sans \small #string #})
+
 %% maybe use \textMark instead of \mark \markup
 %% https://lilypond.org/doc/v2.23/Documentation/notation/writing-text#text-marks
 markBlue = #(define-music-function
@@ -53,6 +65,16 @@ markBlue = #(define-music-function
                 \with-color #blue #string #})
 
 blueChord =
+#(define-music-function (parser location my-music)
+  (ly:music?)
+  #{
+  \override ChordName.color = #blue
+  #my-music
+  \revert ChordName.color
+  #}
+)
+
+darkBlueChord =
 #(define-music-function (parser location my-music)
   (ly:music?)
   #{

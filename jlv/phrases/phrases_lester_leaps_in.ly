@@ -108,7 +108,7 @@ phraseA = \score {
       \transpose c e   \chordsA
       \transpose c b   \chordsA
       \transpose c fis \chordsA
-      \transpose c, des \chordsA
+      \transpose c des \chordsA
       %%
       \transpose c aes \chordsA
       \transpose c ees \chordsA
@@ -125,10 +125,10 @@ phraseA = \score {
       \transpose c e    \melodyA
       \transpose c b    \melodyA
       \break
-      \transpose c fis' \melodyA
-      \transpose c cis  \melodyA
+      \transpose c fis  \melodyA
+      \transpose c cis' \melodyA
       \break
-      \transpose c aes' \melodyA
+      \transpose c aes  \melodyA
       \transpose c ees  \melodyA
       \break
       \transpose c bes  \melodyA
