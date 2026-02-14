@@ -41,6 +41,18 @@ markManualBox = #(define-music-function
                   "manually set a box mark that matches current color/size"
                   #{ <>\mark \markup \with-color #darkred \box \sans \small #string #})
 
+markRedBox = #(define-music-function
+                  (parser location string)
+                  (string?)
+                  "manually set a box mark that matches current color/size"
+                  #{ <>\mark \markup \with-color #darkred \box \sans \small #string #})
+
+markBlueBox = #(define-music-function
+                  (parser location string)
+                  (string?)
+                  "manually set a box mark that matches current color/size"
+                  #{ <>\mark \markup \with-color #blue \box \sans \small #string #})
+
 %% maybe use \textMark instead of \mark \markup
 %% https://lilypond.org/doc/v2.23/Documentation/notation/writing-text#text-marks
 markBlue = #(define-music-function
@@ -53,6 +65,16 @@ markBlue = #(define-music-function
                 \with-color #blue #string #})
 
 blueChord =
+#(define-music-function (parser location my-music)
+  (ly:music?)
+  #{
+  \override ChordName.color = #blue
+  #my-music
+  \revert ChordName.color
+  #}
+)
+
+darkBlueChord =
 #(define-music-function (parser location my-music)
   (ly:music?)
   #{
@@ -81,6 +103,70 @@ greenChord =
   \revert ChordName.color
   #}
 )
+
+%%%%%%%%%%%%%%%%%%%% Transpose phrase function
+%%
+%% Generic function to transpose a phrase to different keys
+%% Parameters:
+%%   keyLabel - string, markup, or #f (false) for no label
+%%   fromPitch - original pitch (ly:pitch?)
+%%   toPitch - target pitch (ly:pitch?)
+%%   keySig - key signature music, or #f for no change
+%%   chords - chord progression music
+%%   melody - melody music
+%%
+%% Example usage:
+%%   \transposePhrase "C" bes c' { \key c \major } \myChords \myMelody
+%%   \transposePhrase \markup { "D" \flat } bes des' { \key des \major } \myChords \myMelody
+%%   \transposePhrase ##f bes fis' { \key fis \major } \myChords \myMelody
+
+transposePhrase =
+#(define-void-function
+   (keyLabel fromPitch toPitch keySig chords melody)
+   ((scheme?) ly:pitch? ly:pitch? (ly:music?) ly:music? ly:music?)
+   ;; Add vspace and label only if keyLabel is provided
+   (if keyLabel
+       (begin
+         (add-text #{ \markup \vspace #1 #})
+         (cond
+          ;; If keyLabel is markup, use it directly
+          ((markup? keyLabel)
+           (add-text #{ \markup \fontsize #2 \bold #keyLabel #}))
+          ;; If keyLabel is string, wrap it in markup
+          ((string? keyLabel)
+           (add-text #{ \markup \fontsize #2 \bold #keyLabel #})))))
+   ;; Add the score
+   (add-score
+     (if keySig
+         ;; If keySig provided, include it
+         #{
+           \score {
+             <<
+               \new ChordNames {
+                 \transpose #fromPitch #toPitch $chords
+               }
+               \new Staff {
+                 #keySig
+                 \transpose #fromPitch #toPitch $melody
+               }
+             >>
+             \layout { indent = 0 }
+           }
+         #}
+         ;; If no keySig, omit it
+         #{
+           \score {
+             <<
+               \new ChordNames {
+                 \transpose #fromPitch #toPitch $chords
+               }
+               \new Staff {
+                 \transpose #fromPitch #toPitch $melody
+               }
+             >>
+             \layout { indent = 0 }
+           }
+         #})))
 
 #(define (naturalize-pitch p)
   (let ((o (ly:pitch-octave p))
