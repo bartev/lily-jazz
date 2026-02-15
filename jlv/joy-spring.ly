@@ -95,9 +95,9 @@ melodyTenor = \relative c'' {
   b?8 gis16 e cis8 ais'~ ais4 \tuplet 3/2 { gis?8 ais? gis }
   \break
 
-  dis'8 gis,4. gis4. gis8~
-  gis8 f aes des c aes? f ees
-  aes8 ees bes' aes r2
+  ees'8 aes,4. aes4. aes8~
+  aes8 f aes des c aes? f? ees
+  aes8 ees bes' aes? r2
   r8 cis b fis a g gis16 b d fis
   \bar "||"
   \break
@@ -112,7 +112,7 @@ melodyTenor = \relative c'' {
   c4 \tuplet 3/2 { a8 g f } g4 a8 bes
   r8 c des ees c bes a bes
   ees4 \tuplet 3/2 { c8 bes aes } bes?8~ bes c r
-  r8 b8 ais g fis d g d'~
+  r8 b8 a g fis d g d'~
   \bar "||"
   \break
 

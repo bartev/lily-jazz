@@ -65,13 +65,12 @@ chordChanges = \chordmode {
   \redChord {\chordsB}  % B (10 bars)
   }
 
-introTenor = \relative c' {
+introTenor = \relative c'' {
   \partial 2
-  r8 d g d'
+  r8 c d ees
+  \bar "||"
 }
 melodyTenor = \relative c'' {
-  \global
-
   \markRedBox "A"
   e4 g8 e~ e2
   r4 d8 f a2
@@ -87,13 +86,20 @@ melodyTenor = \relative c'' {
   \break
 
   \markRedBox "B"
-  c4. a8 g f4 a8
+  e4 g8 e~ e2
+  r4 d8 f a2
+  e8 e g g e e4.
+  r4 d8 f a2
+  \break
+
+  c4. a8 g4 f8 a
   e2 r
   a,4 c d f
-  a4. gis8 a c, d f
+  a4. gis8 a c, d f~
   \break
-  \comp 16 \break
-  \comp 8 \break
+  f2 r2
+  r1
+  \break
   \bar "|."
 
   \mark \markup "Begin Solo"
@@ -117,6 +123,7 @@ melodyTenor = \relative c'' {
       \repeat unfold 2 \chordChanges
     }
     \new Voice = soloist {
+      \global
       \introTenor
       \melodyTenor
     }

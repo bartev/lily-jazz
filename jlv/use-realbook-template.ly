@@ -72,8 +72,7 @@ introTenor = \relative c' {
   r8 d g d'
 }
 melodyTenor = \relative c'' {
-  \global
-
+  \bar "||"
   \markRedBox "A"
   \comp 16 \break
   \comp 16 \break
@@ -98,6 +97,7 @@ melodyTenor = \relative c'' {
       \repeat unfold 1 \chordChanges
     }
     \new Voice = soloist {
+      \global
       \introTenor
       \melodyTenor
     }
