@@ -125,14 +125,25 @@ melodyTenor = \relative c'' {
 
   d'8 g,4. g4. g8~
   g8 e g c \tuplet 3/2 { b16 c b } g8 e d
-  g8 d a' g r2
-  r1
+  g8 d a' g r8^ \markup \with-color "red" "Begin Solo" bes \tuplet 3/2 { b8 d fis }
+  a8 fis g a16 g e8 c a g
   \bar "||"
   \pageBreak
 
-  \mark \markup "Begin Solo"
+  \markRedBox "A"
+  b4. d4 b8 g e
+  a8 b~ b4 r2
+  r8 a16 g fis8 g b d e fis
+  g8 ees bes aes a g' e f
+  \break
 
-  %% \markRedBox "A"
+  %% m37%
+  fis8 d b fis f c' bes aes
+  a4 \comp 3
+  \comp 4
+  \comp 4
+  \break
+
   \comp 16 \break
   \comp 16 \break
   \bar "||"
