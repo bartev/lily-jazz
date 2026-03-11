@@ -156,30 +156,44 @@ melodyTenor = \relative c'' {
   g8 ees bes aes a g' e f
   \break
 
-  %% m37%
+  %% m37
   \timestop "1:03"
   fis8 d b fis f c' bes aes
   a4 a'8 g aes ees c f~
   f16 g f ees d8 c b d~ d4
-
-  \comp 4
+  r2 r4 r8 c'
   \break
 
-  \comp 16 \break
-  \comp 16 \break
-  \bar "||"
-
   \markRedBox "B"
-  \comp 16 \break
-  \comp 16 \break
+  %% m41
+  ees8 c bes aes~ aes16 bes aes g f8 ees
+  f8 g~ g4 ees8 c bes aes
+  bes4 r8 f8 fis aes bes b
+  fis' f e dis cis b ais gis
+  \break
+
+  %% m45
+  g8 ees~ ees4 f8 r r4
+  r2 r4 ees'8 f
+  aes4 aes8 aes g f ees c
+  ais8 b d fis a gis \tuplet 3/2 { a8 gis fis }
+  \break
   \bar "||"
 
   \markRedBox "C"
-  \comp 16 \break
+  %% m49
+  e8 cis gis e b'4 r
+  r8 a16 b c e g b c b a g fis e d c
+  b16 c d e fis g a fis g d b g r4
+  \comp 8 \break
   \comp 16 \break
   \bar "||"
 
   \markRedBox "A"
+  \comp 16 \break
+  \comp 16 \break
+  \bar "||"
+
   \comp 16 \break
   \comp 16 \break
   \bar "||"
