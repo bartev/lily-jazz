@@ -184,19 +184,35 @@ melodyTenor = \relative c'' {
   %% m49
   e8 cis gis e b'4 r
   r8 a16 b c e g b c b a g fis e d c
-  b16 c d e fis g a fis g d b g r4
-  \comp 8 \break
-  \comp 16 \break
+  b16 c d e fis g a fis g d b g d'8 c16 a
+  bes16 d g8 r16 g, a bes c d \tuplet 3/2 { e16 eis fis } g16 f e g
+  \break
+
+  %% m53
+  bes16 des c bes a4 r4 r8 c8
+  bes8 aes g f ees e16 ees c8 bes~
+  bes16 c bes aes bes8 aes bes c~ c4
+  r4 r8 a16 g fis8 ees' c cis
+  \break
   \bar "||"
 
+  %% m57
   \markRedBox "A"
-  \comp 16 \break
-  \comp 16 \break
-  \bar "||"
+  d4 g2 fis8 a
+  r8 g fis16 g fis e d8 c a ais
+  b8 r r4 r2
+  r8 b \tuplet 3/2 { c8 ees g } bes8 d c bes
+  \break
 
-  \comp 16 \break
-  \comp 16 \break
+  %% m61
+  a8 g fis16 g fis e f8 ees c bes
+  a8 c e eis fis ees c cis
+  d8 g~ g16 a g fis a8 g fis16 g fis e
+  g8 e r a, bes d bes a
   \bar "||"
+  g8 e r4 r2
+  \break
+
 }
 
 \score {
