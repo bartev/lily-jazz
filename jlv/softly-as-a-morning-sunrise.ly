@@ -21,8 +21,8 @@
 %%   greenChord
 
 %% set up title, compser, meter, copyright
-title = #"SET MY TITLE"
-composer = #"SET COMPOSER"
+title = #"Softly as a Morning Sunrise"
+composer = #"Hamerstein-Romberg"
 arranger = #"SET ARRANGER"
 tagline = "Awesome transcription by Bartev"
 meter = "SET METER"
@@ -130,7 +130,7 @@ realBookTitle = \markup {
 global = {
   \numericTimeSignature
   \time 4/4
-  \key c \major
+  \key a \minor
 	%% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -146,7 +146,7 @@ global = {
 
   %% left justify rehearsal marks (centered by default)
   \override Score.RehearsalMark.self-alignment-X = #LEFT
-  
+
 	\override Score.MultiMeasureRest.expand-limit = 1
 
 	%% See here for using colors
@@ -158,7 +158,7 @@ global = {
 
 	%% uncomment this to have multibar, jazz style repeats. BUT, bar lines won't show when using "s" to fill in blanks
 	%% \compressFullBarRests
-	
+
 	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 }
 
@@ -191,118 +191,167 @@ scoreBreaks = {
 
 %% Define the chords here. The same chords will be used for chord names and notes
 chordNamesHead = \chordmode {
-  c1:m7 f:7 bes bes
+  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+
+  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+
+  \repeat percent 2 c1 | \repeat percent 2 a1:7.9-
+  d1:min7 | dis1:dim7 | b1:dim7 e1:7.9-
+
+  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+
 }
 
-leadMusic= \relative c'' {
-	\bar ".|-|"
-	\mark \default
-  c4 d
-	\mark \default
-	e f
-	\mark "A"
-	c4 d
-	\markManualBox "A"
-	e f
-	\mark \default
-	c4 d e f
-	\markManualBox "A"
-	c4 d e f
-	\bar "|."
-	\inlineMMR R1*4
+melodyAlto = \relative c''' {
+  %% m1
+  \bar ".|-|"
+  \markManualBox "A"
+  a2 e4 r
+  d8 e d e~ e4 d8 r
+  a'2 c,4 r
+  r8 b c b c4 b
+  \break
+
+  %% m5
+  e2 a,4 r
+  r8 e' f e c4 b
+  a4 r r2
+  r2 r4 r8 e'
+  \break
+
+  %% m9
+  \markManualBox "A"
+  a4 a e r
+  r8 d e d e4 d
+  a'2 c,4 r
+  r8 b c b c4 b
+  \break
+
+  %% m13
+  e2 a,4 r
+  r8 e' f e c a b a~
+  a4 r r2
+  r2 f'4 f8 fis
+  \break
+  \bar "|."
+
+  %% m17
+  \markManualBox "B"
+  g4 r r2
+  r4 g-. a~ a8 g
+  g8 r cis, cis~ cis4 r
+  r2 e8 f g4
+  \break
+
+  %% m21%
+  a4-^ r r8 g a b~
+  b2. a8 b~
+  b2 r
+  r2 c4 b
+  \break
+  \bar "|."
+
+  %% m25
+  \markManualBox "A"
+  a2 e4 r
+  d8 e d e~ e4 d8 r
+  a'2 c,4 r
+  b8 c b c~ c4 b
+  \break
+
+  %% m29
+  e2 a,4 r
+  e'8 f e c~ c4 b8 \xNote a8
+  r4 e'4-. gis8 e r4
+  fis8 d b a gis b d f
+  \break
+  \bar "||"
+
 }
 solo = \relative c'' {
-	\bar ".|-|"
+  e8 c r4 d b8 c
+  r1
+  r1
+  \comp 4
+  \break
 
-	%% do this to have multiple rehearsal marks in the same location
-	%% https://lilypond.org/doc/v2.19/Documentation/snippets-big-page#editorial-annotations-how-to-print-two-rehearsal-marks-above-and-below-the-same-barline-_0028method-2_0029
-	
-	\once \override Score.RehearsalMark.extra-offset = #' (0 . 1)
-	%% \once \override Score.RehearsalMark.baseline-skip = #9
-	\mark \markup \center-column {
-		\box A
-		%% { \raise #2 \with-color #red \fontsize #1 \center-column {"Begin" "solo"} }
-		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
-	}	
-	r8 e8 g c bes g e c
-	\mark \markup \left-column {
-		\box B
-		\small \with-color #blue "markBlue test"
-	}
-	
-	\override Glissando.style = #'zigzag
-	\timestop "0:11"
-	bes4 \glissando g'
-	\markBlue "My Blue Text"
-	bes e
-	c d e f
-	\inlineMMR R1*2 
-	\bar "|."
-	\timestop "0.08"
-	%% \mark \markup{\small \with-color #red "0:08"}
-	\inlineMMR R1*4
-	\inlineMMR R1*2
+  \comp 16 \break
 
+  \comp 16 \break
+  \comp 16 \break
+
+  \comp 16 \break
+  \comp 16 \break
+
+  \comp 16 \break
+  \comp 16 \break
 }
 
-%% Add scale tones over each note
-scaleDegrees = \lyrics {
-	\markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
+%% %% Add scale tones over each note
+%% scaleDegrees = \lyrics {
+%% 	\markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
+%% }
+
+%% %% Add harmonic analysis
+%% harmonicAnalysis = \lyricmode {
+%% 	\override LyricText.font-name = #"serif"
+%% 	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
+%% 	\markup \rN { V 7 / I }1
+%% 	\markup \rN { V 7 / ii }1
+%% 	\set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
+%% 	\markup \rN { V 7 }1
+%% 	\markup \rN { V 7 }1
+%% }
+
+
+eflatScore = \score {
+  <<
+    \new ChordNames \with {
+      \consists Percent_repeat_engraver
+      }
+    {
+      \repeat unfold 2 \chordNamesHead
+    }
+    \new Voice = soloist {
+      \global
+      \melodyAlto
+      \pageBreak
+      \solo
+    }
+  >>
 }
 
-%% Add harmonic analysis
-harmonicAnalysis = \lyricmode {
-	\override LyricText.font-name = #"serif"
-	\set stanza = \markup \with-color #red  \fontsize #6 \keyIndication { VI }
-	\markup \rN { V 7 / I }1
-	\markup \rN { V 7 / ii }1
-	\set stanza = \markup \with-color #darkgreen \fontsize #5 \keyIndication { II }
-	\markup \rN { V 7 }1
-	\markup \rN { V 7 }1
-}
+\eflatScore
 
-
-%% Chord names, chord tones, and harmonic analysis only 
-chordsAnalysisArpeg= {
-	<<
-		\new Lyrics \harmonicAnalysis
-		\new ChordNames { \chordNamesHead }
-		\new Staff {
-			\global
-			<<
-				\scoreBreaks
-				\chordNamesHead
-			>>
-		}
-	>>
-}
-
-templateScore = \score {
-	<<
-		\new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
-		\new Staff {
-			\global
-			%% the head 
-			<<
-				\repeat unfold 2 \scoreBreaks				
-				\leadMusic
-			>>
-			%% Start the solo on a new page 
-			%% \pageBreak
-			<<
-				\scoreBreaks
-				\solo
-			>>
-		}
-		\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
-	>>
-	\layout {
-		indent = 0
-	}
-}
+%% templateScore = \score {
+%%   <<
+%% 		\new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
+%% 		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
+%% 		\new Staff {
+%% 			\global
+%% 			%% the head
+%% 			<<
+%% 				\repeat unfold 2 \scoreBreaks
+%% 				\leadMusic
+%% 			>>
+%% 			%% Start the solo on a new page
+%% 			%% \pageBreak
+%% 			<<
+%% 				\scoreBreaks
+%% 				\solo
+%% 			>>
+%% 		}
+%% 		\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
+%% 	>>
+%% 	\layout {
+%% 		indent = 0
+%% 	}
+%% }
 
 %% \chordsAnalysisArpeg
 %% \pageBreak
 
-\templateScore
+%% \templateScore
