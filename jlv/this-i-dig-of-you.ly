@@ -128,12 +128,27 @@ melodyTenor = \relative c'' {
 
   \mark \markup "Begin Solo"
   %% \markRedBox "A"
-  \comp 16 \break
-  \comp 16 \break
+  r2 e,8 g b c~
+  c4 a8 f e r b' a
+  g8 f e d c b a gis
+  g8 fis f e e'4 r
+  \break
+
+  d8 c r4 r g'8 f
+  r4 r f a8 fis
+  g8 e r4 r c8 bes
+  r4 r \grace g' a4. c16 a
+  \break
 
   \markRedBox "B"
-  \comp 16 \break
-  \comp 16 \break
+  g8 f r4 r2
+  r2 b4 a8 gis
+  g8 f e d c b a gis
+  g8 e r4 r2
+  \break
+
+  \comp 16
+  \break
   \bar "||"
 
   \markRedBox "A"
