@@ -1,4 +1,4 @@
-\version "2.24.0"
+\version "2.24.2"
 
 %% See here for formatting text
 %% https://lilypond.org/doc/v2.20/Documentation/notation/formatting-text
@@ -24,95 +24,17 @@
 title = #"Softly as a Morning Sunrise"
 composer = #"Hamerstein-Romberg"
 arranger = #"SET ARRANGER"
-tagline = "Awesome transcription by Bartev"
 meter = "SET METER"
+instrument = \instrumentAlto
+
+transcribed = #"Bartev 2026-03"
+tagline = "Awesome transcription by Bartev"
 copyright = #"Bartev 2026"
 
-%%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
-
-realBookTitle = \markup {
-  \score {
-    {
-      \override TextScript.extra-offset = #'(0 . -4.5)
-      s4
-      s^\markup
-      \fill-line {
-        %% meter
-        \fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }
-        %% title
-        \fontsize #5
-        \override #'(offset . 7) \override #'(thickness . 6)
-        \underline \larger #title
-        %% composer
-        \fontsize #2 \lower #1 \concat { #composer " " }
-      }
-      s
-    }
-    \layout {
-      \omit Staff.Clef
-      \omit Staff.TimeSignature
-      \omit Staff.KeySignature
-      ragged-right = ##f
-      ragged-bottom = ##f
-      ragged-last-bottom = ##t
-    }
-  }
-}
-
-\header {
-  title = \realBookTitle
-  tagline = \tagline
-  copyright = \copyright
-  %% The following fields are evenly spread on one line
-  %% the field "instrument" also appears on following pages
-  %% instrument = \markup \with-color #blue "Alto Sax"
-}
-
-\paper {
-  #(set-paper-size "letter")
-  #(define fonts
-    (set-global-fonts
-     #:music "lilyjazz"
-     #:brace "lilyjazz"
-     #:roman "lilyjazz-text"
-     #:sans "lilyjazz-chord"
-     #:factor (/ staff-height pt 18)
-   ))
-
-	top-margin = 0.5\in
-  bottom-margin = 0.5\in
-  left-margin = 0.5\in
-  right-margin = 0.5\in
-  indent = 0\mm
-
-  %% between-system-space = 2.\cm
-  %% between-system-padding = #0
-
-  %%set to ##t if your score is less than one page:
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-	ragged-right = ##f
-
-	markup-system-spacing = #'((basic-distance . 23)
-                             (minimum-distance . 8)
-                             (padding . 1))
-
-  oddHeaderMarkup = \markup
-	\fill-line {
-		%% If not using the realBookTitle, can use
-		%% \fromproperty #'header:title " "
-		\title
-		\if \should-print-page-number
-		\fromproperty #'page:page-number-string
-	}
-  evenHeaderMarkup = \markup
-	\fill-line {
-		\if \should-print-page-number
-		\fromproperty #'page:page-number-string " "
-		\title
-	}
-}
-
+%% Paper & Layout settings are in `realbook_layout`
+%% Import AFTER setting `title`
+%% It defines the realbook title line based on definitions above
+\include "realbook_layout.ily"
 
 \layout {
   %% This affects horizontal brackets that I'm using to highlight phrases.
@@ -195,7 +117,7 @@ chordNamesHead = \chordmode {
   a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
 
   a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
-  a1:min | b2:m7.5- e2:7.9- | a1:min | b2:m7.5- e2:7.9-
+  a1:min | b2:m7.5- e2:7.9- | a1:min | d2:m7    g:7
 
   \repeat percent 2 c1 | \repeat percent 2 a1:7.9-
   d1:min7 | dis1:dim7 | b1:dim7 e1:7.9-
@@ -325,33 +247,3 @@ eflatScore = \score {
 }
 
 \eflatScore
-
-%% templateScore = \score {
-%%   <<
-%% 		\new Lyrics \harmonicAnalysis  % add the harmonic harmonicAnalysis above the chord names
-%% 		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
-%% 		\new Staff {
-%% 			\global
-%% 			%% the head
-%% 			<<
-%% 				\repeat unfold 2 \scoreBreaks
-%% 				\leadMusic
-%% 			>>
-%% 			%% Start the solo on a new page
-%% 			%% \pageBreak
-%% 			<<
-%% 				\scoreBreaks
-%% 				\solo
-%% 			>>
-%% 		}
-%% 		\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
-%% 	>>
-%% 	\layout {
-%% 		indent = 0
-%% 	}
-%% }
-
-%% \chordsAnalysisArpeg
-%% \pageBreak
-
-%% \templateScore
