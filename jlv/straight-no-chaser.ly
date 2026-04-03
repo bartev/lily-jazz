@@ -204,6 +204,7 @@ headAndSoloG = \score {
       \repeat unfold 1 \theChordsG
     }
 
+
     \new Staff \with {
       instrumentName = "Alto"
     } {
