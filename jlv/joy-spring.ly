@@ -19,10 +19,10 @@
 title = #"Joy Spring"
 composer = #"Clifford Brown"
 arranger = #"Harold Land solo"
-transcribed = #"Bartev 2026-02"
 meter = "146"
 instrument = \instrumentTenor
 
+transcribed = #"Bartev 2026-02"
 tagline = \bvTaglineDateTime
 copyright = #"Bartev 2026"
 
@@ -37,7 +37,7 @@ global = {
   \key g \major
 }
 
-                                % Define the chord progression
+%% Define the chord progression
 
 chordsIntro = \chordmode { s2 }
 chordsA = \chordmode {
