@@ -1,0 +1,85 @@
+#+title: Learn a New Tune
+#+author: Bartev
+#+date: 2024-12-26
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+# #+LaTeX_CLASS: article
+# #+LATEX_CLASS_OPTIONS: [letter, 11pt, twoside, twocolumn]
+#+LATEX_CLASS_OPTIONS: [letter, 11pt, twoside]
+#+LaTeX_HEADER: \usepackage{geometry}
+#+LaTeX_HEADER: \geometry{margin=1in}
+# #+LaTeX_HEADER: \usepackage[document]{ragged2e}
+
+#+LaTeX_HEADER: \usepackage{fancyhdr}
+#+LaTeX_HEADER: \pagestyle{fancy}
+#+LaTeX_HEADER: \fancyhf{}
+#+LaTeX_HEADER: \lhead{Minor scales and modes for ii-v-i progressions}
+#+LaTeX_HEADER: \rhead{Bartev - 2020-12-31}
+#+LaTeX_HEADER: \cfoot{page \thepage}
+
+#+begin_src emacs-lisp :exports results :results none :eval export
+
+  ;; https://emacs.stackexchange.com/questions/47347/customizing-org-latex-title-command-to-edit-title-page
+
+  (make-variable-buffer-local 'org-latex-title-command)
+  (setq org-latex-title-command nil)
+  ;; (setq org-image-actual-width t)
+#+end_src
+* COMMENT Setup
+
+To get a nice pdf, copy the code below into each code block (don't need the version)
+
+Generate the pdf with =C-c C-e l o=
+
+#+name: version-and-paper()
+#+begin_src emacs-lisp :exports none :noweb tangle
+\version "2.20.0"
+
+#(set-global-staff-size 22)
+
+\paper {
+#(set-paper-size "letter")
+tagline = ##f
+ragged-last-bottom = ##t
+ragged-bottom = ##t
+}
+
+#+end_src
+
+* Learn the melody
+
+Either transcribe it, or learn it from sheet music.
+
+** Embellish the melody
+
+Here's the first melodic cell of Have You Met Miss Jones
+
+#+begin_src  lilypond :exports results :file melody_raw.pdf
+  
+  #(set-global-staff-size 22)
+
+  \paper {
+  #(set-paper-size "letter")
+  tagline = ##f
+  ragged-last-bottom = ##t
+  ragged-bottom = ##t
+  }
+
+  \score {
+    \new StaffGroup <<
+      \new ChordNames { \chordmode { f1:maj7 } } 
+      \new Staff {
+        \global
+        \key c \major
+        \relative c'' {
+          a4. d8 c d4 c8~
+          c1
+        }
+      }
+    >>
+  }
+#+end_src
+
+#+RESULTS:
+[[file:melody_raw.pdf]]
+
+#+latex:\includegraphics[scale=1]{melody_raw.pdf}

@@ -151,16 +151,6 @@ soloC = \relative c'' {
   r2 fis8 g \tuplet 3/2 { f8 e d }
   c8 g bes g c g c e
   \break
-
-  \mark "Chorus 3"
-
-  \timestop "1:18"
-
-  %% \comp 4
-  %% \comp 16 \break
-
-  \comp 16 \break
-  \comp 16 \break
 }
 
 
@@ -178,7 +168,7 @@ headAndSoloBb = \score {
     }
 
     \new Staff \with {
-      instrumentName = "C"
+      instrumentName = "Concert"
     } {
       \global
       \time 4/4
@@ -192,7 +182,7 @@ headAndSoloC = \score {
   <<
     \new ChordNames {
       \new ChordNames { s8 } % intro
-      \repeat unfold 4 \theChordsC
+      \repeat unfold 3 \theChordsC
     }
 
     \new Staff \with {
@@ -214,6 +204,7 @@ headAndSoloG = \score {
       \repeat unfold 1 \theChordsG
     }
 
+
     \new Staff \with {
       instrumentName = "Alto"
     } {
@@ -225,9 +216,7 @@ headAndSoloG = \score {
     >>
 }
 
-
-\headAndSoloC
+\headAndSoloC % tenor part
 \pageBreak
-\headAndSoloBb
-\pageBreak
-\headAndSoloG
+\headAndSoloG % alto part
+\headAndSoloBb % C
