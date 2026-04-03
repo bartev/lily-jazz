@@ -9,123 +9,32 @@
 \include "lilyjazz.ily"
 \include "jazzextras.ily"
 \include "roman_numeral_analysis_tool.ily"
-\include "bv_definitions.ily"
-
 %% bv_definitions is in plugins/bv-lilyjazz/stylesheets.
 %% It contains some useful functions such as:
-%%   timestop
+%% timestop
 %%   markManualBox
 %%   markBlue
 %%   blueChord
 %%   redChord
 %%   greenChord
+\include "bv_definitions.ily"
 
 %% set up title, compser, meter, copyright
 title = #"SET MY TITLE"
 composer = #"SET COMPOSER"
 arranger = #"SET ARRANGER"
-tagline = "Awesome transcription by Bartev"
 meter = "SET METER"
+%% instrument = \instrumentAlto
+%% instrument = \instrumentTenor
+
+transcribed = #"Bartev 2026-04"
+tagline = "Awesome transcription by Bartev"
 copyright = #"Bartev 2026"
 
-%%%%%%%%%%%%%%%%%%%% Boilerplate - Setup Page, title, header, etc.
-
-realBookTitle = \markup {
-  \score {
-    {
-      \override TextScript.extra-offset = #'(0 . -4.5)
-      s4
-      s^\markup
-      \fill-line {
-        %% meter
-        \fontsize #2 \lower #2 \rotate #7 \concat { \note { 4 } #1  " = " #meter }
-        %% title
-        \fontsize #5
-        \override #'(offset . 7) \override #'(thickness . 6)
-        \underline \larger #title
-        %% composer
-        \fontsize #2 \lower #1 \concat { #composer " " }
-      }
-      s
-    }
-    \layout {
-      \omit Staff.Clef
-      \omit Staff.TimeSignature
-      \omit Staff.KeySignature
-      ragged-right = ##f
-      ragged-bottom = ##f
-      ragged-last-bottom = ##t
-    }
-  }
-}
-
-\header {
-  title = \realBookTitle
-  tagline = \tagline
-  copyright = \copyright
-  %% The following fields are evenly spread on one line
-  %% the field "instrument" also appears on following pages
-  %% instrument = \markup \with-color #blue "Alto Sax"
-}
-
-\paper {
-  #(set-paper-size "letter")
-  #(define fonts
-    (set-global-fonts
-     #:music "lilyjazz"
-     #:brace "lilyjazz"
-     #:roman "lilyjazz-text"
-     #:sans "lilyjazz-chord"
-     #:factor (/ staff-height pt 18)
-   ))
-
-	top-margin = 0.5\in
-  bottom-margin = 0.5\in
-  left-margin = 0.5\in
-  right-margin = 0.5\in
-  indent = 0\mm
-
-  %% between-system-space = 2.\cm
-  %% between-system-padding = #0
-
-  %%set to ##t if your score is less than one page:
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-	ragged-right = ##f
-
-	markup-system-spacing = #'((basic-distance . 23)
-                             (minimum-distance . 8)
-                             (padding . 1))
-
-  oddHeaderMarkup = \markup
-	\fill-line {
-		%% If not using the realBookTitle, can use
-		%% \fromproperty #'header:title " "
-		\title
-		\if \should-print-page-number
-		\fromproperty #'page:page-number-string
-	}
-  evenHeaderMarkup = \markup
-	\fill-line {
-		\if \should-print-page-number
-		\fromproperty #'page:page-number-string " "
-		\title
-	}
-}
-
-
-\layout {
-  %% This affects horizontal brackets that I'm using to highlight phrases.
-  \context { \Lyrics \override LyricText.font-name = #"serif" }
-  \context {
-    \Voice
-    \consists "Horizontal_bracket_engraver"
-    \override HorizontalBracket.direction = #UP
-    \override HorizontalBracket.thickness = 3.0
-    \override HorizontalBracket.color = #red
-  }
-  \numericTimeSignature
-}
+%% Paper & Layout settings are in `realbook_layout`
+%% Import AFTER setting `title`
+%% It defines the realbook title line based on definitions above
+\include "realbook_layout.ily"
 
 global = {
   \numericTimeSignature
@@ -172,12 +81,24 @@ global = {
 %%
 %% Put it all together
 %%
+%% introTenor = \relative c' {
+%%   \partial 2
+%%   r8 d g d'~
+%% }
+%%
 %% \score {
 %%   <<
-%%     \new ChordNames \chordNames
+%%     \new ChordNames {
+%%       \chordsIntro
+%%       \repeat unfold 2 \chordChanges
+%%     }
 %%     \new Staff {
-%%       \global
-%%       \notesMelody
+%%       \new Voice = "soloist" {
+%%         %% Your music notation here
+%%         \global
+%%         \introTenor
+%%         \melodyTenor
+%%       }
 %%     }
 %%     \scaleDegrees
 %%   >>
