@@ -21,9 +21,9 @@
 
 %% set up title, compser, meter, copyright
 title = #"I'll Remember April"
-composer = #"SET COMPOSER"
-arranger = #"SET ARRANGER"
-meter = "SET METER"
+composer = #"Stan Getz solo"
+arranger = #"Stan Meets Chet (1958)"
+meter = "220"
 %% instrument = \instrumentAlto
 instrument = \instrumentTenor
 
@@ -185,7 +185,7 @@ leadMusic= \relative c'' {
 	r8 cis c cis e ees d e
 
 	% m29
-	\timestop "0:44"
+	\timestop "0:45"
 	cis8 cis4. cis4 cis8 r
 	cis8 r cis r16 cis e4 d
 	cis2. r8 cis
@@ -193,17 +193,33 @@ leadMusic= \relative c'' {
 
 	% m33
 	\markManualBox "A"
+	\timestop "0:50"
 	\bar "|."
 	e,4 cis' d e
 	e,4 cis' d e
 	a4 e d cis
-	r4
-	\comp 3
+	r4 e, cis' d
 
-	\comp 16
-	\comp 16
-	\comp 16
+	%% m37
+	\timestop "0:54"
+	e4 e, b' c
+	r4 e, b' c
+	e4 e, b' c
+	r4 e, a bes
 
+	%% m41
+	\timestop "0:58"
+	b2 b
+	b4 r b8 cis d dis
+	e4. cis8 a4 gis
+	g2 fis'4. e8
+
+	%% m45
+	\timestop "1:02"
+	cis8 cis d4 e d
+	r2 r4 e8 fis
+	gis8 a fis d b e, fis a
+	gis8 e' c c a e fis4
 }
 
 solo = \relative c'' {
@@ -214,49 +230,132 @@ solo = \relative c'' {
 		\box A
 		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
 	}
-	\comp 16
-	\comp 16
-	\comp 16
+	%% m49
+	\timestop "1:07"
+	a2. r8 e
+	g8 a16 g e8 g8~ g e g r
+	a4. a8~ a2
+	r2 r8 e fis e
+
+	%% m53
+	\timestop "1:11"
+	a4 a a8 a~ a a~
+	a4 r8 e g e g a
+	b2 a8 b a g
+	e8 e4. r2
+
+	%% m57
+	\timestop "1:16"
+	a8 gis g fis f g a c
+	b8 e, fis a gis b e fis
+	\tuplet 3/2 { g8 aes g } fis8 f e cis r4
+	\comp 4
+
+	\timestop "1:20"
 	\comp 16
 
 	\markManualBox "B"
+	\timestop "1:24"
 	\bar ".|"
 	\comp 16
+
+	\timestop "1:29"
 	\comp 16
+
+	\timestop "1:33"
 	\comp 16
+
+	\timestop "1:38"
 	\comp 16
 
 	\markManualBox "A"
 	\bar ".|"
+	\timestop "1:42"
 	\comp 16
+
+	\timestop "1:47"
 	\comp 16
+
+	\timestop "1:51"
 	\comp 16
+
+	\timestop "1:55"
 	\comp 16
 }
 
 %% Add scale tones over each note
-scaleDegrees = \lyrics {
-	\markup \rN {1}4 \markup \rN {2}4 \markup \rN {3}4 \markup \rN {4}4
+scaleDegreesHead = \lyrics {
+	\markup \scaleDegree {1}4
+	\markup \scaleDegree { 2 }4
+	\markup \scaleDegree { 3 }4
+	\markup \scaleDegree { 4 }4
+		\repeat unfold 3 { s1 }
+	\repeat unfold 4 { s1 }
+}
+
+scaleDegreesSolo = \lyrics {
+	%% m49
+	\markup \scaleDegree { 1 }2.
+	\markup \scaleDegree {  }8
+	\markup \scaleDegree { 5 }8
+
+	\markup \scaleDegree { f7 }4
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { f7 }4
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { f7 }4
+
+	\markup \scaleDegree { 1 }1
+
+	\markup \scaleDegree {  }2
+	\markup \scaleDegree {  }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 6 }
+	\markup \scaleDegree { 5 }
+
+	%% m53
+	\markup \scaleDegree { 1 }1
+
+	\markup \scaleDegree { 1 }4.
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 1 }8
+
+	\markup \scaleDegree { 2 }2
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 2 }
+	\markup \scaleDegree { 1 }
+	\markup \scaleDegree { f7 }
+
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 5 }4.
+	\markup \scaleDegree {  }2
+
+
 }
 
 templateScore = \score {
 	<<
-		\new ChordNames { \repeat unfold 1 \chordNamesHead }  % add the Chord Names above the staff
+		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
 		\new Staff {
 			\global
 			%% the head 
 			<<
 				\repeat unfold 6 \scoreBreaks
 				\leadMusic
+				\new Lyrics { \scaleDegreesHead }  % add the scaleDegrees below the staff
 			>>
 			%% Start the solo on a new page 
 			%% \pageBreak
 			<<
 				\repeat unfold 6 \scoreBreaks
 				\solo
+				\new Lyrics { \scaleDegreesSolo }
 			>>
 		}
-		\new Lyrics { \scaleDegrees }  % add the scaleDegrees below the staff
+
 	>>
 	\layout {
 		indent = 0
