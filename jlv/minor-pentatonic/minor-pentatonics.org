@@ -1,0 +1,243 @@
+#+TITLE: Minor Pentatonics
+#+DATE: 2026-04-10
+#+AUTHOR: Bartev
+#+OPTIONS: num:t toc:nil
+
+#+LATEX_HEADER: \usepackage[cm]{fullpage}
+#+LATEX_HEADER: \usepackage[headheight=15pt, headsep=10pt, top=1in, bottom=1in, left=0.75in, right=0.75in]{geometry} % Ensure sufficient header space
+#+BIND: org-latex-image-default-width ".98\\linewidth"
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \fancyhead[L]{\textbf{BV Scales For Jazz Improvization}} % Left header with title
+#+LATEX_HEADER: \fancyhead[R]{\textbf{Bartev}} % Right header with author
+#+LATEX_HEADER: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{Printed \today} % Right footer with today's date
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt} % Optional: Add a horizontal rule below the header
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \let\ps@plain\ps@fancy % Apply "fancy" style to the first page
+#+LATEX_HEADER: \let\maketitle\relax % Suppress default title/author rendering
+#+LATEX_HEADER: \makeatother
+
+#+PROPERTY: header-args:lilypond :noweb yes :exports results
+#+PROPERTY: header-args:lilypond :prologue (org-babel-ref-resolve "settings[]")
+
+#+name: settings
+#+begin_src lilypond :exports none
+  \version "2.24.2"
+
+  \include "lilypond-book-preamble.ly"
+
+  \include "jazzchords.ily"
+  %% \include "lilyjazz.ily"
+  \include "jazzextras.ily"
+  \include "roman_numeral_analysis_tool.ily"
+  \include "bv_definitions.ily"
+
+  #(ly:set-option 'use-paper-size-for-page #f)
+  #(ly:set-option 'tall-page-formats 'pdf)
+
+  #(set-global-staff-size 16)
+
+  \paper{
+    line-width=7\in
+    indent=0\mm
+    left-margin = 0\mm
+    right-margin = 0\mm
+
+    oddFooterMarkup=##f
+    oddHeaderMarkup=##f
+    bookTitleMarkup=##f
+    scoreTitleMarkup=##f
+    ragged-right = ##f
+
+    #(define fonts
+      (set-global-fonts
+       #:music "lilyjazz"
+       #:brace "lilyjazz"
+       %% #:roman "lilyjazz-text"
+       #:sans "lilyjazz-chord"
+       #:factor (/ staff-height pt 18)
+     ))
+  }
+
+  \layout {
+    \omit Staff.TimeSignature
+    \context {
+      \Score
+      \override SpacingSpanner.uniform-stretching = ##t
+    }
+  }
+
+  global = {
+    \numericTimeSignature
+    \time 4/4
+    %% \tempo 4=224  % this would be over the clef on the first line
+
+    %% See here for using colors
+    %% http://lilypond.org/doc/v2.19/Documentation/notation/inside-the-staff#coloring-objects
+    %% \override Score.RehearsalMark.color = #(x11-color "SlateBlue2")  % example using x11 colors
+    \override Score.RehearsalMark.color = #darkred
+    %% http://lilypond.org/doc/v2.19/Documentation/internals/rehearsalmark
+    \override Score.RehearsalMark.font-size = 6
+
+    \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+  }
+#+end_src
+
+* Pentatonic and Blues
+
+The minor pentatonic has the same notes as the major pentatonic of the relative minor.
+
+C minor pentatonic has same notes as the E\flat  major pentatonic.
+
+The blues scale is like the minor pentatonic with an added "blues" tone (\sharp4)
+
+#+begin_src lilypond :file pent-blues.pdf
+    \score{
+      \new StaffGroup
+      <<
+        \new Staff {
+          \relative c' {
+            \time 5/4
+            c4^\markup {"Major Pentatonic"} d e g a
+            c,4^\markup {"Minor Pentatonic"} ees f g bes
+            \time 6/4
+            c,4^
+            \markup {"Blues"} ees f fis g bes
+          }
+        }
+        \lyrics {
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { 2 }
+          \markup \scaleDegree { 3 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { 6 }
+
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+
+          \markup \scaleDegree { 1 }4
+          \markup \scaleDegree { f3 }
+          \markup \scaleDegree { 4 }
+          \markup \scaleDegree { s4 }
+          \markup \scaleDegree { 5 }
+          \markup \scaleDegree { f7 }
+        }
+      >>
+    }
+#+end_src
+
+* 1/8 note 3rds
+
+Pentatonic scale in 3rds
+
+#+begin_src lilypond :file pent-thirds-in-eighths.pdf
+\score {
+  \new StaffGroup
+  <<
+    \new Staff {
+      \relative c' {
+        c8 f ees g f bes g c
+        bes8 ees c f ees g f bes
+        g8 c bes ees c f \comp 1
+        \break
+
+        ees8 bes c g bes f g ees
+        f8 c ees bes c g bes f
+        g8 ees f c \comp 2
+      }
+    }
+    \lyrics {
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { 4 }8
+      \markup \scaleDegree { f3 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { 4 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { 1 }8
+
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { f3 }8
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { 4 }8
+      \markup \scaleDegree { f3 }8
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { 4 }8
+      \markup \scaleDegree { f7 }8
+
+      \markup \scaleDegree { 5 }8
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { f7 }8
+      \markup \scaleDegree { f3 }8
+      \markup \scaleDegree { 1 }8
+      \markup \scaleDegree { 4 }8
+
+    }
+    >>
+}
+#+end_src
+
+* Triplet 3rds
+#+begin_src lilypond :file .pdf
+\score {
+  \new StaffGroup
+  <<
+    \new Staff {
+      \relative c' {
+        \tuplet 3/2 { c8 f ees } \tuplet 3/2 { g f bes } \tuplet 3/2 { g c bes8} \tuplet 3/2 {  ees c f}
+        \tuplet 3/2 {  ees g f} \tuplet 3/2 {  bes g8 c} \tuplet 3/2 {  bes ees c} f4
+        \break
+
+        \tuplet 3/2 {  ees8 bes c} \tuplet 3/2 {   g bes f} \tuplet 3/2 { g ees f8} \tuplet 3/2 { c ees bes}
+        \tuplet 3/2 {  c g bes} \tuplet 3/2 {  f g8 ees} \tuplet 3/2 {  f c ees} bes8 c
+      }
+    }
+    \lyrics {
+      \tuplet 3/2 {
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { f3 }8}
+
+      \tuplet 3/2 {
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8
+        \markup \scaleDegree { f7 }8}
+
+      \tuplet 3/2 {
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { f7 }8}
+
+      \tuplet 3/2 {
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 1 }8
+        \markup \scaleDegree { 4 }8}
+
+      \tuplet 3/2 {
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 4 }8}
+
+      \tuplet 3/2 {
+        \markup \scaleDegree { f7 }8
+        \markup \scaleDegree { 5 }8
+        \markup \scaleDegree { 1 }8}
+
+      \tuplet 3/2 {
+        \markup \scaleDegree { f7 }8
+        \markup \scaleDegree { f3 }8
+        \markup \scaleDegree { 1 }8}
+
+      \markup \scaleDegree { 4 }8
+    }
+    >>
+}
+#+end_src
