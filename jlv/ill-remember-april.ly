@@ -249,10 +249,14 @@ solo = \relative c'' {
 	a8 gis g fis f g a c
 	b8 e, fis a gis b e fis
 	\tuplet 3/2 { g8 aes g } fis8 f e cis r4
-	\comp 4
+	ais2 fis'
 
+	%% m61
 	\timestop "1:20"
-	\comp 16
+	r8 c cis e cis a fis e
+	r2 cis'4. gis8
+	b8 gis a r gis a cis fis
+	f4 cis8 e~ e4 r
 
 	\markManualBox "B"
 	\timestop "1:24"
@@ -285,11 +289,11 @@ solo = \relative c'' {
 
 %% Add scale tones over each note
 scaleDegreesHead = \lyrics {
-	\markup \scaleDegree {1}4
-	\markup \scaleDegree { 2 }4
-	\markup \scaleDegree { 3 }4
-	\markup \scaleDegree { 4 }4
-		\repeat unfold 3 { s1 }
+	\markup \scaleDegree { 3 }
+	\markup \scaleDegree { 4 }
+	\markup \scaleDegree { 5 }
+	\markup \scaleDegree { 4 }
+	\repeat unfold 3 { s1 }
 	\repeat unfold 4 { s1 }
 }
 
@@ -336,6 +340,7 @@ scaleDegreesSolo = \lyrics {
 
 }
 
+
 templateScore = \score {
 	<<
 		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
@@ -344,8 +349,8 @@ templateScore = \score {
 			%% the head 
 			<<
 				\repeat unfold 6 \scoreBreaks
-				\leadMusic
-				\new Lyrics { \scaleDegreesHead }  % add the scaleDegrees below the staff
+				\new Voice = "leadVoice" { \leadMusic }
+				\new Lyrics \lyricsto "leadVoice" { \scaleDegreesHead }  % add the scaleDegrees below the staff
 			>>
 			%% Start the solo on a new page 
 			%% \pageBreak
