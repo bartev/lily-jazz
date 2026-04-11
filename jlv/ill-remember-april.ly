@@ -39,7 +39,7 @@ copyright = #"Bartev 2026"
 global = {
   \numericTimeSignature
   \time 4/4
-  \key c \major
+  \key a \major
 	%% \tempo 4=224  % this would be over the clef on the first line
 
   %% make only the first clef visible
@@ -121,21 +121,89 @@ chordNamesHead = \chordmode {
 	d1:m7 g:7 \repeat percent 2 {c:maj7}
 	b1:m7 e:7 \repeat percent 2 {a:maj7}
 	gis1:m7 cis:7 fis:maj7 b2:m7 e:7
+
+	a1:maj7 a:6 a:maj7 a:6
+	a1:m7 a1:m6 a1:m7 a1:m6
+	b1:m7.5- e:7.9- cis:m7.5- fis:7.9-
+	b1:m7 e:7 a:maj7 b2:m7 e:7
 }
 
 leadMusic= \relative c'' {
 	\bar ".|-|"
 	\markManualBox "A"
-	\comp 16
-	\comp 16
-	\comp 16
-	\comp 16
+	\timestop "0:15"
+	% m1
+	r4 cis d e
+	d4. cis8 b4 a
+	b2. a4
+	gis4 fis2.
+
+	% m5
+	\timestop "0:19"
+	r4 b c d
+	c4. b8 a4 g
+	a8 b a2.~
+	a2 r2
+
+	% m9
+	\timestop "0:24"
+	r2 b
+	b4 r r8 cis d r
+	r2 e2
+	e4. r8 fis4. fis8
+
+	% m13
+	\timestop "0:28"
+	cis8 cis d d e e d4
+	b2 cis
+	e,8 e r e fis fis r fis
+	gis8 gis r fis~ fis4. fis8
+	\bar "||"
+
+
+	% m17
+	\markManualBox "B"
+	\timestop "0:32"
+	\bar ".|"
+	a1
+	r2 \xNote a8 b c d
+	e2. r8 d
+	c4 b8 c~ c8 b bes a~
+
+	% m21
+	\timestop "0:36"
+	a1
+	r4 b8 g a b c d
+	ees8 e ees e c g e ees
+	e8 c'~ c2 r4
+
+	% m25
+	\timestop "0:40"
+	r2 e2~
+	e8 fis~ fis4 d4. e8
+	cis4. cis8~ cis2
+	r8 cis c cis e ees d e
+
+	% m29
+	\timestop "0:44"
+	cis8 cis4. cis4 cis8 r
+	cis8 r cis r16 cis e4 d
+	cis2. r8 cis
+	b8 cis b e r d cis4
+
+	% m33
+	\markManualBox "A"
+	\bar "|."
+	e,4 cis' d e
+	e,4 cis' d e
+	a4 e d cis
+	r4
+	\comp 3
 
 	\comp 16
 	\comp 16
 	\comp 16
-	\comp 16
-	\bar "|."
+
 }
 
 solo = \relative c'' {
@@ -145,12 +213,21 @@ solo = \relative c'' {
 	\mark \markup \center-column {
 		\box A
 		{ \raise #2 \small \with-color #blue \center-column {"Begin" "solo"} }
-	}	
+	}
 	\comp 16
 	\comp 16
 	\comp 16
 	\comp 16
 
+	\markManualBox "B"
+	\bar ".|"
+	\comp 16
+	\comp 16
+	\comp 16
+	\comp 16
+
+	\markManualBox "A"
+	\bar ".|"
 	\comp 16
 	\comp 16
 	\comp 16
@@ -169,13 +246,13 @@ templateScore = \score {
 			\global
 			%% the head 
 			<<
-				\repeat unfold 4 \scoreBreaks
+				\repeat unfold 6 \scoreBreaks
 				\leadMusic
 			>>
 			%% Start the solo on a new page 
-			\pageBreak
+			%% \pageBreak
 			<<
-				\repeat unfold 4 \scoreBreaks
+				\repeat unfold 6 \scoreBreaks
 				\solo
 			>>
 		}
