@@ -150,7 +150,7 @@ leadMusic= \relative c'' {
 	r2 b
 	b4 r r8 cis d r
 	r2 e2
-	e4. r8 fis4. fis8
+	e4. r8 fis4. e8
 
 	% m13
 	\timestop "0:28"
@@ -258,19 +258,35 @@ solo = \relative c'' {
 	b8 gis a r gis a cis fis
 	f4 cis8 e~ e4 r
 
+	%% m65
 	\markManualBox "B"
 	\timestop "1:24"
 	\bar ".|"
-	\comp 16
+	r4 \tuplet 3/2 { e8 f e } d8 c a f
+	e8 ees d g f g a b
+	c4 r8 g'~ g4. e8
+	\tuplet 3/2 { d8 e d } c8 b~ b4 r
 
+	%% m69
 	\timestop "1:29"
-	\comp 16
+	r8 a gis a a'4. g8
+	f8 d a ais b g r d'~
+	d4 c8 a c d4.
+	r1
 
+	%% m73
 	\timestop "1:33"
-	\comp 16
+	b4 cis d e8 f
+	r4 cis'16 d cis b a8 gis g f
+	e8 d c a cis e4.
+	r2 r8 e8 ees d
 
+	%% m77
 	\timestop "1:38"
-	\comp 16
+	cis8 cis4 cis8 cis4 c8 cis~
+	cis2 f4. dis8
+	c4 dis8 cis~ cis4 r
+	r1
 
 	\markManualBox "A"
 	\bar ".|"
