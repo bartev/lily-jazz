@@ -288,20 +288,36 @@ solo = \relative c'' {
 	c4 dis8 cis~ cis4 r
 	r1
 
+	%% m81
 	\markManualBox "A"
 	\bar ".|"
 	\timestop "1:42"
-	\comp 16
+	cis'8 c cis e  b ais b d
+	cis8 a e ees c e fis gis
+	a8 b16 a gis8 fis e d b c
+	cis8 c cis e b gis \tuplet 3/2 { a8 c e }
 
+	%% m85
 	\timestop "1:47"
-	\comp 16
+	g2~ g8 b, \tuplet 3/2 { c e g }
+	b2 r
+	r8 e, \tuplet 3/2 { f8 a d } c8 a gis b
+	a8 e \tuplet 3/2 { g8 a g } fis8 g e g
 
+	%% m89
 	\timestop "1:51"
-	\comp 16
+	f8 f4.~ f8 e \tuplet 3/2 { d8 c a }
+	gis4. e'8~ e4 r
+	a4 gis g8 f e d
+	cis8 a b gis ais cis e fis
 
+	%% m93
 	\timestop "1:55"
-	\comp 16
-}
+	a8 a4. r2
+	r8 e a \tuplet 3/2 { b16 a g} e8 g~ g e
+	a2 r2
+	r1
+	}
 
 %% Add scale tones over each note
 scaleDegreesHead = \lyrics {
