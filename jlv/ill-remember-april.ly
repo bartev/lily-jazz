@@ -37,24 +37,24 @@ copyright = #"Bartev 2026"
 \include "realbook_layout.ily"
 
 global = {
-  \numericTimeSignature
-  \time 4/4
-  \key a \major
+	\numericTimeSignature
+	\time 4/4
+	\key a \major
 	%% \tempo 4=224  % this would be over the clef on the first line
 
-  %% make only the first clef visible
-  \override Score.Clef.break-visibility = #'#(#f #f #f)
+	%% make only the first clef visible
+	\override Score.Clef.break-visibility = #'#(#f #f #f)
 
-  %% make only the first time signature visible
-  \override Score.KeySignature.break-visibility = #'#(#f #f #f)
+	%% make only the first time signature visible
+	\override Score.KeySignature.break-visibility = #'#(#f #f #f)
 
-  %% allow single-staff system bars
-  \override Score.SystemStartBar.collapse-height = #1
+	%% allow single-staff system bars
+	\override Score.SystemStartBar.collapse-height = #1
 
-  \set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
+	\set Score.rehearsalMarkFormatter = #format-mark-box-alphabet
 
-  %% left justify rehearsal marks (centered by default)
-  \override Score.RehearsalMark.self-alignment-X = #LEFT
+	%% left justify rehearsal marks (centered by default)
+	\override Score.RehearsalMark.self-alignment-X = #LEFT
   
 	\override Score.MultiMeasureRest.expand-limit = 1
 
@@ -107,7 +107,7 @@ global = {
 %% Define line breaks globally
 %% OPTIONAL, but can set all lines to be 4 bars wide
 scoreBreaks = {
-  \repeat unfold 2 { s1*4 \break }
+	\repeat unfold 2 { s1*4 \break }
 }
 
 %% Define the chords here. The same chords will be used for chord names and notes
@@ -293,7 +293,7 @@ solo = \relative c'' {
 	\bar ".|"
 	\timestop "1:42"
 	cis'8 c cis e  b ais b d
-	cis8 a e ees c e fis gis
+	cis8 a e ees d e fis gis
 	a8 b16 a gis8 fis e d b c
 	cis8 c cis e b gis \tuplet 3/2 { a8 c e }
 
@@ -317,22 +317,245 @@ solo = \relative c'' {
 	r8 e a \tuplet 3/2 { b16 a g} e8 g~ g e
 	a2 r2
 	r1
-	}
+
+	%% m97
+	\timestop "2:00"
+	r2 c8 a b4
+	a2 e'4 r8 d
+	c8 a b a~ a2
+	r2 r8 e a c
+
+	%% m101
+	\timestop "2:04"
+	e8 d e d c a b gis
+	a8 b c d e f e d
+	c a e f fis s
+	\comp 5
+
+}
 
 %% Add scale tones over each note
 scaleDegreesHead = \lyrics {
-	\markup \scaleDegree { 3 }
+	%% relative to Amaj
+	4
+	\markup \scaleDegree { 3 }4
+	\markup \scaleDegree { 4 }
+	\markup \scaleDegree { 5 }
+
+	\markup \scaleDegree { 4 }4.
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 2 }4
+	\markup \scaleDegree { 1 }
+
+	\markup \scaleDegree { 2 }2.
+	\markup \scaleDegree { 1 }4
+	\markup \scaleDegree { 7 }4
+	\markup \scaleDegree { 6 }2.
+
+	4
+	\markup \scaleDegree { 2 }4
+	\markup \scaleDegree { f3 }4
+	\markup \scaleDegree { 4 }4
+	\repeat unfold 3 { 1 }
+	\repeat unfold 4 { 1 }
+
+	%% relative to Amaj
+	\markup \scaleDegree { 3 }4
 	\markup \scaleDegree { 4 }
 	\markup \scaleDegree { 5 }
 	\markup \scaleDegree { 4 }
-	\repeat unfold 3 { s1 }
-	\repeat unfold 4 { s1 }
+
+	\markup \scaleDegree { 2 }2
+	\markup \scaleDegree { 3 }
+
+	\markup \scaleDegree { 5 }2
+	\markup \scaleDegree { 6 }
+	\markup \scaleDegree { 7 }4.
+	\markup \scaleDegree { 6 }2
+	8
+
+	%% relative to Cmaj
+	%% m17
+	\markup \scaleDegree { 6 }1
+
+	2
+	\markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 7 }
+	\markup \scaleDegree { 8 }
+	\markup \scaleDegree { 9 }
+
+	\markup \scaleDegree { 3 }2.
+	8
+	\markup \scaleDegree { 2 }8
+
+	\markup \scaleDegree { 1 }4
+	\markup \scaleDegree { 7 }8
+	\markup \scaleDegree { 1 }4
+	\markup \scaleDegree { 7 }8
+	\markup \scaleDegree { f7 }
+	\markup \scaleDegree { 6 }
+
+	%% m21
+	\markup \scaleDegree { 6 }1
+	4
+	\markup \scaleDegree { 7 }8
+	\markup \scaleDegree { 5 }
+	\markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 7 }8
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 2 }8
+
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 3 }
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 3 }
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { f3 }8
+
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 1 }8
+	2 4
+
+	%% relative to Amaj
+	%% m25
+	2
+	\markup \scaleDegree { 5 }2
+
+	8
+	\markup \scaleDegree { 6 }4.
+	\markup \scaleDegree { 4 }
+	\markup \scaleDegree { 5 }8
+
+	\markup \scaleDegree { 3 }1
+
+	8
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 3 }
+	\markup \scaleDegree { 5 }
+	\markup \scaleDegree { f5 }
+	\markup \scaleDegree { 4 }
+	\markup \scaleDegree { 5 }
+
+	%% relative to F#maj
+	%% m29
+	\markup \scaleDegree { 5 }1
+
+	\markup \scaleDegree { 5 }2
+	\markup \scaleDegree { f7 }4
+	\markup \scaleDegree { f6 }4
+
+	\markup \scaleDegree { 5 }1
+
+	%% relative to Amaj
+	\markup \scaleDegree { 2 }8
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 2 }8
+	\markup \scaleDegree { 5 }8
+	8
+	\markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 3 }4
+
+	%% m33
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 3 }4
+	\markup \scaleDegree { 4 }4
+	\markup \scaleDegree { 5 }4
+
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 3 }4
+	\markup \scaleDegree { 4 }4
+	\markup \scaleDegree { 5 }4
+
+	\markup \scaleDegree { 1 }4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 4 }4
+	\markup \scaleDegree { 3 }4
+
+	4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 3 }4
+	\markup \scaleDegree { 4 }4
+
+	%% m37
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 2 }4
+	\markup \scaleDegree { f3 }4
+
+	4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 2 }4
+	\markup \scaleDegree { f3 }4
+
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 2 }4
+	\markup \scaleDegree { f3 }4
+
+	4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 1 }4
+	\markup \scaleDegree { f2 }4
+
+	%% m41
+	%% relative to E
+	\markup \scaleDegree { 5 }2
+	\markup \scaleDegree { 5 }2
+
+	\markup \scaleDegree { 5 }2
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 6 }8
+	\markup \scaleDegree { f7 }8
+	\markup \scaleDegree { 7 }8
+
+	%% relative to F#
+	\markup \scaleDegree { f7 }4.
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 3 }4
+	\markup \scaleDegree { 2 }4
+
+	\markup \scaleDegree { f9 }2
+	\markup \scaleDegree { 1 }4.
+	\markup \scaleDegree { f7 }8
+
+	%% m45
+	%% relative to Amaj
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 4 }4
+	\markup \scaleDegree { 5 }4
+	\markup \scaleDegree { 4 }4
+
+	2 4
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 6 }8
+
+	\markup \scaleDegree { 7 }8
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 2 }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 1 }8
+
+	\markup \scaleDegree { 7 }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 6 }4
+
 }
 
 scaleDegreesSolo = \lyrics {
 	%% m49
 	\markup \scaleDegree { 1 }2.
-	\markup \scaleDegree {  }8
+	8
 	\markup \scaleDegree { 5 }8
 
 	\markup \scaleDegree { f7 }4
@@ -343,11 +566,10 @@ scaleDegreesSolo = \lyrics {
 
 	\markup \scaleDegree { 1 }1
 
-	\markup \scaleDegree {  }2
-	\markup \scaleDegree {  }8
+	2 8
 	\markup \scaleDegree { 5 }8
-	\markup \scaleDegree { 6 }
-	\markup \scaleDegree { 5 }
+	\markup \scaleDegree { 6 }8
+	\markup \scaleDegree { 5 }8
 
 	%% m53
 	\markup \scaleDegree { 1 }1
@@ -361,13 +583,45 @@ scaleDegreesSolo = \lyrics {
 
 	\markup \scaleDegree { 2 }2
 	\markup \scaleDegree { 1 }8
-	\markup \scaleDegree { 2 }
-	\markup \scaleDegree { 1 }
-	\markup \scaleDegree { f7 }
+	\markup \scaleDegree { 2 }8
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { f7 }8
 
 	\markup \scaleDegree { 5 }8
 	\markup \scaleDegree { 5 }4.
-	\markup \scaleDegree {  }2
+	2
+
+	%% m57
+	%% relative to E
+	\markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 2 }8
+	\markup \scaleDegree { f2 }8
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 4 }8
+	\markup \scaleDegree { f6 }8
+
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 2 }8
+	\markup \scaleDegree { 4 }8
+	\markup \scaleDegree { 3 }8
+	\markup \scaleDegree { 5 }8
+	\markup \scaleDegree { 1 }8
+	\markup \scaleDegree { 7 }8
+
+	%% relative to C#
+	\markup \scaleDegree { f5 }4
+	\markup \scaleDegree { 4 }8
+	\markup \scaleDegree { f4 }8
+	\markup \scaleDegree { f3 }8
+	\markup \scaleDegree { 1 }8
+	4
+
+	\markup \scaleDegree { 3 }2
+	\markup \scaleDegree { 1 }2
+
 
 
 }
@@ -375,19 +629,20 @@ scaleDegreesSolo = \lyrics {
 
 templateScore = \score {
 	<<
-		\new ChordNames { \repeat unfold 2 \chordNamesHead }  % add the Chord Names above the staff
+		\new ChordNames { \repeat unfold 3 \chordNamesHead }  % add the Chord Names above the staff
 		\new Staff {
 			\global
 			%% the head 
 			<<
 				\repeat unfold 6 \scoreBreaks
 				\new Voice = "leadVoice" { \leadMusic }
-				\new Lyrics \lyricsto "leadVoice" { \scaleDegreesHead }  % add the scaleDegrees below the staff
+				%% \new Lyrics \lyricsto "leadVoice" { \scaleDegreesHead }  % add the scaleDegrees below the staff
+				\new Lyrics { \scaleDegreesHead }
 			>>
 			%% Start the solo on a new page 
 			%% \pageBreak
 			<<
-				\repeat unfold 6 \scoreBreaks
+				\repeat unfold 12 \scoreBreaks
 				\solo
 				\new Lyrics { \scaleDegreesSolo }
 			>>
