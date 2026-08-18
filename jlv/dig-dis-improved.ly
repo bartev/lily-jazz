@@ -35,7 +35,7 @@ fall = \bendAfter #-4
     chordChanges = ##t
   }
 }
-o
+
 %%%%%%%%%%%%%%%%%%%% Header
 
 \header {
