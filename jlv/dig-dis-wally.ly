@@ -59,7 +59,7 @@ chordChanges = \chordmode {
 introTenor = \relative c'' {
 	\markRedBox "Head"
 	\partial 2
-	r8 d ees4
+	r8 c ees4
 }
 melodyTenor = \relative c''' {
   \bar "||"
@@ -148,7 +148,7 @@ melodyTenor = \relative c''' {
   \timestop "1:40"
   r8 c ees f \acciaccatura fis8 g4 \acciaccatura fis!8 g4
   \acciaccatura fis8 g4~ \tuplet 3/2 { g8 f ees } c8 ees r4
-  r8 c ees f fis8 g4.
+  r8 c ees f \acciaccatura fis8 g2
   \acciaccatura fis8 g4~ \tuplet 3/2 { g8 f ees } c8 c r4
   \break
 
@@ -172,11 +172,78 @@ melodyTenor = \relative c''' {
 	\pageBreak
 
 	\markRedBox "Solo 3"
-  \comp 16 \break
+	%% m49
+  \timestop "2:00"
+  c4 c2 r8 ees
+  c8 c r4 r a
+  c4 c8-. r r c16 b bes8 a
+  g8 f e16 g bes d c4~ c8 bes?
+  \break
+
+  %% m53
+  \timestop "2:08"
+  a4 f8 r r c16 f \tuplet 3/2 { a8 c d }
+  ees4 d8 ees16 d c8 bes g f
+  e4~ e8 c'~ c4 r
+  r8 bes16 a g8 f e d des a
+  \break
+
+  %% m57
+  \timestop "2:15"
+  d4 a' f8 d r a
+  des8 a c4 b~ b8 d16 a'
+  g8 f e d c r r4
+  r4 r8 c f4~ f8 e
+  \break
+  \bar "||"
+
+	\markRedBox "Solo 4"
+  \timestop "2:22"
+  %% m61
+  c8 c r4 r8 c f \acciaccatura { g16 f } e8
+  c8 c r c f e c a
+  c2 r8 c e16 g bes d
+  c8 b bes a g \acciaccatura { a16 g } e8 ees des
+  \break
+
+  %% 65
+  \timestop "2:28"
+  \tuplet 3/2 { c8 r c } \tuplet 3/2 { ees c ees } \tuplet 3/2 { g ees g } \tuplet 3/2 { b g b }
+  d4~ d8 \tuplet 3/2 { b16 g ees } b2
+  r4 r8 e32 g b d c8 b a aes
+  g8 f e d des bes' a e
+  \break
+
+  %% 69
+  \timestop "2:35"
+  g4 a8 f~ f4~ \tuplet 5/2 { f8 e d c a }
+  e'4 f8 d~ d4 r8 a
+  d8 ees16 d a8 g c2
+  r4 a' c8 d c a
+  \break
+  \bar "||"
+
+	\pageBreak
+
+	%% 73
+	\timestop "2:41"
+	c4 r e, r
+  f4 r ges r
+  \acciaccatura {a16 aes} g4 c e8 ees e r
+  c4 c f8 ees c bes
+  \break
+
+	\markRedBox "Solo 5"
+	%% m77%
+	\timestop "2:48"
+	c4 r4 r8 c ees f
+	fis8 f ees c d c d c
+	bes8 g bes g
+  \comp 6 \break
   \comp 16 \break
 	\comp 16 \break
 
-	\markRedBox "Solo 4"
+	\markRedBox "Solo 6"
   \comp 16 \break
   \comp 16 \break
 	\comp 16 \break
@@ -188,7 +255,7 @@ melodyTenor = \relative c''' {
   <<
     \new ChordNames {
       \chordsIntro
-      \repeat unfold 6 \chordChanges
+      \repeat unfold 8 \chordChanges
     }
     \new Voice = soloist {
       \global
